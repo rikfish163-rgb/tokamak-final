@@ -19,7 +19,8 @@ data audit → A0/A1 chronological query audit
 
 - HDF5 `meta/IsDisrupt`、`meta/DownTime` 是结局标签权威。
 - 训练/适配 support 炮按固定清单读取；EAST 360 炮只按 `config/splits/east_hdf5_authoritative_balanced360_v1.json` 读取。
-- 报警按每炮最高风险事件评估；总体 TPR 纳入提前量大于 30 ms 的报警，并单列 `TPR@30ms`。
+- 报警按每炮最高风险事件评估；历史字段 `TPR` 是 any-alarm 命中率，EAST 正式
+  提前口径是严格超过30 ms的 `TPR@30ms`，报告时不得用前者替代后者。
 - 静态 360 必须先全部预测并封存；在线流从同一迁移父模型重置。
 - 当前炮结局只在该炮 seal 和查询决定后揭示；揭示后的信息只更新后续炮。
 - 运行输出只能写入 `results/generated/` 或用户指定的空目录。

@@ -44,11 +44,29 @@ def _east_ids(root: Path) -> list[int]:
     return sorted({int(value) for value in values})
 
 
+def _jtext_roles(root: Path) -> dict[str, list[int]]:
+    expected = {"train": 1353, "val": 160, "test": 220}
+    roles = {
+        name: _read_ids(root / "splits" / f"{name}.txt") for name in expected
+    }
+    for name, count in expected.items():
+        values = roles[name]
+        if len(values) != count or len(values) != len(set(values)):
+            raise DataContractError(
+                f"J-TEXT {name} split must contain {count} unique shots"
+            )
+    for left, right in (("train", "val"), ("train", "test"), ("val", "test")):
+        overlap = set(roles[left]) & set(roles[right])
+        if overlap:
+            raise DataContractError(
+                f"J-TEXT split overlap {left}/{right}: {sorted(overlap)[:10]}"
+            )
+    return roles
+
+
 def _jtext_ids(root: Path) -> list[int]:
-    values: list[int] = []
-    for name in ("train", "val", "test"):
-        values.extend(_read_ids(root / "splits" / f"{name}.txt"))
-    return sorted(set(values))
+    roles = _jtext_roles(root)
+    return sorted({shot for values in roles.values() for shot in values})
 
 
 def _validate_hdf5(path: Path, *, full: bool) -> None:

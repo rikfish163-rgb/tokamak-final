@@ -104,32 +104,65 @@ POS = dict(sym50=dict(jt=50.0, ea=50.0), paper=dict(jt=25.0, ea=125.0),
 GRAY = dict(gray0=dict(jt=0.0, ea=0.0), grayFLS=dict(jt=50.0, ea=200.0))
 
 
-def build_sampler(shots, device, pos_ms, gray_ms, seed=0):
+def causal_window(values, *, endpoint, width=W, context_points=None):
+    """Return a fixed-width causal view, repeating only its first past value."""
+
+    endpoint = int(endpoint)
+    width = int(width)
+    context = width if context_points is None else int(context_points)
+    if values.ndim != 2 or not 0 <= endpoint < len(values):
+        raise ValueError("causal endpoint must index a two-dimensional trace")
+    if width <= 0 or not 0 < context <= width:
+        raise ValueError("require 0 < context_points <= width")
+    start = max(0, endpoint - context + 1)
+    observed = values[start:endpoint + 1]
+    padding = width - len(observed)
+    if padding:
+        observed = np.concatenate([
+            np.repeat(observed[:1], padding, axis=0), observed,
+        ], axis=0)
+    return np.ascontiguousarray(observed)
+
+
+def build_sampler(
+    shots, device, pos_ms, gray_ms, seed=0, *, minimum_pos_ms=0.0,
+    allow_left_padding=False, context_lengths=(W,),
+):
+    context_lengths = tuple(int(value) for value in context_lengths)
+    if not context_lengths or any(not 0 < value <= W for value in context_lengths):
+        raise ValueError("context lengths must lie in [1, W]")
     pos, neg = [], []
     for s in shots:
         n = s["v"].shape[0]; t = s["start"] + np.arange(n)/s["rate"]
         p, q = [], []
+        first_endpoint = 0 if allow_left_padding else W - 1
         if s["is_disrupt"] and s["down"] is not None:
-            for end in range(W-1, n):
+            for end in range(first_endpoint, n):
                 ttd = (s["down"] - t[end]) * 1000.0
-                if 0 <= ttd <= pos_ms: p.append(end)
+                if minimum_pos_ms + 1e-9 < ttd <= pos_ms: p.append(end)
                 elif pos_ms + gray_ms < ttd <= 60000.0: q.append(end)
         else:
-            q = list(range(W-1, n))
+            q = list(range(first_endpoint, n))
         pos.append(p); neg.append(q)
     rng = np.random.default_rng(seed)
+    positive_shots = np.flatnonzero([bool(values) for values in pos])
+    negative_shots = np.flatnonzero([bool(values) for values in neg])
     def sample(pp=0.5):
-        while True:
-            i = int(rng.integers(len(shots)))
-            p, q = pos[i], neg[i]
-            if not p and not q: continue
-            if p and rng.random() < pp:
-                end = p[int(rng.integers(len(p)))]; y = 1.0
-            else:
-                if not q: continue
-                end = q[int(rng.integers(len(q)))]; y = 0.0
-            x = shots[i]["v"][end-W+1:end+1]
-            return np.ascontiguousarray(x), np.float32(y)
+        if not len(positive_shots) and not len(negative_shots):
+            raise RuntimeError("sampler has no eligible causal window")
+        choose_positive = bool(
+            len(positive_shots)
+            and (not len(negative_shots) or rng.random() < float(pp))
+        )
+        eligible = positive_shots if choose_positive else negative_shots
+        i = int(eligible[int(rng.integers(len(eligible)))])
+        endpoints = pos[i] if choose_positive else neg[i]
+        end = endpoints[int(rng.integers(len(endpoints)))]
+        context = context_lengths[int(rng.integers(len(context_lengths)))]
+        x = causal_window(
+            shots[i]["v"], endpoint=end, width=W, context_points=context,
+        )
+        return np.ascontiguousarray(x), np.float32(choose_positive)
     return sample
 
 
@@ -158,15 +191,16 @@ class Head(nn.Module):
     def forward(self, z): return self.net(z).squeeze(-1)
 
 
-def train_adapt(src_sampler, tr_sampler, C, epochs=12, bs=128, seed=0):
+def train_source(src_sampler, C, epochs=6, bs=128, seed=0):
+    """Train the exact rebuilt17 J-TEXT parent used by ``train_adapt``."""
+
     torch.manual_seed(seed); np.random.seed(seed); torch.cuda.manual_seed_all(seed)
     torch.backends.cudnn.benchmark = False
     torch.backends.cudnn.deterministic = True
     torch.use_deterministic_algorithms(True)
     enc = Enc(C).to(DEV); head = Head().to(DEV)
     opt = torch.optim.AdamW(list(enc.parameters())+list(head.parameters()), 3e-4, weight_decay=1e-4)
-    nb = max(1, 1000 // bs)  # ~1000 windows per source epoch? use fixed budget
-    for ep in range(epochs[0] if isinstance(epochs, tuple) else 6):
+    for _ep in range(int(epochs)):
         enc.train(); head.train()
         for _ in range(8):
             xs, ys = [], []
@@ -174,6 +208,15 @@ def train_adapt(src_sampler, tr_sampler, C, epochs=12, bs=128, seed=0):
                 x, y = src_sampler(0.5); xs.append(x); ys.append(y)
             loss = F.binary_cross_entropy_with_logits(head(enc(torch.from_numpy(np.stack(xs)).to(DEV))), torch.from_numpy(np.stack(ys)).to(DEV))
             opt.zero_grad(); loss.backward(); opt.step()
+    return enc, head
+
+
+def train_adapt(
+    src_sampler, tr_sampler, C, epochs=12, bs=128, seed=0, *, source_epochs=6,
+):
+    enc, head = train_source(
+        src_sampler, C, epochs=source_epochs, bs=bs, seed=seed,
+    )
     # freeze low, adapt top on transfer
     for p in enc.parameters(): p.requires_grad_(False)
     for p in enc.encoder.layers[-1].parameters(): p.requires_grad_(True)

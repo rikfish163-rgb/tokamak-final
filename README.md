@@ -4,15 +4,40 @@
 
 ## 当前锁定结果
 
-参考结果来自 `balanced360` 方法开发流，状态是 `ONLINE_DIAGNOSTIC`，不是未见未来流的部署确认。报警口径为每炮最大风险报警，`>30 ms` 的报警计入总体 TPR；同时保存 `TPR@30ms` 供论文报告区分口径。
+先单列尚未接触 EAST 的 J-TEXT rebuilt17 源模型。阈值仅由 VAL160 选择，固定
+TEST220 为110破裂+110安全；TP 要求第一次因果报警严格 `lead > 10 ms`。
 
-| seed | static TPR | static FPR | online TPR | online FPR | online TPR@30ms |
+| seed | J-TEXT TPR@>10ms | J-TEXT FPR | timely AUC | median lead |
+|---:|---:|---:|---:|---:|
+| 131 | 0.8455 | 0.2000 | 0.8843 | 125.03 ms |
+| 133 | 0.8182 | 0.1364 | 0.8955 | 84.91 ms |
+| 137 | 0.9182 | 0.2818 | 0.8894 | 130.37 ms |
+
+三 seed 均值为 `TPR=0.8606、FPR=0.2061、timely AUC=0.8897`。该结果没有通过
+源域 `TPR≥0.90、FPR≤0.15` 的三 seed 门，因此状态是 `SOURCE_DIAGNOSTIC`，
+不能把后续 EAST 指标反过来当作 J-TEXT backbone 已合格的证据。完整摘要见
+`results/reference/jtext_source_multiseed_summary.json`。
+
+参考结果来自 `balanced360` 方法开发流，状态是 `ONLINE_DIAGNOSTIC`，不是未见未来流的部署确认。历史摘要中的 `TPR` 只表示破裂炮是否曾报警；真正满足 EAST 最低提前要求的是单列的 `TPR@30ms`。两者不能混称，正式比较应以 `TPR@30ms` 为准。
+
+| seed | static TPR(any alarm) | static FPR | online TPR(any alarm) | online FPR | online TPR@>30ms |
 |---:|---:|---:|---:|---:|---:|
 | 131 | 0.9333 | 0.1444 | 0.9389 | 0.1444 | 0.8222 |
 | 133 | 0.9111 | 0.1278 | 0.9111 | 0.1278 | 0.7722 |
 | 137 | 0.9333 | 0.1389 | 0.9333 | 0.1389 | 0.8222 |
 
 这三行是已提交的参考摘要，不代表把 360 炮当成独立最终测试集。`360` 既参与过方法确定，也按“先完成静态封存、再从同一迁移父模型重置并做时间顺序在线流”的合同运行。
+
+注意：上表 EAST 在线参考产生于本次 J-TEXT `1353/160/220` 炮表和类别采样漏洞
+修复之前。它仍可复核历史方法开发结果，但在用修复后的源父模型重新完成
+`EAST110适配 → static360 → reset → online360` 之前，不能与上面的新 J-TEXT
+结果连成一条“当前端到端指标链”。
+
+修复源父模型后的 seed131 迁移诊断进一步确认了这个边界：只用 EAST110 选择
+max-alarm 阈值后，balanced360 为 `TPR=0.5389、FPR=0.0500`，低于正常性下限；
+若反过来在 balanced360 上后验选到 `TPR=0.8`，可得到 `FPR=0.1444`，但这是
+测试集选阈值，不能作为泛化结果，而且该诊断尚未执行 `lead>30 ms` 口径。详见
+`results/reference/east_transfer_after_source_padfix_seed131.json`。
 
 ## 1. 准备环境
 

@@ -1,0 +1,36 @@
+{
+  "status": "DIAGNOSTIC_ONLY",
+  "seed": 131,
+  "pipeline": "J-TEXT rebuilt17 padfix-v2 source -> fixed EAST110 adapt_high -> balanced360",
+  "source_split": "1353/160/220 canonical roles",
+  "east_support": {
+    "shots": 110,
+    "manifest_nominal_counts": {
+      "disruptive": 10,
+      "safe": 100
+    },
+    "effective_hdf5_counts": {
+      "disruptive": 15,
+      "safe": 95
+    },
+    "label_authority": "HDF5 meta/IsDisrupt and meta/DownTime"
+  },
+  "support_selected_max_alarm": {
+    "threshold": 0.95023,
+    "support_tpr": 0.8,
+    "support_fpr": 0.0316,
+    "balanced360_tpr": 0.5389,
+    "balanced360_fpr": 0.05,
+    "verdict": "ABNORMAL_LOW_TPR"
+  },
+  "balanced360_test_selected_operating_point": {
+    "threshold": 0.66342,
+    "tpr": 0.8,
+    "fpr": 0.1444,
+    "verdict": "TEST_SELECTED_DIAGNOSTIC_NOT_A_VALID_FROZEN_THRESHOLD_RESULT"
+  },
+  "lead_time": {
+    "minimum_lead_ms": null,
+    "note": "shot_alarm.py max-score diagnostic does not enforce the EAST >30 ms lead contract"
+  }
+}

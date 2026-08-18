@@ -42,6 +42,21 @@ def test_data_audit_fails_closed_without_required_layout(tmp_path: Path) -> None
         contract.audit_data(tmp_path, full=False)
 
 
+def test_data_contract_enforces_canonical_jtext_role_counts_and_no_overlap() -> None:
+    contract = load_module(
+        "reproducibility/data_contract.py", "reproducibility_jtext_split_contract"
+    )
+
+    roles = contract._jtext_roles(ROOT)
+
+    assert {name: len(values) for name, values in roles.items()} == {
+        "train": 1353,
+        "val": 160,
+        "test": 220,
+    }
+    assert len(set().union(*map(set, roles.values()))) == 1733
+
+
 def test_python_sources_do_not_embed_original_machine_path() -> None:
     forbidden = "Fuison/experiments/transfer_methods_2026"
     offenders = []
@@ -49,6 +64,18 @@ def test_python_sources_do_not_embed_original_machine_path() -> None:
         if forbidden in path.read_text(errors="replace"):
             offenders.append(path.name)
     assert offenders == []
+
+
+def test_manifest_labels_never_override_hdf5_outcomes() -> None:
+    common = (
+        ROOT / "experiments/transfer_methods_2026/common.py"
+    ).read_text()
+    rebuilt = (
+        ROOT / "experiments/transfer_methods_2026/rebuilt_harness.py"
+    ).read_text()
+
+    assert 'sh["is_disrupt"] = lab' not in common
+    assert "isd = bool(label_map" not in rebuilt
 
 
 def test_github_repository_has_no_file_at_or_above_100_mb() -> None:

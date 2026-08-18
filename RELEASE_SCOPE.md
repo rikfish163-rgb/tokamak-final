@@ -2,7 +2,8 @@
 
 ## Included
 
-- The 22 Python modules imported by the locked A1 → dynamic adapter → unified online runner.
+- The Python modules imported by the J-TEXT source evaluator and the locked
+  A1 → dynamic adapter → unified online runner.
 - The exact split manifests and HDF5 data contract used by those modules.
 - The reproducibility CLI and tests.
 - The locked three-seed reference summary and the small A1 reference seed JSONs.

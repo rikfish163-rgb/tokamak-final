@@ -1,0 +1,75 @@
+{
+  "protocol": "jtext-rebuilt17-source-test220-lead-gt10-padfix-v2",
+  "status": "SOURCE_DIAGNOSTIC",
+  "label_authority": "HDF5 meta/IsDisrupt and meta/DownTime",
+  "threshold_role": "J-TEXT VAL160 only",
+  "test_role": "balanced J-TEXT TEST220 (110 disruptive, 110 safe)",
+  "minimum_lead_ms": 10.0,
+  "lead_comparison": "strictly_greater_than",
+  "split_sha256": {
+    "train1353": "ad403f388694e2dc2b8855dae9d084c319243bd02bdf465abe743919a1b4f9d4",
+    "val160": "bf726a031953c6d0aceba04e10b02b713ecca70a32e27077cca372e45ee9d2be",
+    "test220": "b963c2973c198a833e44017f73e0a11749d50d7144f5758b0ec9bfcd7763868e"
+  },
+  "seeds": [
+    {
+      "seed": 131,
+      "threshold": 0.8115827441215515,
+      "validation_tpr": 0.9,
+      "validation_fpr": 0.175,
+      "TP": 93,
+      "FP": 22,
+      "FN": 17,
+      "TN": 88,
+      "tpr_at_gt10ms": 0.8454545454545455,
+      "fpr": 0.2,
+      "timely_auc": 0.8842975206611571,
+      "median_lead_ms": 125.033437683716,
+      "checkpoint_sha256": "11172d59a357a46545ec90586d34c29564cf2c5d4d6c9c22a9942fbb2408302d"
+    },
+    {
+      "seed": 133,
+      "threshold": 0.894565224647522,
+      "validation_tpr": 0.9,
+      "validation_fpr": 0.125,
+      "TP": 90,
+      "FP": 15,
+      "FN": 20,
+      "TN": 95,
+      "tpr_at_gt10ms": 0.8181818181818182,
+      "fpr": 0.13636363636363635,
+      "timely_auc": 0.8954545454545455,
+      "median_lead_ms": 84.911802683716,
+      "checkpoint_sha256": "d0583d7cb9a467ff964fb4c8a3f8818d08204c3d151e2864aa1ca792ac91469a"
+    },
+    {
+      "seed": 137,
+      "threshold": 0.6831197738647461,
+      "validation_tpr": 0.9,
+      "validation_fpr": 0.225,
+      "TP": 101,
+      "FP": 31,
+      "FN": 9,
+      "TN": 79,
+      "tpr_at_gt10ms": 0.9181818181818182,
+      "fpr": 0.2818181818181818,
+      "timely_auc": 0.8894214876033057,
+      "median_lead_ms": 130.365907683716,
+      "checkpoint_sha256": "d80a014cc8b0326162a2adfbbd888b56cedbfb9a28047f022c8f4379ae83f9d1"
+    }
+  ],
+  "mean": {
+    "tpr_at_gt10ms": 0.8606060606060606,
+    "fpr": 0.20606060606060606,
+    "timely_auc": 0.8897245179063361,
+    "median_lead_ms": 113.43704935038267
+  },
+  "admission": {
+    "required_all_seeds": {
+      "tpr_at_gt10ms_minimum": 0.9,
+      "fpr_maximum": 0.15
+    },
+    "passed": false,
+    "reason": "No seed passes both source-domain thresholds; do not label S0_ADMITTED."
+  }
+}

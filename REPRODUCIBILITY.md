@@ -10,6 +10,21 @@
 3. unified static360 → reset → online-active360
 ```
 
+源域结果必须单独先跑，不能用迁移后的 EAST 指标代替：
+
+```bash
+for seed in 131 133 137; do
+  conda run -n rl_env python \
+    experiments/transfer_methods_2026/jtext_source_baseline.py \
+    --data-root "$FUSION_DATA_ROOT" --seed "$seed" \
+    --output "/path/on/ext4/jtext-source/seed${seed}"
+done
+```
+
+该入口训练尚未接触 EAST110 的 rebuilt17 父模型，阈值只由 VAL160 确定，随后在
+balanced TEST220 上按严格 `lead > 10 ms` 评估。参考摘要位于
+`results/reference/jtext_source_multiseed_summary.json`。
+
 入口是 `reproducibility/reproduce.py`，不是历史实验目录中的 shell 命令。编排器为每个 seed 写出三条实际 Python 命令、环境变量、数据审计和阶段日志。
 
 ## Fixed seeds and parameters
@@ -36,6 +51,11 @@ alarm_lr                = 0.02
 `results/reference/multiseed_summary.json` 是小型摘要，不是训练 checkpoint。它记录每个 seed 的 static/online confusion counts、FPR、总体 TPR、`TPR@30ms`、median lead、查询数和阶段隔离证明。复现器会把新摘要与它逐字段比较；若通过 `--seeds` 指定子集，只比较参考中的对应 seed 行，默认则比较 `131/133/137` 全部三行。
 
 当前摘要的科学状态是 `ONLINE_DIAGNOSTIC`：360 炮曾参与方法开发，不能被描述为完全未见测试流。要生成论文最终结果，必须锁定代码和参数后另建一次性确认流，并保留独立数据/炮表哈希。
+
+J-TEXT rebuilt17 源模型当前同样只是 `SOURCE_DIAGNOSTIC`：三 seed 均值为
+`TPR@lead>10ms=0.8606、FPR=0.2061`，没有达到三个 seed 均需
+`TPR≥0.90、FPR≤0.15` 的 S0 门。已提交的 EAST 在线摘要产生于本次源域切分与
+采样修复之前，在重新跑完整链路前不得与新源域行拼接成同一次端到端结果。
 
 数据可以位于 NTFS 或网络挂载；训练输出和 seal ledger 应放在支持稳定 fsync 的本地 ext4 目录。这样不会把外置盘的 `ntfs3` 写入阻塞误诊断为算法或 CUDA 失败。
 

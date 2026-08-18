@@ -2,12 +2,16 @@ LOCKED SPLIT SPECIFICATION
 ==========================
 
 J-TEXT:
-  train/val/test are the three files under splits/. They are used by the
-  source-side training code and are kept in chronological shot order.
+  train/val/test are the three files under splits/: 1353 / 160 / 220 unique
+  shots with zero role overlap.  Each file is sorted by shot ID for stable
+  serialization.  This is the fixed paper131-count-aligned cohort, not a claim
+  that the three roles form strict chronological blocks.
 
 EAST support:
   config/splits/east_paper131_split_all_in.json
-  fixed 110 shots, HDF5-labelled support (10 disruptive / 100 safe).
+  fixed 110-shot roster.  Its historical manifest groups are 10 disruptive /
+  100 safe, while authoritative HDF5 labels currently resolve to 15 / 95.
+  The manifest fixes membership only and never overrides HDF5 outcomes.
 
 EAST method-development stream:
   config/splits/east_hdf5_authoritative_balanced360_v1.json

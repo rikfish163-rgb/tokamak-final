@@ -25,10 +25,20 @@ def train(seed=131):
     med, sc = GS.fit_scale(src)
     for g in (src, tr, te): GS.apply_scale(g, med, sc)
     pos, gray = GS.POS["ea125"], GS.GRAY["gray0"]
-    ss = GS.build_sampler(src, None, pos["jt"], gray["jt"], seed)
-    ts = GS.build_sampler(tr, None, pos["ea"], gray["ea"], seed)
+    ss = GS.build_sampler(
+        src, None, pos["jt"], gray["jt"], seed,
+        minimum_pos_ms=10.0, allow_left_padding=True,
+        context_lengths=(32, 64, 96, 128),
+    )
+    ts = GS.build_sampler(
+        tr, None, pos["ea"], gray["ea"], seed,
+        minimum_pos_ms=30.0, allow_left_padding=True,
+        context_lengths=(32, 64, 96, 128),
+    )
     C = src[0]["v"].shape[1]
-    enc, head = GS.train_adapt(ss, ts, C, 12, 128, seed)
+    enc, head = GS.train_adapt(
+        ss, ts, C, 12, 128, seed, source_epochs=96,
+    )
     return enc, head, tr, te
 
 
@@ -42,10 +52,20 @@ def train_support_only(seed=131):
     for group in (src, tr):
         GS.apply_scale(group, med, sc)
     pos, gray = GS.POS["ea125"], GS.GRAY["gray0"]
-    ss = GS.build_sampler(src, None, pos["jt"], gray["jt"], seed)
-    ts = GS.build_sampler(tr, None, pos["ea"], gray["ea"], seed)
+    ss = GS.build_sampler(
+        src, None, pos["jt"], gray["jt"], seed,
+        minimum_pos_ms=10.0, allow_left_padding=True,
+        context_lengths=(32, 64, 96, 128),
+    )
+    ts = GS.build_sampler(
+        tr, None, pos["ea"], gray["ea"], seed,
+        minimum_pos_ms=30.0, allow_left_padding=True,
+        context_lengths=(32, 64, 96, 128),
+    )
     channels = src[0]["v"].shape[1]
-    enc, head = GS.train_adapt(ss, ts, channels, 12, 128, seed)
+    enc, head = GS.train_adapt(
+        ss, ts, channels, 12, 128, seed, source_epochs=96,
+    )
     return enc, head, tr, med, sc
 
 def full_risk(enc, head, s, bs=512):

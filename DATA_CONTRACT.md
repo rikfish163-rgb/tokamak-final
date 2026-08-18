@@ -14,8 +14,11 @@
 
 仓库根据以下固定清单检查所需炮号：
 
-- J-TEXT：`splits/train.txt`、`splits/val.txt`、`splits/test.txt` 的并集；
-- EAST support：`config/splits/east_paper131_split_all_in.json` 的 train 炮；
+- J-TEXT：`splits/train.txt`、`splits/val.txt`、`splits/test.txt`，分别固定为
+  `1353（188D/1165N）`、`160（80D/80N）`、`220（110D/110N）`，三者按炮号
+  零交叉；
+- EAST support：`config/splits/east_paper131_split_all_in.json` 的固定110炮；清单名义
+  分组为10D/100N，但当前权威 HDF5 结局是15D/95N，训练与评估必须以后者为准；
 - EAST 方法开发流：`config/splits/east_hdf5_authoritative_balanced360_v1.json` 的 test 炮。
 
 `audit` 默认快速检查每个装置的首尾炮；`audit --full` 检查全部清单炮号，并打开每个 HDF5。缺炮、打不开或字段不完整时命令非零退出。
@@ -40,6 +43,10 @@ xuv_ratio, xuv_skew, xuv_var
 ```
 
 `meta/IsDisrupt` 和 `meta/DownTime` 是结局标签的唯一权威来源。炮表 JSON、CSV、AdvancedTime 和 onset 文件不允许覆盖 HDF5 结局；它们只在相应研究代码显式请求时作为辅助信息使用。
+
+J-TEXT 源模型阈值只由 VAL160 选择，TEST220 只评估一次。破裂炮只有第一次因果
+越阈严格早于 `DownTime` 超过 10 ms 才计 TP；恰好 10 ms 不计。短炮只允许复制
+已经观测到的最早历史值作左补齐，不能读取当前端点之后的数据。
 
 ## Leakage boundary
 

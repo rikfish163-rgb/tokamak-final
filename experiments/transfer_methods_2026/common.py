@@ -236,6 +236,7 @@ class ModeCatShots:
         self.device = device
         self.shots = []
         missing = []
+        self.label_disagreements = []
         for sid in shot_ids:
             p = spec.shot_path(device, int(sid))
             if not p.exists():
@@ -250,10 +251,12 @@ class ModeCatShots:
             sh["device"] = device
             if label_map is not None and int(sid) in label_map:
                 lab = bool(label_map[int(sid)])
-                raw_down = sh["down_time_s"]
-                sh["is_disrupt"] = lab
-                # drop curated safe shots whose HDF5 disagrees
-                sh["down_time_s"] = raw_down if lab else None
+                if lab != bool(sh["is_disrupt"]):
+                    self.label_disagreements.append({
+                        "shot": int(sid),
+                        "manifest_label": lab,
+                        "hdf5_label": bool(sh["is_disrupt"]),
+                    })
             self.shots.append(sh)
         self.label_role = label_role
         self.missing = missing
