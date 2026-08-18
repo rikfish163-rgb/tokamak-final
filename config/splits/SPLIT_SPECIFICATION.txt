@@ -1,0 +1,20 @@
+LOCKED SPLIT SPECIFICATION
+==========================
+
+J-TEXT:
+  train/val/test are the three files under splits/. They are used by the
+  source-side training code and are kept in chronological shot order.
+
+EAST support:
+  config/splits/east_paper131_split_all_in.json
+  fixed 110 shots, HDF5-labelled support (10 disruptive / 100 safe).
+
+EAST method-development stream:
+  config/splits/east_hdf5_authoritative_balanced360_v1.json
+  fixed 360 shots, balanced 180 disruptive / 180 safe, evaluated in shot order.
+
+The 360-shot stream is a locked-best method-development/diagnostic stream. It
+was available during earlier method development and is not an untouched future
+confirmation set. HDF5 meta/IsDisrupt and meta/DownTime override any curated
+CSV/JSON outcome label. Any new split must receive a new versioned manifest and
+must not overwrite these files.

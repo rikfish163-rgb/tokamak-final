@@ -1,0 +1,120 @@
+{
+  "data_contract": {
+    "label_authority": "HDF5 only; shot_list/TEST is candidate/audit provenance",
+    "test_manifest": "config/splits/east_hdf5_authoritative_balanced360_v1.json",
+    "test_manifest_sha256": "657cab542bd987f9c97c3cb88867a9cc828373b32e6ee58d450451461c6ec825",
+    "test_total": {
+      "disruption": 180,
+      "safe": 180,
+      "total": 360
+    },
+    "transfer_total": {
+      "disruption": 15,
+      "safe": 95,
+      "total": 110
+    }
+  },
+  "deployable": false,
+  "method": "rebuilt17+ea125+adapt_high+per-shot-max",
+  "paper_test_selected_tpr80": {
+    "all_seeds_fpr_le_0_20": true,
+    "fpr": {
+      "ci95_high": 0.13259568271505995,
+      "ci95_low": 0.09407098395160671,
+      "max": 0.1388888888888889,
+      "mean": 0.11333333333333333,
+      "min": 0.1,
+      "n": 5,
+      "std": 0.015515822270854381
+    },
+    "tpr": {
+      "ci95_high": 0.8,
+      "ci95_low": 0.8,
+      "max": 0.8,
+      "mean": 0.8,
+      "min": 0.8,
+      "n": 5,
+      "std": 0.0
+    }
+  },
+  "per_seed": [
+    {
+      "paper_test_selected_tpr80": {
+        "deployable": false,
+        "fpr": 0.1,
+        "status": "TEST_DRIVEN_EXPLORATION",
+        "threshold": 0.22606971859931946,
+        "tpr": 0.8
+      },
+      "seed": 131,
+      "support_threshold_on_test": {
+        "fpr": 0.09444444444444444,
+        "tpr": 0.7777777777777778
+      }
+    },
+    {
+      "paper_test_selected_tpr80": {
+        "deployable": false,
+        "fpr": 0.10555555555555556,
+        "status": "TEST_DRIVEN_EXPLORATION",
+        "threshold": 0.17808903753757477,
+        "tpr": 0.8
+      },
+      "seed": 133,
+      "support_threshold_on_test": {
+        "fpr": 0.08333333333333333,
+        "tpr": 0.7611111111111111
+      }
+    },
+    {
+      "paper_test_selected_tpr80": {
+        "deployable": false,
+        "fpr": 0.10555555555555556,
+        "status": "TEST_DRIVEN_EXPLORATION",
+        "threshold": 0.11453665792942047,
+        "tpr": 0.8
+      },
+      "seed": 137,
+      "support_threshold_on_test": {
+        "fpr": 0.07222222222222222,
+        "tpr": 0.7722222222222223
+      }
+    },
+    {
+      "paper_test_selected_tpr80": {
+        "deployable": false,
+        "fpr": 0.11666666666666667,
+        "status": "TEST_DRIVEN_EXPLORATION",
+        "threshold": 0.21008053421974182,
+        "tpr": 0.8
+      },
+      "seed": 139,
+      "support_threshold_on_test": {
+        "fpr": 0.08888888888888889,
+        "tpr": 0.7
+      }
+    },
+    {
+      "paper_test_selected_tpr80": {
+        "deployable": false,
+        "fpr": 0.1388888888888889,
+        "status": "TEST_DRIVEN_EXPLORATION",
+        "threshold": 0.14026397466659546,
+        "tpr": 0.8
+      },
+      "seed": 149,
+      "support_threshold_on_test": {
+        "fpr": 0.05555555555555555,
+        "tpr": 0.5888888888888889
+      }
+    }
+  ],
+  "seeds": [
+    131,
+    133,
+    137,
+    139,
+    149
+  ],
+  "status": "TEST_DRIVEN_EXPLORATION"
+}

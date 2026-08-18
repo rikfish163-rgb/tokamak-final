@@ -1,0 +1,80 @@
+# Reproducible J-TEXT -> EAST research repository
+# Raw data is supplied separately. Never commit it.
+/data/
+data/
+*.hdf5
+*.h5
+*.mat
+
+# Regenerable outputs and local runs
+/results/generated/
+/work/
+/runs/
+/artifacts/
+/output/
+/logs/
+/archive/
+archive/
+*.tar.zst
+*.jsonl
+*.npz
+*.npy
+*.pt
+*.pth
+*.ckpt
+*.joblib
+*.pkl
+*.log
+
+# Historical experiment directories are not part of the release.
+experiments/transfer_methods_2026/*_seed*/
+experiments/transfer_methods_2026/runs*/
+experiments/transfer_methods_2026/grid_runs/
+experiments/transfer_methods_2026/final_two_phase_runs/
+experiments/transfer_methods_2026/unified_static_then_online_seed131_final_v8/
+experiments/transfer_methods_2026/.determinism_check_seed131/
+/experiments/transfer_methods_2026_stale_cleanup/
+/experiments/research_chain_20260511/
+
+# Keep the small, locked reference JSONs in this directory trackable.
+!experiments/transfer_methods_2026/final_delivery_hdf5_deterministic_v2/
+!experiments/transfer_methods_2026/final_delivery_hdf5_deterministic_v2/**
+
+# Python environments, caches, and build products
+.venv/
+venv/
+.venv_gpu/
+miniconda3/
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# LaTeX and generated reports
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.lot
+*.out
+*.toc
+*.xdv
+*.pdf
+*.png
+*.svg
+*.mp4
+*.gif
+
+# Local tooling / editor / OS state
+.DS_Store
+*.swp
+.codex_tmp/
+.claude-migrate/
+.tmp_*/
+MANIFEST/SHA256SUMS

@@ -1,0 +1,174 @@
+{
+  "protocol": "static360_then_reset_online360_locked_best_v8",
+  "seeds": [
+    {
+      "seed": 131,
+      "query_count": 72,
+      "status": "ONLINE_DIAGNOSTIC",
+      "execution_protocol": {
+        "hyperparameters_locked_before_phase1": true,
+        "locked_best_v8": {
+          "adaptation_events": 64,
+          "alarm_lr": 0.02,
+          "inter_lr": 0.0005,
+          "inter_steps": 2,
+          "intra_lr": 0.0001,
+          "intra_physics_weight": 0.1,
+          "intra_steps": 1,
+          "private_inter_lr": 0.0002,
+          "private_intra_lr": 0.0001,
+          "private_support_epochs": 8
+        },
+        "phase1": "complete 360-shot static inference and immutable seal",
+        "phase1_static_complete_before_phase2": true,
+        "phase2": "reset to identical migrated parents, then chronological online active replay",
+        "phase2_reset_to_same_migrated_initial_sha": true,
+        "selection_on_360_in_this_run": false
+      },
+      "static": {
+        "FN": 12,
+        "FP": 26,
+        "TN": 154,
+        "TP": 168,
+        "fpr": 0.14444444444444443,
+        "median_lead_ms": 142.00000000000034,
+        "over_3000ms_count": 22,
+        "tpr": 0.9333333333333333,
+        "tpr_at_30ms": 0.8111111111111111
+      },
+      "online": {
+        "FN": 11,
+        "FP": 26,
+        "TN": 154,
+        "TP": 169,
+        "fpr": 0.14444444444444443,
+        "median_lead_ms": 143.19697399999853,
+        "over_3000ms_count": 22,
+        "tpr": 0.9388888888888889,
+        "tpr_at_30ms": 0.8222222222222222
+      },
+      "delta": {
+        "tp": 1,
+        "fp": 0,
+        "tpr": 0.005555555555555536,
+        "fpr": 0,
+        "tpr_at_30ms": 0.011111111111111072,
+        "median_lead_ms": 1.1969739999981925
+      }
+    },
+    {
+      "seed": 133,
+      "query_count": 72,
+      "status": "ONLINE_DIAGNOSTIC",
+      "execution_protocol": {
+        "hyperparameters_locked_before_phase1": true,
+        "locked_best_v8": {
+          "adaptation_events": 64,
+          "alarm_lr": 0.02,
+          "inter_lr": 0.0005,
+          "inter_steps": 2,
+          "intra_lr": 0.0001,
+          "intra_physics_weight": 0.1,
+          "intra_steps": 1,
+          "private_inter_lr": 0.0002,
+          "private_intra_lr": 0.0001,
+          "private_support_epochs": 8
+        },
+        "phase1": "complete 360-shot static inference and immutable seal",
+        "phase1_static_complete_before_phase2": true,
+        "phase2": "reset to identical migrated parents, then chronological online active replay",
+        "phase2_reset_to_same_migrated_initial_sha": true,
+        "selection_on_360_in_this_run": false
+      },
+      "static": {
+        "FN": 16,
+        "FP": 23,
+        "TN": 157,
+        "TP": 164,
+        "fpr": 0.12777777777777777,
+        "median_lead_ms": 134.99999999999977,
+        "over_3000ms_count": 18,
+        "tpr": 0.9111111111111111,
+        "tpr_at_30ms": 0.7666666666666667
+      },
+      "online": {
+        "FN": 16,
+        "FP": 23,
+        "TN": 157,
+        "TP": 164,
+        "fpr": 0.12777777777777777,
+        "median_lead_ms": 135.49999999999972,
+        "over_3000ms_count": 18,
+        "tpr": 0.9111111111111111,
+        "tpr_at_30ms": 0.7722222222222223
+      },
+      "delta": {
+        "tp": 0,
+        "fp": 0,
+        "tpr": 0,
+        "fpr": 0,
+        "tpr_at_30ms": 0.005555555555555536,
+        "median_lead_ms": 0.49999999999994316
+      }
+    },
+    {
+      "seed": 137,
+      "query_count": 72,
+      "status": "ONLINE_DIAGNOSTIC",
+      "execution_protocol": {
+        "hyperparameters_locked_before_phase1": true,
+        "locked_best_v8": {
+          "adaptation_events": 64,
+          "alarm_lr": 0.02,
+          "inter_lr": 0.0005,
+          "inter_steps": 2,
+          "intra_lr": 0.0001,
+          "intra_physics_weight": 0.1,
+          "intra_steps": 1,
+          "private_inter_lr": 0.0002,
+          "private_intra_lr": 0.0001,
+          "private_support_epochs": 8
+        },
+        "phase1": "complete 360-shot static inference and immutable seal",
+        "phase1_static_complete_before_phase2": true,
+        "phase2": "reset to identical migrated parents, then chronological online active replay",
+        "phase2_reset_to_same_migrated_initial_sha": true,
+        "selection_on_360_in_this_run": false
+      },
+      "static": {
+        "FN": 12,
+        "FP": 25,
+        "TN": 155,
+        "TP": 168,
+        "fpr": 0.1388888888888889,
+        "median_lead_ms": 140.49999999999983,
+        "over_3000ms_count": 21,
+        "tpr": 0.9333333333333333,
+        "tpr_at_30ms": 0.8166666666666667
+      },
+      "online": {
+        "FN": 12,
+        "FP": 25,
+        "TN": 155,
+        "TP": 168,
+        "fpr": 0.1388888888888889,
+        "median_lead_ms": 142.59848699999944,
+        "over_3000ms_count": 21,
+        "tpr": 0.9333333333333333,
+        "tpr_at_30ms": 0.8222222222222222
+      },
+      "delta": {
+        "tp": 0,
+        "fp": 0,
+        "tpr": 0,
+        "fpr": 0,
+        "tpr_at_30ms": 0.005555555555555536,
+        "median_lead_ms": 2.098486999999608
+      }
+    }
+  ],
+  "all_exact_query_budget": true,
+  "all_phase_separated": true,
+  "all_no_fpr_regression": true,
+  "all_online_normal": true
+}

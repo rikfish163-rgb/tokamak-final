@@ -1,0 +1,29 @@
+name: repository-contract
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: astral-sh/setup-uv@v5
+        with:
+          version: "0.9.21"
+      # The public CI contract is CPU/unit-only. The CUDA wheels are installed
+      # by the documented local/GPU environment, not by every pull request.
+      - run: uv sync --frozen --extra dev --no-install-package torch --no-install-package torchvision
+      - run: uv run pytest tests/reproducibility -q
+      - name: Confirm missing data fails closed
+        run: |
+          set +e
+          uv run fusion-reproduce audit --data-root "$RUNNER_TEMP/no-data" > audit.out 2> audit.err
+          code=$?
+          test "$code" -ne 0
+          grep -q "missing required data directory" audit.err

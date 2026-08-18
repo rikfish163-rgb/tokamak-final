@@ -1,0 +1,177 @@
+{
+  "alarm_contract": {
+    "formula": "margin + physics_weight*support + trend_weight*max(MA5-MA100,0)",
+    "interaction_gate": "combined adapted alarm requires same-endpoint support from model-only or alarm-parameter-only branch; gate can only delay/veto",
+    "minimum_lead_ms": 30.0,
+    "over_3000ms_counts_as_tpr": true,
+    "parameter_version": 25,
+    "parameters_final": {
+      "early_threshold": 7.8538875778247865,
+      "high_threshold": -0.017488062130450552,
+      "physics_weight": 8.046112422175213,
+      "trend_weight": 12.023056211087606
+    },
+    "projection_bounds": {
+      "early_threshold": [
+        7.1,
+        8.7
+      ],
+      "high_threshold": [
+        -0.1,
+        0.1
+      ],
+      "physics_weight": [
+        6.0,
+        10.0
+      ],
+      "trend_weight": [
+        12.0,
+        15.0
+      ]
+    }
+  },
+  "claim_boundary": "this run performs no parameter selection on balanced360 and uses the pre-locked v8 configuration; balanced360 informed earlier method development, so this remains TEST_DRIVEN_EXPLORATION rather than untouched future-stream confirmation",
+  "counts": {
+    "alarm_updates": 25,
+    "interaction_delays": 7,
+    "interaction_vetoes": 0,
+    "intra_attempts": 23040,
+    "intra_nonzero": 13743,
+    "private_inter_accepted": 25,
+    "private_inter_rollback": 0,
+    "query_value_updates": 72,
+    "shared_inter_accepted": 25,
+    "shared_inter_rollback": 0
+  },
+  "execution_protocol": {
+    "hyperparameters_locked_before_phase1": true,
+    "locked_best_v8": {
+      "adaptation_events": 64,
+      "alarm_lr": 0.02,
+      "inter_lr": 0.0005,
+      "inter_steps": 2,
+      "intra_lr": 0.0001,
+      "intra_physics_weight": 0.1,
+      "intra_steps": 1,
+      "private_inter_lr": 0.0002,
+      "private_intra_lr": 0.0001,
+      "private_support_epochs": 8
+    },
+    "phase1": "complete 360-shot static inference and immutable seal",
+    "phase1_static_complete_before_phase2": true,
+    "phase2": "reset to identical migrated parents, then chronological online active replay",
+    "phase2_reset_to_same_migrated_initial_sha": true,
+    "selection_on_360_in_this_run": false
+  },
+  "hashes": {
+    "base_before_after": "ec3c4f44e5803050d3a73edd298966a294909d09be518bd4eeb2ef1bd61d4fe9",
+    "phase2_initial_private": "f8778bf0deb45554343dea7d1d6fd18b33d47463bda2a96595d3880c087a91c9",
+    "phase2_initial_shared": "61868807ba274d97a7448e1db78fade59a7efb1eb35d6be2b1bfdf5d01fa086b",
+    "predictions": "e4114a5568f851012ce08d81b93216caa3b2bb98f619f8ae5ee8f225d6c0433e",
+    "queries": "637634ab7d502d5087932cf885c28cfe37f86b988c0eb220e4103b38cd6133d1",
+    "reveals": "2aadd5f4844f5a86859ab1904c73c396cbd268ddb7af10452effa920238db66b",
+    "static_predictions": "4fe4a1a82ec0c1b9777d995a5bfc00ba161a6558110ea234b623c6273dd5ea70",
+    "static_private": "f8778bf0deb45554343dea7d1d6fd18b33d47463bda2a96595d3880c087a91c9",
+    "static_shared": "61868807ba274d97a7448e1db78fade59a7efb1eb35d6be2b1bfdf5d01fa086b",
+    "updates": "97c48c57666792699a8f35fcf47bfe28dd7e4bacf8cbd2c4a09f349a1f8c82cd"
+  },
+  "leakage_contract": "phase1 static outputs for all 360 shots are sealed before phase2 starts; phase2 starts from the same migrated parent weights; endpoint outputs are emitted in order; shot prediction and dual alarm are sealed before query; HDF5 outcome is read only for selected shots; all supervised and alarm/query-parameter updates affect later shots only",
+  "parameter_scope": {
+    "alarm": "projected high/physics/trend/early continuous parameters; MA widths fixed 5/100",
+    "frozen": "J-TEXT/EAST rebuilt17 encoder, source/target head, shared parent anchor",
+    "inter": "shared residual head plus EAST-private dynamics/residual",
+    "intra": "resettable shared adapter fast copy plus resettable raw8 dynamics fast copy"
+  },
+  "query_count": 72,
+  "query_cutoff": "past-only rolling q80, frozen per 20-shot block",
+  "query_cutoff_source": "preceding 80 unlabeled sealed query scores",
+  "query_selector": {
+    "block_size": 20,
+    "exploration_offset": 3,
+    "exploration_stride": 7,
+    "history_size": 80,
+    "quantile": 0.8,
+    "quota": 4
+  },
+  "results": {
+    "online_unified": {
+      "FN": 12,
+      "FP": 25,
+      "TN": 155,
+      "TP": 168,
+      "fpr": 0.1388888888888889,
+      "median_lead_ms": 142.59848699999944,
+      "over_3000ms_count": 21,
+      "tpr": 0.9333333333333333,
+      "tpr_at_30ms": 0.8222222222222222
+    },
+    "static_unified": {
+      "FN": 12,
+      "FP": 25,
+      "TN": 155,
+      "TP": 168,
+      "fpr": 0.1388888888888889,
+      "median_lead_ms": 140.49999999999983,
+      "over_3000ms_count": 21,
+      "tpr": 0.9333333333333333,
+      "tpr_at_30ms": 0.8166666666666667
+    }
+  },
+  "seed": 137,
+  "stage": "STATIC360_THEN_RESET_ONLINE360_LOCKED_BEST_V8",
+  "status": "ONLINE_DIAGNOSTIC",
+  "stream_shots": 360,
+  "support_contract": {
+    "hdf5_outcomes": {
+      "disruptive": 15,
+      "safe": 95
+    },
+    "history_final_loss": 0.19101492011988605,
+    "positive_residual_q10": 0.8978328108787537,
+    "positive_window_count": 467,
+    "private_reconstruction_q80": 0.3145763874053956,
+    "raw8_scaler": "fixed110 per-shot-capped median/IQR with causal zero-sentinel availability",
+    "shared_reconstruction_q80": 0.03294018805027008
+  },
+  "threshold": 0.17536020278930664,
+  "threshold_source": "fixed110",
+  "value_contract": {
+    "hdf5_error_cost": "0.50 temporal BCE + 0.30 operation 5:3:1 + 0.20 lead gap",
+    "intra_components": [
+      "next-state reconstruction",
+      "persistent-teacher disagreement",
+      "registered physics contradiction",
+      "raw8 innovation",
+      "availability",
+      "non-redundancy",
+      "alarm proximity"
+    ],
+    "intra_physics_loss_weight": 0.1,
+    "intra_value_dead_zone": 0.03,
+    "intra_value_saturation": 0.15,
+    "optimizer_base_learning_rates": {
+      "private_inter": 0.0002,
+      "private_intra": 0.0001,
+      "shared_inter": 0.0005,
+      "shared_intra": 0.0001
+    },
+    "optimizer_control": "value scales actual AdamW learning rate; fixed optimizer steps",
+    "optimizer_steps": {
+      "inter": 2,
+      "intra": 1
+    },
+    "post_reveal_temporal_target": "binary risk target in 0-125 ms; FN/TARDY gradients are selected from the closest sealed dual-alarm evidence in the 30-125 ms timely interval",
+    "query_components": [
+      "uncertainty",
+      "physics_contradiction"
+    ],
+    "query_weight_bounds": [
+      0.55,
+      0.75
+    ],
+    "query_weights_final": {
+      "physics_contradiction": 0.37452460652053665,
+      "uncertainty": 0.6254753934794633
+    }
+  }
+}
