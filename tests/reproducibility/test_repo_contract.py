@@ -98,3 +98,14 @@ def test_reproduction_commands_connect_all_three_stages(tmp_path: Path) -> None:
     assert "--a1-dir" in commands[2]
     assert "--adapter-dir" in commands[2]
     assert "--locked-best-v8" in commands[2]
+
+
+def test_reproduction_reference_can_be_scoped_to_requested_seeds() -> None:
+    runner = load_module("reproducibility/reproduce.py", "reproducibility_reproduce_subset")
+    reference = json.loads(
+        (ROOT / "results/reference/multiseed_summary.json").read_text()
+    )
+    scoped = runner._reference_for_seeds(reference, (131,))
+    assert [row["seed"] for row in scoped["seeds"]] == [131]
+    verdict = runner.compare_multiseed_results(scoped, scoped)
+    assert verdict["passed"] is True

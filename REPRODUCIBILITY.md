@@ -33,7 +33,7 @@ alarm_lr                = 0.02
 
 ## Reference result
 
-`results/reference/multiseed_summary.json` 是小型摘要，不是训练 checkpoint。它记录每个 seed 的 static/online confusion counts、FPR、总体 TPR、`TPR@30ms`、median lead、查询数和阶段隔离证明。复现器会把新摘要与它逐字段比较。
+`results/reference/multiseed_summary.json` 是小型摘要，不是训练 checkpoint。它记录每个 seed 的 static/online confusion counts、FPR、总体 TPR、`TPR@30ms`、median lead、查询数和阶段隔离证明。复现器会把新摘要与它逐字段比较；若通过 `--seeds` 指定子集，只比较参考中的对应 seed 行，默认则比较 `131/133/137` 全部三行。
 
 当前摘要的科学状态是 `ONLINE_DIAGNOSTIC`：360 炮曾参与方法开发，不能被描述为完全未见测试流。要生成论文最终结果，必须锁定代码和参数后另建一次性确认流，并保留独立数据/炮表哈希。
 

@@ -82,6 +82,9 @@ uv run fusion-reproduce verify \
   --actual results/generated/locked-best-v8/multiseed_summary.json
 ```
 
+`--seeds` 可以指定确认子集（例如先用 `--seeds 131` 做 screen）；编排器只与
+提交参考中的对应 seed 行比较。默认不指定时运行并核验 `131/133/137` 全部三条。
+
 完整运行需要 GPU 和较大的临时磁盘空间，时间取决于 HDF5 读取速度。CI 只运行无数据、CPU 可完成的合同测试，不伪造 GPU 结果。
 
 如果仓库位于 NTFS 外置盘，建议只把数据作为只读输入，使用 ext4（例如本机磁盘或 `/dev/shm`）作为 `--output` 目录。在线 seal ledger 为了断点安全会逐条 flush/fsync；部分 Linux `ntfs3` 挂载在这种写入模式下会长时间阻塞，这属于文件系统限制，不应被误判为模型训练失败。

@@ -92,6 +92,19 @@ def _aggregate(output_root: Path, seeds: tuple[int, ...]) -> dict[str, Any]:
     }
 
 
+def _reference_for_seeds(reference: dict[str, Any], seeds: tuple[int, ...]) -> dict[str, Any]:
+    """Return the committed reference rows for the requested reproduction seeds."""
+    requested = tuple(dict.fromkeys(int(seed) for seed in seeds))
+    rows_by_seed = {int(row["seed"]): row for row in reference.get("seeds", [])}
+    missing = sorted(set(requested) - set(rows_by_seed))
+    if missing:
+        raise ValueError(f"no committed reference rows for seed(s): {missing}")
+    return {
+        **reference,
+        "seeds": [rows_by_seed[seed] for seed in requested],
+    }
+
+
 def run_reproduction(
     *, output_root: Path, seeds: tuple[int, ...] = SEEDS,
     selected_data_root: Path | None = None, dry_run: bool = False,
@@ -140,7 +153,10 @@ def run_reproduction(
     aggregate = _aggregate(output_root, seeds)
     aggregate_path = output_root / "multiseed_summary.json"
     aggregate_path.write_text(json.dumps(aggregate, indent=2, sort_keys=True) + "\n")
-    expected = json.loads((root / "results/reference/multiseed_summary.json").read_text())
+    expected_all = json.loads(
+        (root / "results/reference/multiseed_summary.json").read_text()
+    )
+    expected = _reference_for_seeds(expected_all, seeds)
     verification = compare_multiseed_results(aggregate, expected)
     (output_root / "verification.json").write_text(
         json.dumps(verification, indent=2, sort_keys=True) + "\n"
