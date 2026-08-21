@@ -113,7 +113,12 @@ def main() -> None:
                 name: package_version(name)
                 for name in ("torch", "numpy", "h5py", "matplotlib", "pytest")
             },
-            "executable_contract": "rl_env or uv sync --frozen --extra dev",
+            "executable_contract": (
+                "GPU/reference: rl_env or uv sync --frozen --extra dev; "
+                "public CPU audit: uv sync --frozen --only-group ci "
+                "--no-install-project, then pinned torch 2.11.0 from the "
+                "official PyTorch CPU index"
+            ),
             "python_executable_name": Path(sys.executable).name,
         },
     }

@@ -2,7 +2,7 @@
   "provenance_boundary": "These hashes bind the complete Git-indexed local Python/shell, configuration, dependency-lock and CI snapshot used to reconstruct the released analysis. They were produced after the runs and do not prove which uncommitted source bytes executed historically. Run commands, output hashes, parents and per-query receipts remain separate evidence.",
   "provenance_status": "POST_RUN_RELEASE_SNAPSHOT_NOT_EXECUTION_TIME_SEAL",
   "release_environment_snapshot": {
-    "executable_contract": "rl_env or uv sync --frozen --extra dev",
+    "executable_contract": "GPU/reference: rl_env or uv sync --frozen --extra dev; public CPU audit: uv sync --frozen --only-group ci --no-install-project, then pinned torch 2.11.0 from the official PyTorch CPU index",
     "implementation": "CPython",
     "packages": {
       "h5py": "3.15.1",
@@ -45,9 +45,9 @@
   },
   "source_files": [
     {
-      "bytes": 2949,
+      "bytes": 4884,
       "path": ".github/workflows/ci.yml",
-      "sha256": "d6b8afb12f41c122d568365a256d24990593623aa2ede629a065305b48ed37de"
+      "sha256": "f4d353d052d4e3cfcc02afab1cc9dcc109c57e4c213cbbabd2c3f31f536aee53"
     },
     {
       "bytes": 823,
@@ -185,9 +185,9 @@
       "sha256": "9ec358769480bf924807f31d8d59f8dc169f6942ba47567c142f8b2fddea751c"
     },
     {
-      "bytes": 4621,
+      "bytes": 4860,
       "path": "experiments/transfer_methods_2026/paper_grade_package/scripts/build_equal_compute_code_manifest.py",
-      "sha256": "f3a9b2b95abda804346922c2cd8bc0f8205f30c9788d9c62c1d15e92b40028a5"
+      "sha256": "a39414e21f9cc1edfbbd5260cdb004eedb4395c4a8f26468756f736f416f399f"
     },
     {
       "bytes": 15647,
