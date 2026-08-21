@@ -24,6 +24,32 @@ def load_module():
     return module
 
 
+def test_rolling_query_budget_prices_each_label_explicitly() -> None:
+    module = load_module()
+    cheap = module.RollingTokenBudgetSelector(
+        query_rate=1.0, capacity=10.0, history_size=20,
+        quantile=0.8, initial_cutoff=0.1, exploration_interval=100,
+        query_cost=0.5,
+    )
+    expensive = module.RollingTokenBudgetSelector(
+        query_rate=1.0, capacity=10.0, history_size=20,
+        quantile=0.8, initial_cutoff=0.1, exploration_interval=100,
+        query_cost=0.61,
+    )
+    assert sum(
+        cheap.decide(score=0.6, stream_index=index)["selected"]
+        for index in range(10)
+    ) == 10
+    assert sum(
+        expensive.decide(score=0.6, stream_index=index)["selected"]
+        for index in range(10)
+    ) == 0
+
+    receipt = cheap.decide(score=0.75, stream_index=10)
+    assert receipt["query_cost"] == pytest.approx(0.5)
+    assert receipt["net_value"] == pytest.approx(0.25)
+
+
 def test_causal_update_value_is_bounded_missing_safe_and_monotonic() -> None:
     module = load_module()
     value = module.CausalUpdateValue()

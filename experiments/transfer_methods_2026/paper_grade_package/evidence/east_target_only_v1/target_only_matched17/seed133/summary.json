@@ -1,0 +1,50 @@
+{
+  "arm": "target_only_matched17",
+  "balanced360_independent_test": false,
+  "claim_boundary": "TEST_DRIVEN_EXPLORATION; balanced360 is a development stream and is not an independent confirmation set",
+  "lineage_sha256": "428c92eccea6cb623d445eeebbfccab4e229187e5c08fa2e2a6614f37845bb40",
+  "metrics": {
+    "FN": 20,
+    "FP": 21,
+    "TN": 159,
+    "TP": 160,
+    "fpr": 0.11666666666666667,
+    "median_lead_ms": 116.99999999999999,
+    "minimum_lead_ms": 30.0,
+    "n_disruptions": 180,
+    "n_non_disruptions": 180,
+    "n_shots": 360,
+    "operational_FN": 45,
+    "operational_TP": 135,
+    "operational_median_lead_ms": 154.99999999999937,
+    "operational_tpr": 0.75,
+    "over_3000ms_count": 15,
+    "over_3000ms_shots": [
+      69765,
+      69768,
+      69854,
+      69855,
+      69859,
+      70418,
+      71265,
+      71370,
+      73541,
+      74087,
+      86155,
+      89881,
+      90675,
+      90874,
+      92394
+    ],
+    "tpr": 0.8888888888888888,
+    "tpr_at_30ms": 0.75
+  },
+  "prediction_ledger_sha256": "3bfe0fa0fda771a3e1877d6dfcf03bd91f393ac270a39856ab4885ba68517e13",
+  "schema_version": "east-target-only-result-v1",
+  "seed": 133,
+  "threshold": {
+    "fpr": 0.05263157894736842,
+    "threshold": 0.8904138803482056,
+    "tpr": 0.8
+  }
+}

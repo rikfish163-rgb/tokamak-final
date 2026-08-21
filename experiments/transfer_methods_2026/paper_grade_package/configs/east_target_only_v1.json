@@ -1,0 +1,122 @@
+{
+  "schema_version": "east-target-only-v1",
+  "status": "FROZEN_CONTRACT_NOT_EXECUTED",
+  "claim_boundary": "TEST_DRIVEN_EXPLORATION; balanced360 is a development stream and is not an independent confirmation set",
+  "arms": [
+    "target_only_local17",
+    "target_only_matched17"
+  ],
+  "native23": {
+    "status": "future_not_implemented",
+    "reason": "reserve an EAST-native raw23 empirical ceiling; do not run or use for selection in v1"
+  },
+  "seeds": [131, 133, 137],
+  "rosters": {
+    "support_manifest": "config/splits/east_paper131_split_all_in.json",
+    "balanced360_manifest": "config/splits/east_hdf5_authoritative_balanced360_v1.json",
+    "support_size": 110,
+    "balanced360_size": 360,
+    "support_hdf5_counts": {
+      "disruptive": 15,
+      "safe": 95
+    },
+    "balanced360_hdf5_counts": {
+      "disruptive": 180,
+      "safe": 180
+    },
+    "label_authority": "EAST HDF5 meta/IsDisrupt and meta/DownTime",
+    "require_zero_overlap": true
+  },
+  "features": {
+    "feature_contract": "rebuilt17",
+    "names": [
+      "Bt",
+      "ip_A",
+      "Bt_over_Ip",
+      "Ip_diff",
+      "v_loop",
+      "Z_proxy",
+      "sxr_kurt",
+      "sxr_skew",
+      "sxr_var",
+      "xuv_kurt",
+      "xuv_skew",
+      "xuv_var",
+      "Mir_avg_fre",
+      "n=1 amplitude",
+      "mode_number_n",
+      "dx_a",
+      "dy_a"
+    ],
+    "window": 128,
+    "patch": 8,
+    "stride": 8,
+    "d_model": 64,
+    "layers": 2,
+    "heads": 4,
+    "left_padding": false
+  },
+  "target_training": {
+    "sampler": "historical-shot-first-then-within-shot-window-v1",
+    "positive_ttd_ms": [
+      0.0,
+      125.0
+    ],
+    "negative_ttd_ms": [
+      125.0,
+      60000.0
+    ],
+    "gray_ms": 0.0,
+    "epochs": 12,
+    "steps_per_epoch": 32,
+    "optimizer_steps": 384,
+    "batch_size": 128,
+    "learning_rate": 0.0001,
+    "weight_decay": 0.0001,
+    "early_stopping": false,
+    "balanced360_labels_used": false
+  },
+  "scalers": {
+    "target_only_local17": "support110 signal-only median/IQR",
+    "target_only_matched17": "immutable source checkpoint center/scale; no J-TEXT samples loaded by target run",
+    "raw8_private": "support110 signal-only median/IQR"
+  },
+  "threshold": {
+    "source": "support110_hdf5_authoritative_only",
+    "support_target_tpr": 0.8,
+    "tie_break": "minimum_fpr_then_highest_threshold",
+    "balanced360_selection": false,
+    "posthoc_test_operating_points": false
+  },
+  "alarm": {
+    "implementation": "dual_threshold_alarm.dual_threshold_alarm",
+    "high_threshold": 0.0,
+    "physics_weight": 8.0,
+    "trend_weight": 12.0,
+    "early_threshold": 7.9,
+    "fast_width": 5,
+    "slow_width": 100,
+    "online_updates": false,
+    "episode_overlay": false
+  },
+  "evaluation": {
+    "stream": "balanced360",
+    "seal_all_predictions_before_outcome": true,
+    "minimum_lead_ms": 30.0,
+    "primary_metric": "operational_tpr",
+    "diagnostic_raw_tpr_separate": true,
+    "evaluator": "paper_grade_package.scripts.build_evidence.alarm_metrics",
+    "independent_test": false
+  },
+  "lineage": {
+    "record_code_config_manifest_and_model_hashes": true,
+    "record_training_ledger": true,
+    "refuse_existing_output": true,
+    "fail_closed_on_test_metadata_before_seal": true
+  },
+  "future_work": [
+    "Implement and pre-register native23 empirical ceiling separately",
+    "Run a FLOP-matched comparator if an equal-compute claim is required",
+    "Acquire a new chronological EAST confirmation stream"
+  ]
+}

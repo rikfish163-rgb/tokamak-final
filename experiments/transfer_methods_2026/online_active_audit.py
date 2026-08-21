@@ -449,10 +449,16 @@ class ShotOutcomeVault:
 class LazyShotOutcomeOracle:
     """Read outcome metadata lazily only after the current shot is sealed."""
 
-    def __init__(self, shots: Sequence[int], reader: Callable[[int], Mapping[str, Any]]):
+    def __init__(
+        self, shots: Sequence[int], reader: Callable[[int], Mapping[str, Any]],
+        *, allow_nonmonotonic: bool = False,
+    ):
         self._shots = [int(shot) for shot in shots]
-        if self._shots != sorted(self._shots) or len(self._shots) != len(set(self._shots)):
+        if len(self._shots) != len(set(self._shots)):
+            raise ValueError("oracle roster must be unique")
+        if not allow_nonmonotonic and self._shots != sorted(self._shots):
             raise ValueError("oracle roster must be unique and increasing")
+        self.allow_nonmonotonic = bool(allow_nonmonotonic)
         self._reader = reader
         self._cursor = 0
         self._pending: int | None = None
@@ -609,7 +615,7 @@ def run_prequential_audit(
     predict: Callable[[Mapping[str, Any]], np.ndarray],
     summarize: Callable[[Mapping[str, Any], np.ndarray], Mapping[str, float]],
     selector: BlockBudgetSelector,
-    outcomes: OutcomeVault,
+    outcomes: OutcomeVault | LazyShotOutcomeOracle,
     on_seal: Callable[[dict[str, Any]], None] | None = None,
     on_reveal: Callable[[dict[str, Any]], None] | None = None,
 ) -> list[dict[str, Any]]:
@@ -635,12 +641,20 @@ def run_prequential_audit(
         }
         if on_seal is not None:
             on_seal(dict(record))
+        if isinstance(outcomes, LazyShotOutcomeOracle):
+            outcomes.seal_current(shot_id)
         selected = selector.decide(score=float(summary["query_score"]), stream_index=index)
         record["queried"] = selected
         if selected:
-            record["revealed_is_disrupt"] = outcomes.reveal_for_query(shot_id, selected=True)
+            revealed = outcomes.reveal_for_query(shot_id, selected=True)
+            record["revealed_is_disrupt"] = (
+                bool(revealed["is_disrupt"])
+                if isinstance(revealed, Mapping) else bool(revealed)
+            )
             if on_reveal is not None:
                 on_reveal(dict(record))
+        elif isinstance(outcomes, LazyShotOutcomeOracle):
+            outcomes.discard_unqueried(shot_id)
         records.append(record)
     return records
 

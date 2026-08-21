@@ -1,0 +1,484 @@
+\documentclass[10pt]{article}
+
+\usepackage[a4paper,margin=20mm]{geometry}
+\usepackage{fontspec}
+\setmainfont{TeX Gyre Termes}
+\setsansfont{TeX Gyre Heros}
+\setmonofont{DejaVu Sans Mono}[Scale=0.80]
+\usepackage{microtype}
+\usepackage{graphicx}
+\graphicspath{{../figures/}}
+\usepackage{booktabs,longtable,array,tabularx,multirow}
+\usepackage{amsmath,amssymb}
+\usepackage{siunitx}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{pdflscape}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage[colorlinks=true,allcolors=blue!55!black]{hyperref}
+\usepackage{url}
+
+\newcommand{\jtext}{J-TEXT}
+\newcommand{\east}{EAST}
+\newcommand{\tpr}{\mathrm{TPR}}
+\newcommand{\fpr}{\mathrm{FPR}}
+\newcommand{\code}[1]{\nolinkurl{#1}}
+\setlist{nosep,leftmargin=*}
+\setlength{\parindent}{1em}
+\setlength{\parskip}{2pt}
+
+\title{Supplementary information\\Audit-first cross-tokamak disruption prediction with feature-semantic transfer and causal active adaptation}
+\author{Anonymous authors}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Scope and evidence hierarchy}
+
+This supplement freezes the exact meaning of every number in the main manuscript.  It distinguishes four evidence levels:
+
+\begin{enumerate}
+  \item \textbf{Within-run source comparator:} \jtext{} TEST220 was not used for source training, epoch selection, or threshold selection in the executed primary lineage, but it is a count-aligned, outcome-balanced, non-chronological roster rather than an independent deployment test.
+  \item \textbf{Few-shot target development:} the fixed 110-shot \east{} roster supplies target labels, scalers, private-branch fitting, and the target alarm threshold; no separate target validation cohort exists.
+  \item \textbf{Chronological online development:} balanced360 is executed causally, but it informed architecture and parameter development.  It is therefore \code{ONLINE_DIAGNOSTIC / TEST_DRIVEN_EXPLORATION}.
+  \item \textbf{Independent future confirmation:} not available locally.  No existing cohort is relabeled as pristine merely because a particular prediction JSONL is absent.
+\end{enumerate}
+
+The package status is \code{DEVELOPMENT_EVIDENCE_NOT_INDEPENDENT_CONFIRMATION}.  ``Causal'' describes within-stream information access; it does not imply that method selection was independent of the stream.
+
+\section{Data inventory, labels, and split lineage}
+
+\subsection{Counts}
+
+\begin{table}[h]
+\centering
+\caption{HDF5-authoritative data roles. D/N denote disruptive/non-disruptive.}
+\begin{tabular}{lrrrl}
+\toprule
+Device/role & Shots & D & N & Use \\
+\midrule
+\jtext{} total & 1,733 & 378 & 1,355 & on-disk inventory \\
+\jtext{} TRAIN1353 & 1,353 & 188 & 1,165 & source fitting and scaler \\
+\jtext{} VAL160 & 160 & 80 & 80 & epoch and threshold selection \\
+\jtext{} TEST220 & 220 & 110 & 110 & within-run comparator evaluation \\
+\east{} total & 2,953 & 1,198 & 1,755 & on-disk inventory \\
+\east{} support110 & 110 & 15 & 95 & target adaptation and threshold \\
+\east{} balanced360 & 360 & 180 & 180 & chronological development stream \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The legacy support manifest groups the roster under 10 disruptive and 100 non-disruptive headings.  Direct HDF5 relabeling gives 15 and 95.  The headings remain provenance, never supervision.  The support and balanced360 rosters have zero shot overlap.  The balanced360 manifest SHA-256 is
+\begin{center}
+\code{657cab542bd987f9c97c3cb88867a9cc828373b32e6ee58d450451461c6ec825}.
+\end{center}
+The \jtext{} role rosters have zero overlap, but their shot-number ranges overlap and are not chronological blocks.  VAL160 and TEST220 are outcome balanced, so they do not mimic source prevalence.  The abbreviated roster SHA-256 values are:
+\begin{itemize}[nosep,leftmargin=1.5em]
+  \item TRAIN1353: \code{ad403f38...a1b4f9d4};
+  \item VAL160: \code{bf726a03...ee9d2be};
+  \item TEST220: \code{b963c297...7763868e}.
+\end{itemize}
+
+\subsection{Outcome and time authority}
+
+For shot $s$, the outcome is
+\begin{equation}
+y_s=\operatorname{bool}(\texttt{/meta/IsDisrupt}),
+\end{equation}
+and disruption time $t_s^d$ is read from \code{/meta/DownTime} only when $y_s=1$.  Sampling rate and start time come from HDF5 signal metadata; no prose label table overrides these values.  The lead of an accepted alarm at $t_s^a$ is
+\begin{equation}
+\ell_s=10^3(t_s^d-t_s^a)\;\mathrm{ms}.
+\end{equation}
+For \jtext{}, an operational TP requires $\ell_s>10$ ms in the executed source evaluator.  For \east{}, it requires $\ell_s\geq30$ ms with a $10^{-9}$-ms numerical tolerance.  An alarm that fails this minimum lead is an operational FN.  The evidence builder has a regression test ensuring that floating-point representation of nominal 30 ms cannot disagree between the direct metric and resampling code.
+
+The source prediction ledger records the first crossing's trace index, causal endpoint and \code{alarm\_time\_s}.  During evidence reconstruction, $\ell_s$ is recalculated from this time and the HDF5 \code{/meta/DownTime}; the builder rejects missing endpoints or a discrepancy above $10^{-6}$ ms.  Replaying the three frozen checkpoints under the registered deterministic PyTorch settings reproduced every archived score, alarm decision and lead before the endpoint fields were added.
+
+\section{Feature semantics and availability}
+
+\begin{longtable}{@{}p{28mm}p{27mm}p{31mm}p{68mm}@{}}
+\caption{Mapping of the nominal raw23 contract.  ``Shared'' means that a semantically harmonized value enters rebuilt17; ``private'' means that the raw observation is used only by the \east{} sidecar.}\\
+\toprule
+Raw column & Route & Rebuilt output & Audit rationale \\
+\midrule
+\endfirsthead
+\toprule
+Raw column & Route & Rebuilt output & Audit rationale \\
+\midrule
+\endhead
+$B_t$ & shared & \code{Bt} & common field quantity after local loading \\
+\code{CIII} & \east{} private & -- & radiation-channel realization not reliably matched \\
+\code{MNM} & \east{} private & -- & target availability and construction differ \\
+\code{Mir\_VV} & \east{} private & -- & probe-dependent amplitude/units \\
+\code{Mir\_avg\_amp} & \east{} private & -- & high zero fraction and probe dependence \\
+\code{Mir\_avg\_fre} & shared & same name & all-zero shots explicitly marked unavailable \\
+\code{Z\_proxy} & recomputed shared & \code{Z\_proxy} & recomputed as $V_{\rm loop}/I_p$ after current harmonization \\
+\code{dx\_a} & shared & same name & position proxy \\
+\code{dy\_a} & shared & same name & position proxy \\
+\code{ip} & harmonized shared & \code{ip\_A} & \jtext{} kA converted exactly once to A \\
+\code{mode\_number\_n} & shared & same name & all-zero shots marked unavailable \\
+\code{n=1 amplitude} & shared & same name & available MHD activity summary \\
+\code{ne\_nG} & \east{} private & -- & device-specific construction/coverage \\
+\code{qa\_proxy} & \east{} private & -- & device-specific construction/coverage \\
+\code{sxr\_kurt} & shared & same name & distribution statistic \\
+\code{sxr\_mean} & \east{} private & -- & absolute channel level not reliably matched \\
+\code{sxr\_skew} & shared & same name & distribution statistic \\
+\code{sxr\_var} & shared & same name & distribution statistic \\
+\code{v\_loop} & shared & same name & loop voltage \\
+\code{xuv\_kurt} & shared & same name & distribution statistic \\
+\code{xuv\_ratio} & \east{} private & -- & ratio construction/availability differs \\
+\code{xuv\_skew} & shared & same name & distribution statistic \\
+\code{xuv\_var} & shared & same name & distribution statistic \\
+derived & shared & \code{Bt\_over\_Ip} & recomputed after current harmonization \\
+derived & shared & \code{Ip\_diff} & causal first difference \\
+\bottomrule
+\end{longtable}
+
+The shared robust center and IQR are fitted on \jtext{} TRAIN1353 for source learning.  Target-private raw8 center/IQR are fitted only on support110 with an equal per-shot cap.  Values are clipped to $[-10,10]$ after scaling.  Missingness is preserved as a mask; zero is a post-scaling sentinel, not interpreted as a physical measurement.  This implementation realizes the same broad principle as physics-guided feature extraction~\citep{zheng2023transfer,shen2023pgfeda}, but the exact 17/8 decomposition is specific to the audited local files.
+
+\section{Executed source model}
+
+\subsection{Architecture}
+
+The registered architecture string is
+\begin{center}
+\code{rebuilt17-patch-transformer-128x8-d64-l2-h4-v1}.
+\end{center}
+For input $X\in\mathbb{R}^{128\times17}$, a 1-D convolution with kernel/stride 8 generates 16 tokens of width 64.  A learned class token and sinusoidal position encoding enter two pre-normalized Transformer layers with four heads, feed-forward width 256, GELU, and dropout 0.1.  Layer normalization precedes a $64\rightarrow64\rightarrow1$ risk head.  Causal left padding is represented by valid length; patches wholly inside padding are masked.  The executed 128-sample window is a documented deviation from an earlier 256-sample planning contract and is not silently renamed.
+
+\subsection{Labels and optimization}
+
+For disruptive shots,
+\begin{equation}
+y_{s,t}^{\rm src}=\mathbf{1}\{0\leq t_s^d-t\leq125\ \mathrm{ms}\}.
+\end{equation}
+Endpoints more than 125 ms and at most 60 s before disruption are negative; every safe endpoint is negative.  The sampler is shot-balanced and uses a 0.5 positive fraction.  Training uses AdamW, learning rate $3\times10^{-4}$, weight decay $10^{-4}$, batch 128, 128 steps per epoch, deterministic CUDA, and gradient norm 1.0.  The checkpoint is selected on balanced VAL160 by FPR after attaining operational $\tpr_{>10\,\mathrm{ms}}=0.90$.  TEST220 is loaded only afterward in this execution, but its count-aligned construction prevents an external-validity interpretation.
+
+\subsection{Primary checkpoint lineage}
+
+\begin{table}[h]
+\centering
+\input{tables/artifact_hashes.tex}
+\caption{Truncated hashes for orientation; complete values reside in the machine evidence.}
+\end{table}
+
+\begin{table}[h]
+\centering
+\input{tables/primary_per_seed.tex}
+\caption{Exact per-seed primary metrics recomputed from immutable per-shot predictions.}
+\end{table}
+
+\section{Target adaptation and alarm construction}
+
+\subsection{Few-shot adaptation}
+
+Support110 is the only target-labeled batch before balanced360.  The same 110 shots fit target components and select the support-derived threshold at nominal support TPR 0.8; with only 15 disruptive outcomes, this is target development rather than independent validation.  The successful lineage initializes from the corresponding \jtext{} checkpoint and adapts target high-level temporal/risk components (the historical \code{adapt\_high} route).  The target hazard horizon is 125 ms.  A dynamic-hazard adapter additionally reads frozen class-token, terminal-token, and lag-eight-token increments plus available physics-family summaries.  Its target-side trainable count is 3,893 and its logit residual is bounded to $[-1,1]$.  A positive-residual support quantile prevents unsupported positive corrections.
+
+The raw8 sidecar has 1,089 trainable parameters.  It maps six causal summaries per channel and the base logit through two 16-unit SiLU layers; its final layer is zero initialized and the residual is bounded.  Its purpose is target-private correction, not cross-device feature alignment.
+
+\subsection{Alarm equation and operating definitions}
+
+Let $r_t$ be the target risk, $\tau$ the support110 threshold, and $m_t=\operatorname{logit}(r_t)-\operatorname{logit}(\tau)$.  The executed alarm is the union of a high-margin route and an early physics/trend route:
+\begin{equation}
+\begin{aligned}
+E_t&=m_t+w_{p,t}P_t+w_{r,t}[\bar m_{t,5}-\bar m_{t,100}]_+,\\
+\mathcal A_t&=\mathbf{1}\{m_t\ge h_t\}\lor\mathbf{1}\{E_t\ge e_t\}.
+\end{aligned}
+\end{equation}
+The four adaptive parameters are $h_t,w_{p,t},w_{r,t},e_t$; their projected bounds are $[-0.1,0.1]$, $[6,10]$, $[12,15]$, and $[7.1,8.7]$.  The causal widths 5/100 are fixed.  A supported high branch or early branch may create an alarm.  The v3c episode layer is downstream and can only delay/veto; it cannot create or advance an alarm.  Physics support at or above 0.85 can escape the episode veto.  This monotonicity is verified per endpoint.
+
+The main evaluator accepts the first causal supported crossing because continuous-ten-point firing is not part of the final contract.  A ten-point arm was evaluated historically and is not substituted into the primary table.  Alarms more than 3,000 ms early count toward operational TPR under the registered metric.  Counts are kept as a warning audit: static/online counts are 22/23, 20/20, and 21/22 for seeds 131/133/137.  This convention must be stated whenever TPR is quoted.
+
+The initial parameter tuple is $(h,w_p,w_r,e)=(0,8,12,7.9)$.  Immutable update ledgers contain 38/30/40 parameter-changing events for seeds 131/133/137 and terminate at
+\begin{equation}
+\begin{aligned}
+131 &: (-0.02138,8.03083,12.01541,7.86988),\\
+133 &: (-0.02180,8.07657,12.03828,7.83735),\\
+137 &: (-0.01883,8.03904,12.01952,7.86219).
+\end{aligned}
+\end{equation}
+FP feedback tightens the alarm; FN/TARDY feedback advances it and strengthens early evidence; TP/TN trajectories become protected guards.  Any candidate update that harms a protected trajectory is rolled back.
+
+\section{Online active protocol}
+
+\subsection{Information order}
+
+For shot $s$ and endpoint $t$, the implementation order is:
+\begin{enumerate}
+  \item observe $x_{s,\le t}$ and perform at most a causal, unlabeled fast update;
+  \item emit endpoint risk and supported alarm state;
+  \item seal the shot prediction, alarm, model hash, and query score;
+  \item decide whether to query without reading the outcome;
+  \item if selected, reveal HDF5 outcome and temporal target;
+  \item update persistent target residuals, alarm parameters, query-value state, and typed error memory for shots $s'>s$ only;
+  \item reset fast state before the next shot.
+\end{enumerate}
+Unqueried outcomes are inaccessible to supervised updates, the episode head, and error memory during the stream.  Static inference over all 360 shots is completed and hashed first.  Online replay then resets to identical migrated-parent hashes and follows chronological shot order.
+
+The A1 support stage now uses a feature-only test loader: prediction-time HDF5 access reads signal arrays and sampling metadata but does not open \code{/meta/IsDisrupt} or \code{/meta/DownTime}.  A lazy outcome oracle opens those fields only after the current prediction has been sealed and a positive query decision has been made; unqueried outcomes remain unread until final evaluation.
+
+\subsection{Four value functions}
+
+The system intentionally avoids a single scalar controlling every action.
+
+\paragraph{Intra-shot update value.}
+A bounded value combines next-physics-state reconstruction, persistent-teacher disagreement, registered physics contradiction, raw8 innovation, channel availability, non-redundancy, and alarm proximity.  It scales learning rate but not optimizer step count.  The fast shared/private learning rates are $10^{-4}$, with one step.  A dead zone of 0.03 suppresses low-value updates and saturation occurs at 0.15.  The fast copy is reset per shot.
+
+\paragraph{Query value.}
+The executed query driver combines predictive uncertainty $U_s$ and physics contradiction $C_s$,
+\begin{equation}
+Q_s=w_sU_s+(1-w_s)C_s,\qquad w_s\in[0.55,0.75].
+\end{equation}
+A past-only rolling quantile is frozen within each 20-shot block and a token budget limits acquisition.  Final query counts are 102, 90, and 99; this is an adaptive budget, not an exactly equal fraction.  A five-expert value---error correction, information gain, physics conflict, gradient actionability, and coverage exploration---is learned in shadow mode.  It is not allowed to replace the executed selector because the direct-control v3a experiment reduced operational TPR.
+
+\paragraph{Post-reveal update value.}
+The outcome defines an operational error group: FP, FN, TARDY, TP, or TN.  Disruptive temporal targets are positive in the final 125 ms; the 30--125 ms range is prioritized for a late or missing alarm.  Persistent shared/private learning rates are $5\times10^{-4}$ and $2\times10^{-4}$ with two steps.  Sealed prediction error scales the step, and support replay accepts or rolls back it.  Same-error replay stores FP with FP and FN with FN, capacity 64 shots.
+
+\paragraph{Episode false-alarm value.}
+At a supported alarm, a 20-dimensional endpoint representation is augmented with short--long temporal changes and variability to form \code{delta60}.  Only previously queried outcomes train its classifier.  After at least 12 examples and three per class, a candidate threshold is
+\begin{equation}
+\tau_s^{\rm FP}=\max\{0.50,Q_{0.90}(p_{\rm FP}\mid\text{past disruptive})+0.06\}.
+\end{equation}
+It is active only if separated from the past-safe $Q_{0.25}$ boundary and confidence is at least 0.75; otherwise the system fails open.  The sequence penalty is 0.3.  The deployment-gate output is prevented from feeding back into the counterfactual learning trajectory.
+
+\section{Statistical evaluation}
+
+\subsection{Metrics}
+
+For disruptive set $D$ and non-disruptive set $N$, let $g_s(L)$ indicate that the accepted alarm satisfies the device-specific minimum-lead comparator ($>10$ ms for \jtext{}, $\geq30$ ms for \east{}).  The formal metrics are
+\begin{align}
+\tpr_{\rm op}(L) &= |D|^{-1}\sum_{s\in D}g_s(L),\\
+\fpr &= |N|^{-1}\sum_{s\in N}\mathbf{1}\{\text{alarm}_s\}.
+\end{align}
+Operational lead is $\operatorname{median}\{\ell_s:s\in D,g_s(L)=1\}$.  Raw alarm occurrence remains a diagnostic reproduction field in the JSON evidence and is not a manuscript endpoint.
+
+\subsection{Paired chronological moving-block resampling}
+
+In each of 5,000 repeats, circular contiguous blocks from the observed 360-shot order are sampled until 360 positions are obtained.  The same positions are applied to all seeds and both phases.  Block 20 is displayed; sizes 10/20/30/45 form a sensitivity set.  Metrics are computed per seed and averaged.  For block 20, online descriptive intervals are: operational TPR $[0.8046,0.8877]$, FPR $[0.0897,0.2241]$, and operational median lead $[150.33,617.68]$ ms.  Online-minus-static intervals are: operational TPR $[0.00171,0.01500]$, FPR $[-0.03521,-0.00193]$, and operational median lead $[-69.01,4.00]$ ms.
+
+These intervals describe local dependence in the sealed balanced360 ledger.  They do not rerun the adaptive learner under a resampled history and are unadjusted after selecting among 972 candidates on the same stream.  Seeds are paired initializations, not independent discharges.  No significance, hierarchical population, or future-campaign claim is made.  The previous iid class-stratified bootstrap remains machine-readable as a secondary diagnostic only.
+
+\section{Chronological block audit}
+
+\begin{landscape}
+\begin{table}[p]
+\centering
+\small
+\input{tables/time_blocks.tex}
+\caption{Four consecutive 90-shot blocks.  D/N composition varies because chronological order is preserved.  High block-2 FPR is the dominant unresolved temporal failure.}
+\end{table}
+\end{landscape}
+
+The worst online operational TPR by seed is 0.667, 0.791, and 0.733; worst online FPR is 0.273, 0.333, and 0.364.  This fails a uniform worst-block criterion even though the overall means pass the project-level numerical gate.  Safe-shot score versus shot identifier has Spearman $\rho=0.220$, 0.091, and 0.311; seed 137 is a clear residual campaign/shot-order warning.  Consequently, aggregate passage is not promoted to \code{T0\_ADMITTED} or \code{SEALED\_CONFIRMATION}.
+
+\section{Query enrichment and negative controls}
+
+\begin{table}[h]
+\centering
+\input{tables/query_value.tex}
+\caption{Queried-shot operational error enrichment.  MW $p$ is the one-sided Mann--Whitney value for the developed decision score and is descriptive because the score was developed on balanced360.}
+\end{table}
+
+\begin{table}[h]
+\centering
+\input{tables/negative_controls.tex}
+\caption{Three-seed totals relative to the same v2.1 sealed trajectories.  A negative TP loss denotes a TP gain.}
+\end{table}
+
+The real gate converts these exact safe seed--shot cases from FP to TN: seed 131 shots 73790, 74928, 76861, 80801; seed 133 shots 71060 and 74562; seed 137 shots 74939 and 75135.  It loses no operational TP.  The controls are compatible with a role for correctly paired labels, temporal evolution and private evidence.  A causal block-matched random-query online replay is archived and has lower mean utility in every seed, but active selection triggers more realized error-conditioned updates; the real configuration was also selected among 972 candidates (55 strict solutions).  The controls therefore do not isolate a selector-only equal-compute effect or provide multiplicity-corrected confirmation.
+
+\section{Same-label-access front-load ablation}
+
+\subsection{Question and leakage boundary}
+
+The active learner receives 102, 90, and 99 labels for seeds 131, 133, and 137.  A necessary counterfactual is whether simply making those labels available to target adaptation before the stream would produce the same operating improvement.  This control is intentionally retrospective and non-deployable: the selected query identities are read from the sealed historical query ledgers, their outcomes are verified against HDF5, and they are front-loaded into an ordinary target refit.  To prevent direct train--evaluation overlap, every queried shot is removed from that seed's scoring roster.  Static, support-only refit, selected-label front-load, and causal online outputs are evaluated on the identical remaining shots.  The comparison therefore asks about label access, not prospective implementability.
+
+Before any treatment comparison, a support110-only reconstruction must match the archived target parent exactly.  For all three seeds, encoder/head, shared-adapter and private-adapter SHA-256 values, the support-derived threshold, and the resulting static predictions match.  An earlier control using the contemporary class-first sampler failed this gate and is retained as \code{INVALID\_PARENT\_FIDELITY}; all reported results use the recovered historical shot-first sampler.
+
+The query-label budgets and disjoint evaluation counts are:
+\begin{equation}
+\begin{array}{c|ccc}
+\text{seed} & \text{query D/N} & \text{evaluation D/N} & \text{evaluation shots}\\
+\hline
+131 & 61/41 & 119/139 & 258\\
+133 & 49/41 & 131/139 & 270\\
+137 & 43/56 & 137/124 & 261
+\end{array}
+\end{equation}
+
+\begin{landscape}
+\begin{table}[p]
+\centering
+\small
+\input{tables/equal_label_budget.tex}
+\caption{Same-label-access counterfactual on query-label-disjoint complements.  ``Front-load'' adds the exact queried labels to target refitting; ``recal.'' reselects the threshold on support110.  The fixed archived parent threshold is primary.  TPR$_{30}$--FPR is an explicit balanced operating summary, not a clinical or control-system utility.}
+\end{table}
+\end{landscape}
+
+\subsection{Random front-load control and adjudication}
+
+For each seed and each contiguous 20-shot block, a label-agnostic sampler draws exactly the number of shots queried by the active policy in that block.  Three random rosters are generated per seed.  All arms in one comparison are scored on the common complement after removing both selected and random front-load rosters.  Random replicates are averaged inside seed before the three seeds are averaged, preventing seeds with more completed replicates from receiving greater weight.
+
+On the direct selected-query complements, equal-seed mean TPR$_{30}$--FPR is 0.8359 for static, 0.7327 for selected-label front-loading, and 0.8490 for causal online.  Front-loading changes TPR$_{30}$ by $+0.0641$ and FPR by $+0.1673$, for a net change of $-0.1032$.  Online exceeds the front-loaded control by $+0.1163$.  Both directions hold in all three seeds.  On the selected/random common masks, static, selected front-load, random front-load, and online values are 0.8387, 0.7322, 0.7033, and 0.8510.  Threshold recalibration on support110 does not rescue the selected front-load (0.7252 on the direct complement).
+
+This ablation shows that the queried labels contain predictive information---front-loading increases sensitivity, warning time, and continuous-score AUC---but ordinary target refitting moves many safe shots across the alarm boundary.  Label count alone is therefore not a sufficient explanation for the online operating point.  The evidence is consistent with a role for delayed error-typed updates, bounded step sizes, support replay, rollback and alarm-state protection.  It does not isolate which component is necessary, because the historical online runner did not archive exact sampled windows, optimizer states, RNG states or FLOPs needed for an equal-gradient replay.  A separate causal random-query online arm now matches label and configured-step budgets and is worse in all three seeds, but its realized update attempts are lower.  Finally, with only three model seeds, the all-sign result has exact one-sided sign-test probability 0.125 and is descriptive rather than confirmatory.
+
+\begin{table}[h]
+\centering
+\small
+\input{tables/causal_random_query.tex}
+\caption{Causal active-versus-random query replay. Random schedules match the active per-block label count, parent, runner and configured step budget. Inter attempts are realized shared-update attempts and reveal the remaining compute mediator.}
+\end{table}
+
+\subsection{Target-only baselines}
+
+The strict EAST-only arm fits a support-local scaler and randomly initialized 17-channel encoder/head from support110; the source-scaler diagnostic is also random initialized and consumes no J-TEXT samples or weights.  Both retain the same target sidecars, support threshold rule and static alarm evaluator.  Transfer-static improves equal-seed TPR$_{30}$--FPR from 0.6519 to 0.6741 relative to strict EAST-only, while raising FPR from 0.1444 to 0.1667.  Because the target-only model updates the full encoder and transfer updates a restricted target path, configured target steps do not imply equal FLOPs or capacity.
+
+\begin{table}[h]
+\centering
+\small
+\input{tables/east_target_only.tex}
+\caption{Random-initialized target controls and transferred static model on the balanced360 development stream.  Lead is the median over lead-qualified operational true positives.}
+\end{table}
+
+\section{Padding shortcut and PADFIX ablation}
+
+\subsection{Audit design}
+
+For an eligible endpoint, full and truncated contexts share the same endpoint and supervision anchor.  Truncation removes only earlier history, yielding 32, 64, 96, or 128 real samples with causal left padding.  No future sample is read.  A multinomial linear probe is fitted on TRAIN1353 hidden representations and evaluated on VAL160.  Registered gates are probe macro-AUC $\leq0.65$, mean absolute paired risk difference $\leq0.05$, and alarm flip rate $\leq0.05$.
+
+\begin{table}[h]
+\centering
+\small
+\input{tables/shortcut_padfix.tex}
+\caption{Primary versus PADFIX.  Probe/risk/flip are VAL160 same-endpoint audits; source metrics are from the count-aligned TEST220 comparator.}
+\end{table}
+
+\subsection{PADFIX objective}
+
+PADFIX preserves the deployed architecture and adds training-only legal-context views.  If $h_f,z_f$ are full-context representation/logit and $h_v,z_v$ a truncated view,
+\begin{equation}
+\mathcal{L}=\mathcal{L}_{\rm task}
++0.5\mathcal{L}_{\rm view}
++0.2\|z_f-z_v\|_2^2
++0.5\|\hat h_f-\hat h_v\|_2^2
++0.005\mathcal{L}_{\rm pad\mbox{-}adv}.
+\end{equation}
+The adversary is outcome-conditional and alternates nuisance prediction/confusion, preventing the nuisance head from simply using the class imbalance.  The selected checkpoints are epochs 31, 31, and 29, locked on VAL160 before TEST220.  Their SHA-256 values are \code{c387e3de...d14854b}, \code{9b1dfb98...170355}, and \code{098e49ec...d815b}.
+
+\begin{table}[h]
+\centering
+\input{tables/padfix_transfer.tex}
+\caption{PADFIX parent under the previously frozen target and v3c policies.  Online FPR increases for every seed, so this is a negative-transfer ablation.}
+\end{table}
+
+PADFIX passes the context gates but misses the source operational-TPR gate and is incompatible with the frozen target policy.  Retuning on balanced360 would repeat the same test-driven selection problem.  The correct next experiment is to select a PADFIX-compatible target policy on support/validation data and evaluate once on a newly acquired stream.
+
+\section{Alarm robustness and case study}
+
+The prior dual-threshold stage registered 37 perturbations over high threshold, physics weight, trend weight, early threshold, and fast/slow moving-average widths.  Thirty-one pass operational TPR $\geq0.75$ and FPR $\leq0.20$.  The registered point gives operational TP/FP/FN/TN $=144/22/36/158$, operational TPR 0.8000, FPR 0.1222, and median lead 139 ms.  Its 2,000-repeat intervals are operational TPR $[0.7389,0.8556]$ and FPR $[0.0776,0.1724]$.  This stage is explicitly not the exact final v3c configuration.
+
+For safe shot 73790 (seed 131), the static alarm occurs at endpoint 4056/time 7.183 s.  The selected causal episode head produces false-alarm probability 0.727 with confidence 1.0 based on 315 past training points and blocks the deployment alarm.  The query for the shot is selected only after the prediction is sealed.  The risk-trace NPZ is copied into the package and hash-bound rather than loaded from a personal directory.
+
+\section{Recorded failures and decisions}
+
+\begin{longtable}{@{}p{34mm}p{56mm}p{70mm}@{}}
+\caption{Failures retained as scientific evidence rather than deleted as unsuccessful trials.}\\
+\toprule
+Arm & Observation & Decision \\
+\midrule
+\endfirsthead
+\toprule
+Arm & Observation & Decision \\
+\midrule
+\endhead
+raw23 global alignment & incomparable channel units/availability and repeated negative transfer & prohibit as formal method; separate shared17/private8 \\
+unconditional DANN/MMD/CORAL & class prior and temporal-state mixtures provide domain shortcuts & retain historical baselines only; do not add alignment weight \\
+high-dimensional post-shot residual & parameters changed but prediction flips were zero; larger LR triggered guard rollback & stop LR/step escalation \\
+v3a expert value controls query & query count changed and operational TPR declined & keep expert value in shadow mode \\
+v3b absolute FP threshold & probability scale differed by seed; seed 137 blocked nothing & use past-class protected quantiles and fail open \\
+unisolated v3c feedback & an FP rescue changed learning state and made shot 77302 tardy & separate deployment and counterfactual learning alarms \\
+40\% query budget & worse than the approximately 30\% path & do not equate more labels with better adaptation \\
+PADFIX plus frozen policy & source context gates pass; online FPR rises in all seeds & negative transfer; no balanced360 retuning \\
+continuous-ten alarm & different operating contract and lower sensitivity & report only as secondary historical arm \\
+\bottomrule
+\end{longtable}
+
+\section{Protocol deviations and reviewer-visible limitations}
+
+\begin{enumerate}
+  \item \textbf{Window length:} actual source architecture is 128 samples, not the earlier 256-sample plan.
+  \item \textbf{Source split:} \jtext{} roles are zero-overlap but count-aligned and non-chronological; balanced VAL/TEST do not estimate deployment prevalence.
+  \item \textbf{Support labels:} actual HDF5 count is 15D/95N, not the legacy 10D/100N headings.
+  \item \textbf{Target validation:} support110 is reused for target fitting and threshold selection; no independent target-validation cohort exists.
+  \item \textbf{Alarm persistence:} primary run uses a single supported crossing because the user removed continuous ten points as mandatory.  Both must not be mixed.
+  \item \textbf{Very early alarms:} $>3$ s counts toward TPR by contract but is separately audited and cannot be sold as mitigation-ready timing.
+  \item \textbf{Development reuse:} balanced360 was first called a test set and later authorized for reverse analysis and parameter-range development.  It is not an unseen final test.
+  \item \textbf{Multiplicity:} 972 episode candidates were screened; no claim of preregistered significance is made.
+  \item \textbf{Budget controls:} selected-label and block-matched random front-load controls test whether label access alone explains the result.  A causal block-matched random-query online branch tests query identity under the same label and configured-step budgets; unequal realized error-triggered updates prevent a strict equal-FLOP selector-only claim.
+  \item \textbf{Source shortcut:} the successful primary lineage fails the padding-context gate.  It cannot support a claim that all cross-device disruption physics were learned.
+  \item \textbf{Temporal shift:} block-2 FPR and score/shot correlations remain unresolved.
+  \item \textbf{No independent future stream:} local artifact history is insufficient to certify any remaining \east{} cohort as never used in method development.
+  \item \textbf{No deployment test:} real-time latency, control integration, sensor dropout stress, and operator cost have not been prospectively evaluated.
+\end{enumerate}
+
+\section{Reproduction contract}
+
+All commands assume the repository root, the \code{rl\_env} environment, one NVIDIA GeForce RTX 5070 Laptop GPU (8,151 MiB), and raw HDF5 data under the documented \code{data/} paths.  Source-training wall times were 46.8/73.1/58.8 s.  Historical target/online wall time, FLOPs and energy were not archived and are reported as unavailable rather than reconstructed from file timestamps.
+
+\subsection{Audit and evidence rebuild}
+
+\begin{verbatim}
+conda activate rl_env
+python experiments/transfer_methods_2026/paper_grade_package/
+  scripts/build_evidence.py
+python experiments/transfer_methods_2026/paper_grade_package/
+  scripts/generate_latex_tables.py
+python experiments/transfer_methods_2026/paper_grade_package/
+  scripts/generate_figures.py
+pytest -q tests/experiments/test_paper_grade_evidence.py \
+  tests/experiments/test_jtext_source_padfix.py
+\end{verbatim}
+
+\subsection{Source training}
+
+For each seed $s\in\{131,133,137\}$:
+\begin{verbatim}
+python experiments/transfer_methods_2026/
+  train_jtext_source_transformer.py --seed $s --device cuda
+\end{verbatim}
+The script binds checkpoint schema, feature names, architecture, split hash, scaler, threshold origin, and test-read count.
+
+\subsection{PADFIX confirmation}
+
+The package script \code{train\_source\_padfix.py} trains the registered context-view configuration.  The lock manifest \code{source\_padfix\_confirm\_e32/locked\_before\_test220.json} must exist before running \code{evaluate\_locked\_source\_padfix.py}.  Reopening TEST220 for tuning invalidates the ablation.
+
+\subsection{Online artifacts}
+
+The primary ledgers are under
+\begin{center}
+\code{online\_episode\_value\_v3\_runs/final\_seed\{131,133,137\}\_episode\_v3/}.
+\end{center}
+Each contains static and online predictions, query decisions, selected reveals, updates, configuration/contract metadata, and SHA-256 values.  The frozen episode configuration and screen ledger are \code{frozen\_episode\_v3c\_config.json} and \code{sequence\_episode\_v3c\_screen.json}.  The validation entry point is \code{validate\_fpr\_episode\_v3.py}.  Reproducing full online training requires the existing \code{run\_unified\_online\_active.py} parent runner and the frozen configuration; recomputing paper numbers from archived per-shot artifacts does not require model execution.
+
+The three source parent checkpoints are bundled, but historical intermediate target optimizer/model states are not.  Thus the command plan can reconstruct the target stages and the existing ledgers can be hash-verified, whereas byte-identical target-state reconstruction across hardware or library versions is not claimed.
+
+\subsection{Manuscript build}
+
+\begin{verbatim}
+cd experiments/transfer_methods_2026/paper_grade_package/manuscript
+latexmk -xelatex -interaction=nonstopmode -halt-on-error main.tex
+latexmk -xelatex -interaction=nonstopmode -halt-on-error supplement.tex
+python ../scripts/validate_paper_package.py
+\end{verbatim}
+
+\section{Prospective confirmation protocol}
+
+The next claim-changing experiment must use a newly acquired chronological \east{} stream and should be paired with a strict chronological \jtext{} source evaluation.  Before the first target shot, archive: git SHA; environment lock; data-roster hash excluding outcomes; all three source/target checkpoint hashes; a target-validation rule separate from support fitting; target scaler; alarm parameters; query budget; random-control seeds; exact sampled-window/optimizer-step/FLOP budgets; and a signed statement that no method selection used the stream.  Execute static, active, causal equal-budget random-query, label-front-load and no-label branches from identical parents.  Release outcomes only after each shot is sealed, and only selected outcomes to the online learner.  Report the complete stream regardless of failure.
+
+The preregistered success condition should require every seed to attain operational TPR $\geq0.80$, FPR $\leq0.20$, and a lead criterion fixed before acquisition; online must not degrade static; worst temporal blocks must pass; random/no-label/time-shift controls must not reproduce the full gain; and shot/duration correlations plus $>3$ s alarms must remain below predeclared limits.  If PADFIX is promoted, its target policy must be selected without balanced360 and confirmed separately.
+
+\bibliographystyle{unsrtnat}
+\bibliography{references}
+
+\end{document}

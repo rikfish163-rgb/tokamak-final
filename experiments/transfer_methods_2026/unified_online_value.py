@@ -89,6 +89,380 @@ class CausalUpdateValue:
         ))
 
 
+class PrequentialWindowClock:
+    """Fail closed unless an endpoint is predicted before it can train."""
+
+    def __init__(self) -> None:
+        self._last_sealed = -1
+        self._last_updated = -1
+
+    @property
+    def last_sealed(self) -> int:
+        return self._last_sealed
+
+    def seal_prediction(self, endpoint_index: int) -> None:
+        endpoint_index = int(endpoint_index)
+        if endpoint_index != self._last_sealed + 1:
+            raise RuntimeError("endpoint predictions must seal the next consecutive index")
+        self._last_sealed = endpoint_index
+
+    def permit_update(self, observed_endpoint_index: int) -> None:
+        observed_endpoint_index = int(observed_endpoint_index)
+        if observed_endpoint_index > self._last_sealed:
+            raise RuntimeError("current endpoint prediction must be sealed before update")
+        if observed_endpoint_index <= self._last_updated:
+            raise RuntimeError("an endpoint can authorize at most one online update")
+        self._last_updated = observed_endpoint_index
+
+
+class CausalWindowUpdateScheduler:
+    """Spend a causal rolling gradient budget on valuable observed windows.
+
+    The scheduler never receives a shot length.  Decisions for a prefix are
+    therefore invariant when more future endpoints are appended to the shot.
+    Only lightweight candidate values are observed at the registered stride;
+    expensive reconstruction losses are evaluated after a candidate is chosen.
+    """
+
+    def __init__(
+        self, *, candidate_stride: int = 8, update_rate: float = 0.25,
+        token_capacity: float = 4.0, history_size: int = 64,
+        quantile: float = 0.80, initial_cutoff: float = 0.40,
+        minimum_history: int = 8, minimum_gap: int = 8,
+        max_updates: int = 64,
+    ) -> None:
+        if candidate_stride <= 0 or history_size <= 0 or minimum_history <= 0:
+            raise ValueError("invalid causal window scheduler history")
+        if not 0 < float(update_rate) <= 1 or float(token_capacity) < 1:
+            raise ValueError("invalid causal window token budget")
+        if not 0 < float(quantile) < 1 or not 0 <= float(initial_cutoff) <= 1:
+            raise ValueError("invalid causal window cutoff")
+        if minimum_gap < 0 or max_updates <= 0:
+            raise ValueError("invalid causal window update limit")
+        self.candidate_stride = int(candidate_stride)
+        self.update_rate = float(update_rate)
+        self.token_capacity = float(token_capacity)
+        self.history_size = int(history_size)
+        self.quantile = float(quantile)
+        self.initial_cutoff = float(initial_cutoff)
+        self.minimum_history = int(minimum_history)
+        self.minimum_gap = int(minimum_gap)
+        self.max_updates = int(max_updates)
+        self._next_step = 0
+        self._tokens = 0.0
+        self._history: list[float] = []
+        self._last_selected = -10**12
+        self.total_selected = 0
+
+    def consider(self, *, causal_step: int, value: float) -> dict[str, Any]:
+        causal_step = int(causal_step)
+        if causal_step != self._next_step:
+            raise RuntimeError("causal window decisions must be contiguous and ordered")
+        bounded = float(np.clip(value, 0.0, 1.0))
+        if not np.isfinite(value):
+            raise ValueError("causal window value must be finite")
+        candidate = causal_step % self.candidate_stride == 0
+        prior = self._history[-self.history_size:]
+        cutoff = (
+            float(np.quantile(prior, self.quantile))
+            if len(prior) >= self.minimum_history else self.initial_cutoff
+        )
+        selected = False
+        route = None
+        tokens_before = self._tokens
+        if candidate:
+            self._tokens = min(
+                self.token_capacity, self._tokens + self.update_rate,
+            )
+            selected = (
+                self._tokens >= 1.0
+                and bounded >= cutoff
+                and causal_step - self._last_selected >= self.minimum_gap
+                and self.total_selected < self.max_updates
+            )
+            if selected:
+                self._tokens -= 1.0
+                self._last_selected = causal_step
+                self.total_selected += 1
+                route = "past_quantile_value"
+            self._history.append(bounded)
+        self._next_step += 1
+        return {
+            "candidate": bool(candidate), "selected": bool(selected),
+            "route": route, "causal_step": causal_step, "value": bounded,
+            "cutoff": cutoff, "tokens_before": float(tokens_before),
+            "tokens_after": float(self._tokens),
+            "history_count": min(len(prior), self.history_size),
+            "selected_count": self.total_selected,
+        }
+
+
+class TypedEndpointResidualMemory:
+    """Causal endpoint-level FP/FN/TARDY memory with TP/TN protection.
+
+    Keys and predictions for a shot are sealed endpoint by endpoint.  Nothing
+    enters the persistent memory until the complete shot has been selected for
+    a label query and its outcome is revealed.  Similarity is aggregated by
+    distinct source shot so one long shot cannot manufacture support.
+    """
+
+    ERROR_GROUPS = frozenset({"FP", "FN", "TARDY"})
+    PROTECTION_GROUPS = frozenset({"TP", "TN"})
+    VALID_GROUPS = ERROR_GROUPS | PROTECTION_GROUPS
+
+    def __init__(
+        self, *, radius: float = 0.35, minimum_error_shots: int = 2,
+        max_positive_residual: float = 0.35,
+        max_negative_residual: float = 0.25,
+        positive_physics_gate: float = 0.50,
+        protection_ratio: float = 1.0,
+        capacity: int = 512,
+    ) -> None:
+        if radius <= 0 or minimum_error_shots <= 0 or capacity <= 0:
+            raise ValueError("invalid typed endpoint-memory geometry")
+        if max_positive_residual < 0 or max_negative_residual < 0:
+            raise ValueError("endpoint residual bounds must be non-negative")
+        if not 0 <= positive_physics_gate <= 1 or protection_ratio < 0:
+            raise ValueError("invalid endpoint-memory guard")
+        self.radius = float(radius)
+        self.minimum_error_shots = int(minimum_error_shots)
+        self.max_positive_residual = float(max_positive_residual)
+        self.max_negative_residual = float(max_negative_residual)
+        self.positive_physics_gate = float(positive_physics_gate)
+        self.protection_ratio = float(protection_ratio)
+        self.capacity = int(capacity)
+        self._key_size: int | None = None
+        self._entries: list[dict[str, Any]] = []
+        self._pending: dict[int, dict[str, Any]] = {}
+        self._cache: tuple[np.ndarray, np.ndarray, np.ndarray] | None = None
+
+    def _key(self, key: np.ndarray) -> np.ndarray:
+        vector = np.asarray(key, dtype=np.float64).reshape(-1)
+        if not len(vector) or not np.isfinite(vector).all():
+            raise ValueError("endpoint-memory key must be finite and non-empty")
+        if self._key_size is None:
+            self._key_size = len(vector)
+        if len(vector) != self._key_size:
+            raise ValueError("endpoint-memory key size changed")
+        return np.clip(vector, -1.0, 1.0)
+
+    def _evidence(self, key: np.ndarray) -> dict[str, Any]:
+        by_group: dict[str, dict[int, float]] = {
+            group: {} for group in self.VALID_GROUPS
+        }
+        if self._entries and self._cache is None:
+            self._cache = (
+                np.stack([entry["key"] for entry in self._entries]),
+                np.asarray([entry["group"] for entry in self._entries], dtype=object),
+                np.asarray([entry["shot"] for entry in self._entries], dtype=np.int64),
+            )
+        if self._cache is not None:
+            matrix, groups, shots = self._cache
+            distances = np.linalg.norm(matrix - key[None, :], axis=1) / math.sqrt(len(key))
+            local = np.flatnonzero(distances <= self.radius)
+        else:
+            distances = np.empty(0, dtype=np.float64)
+            groups = np.empty(0, dtype=object)
+            shots = np.empty(0, dtype=np.int64)
+            local = np.empty(0, dtype=np.int64)
+        for index in local:
+            distance = float(distances[index])
+            similarity = math.exp(-0.5 * (distance / self.radius) ** 2)
+            group = str(groups[index])
+            shot = int(shots[index])
+            by_group[group][shot] = max(
+                by_group[group].get(shot, 0.0), similarity,
+            )
+        support = {
+            group: float(sum(values.values()))
+            for group, values in by_group.items()
+        }
+        positive_shots = set(by_group["FN"]) | set(by_group["TARDY"])
+        return {
+            **{f"{group.lower()}_support": support[group]
+               for group in sorted(self.VALID_GROUPS)},
+            "positive_error_shots": len(positive_shots),
+            "negative_error_shots": len(by_group["FP"]),
+            "tp_protection": support["TP"],
+            "tn_protection": support["TN"],
+            "positive_support": support["FN"] + 0.7 * support["TARDY"],
+            "negative_support": support["FP"],
+        }
+
+    def begin_shot(self, shot_id: int) -> None:
+        shot_id = int(shot_id)
+        if shot_id in self._pending:
+            raise RuntimeError("endpoint-memory shot already active")
+        self._pending[shot_id] = {
+            "sealed": False, "last_endpoint": -1, "endpoints": {},
+        }
+
+    def correct_and_seal(
+        self, shot_id: int, *, endpoint_index: int, key: np.ndarray,
+        base_logit: float, physics_support: float,
+    ) -> dict[str, Any]:
+        shot_id = int(shot_id)
+        endpoint_index = int(endpoint_index)
+        pending = self._pending.get(shot_id)
+        if pending is None or pending["sealed"]:
+            raise RuntimeError("endpoint-memory shot must be active")
+        if endpoint_index <= int(pending["last_endpoint"]):
+            raise RuntimeError("endpoint-memory predictions must be strictly ordered")
+        vector = self._key(key)
+        evidence = self._evidence(vector)
+        residual = 0.0
+        positive = float(evidence["positive_support"])
+        negative = float(evidence["negative_support"])
+        if (
+            int(evidence["positive_error_shots"]) >= self.minimum_error_shots
+            and float(physics_support) >= self.positive_physics_gate
+            and float(evidence["tn_protection"])
+            < self.protection_ratio * max(positive, 1e-12)
+        ):
+            confidence = positive / (
+                positive + float(evidence["tn_protection"]) + 1e-12
+            )
+            residual += self.max_positive_residual * confidence
+        if (
+            int(evidence["negative_error_shots"]) >= self.minimum_error_shots
+            and float(evidence["tp_protection"])
+            < self.protection_ratio * max(negative, 1e-12)
+        ):
+            confidence = negative / (
+                negative + float(evidence["tp_protection"]) + 1e-12
+            )
+            residual -= self.max_negative_residual * confidence
+        residual = float(np.clip(
+            residual, -self.max_negative_residual, self.max_positive_residual,
+        ))
+        pending["last_endpoint"] = endpoint_index
+        pending["endpoints"][endpoint_index] = {
+            "key": vector.copy(), "base_logit": float(base_logit),
+            "physics_support": float(np.clip(physics_support, 0.0, 1.0)),
+        }
+        return {
+            "corrected_logit": float(base_logit) + residual,
+            "residual": residual, **evidence,
+        }
+
+    def seal_shot(self, shot_id: int) -> None:
+        pending = self._pending.get(int(shot_id))
+        if pending is None:
+            raise RuntimeError("endpoint-memory shot is not pending")
+        pending["sealed"] = True
+
+    def update_after_reveal(
+        self, shot_id: int, *, selected: bool, discrepancy_group: str,
+        endpoint_indices: list[int] | np.ndarray,
+    ) -> dict[str, Any]:
+        shot_id = int(shot_id)
+        pending = self._pending.get(shot_id)
+        if pending is None:
+            raise RuntimeError("endpoint-memory shot is not pending")
+        if not bool(pending["sealed"]):
+            raise RuntimeError("endpoint-memory shot must be sealed before reveal")
+        if not selected:
+            raise PermissionError("endpoint memory requires a selected query")
+        if discrepancy_group not in self.VALID_GROUPS:
+            raise ValueError("invalid endpoint-memory discrepancy group")
+        indices = [int(index) for index in endpoint_indices]
+        if not indices:
+            raise ValueError("endpoint memory requires at least one endpoint")
+        available_indices = sorted(int(index) for index in pending["endpoints"])
+        if not available_indices:
+            raise RuntimeError("endpoint memory has no causally sealed endpoints")
+        resolved_indices = [
+            index if index in pending["endpoints"] else min(
+                available_indices, key=lambda candidate: abs(candidate - index),
+            )
+            for index in indices
+        ]
+        stored = 0
+        stored_indices: list[int] = []
+        for endpoint_index in dict.fromkeys(resolved_indices):
+            endpoint = pending["endpoints"][endpoint_index]
+            self._entries.append({
+                "shot": shot_id, "endpoint": endpoint_index,
+                "group": discrepancy_group,
+                "key": endpoint["key"].copy(),
+                "base_logit": endpoint["base_logit"],
+                "physics_support": endpoint["physics_support"],
+            })
+            stored += 1
+            stored_indices.append(endpoint_index)
+        self._pending.pop(shot_id)
+        if len(self._entries) > self.capacity:
+            self._entries = self._entries[-self.capacity:]
+        self._cache = None
+        return {
+            "event": "typed_endpoint_memory_update", "shot": shot_id,
+            "group": discrepancy_group, "stored_endpoints": stored,
+            "entry_count": len(self._entries),
+            "requested_endpoints": indices,
+            "resolved_endpoints": stored_indices,
+        }
+
+    def discard_without_reveal(self, shot_id: int) -> None:
+        self._pending.pop(int(shot_id), None)
+
+    def entries(self) -> list[dict[str, Any]]:
+        return [
+            {
+                "shot": int(entry["shot"]),
+                "endpoint": int(entry["endpoint"]),
+                "group": str(entry["group"]),
+                "key": entry["key"].tolist(),
+                "base_logit": float(entry["base_logit"]),
+                "physics_support": float(entry["physics_support"]),
+            }
+            for entry in self._entries
+        ]
+
+    def state_dict(self) -> dict[str, Any]:
+        if self._pending:
+            raise RuntimeError("cannot checkpoint endpoint memory with pending shots")
+        return {
+            "radius": self.radius,
+            "minimum_error_shots": self.minimum_error_shots,
+            "max_positive_residual": self.max_positive_residual,
+            "max_negative_residual": self.max_negative_residual,
+            "positive_physics_gate": self.positive_physics_gate,
+            "protection_ratio": self.protection_ratio,
+            "capacity": self.capacity, "key_size": self._key_size,
+            "entries": self.entries(),
+        }
+
+    @classmethod
+    def from_state_dict(
+        cls, state: Mapping[str, Any],
+    ) -> "TypedEndpointResidualMemory":
+        memory = cls(
+            radius=float(state["radius"]),
+            minimum_error_shots=int(state["minimum_error_shots"]),
+            max_positive_residual=float(state["max_positive_residual"]),
+            max_negative_residual=float(state["max_negative_residual"]),
+            positive_physics_gate=float(state["positive_physics_gate"]),
+            protection_ratio=float(state["protection_ratio"]),
+            capacity=int(state["capacity"]),
+        )
+        memory._key_size = (
+            int(state["key_size"]) if state.get("key_size") is not None else None
+        )
+        memory._entries = [
+            {
+                "shot": int(entry["shot"]),
+                "endpoint": int(entry["endpoint"]),
+                "group": str(entry["group"]),
+                "key": np.asarray(entry["key"], dtype=np.float64),
+                "base_logit": float(entry["base_logit"]),
+                "physics_support": float(entry["physics_support"]),
+            }
+            for entry in state["entries"]
+        ]
+        memory._cache = None
+        return memory
+
+
 @contextmanager
 def temporary_optimizer_scale(
     optimizer: torch.optim.Optimizer, scale: float,
@@ -639,6 +1013,301 @@ class AdaptiveBlockBudgetSelector:
         return receipt
 
 
+class CappedAdaptiveBudgetSelector:
+    """Past-only query selector with a hard cap, never a forced quota.
+
+    A low-value shot is not queried merely because a block is ending.  This is
+    intentionally different from :class:`AdaptiveBlockBudgetSelector`, which
+    remains available to reproduce the frozen exact-budget baseline.
+    """
+
+    def __init__(
+        self, *, block_size: int = 20, quota: int = 4,
+        history_size: int = 80, quantile: float = 0.80,
+        initial_cutoff: float = 0.50, exploration_per_block: int = 1,
+        exploration_offset: int = 3, exploration_stride: int = 7,
+    ) -> None:
+        if block_size <= 0 or quota <= 0 or quota > block_size:
+            raise ValueError("require 0 < quota <= block_size")
+        if history_size <= 0 or not 0 < float(quantile) < 1:
+            raise ValueError("invalid adaptive cutoff history contract")
+        if not 0 <= float(initial_cutoff) <= 1:
+            raise ValueError("initial cutoff must lie in [0, 1]")
+        if not 0 <= int(exploration_per_block) <= int(quota):
+            raise ValueError("exploration count must fit inside the block cap")
+        self.block_size = int(block_size)
+        self.quota = int(quota)
+        self.history_size = int(history_size)
+        self.quantile = float(quantile)
+        self.initial_cutoff = float(initial_cutoff)
+        self.exploration_per_block = int(exploration_per_block)
+        self.exploration_offset = int(exploration_offset)
+        self.exploration_stride = int(exploration_stride)
+        self._history: list[float] = []
+        self._block = -1
+        self._used = 0
+        self._exploration_positions: set[int] = set()
+        self._cutoff = self.initial_cutoff
+        self._next_index = 0
+        self.total_selected = 0
+
+    def _begin_block(self, block: int) -> None:
+        prior = self._history[-self.history_size:]
+        self._cutoff = (
+            float(np.quantile(prior, self.quantile))
+            if prior else self.initial_cutoff
+        )
+        self._block = int(block)
+        self._used = 0
+        self._exploration_positions = {
+            (
+                self.exploration_offset
+                + int(block) * self.exploration_stride
+                + rank * max(1, self.block_size // max(self.exploration_per_block, 1))
+            ) % self.block_size
+            for rank in range(self.exploration_per_block)
+        }
+
+    def decide(self, *, score: float, stream_index: int) -> dict[str, Any]:
+        if int(stream_index) != self._next_index:
+            raise RuntimeError("capped query decisions must be contiguous and ordered")
+        value = float(score)
+        if not np.isfinite(value):
+            raise ValueError("query score must be finite")
+        block = int(stream_index) // self.block_size
+        position = int(stream_index) % self.block_size
+        if block != self._block:
+            self._begin_block(block)
+        exploration = position in self._exploration_positions
+        exploitation = value >= self._cutoff
+        selected = self._used < self.quota and (exploration or exploitation)
+        route = None
+        if selected:
+            route = "exploration" if exploration else "error_likelihood"
+            self._used += 1
+            self.total_selected += 1
+        receipt = {
+            "selected": bool(selected), "route": route, "score": value,
+            "cutoff": self._cutoff, "block": block, "position": position,
+            "history_count": min(len(self._history), self.history_size),
+            "exploration_position": sorted(self._exploration_positions),
+        }
+        self._history.append(value)
+        self._next_index += 1
+        return receipt
+
+
+class RollingTokenBudgetSelector:
+    """Carry unused label budget forward and spend it only on high-value shots."""
+
+    def __init__(
+        self, *, query_rate: float = 0.20, capacity: float = 8.0,
+        history_size: int = 160, quantile: float = 0.85,
+        initial_cutoff: float = 0.40, exploration_interval: int = 40,
+        query_cost: float = 0.0,
+    ) -> None:
+        if not 0 < float(query_rate) <= 1 or float(capacity) < 1:
+            raise ValueError("invalid rolling query budget")
+        if history_size <= 0 or not 0 < float(quantile) < 1:
+            raise ValueError("invalid rolling cutoff")
+        if not 0 <= float(initial_cutoff) <= 1 or exploration_interval <= 0:
+            raise ValueError("invalid rolling query exploration contract")
+        if not 0.0 <= float(query_cost) <= 1.0:
+            raise ValueError("query cost must lie in [0, 1]")
+        self.query_rate = float(query_rate)
+        self.capacity = float(capacity)
+        self.history_size = int(history_size)
+        self.quantile = float(quantile)
+        self.initial_cutoff = float(initial_cutoff)
+        self.exploration_interval = int(exploration_interval)
+        self.query_cost = float(query_cost)
+        self._tokens = 0.0
+        self._history: list[float] = []
+        self._next_index = 0
+        self._last_selected = -1
+        self.total_selected = 0
+
+    def decide(self, *, score: float, stream_index: int) -> dict[str, Any]:
+        if int(stream_index) != self._next_index:
+            raise RuntimeError("rolling query decisions must be contiguous and ordered")
+        value = float(score)
+        if not np.isfinite(value):
+            raise ValueError("query score must be finite")
+        self._tokens = min(self.capacity, self._tokens + self.query_rate)
+        prior = self._history[-self.history_size:]
+        warmup = min(20, self.history_size)
+        cutoff = (
+            float(np.quantile(prior, self.quantile))
+            if len(prior) >= warmup else self.initial_cutoff
+        )
+        exploration = (
+            int(stream_index) + 1 >= self.exploration_interval
+            and int(stream_index) - self._last_selected >= self.exploration_interval
+        )
+        exploitation = value >= max(cutoff, self.query_cost)
+        selected = self._tokens >= 1.0 and (exploration or exploitation)
+        route = None
+        if selected:
+            route = "exploration" if exploration else "error_likelihood"
+            self._tokens -= 1.0
+            self._last_selected = int(stream_index)
+            self.total_selected += 1
+        self._history.append(value)
+        self._next_index += 1
+        return {
+            "selected": bool(selected), "route": route, "score": value,
+            "cutoff": cutoff, "block": int(stream_index) // 20,
+            "position": int(stream_index) % 20,
+            "history_count": min(len(prior), self.history_size),
+            "exploration_position": None,
+            "query_cost": self.query_cost,
+            "net_value": value - self.query_cost,
+            "tokens_after": float(self._tokens),
+        }
+
+
+class CausalErrorMemory:
+    """Retrieve past revealed mistakes without exposing future outcomes.
+
+    The memory contains only shots that were first predicted and sealed, then
+    selected for an outcome query.  FP/FN/TARDY entries provide error evidence;
+    TP/TN entries are equally important counterexamples that protect regions
+    where the current model was already correct.
+    """
+
+    ERROR_GROUPS = frozenset({"FP", "FN", "TARDY"})
+    CORRECT_GROUPS = frozenset({"TP", "TN"})
+    VALID_GROUPS = ERROR_GROUPS | CORRECT_GROUPS
+    GROUP_WEIGHT = {"FP": 0.8, "FN": 1.0, "TARDY": 0.9, "TP": 1.0, "TN": 1.0}
+
+    def __init__(
+        self, *, radius: float = 0.35, minimum_support: int = 2,
+        memory_weight: float = 0.60, capacity: int = 128,
+    ) -> None:
+        if radius <= 0 or minimum_support <= 0 or capacity <= 0:
+            raise ValueError("invalid causal error-memory geometry")
+        if not 0 <= memory_weight <= 1:
+            raise ValueError("memory weight must lie in [0, 1]")
+        self.radius = float(radius)
+        self.minimum_support = int(minimum_support)
+        self.memory_weight = float(memory_weight)
+        self.capacity = int(capacity)
+        self._schema: tuple[str, ...] | None = None
+        self._entries: list[dict[str, Any]] = []
+        self._pending: dict[int, dict[str, Any]] = {}
+
+    def _vector(self, features: Mapping[str, float]) -> np.ndarray:
+        if self._schema is None:
+            self._schema = tuple(sorted(features))
+        if tuple(sorted(features)) != self._schema:
+            raise ValueError("error-memory phenotype schema changed")
+        vector = np.asarray([features[name] for name in self._schema], np.float64)
+        if not np.all(np.isfinite(vector)):
+            raise ValueError("error-memory phenotype must be finite")
+        return np.clip(vector, 0.0, 1.0)
+
+    def _evidence(self, vector: np.ndarray) -> dict[str, float]:
+        support = {group: 0.0 for group in sorted(self.VALID_GROUPS)}
+        for entry in self._entries:
+            distance = float(np.linalg.norm(vector - entry["vector"]) / math.sqrt(len(vector)))
+            similarity = math.exp(-0.5 * (distance / self.radius) ** 2)
+            support[entry["group"]] += similarity * self.GROUP_WEIGHT[entry["group"]]
+        error_support = sum(support[group] for group in self.ERROR_GROUPS)
+        correct_support = sum(support[group] for group in self.CORRECT_GROUPS)
+        total = error_support + correct_support
+        confidence = float(np.clip(total / self.minimum_support, 0.0, 1.0))
+        raw_error_probability = error_support / total if total > 1e-12 else 0.0
+        error_probability = confidence * raw_error_probability
+        result = {
+            "error_support": float(error_support),
+            "correct_support": float(correct_support),
+            "memory_confidence": confidence,
+            "error_probability": float(error_probability),
+            "conditional_error_probability": float(raw_error_probability),
+        }
+        result.update({f"{group.lower()}_support": float(value) for group, value in support.items()})
+        return result
+
+    def score_and_seal(
+        self, shot_id: int, features: Mapping[str, float], *, base_score: float,
+    ) -> tuple[float, dict[str, float]]:
+        shot_id = int(shot_id)
+        if shot_id in self._pending:
+            raise RuntimeError("shot already sealed in error memory")
+        vector = self._vector(features)
+        evidence = self._evidence(vector)
+        base = float(np.clip(base_score, 0.0, 1.0))
+        confidence = evidence["memory_confidence"]
+        local_target = (
+            evidence["error_probability"] + (1.0 - confidence) * base
+        )
+        score = base + self.memory_weight * (local_target - base)
+        score = float(np.clip(score, 0.0, 1.0))
+        self._pending[shot_id] = {
+            "vector": vector.copy(), "base_score": base,
+            "memory_score": score, "evidence": dict(evidence),
+        }
+        return score, evidence
+
+    def update_after_reveal(
+        self, shot_id: int, *, selected: bool, discrepancy_group: str,
+    ) -> dict[str, Any]:
+        shot_id = int(shot_id)
+        if shot_id not in self._pending:
+            raise RuntimeError("error-memory phenotype must be sealed before reveal")
+        if not selected:
+            raise PermissionError("error memory requires a selected query")
+        if discrepancy_group not in self.VALID_GROUPS:
+            raise ValueError("invalid discrepancy group")
+        pending = self._pending.pop(shot_id)
+        self._entries.append({
+            "shot": shot_id, "group": discrepancy_group,
+            "vector": pending["vector"].copy(),
+        })
+        if len(self._entries) > self.capacity:
+            self._entries.pop(0)
+        return {
+            "event": "causal_error_memory_update", "shot": shot_id,
+            "group": discrepancy_group, "stored": True,
+            "entry_count": len(self._entries),
+        }
+
+    def discard_without_reveal(self, shot_id: int) -> None:
+        self._pending.pop(int(shot_id), None)
+
+    def entries(self) -> list[dict[str, Any]]:
+        return [
+            {"shot": item["shot"], "group": item["group"],
+             "vector": item["vector"].tolist()}
+            for item in self._entries
+        ]
+
+    def state_dict(self) -> dict[str, Any]:
+        if self._pending:
+            raise RuntimeError("cannot checkpoint error memory with unfinalized shots")
+        return {
+            "radius": self.radius, "minimum_support": self.minimum_support,
+            "memory_weight": self.memory_weight, "capacity": self.capacity,
+            "schema": list(self._schema or ()), "entries": self.entries(),
+        }
+
+    @classmethod
+    def from_state_dict(cls, state: Mapping[str, Any]) -> "CausalErrorMemory":
+        memory = cls(
+            radius=float(state["radius"]),
+            minimum_support=int(state["minimum_support"]),
+            memory_weight=float(state["memory_weight"]),
+            capacity=int(state["capacity"]),
+        )
+        memory._schema = tuple(str(name) for name in state["schema"]) or None
+        memory._entries = [
+            {"shot": int(item["shot"]), "group": str(item["group"]),
+             "vector": np.asarray(item["vector"], np.float64)}
+            for item in state["entries"]
+        ]
+        return memory
+
+
 class OperationalQueryValueModel:
     """Bounded two-signal value model for querying operational mistakes.
 
@@ -735,7 +1404,11 @@ class OperationalQueryValueModel:
 
 __all__ = [
     "UpdateValueWeights", "CausalUpdateValue", "temporary_optimizer_scale",
+    "PrequentialWindowClock", "CausalWindowUpdateScheduler",
+    "TypedEndpointResidualMemory",
     "IncrementalDualThresholdAlarm", "ProjectedAlarmController",
     "OnlineQueryValueModel", "AdaptiveBlockBudgetSelector",
-    "OperationalQueryValueModel",
+    "OperationalQueryValueModel", "CappedAdaptiveBudgetSelector",
+    "RollingTokenBudgetSelector",
+    "CausalErrorMemory",
 ]

@@ -1,0 +1,25 @@
+\begin{tabular}{rlllrrrr}
+\toprule
+Seed & Query D/N & Eval. D/N & Arm & TPR$_{30}$ & FPR & TPR$_{30}$--FPR & Lead (ms) \\
+\midrule
+131 & 61/41 & 119/139 & static & 0.8824 & 0.0432 & 0.8392 & 143.2 \\
+ &  &  & front-load & 0.9328 & 0.1727 & 0.7601 & 352.0 \\
+ &  &  & front-load, recal. & 0.9580 & 0.2374 & 0.7206 & 377.0 \\
+ &  &  & causal online & 0.8992 & 0.0360 & 0.8632 & 144.0 \\
+\addlinespace
+133 & 49/41 & 131/139 & static & 0.8702 & 0.0576 & 0.8127 & 113.5 \\
+ &  &  & front-load & 0.9466 & 0.2446 & 0.7020 & 352.0 \\
+ &  &  & front-load, recal. & 0.9466 & 0.2518 & 0.6948 & 417.5 \\
+ &  &  & causal online & 0.8702 & 0.0504 & 0.8199 & 113.5 \\
+\addlinespace
+137 & 43/56 & 137/124 & static & 0.9124 & 0.0565 & 0.8560 & 171.0 \\
+ &  &  & front-load & 0.9781 & 0.2419 & 0.7362 & 712.0 \\
+ &  &  & front-load, recal. & 0.9781 & 0.2177 & 0.7604 & 691.5 \\
+ &  &  & causal online & 0.9124 & 0.0484 & 0.8640 & 163.0 \\
+\midrule
+mean & -- & -- & static & 0.8883 & 0.0524 & 0.8359 & 142.6 \\
+mean & -- & -- & front-load & 0.9525 & 0.2197 & 0.7327 & 472.0 \\
+mean & -- & -- & front-load, recal. & 0.9609 & 0.2357 & 0.7252 & 495.3 \\
+mean & -- & -- & causal online & 0.8939 & 0.0449 & 0.8490 & 140.2 \\
+\bottomrule
+\end{tabular}

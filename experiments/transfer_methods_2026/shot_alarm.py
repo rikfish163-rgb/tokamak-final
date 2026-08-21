@@ -12,59 +12,56 @@ Aggregators:
   area    : mean of max(risk - tau, 0)  (sustained exceedance)
   combo   : 0.6*max + 0.4*mean_top5
 """
-import json, sys
+import argparse, json, sys
+from pathlib import Path
 import numpy as np, torch
 import grid_search as GS
 
 DEV = "cuda" if torch.cuda.is_available() else "cpu"
 W = 128
 
-def train(seed=131):
-    src, val, tr, te = GS.load_all()
-    src = GS.transform(src, "base"); tr = GS.transform(tr, "base"); te = GS.transform(te, "base")
-    med, sc = GS.fit_scale(src)
-    for g in (src, tr, te): GS.apply_scale(g, med, sc)
+def source_checkpoint_path(seed=131):
+    return GS.default_source_checkpoint(seed)
+
+
+def _source_contract(seed, source_checkpoint=None):
+    path = Path(source_checkpoint or source_checkpoint_path(seed)).expanduser().resolve()
+    _enc, _head, checkpoint = GS.load_source_checkpoint(
+        path, channels=len(GS.RH.REBUILD), expected_seed=seed, device="cpu"
+    )
+    center = checkpoint["scaler_center"].cpu().numpy()
+    scale = checkpoint["scaler_scale"].cpu().numpy()
+    return path, center, scale
+
+
+def train(seed=131, source_checkpoint=None):
+    source_path, med, sc = _source_contract(seed, source_checkpoint)
+    tr, te = GS.load_east(include_test=True)
+    tr = GS.transform(tr, "base"); te = GS.transform(te, "base")
+    for g in (tr, te): GS.apply_scale(g, med, sc)
     pos, gray = GS.POS["ea125"], GS.GRAY["gray0"]
-    ss = GS.build_sampler(
-        src, None, pos["jt"], gray["jt"], seed,
-        minimum_pos_ms=10.0, allow_left_padding=True,
-        context_lengths=(32, 64, 96, 128),
-    )
-    ts = GS.build_sampler(
-        tr, None, pos["ea"], gray["ea"], seed,
-        minimum_pos_ms=30.0, allow_left_padding=True,
-        context_lengths=(32, 64, 96, 128),
-    )
-    C = src[0]["v"].shape[1]
+    ts = GS.build_sampler(tr, None, pos["ea"], gray["ea"], seed)
+    channels = len(GS.RH.REBUILD)
     enc, head = GS.train_adapt(
-        ss, ts, C, 12, 128, seed, source_epochs=96,
+        None, ts, channels, 12, 128, seed, source_checkpoint=source_path
     )
     return enc, head, tr, te
 
 
-def train_support_only(seed=131):
+def train_support_only(seed=131, source_checkpoint=None):
     """Train the identical model without loading any EAST test shot or label."""
-    src, val, tr, te = GS.load_all(include_test=False)
+    source_path, med, sc = _source_contract(seed, source_checkpoint)
+    tr, te = GS.load_east(include_test=False)
     if te:
         raise RuntimeError("support-only training unexpectedly loaded test shots")
-    src = GS.transform(src, "base"); tr = GS.transform(tr, "base")
-    med, sc = GS.fit_scale(src)
-    for group in (src, tr):
+    tr = GS.transform(tr, "base")
+    for group in (tr,):
         GS.apply_scale(group, med, sc)
     pos, gray = GS.POS["ea125"], GS.GRAY["gray0"]
-    ss = GS.build_sampler(
-        src, None, pos["jt"], gray["jt"], seed,
-        minimum_pos_ms=10.0, allow_left_padding=True,
-        context_lengths=(32, 64, 96, 128),
-    )
-    ts = GS.build_sampler(
-        tr, None, pos["ea"], gray["ea"], seed,
-        minimum_pos_ms=30.0, allow_left_padding=True,
-        context_lengths=(32, 64, 96, 128),
-    )
-    channels = src[0]["v"].shape[1]
+    ts = GS.build_sampler(tr, None, pos["ea"], gray["ea"], seed)
+    channels = len(GS.RH.REBUILD)
     enc, head = GS.train_adapt(
-        ss, ts, channels, 12, 128, seed, source_epochs=96,
+        None, ts, channels, 12, 128, seed, source_checkpoint=source_path
     )
     return enc, head, tr, med, sc
 
@@ -89,8 +86,34 @@ def agg(p, kind, tau=0.5):
     if kind=="combo": return 0.6*float(p.max()) + 0.4*float(np.sort(p)[-min(5,len(p)):].mean())
     raise ValueError(kind)
 
+
+def select_tpr_first_threshold(scores, labels, *, target_tpr=0.8):
+    """Existing EAST110 rule: meet TPR first, then minimize FPR."""
+    scores = np.asarray(scores, dtype=np.float64)
+    labels = np.asarray(labels, dtype=bool)
+    if scores.ndim != 1 or labels.shape != scores.shape:
+        raise ValueError("scores and labels must be aligned one-dimensional arrays")
+    if not labels.any() or labels.all():
+        raise ValueError("threshold selection requires both outcomes")
+    best = None
+    for threshold in sorted(set(scores.tolist()), reverse=True) + [-1e9]:
+        tpr = float(np.mean(scores[labels] >= threshold))
+        fpr = float(np.mean(scores[~labels] >= threshold))
+        if tpr < float(target_tpr):
+            continue
+        candidate = (fpr, -float(threshold), -tpr)
+        if best is None or candidate < best[0]:
+            best = (candidate, float(threshold), tpr, fpr)
+    if best is None:
+        raise RuntimeError(f"support cannot reach target TPR={target_tpr}")
+    return {"threshold": best[1], "tpr": best[2], "fpr": best[3]}
+
 def main():
-    enc, head, tr, te = train(int(sys.argv[1]) if len(sys.argv)>1 else 131)
+    parser = argparse.ArgumentParser()
+    parser.add_argument("seed", type=int, nargs="?", default=131)
+    parser.add_argument("--source-checkpoint", type=Path)
+    args = parser.parse_args()
+    enc, head, tr, te = train(args.seed, args.source_checkpoint)
     R_tr=[full_risk(enc,head,s) for s in tr]
     R_te=[full_risk(enc,head,s) for s in te]
     kinds=["max","p90","top5","area","combo"]
@@ -109,14 +132,10 @@ def main():
             if tpr>=0.8 and (best is None or fpr<best[1]): best=(th,tpr,fpr)
         rec={"tpr0.8_test": dict(tpr=round(best[1],4), fpr=round(best[2],4), th=round(best[0],5)) if best else None}
         # pre-registered: sweep on tr, apply to te
-        bt=None
-        for th in sorted(set(np.round(s_tr,5))) + [0.0]:
-            tp,fp=eval_at(s_tr,th,y_tr); tpr=tp/(y_tr.sum()); fpr=fp/(len(y_tr)-y_tr.sum())
-            if tpr>=0.8 and (bt is None or fpr<bt[1]): bt=(th,tpr,fpr)
-        if bt:
-            tp,fp=eval_at(s_te,bt[0],y_te)
-            rec["prereg"]=dict(train_tpr=round(bt[1],4), train_fpr=round(bt[2],4),
-                               test_tpr=round(tp/(y_te.sum()),4), test_fpr=round(fp/(len(y_te)-y_te.sum()),4), th=round(bt[0],5))
+        bt = select_tpr_first_threshold(s_tr, y_tr, target_tpr=0.8)
+        tp,fp=eval_at(s_te,bt["threshold"],y_te)
+        rec["prereg"]=dict(train_tpr=round(bt["tpr"],4), train_fpr=round(bt["fpr"],4),
+                           test_tpr=round(tp/(y_te.sum()),4), test_fpr=round(fp/(len(y_te)-y_te.sum()),4), th=round(bt["threshold"],5))
         out[k]=rec
     print(json.dumps(out, indent=1, ensure_ascii=False))
     json.dump(out, open("shot_alarm.json","w"), indent=1)

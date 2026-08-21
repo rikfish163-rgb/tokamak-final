@@ -27,6 +27,14 @@ def build_parser() -> argparse.ArgumentParser:
     audit = sub.add_parser("audit", help="validate data layout and HDF5 contract")
     audit.add_argument("--data-root", type=Path, default=None)
     audit.add_argument("--full", action="store_true")
+    audit.add_argument(
+        "--content-hash", action="store_true",
+        help="SHA-256 every required HDF5 file and emit a per-file manifest",
+    )
+    audit.add_argument(
+        "--portable", action="store_true",
+        help="replace the machine-local data root in JSON with a portable token",
+    )
     audit.add_argument("--output", type=Path, default=None)
 
     smoke = sub.add_parser("smoke", help="check data, CUDA and frozen references")
@@ -42,7 +50,10 @@ def build_parser() -> argparse.ArgumentParser:
     verify.add_argument("--actual", type=Path, required=True)
     verify.add_argument(
         "--expected", type=Path,
-        default=project_root() / "results/reference/multiseed_summary.json",
+        default=(
+            project_root()
+            / "results/reference/paper_v3c_multiseed_summary.json"
+        ),
     )
     verify.add_argument("--tolerance", type=float, default=1e-8)
     return parser
@@ -52,7 +63,11 @@ def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     try:
         if args.command == "audit":
-            payload = audit_data(args.data_root or data_root(), full=args.full)
+            payload = audit_data(
+                args.data_root or data_root(), full=args.full,
+                content_hash=args.content_hash,
+                portable=args.portable,
+            )
             _write_or_print(payload, args.output)
             return 0
         if args.command == "smoke":
@@ -67,8 +82,7 @@ def main(argv: list[str] | None = None) -> int:
                 ),
                 "reference_present": (
                     project_root()
-                    / "experiments/transfer_methods_2026/"
-                    "final_delivery_hdf5_deterministic_v2/seeds/seed131.json"
+                    / "results/reference/paper_v3c_multiseed_summary.json"
                 ).is_file(),
             }
             payload["passed"] = (

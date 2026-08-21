@@ -1,0 +1,20 @@
+\begin{tabular}{llrrrrrrr}
+\toprule
+Stage & Seed & TP/FN & Operational TPR & FP/TN & FPR & AUC & Lead (ms) & Queries \\
+\midrule
+J-TEXT source & 131 & 97/13 & 0.8818 & 25/85 & 0.2273 & 0.9307 & 107.2 & -- \\
+J-TEXT source & 133 & 90/20 & 0.8182 & 21/89 & 0.1909 & 0.9253 & 120.7 & -- \\
+J-TEXT source & 137 & 94/16 & 0.8545 & 24/86 & 0.2182 & 0.9098 & 122.1 & -- \\
+J-TEXT source & \textbf{mean} & -- & \textbf{0.8515} & -- & \textbf{0.2121} & \textbf{0.9219} & \textbf{116.6} & -- \\
+\midrule
+EAST static & 131 & 148/32 & 0.8222 & 28/152 & 0.1556 & -- & 263.0 & 0 \\
+EAST static & 133 & 151/29 & 0.8389 & 26/154 & 0.1444 & -- & 205.1 & 0 \\
+EAST static & 137 & 155/25 & 0.8611 & 36/144 & 0.2000 & -- & 258.0 & 0 \\
+EAST static & \textbf{mean} & -- & \textbf{0.8407} & -- & \textbf{0.1667} & \textbf{--} & \textbf{242.0} & 0 \\
+\midrule
+EAST online & 131 & 152/28 & 0.8444 & 24/156 & 0.1333 & -- & 228.5 & 102 \\
+EAST online & 133 & 151/29 & 0.8389 & 24/156 & 0.1333 & -- & 214.0 & 90 \\
+EAST online & 137 & 155/25 & 0.8611 & 34/146 & 0.1889 & -- & 246.0 & 99 \\
+EAST online & \textbf{mean} & -- & \textbf{0.8481} & -- & \textbf{0.1519} & \textbf{--} & \textbf{229.5} & 97.0 \\
+\bottomrule
+\end{tabular}

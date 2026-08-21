@@ -19,25 +19,14 @@ def build_seed_commands(
     *, seed: int, output_root: Path, python_executable: str = sys.executable,
 ) -> list[list[str]]:
     root = project_root()
-    methods = root / "experiments/transfer_methods_2026"
-    seed_root = Path(output_root) / f"seed{seed}"
-    a1 = seed_root / "a1"
-    adapter = seed_root / "adapter"
-    final = seed_root / "final"
+    wrapper = (
+        root / "experiments/transfer_methods_2026/paper_grade_package/"
+        "scripts/reproduce_primary_chain.py"
+    )
     return [
         [
-            python_executable, str(methods / "run_online_active_a1.py"),
-            "--seed", str(seed), "--out", str(a1),
-        ],
-        [
-            python_executable, str(methods / "run_dynamic_hazard_adapter.py"),
-            "--seed", str(seed), "--a1", str(a1), "--out", str(adapter),
-        ],
-        [
-            python_executable, str(methods / "run_unified_online_active.py"),
-            "--locked-best-v8", "--seed", str(seed),
-            "--a1-dir", str(a1), "--adapter-dir", str(adapter),
-            "--out", str(final),
+            python_executable, str(wrapper), "--seed", str(seed),
+            "--stage", "all", "--output-root", str(Path(output_root)),
         ],
     ]
 
@@ -46,7 +35,9 @@ def _aggregate(output_root: Path, seeds: tuple[int, ...]) -> dict[str, Any]:
     rows = []
     summaries = []
     for seed in seeds:
-        summary_path = output_root / f"seed{seed}/final/summary.json"
+        summary_path = (
+            output_root / f"seed{seed}/final_episode_v3/summary.json"
+        )
         summary = json.loads(summary_path.read_text())
         summaries.append(summary)
         static = summary["results"]["static_unified"]
@@ -72,9 +63,11 @@ def _aggregate(output_root: Path, seeds: tuple[int, ...]) -> dict[str, Any]:
             },
         })
     return {
-        "protocol": "static360_then_reset_online360_locked_best_v8",
+        "protocol": "paper_v3c_archived_parent_static360_then_reset_online360",
         "seeds": rows,
-        "all_exact_query_budget": all(row["query_count"] == 72 for row in rows),
+        "realized_query_counts": {
+            str(row["seed"]): int(row["query_count"]) for row in rows
+        },
         "all_phase_separated": all(
             row["execution_protocol"]["phase1_static_complete_before_phase2"]
             and row["execution_protocol"]["phase2_reset_to_same_migrated_initial_sha"]
@@ -154,7 +147,7 @@ def run_reproduction(
     aggregate_path = output_root / "multiseed_summary.json"
     aggregate_path.write_text(json.dumps(aggregate, indent=2, sort_keys=True) + "\n")
     expected_all = json.loads(
-        (root / "results/reference/multiseed_summary.json").read_text()
+        (root / "results/reference/paper_v3c_multiseed_summary.json").read_text()
     )
     expected = _reference_for_seeds(expected_all, seeds)
     verification = compare_multiseed_results(aggregate, expected)

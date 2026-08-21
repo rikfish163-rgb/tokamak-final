@@ -33,6 +33,8 @@ experiments/transfer_methods_2026/grid_runs/
 experiments/transfer_methods_2026/final_two_phase_runs/
 experiments/transfer_methods_2026/unified_static_then_online_seed131_final_v8/
 experiments/transfer_methods_2026/.determinism_check_seed131/
+experiments/transfer_methods_2026/online_episode_value_v3_runs/
+experiments/transfer_methods_2026/online_timescale_ablation_runs/
 /experiments/transfer_methods_2026_stale_cleanup/
 /experiments/research_chain_20260511/
 
@@ -71,10 +73,48 @@ __pycache__/
 *.mp4
 *.gif
 
+# The paper-grade bundle is the compact, hash-validated release evidence.
+# It intentionally includes small checkpoints, ledgers, PDFs, and figures.
+!experiments/transfer_methods_2026/paper_grade_package/
+!experiments/transfer_methods_2026/paper_grade_package/**
+# The v1 front-load reconstruction failed parent-fidelity adjudication.  Keep it
+# locally for forensic history, but publish only the corrected v2 control.
+experiments/transfer_methods_2026/paper_grade_package/evidence/equal_label_budget_frontload_v1/
+experiments/transfer_methods_2026/paper_grade_package/configs/equal_label_budget_frontload_v1.json
+experiments/transfer_methods_2026/paper_grade_package/**/__pycache__/
+experiments/transfer_methods_2026/paper_grade_package/**/*.py[cod]
+experiments/transfer_methods_2026/paper_grade_package/manuscript/*.aux
+experiments/transfer_methods_2026/paper_grade_package/manuscript/*.bbl
+experiments/transfer_methods_2026/paper_grade_package/manuscript/*.blg
+experiments/transfer_methods_2026/paper_grade_package/manuscript/*.fdb_latexmk
+experiments/transfer_methods_2026/paper_grade_package/manuscript/*.fls
+experiments/transfer_methods_2026/paper_grade_package/manuscript/*.log
+!experiments/transfer_methods_2026/paper_grade_package/manuscript/main.log
+!experiments/transfer_methods_2026/paper_grade_package/manuscript/supplement.log
+experiments/transfer_methods_2026/paper_grade_package/manuscript/*.out
+experiments/transfer_methods_2026/paper_grade_package/manuscript/*.xdv
+experiments/transfer_methods_2026/paper_grade_package/manuscript/*.synctex.gz
+
+# Superseded exploratory helpers are retained in the local research checkout
+# but are not part of the v3c paper lineage or public reproduction surface.
+experiments/transfer_methods_2026/build_label_free_query_manifest.py
+experiments/transfer_methods_2026/build_online_order_upper_bound.py
+experiments/transfer_methods_2026/build_online_timescale_upper_bound_report.py
+experiments/transfer_methods_2026/causal_multiseed_ensemble.py
+experiments/transfer_methods_2026/evaluate_causal_multiseed_ensemble.py
+experiments/transfer_methods_2026/evaluate_precursor_state_machine.py
+experiments/transfer_methods_2026/evaluate_support_calibrated_precursor.py
+experiments/transfer_methods_2026/precursor_physics_guard.py
+experiments/transfer_methods_2026/run_online_order_diagnostic_suite.py
+experiments/transfer_methods_2026/validate_fpr_episode_v3.py
+tests/experiments/test_causal_multiseed_ensemble.py
+tests/experiments/test_precursor_physics_guard.py
+
 # Local tooling / editor / OS state
 .DS_Store
 *.swp
 .codex_tmp/
+.omx/
 .claude-migrate/
 .tmp_*/
 MANIFEST/SHA256SUMS

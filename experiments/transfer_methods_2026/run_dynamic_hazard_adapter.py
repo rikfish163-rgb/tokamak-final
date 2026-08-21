@@ -190,8 +190,12 @@ def train_adapter(adapter, cache, *, seed: int, threshold: float):
 
 
 def score_shot(
-    adapter, enc, head, shot, scales, base_risk, *, minimum_positive_residual: float = 0.0
+    adapter, enc, head, shot, scales, base_risk, *,
+    minimum_positive_residual: float = 0.0,
+    base_risk_atol: float = 1e-5,
 ):
+    if not np.isfinite(float(base_risk_atol)) or float(base_risk_atol) <= 0:
+        raise ValueError("base-risk numerical tolerance must be positive and finite")
     base_risk = np.asarray(base_risk, dtype=np.float32)
     adjusted = base_risk.copy()
     endpoints = np.arange(alarm.W - 1 + LAG, len(shot["v"]), dtype=np.int64)
@@ -205,8 +209,16 @@ def score_shot(
         risk_indices = batch_endpoints - (alarm.W - 1)
         sealed_logit = np.log(np.clip(base_risk[risk_indices], 1e-6, 1 - 1e-6) /
                               np.clip(1 - base_risk[risk_indices], 1e-6, 1 - 1e-6))
-        if np.max(np.abs(torch.sigmoid(torch.from_numpy(direct_logit)).numpy() - base_risk[risk_indices])) > 1e-5:
-            raise RuntimeError(f"shot {shot['shot']}: direct/sealed base risk mismatch")
+        direct_probability = torch.sigmoid(torch.from_numpy(direct_logit)).numpy()
+        maximum_base_delta = float(np.max(np.abs(
+            direct_probability - base_risk[risk_indices]
+        )))
+        if maximum_base_delta > float(base_risk_atol):
+            raise RuntimeError(
+                f"shot {shot['shot']}: direct/sealed base risk mismatch "
+                f"(max_abs_delta={maximum_base_delta:.9g}, "
+                f"atol={float(base_risk_atol):.9g})"
+            )
         with torch.no_grad():
             _adapted_logit, delta, _, _ = adapter(
                 torch.from_numpy(frozen).to(alarm.DEV),
@@ -238,6 +250,7 @@ def main() -> None:
     parser.add_argument("--seed", type=int, default=131)
     parser.add_argument("--a1", type=Path, default=HERE / "online_active_a1_seed131")
     parser.add_argument("--out", type=Path, default=HERE / "dynamic_hazard_adapter_seed131")
+    parser.add_argument("--source-checkpoint", type=Path, default=None)
     args = parser.parse_args()
     if args.out.exists():
         raise FileExistsError(f"output exists: {args.out}")
@@ -247,7 +260,7 @@ def main() -> None:
     scales = json.loads((args.a1 / "config.json").read_text())["innovation_scales"]
 
     print(f"[DHA] train frozen base seed={args.seed} device={alarm.DEV}", flush=True)
-    enc, head, transfer, test = alarm.train(args.seed)
+    enc, head, transfer, test = alarm.train(args.seed, args.source_checkpoint)
     base_hash = a1.model_sha256(enc, head)
     if base_hash != a1_summary["model_sha256_before_after"]:
         raise RuntimeError("base model differs from A1 seal")
@@ -348,7 +361,13 @@ def main() -> None:
             "tpr_non_degraded": adapted_conf["TP"] >= base_conf["TP"],
             "fpr_strictly_lower": adapted_conf["FP"] < base_conf["FP"],
         },
-        "hashes": {"predictions": a1.sha256_file(args.out / "predictions.jsonl")},
+        "hashes": {
+            "source_checkpoint": a1.sha256_file(
+                Path(args.source_checkpoint or alarm.source_checkpoint_path(args.seed))
+                .expanduser().resolve()
+            ),
+            "predictions": a1.sha256_file(args.out / "predictions.jsonl"),
+        },
         "claim_boundary": "110-support-trained, balanced360 test-driven diagnostic; no online updates during test.",
     }
     summary["normality"]["passed"] = all(summary["normality"].values())

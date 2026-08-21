@@ -1,0 +1,132 @@
+{
+  "schema_version": "causal-timescale-label-budget-ablation-v1",
+  "claim_status": "BALANCED360_METHOD_DEVELOPMENT_DIAGNOSTIC",
+  "metric_contract": {
+    "primary": "TPR_at_lead_ge_30ms_minus_FPR",
+    "raw_tpr_reported_separately": true,
+    "over_3000ms_alarm_counts_as_tpr": true
+  },
+  "full360_timescale_ablation": {
+    "static": {
+      "FN": 9,
+      "FP": 28,
+      "TN": 152,
+      "TP": 171,
+      "fpr": 0.15555555555555556,
+      "median_lead_ms": 208.00000000000017,
+      "over_3000ms_count": 22,
+      "tpr": 0.95,
+      "tpr_at_30ms": 0.8222222222222222,
+      "utility_tpr30_minus_fpr": 0.6666666666666666
+    },
+    "intra_only": {
+      "FN": 8,
+      "FP": 28,
+      "TN": 152,
+      "TP": 172,
+      "fpr": 0.15555555555555556,
+      "median_lead_ms": 185.49999999999977,
+      "over_3000ms_count": 22,
+      "tpr": 0.9555555555555556,
+      "tpr_at_30ms": 0.8222222222222222,
+      "utility_tpr30_minus_fpr": 0.6666666666666666
+    },
+    "inter_only": {
+      "FN": 9,
+      "FP": 28,
+      "TN": 152,
+      "TP": 171,
+      "fpr": 0.15555555555555556,
+      "median_lead_ms": 201.99999999999994,
+      "over_3000ms_count": 22,
+      "tpr": 0.95,
+      "tpr_at_30ms": 0.8333333333333334,
+      "utility_tpr30_minus_fpr": 0.6777777777777778
+    },
+    "intra_inter": {
+      "FN": 8,
+      "FP": 27,
+      "TN": 153,
+      "TP": 172,
+      "fpr": 0.15,
+      "median_lead_ms": 181.78440799999973,
+      "over_3000ms_count": 23,
+      "tpr": 0.9555555555555556,
+      "tpr_at_30ms": 0.8277777777777777,
+      "utility_tpr30_minus_fpr": 0.6777777777777777
+    }
+  },
+  "effect_decomposition": {
+    "intra_main": 0.0,
+    "inter_main": 0.011111111111111183,
+    "joint_total": 0.011111111111111072,
+    "interaction": -1.1102230246251565e-16
+  },
+  "query_contract": {
+    "query_count": 30,
+    "query_identity_semantics": "selected causally by a label-free shot-level query-value policy, then frozen as one immutable manifest for the inter-only, intra+inter and direct-frontload controls",
+    "not_an_arbitrary_fixed_cohort": true,
+    "same_fixed_manifest": true,
+    "intra_window_value_is_a_separate_selector": true,
+    "query_selection_label_oracle_used": false,
+    "predict_seal_query_reveal_update": true,
+    "provenance_boundary": "The recovered immutable Q30 manifest preserves shot identities, stream positions and the SHA256 of the original 360-row decision ledger. The original per-shot decision ledger was lost after the tmpfs reboot, so historical cutoff, score and route values cannot be independently recomputed from the compact package."
+  },
+  "same_label_disjoint_330_complement": {
+    "static": {
+      "FN": 9,
+      "FP": 24,
+      "TN": 147,
+      "TP": 150,
+      "fpr": 0.14035087719298245,
+      "median_lead_ms": 185.49999999999977,
+      "over_3000ms_count": 20,
+      "tpr": 0.9433962264150944,
+      "tpr_at_30ms": 0.8301886792452831,
+      "utility_tpr30_minus_fpr": 0.6898378020523006
+    },
+    "online_intra_inter": {
+      "FN": 8,
+      "FP": 23,
+      "TN": 148,
+      "TP": 151,
+      "fpr": 0.13450292397660818,
+      "median_lead_ms": 165.00000000000003,
+      "over_3000ms_count": 21,
+      "tpr": 0.949685534591195,
+      "tpr_at_30ms": 0.8364779874213837,
+      "utility_tpr30_minus_fpr": 0.7019750634447754
+    },
+    "direct_frontload_frozen_threshold": {
+      "FN": 3,
+      "FP": 47,
+      "TN": 124,
+      "TP": 156,
+      "fpr": 0.27485380116959063,
+      "median_lead_ms": 457.99999999999994,
+      "over_3000ms_count": 30,
+      "tpr": 0.9811320754716981,
+      "tpr_at_30ms": 0.9371069182389937,
+      "utility_tpr30_minus_fpr": 0.662253117069403
+    },
+    "direct_frontload_support110_recalibrated": {
+      "FN": 4,
+      "FP": 45,
+      "TN": 126,
+      "TP": 155,
+      "fpr": 0.2631578947368421,
+      "median_lead_ms": 455.00000000000006,
+      "over_3000ms_count": 29,
+      "tpr": 0.9748427672955975,
+      "tpr_at_30ms": 0.9308176100628931,
+      "utility_tpr30_minus_fpr": 0.6676597153260511
+    }
+  },
+  "equal_label_budget_verdict": {
+    "online_minus_best_direct_frontload_utility": 0.03431534811872439,
+    "online_minus_static_utility": 0.01213726139247484,
+    "online_beats_direct_frontload": true,
+    "compute_matched": false,
+    "warning": "Label access is matched at 30 queried shots; optimizer steps, replay and FLOPs are not exactly matched. The 330-shot complement excludes queried training shots."
+  }
+}

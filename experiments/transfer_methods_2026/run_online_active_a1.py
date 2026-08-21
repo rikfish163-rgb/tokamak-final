@@ -18,6 +18,7 @@ from typing import Any
 
 import numpy as np
 import torch
+import h5py
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -87,10 +88,39 @@ class JsonlSealWriter:
 
 
 def load_raw_rebuilt(shot: int) -> tuple[np.ndarray, np.ndarray, float]:
+    """Load prediction features without opening outcome metadata."""
     path = rebuilt.DATA / "EAST" / "unified_hdf5" / str(shot // 100 * 100) / f"{shot}.hdf5"
-    arrays, rate, _, _, _ = rebuilt.load_raw(path, "EAST")
+    with h5py.File(path, "r") as handle:
+        arrays = {
+            name: np.asarray(handle[f"data/{name}"][:], dtype=np.float32)
+            for name in rebuilt.RAW23
+        }
+        signal = handle["data/ip"]
+        rate = float(np.asarray(signal.attrs.get("SampleRate", 1000.0)).reshape(-1)[0])
     values, available = rebuilt.rebuild_features(arrays, "EAST")
     return values, available, rate
+
+
+def load_test_features_only(shots: list[int], center: np.ndarray, scale: np.ndarray) -> list[dict]:
+    """Create the ordered inference stream without reading IsDisrupt/DownTime."""
+    rows = []
+    for shot in shots:
+        values, available, rate = load_raw_rebuilt(int(shot))
+        values = np.clip((values - center) / scale, -10.0, 10.0)
+        values = np.where(available, values, 0.0).astype(np.float32)
+        rows.append({
+            "shot": int(shot), "v": values, "a": available, "rate": float(rate),
+        })
+    return rows
+
+
+def read_outcome_after_seal(shot: int) -> dict[str, Any]:
+    """Read only authoritative metadata; caller enforces seal-before-read."""
+    path = rebuilt.DATA / "EAST" / "unified_hdf5" / str(shot // 100 * 100) / f"{shot}.hdf5"
+    with h5py.File(path, "r") as handle:
+        is_disrupt = bool(np.asarray(handle["meta/IsDisrupt"][()]).reshape(-1)[0])
+        down = float(np.asarray(handle["meta/DownTime"][()]).reshape(-1)[0])
+    return {"is_disrupt": is_disrupt, "down_time_s": down if is_disrupt else None}
 
 
 def physics_trace(
@@ -139,6 +169,9 @@ def main() -> None:
     parser.add_argument("--out", type=Path, default=HERE / "online_active_a1_seed131")
     parser.add_argument("--query-quantile", type=float, default=0.80)
     parser.add_argument("--query-mode", choices=("balanced", "fp_first"), default="balanced")
+    parser.add_argument("--source-checkpoint", type=Path, default=None)
+    parser.add_argument("--derive-support-threshold", action="store_true")
+    parser.add_argument("--target-tpr", type=float, default=0.80)
     args = parser.parse_args()
     if args.out.exists():
         raise FileExistsError(f"output already exists; use a new path: {args.out}")
@@ -147,13 +180,35 @@ def main() -> None:
     risk_dir.mkdir()
 
     print(f"[A0] deterministic training seed={args.seed} device={alarm.DEV}", flush=True)
-    enc, head, transfer, test = alarm.train(args.seed)
+    enc, head, transfer, center, scale = alarm.train_support_only(
+        args.seed, args.source_checkpoint,
+    )
+    test_ids = sorted(int(value) for value in common.DataSpec().east["test_locked"])
+    test = load_test_features_only(test_ids, center, scale)
     if alarm.DEV != "cuda":
         raise RuntimeError("this registered run requires CUDA in rl_env")
     model_hash_before = model_sha256(enc, head)
-    threshold, reference_scores, reference_path = reference_contract(args.seed)
-    if set(reference_scores) != {int(s["shot"]) for s in test}:
-        raise RuntimeError("current balanced360 shots differ from the frozen reference")
+    if args.derive_support_threshold:
+        support_alarm_scores = np.asarray([
+            float(alarm.full_risk(enc, head, shot).max()) for shot in transfer
+        ])
+        support_labels = np.asarray([
+            bool(shot["is_disrupt"]) for shot in transfer
+        ])
+        selected = alarm.select_tpr_first_threshold(
+            support_alarm_scores, support_labels, target_tpr=args.target_tpr
+        )
+        threshold = float(selected["threshold"])
+        reference_scores = None
+        reference_path = None
+        threshold_source = (
+            f"current HDF5 EAST110 support; TPR>={args.target_tpr:.2f}, then minimum FPR"
+        )
+    else:
+        threshold, reference_scores, reference_path = reference_contract(args.seed)
+        if set(reference_scores) != {int(s["shot"]) for s in test}:
+            raise RuntimeError("current balanced360 shots differ from the frozen reference")
+        threshold_source = "frozen historical EAST110 support reference"
 
     print("[A1] fitting label-free innovation scales on fixed 110 support", flush=True)
     scales = fit_support_physics_scales(transfer)
@@ -169,7 +224,6 @@ def main() -> None:
             print(f"[A1] support scored {number}/{len(transfer)}", flush=True)
     query_cutoff = float(np.quantile(support_query_scores, args.query_quantile))
 
-    labels = {int(shot["shot"]): bool(shot["is_disrupt"]) for shot in test}
     stream = [{"shot": int(shot["shot"])} for shot in test]
     by_shot = {int(shot["shot"]): shot for shot in test}
     risk_cache: dict[int, np.ndarray] = {}
@@ -177,7 +231,7 @@ def main() -> None:
     seal_writer = JsonlSealWriter(args.out / "seals.jsonl")
     query_writer = JsonlSealWriter(args.out / "queries.jsonl")
     selector = audit.BlockBudgetSelector(cutoff=query_cutoff, block_size=20, quota=4)
-    vault = audit.OutcomeVault(labels)
+    vault = audit.LazyShotOutcomeOracle(test_ids, read_outcome_after_seal)
 
     def predict(item: dict[str, Any]) -> np.ndarray:
         shot_id = int(item["shot"])
@@ -242,14 +296,24 @@ def main() -> None:
         raise RuntimeError(f"block budget contract failed: {block_counts}")
 
     reproduced = {int(row["shot"]): float(row["base_max_risk"]) for row in records}
-    max_abs_reference_delta = max(abs(reproduced[s] - reference_scores[s]) for s in reference_scores)
-    if max_abs_reference_delta > 1e-6:
-        raise RuntimeError(f"static reference reproduction failed: max delta={max_abs_reference_delta}")
+    if reference_scores is None:
+        max_abs_reference_delta = None
+    else:
+        max_abs_reference_delta = max(
+            abs(reproduced[s] - reference_scores[s]) for s in reference_scores
+        )
+        if max_abs_reference_delta > 1e-6:
+            raise RuntimeError(
+                f"static reference reproduction failed: max delta={max_abs_reference_delta}"
+            )
     if model_sha256(enc, head) != model_hash_before:
         raise RuntimeError("A1 changed the immutable migrated predictor")
 
     vault.open_final_evaluation()
-    final_labels = vault.all_labels()
+    final_outcomes = vault.all_outcomes()
+    final_labels = {
+        shot: bool(row["is_disrupt"]) for shot, row in final_outcomes.items()
+    }
     capture = audit.confusion_and_query_capture(records, final_labels, threshold=threshold)
     confusion = capture["confusion"]
     metrics = {
@@ -264,7 +328,7 @@ def main() -> None:
         "base_predictor_updated": False,
         "test_labels_used_for_query_scoring": False,
         "threshold": threshold,
-        "threshold_source": "fixed 110-shot EAST support",
+        "threshold_source": threshold_source,
         "query_cutoff": query_cutoff,
         "query_cutoff_source": f"label-free support query-score q{args.query_quantile:.2f}",
         "query_mode": args.query_mode,
@@ -276,7 +340,11 @@ def main() -> None:
         "max_abs_reference_score_delta": max_abs_reference_delta,
         "hashes": {
             "test_manifest": sha256_file(MANIFEST),
-            "reference_seed_json": sha256_file(reference_path),
+            **({"reference_seed_json": sha256_file(reference_path)} if reference_path else {}),
+            "source_checkpoint": sha256_file(
+                Path(args.source_checkpoint or alarm.source_checkpoint_path(args.seed))
+                .expanduser().resolve()
+            ),
             "seals_jsonl": sha256_file(args.out / "seals.jsonl"),
             "queries_jsonl": sha256_file(args.out / "queries.jsonl"),
         },
@@ -290,6 +358,15 @@ def main() -> None:
         "physics_scale_quantile": 0.90,
         "physics_innovation_lag_samples": 8,
         "threshold": threshold,
+        "threshold_source": threshold_source,
+        "source_checkpoint": str(
+            Path(args.source_checkpoint or alarm.source_checkpoint_path(args.seed))
+            .expanduser().resolve()
+        ),
+        "source_checkpoint_sha256": sha256_file(
+            Path(args.source_checkpoint or alarm.source_checkpoint_path(args.seed))
+            .expanduser().resolve()
+        ),
         "model_sha256": model_hash_before,
         "innovation_scales": scales,
     }, indent=2, sort_keys=True) + "\n")

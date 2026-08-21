@@ -7,12 +7,26 @@ import copy
 import hashlib
 import math
 from contextlib import contextmanager
-from collections.abc import Mapping
+from collections.abc import Mapping, Sequence
 from typing import Any
 
+import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+
+
+_INTRA_OUTCOME_FIELDS = frozenset({
+    "label", "target", "sealed_logit", "alarm_boundary", "alarm_target",
+    "is_disrupt", "down", "down_time_s", "DownTime", "outcome",
+    "revealed_is_disrupt", "revealed_down_time_s",
+})
+
+
+def _reject_intra_outcome_fields(values: Mapping[str, torch.Tensor]) -> None:
+    forbidden = sorted(_INTRA_OUTCOME_FIELDS.intersection(values))
+    if forbidden:
+        raise ValueError(f"intra-shot batch contains outcome field: {forbidden[0]}")
 
 
 def _validate_update_scale(value: float) -> float:
@@ -338,12 +352,17 @@ class CausalReplayBuffer:
             raise ValueError("replay capacity must be positive")
         self.capacity_shots = int(capacity_shots)
         self._entries: list[tuple[int, dict[str, torch.Tensor]]] = []
+        self._metadata: dict[int, dict[str, Any]] = {}
 
     @property
     def shots(self) -> list[int]:
         return [shot for shot, _batch in self._entries]
 
-    def add(self, shot: int, batch: Mapping[str, torch.Tensor]) -> None:
+    def add(
+        self, shot: int, batch: Mapping[str, torch.Tensor], *,
+        discrepancy_group: str | None = None,
+        phenotype: Sequence[float] | None = None,
+    ) -> None:
         shot = int(shot)
         if self._entries and shot <= self._entries[-1][0]:
             raise RuntimeError("replay shots must be strictly increasing")
@@ -353,9 +372,64 @@ class CausalReplayBuffer:
         }
         if "label" not in prepared:
             raise KeyError("revealed replay batch requires label")
+        if (discrepancy_group is None) != (phenotype is None):
+            raise ValueError("replay discrepancy group and phenotype must be provided together")
+        if discrepancy_group is not None:
+            if discrepancy_group not in ("FP", "FN", "TARDY"):
+                raise ValueError("replay metadata requires an operational error group")
+            vector = np.asarray(phenotype, dtype=np.float64).reshape(-1)
+            if not len(vector) or not np.all(np.isfinite(vector)):
+                raise ValueError("replay phenotype must be finite and non-empty")
+            self._metadata[shot] = {
+                "group": discrepancy_group, "phenotype": vector.copy(),
+            }
         self._entries.append((shot, prepared))
         if len(self._entries) > self.capacity_shots:
             self._entries = self._entries[-self.capacity_shots:]
+            retained = set(self.shots)
+            self._metadata = {
+                key: value for key, value in self._metadata.items() if key in retained
+            }
+
+    def sample_similar_error_bag(
+        self, *, discrepancy_group: str, phenotype: Sequence[float],
+        count: int, seed: int, max_distance: float | None = None,
+    ) -> dict[str, Any] | None:
+        """Retrieve a labelled bag from the nearest earlier same-type mistake."""
+        if count <= 0:
+            raise ValueError("replay sample count must be positive")
+        if max_distance is not None and (
+            not math.isfinite(float(max_distance)) or float(max_distance) <= 0
+        ):
+            raise ValueError("replay maximum distance must be finite and positive")
+        vector = np.asarray(phenotype, dtype=np.float64).reshape(-1)
+        candidates = []
+        for shot, batch in self._entries:
+            metadata = self._metadata.get(shot)
+            if metadata is None or metadata["group"] != discrepancy_group:
+                continue
+            stored = np.asarray(metadata["phenotype"], dtype=np.float64)
+            if stored.shape != vector.shape:
+                raise ValueError("replay phenotype shape changed")
+            distance = float(
+                np.linalg.norm(vector - stored) / math.sqrt(max(len(vector), 1))
+            )
+            candidates.append((distance, shot, batch))
+        if not candidates:
+            return None
+        distance, source_shot, bag = min(candidates, key=lambda item: (item[0], item[1]))
+        if max_distance is not None and distance > float(max_distance):
+            return None
+        generator = torch.Generator().manual_seed(int(seed))
+        row_count = len(next(iter(bag.values())))
+        indices = torch.randint(row_count, (int(count),), generator=generator)
+        sampled = {
+            name: value.index_select(0, indices) for name, value in bag.items()
+        }
+        return {
+            "source_shot": int(source_shot), "distance": float(distance),
+            "batch": sampled,
+        }
 
     def sample(self, *, count: int, seed: int) -> dict[str, torch.Tensor] | None:
         if count <= 0:
@@ -440,6 +514,7 @@ class TwoTimescaleAdapterController:
         max_guard_harms: int = 0,
         physics_constraint_weight: float = 0.10,
         intra_physics_weight: float = 0.10,
+        observed_physics_weight: float = 0.0,
         physics_activity_threshold: float = 0.5,
         physics_minimum_families: int = 2,
         physics_increment_gate: bool = False,
@@ -447,11 +522,23 @@ class TwoTimescaleAdapterController:
         positive_min_physics_support: float = 0.65,
         minimum_positive_residual: float = 0.0,
         threshold_logit: float = 0.0,
+        temporal_risk_weight: float = 0.0,
+        temporal_target_max_delta: float = 0.5,
+        temporal_target_gain: float = 1.0,
+        intra_parameter_scope: str = "legacy",
     ):
         if (
             intra_lr <= 0 or inter_lr <= 0 or max_guard_harms < 0
             or physics_constraint_weight < 0 or intra_physics_weight < 0
-            or physics_minimum_families <= 0
+            or not math.isfinite(float(temporal_risk_weight))
+            or not math.isfinite(float(observed_physics_weight))
+            or observed_physics_weight < 0
+            or physics_minimum_families <= 0 or temporal_risk_weight < 0
+            or not math.isfinite(float(temporal_target_max_delta))
+            or temporal_target_max_delta <= 0
+            or not math.isfinite(float(temporal_target_gain))
+            or temporal_target_gain <= 0
+            or intra_parameter_scope not in ("legacy", "representation_only")
         ):
             raise ValueError("invalid two-timescale update contract")
         self.persistent = adapter
@@ -468,6 +555,7 @@ class TwoTimescaleAdapterController:
         self.max_guard_harms = int(max_guard_harms)
         self.physics_constraint_weight = float(physics_constraint_weight)
         self.intra_physics_weight = float(intra_physics_weight)
+        self.observed_physics_weight = float(observed_physics_weight)
         self.physics_activity_threshold = float(physics_activity_threshold)
         self.physics_minimum_families = int(physics_minimum_families)
         self.physics_increment_gate = bool(physics_increment_gate)
@@ -475,6 +563,10 @@ class TwoTimescaleAdapterController:
         self.positive_min_physics_support = float(positive_min_physics_support)
         self.minimum_positive_residual = float(minimum_positive_residual)
         self.threshold_logit = float(threshold_logit)
+        self.temporal_risk_weight = float(temporal_risk_weight)
+        self.temporal_target_max_delta = float(temporal_target_max_delta)
+        self.temporal_target_gain = float(temporal_target_gain)
+        self.intra_parameter_scope = str(intra_parameter_scope)
         self.fast: nn.Module | None = None
         self.fast_optimizer: torch.optim.Optimizer | None = None
         self.active_shot: int | None = None
@@ -567,13 +659,16 @@ class TwoTimescaleAdapterController:
         self.fast = copy.deepcopy(self.persistent).to(self.device)
         for parameter in self.fast.parameters():
             parameter.requires_grad_(False)
+        if self.intra_parameter_scope == "representation_only":
+            prefixes = ("projector.2", "projector.3")
+        else:
+            prefixes = ("projector.3", "next_head", "residual_head")
         fast_parameters = [
             parameter for name, parameter in self.fast.named_parameters()
-            if (
-                name.startswith("projector.3") or name.startswith("next_head")
-                or name.startswith("residual_head")
-            )
+            if name.startswith(prefixes)
         ]
+        if not fast_parameters:
+            raise RuntimeError("intra-shot trainable parameter set is empty")
         for parameter in fast_parameters:
             parameter.requires_grad_(True)
         self.fast_optimizer = torch.optim.AdamW(
@@ -606,15 +701,31 @@ class TwoTimescaleAdapterController:
         source_endpoint: int,
         observed_endpoint: int,
         batch: Mapping[str, torch.Tensor],
+        observed_batch: Mapping[str, torch.Tensor] | None = None,
         steps: int = 1,
         update_scale: float = 1.0,
     ) -> dict[str, Any]:
         if self.fast is None or self.fast_optimizer is None or self.active_shot is None:
             raise RuntimeError("begin_shot is required before intra_update")
+        if self.intra_parameter_scope == "representation_only":
+            _reject_intra_outcome_fields(batch)
+            if observed_batch is not None:
+                _reject_intra_outcome_fields(observed_batch)
+            if "sealed_pre_adapt_logit" not in batch:
+                raise KeyError(
+                    "representation-only TTT requires sealed_pre_adapt_logit"
+                )
         if int(observed_endpoint) <= int(source_endpoint):
             raise ValueError("the observed target endpoint must be strictly later than the source")
         if steps <= 0:
             raise ValueError("steps must be positive")
+        if (
+            self.temporal_risk_weight > 0.0
+            or self.observed_physics_weight > 0.0
+        ) and observed_batch is None:
+            raise ValueError(
+                "observed_batch is required when temporal risk forecasting is enabled"
+            )
         update_scale = _validate_update_scale(update_scale)
         if update_scale == 0.0:
             return {
@@ -624,22 +735,61 @@ class TwoTimescaleAdapterController:
                 "steps": 0, "loss": 0.0, "pseudo_loss": 0.0,
                 "updated": False,
                 "update_scale": 0.0,
+                "temporal_risk_weight": self.temporal_risk_weight,
+                "temporal_target_gain": self.temporal_target_gain,
+                "temporal_risk_loss": 0.0,
+                "temporal_target_delta": 0.0,
+                "observed_physics_weight": self.observed_physics_weight,
+                "observed_physics_loss": 0.0,
                 "persistent_sha256": self.persistent_hash(),
                 "fast_sha256": self.fast_hash(),
             }
         prepared = _batch(batch, self.device)
+        observed = (
+            _batch(observed_batch, self.device)
+            if observed_batch is not None else None
+        )
         self.persistent.eval()
         with torch.no_grad():
             persistent_adjusted, _delta, _gate, _latent = self._forward(self.persistent, prepared)
+            if self.intra_parameter_scope == "representation_only":
+                risk_anchor_target = prepared["sealed_pre_adapt_logit"]
+                if risk_anchor_target.shape != persistent_adjusted.shape:
+                    raise ValueError(
+                        "sealed_pre_adapt_logit must align with source logits"
+                    )
+            else:
+                risk_anchor_target = persistent_adjusted
+            if observed is not None and self.temporal_risk_weight > 0.0:
+                observed_adjusted, _delta, _gate, _latent = self._forward(
+                    self.persistent, observed,
+                )
+                if observed_adjusted.shape != persistent_adjusted.shape:
+                    raise ValueError(
+                        "observed_batch must align with the source batch"
+                    )
+                temporal_delta = torch.clamp(
+                    self.temporal_target_gain * (
+                        observed_adjusted - persistent_adjusted
+                    ),
+                    min=-self.temporal_target_max_delta,
+                    max=self.temporal_target_max_delta,
+                )
+                temporal_target = persistent_adjusted + temporal_delta
+            else:
+                temporal_delta = torch.zeros_like(persistent_adjusted)
+                temporal_target = persistent_adjusted
         losses = []
         pseudo_losses = []
+        temporal_losses = []
+        observed_physics_losses = []
         self.fast.train()
         for _ in range(int(steps)):
             fast_adjusted, _increment, _gate, _latent = self._training_forward(
                 self.fast, prepared
             )
             prediction_loss = _next_loss(self.fast, prepared)
-            risk_anchor = F.smooth_l1_loss(fast_adjusted, persistent_adjusted)
+            risk_anchor = F.smooth_l1_loss(fast_adjusted, risk_anchor_target)
             pseudo = unlabeled_physics_pseudo_loss(
                 fast_adjusted, prepared, threshold_logit=self.threshold_logit,
                 activity_threshold=self.physics_activity_threshold,
@@ -647,9 +797,26 @@ class TwoTimescaleAdapterController:
                 negative_max_support=self.negative_max_physics_support,
                 positive_min_support=self.positive_min_physics_support,
             )
+            temporal = F.smooth_l1_loss(fast_adjusted, temporal_target)
+            if observed is not None and self.observed_physics_weight > 0.0:
+                observed_adjusted, _increment, _gate, _latent = (
+                    self._training_forward(self.fast, observed)
+                )
+                observed_physics = unlabeled_physics_pseudo_loss(
+                    observed_adjusted, observed,
+                    threshold_logit=self.threshold_logit,
+                    activity_threshold=self.physics_activity_threshold,
+                    minimum_families=self.physics_minimum_families,
+                    negative_max_support=self.negative_max_physics_support,
+                    positive_min_support=self.positive_min_physics_support,
+                )
+            else:
+                observed_physics = fast_adjusted.sum() * 0.0
             loss = (
                 prediction_loss + self.risk_anchor_weight * risk_anchor
                 + self.intra_physics_weight * pseudo
+                + self.temporal_risk_weight * temporal
+                + self.observed_physics_weight * observed_physics
             )
             self.fast_optimizer.zero_grad(set_to_none=True)
             loss.backward()
@@ -660,6 +827,10 @@ class TwoTimescaleAdapterController:
                 self.fast_optimizer.step()
             losses.append(float(loss.detach().cpu()))
             pseudo_losses.append(float(pseudo.detach().cpu()))
+            temporal_losses.append(float(temporal.detach().cpu()))
+            observed_physics_losses.append(
+                float(observed_physics.detach().cpu())
+            )
         return {
             "event": "intra_observe_update",
             "shot": self.active_shot,
@@ -669,6 +840,21 @@ class TwoTimescaleAdapterController:
             "loss": sum(losses) / len(losses),
             "pseudo_loss": sum(pseudo_losses) / len(pseudo_losses),
             "physics_weight": self.intra_physics_weight,
+            "temporal_risk_weight": self.temporal_risk_weight,
+            "temporal_target_gain": self.temporal_target_gain,
+            "temporal_risk_loss": sum(temporal_losses) / len(temporal_losses),
+            "temporal_target_delta": float(
+                temporal_delta.abs().mean().detach().cpu()
+            ),
+            "observed_physics_weight": self.observed_physics_weight,
+            "risk_anchor_source": (
+                "sealed_pre_adapt_logit"
+                if self.intra_parameter_scope == "representation_only"
+                else "persistent_parent"
+            ),
+            "observed_physics_loss": (
+                sum(observed_physics_losses) / len(observed_physics_losses)
+            ),
             "updated": True,
             "update_scale": update_scale,
             "persistent_sha256": self.persistent_hash(),

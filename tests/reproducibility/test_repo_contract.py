@@ -42,6 +42,32 @@ def test_data_audit_fails_closed_without_required_layout(tmp_path: Path) -> None
         contract.audit_data(tmp_path, full=False)
 
 
+def test_content_hash_is_byte_exact(tmp_path: Path) -> None:
+    contract = load_module(
+        "reproducibility/data_contract.py", "reproducibility_content_hash"
+    )
+    payload = tmp_path / "shot.hdf5"
+    payload.write_bytes(b"tokamak-content-v1\n")
+    assert contract._sha256_file(payload) == (
+        "a4ff12f3b490e99ed58b8c03477f6e26973cc38d692139530e1041ec7dfca36b"
+    )
+
+
+def test_portable_audit_never_serializes_machine_data_root(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path,
+) -> None:
+    contract = load_module(
+        "reproducibility/data_contract.py", "reproducibility_portable_audit"
+    )
+    for device in ("J-TEXT", "EAST"):
+        (tmp_path / device / "unified_hdf5").mkdir(parents=True)
+    monkeypatch.setattr(contract, "_jtext_ids", lambda _root: [])
+    monkeypatch.setattr(contract, "_east_ids", lambda _root: [])
+    result = contract.audit_data(tmp_path, portable=True)
+    assert result["data_root"] == "<external-data-root>"
+    assert str(tmp_path) not in json.dumps(result)
+
+
 def test_data_contract_enforces_canonical_jtext_role_counts_and_no_overlap() -> None:
     contract = load_module(
         "reproducibility/data_contract.py", "reproducibility_jtext_split_contract"
@@ -99,7 +125,7 @@ def test_reference_verifier_accepts_committed_multiseed_result() -> None:
     verifier = load_module(
         "reproducibility/verify_results.py", "reproducibility_verify_results"
     )
-    path = ROOT / "results/reference/multiseed_summary.json"
+    path = ROOT / "results/reference/paper_v3c_multiseed_summary.json"
     payload = json.loads(path.read_text())
     verdict = verifier.compare_multiseed_results(payload, payload)
     assert verdict["passed"] is True
@@ -119,18 +145,22 @@ def test_reproduction_commands_connect_all_three_stages(tmp_path: Path) -> None:
     commands = runner.build_seed_commands(
         seed=131, output_root=tmp_path, python_executable="python",
     )
-    assert len(commands) == 3
-    assert commands[0][-2:] == ["--out", str(tmp_path / "seed131/a1")]
-    assert "--a1" in commands[1]
-    assert "--a1-dir" in commands[2]
-    assert "--adapter-dir" in commands[2]
-    assert "--locked-best-v8" in commands[2]
+    assert len(commands) == 1
+    command = commands[0]
+    assert command[0] == "python"
+    assert command[1].endswith(
+        "paper_grade_package/scripts/reproduce_primary_chain.py"
+    )
+    assert command[command.index("--seed") + 1] == "131"
+    assert command[command.index("--stage") + 1] == "all"
+    assert Path(command[command.index("--output-root") + 1]) == tmp_path
+    assert "--locked-best-v8" not in command
 
 
 def test_reproduction_reference_can_be_scoped_to_requested_seeds() -> None:
     runner = load_module("reproducibility/reproduce.py", "reproducibility_reproduce_subset")
     reference = json.loads(
-        (ROOT / "results/reference/multiseed_summary.json").read_text()
+        (ROOT / "results/reference/paper_v3c_multiseed_summary.json").read_text()
     )
     scoped = runner._reference_for_seeds(reference, (131,))
     assert [row["seed"] for row in scoped["seeds"]] == [131]

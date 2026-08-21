@@ -1,0 +1,273 @@
+{
+  "alarm_contract": {
+    "formula": "margin + physics_weight*support + trend_weight*max(MA5-MA100,0)",
+    "interaction_gate": "combined adapted alarm requires same-endpoint support from model-only or alarm-parameter-only branch; gate can only delay/veto",
+    "learned_episode_gate": "queried-history delta60 FP classifier may only delay/veto behind a separated past-query disruptive/safe boundary; registered independent physics evidence can escape",
+    "minimum_lead_ms": 30.0,
+    "novel_early_min_physics_support": 0.75,
+    "novel_early_min_trend": 0.4,
+    "over_3000ms_counts_as_tpr": true,
+    "parameter_version": 32,
+    "parameters_final": {
+      "early_threshold": 7.886622360304254,
+      "high_threshold": -0.012214303285174874,
+      "physics_weight": 8.042929581009298,
+      "trend_weight": 12.021464790504652
+    },
+    "projection_bounds": {
+      "early_threshold": [
+        7.1,
+        8.7
+      ],
+      "high_threshold": [
+        -0.1,
+        0.1
+      ],
+      "physics_weight": [
+        6.0,
+        10.0
+      ],
+      "trend_weight": [
+        12.0,
+        15.0
+      ]
+    }
+  },
+  "claim_boundary": "this run is explicitly part of balanced360 architecture and parameter development; its result may select a later frozen replay but is not independent test evidence",
+  "counts": {
+    "alarm_updates": 32,
+    "decision_value_updates": 105,
+    "endpoint_memory_corrections": 33390,
+    "episode_blocks": 0,
+    "episode_delays": 3,
+    "episode_escapes": 10,
+    "episode_updates": 85,
+    "interaction_delays": 4,
+    "interaction_vetoes": 0,
+    "intra_attempts": 19535,
+    "intra_nonzero": 12991,
+    "private_inter_accepted": 32,
+    "private_inter_rollback": 0,
+    "query_value_updates": 105,
+    "shared_inter_accepted": 32,
+    "shared_inter_rollback": 0,
+    "window_active_selected": 19535
+  },
+  "execution_protocol": {
+    "frozen_online_config": null,
+    "hyperparameters_locked_before_phase1": false,
+    "locked_best_v8": {
+      "adaptation_events": 64,
+      "alarm_lr": 0.02,
+      "inter_lr": 0.0005,
+      "inter_steps": 2,
+      "intra_lr": 0.0001,
+      "intra_physics_weight": 0.1,
+      "intra_steps": 1,
+      "novel_early_min_physics_support": 0.0,
+      "private_inter_lr": 0.0002,
+      "private_intra_lr": 0.0001,
+      "private_support_epochs": 8,
+      "query_block_size": 20,
+      "query_history_size": 80,
+      "query_quantile": 0.8,
+      "query_quota": 4,
+      "query_uncertainty_weight": 0.65,
+      "query_value_lr": 0.05
+    },
+    "phase1": "complete 360-shot static inference and immutable seal",
+    "phase1_static_complete_before_phase2": true,
+    "phase2": "reset to identical migrated parents, then chronological online active replay",
+    "phase2_reset_to_same_migrated_initial_sha": true,
+    "selection_on_360_in_this_run": true
+  },
+  "hashes": {
+    "base_before_after": "4c3537505a5d554dfb4509ca1db6af222a8c3750863ce8194f10b1ec28951428",
+    "frozen_online_config": null,
+    "phase2_initial_private": "249cee68b4d219b953f4afe4b72bf26f6f7dd7314972be5d92abf57a8e25a026",
+    "phase2_initial_shared": "a27698b9da43788a8795d5d226d66285c5eee2d88fc124f64c717f17977c4179",
+    "predictions": "2901b0cd1908976323dd80897532cd9a10232d96aa2eca832ae67b07f5c72909",
+    "queries": "574968f037da94056a2638852af0db5491822059f1455335ecc8735922b428a0",
+    "reveals": "09e387b717c09f603040449a734edbbb7f95b14ced6b4c22c54045f2b0f25fbc",
+    "source_checkpoint": "9b1dfb9851c0c37507d57326f7fdb127121dfff6f86b15b45169daecb8170355",
+    "static_predictions": "fac3877a804853f52a99e5322dbdaf3403cd169ac059620ac8c581122faeafeb",
+    "static_private": "249cee68b4d219b953f4afe4b72bf26f6f7dd7314972be5d92abf57a8e25a026",
+    "static_shared": "a27698b9da43788a8795d5d226d66285c5eee2d88fc124f64c717f17977c4179",
+    "updates": "1c68db90be8f67c6e312815d21130d9441ef7db577e805d972a0b0c43a38abcd"
+  },
+  "leakage_contract": "phase1 static outputs for all 360 shots are sealed before phase2 starts; phase2 starts from the same migrated parent weights; endpoint outputs are emitted in order; shot prediction and dual alarm are sealed before query; HDF5 outcome is read only for selected shots; all supervised and alarm/query-parameter updates affect later shots only",
+  "parameter_scope": {
+    "alarm": "projected high/physics/trend/early continuous parameters; MA widths fixed 5/100",
+    "endpoint_memory": "non-parametric prior queried endpoints; no backbone gradient",
+    "episode_fp_head": "causal delta60 classifier with selected-query class-protection calibration trained only after HDF5 reveal",
+    "episode_learning_feedback": "deployment gate is evaluated for performance while the sealed pre-gate v2.1 alarm drives model, replay, query-value, and alarm-parameter learning",
+    "frozen": "J-TEXT/EAST rebuilt17 encoder, source/target head, shared parent anchor",
+    "inter": "shared residual head plus EAST-private dynamics/residual",
+    "intra": "resettable shared adapter fast copy plus resettable raw8 dynamics fast copy"
+  },
+  "query_count": 105,
+  "query_cutoff": "past-only rolling q0.70, frozen per 20-shot block",
+  "query_cutoff_source": "preceding 160 unlabeled sealed query scores",
+  "query_selector": {
+    "block_size": 20,
+    "exploration_offset": 3,
+    "exploration_per_block": null,
+    "exploration_stride": 7,
+    "history_size": 160,
+    "mode": "legacy-v2.1-token-budget-with-decision-value-shadow",
+    "quantile": 0.7,
+    "quota": 6,
+    "token_capacity": 12.0
+  },
+  "results": {
+    "online_unified": {
+      "FN": 10,
+      "FP": 29,
+      "TN": 151,
+      "TP": 170,
+      "fpr": 0.16111111111111112,
+      "median_lead_ms": 234.9999999999999,
+      "over_3000ms_count": 25,
+      "tpr": 0.9444444444444444,
+      "tpr_at_30ms": 0.8611111111111112
+    },
+    "static_unified": {
+      "FN": 10,
+      "FP": 28,
+      "TN": 152,
+      "TP": 170,
+      "fpr": 0.15555555555555556,
+      "median_lead_ms": 234.9999999999999,
+      "over_3000ms_count": 25,
+      "tpr": 0.9444444444444444,
+      "tpr_at_30ms": 0.8666666666666667
+    }
+  },
+  "seed": 133,
+  "stage": "STATIC360_THEN_RESET_ONLINE360_DEVELOPMENT_SEARCH",
+  "status": "ONLINE_DIAGNOSTIC",
+  "stream_shots": 360,
+  "support_contract": {
+    "hdf5_outcomes": {
+      "disruptive": 15,
+      "safe": 95
+    },
+    "history_final_loss": 0.20588485013555596,
+    "positive_residual_q10": 0.8677980303764343,
+    "positive_window_count": 462,
+    "private_reconstruction_q80": 0.2959331512451172,
+    "raw8_scaler": "fixed110 per-shot-capped median/IQR with causal zero-sentinel availability",
+    "shared_reconstruction_q80": 0.039167751371860515
+  },
+  "threshold": 0.37775275111198425,
+  "threshold_source": "fixed110",
+  "value_contract": {
+    "causal_error_memory": {
+      "entries": 105,
+      "memory_weight": 0.0,
+      "minimum_support": 2,
+      "radius": 0.35,
+      "stores_only_selected_reveals": true
+    },
+    "episode_value_v3": {
+      "decision_query_weights_final": {
+        "coverage_exploration": 0.06648485457212155,
+        "error_correction": 0.3679609106935631,
+        "gradient_actionability": 0.2755060068262339,
+        "information_gain": 0.13268897347686506,
+        "physics_conflict": 0.15735925443121648
+      },
+      "decision_value_is_shadow_only": true,
+      "fp_episode_shoulder_margin": 0.5,
+      "fp_episode_supervision_points": 64,
+      "fp_probability_threshold": 0.85,
+      "gradient_mode": "legacy",
+      "head_type": "causal_delta60_protected_calibration",
+      "high_escape_margin": 99.0,
+      "label_update_order": "predict-seal-query-reveal-episode/model-update-realized-query-value-update",
+      "learning_feedback_isolated": true,
+      "maximum_blocked_points_audit": 8,
+      "minimum_confidence": 0.75,
+      "minimum_history": 12,
+      "minimum_per_class": 3,
+      "negative_quantile": 0.9,
+      "physics_escape": 0.85,
+      "protection_margin": 0.06,
+      "query_experts": [
+        "error_correction",
+        "information_gain",
+        "physics_conflict",
+        "gradient_actionability",
+        "coverage_exploration"
+      ],
+      "query_mode": "shadow",
+      "safe_quantile": 0.25,
+      "same_error_replay_max_distance": 0.35,
+      "sequence_l2": 0.3,
+      "trend_alone_can_escape": false
+    },
+    "hdf5_error_cost": "legacy 0.50 temporal BCE + 0.30 operation 5:3:1 + 0.20 lead gap",
+    "intra_components": [
+      "next-state reconstruction",
+      "persistent-teacher disagreement",
+      "registered physics contradiction",
+      "raw8 innovation",
+      "availability",
+      "non-redundancy",
+      "alarm proximity"
+    ],
+    "intra_physics_loss_weight": 0.1,
+    "intra_value_dead_zone": 0.03,
+    "intra_value_saturation": 0.15,
+    "optimizer_base_learning_rates": {
+      "private_inter": 0.0002,
+      "private_intra": 0.0001,
+      "shared_inter": 0.0005,
+      "shared_intra": 0.0001
+    },
+    "optimizer_control": "value scales actual AdamW learning rate; fixed optimizer steps",
+    "optimizer_steps": {
+      "inter": 2,
+      "intra": 1
+    },
+    "post_reveal_temporal_target": "binary risk target in 0-125 ms; FN/TARDY gradients are selected from the closest sealed dual-alarm evidence in the 30-125 ms timely interval",
+    "query_components": [
+      "uncertainty",
+      "physics_contradiction"
+    ],
+    "query_initial_uncertainty_weight": 0.55,
+    "query_value_learning_rate": 0.05,
+    "query_weight_bounds": [
+      0.55,
+      0.75
+    ],
+    "query_weights_final": {
+      "physics_contradiction": 0.3856421116518586,
+      "uncertainty": 0.6143578883481414
+    },
+    "strict_window_active": {
+      "candidate_stride": 8,
+      "history_size": 64,
+      "initial_cutoff": 0.4,
+      "max_updates_per_shot": 64,
+      "minimum_gap": 8,
+      "minimum_history": 8,
+      "prediction_sealed_before_update": true,
+      "quantile": 0.8,
+      "schedule_uses_final_shot_length": false,
+      "token_capacity": 4.0,
+      "update_rate": 0.25
+    },
+    "typed_endpoint_memory": {
+      "entry_count": 334,
+      "max_negative_residual": 0.25,
+      "max_positive_residual": 0.35,
+      "minimum_error_shots": 2,
+      "positive_physics_gate": 0.5,
+      "protection_ratio": 1.0,
+      "radius": 0.35,
+      "stores_only_selected_revealed_endpoints": true,
+      "stride": 16
+    }
+  }
+}

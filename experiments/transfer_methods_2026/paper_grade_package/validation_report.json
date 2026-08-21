@@ -1,0 +1,951 @@
+{
+  "schema_version": "paper-package-validation-v4",
+  "status": "PASSED",
+  "validation_scope": "local package integrity and disclosure completeness",
+  "nature_submission_readiness": "BLOCKED_PENDING_NEW_EVIDENCE_AND_ARCHIVAL_RELEASE",
+  "passed": true,
+  "checks_passed": 117,
+  "checks_total": 117,
+  "checks": [
+    {
+      "name": "evidence status preserves non-independent boundary",
+      "passed": true,
+      "detail": "DEVELOPMENT_EVIDENCE_NOT_INDEPENDENT_CONFIRMATION"
+    },
+    {
+      "name": "J-TEXT split counts",
+      "passed": true,
+      "detail": {
+        "test": {
+          "disruptions": 110,
+          "roster_sha256": "b963c2973c198a833e44017f73e0a11749d50d7144f5758b0ec9bfcd7763868e",
+          "safe": 110,
+          "shot_max": 1058073,
+          "shot_min": 1051510,
+          "shots": 220,
+          "sorted_for_serialization": true
+        },
+        "train": {
+          "disruptions": 188,
+          "roster_sha256": "ad403f388694e2dc2b8855dae9d084c319243bd02bdf465abe743919a1b4f9d4",
+          "safe": 1165,
+          "shot_max": 1058098,
+          "shot_min": 1051500,
+          "shots": 1353,
+          "sorted_for_serialization": true
+        },
+        "val": {
+          "disruptions": 80,
+          "roster_sha256": "bf726a031953c6d0aceba04e10b02b713ecca70a32e27077cca372e45ee9d2be",
+          "safe": 80,
+          "shot_max": 1058043,
+          "shot_min": 1051509,
+          "shots": 160,
+          "sorted_for_serialization": true
+        }
+      }
+    },
+    {
+      "name": "J-TEXT HDF5-authoritative class counts",
+      "passed": true,
+      "detail": {
+        "test": {
+          "disruptions": 110,
+          "roster_sha256": "b963c2973c198a833e44017f73e0a11749d50d7144f5758b0ec9bfcd7763868e",
+          "safe": 110,
+          "shot_max": 1058073,
+          "shot_min": 1051510,
+          "shots": 220,
+          "sorted_for_serialization": true
+        },
+        "train": {
+          "disruptions": 188,
+          "roster_sha256": "ad403f388694e2dc2b8855dae9d084c319243bd02bdf465abe743919a1b4f9d4",
+          "safe": 1165,
+          "shot_max": 1058098,
+          "shot_min": 1051500,
+          "shots": 1353,
+          "sorted_for_serialization": true
+        },
+        "val": {
+          "disruptions": 80,
+          "roster_sha256": "bf726a031953c6d0aceba04e10b02b713ecca70a32e27077cca372e45ee9d2be",
+          "safe": 80,
+          "shot_max": 1058043,
+          "shot_min": 1051509,
+          "shots": 160,
+          "sorted_for_serialization": true
+        }
+      }
+    },
+    {
+      "name": "J-TEXT non-chronological split is disclosed",
+      "passed": true,
+      "detail": {
+        "claim_status": "WITHIN_RUN_HELD_OUT_BALANCED_COMPARATOR",
+        "mimics_operational_prevalence": false,
+        "role_overlap": 0,
+        "roles": {
+          "test": {
+            "disruptions": 110,
+            "roster_sha256": "b963c2973c198a833e44017f73e0a11749d50d7144f5758b0ec9bfcd7763868e",
+            "safe": 110,
+            "shot_max": 1058073,
+            "shot_min": 1051510,
+            "shots": 220,
+            "sorted_for_serialization": true
+          },
+          "train": {
+            "disruptions": 188,
+            "roster_sha256": "ad403f388694e2dc2b8855dae9d084c319243bd02bdf465abe743919a1b4f9d4",
+            "safe": 1165,
+            "shot_max": 1058098,
+            "shot_min": 1051500,
+            "shots": 1353,
+            "sorted_for_serialization": true
+          },
+          "val": {
+            "disruptions": 80,
+            "roster_sha256": "bf726a031953c6d0aceba04e10b02b713ecca70a32e27077cca372e45ee9d2be",
+            "safe": 80,
+            "shot_max": 1058043,
+            "shot_min": 1051509,
+            "shots": 160,
+            "sorted_for_serialization": true
+          }
+        },
+        "selection_procedure": "fixed paper131-count-aligned comparator cohort",
+        "strict_chronological_role_order": false
+      }
+    },
+    {
+      "name": "J-TEXT balanced comparator boundary is disclosed",
+      "passed": true,
+      "detail": {
+        "claim_status": "WITHIN_RUN_HELD_OUT_BALANCED_COMPARATOR",
+        "mimics_operational_prevalence": false,
+        "role_overlap": 0,
+        "roles": {
+          "test": {
+            "disruptions": 110,
+            "roster_sha256": "b963c2973c198a833e44017f73e0a11749d50d7144f5758b0ec9bfcd7763868e",
+            "safe": 110,
+            "shot_max": 1058073,
+            "shot_min": 1051510,
+            "shots": 220,
+            "sorted_for_serialization": true
+          },
+          "train": {
+            "disruptions": 188,
+            "roster_sha256": "ad403f388694e2dc2b8855dae9d084c319243bd02bdf465abe743919a1b4f9d4",
+            "safe": 1165,
+            "shot_max": 1058098,
+            "shot_min": 1051500,
+            "shots": 1353,
+            "sorted_for_serialization": true
+          },
+          "val": {
+            "disruptions": 80,
+            "roster_sha256": "bf726a031953c6d0aceba04e10b02b713ecca70a32e27077cca372e45ee9d2be",
+            "safe": 80,
+            "shot_max": 1058043,
+            "shot_min": 1051509,
+            "shots": 160,
+            "sorted_for_serialization": true
+          }
+        },
+        "selection_procedure": "fixed paper131-count-aligned comparator cohort",
+        "strict_chronological_role_order": false
+      }
+    },
+    {
+      "name": "EAST support is HDF5-authoritative 15D/95N",
+      "passed": true,
+      "detail": {
+        "disruptions": 15,
+        "independent_target_validation": false,
+        "legacy_manifest_categories": {
+          "disruptions": 10,
+          "role": "roster provenance only; not label authority",
+          "safe": 100
+        },
+        "outcome_authority": "HDF5 /meta/IsDisrupt",
+        "safe": 95,
+        "shots": 110,
+        "threshold_nominal_support_tpr": 0.8,
+        "used_for_target_fitting": true,
+        "used_for_target_threshold": true
+      }
+    },
+    {
+      "name": "support reuse and missing target validation are disclosed",
+      "passed": true,
+      "detail": {
+        "disruptions": 15,
+        "independent_target_validation": false,
+        "legacy_manifest_categories": {
+          "disruptions": 10,
+          "role": "roster provenance only; not label authority",
+          "safe": 100
+        },
+        "outcome_authority": "HDF5 /meta/IsDisrupt",
+        "safe": 95,
+        "shots": 110,
+        "threshold_nominal_support_tpr": 0.8,
+        "used_for_target_fitting": true,
+        "used_for_target_threshold": true
+      }
+    },
+    {
+      "name": "EAST balanced360 counts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "support/test zero overlap",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "no fabricated pristine future stream",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "formal metric is lead-qualified operational TPR",
+      "passed": true,
+      "detail": {
+        "alarm_persistence": "first accepted causal supported crossing; no ten-point requirement",
+        "east_minimum_lead": ">=30 ms",
+        "east_operational_tp": "alarmed and lead >=30 ms",
+        "east_tardy": "alarmed with lead <30 ms; formal operational error",
+        "jtext_minimum_lead": ">10 ms",
+        "median_lead": "median over lead-qualified operational true positives only",
+        "primary_metric": "lead-qualified operational TPR",
+        "raw_alarm_detection": "diagnostic_only"
+      }
+    },
+    {
+      "name": "raw alarm occurrence is diagnostic only",
+      "passed": true,
+      "detail": {
+        "alarm_persistence": "first accepted causal supported crossing; no ten-point requirement",
+        "east_minimum_lead": ">=30 ms",
+        "east_operational_tp": "alarmed and lead >=30 ms",
+        "east_tardy": "alarmed with lead <30 ms; formal operational error",
+        "jtext_minimum_lead": ">10 ms",
+        "median_lead": "median over lead-qualified operational true positives only",
+        "primary_metric": "lead-qualified operational TPR",
+        "raw_alarm_detection": "diagnostic_only"
+      }
+    },
+    {
+      "name": "median lead uses operational TPs only",
+      "passed": true,
+      "detail": {
+        "alarm_persistence": "first accepted causal supported crossing; no ten-point requirement",
+        "east_minimum_lead": ">=30 ms",
+        "east_operational_tp": "alarmed and lead >=30 ms",
+        "east_tardy": "alarmed with lead <30 ms; formal operational error",
+        "jtext_minimum_lead": ">10 ms",
+        "median_lead": "median over lead-qualified operational true positives only",
+        "primary_metric": "lead-qualified operational TPR",
+        "raw_alarm_detection": "diagnostic_only"
+      }
+    },
+    {
+      "name": "alarm persistence contract",
+      "passed": true,
+      "detail": {
+        "alarm_persistence": "first accepted causal supported crossing; no ten-point requirement",
+        "east_minimum_lead": ">=30 ms",
+        "east_operational_tp": "alarmed and lead >=30 ms",
+        "east_tardy": "alarmed with lead <30 ms; formal operational error",
+        "jtext_minimum_lead": ">10 ms",
+        "median_lead": "median over lead-qualified operational true positives only",
+        "primary_metric": "lead-qualified operational TPR",
+        "raw_alarm_detection": "diagnostic_only"
+      }
+    },
+    {
+      "name": "metric source_test220.operational_tpr",
+      "passed": true,
+      "detail": 0.8515151515151516
+    },
+    {
+      "name": "metric source_test220.fpr",
+      "passed": true,
+      "detail": 0.21212121212121213
+    },
+    {
+      "name": "metric source_test220.auc",
+      "passed": true,
+      "detail": 0.9219283746556474
+    },
+    {
+      "name": "metric source_test220.operational_median_lead_ms",
+      "passed": true,
+      "detail": 116.63208101704923
+    },
+    {
+      "name": "metric east_static360.operational_tpr",
+      "passed": true,
+      "detail": 0.8407407407407407
+    },
+    {
+      "name": "metric east_static360.fpr",
+      "passed": true,
+      "detail": 0.16666666666666666
+    },
+    {
+      "name": "metric east_static360.operational_median_lead_ms",
+      "passed": true,
+      "detail": 242.03333333333322
+    },
+    {
+      "name": "metric east_online360.operational_tpr",
+      "passed": true,
+      "detail": 0.8481481481481481
+    },
+    {
+      "name": "metric east_online360.fpr",
+      "passed": true,
+      "detail": 0.15185185185185185
+    },
+    {
+      "name": "metric east_online360.operational_median_lead_ms",
+      "passed": true,
+      "detail": 229.49999999999952
+    },
+    {
+      "name": "J-TEXT lead is independently recomputed from alarm time and HDF5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "aggregate evidence is free of workstation absolute paths",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "moving-block repeat count",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "displayed moving-block size",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "post-selection inference boundary",
+      "passed": true,
+      "detail": "descriptive sensitivity only; learner was not rerun and the stream was used for model selection"
+    },
+    {
+      "name": "paired block delta FPR",
+      "passed": true,
+      "detail": {
+        "ci95": [
+          -0.03521398812299845,
+          -0.0019259612016114926
+        ],
+        "median": -0.013888888888888853
+      }
+    },
+    {
+      "name": "paired block delta FPR interval below zero",
+      "passed": true,
+      "detail": {
+        "ci95": [
+          -0.03521398812299845,
+          -0.0019259612016114926
+        ],
+        "median": -0.013888888888888853
+      }
+    },
+    {
+      "name": "paired block delta operational TPR",
+      "passed": true,
+      "detail": {
+        "ci95": [
+          0.0017094017094017033,
+          0.015001647834274937
+        ],
+        "median": 0.007168458781361964
+      }
+    },
+    {
+      "name": "paired block delta operational TPR interval above zero",
+      "passed": true,
+      "detail": {
+        "ci95": [
+          0.0017094017094017033,
+          0.015001647834274937
+        ],
+        "median": 0.007168458781361964
+      }
+    },
+    {
+      "name": "paired block delta operational lead",
+      "passed": true,
+      "detail": {
+        "ci95": [
+          -69.01250000000016,
+          4.000000000000161
+        ],
+        "median": -11.65844899999945
+      }
+    },
+    {
+      "name": "moving-block sensitivity sizes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "iid bootstrap retained as secondary diagnostic",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "four adaptive alarm parameters",
+      "passed": true,
+      "detail": [
+        "high_threshold",
+        "physics_weight",
+        "trend_weight",
+        "early_threshold"
+      ]
+    },
+    {
+      "name": "fixed causal alarm widths",
+      "passed": true,
+      "detail": {
+        "fast": 5,
+        "slow": 100
+      }
+    },
+    {
+      "name": "real alarm parameter updates",
+      "passed": true,
+      "detail": {
+        "131": 38,
+        "133": 30,
+        "137": 40
+      }
+    },
+    {
+      "name": "primary source shortcut failure retained",
+      "passed": true,
+      "detail": [
+        0.9553901200369344,
+        0.9285260849492152,
+        0.9368435480147738
+      ]
+    },
+    {
+      "name": "PADFIX context gates pass",
+      "passed": true,
+      "detail": [
+        0.6244517543859649,
+        0.6451444194367498,
+        0.6494979224376731
+      ]
+    },
+    {
+      "name": "PADFIX online negative transfer retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "development multiplicity retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "causal equal-label-budget random-query online baseline available",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "causal random-query report schema",
+      "passed": true,
+      "detail": "causal-random-query-online-report-v1"
+    },
+    {
+      "name": "causal random-query seeds and replicates",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "causal random-query parent and configured-budget fidelity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "active query utility exceeds random-query mean in every seed",
+      "passed": true,
+      "detail": {
+        "131": 0.020370370370370372,
+        "133": 0.0092592592592593,
+        "137": 0.01851851851851849
+      }
+    },
+    {
+      "name": "random-query realized-compute and significance limits retained",
+      "passed": true,
+      "detail": [
+        "balanced360 was used for method development",
+        "the active arm's realized per-block query counts were used post hoc to construct the matched random schedules",
+        "query labels and configured optimizer-step budgets match, but realized FLOPs and adaptive replay paths are not guaranteed byte-for-byte equal",
+        "model inter-shot updates are error-triggered; selecting more errors is part of the active mechanism but also increases realized training compute, so this comparison is not an equal-FLOP isolation of selector quality",
+        "this closes the missing causal random-query baseline only within the development stream",
+        "a new frozen chronological EAST stream remains required for confirmation"
+      ]
+    },
+    {
+      "name": "EAST target-only report schema and claim boundary",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "strict EAST-only local-scaler aggregate",
+      "passed": true,
+      "detail": {
+        "operational_tpr": 0.7962962962962963,
+        "fpr": 0.14444444444444443,
+        "utility_tpr30_minus_fpr": 0.6518518518518519,
+        "operational_median_lead_ms": 165.55455666666717
+      }
+    },
+    {
+      "name": "target-only source-scaler diagnostic aggregate",
+      "passed": true,
+      "detail": {
+        "operational_tpr": 0.7314814814814815,
+        "fpr": 0.10555555555555556,
+        "utility_tpr30_minus_fpr": 0.6259259259259259,
+        "operational_median_lead_ms": 150.3792136666665
+      }
+    },
+    {
+      "name": "transfer-static utility increment over strict EAST-only",
+      "passed": true,
+      "detail": {
+        "operational_tpr": 0.04444444444444451,
+        "fpr": 0.022222222222222227,
+        "utility_tpr30_minus_fpr": 0.022222222222222143,
+        "operational_median_lead_ms": 76.47877666666608
+      }
+    },
+    {
+      "name": "equal-label-budget report schema",
+      "passed": true,
+      "detail": "equal-label-budget-common-mask-report-v2"
+    },
+    {
+      "name": "equal-label-budget status preserves development boundary",
+      "passed": true,
+      "detail": "DIAGNOSTIC_ONLY_TEST_DRIVEN_EXPLORATION"
+    },
+    {
+      "name": "equal-label-budget seeds and random replicates",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "front-load control reproduces all archived parents exactly",
+      "passed": true,
+      "detail": {
+        "131": {
+          "actual": {
+            "encoder_head": "715a73cc88a4071968e6116dce7ff75eccd5217caba204143bcde14e133edc77",
+            "private_adapter": "83703f08d3121f9dc253a531c32de5db64dbfb6c6eb883f86349b332ad331088",
+            "shared_adapter": "f6fba846257c5db000de590d5d7d315dbaca63d1ac4619b426ff8ef419cf014d",
+            "threshold": 0.4169328808784485
+          },
+          "expected": {
+            "encoder_head": "715a73cc88a4071968e6116dce7ff75eccd5217caba204143bcde14e133edc77",
+            "private_adapter": "83703f08d3121f9dc253a531c32de5db64dbfb6c6eb883f86349b332ad331088",
+            "shared_adapter": "f6fba846257c5db000de590d5d7d315dbaca63d1ac4619b426ff8ef419cf014d",
+            "threshold": 0.4169328808784485
+          },
+          "passed": true,
+          "sampler": "historical-shot-first-then-within-shot-window-v1",
+          "schema_version": "sealed-parent-fidelity-v1"
+        },
+        "133": {
+          "actual": {
+            "encoder_head": "2db688ceea41a72276fc7d527f3f27c2092708c84c291926c68b71f1c935fe14",
+            "private_adapter": "65c4329ac0c5127a2ab9aa4644095af1e3ceea120c77d6879dd78427a3d000e5",
+            "shared_adapter": "5bf58e330ac26a802d9d1386cbace66d241ac97d1ae65d9f8b0fadefba1ce9e9",
+            "threshold": 0.36285272240638733
+          },
+          "expected": {
+            "encoder_head": "2db688ceea41a72276fc7d527f3f27c2092708c84c291926c68b71f1c935fe14",
+            "private_adapter": "65c4329ac0c5127a2ab9aa4644095af1e3ceea120c77d6879dd78427a3d000e5",
+            "shared_adapter": "5bf58e330ac26a802d9d1386cbace66d241ac97d1ae65d9f8b0fadefba1ce9e9",
+            "threshold": 0.36285272240638733
+          },
+          "passed": true,
+          "sampler": "historical-shot-first-then-within-shot-window-v1",
+          "schema_version": "sealed-parent-fidelity-v1"
+        },
+        "137": {
+          "actual": {
+            "encoder_head": "d1ecbf884b8caf1a29b0aa4d78d5796635c8f7e0b614bbf647a287ac041dc578",
+            "private_adapter": "e53d657fe8962f866278e45a833352089d0ef8535ae5746175d5ba42d1479e51",
+            "shared_adapter": "80c85eb86a1f6dcd640a63d14605f6b26b810165dc8086f97d4a3c62ba1255ad",
+            "threshold": 0.1604071408510208
+          },
+          "expected": {
+            "encoder_head": "d1ecbf884b8caf1a29b0aa4d78d5796635c8f7e0b614bbf647a287ac041dc578",
+            "private_adapter": "e53d657fe8962f866278e45a833352089d0ef8535ae5746175d5ba42d1479e51",
+            "shared_adapter": "80c85eb86a1f6dcd640a63d14605f6b26b810165dc8086f97d4a3c62ba1255ad",
+            "threshold": 0.1604071408510208
+          },
+          "passed": true,
+          "sampler": "historical-shot-first-then-within-shot-window-v1",
+          "schema_version": "sealed-parent-fidelity-v1"
+        }
+      }
+    },
+    {
+      "name": "equal-label-budget aggregate deltas",
+      "passed": true,
+      "detail": {
+        "online_minus_selected_frontload_j": 0.11628029499921815,
+        "online_minus_static_j": 0.013086576008913645,
+        "selected_frontload_minus_static_fpr": 0.16734354451922337,
+        "selected_frontload_minus_static_j": -0.1031937189903045,
+        "selected_frontload_minus_static_tpr30": 0.0641498255289189
+      }
+    },
+    {
+      "name": "equal-label-budget directions hold in all seeds",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "equal-label-budget compute limitation disclosed",
+      "passed": true,
+      "detail": "common-mask post-selection diagnostic; standard target refit is label-access matched but not optimizer-step/FLOP matched to historical online updates"
+    },
+    {
+      "name": "figure hashes",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "table hashes",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "causal random-query compact artifact hashes",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "EAST target-only compact artifact hashes",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "portable full HDF5 content manifest",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "all released text artifacts are portable",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "Q30 frozen identity and provenance boundary",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "primary causal ledger relations seed131",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "sealed EAST target-parent artifact seed131",
+      "passed": true,
+      "detail": {
+        "expected_sha256": "8118d8fabe58faf3b5517712f0c81518d8ffb30c35366cf9bdfcc87e18eeed27"
+      }
+    },
+    {
+      "name": "primary causal ledger relations seed133",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "sealed EAST target-parent artifact seed133",
+      "passed": true,
+      "detail": {
+        "expected_sha256": "50638f2e6ea5adce29c600f49dadab728fa34ca0937ad8405881f516cc39cd9b"
+      }
+    },
+    {
+      "name": "primary causal ledger relations seed137",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "sealed EAST target-parent artifact seed137",
+      "passed": true,
+      "detail": {
+        "expected_sha256": "6e0f475830a0325a251c1acdcb54421af450de62c7d78d45e4518c065dfbd707"
+      }
+    },
+    {
+      "name": "required source/report files",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "mandatory caveats and contracts appear",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "main manuscript avoids forbidden overclaims",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source comparator is not mislabeled independent/chronological",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "separate Data availability section",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "separate Code availability section",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "generative-AI assistance disclosed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Nature readiness blocker is explicit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "publication surfaces use one operational TPR contract",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "compiled main PDF",
+      "passed": true,
+      "detail": {
+        "exists": true,
+        "pages": 15,
+        "bytes": 502388,
+        "text_chars": 48271
+      }
+    },
+    {
+      "name": "compiled supplement PDF",
+      "passed": true,
+      "detail": {
+        "exists": true,
+        "pages": 13,
+        "bytes": 108428,
+        "text_chars": 37947
+      }
+    },
+    {
+      "name": "primary artifact hash seed131/predictions.jsonl",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "primary artifact hash seed131/query_decisions.jsonl",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "primary artifact hash seed131/reveals.jsonl",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "primary artifact hash seed131/static_predictions.jsonl",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "primary artifact hash seed131/summary.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "primary artifact hash seed131/updates.jsonl",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "primary artifact hash seed133/predictions.jsonl",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "primary artifact hash seed133/query_decisions.jsonl",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "primary artifact hash seed133/reveals.jsonl",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "primary artifact hash seed133/static_predictions.jsonl",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "primary artifact hash seed133/summary.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "primary artifact hash seed133/updates.jsonl",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "primary artifact hash seed137/predictions.jsonl",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "primary artifact hash seed137/query_decisions.jsonl",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "primary artifact hash seed137/reveals.jsonl",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "primary artifact hash seed137/static_predictions.jsonl",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "primary artifact hash seed137/summary.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "primary artifact hash seed137/updates.jsonl",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source artifact hash seed131/source_checkpoint.pt",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source artifact hash seed131/test220_metrics.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source artifact hash seed131/test220_predictions.jsonl",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source artifact hash seed131/training_summary.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source artifact hash seed133/source_checkpoint.pt",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source artifact hash seed133/test220_metrics.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source artifact hash seed133/test220_predictions.jsonl",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source artifact hash seed133/training_summary.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source artifact hash seed137/source_checkpoint.pt",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source artifact hash seed137/test220_metrics.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source artifact hash seed137/test220_predictions.jsonl",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source artifact hash seed137/training_summary.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "figure strokes are not sub-1-point explicit widths",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "publication axes use one-point width",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "LaTeX logs have no overfull boxes or unresolved references",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "claim_boundary": "J-TEXT VAL/TEST are count-aligned balanced comparators and balanced360 was used for architecture and 972-candidate parameter development; no stage is an independent deployment confirmation",
+  "pdfs": {
+    "main.pdf": {
+      "exists": true,
+      "pages": 15,
+      "bytes": 502388,
+      "text_chars": 48271
+    },
+    "supplement.pdf": {
+      "exists": true,
+      "pages": 13,
+      "bytes": 108428,
+      "text_chars": 37947
+    }
+  }
+}

@@ -18,6 +18,19 @@ from east_private23_sidecar import causal_private_features, sealed_temporal_resi
 from two_timescale_online_adapter import operational_alarm_boundary_loss
 
 
+_INTRA_OUTCOME_FIELDS = frozenset({
+    "label", "target", "sealed_logit", "alarm_boundary", "alarm_target",
+    "is_disrupt", "down", "down_time_s", "DownTime", "outcome",
+    "revealed_is_disrupt", "revealed_down_time_s",
+})
+
+
+def _reject_intra_outcome_fields(values: Mapping[str, torch.Tensor]) -> None:
+    forbidden = sorted(_INTRA_OUTCOME_FIELDS.intersection(values))
+    if forbidden:
+        raise ValueError(f"intra-shot batch contains outcome field: {forbidden[0]}")
+
+
 def module_hash(module: nn.Module) -> str:
     digest = hashlib.sha256()
     for name, value in sorted(module.state_dict().items()):
@@ -119,10 +132,21 @@ class PrivateTwoTimescaleController:
         inter_lr: float = 2e-4, teacher_weight: float = 0.50,
         next_weight: float = 1.0, guard_anchor_weight: float = 0.25,
         threshold_logit: float = 0.0, max_guard_harms: int = 0,
+        temporal_risk_weight: float = 0.0,
+        temporal_target_max_delta: float = 0.5,
+        temporal_target_gain: float = 1.0,
+        intra_parameter_scope: str = "legacy",
     ) -> None:
         if (
             intra_lr <= 0 or inter_lr <= 0 or teacher_weight < 0
             or next_weight < 0 or guard_anchor_weight < 0 or max_guard_harms < 0
+            or not math.isfinite(float(temporal_risk_weight))
+            or temporal_risk_weight < 0
+            or not math.isfinite(float(temporal_target_max_delta))
+            or temporal_target_max_delta <= 0
+            or not math.isfinite(float(temporal_target_gain))
+            or temporal_target_gain <= 0
+            or intra_parameter_scope not in ("legacy", "representation_only")
         ):
             raise ValueError("invalid private two-timescale contract")
         self.persistent = model
@@ -136,6 +160,10 @@ class PrivateTwoTimescaleController:
         self.guard_anchor_weight = float(guard_anchor_weight)
         self.threshold_logit = float(threshold_logit)
         self.max_guard_harms = int(max_guard_harms)
+        self.temporal_risk_weight = float(temporal_risk_weight)
+        self.temporal_target_max_delta = float(temporal_target_max_delta)
+        self.temporal_target_gain = float(temporal_target_gain)
+        self.intra_parameter_scope = str(intra_parameter_scope)
         self.fast: EastPrivateDynamicsResidual | None = None
         self.fast_optimizer: torch.optim.Optimizer | None = None
         self.active_shot: int | None = None
@@ -163,9 +191,21 @@ class PrivateTwoTimescaleController:
             raise RuntimeError("private shot ids must be strictly increasing")
         self.fast = copy.deepcopy(self.persistent).to(self.device)
         for parameter in self.fast.parameters():
+            parameter.requires_grad_(False)
+        if self.intra_parameter_scope == "representation_only":
+            prefixes = ("trunk.2", "trunk.3")
+        else:
+            prefixes = ("trunk", "next_head", "residual_head")
+        fast_parameters = [
+            parameter for name, parameter in self.fast.named_parameters()
+            if name.startswith(prefixes)
+        ]
+        if not fast_parameters:
+            raise RuntimeError("private intra-shot trainable parameter set is empty")
+        for parameter in fast_parameters:
             parameter.requires_grad_(True)
         self.fast_optimizer = torch.optim.AdamW(
-            self.fast.parameters(), lr=self.intra_lr, weight_decay=1e-4,
+            fast_parameters, lr=self.intra_lr, weight_decay=1e-4,
         )
         self.active_shot = shot_id
 
@@ -210,37 +250,90 @@ class PrivateTwoTimescaleController:
 
     def intra_update(
         self, *, source_endpoint: int, observed_endpoint: int,
-        batch: Mapping[str, torch.Tensor], steps: int = 1,
+        batch: Mapping[str, torch.Tensor],
+        observed_batch: Mapping[str, torch.Tensor] | None = None,
+        steps: int = 1,
         update_scale: float = 1.0,
     ) -> dict[str, Any]:
         if self.fast is None or self.fast_optimizer is None or self.active_shot is None:
             raise RuntimeError("begin_shot is required before private intra update")
+        if self.intra_parameter_scope == "representation_only":
+            _reject_intra_outcome_fields(batch)
+            if observed_batch is not None:
+                _reject_intra_outcome_fields(observed_batch)
+            if "sealed_pre_adapt_logit" not in batch:
+                raise KeyError(
+                    "representation-only TTT requires sealed_pre_adapt_logit"
+                )
         if int(observed_endpoint) <= int(source_endpoint):
             raise ValueError("observed endpoint must be strictly later than source")
         if steps <= 0:
             raise ValueError("steps must be positive")
+        if self.temporal_risk_weight > 0.0 and observed_batch is None:
+            raise ValueError(
+                "observed_batch is required when temporal risk forecasting is enabled"
+            )
         update_scale = _scale(update_scale)
         if update_scale == 0:
             return {
                 "event": "private_intra_update", "shot": self.active_shot,
                 "updated": False, "steps": 0, "loss": 0.0,
+                "temporal_risk_weight": self.temporal_risk_weight,
+                "temporal_target_gain": self.temporal_target_gain,
+                "temporal_risk_loss": 0.0,
+                "temporal_target_delta": 0.0,
                 "update_scale": 0.0, "persistent_sha256": self.persistent_hash(),
                 "fast_sha256": self.fast_hash(),
             }
         prepared = _batch(batch, self.device)
+        observed = (
+            _batch(observed_batch, self.device)
+            if observed_batch is not None else None
+        )
         self.persistent.eval()
         with torch.no_grad():
             teacher, _residual, _latent, _features = self._forward(
                 self.persistent, prepared,
             )
+            if self.intra_parameter_scope == "representation_only":
+                risk_anchor_target = prepared["sealed_pre_adapt_logit"]
+                if risk_anchor_target.shape != teacher.shape:
+                    raise ValueError(
+                        "sealed_pre_adapt_logit must align with private logits"
+                    )
+            else:
+                risk_anchor_target = teacher
+            if observed is not None and self.temporal_risk_weight > 0.0:
+                observed_teacher, _residual, _latent, _features = self._forward(
+                    self.persistent, observed,
+                )
+                if observed_teacher.shape != teacher.shape:
+                    raise ValueError(
+                        "observed_batch must align with the source batch"
+                    )
+                temporal_delta = torch.clamp(
+                    self.temporal_target_gain * (observed_teacher - teacher),
+                    min=-self.temporal_target_max_delta,
+                    max=self.temporal_target_max_delta,
+                )
+                temporal_target = teacher + temporal_delta
+            else:
+                temporal_delta = torch.zeros_like(teacher)
+                temporal_target = teacher
         losses: list[float] = []
         reconstructions: list[float] = []
+        temporal_losses: list[float] = []
         self.fast.train()
         for _ in range(int(steps)):
             adjusted, _residual, latent, _features = self._forward(self.fast, prepared)
             reconstruction = self._next_loss(self.fast, latent, prepared)
-            consistency = F.smooth_l1_loss(adjusted, teacher)
-            loss = self.next_weight * reconstruction + self.teacher_weight * consistency
+            consistency = F.smooth_l1_loss(adjusted, risk_anchor_target)
+            temporal = F.smooth_l1_loss(adjusted, temporal_target)
+            loss = (
+                self.next_weight * reconstruction
+                + self.teacher_weight * consistency
+                + self.temporal_risk_weight * temporal
+            )
             self.fast_optimizer.zero_grad(set_to_none=True)
             loss.backward()
             torch.nn.utils.clip_grad_norm_(self.fast.parameters(), 0.5)
@@ -248,12 +341,24 @@ class PrivateTwoTimescaleController:
                 self.fast_optimizer.step()
             losses.append(float(loss.detach().cpu()))
             reconstructions.append(float(reconstruction.detach().cpu()))
+            temporal_losses.append(float(temporal.detach().cpu()))
         return {
             "event": "private_intra_update", "shot": self.active_shot,
             "source_endpoint": int(source_endpoint),
             "observed_endpoint": int(observed_endpoint), "updated": True,
             "steps": int(steps), "loss": sum(losses) / len(losses),
             "reconstruction_loss": sum(reconstructions) / len(reconstructions),
+            "temporal_risk_weight": self.temporal_risk_weight,
+            "temporal_target_gain": self.temporal_target_gain,
+            "temporal_risk_loss": sum(temporal_losses) / len(temporal_losses),
+            "temporal_target_delta": float(
+                temporal_delta.abs().mean().detach().cpu()
+            ),
+            "risk_anchor_source": (
+                "sealed_pre_adapt_logit"
+                if self.intra_parameter_scope == "representation_only"
+                else "persistent_parent"
+            ),
             "update_scale": update_scale, "persistent_sha256": self.persistent_hash(),
             "fast_sha256": self.fast_hash(),
         }

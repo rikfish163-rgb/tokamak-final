@@ -61,4 +61,14 @@ J-TEXT 源模型阈值只由 VAL160 选择，TEST220 只评估一次。破裂炮
 
 ## Data audit output
 
-`fusion-reproduce audit --full` 输出的数据审计 JSON 包含：数据根目录、预期炮数、打开的 HDF5 数、文件大小摘要哈希和标签权威声明。该哈希用于发现复现时数据版本变化；它不是原始数据内容的替代品。
+`fusion-reproduce audit --full` 输出的数据审计 JSON 包含：数据根目录、预期炮数、打开的 HDF5 数、文件大小摘要哈希和标签权威声明。该快速哈希只用于发现明显的清单变化。
+
+论文归档或跨机构复现应额外运行：
+
+```bash
+fusion-reproduce audit --full --content-hash --portable \
+  --data-root "$FUSION_DATA_ROOT" \
+  --output required_hdf5_content_manifest.json
+```
+
+该模式对每个必需 HDF5 的原始字节计算 SHA-256，并输出相对路径、文件大小、逐文件哈希和排序后的聚合哈希。`--portable` 把机器本地数据根替换成 `<external-data-root>`，使提交到仓库的 manifest 不暴露工作站路径。它可以验证受控访问数据是否与论文版本逐字节一致，但仍不替代数据 DOI、访问许可或原始数据本身。

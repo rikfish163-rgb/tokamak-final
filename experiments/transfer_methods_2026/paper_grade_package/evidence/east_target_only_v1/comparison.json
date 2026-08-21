@@ -1,0 +1,110 @@
+{
+  "schema_version": "east-target-only-report-v1",
+  "claim_boundary": "TEST_DRIVEN_EXPLORATION",
+  "comparison": "same support110 label/window/optimizer-step budget, full target-side shared/private pipeline and fixed dual alarm; not equal FLOPs and not an independent balanced360 test",
+  "transfer_static": {
+    "per_seed": {
+      "131": {
+        "operational_tpr": 0.8222222222222222,
+        "fpr": 0.15555555555555556,
+        "utility_tpr30_minus_fpr": 0.6666666666666666,
+        "operational_median_lead_ms": 262.9999999999999
+      },
+      "133": {
+        "operational_tpr": 0.8388888888888889,
+        "fpr": 0.14444444444444443,
+        "utility_tpr30_minus_fpr": 0.6944444444444444,
+        "operational_median_lead_ms": 205.09999999999985
+      },
+      "137": {
+        "operational_tpr": 0.8611111111111112,
+        "fpr": 0.2,
+        "utility_tpr30_minus_fpr": 0.6611111111111112,
+        "operational_median_lead_ms": 258.0
+      }
+    },
+    "equal_seed_mean": {
+      "operational_tpr": 0.8407407407407408,
+      "fpr": 0.16666666666666666,
+      "utility_tpr30_minus_fpr": 0.674074074074074,
+      "operational_median_lead_ms": 242.03333333333325
+    }
+  },
+  "target_only_arms": {
+    "target_only_local17": {
+      "per_seed": {
+        "131": {
+          "operational_tpr": 0.8,
+          "fpr": 0.13333333333333333,
+          "utility_tpr30_minus_fpr": 0.6666666666666667,
+          "operational_median_lead_ms": 166.50000000000054
+        },
+        "133": {
+          "operational_tpr": 0.7722222222222223,
+          "fpr": 0.12222222222222222,
+          "utility_tpr30_minus_fpr": 0.65,
+          "operational_median_lead_ms": 144.0000000000001
+        },
+        "137": {
+          "operational_tpr": 0.8166666666666667,
+          "fpr": 0.17777777777777778,
+          "utility_tpr30_minus_fpr": 0.6388888888888888,
+          "operational_median_lead_ms": 186.16367000000088
+        }
+      },
+      "equal_seed_mean": {
+        "operational_tpr": 0.7962962962962963,
+        "fpr": 0.14444444444444443,
+        "utility_tpr30_minus_fpr": 0.6518518518518519,
+        "operational_median_lead_ms": 165.55455666666717
+      },
+      "transfer_static_minus_target_only": {
+        "operational_tpr": 0.04444444444444451,
+        "fpr": 0.022222222222222227,
+        "utility_tpr30_minus_fpr": 0.022222222222222143,
+        "operational_median_lead_ms": 76.47877666666608
+      }
+    },
+    "target_only_matched17": {
+      "per_seed": {
+        "131": {
+          "operational_tpr": 0.7277777777777777,
+          "fpr": 0.09444444444444444,
+          "utility_tpr30_minus_fpr": 0.6333333333333333,
+          "operational_median_lead_ms": 137.1376409999998
+        },
+        "133": {
+          "operational_tpr": 0.75,
+          "fpr": 0.11666666666666667,
+          "utility_tpr30_minus_fpr": 0.6333333333333333,
+          "operational_median_lead_ms": 154.99999999999937
+        },
+        "137": {
+          "operational_tpr": 0.7166666666666667,
+          "fpr": 0.10555555555555556,
+          "utility_tpr30_minus_fpr": 0.6111111111111112,
+          "operational_median_lead_ms": 159.00000000000026
+        }
+      },
+      "equal_seed_mean": {
+        "operational_tpr": 0.7314814814814815,
+        "fpr": 0.10555555555555556,
+        "utility_tpr30_minus_fpr": 0.6259259259259259,
+        "operational_median_lead_ms": 150.3792136666665
+      },
+      "transfer_static_minus_target_only": {
+        "operational_tpr": 0.10925925925925928,
+        "fpr": 0.0611111111111111,
+        "utility_tpr30_minus_fpr": 0.04814814814814816,
+        "operational_median_lead_ms": 91.65411966666676
+      }
+    }
+  },
+  "interpretation_limits": [
+    "balanced360 informed method development",
+    "support110 is reused for fitting and threshold selection",
+    "target-only updates the full encoder while transfer-static updates a restricted target path, so equal optimizer steps are not equal FLOPs",
+    "matched17 consumes a source-derived scaler artifact and is not pure EAST-only",
+    "local17 is the strict EAST-only arm"
+  ]
+}

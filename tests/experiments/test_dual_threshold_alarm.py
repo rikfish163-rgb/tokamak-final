@@ -63,3 +63,58 @@ def test_inputs_must_align_and_be_finite_safe():
         np.array([np.nan, -1.0]), np.array([1.0, np.nan])
     )
     assert result["alarmed"] is False
+
+
+def test_persistent_precursor_requires_k_of_window_and_is_prefix_causal():
+    module = load_module()
+    risk = np.array([0.20, 0.45, 0.10, 0.50, 0.55, 0.10, 0.90])
+    support = np.array([0.30, 0.30, 0.30, 0.30, 0.30, 0.30, 0.00])
+    kwargs = {
+        "decision_threshold": 0.95,
+        "physics_weight": 8.0,
+        "trend_weight": 0.0,
+        "score_threshold": -10.0,
+        "minimum_physics_support": 0.20,
+        "minimum_risk_probability": 0.40,
+        "required_points": 3,
+        "window": 4,
+    }
+
+    prefix = module.persistent_precursor_trace(risk[:6], support[:6], **kwargs)
+    full = module.persistent_precursor_trace(risk, support, **kwargs)
+
+    assert prefix["alarm_index"] == 4
+    assert prefix["route"] == "persistent_precursor"
+    np.testing.assert_array_equal(
+        prefix["alarm_mask"], full["alarm_mask"][:6]
+    )
+    np.testing.assert_array_equal(
+        prefix["rolling_count"], full["rolling_count"][:6]
+    )
+
+
+def test_precursor_overlay_can_only_add_or_advance_the_deployment_alarm():
+    module = load_module()
+    base = {
+        "alarmed": True, "alarm_index": 8, "route": "early",
+        "early_score": 8.1, "filter_reason": "protected_sequence_cleared",
+    }
+    precursor = {
+        "alarmed": True, "alarm_index": 5,
+        "route": "persistent_precursor", "early_score": 4.7,
+    }
+
+    result = module.apply_precursor_overlay(base, precursor)
+
+    assert result["alarmed"] is True
+    assert result["alarm_index"] == 5
+    assert result["route"] == "persistent_precursor"
+    assert result["precursor_overlay_applied"] is True
+    assert result["base_alarm_reference"] == base
+
+    unchanged = module.apply_precursor_overlay(base, {
+        "alarmed": True, "alarm_index": 10,
+        "route": "persistent_precursor", "early_score": 5.0,
+    })
+    assert unchanged["alarm_index"] == 8
+    assert unchanged["precursor_overlay_applied"] is False

@@ -84,7 +84,18 @@ def _validate_hdf5(path: Path, *, full: bool) -> None:
         raise DataContractError(f"cannot read HDF5 {path}: {exc}") from exc
 
 
-def audit_data(data: Path, *, full: bool = False) -> dict[str, Any]:
+def _sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for block in iter(lambda: handle.read(4 * 1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+
+def audit_data(
+    data: Path, *, full: bool = False, content_hash: bool = False,
+    portable: bool = False,
+) -> dict[str, Any]:
     data = Path(data).expanduser().resolve()
     root = project_root()
     required_dirs = [
@@ -99,8 +110,9 @@ def audit_data(data: Path, *, full: bool = False) -> dict[str, Any]:
     missing: dict[str, list[int]] = {"J-TEXT": [], "EAST": []}
     checked = 0
     digest = hashlib.sha256()
+    content_files: list[dict[str, Any]] = []
     for device, shot_ids in ids.items():
-        candidates = shot_ids if full else shot_ids[:1] + shot_ids[-1:]
+        candidates = shot_ids if full or content_hash else shot_ids[:1] + shot_ids[-1:]
         for shot in shot_ids:
             path = _shot_path(data, device, shot)
             if not path.is_file():
@@ -111,6 +123,15 @@ def audit_data(data: Path, *, full: bool = False) -> dict[str, Any]:
                 _validate_hdf5(path, full=full)
                 stat = path.stat()
                 digest.update(f"{device}:{shot}:{stat.st_size}".encode())
+                if content_hash:
+                    file_sha = _sha256_file(path)
+                    content_files.append({
+                        "device": device,
+                        "shot": int(shot),
+                        "relative_path": str(path.relative_to(data)),
+                        "bytes": int(stat.st_size),
+                        "sha256": file_sha,
+                    })
                 checked += 1
     missing = {key: value for key, value in missing.items() if value}
     if missing:
@@ -119,12 +140,25 @@ def audit_data(data: Path, *, full: bool = False) -> dict[str, Any]:
         raise DataContractError(
             f"missing HDF5 shots counts={counts} examples={examples}"
         )
-    return {
+    result = {
         "passed": True,
-        "data_root": str(data),
+        "data_root": "<external-data-root>" if portable else str(data),
         "full": bool(full),
         "expected_shots": {key: len(value) for key, value in ids.items()},
         "hdf5_files_opened": checked,
         "inventory_sha256": digest.hexdigest(),
         "label_authority": "HDF5 meta/IsDisrupt and meta/DownTime",
     }
+    if content_hash:
+        aggregate = hashlib.sha256()
+        for row in content_files:
+            aggregate.update(
+                f"{row['relative_path']}\0{row['bytes']}\0{row['sha256']}\n".encode()
+            )
+        result["content_manifest"] = {
+            "algorithm": "sha256",
+            "file_count": len(content_files),
+            "aggregate_sha256": aggregate.hexdigest(),
+            "files": content_files,
+        }
+    return result

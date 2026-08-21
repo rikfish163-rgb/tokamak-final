@@ -20,7 +20,9 @@ os.environ.setdefault("CUBLAS_WORKSPACE_CONFIG", ":4096:8")
 import numpy as np, torch, torch.nn as nn, torch.nn.functional as F
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(
+    os.environ.get("FUSION_PROJECT_ROOT", Path(__file__).resolve().parents[2])
+).expanduser().resolve()
 HERE = ROOT/"experiments"/"transfer_methods_2026"
 sys.path.insert(0, str(HERE))
 import rebuilt_harness as RH
@@ -28,35 +30,82 @@ import common as C
 
 DEV = "cuda" if torch.cuda.is_available() else "cpu"
 W = 128
+SOURCE_CHECKPOINT_SCHEMA = "jtext_rebuilt17_transformer_source_v1"
+SOURCE_ARCHITECTURE_VERSION = "rebuilt17-patch-transformer-128x8-d64-l2-h4-v1"
+
+
+def source_model_config(channels):
+    return {
+        "channels": int(channels),
+        "window": W,
+        "patch": int(RH.PATCH),
+        "stride": int(RH.STRIDE),
+        "d_model": int(RH.D_MODEL),
+        "layers": int(RH.N_LAYERS),
+        "heads": int(RH.N_HEADS),
+    }
+
+
+def default_source_checkpoint(seed):
+    trained = HERE / "source_transformer_runs" / f"seed{int(seed)}" / "source_checkpoint.pt"
+    if trained.is_file():
+        return trained
+    bundled = (
+        HERE / "paper_grade_package/evidence/source_lineage"
+        / f"seed{int(seed)}/source_checkpoint.pt"
+    )
+    return bundled
+
+
+def _load_rebuilt_shots(device, ids):
+    out, miss = [], []
+    for sid in ids:
+        try:
+            arr, rate, start, down, isd = RH.load_raw(
+                RH.DATA/device/"unified_hdf5"/str(sid//100*100)/f"{sid}.hdf5",
+                device,
+            )
+        except Exception:
+            miss.append(int(sid))
+            continue
+        v, a = RH.rebuild_features(arr, device)
+        out.append(dict(
+            shot=int(sid), v=v.astype(np.float32), a=a,
+            is_disrupt=isd, down=down if isd else None,
+            start=start, rate=rate,
+        ))
+    return out, miss
+
+
+def load_east(*, include_test=True):
+    east = C.DataSpec().east
+    transfer, missing_transfer = _load_rebuilt_shots(
+        "EAST", sorted(east["transfer"])
+    )
+    test, missing_test = (
+        _load_rebuilt_shots("EAST", sorted(east["test_locked"]))
+        if include_test else ([], [])
+    )
+    if missing_transfer or missing_test:
+        raise RuntimeError(
+            "missing EAST HDF5 shots: "
+            f"transfer={missing_transfer}, test={missing_test}"
+        )
+    return transfer, test
 
 
 def load_all(*, include_test=True):
     def jt_split():
         return {k: {int(l.strip()) for l in open(ROOT/f"splits/{k}.txt") if l.strip()} for k in ("train","val","test")}
     jt = jt_split()
-    east = C.DataSpec().east
-    tr_ids = sorted(east["transfer"])
-    te_ids = sorted(east["test_locked"]) if include_test else []
-    def load(device, ids, lm=None):
-        out, miss = [], []
-        for sid in ids:
-            try:
-                arr, rate, start, down, isd = RH.load_raw(RH.DATA/device/"unified_hdf5"/str(sid//100*100)/f"{sid}.hdf5", device)
-            except Exception as e:
-                miss.append(int(sid)); continue
-            if lm is not None and int(sid) in lm:
-                isd = bool(lm[int(sid)])
-                if not isd: down = None
-            v, a = RH.rebuild_features(arr, device)
-            n = len(v)
-            out.append(dict(shot=int(sid), v=v.astype(np.float32), a=a, is_disrupt=isd,
-                            down=down if isd else None, start=start, rate=rate))
-        return out, miss
-    src, _ = load("J-TEXT", jt["train"])
-    val, _ = load("J-TEXT", jt["val"])
+    src, missing_src = _load_rebuilt_shots("J-TEXT", jt["train"])
+    val, missing_val = _load_rebuilt_shots("J-TEXT", jt["val"])
+    if missing_src or missing_val:
+        raise RuntimeError(
+            f"missing J-TEXT HDF5 shots: train={missing_src}, val={missing_val}"
+        )
     # HDF5 meta/IsDisrupt and meta/DownTime are the sole label authority.
-    tr, _ = load("EAST", tr_ids)
-    te, _ = load("EAST", te_ids) if include_test else ([], [])
+    tr, te = load_east(include_test=include_test)
     return src, val, tr, te
 
 
@@ -176,11 +225,30 @@ class Enc(nn.Module):
         self.encoder = nn.TransformerEncoder(lay, RH.N_LAYERS)
         self.norm = nn.LayerNorm(d)
         nn.init.normal_(self.cls, std=0.02)
-    def forward(self, x):
+    def forward(self, x, valid_lengths=None):
         h = self.embed(x.transpose(1, 2)).transpose(1, 2)
         h = h + C.sinusoidal_position_encoding(h)
         cl = self.cls.expand(x.shape[0], -1, -1)
-        h = self.encoder(torch.cat([cl, h], 1))
+        h = torch.cat([cl, h], 1)
+        padding_mask = None
+        if valid_lengths is not None:
+            lengths = torch.as_tensor(valid_lengths, device=x.device, dtype=torch.long)
+            if lengths.ndim != 1 or lengths.shape[0] != x.shape[0]:
+                raise ValueError("valid_lengths must contain one value per batch row")
+            if torch.any(lengths <= 0) or torch.any(lengths > x.shape[1]):
+                raise ValueError("valid_lengths must be within the input window")
+            left_padding = x.shape[1] - lengths
+            patch_ends = (
+                torch.arange(h.shape[1] - 1, device=x.device) * RH.STRIDE
+                + RH.PATCH
+            )
+            invalid_patch = patch_ends.unsqueeze(0) <= left_padding.unsqueeze(1)
+            padding_mask = torch.cat(
+                [torch.zeros((x.shape[0], 1), dtype=torch.bool, device=x.device),
+                 invalid_patch],
+                dim=1,
+            )
+        h = self.encoder(h, src_key_padding_mask=padding_mask)
         return self.norm(h[:, 0])
 
 
@@ -191,37 +259,77 @@ class Head(nn.Module):
     def forward(self, z): return self.net(z).squeeze(-1)
 
 
-def train_source(src_sampler, C, epochs=6, bs=128, seed=0):
-    """Train the exact rebuilt17 J-TEXT parent used by ``train_adapt``."""
+def load_source_checkpoint(path, *, channels, expected_seed=None, device=None):
+    run_device = device or DEV
+    path = Path(path).expanduser().resolve()
+    if not path.is_file():
+        raise FileNotFoundError(f"J-TEXT source checkpoint does not exist: {path}")
+    checkpoint = torch.load(path, map_location=run_device, weights_only=True)
+    if checkpoint.get("schema_version") != SOURCE_CHECKPOINT_SCHEMA:
+        raise ValueError("source checkpoint schema contract mismatch")
+    if checkpoint.get("architecture_version") != SOURCE_ARCHITECTURE_VERSION:
+        raise ValueError("source checkpoint architecture contract mismatch")
+    if checkpoint.get("feature_names") != list(RH.REBUILD):
+        raise ValueError("source checkpoint feature contract mismatch")
+    if checkpoint.get("model_config") != source_model_config(channels):
+        raise ValueError("source checkpoint model configuration mismatch")
+    if expected_seed is not None and int(checkpoint.get("seed", -1)) != int(expected_seed):
+        raise ValueError("source checkpoint seed contract mismatch")
+    if checkpoint.get("split_counts") != {"train": 1353, "val": 160, "test": 220}:
+        raise ValueError("source checkpoint split contract mismatch")
+    if int(checkpoint.get("test_shards_read", -1)) != 0:
+        raise ValueError("source checkpoint was selected after reading J-TEXT TEST220")
+    center = checkpoint.get("scaler_center")
+    scale = checkpoint.get("scaler_scale")
+    if not isinstance(center, torch.Tensor) or not isinstance(scale, torch.Tensor):
+        raise ValueError("source checkpoint scaler contract is missing")
+    if tuple(center.shape) != (channels,) or tuple(scale.shape) != (channels,):
+        raise ValueError("source checkpoint scaler shape mismatch")
+    if not torch.isfinite(center).all() or not torch.isfinite(scale).all() or torch.any(scale <= 0):
+        raise ValueError("source checkpoint scaler is not finite and positive")
+    enc = Enc(channels).to(run_device)
+    head = Head().to(run_device)
+    enc.load_state_dict(checkpoint["encoder"], strict=True)
+    head.load_state_dict(checkpoint["head"], strict=True)
+    return enc, head, checkpoint
 
+
+def train_adapt(
+    src_sampler, tr_sampler, C, epochs=12, bs=128, seed=0,
+    *, source_checkpoint=None, device=None,
+):
+    run_device = device or DEV
     torch.manual_seed(seed); np.random.seed(seed); torch.cuda.manual_seed_all(seed)
     torch.backends.cudnn.benchmark = False
     torch.backends.cudnn.deterministic = True
     torch.use_deterministic_algorithms(True)
-    enc = Enc(C).to(DEV); head = Head().to(DEV)
-    opt = torch.optim.AdamW(list(enc.parameters())+list(head.parameters()), 3e-4, weight_decay=1e-4)
-    for _ep in range(int(epochs)):
-        enc.train(); head.train()
-        for _ in range(8):
-            xs, ys = [], []
-            for _ in range(bs):
-                x, y = src_sampler(0.5); xs.append(x); ys.append(y)
-            loss = F.binary_cross_entropy_with_logits(head(enc(torch.from_numpy(np.stack(xs)).to(DEV))), torch.from_numpy(np.stack(ys)).to(DEV))
-            opt.zero_grad(); loss.backward(); opt.step()
-    return enc, head
-
-
-def train_adapt(
-    src_sampler, tr_sampler, C, epochs=12, bs=128, seed=0, *, source_epochs=6,
-):
-    enc, head = train_source(
-        src_sampler, C, epochs=source_epochs, bs=bs, seed=seed,
-    )
+    if source_checkpoint is not None:
+        enc, head, _checkpoint = load_source_checkpoint(
+            source_checkpoint, channels=C, expected_seed=seed, device=run_device
+        )
+    else:
+        if src_sampler is None:
+            raise ValueError("legacy source training requires a source sampler")
+        enc = Enc(C).to(run_device); head = Head().to(run_device)
+        opt = torch.optim.AdamW(
+            list(enc.parameters())+list(head.parameters()), 3e-4, weight_decay=1e-4
+        )
+        for _ep in range(epochs[0] if isinstance(epochs, tuple) else 6):
+            enc.train(); head.train()
+            for _ in range(8):
+                xs, ys = [], []
+                for _ in range(bs):
+                    x, y = src_sampler(0.5); xs.append(x); ys.append(y)
+                loss = F.binary_cross_entropy_with_logits(
+                    head(enc(torch.from_numpy(np.stack(xs)).to(run_device))),
+                    torch.from_numpy(np.stack(ys)).to(run_device),
+                )
+                opt.zero_grad(); loss.backward(); opt.step()
     # freeze low, adapt top on transfer
     for p in enc.parameters(): p.requires_grad_(False)
     for p in enc.encoder.layers[-1].parameters(): p.requires_grad_(True)
     for p in enc.norm.parameters(): p.requires_grad_(True)
-    head = Head().to(DEV)
+    head = Head().to(run_device)
     opt = torch.optim.AdamW(list(filter(lambda p: p.requires_grad, enc.parameters()))+list(head.parameters()), 1e-4, weight_decay=1e-4)
     nb2 = 32
     for ep in range(epochs):
@@ -230,7 +338,10 @@ def train_adapt(
             xs, ys = [], []
             for _ in range(bs):
                 x, y = tr_sampler(0.5); xs.append(x); ys.append(y)
-            loss = F.binary_cross_entropy_with_logits(head(enc(torch.from_numpy(np.stack(xs)).to(DEV))), torch.from_numpy(np.stack(ys)).to(DEV))
+            loss = F.binary_cross_entropy_with_logits(
+                head(enc(torch.from_numpy(np.stack(xs)).to(run_device))),
+                torch.from_numpy(np.stack(ys)).to(run_device),
+            )
             opt.zero_grad(); loss.backward(); opt.step()
     return enc, head
 

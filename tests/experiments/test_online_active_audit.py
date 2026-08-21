@@ -182,6 +182,26 @@ def test_lazy_outcome_oracle_reads_only_current_selected_shot_until_final() -> N
     assert reads == [20, 10, 20]
 
 
+def test_lazy_oracle_allows_reordered_diagnostic_only_when_explicit() -> None:
+    module = load_module()
+    truth = {
+        10: {"is_disrupt": False, "down_time_s": None},
+        20: {"is_disrupt": True, "down_time_s": 1.0},
+    }
+    with pytest.raises(ValueError, match="increasing"):
+        module.LazyShotOutcomeOracle([20, 10], truth.__getitem__)
+
+    oracle = module.LazyShotOutcomeOracle(
+        [20, 10], truth.__getitem__, allow_nonmonotonic=True,
+    )
+    oracle.seal_current(20)
+    assert oracle.reveal_for_query(20, selected=True)["is_disrupt"]
+    oracle.seal_current(10)
+    oracle.discard_unqueried(10)
+    oracle.open_final_evaluation()
+    assert list(oracle.all_outcomes()) == [20, 10]
+
+
 def test_prequential_audit_sorts_shots_and_seals_before_reveal() -> None:
     module = load_module()
     events: list[tuple[str, int]] = []
@@ -204,6 +224,33 @@ def test_prequential_audit_sorts_shots_and_seals_before_reveal() -> None:
     assert len(selected) == 1
     selected_shot = selected[0]["shot"]
     assert events.index(("seal", selected_shot)) < events.index(("reveal", selected_shot))
+
+
+def test_prequential_audit_supports_lazy_outcomes_without_unqueried_reads() -> None:
+    module = load_module()
+    reads: list[int] = []
+    truth = {
+        10: {"is_disrupt": False, "down_time_s": None},
+        20: {"is_disrupt": True, "down_time_s": 3.25},
+        30: {"is_disrupt": False, "down_time_s": None},
+    }
+    oracle = module.LazyShotOutcomeOracle(
+        [10, 20, 30], lambda shot: reads.append(shot) or truth[shot],
+    )
+    selector = module.BlockBudgetSelector(cutoff=0.0, block_size=3, quota=1)
+
+    records = module.run_prequential_audit(
+        shots=[{"shot": 10}, {"shot": 20}, {"shot": 30}],
+        predict=lambda shot: np.asarray([shot["shot"] / 100.0]),
+        summarize=lambda _shot, risk: {"query_score": float(risk.max())},
+        selector=selector,
+        outcomes=oracle,
+    )
+
+    assert sum(bool(record["queried"]) for record in records) == 1
+    assert len(reads) == 1
+    oracle.open_final_evaluation()
+    assert oracle.all_outcomes() == truth
 
 
 def test_confusion_and_query_capture_reports_error_enrichment() -> None:

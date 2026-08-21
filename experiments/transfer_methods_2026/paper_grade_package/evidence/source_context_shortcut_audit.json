@@ -1,0 +1,48 @@
+{
+  "gate": {
+    "paired_context_alarm_flip_rate_max": 0.05,
+    "paired_context_mean_abs_risk_difference_max": 0.05,
+    "paired_context_probe_macro_auc_max": 0.65
+  },
+  "probe": "multinomial linear probe over same-endpoint 32/64/96/128-sample views",
+  "seeds": {
+    "131": {
+      "audit": {
+        "paired_context_alarm_flip_rate": 0.05701754385964912,
+        "paired_context_mean_abs_risk_difference": 0.061213888227939606,
+        "paired_context_p95_abs_risk_difference": 0.3151344358921051,
+        "paired_context_probe_balanced_accuracy": 0.8486842105263157,
+        "paired_context_probe_macro_auc": 0.9553901200369344,
+        "paired_context_validation_shots": 152
+      },
+      "checkpoint": "experiments/transfer_methods_2026/paper_grade_package/evidence/source_lineage/seed131/source_checkpoint.pt",
+      "checkpoint_sha256": "c246c4ca8f49355343355cb6044a8f4fc98ab70c49a126d703359d30896e85a9"
+    },
+    "133": {
+      "audit": {
+        "paired_context_alarm_flip_rate": 0.08552631578947369,
+        "paired_context_mean_abs_risk_difference": 0.06392296403646469,
+        "paired_context_p95_abs_risk_difference": 0.5237107276916504,
+        "paired_context_probe_balanced_accuracy": 0.7680921052631579,
+        "paired_context_probe_macro_auc": 0.9285260849492152,
+        "paired_context_validation_shots": 152
+      },
+      "checkpoint": "experiments/transfer_methods_2026/paper_grade_package/evidence/source_lineage/seed133/source_checkpoint.pt",
+      "checkpoint_sha256": "7de9ac9ef898256293b2bbeb7eb4a0e99dac9f1ec22747de27006dcc92eba9eb"
+    },
+    "137": {
+      "audit": {
+        "paired_context_alarm_flip_rate": 0.07017543859649122,
+        "paired_context_mean_abs_risk_difference": 0.07108304649591446,
+        "paired_context_p95_abs_risk_difference": 0.5080777406692505,
+        "paired_context_probe_balanced_accuracy": 0.7796052631578947,
+        "paired_context_probe_macro_auc": 0.9368435480147738,
+        "paired_context_validation_shots": 152
+      },
+      "checkpoint": "experiments/transfer_methods_2026/paper_grade_package/evidence/source_lineage/seed137/source_checkpoint.pt",
+      "checkpoint_sha256": "ae816b00ea0a10100892d1d2d6c2034eda49e3adf08e310cd6f625e8561a3b31"
+    }
+  },
+  "split": "TRAIN1353 probe fit; VAL160 audit; TEST220 unread by audit",
+  "status": "SOURCE_CONTEXT_SHORTCUT_AUDITED"
+}

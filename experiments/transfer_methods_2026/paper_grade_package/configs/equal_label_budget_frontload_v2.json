@@ -1,0 +1,69 @@
+{
+  "schema_version": "equal-label-budget-frontload-v2",
+  "frozen_at": "2026-08-20T14:34:41+08:00",
+  "status": "PREREGISTERED_CORRECTIVE_POST_SELECTION_DIAGNOSTIC",
+  "supersedes": "equal_label_budget_frontload_v1.json",
+  "v1_adjudication": "INVALID_PARENT_FIDELITY",
+  "correction_trigger": {
+    "observed_before_v2_runs": "support-only refit did not reproduce the archived migrated parent",
+    "root_cause": "grid.build_sampler had changed from the registered shot-first sampler to a later class-first sampler",
+    "restored_contract": "uniform shot draw, then within-shot positive/negative branch and endpoint draw",
+    "seed131_replay_evidence": {
+      "encoder_head_sha256": "715a73cc88a4071968e6116dce7ff75eccd5217caba204143bcde14e133edc77",
+      "support_threshold": 0.4169328808784485,
+      "matched_archived_parent": true
+    },
+    "result_dependence": "v1 selected/random metrics were observed but are invalidated; v2 changes only the sampler needed to recover the sealed parent"
+  },
+  "claim_boundary": "balanced360 informed architecture, query-policy and this corrective diagnosis; every result remains TEST_DRIVEN_EXPLORATION and is not independent confirmation",
+  "seeds": [131, 133, 137],
+  "arms": {
+    "support_only": "zero-extra-label fidelity control on all 360 shots",
+    "selected": "front-load every archived active-query label; never score those training shots",
+    "random_uniform_blocked": "label-agnostic random shots matched to active per-20-shot query counts; replicates 0,1,2"
+  },
+  "common_evaluation": "for selected-versus-random inference, exclude the union of both extra-training sets",
+  "thresholds": {
+    "primary": "original frozen EAST110 parent threshold",
+    "secondary": "recalibrate on the unchanged EAST110 only",
+    "forbidden": "no balanced360 label may select a threshold, epoch, alarm parameter or loss weight"
+  },
+  "parent_fidelity_gate": {
+    "required_for_every_seed_before_other_arms": true,
+    "checks": [
+      "encoder and EAST-head SHA256 exact match",
+      "shared adapter SHA256 exact match",
+      "private adapter SHA256 exact match",
+      "EAST110 threshold exact match"
+    ],
+    "expected": {
+      "131": {
+        "threshold": 0.4169328808784485,
+        "encoder_head": "715a73cc88a4071968e6116dce7ff75eccd5217caba204143bcde14e133edc77",
+        "shared": "f6fba846257c5db000de590d5d7d315dbaca63d1ac4619b426ff8ef419cf014d",
+        "private": "83703f08d3121f9dc253a531c32de5db64dbfb6c6eb883f86349b332ad331088"
+      },
+      "133": {
+        "threshold": 0.36285272240638733,
+        "encoder_head": "2db688ceea41a72276fc7d527f3f27c2092708c84c291926c68b71f1c935fe14",
+        "shared": "5bf58e330ac26a802d9d1386cbace66d241ac97d1ae65d9f8b0fadefba1ce9e9",
+        "private": "65c4329ac0c5127a2ab9aa4644095af1e3ceea120c77d6879dd78427a3d000e5"
+      },
+      "137": {
+        "threshold": 0.1604071408510208,
+        "encoder_head": "d1ecbf884b8caf1a29b0aa4d78d5796635c8f7e0b614bbf647a287ac041dc578",
+        "shared": "80c85eb86a1f6dcd640a63d14605f6b26b810165dc8086f97d4a3c62ba1255ad",
+        "private": "e53d657fe8962f866278e45a833352089d0ef8535ae5746175d5ba42d1479e51"
+      }
+    }
+  },
+  "fairness_boundary": {
+    "label_access": "matched within seed",
+    "temporal_query_count": "random control matched within each fixed 20-shot block",
+    "frontload_compute": "same migration recipe across support-only, selected and random; not FLOP-matched to historical causal online inter-updates",
+    "causal_question": "selected front-load versus causal online is evaluated on a label-disjoint common complement",
+    "remaining_control": "a same-gradient-step block-batch arm requires new online batch ledgers and is reported as not reconstructible from historical artifacts"
+  },
+  "primary_objective": "lead-qualified TPR at 30 ms minus FPR",
+  "secondary": ["raw TPR", "FPR", "median lead", "AUC", "over-3000-ms alarms", "compute and label budgets"]
+}

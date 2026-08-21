@@ -1,0 +1,163 @@
+{
+  "aggregate": {
+    "auc": {
+      "maximum": 0.9404132231404959,
+      "mean": 0.932534435261708,
+      "minimum": 0.9268595041322314,
+      "sample_std": 0.007040494525767461,
+      "values": [
+        0.9268595041322314,
+        0.9404132231404959,
+        0.9303305785123966
+      ]
+    },
+    "fpr": {
+      "maximum": 0.17272727272727273,
+      "mean": 0.15151515151515152,
+      "minimum": 0.13636363636363635,
+      "sample_std": 0.01892423635878303,
+      "values": [
+        0.17272727272727273,
+        0.14545454545454545,
+        0.13636363636363635
+      ]
+    },
+    "median_lead_ms": {
+      "maximum": 117.00394268371592,
+      "mean": 110.48854435038255,
+      "minimum": 103.55188768371588,
+      "sample_std": 6.735914182077191,
+      "values": [
+        117.00394268371592,
+        103.55188768371588,
+        110.9098026837159
+      ]
+    },
+    "raw_tpr": {
+      "maximum": 0.9181818181818182,
+      "mean": 0.9060606060606061,
+      "minimum": 0.8818181818181818,
+      "sample_std": 0.020994555243259126,
+      "values": [
+        0.8818181818181818,
+        0.9181818181818182,
+        0.9181818181818182
+      ]
+    },
+    "timely_tpr": {
+      "maximum": 0.8545454545454545,
+      "mean": 0.8272727272727273,
+      "minimum": 0.8090909090909091,
+      "sample_std": 0.0240522846460417,
+      "values": [
+        0.8545454545454545,
+        0.8090909090909091,
+        0.8181818181818182
+      ]
+    }
+  },
+  "lock_manifest": "experiments/transfer_methods_2026/paper_grade_package/source_padfix_confirm_e32/locked_before_test220.json",
+  "seeds": {
+    "131": {
+      "checkpoint": "experiments/transfer_methods_2026/paper_grade_package/source_padfix_confirm_e32/seed131/source_checkpoint.pt",
+      "checkpoint_epoch": 31,
+      "checkpoint_sha256": "c387e3de30fd860d62d64f8b90f2375b47d3f2d37e20fd71ea1433055d14854b",
+      "label_authority": "HDF5 meta only",
+      "metrics": {
+        "auc": 0.9268595041322314,
+        "early_over_3000_ms_count": 0,
+        "early_over_3000_ms_shots": [],
+        "fpr": 0.17272727272727273,
+        "median_lead_ms": 117.00394268371592,
+        "minimum_lead_ms": 10.0,
+        "minimum_run": 1,
+        "n_disruptions": 110,
+        "n_non_disruptions": 110,
+        "n_shots": 220,
+        "raw_tpr": 0.8818181818181818,
+        "threshold": 0.9186439514160156,
+        "threshold_origin": "J-TEXT VAL160",
+        "timely_tpr": 0.8545454545454545
+      },
+      "predictions": "experiments/transfer_methods_2026/paper_grade_package/source_padfix_confirm_e32/seed131/test220_predictions.jsonl",
+      "predictions_sha256": "c51a1ec6c7f50fed6ccc1f1e4d7829b736535d0d8ac26fba1caa092789de4be3",
+      "split_counts": {
+        "test": 220,
+        "train": 1353,
+        "val": 160
+      },
+      "split_sha256": "2fe42e4190adfef4236692d5b6d71390cca79d69e4d069daf41e9105ded4349c",
+      "status": "SOURCE_TEST220_EVALUATED",
+      "test_used_for_training_or_selection": false,
+      "threshold_selection_split": "VAL160"
+    },
+    "133": {
+      "checkpoint": "experiments/transfer_methods_2026/paper_grade_package/source_padfix_confirm_e32/seed133/source_checkpoint.pt",
+      "checkpoint_epoch": 31,
+      "checkpoint_sha256": "9b1dfb9851c0c37507d57326f7fdb127121dfff6f86b15b45169daecb8170355",
+      "label_authority": "HDF5 meta only",
+      "metrics": {
+        "auc": 0.9404132231404959,
+        "early_over_3000_ms_count": 0,
+        "early_over_3000_ms_shots": [],
+        "fpr": 0.14545454545454545,
+        "median_lead_ms": 103.55188768371588,
+        "minimum_lead_ms": 10.0,
+        "minimum_run": 1,
+        "n_disruptions": 110,
+        "n_non_disruptions": 110,
+        "n_shots": 220,
+        "raw_tpr": 0.9181818181818182,
+        "threshold": 0.9558852314949036,
+        "threshold_origin": "J-TEXT VAL160",
+        "timely_tpr": 0.8090909090909091
+      },
+      "predictions": "experiments/transfer_methods_2026/paper_grade_package/source_padfix_confirm_e32/seed133/test220_predictions.jsonl",
+      "predictions_sha256": "1ca8c6a5ffc728a0f76071d77ad873e98a226555db83fbd85506b69564d43503",
+      "split_counts": {
+        "test": 220,
+        "train": 1353,
+        "val": 160
+      },
+      "split_sha256": "2fe42e4190adfef4236692d5b6d71390cca79d69e4d069daf41e9105ded4349c",
+      "status": "SOURCE_TEST220_EVALUATED",
+      "test_used_for_training_or_selection": false,
+      "threshold_selection_split": "VAL160"
+    },
+    "137": {
+      "checkpoint": "experiments/transfer_methods_2026/paper_grade_package/source_padfix_confirm_e32/seed137/source_checkpoint.pt",
+      "checkpoint_epoch": 29,
+      "checkpoint_sha256": "098e49ec9a686b05930026f15a46fb35df132b751060d3892acb2c56850d815b",
+      "label_authority": "HDF5 meta only",
+      "metrics": {
+        "auc": 0.9303305785123966,
+        "early_over_3000_ms_count": 0,
+        "early_over_3000_ms_shots": [],
+        "fpr": 0.13636363636363635,
+        "median_lead_ms": 110.9098026837159,
+        "minimum_lead_ms": 10.0,
+        "minimum_run": 1,
+        "n_disruptions": 110,
+        "n_non_disruptions": 110,
+        "n_shots": 220,
+        "raw_tpr": 0.9181818181818182,
+        "threshold": 0.9397750496864319,
+        "threshold_origin": "J-TEXT VAL160",
+        "timely_tpr": 0.8181818181818182
+      },
+      "predictions": "experiments/transfer_methods_2026/paper_grade_package/source_padfix_confirm_e32/seed137/test220_predictions.jsonl",
+      "predictions_sha256": "533ae2cc37b061a7a82b20f49db18e8c3b940ec02e2d36f655e12d214fb134a3",
+      "split_counts": {
+        "test": 220,
+        "train": 1353,
+        "val": 160
+      },
+      "split_sha256": "2fe42e4190adfef4236692d5b6d71390cca79d69e4d069daf41e9105ded4349c",
+      "status": "SOURCE_TEST220_EVALUATED",
+      "test_used_for_training_or_selection": false,
+      "threshold_selection_split": "VAL160"
+    }
+  },
+  "selection_boundary": "configuration and checkpoints were locked on TRAIN1353/VAL160 before TEST220 was opened",
+  "status": "SOURCE_PADFIX_TEST220_EVALUATED_ONCE"
+}

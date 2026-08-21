@@ -1,0 +1,70 @@
+{
+  "checkpoints": [
+    {
+      "best_epoch": 31,
+      "checkpoint": "experiments/transfer_methods_2026/paper_grade_package/source_padfix_confirm_e32/seed131/source_checkpoint.pt",
+      "checkpoint_sha256": "c387e3de30fd860d62d64f8b90f2375b47d3f2d37e20fd71ea1433055d14854b",
+      "seed": 131,
+      "validation_context_audit": {
+        "paired_context_alarm_flip_rate": 0.015350877192982455,
+        "paired_context_mean_abs_risk_difference": 0.011360954493284225,
+        "paired_context_p95_abs_risk_difference": 0.04342833533883095,
+        "paired_context_probe_balanced_accuracy": 0.34210526315789475,
+        "paired_context_probe_macro_auc": 0.6244517543859649,
+        "paired_context_validation_shots": 152
+      }
+    },
+    {
+      "best_epoch": 31,
+      "checkpoint": "experiments/transfer_methods_2026/paper_grade_package/source_padfix_confirm_e32/seed133/source_checkpoint.pt",
+      "checkpoint_sha256": "9b1dfb9851c0c37507d57326f7fdb127121dfff6f86b15b45169daecb8170355",
+      "seed": 133,
+      "validation_context_audit": {
+        "paired_context_alarm_flip_rate": 0.02631578947368421,
+        "paired_context_mean_abs_risk_difference": 0.008725916966795921,
+        "paired_context_p95_abs_risk_difference": 0.019890250638127327,
+        "paired_context_probe_balanced_accuracy": 0.3651315789473685,
+        "paired_context_probe_macro_auc": 0.6451444194367498,
+        "paired_context_validation_shots": 152
+      }
+    },
+    {
+      "best_epoch": 29,
+      "checkpoint": "experiments/transfer_methods_2026/paper_grade_package/source_padfix_confirm_e32/seed137/source_checkpoint.pt",
+      "checkpoint_sha256": "098e49ec9a686b05930026f15a46fb35df132b751060d3892acb2c56850d815b",
+      "seed": 137,
+      "validation_context_audit": {
+        "paired_context_alarm_flip_rate": 0.021929824561403508,
+        "paired_context_mean_abs_risk_difference": 0.0076358988881111145,
+        "paired_context_p95_abs_risk_difference": 0.02025619149208069,
+        "paired_context_probe_balanced_accuracy": 0.3963815789473684,
+        "paired_context_probe_macro_auc": 0.6494979224376731,
+        "paired_context_validation_shots": 152
+      }
+    }
+  ],
+  "maximum_epochs": 32,
+  "seeds": [
+    131,
+    133,
+    137
+  ],
+  "status": "LOCKED_BEFORE_TEST220",
+  "test_shards_read_before_lock": 0,
+  "training_regularization": {
+    "causal_view_contract": "same endpoint; delete older history only",
+    "consistency_weight": 0.2,
+    "context_lengths": [
+      32,
+      64,
+      96,
+      128
+    ],
+    "context_view_weight": 0.5,
+    "epoch_selection": "VAL160 preregistered source and context gates first",
+    "pad_adversary_condition": "separate outcome-specific heads",
+    "pad_adversary_strategy": "alternating detached probe plus uniform-confusion encoder loss",
+    "pad_adversary_weight": 0.005,
+    "representation_consistency_weight": 0.5
+  }
+}
