@@ -53,17 +53,24 @@ evidence reasons below.
    files in this staged tree), not a hand-maintained 11-file subset. It remains
    explicitly non-preregistered and is not represented as an execution-time
    seal.
-8. CI now covers fixed-shape runner/controller contracts, regenerates tables
-   and figures, validates the package, and compiles both LaTeX manuscripts.
+8. CI covers fixed-shape runner/controller contracts, requires byte-identical
+   regenerated LaTeX tables, rebuilds all 12 figures in an isolated directory
+   with exact filename/count/self-hash plus PDF/SVG/PNG readability checks,
+   validates the package, and compiles both LaTeX manuscripts. Figure bytes are
+   not compared across FreeType implementations; the committed RTX-reference
+   outputs remain bound by their release hashes.
 9. Release-critical artifacts, reconstruction scripts, figures and tables are
-   required to be Git tracked; regenerated hashes must match their manifests.
-10. The tracked release suite produced **280 passed tests** from a clean GitHub
-    clone, with five existing Transformer nested-tensor warnings. The local
-    research checkout also contains 13 passing tests for two deliberately
-    Git-ignored, superseded exploratory helpers; those tests and helpers are not
-    part of the v3c release evidence and are not counted as clean-clone proof.
-    Forced XeLaTeX builds produced the 16-page main paper and 13-page supplement,
-    and the package validator passed **126/126** checks.
+   required to be Git tracked. Committed artifacts must match their manifests;
+   cross-platform figure reconstruction is checked structurally rather than by
+   an invalid cross-renderer binary-equality assumption.
+10. A fresh GitHub `main` clone at the release code snapshot produced **292/292
+    passed tests** when `FUSION_DATA_ROOT` pointed to the external HDF5 tree,
+    with five existing Transformer nested-tensor warnings. Without raw data,
+    291 tests pass and the sole HDF5-authority test fails explicitly on the
+    missing file, while the public audit command independently verifies the
+    documented fail-closed behavior. Forced XeLaTeX builds produced the 16-page
+    main paper and 13-page supplement, the package validator passed **126/126**
+    checks, and the final remote repository workflow completed successfully.
 
 ## Evidence that still cannot be repaired from the current data
 
@@ -96,8 +103,7 @@ confirmatory readiness remains FAIL even if all five local-integrity lanes pass:
 ## Defensible claim ceiling
 
 The package supports this development claim locally, including the completed
-280-test clean-clone verification. Remote CI remains the final release
-operation before archival handoff:
+292-test data-backed clean-clone verification and successful remote workflow:
 
 > Under HDF5-authoritative labels and the archived v3c lineage, the released
 > replay implements `predict → seal → query → selected reveal → later-shot
