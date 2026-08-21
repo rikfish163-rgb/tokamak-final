@@ -1,0 +1,61 @@
+{
+  "schema_version": "prospective-east-confirmation-v1",
+  "claim_status": "PROSPECTIVE_PREREGISTRATION_ONLY",
+  "frozen_git_sha": "REPLACE_WITH_CLEAN_COMMITTED_GIT_SHA",
+  "seeds": [131, 133, 137],
+  "arms": [
+    "static",
+    "active",
+    "no_label",
+    "causal_random_query",
+    "label_frontload",
+    "east_only"
+  ],
+  "label_source": ["/meta/IsDisrupt", "/meta/DownTime"],
+  "primary_metric": "TPR_at_lead_ge_30ms_minus_FPR",
+  "admission_gates": {
+    "tpr_at_lead_ge_30ms_min": 0.8,
+    "fpr_max": 0.2,
+    "median_lead_ms_min": 30.0,
+    "worst_block_tpr_at_lead_ge_30ms_min": 0.8,
+    "worst_block_fpr_max": 0.2,
+    "absolute_shot_id_spearman_max": 0.2
+  },
+  "over_3000ms_counts_as_tpr": true,
+  "retuning_prohibited": true,
+  "complete_stream_reporting": true,
+  "prediction_order": "predict-seal-query-selected-reveal-later-shot-update",
+  "target_validation_completed": true,
+  "target_validation_artifact": "REPLACE_WITH_NEW_TARGET_VALIDATION_THRESHOLD_ARTIFACT.json",
+  "random_schedule_artifact": "REPLACE_WITH_PRESEALED_LABEL_FREE_RANDOM_SCHEDULES.json",
+  "execution_plan_artifact": "REPLACE_WITH_FROZEN_CONFIRMATION_EXECUTION_PLAN.json",
+  "target_validation_policy": "use a new pre-confirmation validation cohort disjoint from support fitting and from the confirmation stream; freeze the threshold before confirmation outcomes are opened",
+  "random_selector_policy": "seal label-agnostic block-count-matched schedules before confirmation outcomes are opened",
+  "equal_compute_policy": "log sampled windows, optimizer attempts, accepted updates and FLOPs for every arm",
+  "excluded_shots": [],
+  "excluded_shot_sources": [
+    {
+      "path": "config/splits/east_paper131_split_all_in.json",
+      "json_pointers": [
+        "/train/disruption_shots",
+        "/train/non_disruption_shots",
+        "/test/disruption_shots",
+        "/test/non_disruption_shots"
+      ]
+    }
+  ],
+  "frozen_artifacts": [
+    "REPLACE_WITH_NEW_TARGET_VALIDATION_THRESHOLD_ARTIFACT.json",
+    "REPLACE_WITH_PRESEALED_LABEL_FREE_RANDOM_SCHEDULES.json",
+    "REPLACE_WITH_FROZEN_CONFIRMATION_EXECUTION_PLAN.json",
+    "experiments/transfer_methods_2026/paper_grade_package/configs/primary_chain_v3c.json",
+    "config/splits/east_paper131_split_all_in.json",
+    "config/splits/east_hdf5_authoritative_balanced360_v1.json",
+    "experiments/transfer_methods_2026/paper_grade_package/evidence/source_lineage/seed131/source_checkpoint.pt",
+    "experiments/transfer_methods_2026/paper_grade_package/evidence/source_lineage/seed133/source_checkpoint.pt",
+    "experiments/transfer_methods_2026/paper_grade_package/evidence/source_lineage/seed137/source_checkpoint.pt",
+    "experiments/transfer_methods_2026/paper_grade_package/evidence/equal_label_budget_frontload_v2/seed131/support_only/frontloaded_target_state.pt",
+    "experiments/transfer_methods_2026/paper_grade_package/evidence/equal_label_budget_frontload_v2/seed133/support_only/frontloaded_target_state.pt",
+    "experiments/transfer_methods_2026/paper_grade_package/evidence/equal_label_budget_frontload_v2/seed137/support_only/frontloaded_target_state.pt"
+  ]
+}

@@ -5,6 +5,7 @@
 ![Evidence status](https://img.shields.io/badge/evidence-development--only-orange?style=flat)
 ![Default CLI](https://img.shields.io/badge/default%20CLI-v3c%20archived--parent%20replay-2f80ed?style=flat)
 ![Independent future stream](https://img.shields.io/badge/independent%20future%20stream-not%20available-red?style=flat)
+![Repository contract](https://github.com/rikfish163-rgb/tokamak-final/actions/workflows/ci.yml/badge.svg)
 ![License](https://img.shields.io/badge/license-MIT-blue?style=flat)
 
 > A reproducibility-first research package for causal J-TEXT → EAST transfer and chronological online adaptation, with HDF5-authoritative labels and sealed query/reveal ledgers.
@@ -21,6 +22,7 @@
 - [Reproducibility contract](#reproducibility-contract)
 - [Evidence map](#evidence-map)
 - [Completed development controls](#completed-development-controls)
+- [Prospective confirmation seal](#prospective-confirmation-seal)
 - [Limitations and claim boundary](#limitations-and-claim-boundary)
 - [Repository layout](#repository-layout)
 - [Citation and license](#citation-and-license)
@@ -183,6 +185,53 @@ The causal block-matched random-query replay is complete for seeds 131/133/137 w
 A separate post-development roster screen uses a new fixed-shape assimilation operator. Every queried shot receives 16 current windows, 16 immutable support windows, two shared optimizer attempts and two private attempts; intra-shot, alarm, episode and memory learners are frozen. The archived active roster does not beat the three block-count-matched random rosters in any seed (`-0.00185/0/-0.00556` utility differences). Guard acceptance still causes different committed parameter changes. This negative result rejects only archived-roster superiority under that operator; it neither estimates the adaptive selector-policy effect nor proves a null/equivalence result.
 
 The strict EAST-only baseline is also complete. Its equal-seed mean `TPR@30−FPR` is `0.6519`, versus `0.6741` for J-TEXT→EAST transfer-static; the transferred model increases TPR and lead but also increases FPR. Because EAST-only updates a full randomly initialized encoder while transfer updates a restricted target path, this is a target-data sufficiency/control result rather than a capacity-matched architecture ablation.
+
+The seed-131 low-budget **Q30** roster was first selected causally while the
+balanced360 stream advanced, using label-free current/past query-value evidence,
+a rolling cutoff, token budget and exploration. It was only **frozen after
+selection** so `inter_only`, `intra+inter` and direct-front-load controls could
+reuse the same label identities. It is neither an arbitrary predeclared cohort
+nor a hindsight global top-30. The immutable identities and positions are in
+[the Q30 manifest](experiments/transfer_methods_2026/paper_grade_package/evidence/fixed_query_low_budget30_seed131.json).
+The original 360-row decision ledger was lost after a tmpfs reboot, so Q30 is a
+development diagnostic rather than independently replayable selector evidence.
+The primary v3c online runs are separate and queried `102/90/99` shots for seeds
+`131/133/137`.
+
+## Prospective confirmation seal
+
+The missing experiment cannot be manufactured from balanced360, but its
+pre-outcome contract is now executable. After a new target-validation cohort
+has produced a committed threshold artifact, and before any confirmation-stream
+outcome is opened:
+
+1. copy
+   [the prospective template](configs/prospective_east_confirmation.template.json)
+   outside the checkout;
+2. replace its git-SHA, target-validation, pre-sealed random-schedule and
+   frozen-execution-plan placeholders;
+3. provide separate, strictly increasing, shot-ID-only validation and
+   confirmation rosters; and
+4. create the seal outside the clean checkout:
+
+```bash
+conda run -n rl_env python -m reproducibility.cli prospective-seal \
+  --spec /external/preregistration.json \
+  --validation-roster /external/target-validation-shots.txt \
+  --roster /external/future-confirmation-shots.txt \
+  --output /external/future-confirmation.seal.json
+
+conda run -n rl_env python -m reproducibility.cli prospective-verify \
+  --seal /external/future-confirmation.seal.json \
+  --spec /external/preregistration.json \
+  --validation-roster /external/target-validation-shots.txt \
+  --roster /external/future-confirmation-shots.txt
+```
+
+The seal fails closed on known-shot overlap, validation/confirmation overlap,
+metadata-bearing rosters, dirty Git state, a mismatched commit, missing frozen
+artifacts, or any later byte change. It does not claim that the unavailable
+future experiment has run.
 
 ## Limitations and claim boundary
 

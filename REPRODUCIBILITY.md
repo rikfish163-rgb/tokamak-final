@@ -127,3 +127,25 @@ experiment requires a newly acquired chronological EAST stream, a target
 validation rule separate from support fitting, and static/active/no-label/
 equal-budget-random branches frozen before outcomes are opened.  A future Git
 release also needs a code DOI and a data DOI or controlled-access procedure.
+
+The repository can now fail-closed on the pre-outcome part of that experiment.
+After the separate target-validation cohort is complete and its threshold
+artifact is committed, copy
+`configs/prospective_east_confirmation.template.json` outside the checkout,
+fill its Git SHA, validation-threshold, random-schedule and execution-plan
+placeholders, and run:
+
+```bash
+conda run -n rl_env python -m reproducibility.cli prospective-seal \
+  --spec /external/preregistration.json \
+  --validation-roster /external/target-validation-shots.txt \
+  --roster /external/future-confirmation-shots.txt \
+  --output /external/future-confirmation.seal.json
+```
+
+Both rosters must contain one strictly increasing shot ID per line and no
+metadata or outcomes. The command binds the validation and confirmation
+rosters, clean Git SHA, exact method spec, all three source checkpoints, all
+three migrated target parents, split/config files and the new validation
+artifact. `prospective-verify` fails if any bound byte changes. This is a
+preregistration mechanism, not evidence that the external run exists.

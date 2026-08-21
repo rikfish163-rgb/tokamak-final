@@ -37,6 +37,7 @@ EQUAL_COMPUTE = (
 EAST_TARGET_ONLY = PACKAGE / "evidence/east_target_only_v1/comparison.json"
 HDF5_CONTENT_MANIFEST = PACKAGE / "evidence/required_hdf5_content_manifest.json"
 Q30_MANIFEST = PACKAGE / "evidence/fixed_query_low_budget30_seed131.json"
+PROSPECTIVE_TEMPLATE = ROOT / "configs/prospective_east_confirmation.template.json"
 EQUAL_COMPUTE_CODE_MANIFEST = (
     PACKAGE
     / "evidence/equal_compute_selector_control_v1/code_environment_manifest.json"
@@ -863,6 +864,35 @@ def main() -> None:
     )
     results.append(check(q30_ok, "Q30 frozen identity and provenance boundary",
                          q30_failures))
+    prospective = json.loads(PROSPECTIVE_TEMPLATE.read_text())
+    prospective_arms = {
+        "static", "active", "no_label", "causal_random_query",
+        "label_frontload", "east_only",
+    }
+    results.extend([
+        check(
+            prospective.get("schema_version")
+            == "prospective-east-confirmation-v1"
+            and prospective.get("claim_status")
+            == "PROSPECTIVE_PREREGISTRATION_ONLY"
+            and set(prospective.get("arms", [])) == prospective_arms
+            and prospective.get("retuning_prohibited") is True
+            and prospective.get("complete_stream_reporting") is True
+            and prospective.get("target_validation_completed") is True,
+            "prospective confirmation template preserves frozen claim contract",
+        ),
+        check(
+            all(
+                prospective.get(field) in prospective.get("frozen_artifacts", [])
+                for field in (
+                    "target_validation_artifact",
+                    "random_schedule_artifact",
+                    "execution_plan_artifact",
+                )
+            ),
+            "prospective validation, random schedules and execution plan are hash-bound",
+        ),
+    ])
     for seed in (131, 133, 137):
         seed_dir = PACKAGE / f"evidence/primary_online_artifacts/seed{seed}"
         causal_ok, causal_failures = validate_primary_causal_ledgers(seed_dir)
@@ -900,6 +930,8 @@ def main() -> None:
         HDF5_CONTENT_MANIFEST,
         Q30_MANIFEST,
         EQUAL_COMPUTE_CODE_MANIFEST,
+        PROSPECTIVE_TEMPLATE,
+        ROOT / "reproducibility/prospective.py",
     ]
     results.append(check(all(path.is_file() for path in required_files),
                          "required source/report files",

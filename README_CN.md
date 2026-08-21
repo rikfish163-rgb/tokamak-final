@@ -5,6 +5,7 @@
 ![证据状态](https://img.shields.io/badge/evidence-development--only-orange?style=flat)
 ![默认 CLI](https://img.shields.io/badge/default%20CLI-v3c%20archived--parent%20replay-2f80ed?style=flat)
 ![独立未来流](https://img.shields.io/badge/independent%20future%20stream-not%20available-red?style=flat)
+![仓库合同](https://github.com/rikfish163-rgb/tokamak-final/actions/workflows/ci.yml/badge.svg)
 ![许可证](https://img.shields.io/badge/license-MIT-blue?style=flat)
 
 > 这是一个以可复现和可审计为中心的研究包，用于 J-TEXT → EAST 因果迁移与按时间顺序的在线适配；标签以 HDF5 为权威，并保留封存后的 query/reveal 账本。
@@ -22,6 +23,7 @@
 - [可复现合同](#cn-reproducibility)
 - [证据映射](#cn-evidence-map)
 - [已完成的开发控制](#cn-completed-controls)
+- [未来独立确认封存](#cn-prospective-seal)
 - [限制与结论边界](#cn-limitations)
 - [仓库结构](#cn-layout)
 - [引用与许可证](#cn-citation)
@@ -183,6 +185,46 @@ conda run -n rl_env python \
 因果块匹配 random-query 回放已完成：seeds 131/133/137 各有三个随机日程。主动相对随机均值的 `TPR@30−FPR` 分别为 `+0.0204/+0.0093/+0.0185`，等 seed 均值为 `+0.0160`。但主动策略触发的实际错误条件化炮间更新尝试约为随机策略的 `2.21×`，所以这支持的是开发流上的完整主动机制，而不是 selector-only 等 FLOP 因果效应，也不能让 balanced360 事后变成独立确认集。
 
 严格 EAST-only baseline 也已完成。其等 seed `TPR@30−FPR=0.6519`，J-TEXT→EAST static 为 `0.6741`；迁移提高 TPR 和提前量，也带来小幅 FPR 增加。EAST-only 会更新完整随机初始化 encoder，而迁移只更新受限目标路径，因此该对照说明目标数据可识别性和迁移增量，不是完全等容量架构消融。
+
+seed131 的低预算 **Q30** 是 balanced360 顺序流推进时，由只使用当前/过去
+无标签证据的炮级查询价值、滚动阈值、token 预算和探索机制因果选出的；只有
+在选择完成后才冻结清单，让 `inter_only`、`intra+inter` 和30炮前置迁移复用
+完全相同的标签身份。它不是人工预设 cohort，也不是看完360炮后的全局 top-30。
+30个炮号与流位置见 [Q30 manifest](experiments/transfer_methods_2026/paper_grade_package/evidence/fixed_query_low_budget30_seed131.json)。
+原始360行逐炮决策账本在 tmpfs 重启后丢失，因此 Q30 只能作为开发诊断，不能
+作为可独立重放的 selector 证据。主 v3c 是另一组实验，三个 seed 分别动态查询
+`102/90/99` 炮。
+
+<a id="cn-prospective-seal"></a>
+## 未来独立确认封存
+
+balanced360 不能重新变成独立确认集，但未来实验的结局前合同已经可以执行。
+先用一个与 support 拟合和确认流都互斥的新目标验证 cohort 生成并提交阈值产物；
+在打开任何确认流结局前：
+
+1. 将[未来确认模板](configs/prospective_east_confirmation.template.json)复制到
+   checkout 外；
+2. 替换其中 git SHA、目标验证阈值、预封存随机日程和冻结执行计划占位符；
+3. 分别提供只含单列递增炮号的目标验证炮表和未来确认炮表；
+4. 在干净、已提交的 checkout 上生成并复核外部 seal：
+
+```bash
+conda run -n rl_env python -m reproducibility.cli prospective-seal \
+  --spec /external/preregistration.json \
+  --validation-roster /external/target-validation-shots.txt \
+  --roster /external/future-confirmation-shots.txt \
+  --output /external/future-confirmation.seal.json
+
+conda run -n rl_env python -m reproducibility.cli prospective-verify \
+  --seal /external/future-confirmation.seal.json \
+  --spec /external/preregistration.json \
+  --validation-roster /external/target-validation-shots.txt \
+  --roster /external/future-confirmation-shots.txt
+```
+
+工具会对既有炮重叠、验证/确认重叠、含标签或元数据的炮表、脏工作树、git SHA
+不匹配、冻结产物缺失和封存后字节变化全部失败关闭。它只补齐预注册能力，并不
+假装尚未获得的新未来流已经完成。
 
 <a id="cn-limitations"></a>
 ## 限制与结论边界

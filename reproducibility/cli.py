@@ -7,6 +7,11 @@ from pathlib import Path
 
 from reproducibility.data_contract import DataContractError, audit_data
 from reproducibility.paths import data_root, project_root
+from reproducibility.prospective import (
+    ProspectiveContractError,
+    create_prospective_seal,
+    verify_prospective_seal,
+)
 from reproducibility.reproduce import SEEDS, run_reproduction
 from reproducibility.verify_results import compare_multiseed_results
 
@@ -56,6 +61,26 @@ def build_parser() -> argparse.ArgumentParser:
         ),
     )
     verify.add_argument("--tolerance", type=float, default=1e-8)
+
+    prospective_seal = sub.add_parser(
+        "prospective-seal",
+        help="seal a label-free chronological EAST confirmation roster",
+    )
+    prospective_seal.add_argument("--spec", type=Path, required=True)
+    prospective_seal.add_argument("--validation-roster", type=Path, required=True)
+    prospective_seal.add_argument("--roster", type=Path, required=True)
+    prospective_seal.add_argument("--output", type=Path, required=True)
+    prospective_seal.add_argument("--repo-root", type=Path, default=project_root())
+
+    prospective_verify = sub.add_parser(
+        "prospective-verify",
+        help="verify a prospective seal against code, roster and artifacts",
+    )
+    prospective_verify.add_argument("--seal", type=Path, required=True)
+    prospective_verify.add_argument("--spec", type=Path, required=True)
+    prospective_verify.add_argument("--validation-roster", type=Path, required=True)
+    prospective_verify.add_argument("--roster", type=Path, required=True)
+    prospective_verify.add_argument("--repo-root", type=Path, default=project_root())
     return parser
 
 
@@ -107,7 +132,32 @@ def main(argv: list[str] | None = None) -> int:
             )
             print(json.dumps(payload, indent=2, sort_keys=True))
             return 0 if payload["passed"] else 3
-    except (DataContractError, FileExistsError, RuntimeError) as exc:
+        if args.command == "prospective-seal":
+            payload = create_prospective_seal(
+                spec_path=args.spec,
+                validation_roster_path=args.validation_roster,
+                roster_path=args.roster,
+                output_path=args.output,
+                repo_root=args.repo_root,
+            )
+            print(json.dumps(payload, indent=2, sort_keys=True))
+            return 0
+        if args.command == "prospective-verify":
+            payload = verify_prospective_seal(
+                seal_path=args.seal,
+                spec_path=args.spec,
+                validation_roster_path=args.validation_roster,
+                roster_path=args.roster,
+                repo_root=args.repo_root,
+            )
+            print(json.dumps(payload, indent=2, sort_keys=True))
+            return 0 if payload["passed"] else 4
+    except (
+        DataContractError,
+        ProspectiveContractError,
+        FileExistsError,
+        RuntimeError,
+    ) as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
         return 2
     raise AssertionError(args.command)
