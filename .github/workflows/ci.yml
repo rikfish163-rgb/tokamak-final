@@ -18,17 +18,23 @@ jobs:
           version: "0.9.21"
       - name: Install PDF inspection tools
         run: sudo apt-get update && sudo apt-get install -y poppler-utils
-      # The public CI contract is CPU/unit-only. The CUDA wheels are installed
-      # by the documented local/GPU environment, not by every pull request.
-      - run: uv sync --frozen --extra dev --no-install-package torch --no-install-package torchvision
-      - run: uv run pytest tests/reproducibility -q
+      # The public CI contract is CPU/unit-only. The dedicated locked group
+      # deliberately excludes the CUDA project runtime used on the RTX 5070.
+      - name: Install locked CPU audit dependencies
+        run: uv sync --frozen --only-group ci --no-install-project
+      - name: Install pinned CPU Torch for synthetic controller tests
+        run: >-
+          uv pip install --python .venv/bin/python
+          torch==2.11.0
+          --index-url https://download.pytorch.org/whl/cpu
+      - run: uv run --no-sync pytest tests/reproducibility -q
       - name: Test paper evidence and roster-screen reporting logic
         run: >-
-          uv run pytest tests/experiments/test_paper_grade_evidence.py -q
+          uv run --no-sync pytest tests/experiments/test_paper_grade_evidence.py -q
           -k "not east_support_roster_relabels_to_hdf5_authoritative_15d_95n"
       - name: Test fixed-shape runner and controller contracts
         run: >-
-          uv run pytest -q
+          uv run --no-sync pytest -q
           tests/experiments/test_unified_online_runner.py
           tests/experiments/test_two_timescale_online_adapter.py
           tests/experiments/test_east_private_continual.py
@@ -36,11 +42,11 @@ jobs:
           -k "fixed_compute or selector_compute_control or fixed_query"
       - name: Regenerate hash-bound tables and figures
         run: |
-          uv run python experiments/transfer_methods_2026/paper_grade_package/scripts/generate_latex_tables.py
-          uv run python experiments/transfer_methods_2026/paper_grade_package/scripts/generate_figures.py
+          uv run --no-sync python experiments/transfer_methods_2026/paper_grade_package/scripts/generate_latex_tables.py
+          uv run --no-sync python experiments/transfer_methods_2026/paper_grade_package/scripts/generate_figures.py
           git diff --exit-code -- experiments/transfer_methods_2026/paper_grade_package/manuscript/tables experiments/transfer_methods_2026/paper_grade_package/figures
       - name: Validate archived paper evidence
-        run: uv run python experiments/transfer_methods_2026/paper_grade_package/scripts/validate_paper_package.py
+        run: uv run --no-sync python experiments/transfer_methods_2026/paper_grade_package/scripts/validate_paper_package.py
       - name: Compile manuscripts from committed sources
         uses: xu-cheng/latex-action@v4
         with:
@@ -52,7 +58,7 @@ jobs:
       - name: Confirm missing data fails closed
         run: |
           set +e
-          uv run fusion-reproduce audit --data-root "$RUNNER_TEMP/no-data" > audit.out 2> audit.err
+          uv run --no-sync python -m reproducibility.cli audit --data-root "$RUNNER_TEMP/no-data" > audit.out 2> audit.err
           code=$?
           test "$code" -ne 0
           grep -q "missing required data directory" audit.err
