@@ -166,3 +166,12 @@ def test_reproduction_reference_can_be_scoped_to_requested_seeds() -> None:
     assert [row["seed"] for row in scoped["seeds"]] == [131]
     verdict = runner.compare_multiseed_results(scoped, scoped)
     assert verdict["passed"] is True
+
+
+def test_readme_distinguishes_cpu_audit_from_cuda_and_checkout_cli() -> None:
+    readme = (ROOT / "README.md").read_text()
+
+    assert "uv sync --frozen --extra dev" not in readme
+    assert "uv sync --frozen --only-group ci --no-install-project" in readme
+    assert "not a standalone wheel" in readme.lower()
+    assert "FUSION_PROJECT_ROOT" in readme

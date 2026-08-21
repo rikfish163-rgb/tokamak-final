@@ -869,6 +869,20 @@ def main() -> None:
         "static", "active", "no_label", "causal_random_query",
         "label_frontload", "east_only",
     }
+    prospective_exclusion_sources = {
+        source.get("path"): set(source.get("json_pointers", []))
+        for source in prospective.get("excluded_shot_sources", [])
+        if isinstance(source, dict)
+    }
+    required_exclusion_sources = {
+        "config/splits/east_paper131_split_all_in.json": {
+            "/train/disruption_shots", "/train/non_disruption_shots",
+            "/test/disruption_shots", "/test/non_disruption_shots",
+        },
+        "config/splits/east_hdf5_authoritative_balanced360_v1.json": {
+            "/test/disruption_shots", "/test/non_disruption_shots",
+        },
+    }
     results.extend([
         check(
             prospective.get("schema_version")
@@ -878,7 +892,11 @@ def main() -> None:
             and set(prospective.get("arms", [])) == prospective_arms
             and prospective.get("retuning_prohibited") is True
             and prospective.get("complete_stream_reporting") is True
-            and prospective.get("target_validation_completed") is True,
+            and prospective.get("target_validation_completed") is True
+            and all(
+                prospective_exclusion_sources.get(path) == pointers
+                for path, pointers in required_exclusion_sources.items()
+            ),
             "prospective confirmation template preserves frozen claim contract",
         ),
         check(

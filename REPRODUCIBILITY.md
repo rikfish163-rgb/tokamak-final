@@ -115,10 +115,15 @@ the frozen checkpoints.
 
 ## Default CLI
 
-`python -m reproducibility.cli reproduce` and the installed
-`fusion-reproduce reproduce` entry now invoke this v3c archived-parent path and
-verify against `results/reference/paper_v3c_multiseed_summary.json`. Historical
-v8 artifacts are not part of the final paper-lineage reproduction contract.
+From a complete source checkout, `python -m reproducibility.cli reproduce` and
+the editable-installed `fusion-reproduce reproduce` entry invoke this v3c
+archived-parent path and verify against
+`results/reference/paper_v3c_multiseed_summary.json`. This is intentionally a
+repository reproduction surface, not a standalone wheel: frozen experiment
+scripts, checkpoints, split contracts and reference results remain repository
+assets. Set `FUSION_PROJECT_ROOT` when invoking the entry outside the checkout
+directory. Historical v8 artifacts are not part of the final paper-lineage
+reproduction contract.
 
 ## Missing confirmation evidence
 

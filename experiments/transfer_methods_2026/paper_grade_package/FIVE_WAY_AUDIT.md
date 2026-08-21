@@ -29,7 +29,7 @@ evidence reasons below.
 
 ## Remediation verified in the final re-review
 
-1. The validator is currently **126/126 PASS** for local package integrity and
+1. The validator is currently **128/128 PASS** for local package integrity and
    disclosure completeness. It recomputes all 12 fixed-shape online ledgers and
    all 12 static ledgers from HDF5 `/meta/IsDisrupt` and `/meta/DownTime`.
 2. The fixed-shape report uses a derived adjudication with positive, tied and
@@ -49,7 +49,7 @@ evidence reasons below.
    3-seed × 4-arm regenerated bundle before the report and artifact manifest
    are built from the released directory itself.
 7. The post-run code/environment manifest now hashes the complete Git-indexed
-   local Python/shell, configuration, dependency-lock and CI snapshot (92
+   local Python/shell, configuration, dependency-lock and CI snapshot (95
    files in this staged tree), not a hand-maintained 11-file subset. It remains
    explicitly non-preregistered and is not represented as an execution-time
    seal.
@@ -63,14 +63,25 @@ evidence reasons below.
    required to be Git tracked. Committed artifacts must match their manifests;
    cross-platform figure reconstruction is checked structurally rather than by
    an invalid cross-renderer binary-equality assumption.
-10. A fresh GitHub `main` clone at the release code snapshot produced **292/292
+10. A fresh GitHub `main` clone at the release code snapshot produced **303/303
     passed tests** when `FUSION_DATA_ROOT` pointed to the external HDF5 tree,
     with five existing Transformer nested-tensor warnings. Without raw data,
-    291 tests pass and the sole HDF5-authority test fails explicitly on the
+    302 tests pass and the sole HDF5-authority test fails explicitly on the
     missing file, while the public audit command independently verifies the
     documented fail-closed behavior. Forced XeLaTeX builds produced the 16-page
-    main paper and 13-page supplement, the package validator passed **126/126**
+    main paper and 13-page supplement, the package validator passed **128/128**
     checks, and the final remote repository workflow completed successfully.
+11. The future-confirmation contract is now executable rather than prose-only.
+    It requires a separate target-validation roster and threshold artifact,
+    pre-sealed random schedules and execution plan, a clean exact Git SHA, all
+    three source and migrated-parent checkpoints, shot-only chronological
+    rosters, zero overlap with all registered EAST shots, and zero validation/
+    confirmation overlap. It fails closed on later byte changes and remains a
+    preregistration tool, not evidence that the missing future stream ran. The
+    seal implementation, template, validator and regression tests all require
+    both the paper131 source roster and the HDF5-authoritative balanced360
+    development roster, so an external spec cannot silently drop either prior
+    EAST cohort.
 
 ## Evidence that still cannot be repaired from the current data
 
@@ -103,7 +114,7 @@ confirmatory readiness remains FAIL even if all five local-integrity lanes pass:
 ## Defensible claim ceiling
 
 The package supports this development claim locally, including the completed
-292-test data-backed clean-clone verification and successful remote workflow:
+303-test data-backed clean-clone verification and successful remote workflow:
 
 > Under HDF5-authoritative labels and the archived v3c lineage, the released
 > replay implements `predict → seal → query → selected reveal → later-shot

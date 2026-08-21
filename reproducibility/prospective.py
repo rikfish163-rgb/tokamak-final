@@ -24,6 +24,18 @@ REQUIRED_ARMS = {
 }
 REQUIRED_SEEDS = [131, 133, 137]
 REQUIRED_LABEL_SOURCE = ["/meta/IsDisrupt", "/meta/DownTime"]
+REQUIRED_PRIOR_EAST_SOURCES = {
+    "config/splits/east_paper131_split_all_in.json": {
+        "/train/disruption_shots",
+        "/train/non_disruption_shots",
+        "/test/disruption_shots",
+        "/test/non_disruption_shots",
+    },
+    "config/splits/east_hdf5_authoritative_balanced360_v1.json": {
+        "/test/disruption_shots",
+        "/test/non_disruption_shots",
+    },
+}
 
 
 def _sha256_file(path: Path) -> str:
@@ -151,6 +163,17 @@ def _read_spec(path: Path) -> dict[str, Any]:
             raise ProspectiveContractError(
                 "excluded_shot_sources requires JSON pointer lists"
             )
+    registered_sources = {
+        source["path"]: set(source["json_pointers"])
+        for source in sources
+    }
+    if any(
+        registered_sources.get(path) != pointers
+        for path, pointers in REQUIRED_PRIOR_EAST_SOURCES.items()
+    ):
+        raise ProspectiveContractError(
+            "excluded_shot_sources must bind every canonical prior EAST roster"
+        )
     if not excluded and not sources:
         raise ProspectiveContractError(
             "at least one prior-shot exclusion source is required"

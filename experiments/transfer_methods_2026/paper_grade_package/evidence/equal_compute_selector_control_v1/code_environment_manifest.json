@@ -2,7 +2,7 @@
   "provenance_boundary": "These hashes bind the complete Git-indexed local Python/shell, configuration, dependency-lock and CI snapshot used to reconstruct the released analysis. They were produced after the runs and do not prove which uncommitted source bytes executed historically. Run commands, output hashes, parents and per-query receipts remain separate evidence.",
   "provenance_status": "POST_RUN_RELEASE_SNAPSHOT_NOT_EXECUTION_TIME_SEAL",
   "release_environment_snapshot": {
-    "executable_contract": "GPU/reference: rl_env or uv sync --frozen --extra dev; public CPU audit: uv sync --frozen --only-group ci --no-install-project, then pinned torch 2.11.0 from the official PyTorch CPU index",
+    "executable_contract": "GPU/reference: CUDA-capable rl_env; public CPU audit: uv sync --frozen --only-group ci --no-install-project, then pinned torch 2.11.0 from the official PyTorch CPU index",
     "implementation": "CPython",
     "packages": {
       "h5py": "3.15.1",
@@ -70,9 +70,9 @@
       "sha256": "b8347f0d2bde7a7c2def75ccae6601b04658b180ec216e815cadf54d569a2f7b"
     },
     {
-      "bytes": 3133,
+      "bytes": 3325,
       "path": "configs/prospective_east_confirmation.template.json",
-      "sha256": "b6a9b70840639476c378c8afbb8ebd35a8ecd9908d2463ed2f32312cf8bbce0f"
+      "sha256": "dc0482d41cb20059a34c749ab3d2eaa10e185401efd34eedb0642757462c0eea"
     },
     {
       "bytes": 23990,
@@ -190,9 +190,9 @@
       "sha256": "9ec358769480bf924807f31d8d59f8dc169f6942ba47567c142f8b2fddea751c"
     },
     {
-      "bytes": 4860,
+      "bytes": 4841,
       "path": "experiments/transfer_methods_2026/paper_grade_package/scripts/build_equal_compute_code_manifest.py",
-      "sha256": "a39414e21f9cc1edfbbd5260cdb004eedb4395c4a8f26468756f736f416f399f"
+      "sha256": "4af2142aa61b8c1319e8ca57ebe8a4140fe85f3032f5e2055856f86e5ce14c28"
     },
     {
       "bytes": 15647,
@@ -250,9 +250,9 @@
       "sha256": "5b818ba0758e27535b721d22e2476a18e01ca47229f70d609e97d1f4e38d8250"
     },
     {
-      "bytes": 50039,
+      "bytes": 50826,
       "path": "experiments/transfer_methods_2026/paper_grade_package/scripts/validate_paper_package.py",
-      "sha256": "2010d83cc361593eac322ed5c99bb6920b7b30616f561221064dcdf5db0a7388"
+      "sha256": "0a6718484d0fbc9b72cd3387a9084b09b65ace622294e83010d9a7892b8b6066"
     },
     {
       "bytes": 19834,
@@ -365,9 +365,9 @@
       "sha256": "2bb00fb3c3cd92ed80cb27efcde99405334a8cc4a460a4773e3e7077e2fcd696"
     },
     {
-      "bytes": 15011,
+      "bytes": 15779,
       "path": "reproducibility/prospective.py",
-      "sha256": "f864639e628a4047b5fd3695615334afef878ba3b0893732abeff3a7909f00e4"
+      "sha256": "856060d0723e250b8d3398a7e20c37f7ebce41383c2a68a37145ff2b46e6d740"
     },
     {
       "bytes": 6054,
@@ -505,14 +505,14 @@
       "sha256": "84f1d0777ac9bc66c5727ee2b8c60d2c9afa93fe92fec9c98d19ae7ee729e10a"
     },
     {
-      "bytes": 9449,
+      "bytes": 12607,
       "path": "tests/reproducibility/test_prospective_seal.py",
-      "sha256": "f435ee1cc2804fc25cc6e72c5e0d663e84862bd0e1d3e64083a68fc94edccd33"
+      "sha256": "b1926dca1f534be5033da0f0838912c7881effdf104e0f07b2f972c15f42db2b"
     },
     {
-      "bytes": 6106,
+      "bytes": 6463,
       "path": "tests/reproducibility/test_repo_contract.py",
-      "sha256": "73cdc47ea42757e9d7b666a814bd1f4a9790477813e24d2e785a63ae25877cc1"
+      "sha256": "ab78eaca3695d2abc3c89f902ff1d933e02736a87772e54e17e462e46794f14f"
     },
     {
       "bytes": 82526,

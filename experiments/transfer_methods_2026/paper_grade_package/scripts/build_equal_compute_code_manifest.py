@@ -114,7 +114,7 @@ def main() -> None:
                 for name in ("torch", "numpy", "h5py", "matplotlib", "pytest")
             },
             "executable_contract": (
-                "GPU/reference: rl_env or uv sync --frozen --extra dev; "
+                "GPU/reference: CUDA-capable rl_env; "
                 "public CPU audit: uv sync --frozen --only-group ci "
                 "--no-install-project, then pinned torch 2.11.0 from the "
                 "official PyTorch CPU index"

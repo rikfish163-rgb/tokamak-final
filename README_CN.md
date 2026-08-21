@@ -82,6 +82,18 @@ predict → seal → query → 揭示被选炮的结局 → 后续炮更新
 
 使用项目 `rl_env` 环境。原始 HDF5 数据可以放在 checkout 下的 `data/`，也可以通过 `FUSION_DATA_ROOT` 指向外部目录：
 
+公共 CI 的 CPU 单元测试/审计环境使用独立锁定组，不安装 CUDA 项目运行时：
+
+```bash
+uv sync --frozen --only-group ci --no-install-project
+```
+
+GPU 训练和回放统一使用带 CUDA 的 `rl_env`。本仓库本身才是复现产物，
+并不发布一个可脱离仓库独立运行的 wheel；`fusion-reproduce` 仅指从完整
+checkout editable 安装得到的入口，仍需完整仓库，或用
+`FUSION_PROJECT_ROOT` 显式指向它，因为冻结脚本、checkpoint、划分合同和参考
+结果不在 Python 包内部。
+
 ```bash
 export FUSION_DATA_ROOT=/absolute/path/to/data
 
@@ -106,7 +118,10 @@ conda run -n rl_env python \
 
 ### 3. 运行默认可复现 CLI
 
-`python -m reproducibility.cli reproduce` 和已安装的 `fusion-reproduce reproduce` 都使用 paper v3c archived-parent 路径，并与 `results/reference/paper_v3c_multiseed_summary.json` 比对：
+在完整 source checkout 中，`python -m reproducibility.cli reproduce` 和
+editable 安装的 `fusion-reproduce reproduce` 都使用 paper v3c
+archived-parent 路径，并与
+`results/reference/paper_v3c_multiseed_summary.json` 比对：
 
 ```bash
 conda run -n rl_env python -m reproducibility.cli reproduce \

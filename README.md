@@ -78,9 +78,19 @@ The table is evidence from a development stream, not a claim of prospective gene
 
 Use the project `rl_env` environment and provide the raw HDF5 directory either as `data/` in the checkout or through `FUSION_DATA_ROOT`:
 
-For a clean CPU/audit environment, the repository lockfile can instead be
-installed with `uv sync --frozen --extra dev`. GPU training/replay uses the
-maintained CUDA-capable `rl_env`; the release does not claim that the post-run
+For the CPU-only unit/audit surface used by public CI, use the dedicated locked
+dependency group; it deliberately does not install the CUDA project runtime:
+
+```bash
+uv sync --frozen --only-group ci --no-install-project
+```
+
+GPU training/replay uses the maintained CUDA-capable `rl_env`. The repository
+is the reproducibility artifact: it is not a standalone wheel. An installed
+`fusion-reproduce` entry means an editable/source-checkout installation and
+still requires the complete checkout (or an explicit `FUSION_PROJECT_ROOT`)
+because the frozen scripts, checkpoints, split contracts and reference results
+live outside the Python package. The release does not claim that the post-run
 environment snapshot is an execution-time seal.
 
 ```bash
@@ -107,7 +117,10 @@ Use `--stage all` to execute one seed from the bundled hash-bound source checkpo
 
 ### 3. Run the default reproducibility CLI
 
-`python -m reproducibility.cli reproduce` and the installed `fusion-reproduce reproduce` entry both use the paper v3c archived-parent path and compare against `results/reference/paper_v3c_multiseed_summary.json`:
+From a complete source checkout, `python -m reproducibility.cli reproduce` and
+the editable-installed `fusion-reproduce reproduce` entry both use the paper
+v3c archived-parent path and compare against
+`results/reference/paper_v3c_multiseed_summary.json`:
 
 ```bash
 conda run -n rl_env python -m reproducibility.cli reproduce \

@@ -203,11 +203,11 @@ cd ../../../..
 python experiments/transfer_methods_2026/paper_grade_package/scripts/validate_paper_package.py
 ```
 
-The validator currently checks 126 package invariants, including source and
+The validator currently checks 128 package invariants, including source and
 target-parent lineage, Q30's recoverable identity boundary, primary causal
 ledger relations, compact-ledger decompression hashes, figure/table input and
 output manifests, text-artifact portability, and the portable 2,203-file HDF5
-content manifest. A 126/126 result
+content manifest. A 128/128 result
 means the released development evidence is internally complete and mutually
 consistent; it does **not** upgrade the scientific status to independent
 confirmation.
