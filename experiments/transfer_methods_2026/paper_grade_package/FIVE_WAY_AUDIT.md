@@ -57,9 +57,13 @@ evidence reasons below.
    and figures, validates the package, and compiles both LaTeX manuscripts.
 9. Release-critical artifacts, reconstruction scripts, figures and tables are
    required to be Git tracked; regenerated hashes must match their manifests.
-10. The final local execution produced **293 passed tests** with five existing
-    Transformer nested-tensor warnings, forced XeLaTeX builds of the 16-page
-    main paper and 13-page supplement, and **126/126** validator checks.
+10. The tracked release suite produced **280 passed tests** from a clean GitHub
+    clone, with five existing Transformer nested-tensor warnings. The local
+    research checkout also contains 13 passing tests for two deliberately
+    Git-ignored, superseded exploratory helpers; those tests and helpers are not
+    part of the v3c release evidence and are not counted as clean-clone proof.
+    Forced XeLaTeX builds produced the 16-page main paper and 13-page supplement,
+    and the package validator passed **126/126** checks.
 
 ## Evidence that still cannot be repaired from the current data
 
@@ -91,8 +95,9 @@ confirmatory readiness remains FAIL even if all five local-integrity lanes pass:
 
 ## Defensible claim ceiling
 
-The package supports this development claim locally; remote CI and clean-clone
-verification remain release operations before archival handoff:
+The package supports this development claim locally, including the completed
+280-test clean-clone verification. Remote CI remains the final release
+operation before archival handoff:
 
 > Under HDF5-authoritative labels and the archived v3c lineage, the released
 > replay implements `predict → seal → query → selected reveal → later-shot
