@@ -76,6 +76,11 @@ The table is evidence from a development stream, not a claim of prospective gene
 
 Use the project `rl_env` environment and provide the raw HDF5 directory either as `data/` in the checkout or through `FUSION_DATA_ROOT`:
 
+For a clean CPU/audit environment, the repository lockfile can instead be
+installed with `uv sync --frozen --extra dev`. GPU training/replay uses the
+maintained CUDA-capable `rl_env`; the release does not claim that the post-run
+environment snapshot is an execution-time seal.
+
 ```bash
 export FUSION_DATA_ROOT=/absolute/path/to/data
 
@@ -165,14 +170,17 @@ The current release scope is in [RELEASE_SCOPE.md](RELEASE_SCOPE.md). Historical
 | Is the source representation shortcut-free? | [source_context_shortcut_audit.json](experiments/transfer_methods_2026/paper_grade_package/evidence/source_context_shortcut_audit.json), [Fig. 3](experiments/transfer_methods_2026/paper_grade_package/figures/fig3_source_shortcut_and_padfix_tradeoff.svg) | A documented shortcut failure and the PADFIX trade-off, not a shortcut-free claim |
 | What controls exist for label access? | [equal-label front-load evidence](experiments/transfer_methods_2026/paper_grade_package/evidence/equal_label_budget_frontload_v2/), [Fig. 8](experiments/transfer_methods_2026/paper_grade_package/figures/fig8_equal_label_budget_frontload_ablation.svg) | A diagnostic selected-label/front-load comparison; not an equal-compute causal random-query result |
 | Does active querying beat a causal random schedule? | [causal random-query evidence](experiments/transfer_methods_2026/paper_grade_package/evidence/causal_random_query_online_v1/), [Fig. 9](experiments/transfer_methods_2026/paper_grade_package/figures/fig9_active_vs_causal_random_query.svg) | Active utility exceeds the random mean in all three seeds on the development stream; realized update attempts differ, so selector-only equal-FLOP causality is not isolated |
+| Does the archived active roster beat random when windows and optimizer attempts are fixed? | [fixed-shape roster evidence](experiments/transfer_methods_2026/paper_grade_package/evidence/equal_compute_selector_control_v1/), [Fig. 11](experiments/transfer_methods_2026/paper_grade_package/figures/fig11_equal_compute_selector_screen.svg) | No: active-minus-random is `-0.00185/0/-0.00556`. This new operator matches windows, shapes, scopes and attempts, not committed updates; it does not estimate the adaptive selector policy or prove equivalence |
 | Does J-TEXT transfer add value beyond EAST-only fitting? | [target-only evidence](experiments/transfer_methods_2026/paper_grade_package/evidence/east_target_only_v1/), [Fig. 10](experiments/transfer_methods_2026/paper_grade_package/figures/fig10_target_only_vs_transfer.svg) | Transfer improves TPR/FPR utility and lead over strict EAST-only on balanced360, with a small FPR increase and unequal trainable capacity |
 | Which exact raw files define this release? | [portable HDF5 content manifest](experiments/transfer_methods_2026/paper_grade_package/evidence/required_hdf5_content_manifest.json) | SHA-256 for all 2,203 required J-TEXT/EAST HDF5 files without embedding a workstation path |
 | Is this ready for a confirmatory Nature Portfolio or deployment claim? | [Readiness audit](experiments/transfer_methods_2026/paper_grade_package/NATURE_PORTFOLIO_READINESS.md) | No: the current ceiling is an auditable development manuscript |
-| Did independent review lanes agree on that boundary? | [Five-way audit](experiments/transfer_methods_2026/paper_grade_package/FIVE_WAY_AUDIT.md) | All five pass local package integrity and fail confirmatory readiness; locally repairable findings are recorded |
+| Did the five independent review lanes pass? | [Five-way audit](experiments/transfer_methods_2026/paper_grade_package/FIVE_WAY_AUDIT.md) | Yes for local package integrity; all five independently fail Nature confirmatory readiness because new external evidence is still required |
 
 ## Completed development controls
 
 The causal block-matched random-query replay is complete for seeds 131/133/137 with three random schedules per seed. Active minus random mean `TPR@30−FPR` is `+0.0204`, `+0.0093`, and `+0.0185`; the equal-seed mean is `+0.0160`. Active selection also causes about `2.21×` as many realized error-conditioned inter-shot update attempts. This is therefore evidence for the complete active mechanism on the development stream, not an equal-FLOP isolation of selector quality and not independent confirmation.
+
+A separate post-development roster screen uses a new fixed-shape assimilation operator. Every queried shot receives 16 current windows, 16 immutable support windows, two shared optimizer attempts and two private attempts; intra-shot, alarm, episode and memory learners are frozen. The archived active roster does not beat the three block-count-matched random rosters in any seed (`-0.00185/0/-0.00556` utility differences). Guard acceptance still causes different committed parameter changes. This negative result rejects only archived-roster superiority under that operator; it neither estimates the adaptive selector-policy effect nor proves a null/equivalence result.
 
 The strict EAST-only baseline is also complete. Its equal-seed mean `TPR@30−FPR` is `0.6519`, versus `0.6741` for J-TEXT→EAST transfer-static; the transferred model increases TPR and lead but also increases FPR. Because EAST-only updates a full randomly initialized encoder while transfer updates a restricted target path, this is a target-data sufficiency/control result rather than a capacity-matched architecture ablation.
 

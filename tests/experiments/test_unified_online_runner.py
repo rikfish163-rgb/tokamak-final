@@ -212,6 +212,36 @@ def test_temporal_risk_forecast_requires_strict_prediction_before_update() -> No
     module.validate_timescale_ablation_arguments(args)
 
 
+def test_fixed_compute_indices_have_registered_shape_and_class_balance() -> None:
+    module = load_module()
+    risk = np.linspace(0.01, 0.99, 64)
+    positive = np.zeros(64, dtype=bool)
+    positive[32:48] = True
+
+    indices = module.fixed_compute_supervised_indices(
+        risk=risk, positive=positive, legal_start=4, legal_stop=60, count=16,
+    )
+
+    assert indices.shape == (16,)
+    assert len(np.unique(indices)) == 16
+    assert int(positive[indices].sum()) == 8
+    assert np.all((indices >= 4) & (indices < 60))
+
+
+def test_fixed_compute_indices_use_hardest_safe_windows_and_fail_short() -> None:
+    module = load_module()
+    risk = np.linspace(0.0, 1.0, 40)
+    safe = np.zeros(40, dtype=bool)
+    indices = module.fixed_compute_supervised_indices(
+        risk=risk, positive=safe, legal_start=4, legal_stop=36, count=16,
+    )
+    assert indices.tolist() == list(range(20, 36))
+    with pytest.raises(ValueError, match="fewer than quota"):
+        module.fixed_compute_supervised_indices(
+            risk=risk, positive=safe, legal_start=4, legal_stop=12, count=16,
+        )
+
+
 def test_observed_physics_ttt_requires_strict_prediction_before_update() -> None:
     module = load_module()
     args = SimpleNamespace(

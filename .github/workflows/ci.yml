@@ -7,7 +7,7 @@ on:
 jobs:
   tests:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -22,8 +22,33 @@ jobs:
       # by the documented local/GPU environment, not by every pull request.
       - run: uv sync --frozen --extra dev --no-install-package torch --no-install-package torchvision
       - run: uv run pytest tests/reproducibility -q
+      - name: Test paper evidence and roster-screen reporting logic
+        run: >-
+          uv run pytest tests/experiments/test_paper_grade_evidence.py -q
+          -k "not east_support_roster_relabels_to_hdf5_authoritative_15d_95n"
+      - name: Test fixed-shape runner and controller contracts
+        run: >-
+          uv run pytest -q
+          tests/experiments/test_unified_online_runner.py
+          tests/experiments/test_two_timescale_online_adapter.py
+          tests/experiments/test_east_private_continual.py
+          tests/experiments/test_online_timescale_ablation.py
+          -k "fixed_compute or selector_compute_control or fixed_query"
+      - name: Regenerate hash-bound tables and figures
+        run: |
+          uv run python experiments/transfer_methods_2026/paper_grade_package/scripts/generate_latex_tables.py
+          uv run python experiments/transfer_methods_2026/paper_grade_package/scripts/generate_figures.py
+          git diff --exit-code -- experiments/transfer_methods_2026/paper_grade_package/manuscript/tables experiments/transfer_methods_2026/paper_grade_package/figures
       - name: Validate archived paper evidence
         run: uv run python experiments/transfer_methods_2026/paper_grade_package/scripts/validate_paper_package.py
+      - name: Compile manuscripts from committed sources
+        uses: xu-cheng/latex-action@v4
+        with:
+          working_directory: experiments/transfer_methods_2026/paper_grade_package/manuscript
+          root_file: |
+            main.tex
+            supplement.tex
+          latexmk_use_xelatex: true
       - name: Confirm missing data fails closed
         run: |
           set +e

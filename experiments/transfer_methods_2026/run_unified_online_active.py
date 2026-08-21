@@ -15,6 +15,7 @@ import json
 import math
 import os
 import sys
+import time
 from pathlib import Path
 from typing import Any
 
@@ -319,6 +320,31 @@ def validate_timescale_ablation_arguments(args: argparse.Namespace) -> None:
     )
     if experimental and not bool(args.development_search):
         raise ValueError("timescale/order experiments require --development-search")
+    if bool(getattr(args, "selector_compute_control", False)):
+        if args.fixed_query_manifest is None:
+            raise ValueError("selector compute control requires a fixed query manifest")
+        if str(args.timescale_mode) != "inter_only":
+            raise ValueError("selector compute control requires inter_only mode")
+        forbidden = {
+            "episode_value_v3": bool(args.episode_value_v3),
+            "causal_error_memory": bool(args.causal_error_memory),
+            "typed_endpoint_memory": bool(args.typed_endpoint_memory),
+            "strict_window_active": bool(args.strict_window_active),
+        }
+        enabled = [name for name, value in forbidden.items() if value]
+        if enabled:
+            raise ValueError(
+                "selector compute control forbids adaptive side learners: "
+                + ", ".join(enabled)
+            )
+        if (
+            int(args.inter_steps) != 2
+            or int(args.fixed_compute_current_windows) != 16
+            or int(args.fixed_compute_replay_windows) != 16
+        ):
+            raise ValueError(
+                "fixed-shape selector compute control requires 16+16 windows and 2 optimizer attempts"
+            )
     if bool(args.diagnostic_reorder) and args.order_manifest is None:
         raise ValueError("diagnostic reorder requires --order-manifest")
     temporal_risk_weight = float(
@@ -384,6 +410,50 @@ def inter_update_control(steps: int, update_scale: float) -> tuple[int, float]:
     if int(steps) == 0:
         return 1, 0.0
     return int(steps), float(update_scale)
+
+
+def fixed_compute_supervised_indices(
+    *, risk: np.ndarray, positive: np.ndarray,
+    legal_start: int, legal_stop: int, count: int = 16,
+) -> np.ndarray:
+    """Select a fixed-size post-reveal batch with a branch-free objective.
+
+    Safe shots contribute their hardest negatives.  Disruptive shots contribute
+    equal positive/negative halves.  The outcome is used only after the shot's
+    prediction and query decision have been sealed.  Repetition is deterministic
+    when a pool is smaller than its quota, preserving an identical tensor shape.
+    """
+    values = np.asarray(risk, dtype=np.float64).reshape(-1)
+    labels = np.asarray(positive, dtype=bool).reshape(-1)
+    if values.shape != labels.shape or not np.isfinite(values).all():
+        raise ValueError("risk and positive labels must be aligned and finite")
+    if count <= 0 or count % 2:
+        raise ValueError("fixed-compute count must be a positive even integer")
+    start, stop = int(legal_start), int(legal_stop)
+    if start < 0 or stop > len(values) or start >= stop:
+        raise ValueError("fixed-compute legal interval is empty or invalid")
+    legal = np.arange(start, stop, dtype=np.int64)
+
+    def take(pool: np.ndarray, difficulty: np.ndarray, quota: int) -> np.ndarray:
+        if not len(pool):
+            raise ValueError("fixed-compute supervision pool is empty")
+        if len(pool) < int(quota):
+            raise ValueError("fixed-compute supervision pool has fewer than quota rows")
+        order = np.lexsort((pool, -difficulty))
+        return pool[order[: int(quota)]].astype(np.int64, copy=False)
+
+    positive_pool = legal[labels[legal]]
+    if not len(positive_pool):
+        return np.sort(take(legal, values[legal], count))
+    negative_pool = legal[~labels[legal]]
+    if not len(negative_pool):
+        raise ValueError("disruptive fixed-compute batch requires negatives")
+    half = count // 2
+    chosen_positive = take(
+        positive_pool, 1.0 - values[positive_pool], half,
+    )
+    chosen_negative = take(negative_pool, values[negative_pool], half)
+    return np.sort(np.concatenate((chosen_positive, chosen_negative)))
 
 
 def seal_static_phase_trace(
@@ -2105,6 +2175,16 @@ def main() -> None:
         default="current",
     )
     parser.add_argument("--fixed-query-manifest", type=Path, default=None)
+    parser.add_argument(
+        "--selector-compute-control", action="store_true",
+        help=(
+            "development-only selector isolation: fixed query manifest, no "
+            "intra/alarm/memory learner, and one fixed-shape shared/private "
+            "supervised update for every queried shot"
+        ),
+    )
+    parser.add_argument("--fixed-compute-current-windows", type=int, default=16)
+    parser.add_argument("--fixed-compute-replay-windows", type=int, default=16)
     parser.add_argument("--order-manifest", type=Path, default=None)
     parser.add_argument(
         "--diagnostic-reorder", action="store_true",
@@ -2213,6 +2293,12 @@ def main() -> None:
     )
     parser.add_argument("--frozen-online-config", type=Path, default=None)
     args = parser.parse_args()
+    run_started_at = time.perf_counter()
+    cuda_available = bool(
+        hasattr(torch, "cuda") and torch.cuda.is_available()
+    )
+    if cuda_available:
+        torch.cuda.reset_peak_memory_stats()
     if sum((bool(args.locked_best_v8), bool(args.development_search), args.frozen_online_config is not None)) > 1:
         raise ValueError("locked, frozen and development modes are mutually exclusive")
     frozen_contract = None
@@ -2483,6 +2569,10 @@ def main() -> None:
     if not mode_contract.enable_query:
         query_selector = None
     elif args.fixed_query_manifest is not None:
+        if args.selector_compute_control:
+            timescale_ablation.require_explicit_non_oracle_query_manifest(
+                args.fixed_query_manifest
+            )
         fixed_query_shots = timescale_ablation.read_query_manifest(
             args.fixed_query_manifest, roster,
         )
@@ -2676,6 +2766,11 @@ def main() -> None:
         "window_active_selected": 0, "endpoint_memory_corrections": 0,
         "episode_blocks": 0, "episode_delays": 0,
         "episode_escapes": 0, "episode_updates": 0,
+        "fixed_compute_queries": 0,
+        "fixed_compute_shared_steps": 0,
+        "fixed_compute_private_steps": 0,
+        "fixed_compute_current_windows": 0,
+        "fixed_compute_replay_windows": 0,
     }
     try:
         for stream_index, shot_id in enumerate(roster):
@@ -3090,11 +3185,17 @@ def main() -> None:
                             if episode_confirmation is not None else 0.0
                         ),
                     )
-                alarm_receipt = alarm_controller.update_after_reveal(
-                    state_shot_id, selected=True,
-                    is_disrupt=bool(outcome["is_disrupt"]),
-                    down_time_s=outcome["down_time_s"],
-                    update_value=hdf5_value,
+                alarm_receipt = (
+                    alarm_controller.finalize_revealed_no_update(
+                        state_shot_id, discrepancy_group=group,
+                    )
+                    if args.selector_compute_control else
+                    alarm_controller.update_after_reveal(
+                        state_shot_id, selected=True,
+                        is_disrupt=bool(outcome["is_disrupt"]),
+                        down_time_s=outcome["down_time_s"],
+                        update_value=hdf5_value,
+                    )
                 )
                 if str(alarm_receipt["discrepancy_group"]) != group:
                     raise RuntimeError("sealed alarm group changed during reveal update")
@@ -3111,11 +3212,15 @@ def main() -> None:
                     and bool(episode_update_receipt["updated"])
                 )
                 query_value_receipt = (
-                    None
-                    if args.episode_value_v3
-                    and args.episode_query_mode == "active" else
-                    query_value_model.update_after_reveal(
-                        state_shot_id, selected=True, discrepancy_group=group,
+                    query_value_model.finalize_revealed_no_update(state_shot_id)
+                    if args.selector_compute_control else
+                    (
+                        None
+                        if args.episode_value_v3
+                        and args.episode_query_mode == "active" else
+                        query_value_model.update_after_reveal(
+                            state_shot_id, selected=True, discrepancy_group=group,
+                        )
                     )
                 )
                 error_memory_receipt = (
@@ -3133,10 +3238,20 @@ def main() -> None:
                 controller_inter_steps, controller_inter_scale = inter_update_control(
                     args.inter_steps, inter_scale,
                 )
+                if args.selector_compute_control:
+                    controller_inter_steps = int(args.inter_steps)
+                    controller_inter_scale = 1.0
                 similar_error = None
                 endpoint_memory_indices: list[int] | None = None
-                if group in ("FP", "FN", "TARDY"):
-                    if (
+                if args.selector_compute_control or group in ("FP", "FN", "TARDY"):
+                    if args.selector_compute_control:
+                        legal = fixed_compute_supervised_indices(
+                            risk=online["risk"], positive=supervised_positive,
+                            legal_start=dha.LAG,
+                            legal_stop=len(base_risk) - dha.LAG,
+                            count=args.fixed_compute_current_windows,
+                        )
+                    elif (
                         args.episode_value_v3
                         and args.episode_gradient_mode == "episode"
                         and group == "FP"
@@ -3161,10 +3276,11 @@ def main() -> None:
                             physics_support=physics_support[alarm.W - 1:],
                             alarm_parameters=online_alarm["parameters"], group=group,
                         )
-                    legal = chosen_risk[
-                        (chosen_risk >= dha.LAG)
-                        & (chosen_risk < len(base_risk) - dha.LAG)
-                    ]
+                    if not args.selector_compute_control:
+                        legal = chosen_risk[
+                            (chosen_risk >= dha.LAG)
+                            & (chosen_risk < len(base_risk) - dha.LAG)
+                        ]
                     if not len(legal):
                         legal_pool = np.arange(dha.LAG, len(base_risk) - dha.LAG)
                         error = np.abs(
@@ -3188,26 +3304,31 @@ def main() -> None:
                     phenotype_vector = [
                         memory_phenotype[name] for name in sorted(memory_phenotype)
                     ]
-                    similar_error = shared_replay.sample_similar_error_bag(
-                        discrepancy_group=group, phenotype=phenotype_vector,
-                        count=4, seed=args.seed * 100000 + stream_index + 17,
-                        max_distance=(
-                            args.replay_max_distance
-                            if args.episode_value_v3
-                            and args.episode_gradient_mode == "episode" else None
-                        ),
-                    )
-                    opposite = shared_replay.sample_opposite_bag(
-                        current_is_disruptive=bool(outcome["is_disrupt"]),
-                        count=4 if similar_error is not None else 8,
-                        seed=args.seed * 100000 + stream_index,
-                    )
-                    if similar_error is not None:
-                        opposite = (
-                            similar_error["batch"] if opposite is None
-                            else concatenate(opposite, similar_error["batch"])
+                    if args.selector_compute_control:
+                        similar_error = None
+                        opposite = None
+                        replay_count = int(args.fixed_compute_replay_windows)
+                    else:
+                        similar_error = shared_replay.sample_similar_error_bag(
+                            discrepancy_group=group, phenotype=phenotype_vector,
+                            count=4, seed=args.seed * 100000 + stream_index + 17,
+                            max_distance=(
+                                args.replay_max_distance
+                                if args.episode_value_v3
+                                and args.episode_gradient_mode == "episode" else None
+                            ),
                         )
-                    replay_count = 16 if opposite is None else 8
+                        opposite = shared_replay.sample_opposite_bag(
+                            current_is_disruptive=bool(outcome["is_disrupt"]),
+                            count=4 if similar_error is not None else 8,
+                            seed=args.seed * 100000 + stream_index,
+                        )
+                        if similar_error is not None:
+                            opposite = (
+                                similar_error["batch"] if opposite is None
+                                else concatenate(opposite, similar_error["batch"])
+                            )
+                        replay_count = 16 if opposite is None else 8
                     replay_np = dha.sample_examples(
                         support_cache, replay_rng,
                         batch_size=replay_count, balanced=True,
@@ -3220,15 +3341,19 @@ def main() -> None:
                         replay_batch=shared_support, opposite_batch=opposite,
                         steps=controller_inter_steps,
                         update_scale=controller_inter_scale,
+                        fixed_compute_objective=bool(
+                            args.selector_compute_control
+                        ),
                     )
                     counts[
                         "shared_inter_accepted" if shared_receipt["accepted"]
                         else "shared_inter_rollback"
                     ] += 1
-                    shared_replay.add(
-                        state_shot_id, shared_current, discrepancy_group=group,
-                        phenotype=phenotype_vector,
-                    )
+                    if not args.selector_compute_control:
+                        shared_replay.add(
+                            state_shot_id, shared_current, discrepancy_group=group,
+                            phenotype=phenotype_vector,
+                        )
                     private_current = make_private_batch(
                         raw, raw_available, legal, online["shared_logit"],
                         target=operational_target,
@@ -3238,18 +3363,39 @@ def main() -> None:
                         next_indices=np.minimum(legal + dha.LAG, len(base_risk) - 1),
                     )
                     private_replay = sample_batch(
-                        private_support_all, count=16,
-                        seed=args.seed * 100000 + stream_index,
+                        private_support_all,
+                        count=(
+                            args.fixed_compute_replay_windows
+                            if args.selector_compute_control else 16
+                        ),
+                        seed=(
+                            args.seed * 100000 + counts["fixed_compute_queries"]
+                            if args.selector_compute_control else
+                            args.seed * 100000 + stream_index
+                        ),
                     )
                     private_receipt = private_controller.reveal_and_inter_update(
                         state_shot_id, selected=True, current_batch=private_current,
                         replay_batch=private_replay, steps=controller_inter_steps,
                         update_scale=controller_inter_scale,
+                        fixed_compute_objective=bool(
+                            args.selector_compute_control
+                        ),
                     )
                     counts[
                         "private_inter_accepted" if private_receipt["accepted"]
                         else "private_inter_rollback"
                     ] += 1
+                    if args.selector_compute_control:
+                        counts["fixed_compute_queries"] += 1
+                        counts["fixed_compute_shared_steps"] += int(
+                            shared_receipt["steps"]
+                        )
+                        counts["fixed_compute_private_steps"] += int(
+                            private_receipt["steps"]
+                        )
+                        counts["fixed_compute_current_windows"] += len(legal)
+                        counts["fixed_compute_replay_windows"] += replay_count
                 else:
                     shared_receipt = shared_controller.finalize_revealed_protection(
                         state_shot_id, group=group,
@@ -3330,6 +3476,30 @@ def main() -> None:
                         "timely_positive_windows": int(timely_labels.sum()),
                         "mechanism_target_mean": float(mechanism_target.mean()),
                     },
+                    "fixed_compute": (
+                        {
+                            "query_ordinal_one_based": int(
+                                counts["fixed_compute_queries"]
+                            ),
+                            "current_endpoint_indices": [
+                                int(index) for index in endpoint_memory_indices
+                            ],
+                            "current_window_count": len(
+                                endpoint_memory_indices
+                            ),
+                            "support_replay_window_count": int(replay_count),
+                            "first_effect_stream_index_zero_based": (
+                                int(stream_index + 1)
+                                if stream_index + 1 < len(roster) else None
+                            ),
+                            "first_effect_shot": (
+                                int(roster[stream_index + 1])
+                                if stream_index + 1 < len(roster) else None
+                            ),
+                            "current_shot_prediction_precedes_update": True,
+                        }
+                        if args.selector_compute_control else None
+                    ),
                     "shared": shared_receipt, "private": private_receipt,
                     "alarm": alarm_receipt, "query_value": query_value_receipt,
                     "decision_query_value_update": (
@@ -3392,6 +3562,25 @@ def main() -> None:
         raise RuntimeError("causal error-memory query cap exceeded")
     if fixed_query_shots is not None and query_count != len(fixed_query_shots):
         raise RuntimeError("fixed query manifest was not consumed exactly")
+    if args.selector_compute_control:
+        expected_current = query_count * int(args.fixed_compute_current_windows)
+        expected_replay = query_count * int(args.fixed_compute_replay_windows)
+        expected_steps = query_count * int(args.inter_steps)
+        fixed_contract = {
+            "queries": counts["fixed_compute_queries"] == query_count,
+            "shared_steps": counts["fixed_compute_shared_steps"] == expected_steps,
+            "private_steps": counts["fixed_compute_private_steps"] == expected_steps,
+            "current_windows": counts["fixed_compute_current_windows"] == expected_current,
+            "replay_windows": counts["fixed_compute_replay_windows"] == expected_replay,
+            "alarm_frozen": counts["alarm_updates"] == 0,
+            "intra_frozen": counts["intra_attempts"] == 0,
+        }
+        failed = [name for name, passed in fixed_contract.items() if not passed]
+        if failed:
+            raise RuntimeError(
+                "selector compute control violated realized contract: "
+                + ", ".join(failed)
+            )
     if a1.model_sha256(enc, head) != base_hash:
         raise RuntimeError("unified online replay changed frozen J-TEXT/EAST base")
     if auxiliary.module_sha256(static_shared) != static_shared_hash:
@@ -3503,6 +3692,27 @@ def main() -> None:
             "enable_reveal": mode_contract.enable_reveal,
             "enable_inter": mode_contract.enable_inter,
         },
+        "selector_compute_control": (
+            {
+                "enabled": True,
+                "claim_status": "BALANCED360_SELECTOR_ROSTER_DEVELOPMENT_CONTROL",
+                "estimand": (
+                    "archived active query roster versus label-free random "
+                    "rosters under a new fixed-compute assimilation operator"
+                ),
+                "current_windows_per_query": args.fixed_compute_current_windows,
+                "replay_windows_per_query": args.fixed_compute_replay_windows,
+                "shared_steps_per_query": args.inter_steps,
+                "private_steps_per_query": args.inter_steps,
+                "fixed_learning_rate_scale": 1.0,
+                "intra_frozen": True,
+                "alarm_and_side_learners_frozen": True,
+                "realized_contract": fixed_contract,
+                "not_the_primary_full_mechanism": True,
+                "not_independent_confirmation": True,
+            }
+            if args.selector_compute_control else {"enabled": False}
+        ),
         "order_contract": {
             "is_reordered": roster_resolution.is_reordered,
             "claim_status": roster_resolution.claim_status,
@@ -3589,6 +3799,19 @@ def main() -> None:
         },
         "threshold": threshold, "threshold_source": "fixed110",
         "results": results, "counts": counts,
+        "runtime": {
+            "elapsed_wall_seconds": float(
+                time.perf_counter() - run_started_at
+            ),
+            "cuda_peak_memory_bytes": (
+                int(torch.cuda.max_memory_allocated())
+                if cuda_available else None
+            ),
+            "cuda_device": (
+                torch.cuda.get_device_name(torch.cuda.current_device())
+                if cuda_available else None
+            ),
+        },
         "transition_report": transition_report,
         "value_contract": {
             "intra_components": [

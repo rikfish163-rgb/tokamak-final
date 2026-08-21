@@ -247,3 +247,125 @@ def test_random_query_report_discloses_realized_compute_mediation(
     assert aggregate["random_shared_inter_attempts_equal_seed_mean"] == 6
     assert aggregate["realized_inter_attempt_ratio_active_over_random"] == 2
     assert any("not an equal-FLOP" in text for text in report["limitations"])
+
+
+def test_equal_compute_commands_differ_only_by_manifest_and_output(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    control = load_module(
+        "run_equal_compute_selector_control_test",
+        HERE
+        / "paper_grade_package/scripts/run_equal_compute_selector_control.py",
+    )
+    parent = tmp_path / "parent.pt"
+    roster = tmp_path / "roster.jsonl"
+
+    def fake_plan(**_kwargs: Any) -> dict[str, list[str]]:
+        return {"online": [
+            sys.executable, "runner.py", "--out", "old",
+            "--sealed-parent-state", str(parent),
+            "--roster-manifest", str(roster),
+            "--timescale-mode", "intra_inter", "--inter-steps", "2",
+            "--episode-value-v3", "--episode-protected-sequence",
+            "--episode-isolate-learning-feedback", "--causal-error-memory",
+            "--typed-endpoint-memory", "--strict-window-active",
+            "--development-search",
+        ]}
+
+    monkeypatch.setattr(control.reproduce, "command_plan", fake_plan)
+    active = control.equal_compute_command(
+        seed=131, output_root=tmp_path, manifest=tmp_path / "active.json",
+        out=tmp_path / "active",
+    )
+    random = control.equal_compute_command(
+        seed=131, output_root=tmp_path, manifest=tmp_path / "random.json",
+        out=tmp_path / "random",
+    )
+
+    assert control.normalized_command(active) == control.normalized_command(random)
+    assert "--selector-compute-control" in active
+    assert active[active.index("--timescale-mode") + 1] == "inter_only"
+    for forbidden in (
+        "--episode-value-v3", "--episode-protected-sequence",
+        "--episode-isolate-learning-feedback", "--causal-error-memory",
+        "--typed-endpoint-memory", "--strict-window-active",
+    ):
+        assert forbidden not in active
+
+
+def _write_equal_compute_fixture(path: Path, *, include_causal: bool = True) -> None:
+    path.mkdir(parents=True)
+    signature = {
+        "current_windows": 16,
+        "replay_windows": 16,
+        "guard_windows": 0,
+        "steps": 2,
+        "objective": "fixed_pointwise_alarm_bce",
+        "current_batch": {"risk": [16]},
+        "replay_batch": {"risk": [16]},
+        "guard_batch": None,
+        "trainable_scope": {"names": ["adapter.weight"]},
+        "optimizer_steps_attempted": 2,
+        "optimizer_steps_committed": 2,
+    }
+    update = {
+        "event": "unified_revealed_finalize",
+        "shot": 10,
+        "group": "FP",
+        "shared": {"fixed_compute_signature": signature},
+        "private": {"fixed_compute_signature": signature},
+    }
+    if include_causal:
+        update["fixed_compute"] = {
+            "query_ordinal_one_based": 1,
+            "current_endpoint_indices": list(range(16)),
+            "current_window_count": 16,
+            "support_replay_window_count": 16,
+            "first_effect_stream_index_zero_based": 2,
+            "first_effect_shot": 11,
+            "current_shot_prediction_precedes_update": True,
+        }
+    (path / "updates.jsonl").write_text(json.dumps(update) + "\n")
+    (path / "summary.json").write_text(json.dumps({
+        "query_count": 1,
+        "selector_compute_control": {
+            "enabled": True,
+            "realized_contract": {"queries": True, "steps": True},
+        },
+        "results": {
+            "online_unified": {"tpr_at_30ms": 0.8, "fpr": 0.1},
+            "static_unified": {"tpr_at_30ms": 0.79, "fpr": 0.1},
+        },
+        "counts": {},
+        "runtime": {"elapsed_wall_seconds": 1.0},
+        "hashes": {
+            "base_before_after": "base",
+            "phase2_initial_shared": "shared",
+            "phase2_initial_private": "private",
+            "static_predictions": "static",
+        },
+    }))
+
+
+def test_equal_compute_report_requires_per_query_causal_receipt(
+    tmp_path: Path,
+) -> None:
+    report = load_module(
+        "build_equal_compute_selector_report_test",
+        HERE
+        / "paper_grade_package/scripts/build_equal_compute_selector_report.py",
+    )
+    report.verify_recomputed_metrics = lambda *args, **kwargs: {
+        "status": "TEST_FIXTURE"
+    }
+    report.portable_path = lambda path: f"<TEST_ROOT>/{Path(path).name}"
+    valid = tmp_path / "valid"
+    _write_equal_compute_fixture(valid)
+    compact = report.compact_run(valid, data_root=tmp_path)
+    assert compact["query_count"] == 1
+    assert compact["runtime"]["elapsed_wall_seconds"] == 1.0
+
+    invalid = tmp_path / "invalid"
+    _write_equal_compute_fixture(invalid, include_causal=False)
+    with pytest.raises(RuntimeError, match="missing fixed-compute causal receipt"):
+        report.compact_run(invalid, data_root=tmp_path)

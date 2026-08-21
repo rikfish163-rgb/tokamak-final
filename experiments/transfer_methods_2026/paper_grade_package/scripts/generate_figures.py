@@ -41,6 +41,9 @@ CAUSAL_RANDOM_PATH = (
     PACKAGE / "evidence/causal_random_query_online_v1/comparison.json"
 )
 EAST_TARGET_ONLY_PATH = PACKAGE / "evidence/east_target_only_v1/comparison.json"
+EQUAL_COMPUTE_PATH = (
+    PACKAGE / "evidence/equal_compute_selector_control_v1/report.json"
+)
 from publication_style import apply_nature_style, save_publication_figure  # noqa: E402
 
 
@@ -965,6 +968,114 @@ def figure_10_target_only_baselines() -> list[Path]:
     return finish(fig, "fig10_target_only_vs_transfer")
 
 
+def figure_11_equal_compute_selector_screen() -> list[Path]:
+    """Show the post-development selector-roster screen honestly."""
+
+    report = read_json(EQUAL_COMPUTE_PATH)
+    per_seed = report["per_seed"]
+    x = np.arange(len(SEEDS), dtype=float)
+    fig, axes = plt.subplots(1, 3, figsize=(7.205, 2.45))
+
+    ax = axes[0]
+    for index, seed in enumerate(SEEDS):
+        row = per_seed[str(seed)]
+        random_values = np.asarray([
+            float(item["metrics"]["utility_tpr30_minus_fpr"])
+            for item in row["random_rosters"]
+        ])
+        ax.scatter(
+            index + np.asarray([-0.08, 0.0, 0.08]), random_values,
+            marker="o", s=22, facecolor="white", edgecolor=GREY,
+            linewidth=1.0, label="random roster" if index == 0 else None,
+        )
+        ax.plot(
+            [index - 0.13, index + 0.13],
+            [float(np.mean(random_values))] * 2,
+            color=GREY, linewidth=1.3,
+            label="random mean" if index == 0 else None,
+        )
+        ax.scatter(
+            index,
+            float(row["active_archived_roster"]["metrics"][
+                "utility_tpr30_minus_fpr"
+            ]),
+            marker="D", s=32, color=BLUE, edgecolor="white",
+            linewidth=1.0, zorder=4,
+            label="archived active roster" if index == 0 else None,
+        )
+    ax.set_xticks(x, [str(seed) for seed in SEEDS])
+    ax.set_xlabel("model seed")
+    ax.set_ylabel("TPR$_{30}$ − FPR")
+    ax.set_ylim(0.645, 0.712)
+    ax.legend(loc="lower center", fontsize=5.5, frameon=False)
+
+    ax = axes[1]
+    deltas = np.asarray([
+        float(per_seed[str(seed)]["active_minus_random_mean_utility"])
+        for seed in SEEDS
+    ])
+    colors = [GREEN if value > 0 else GREY if value == 0 else VERMILLION
+              for value in deltas]
+    ax.bar(x, deltas, width=0.58, color=colors, edgecolor="none")
+    ax.axhline(0.0, color="black", linewidth=1.0)
+    ax.set_xticks(x, [str(seed) for seed in SEEDS])
+    ax.set_xlabel("model seed")
+    ax.set_ylabel("active − random mean")
+    ax.set_ylim(-0.007, 0.002)
+    for index, value in enumerate(deltas):
+        offset = 0.00028 if value >= 0 else -0.00035
+        ax.text(
+            index, value + offset, f"{value:+.4f}", ha="center",
+            va="bottom" if value >= 0 else "top", fontsize=6,
+        )
+
+    ax = axes[2]
+    resource_names = ("queries", "current\nwindows", "replay\nwindows",
+                      "shared\nattempts", "private\nattempts")
+    resource_keys = (
+        "query_count", "fixed_compute_current_windows",
+        "fixed_compute_replay_windows", "fixed_compute_shared_steps",
+        "fixed_compute_private_steps",
+    )
+    positions = np.arange(len(resource_names), dtype=float)
+    seed_colors = (BLUE, ORANGE, GREEN)
+    for seed_index, (seed, color) in enumerate(
+        zip(SEEDS, seed_colors, strict=True)
+    ):
+        row = per_seed[str(seed)]
+        active = row["active_archived_roster"]
+        active_values = []
+        for key in resource_keys:
+            active_values.append(
+                float(active[key]) if key == "query_count"
+                else float(active["counts"][key])
+            )
+        for replicate, random_row in enumerate(row["random_rosters"]):
+            ratios = []
+            for key, denominator in zip(
+                resource_keys, active_values, strict=True
+            ):
+                numerator = (
+                    float(random_row[key]) if key == "query_count"
+                    else float(random_row["counts"][key])
+                )
+                ratios.append(numerator / denominator)
+            jitter = (seed_index - 1) * 0.045 + (replicate - 1) * 0.009
+            ax.scatter(
+                positions + jitter, ratios, s=14, color=color,
+                marker=("o", "s", "^")[seed_index],
+                label=f"seed {seed}" if replicate == 0 else None,
+            )
+    ax.axhline(1.0, color="black", linewidth=1.0)
+    ax.set_xticks(positions, resource_names)
+    ax.set_ylabel("random / active realized ratio")
+    ax.set_ylim(0.985, 1.015)
+    ax.legend(loc="upper center", ncol=3, fontsize=5.5, frameon=False)
+
+    add_panel_labels(axes)
+    return finish(fig, "fig11_equal_compute_selector_screen")
+
+
 def main() -> None:
     FIGURE_DIR.mkdir(parents=True, exist_ok=True)
     apply_nature_style()
@@ -983,6 +1094,7 @@ def main() -> None:
         ("fig8", figure_8_equal_label_budget, []),
         ("fig9", figure_9_causal_random_query, []),
         ("fig10", figure_10_target_only_baselines, []),
+        ("fig11", figure_11_equal_compute_selector_screen, []),
     )
     for name, builder, arguments in builders:
         outputs = builder(*arguments)
@@ -999,6 +1111,7 @@ def main() -> None:
         EQUAL_BUDGET_PATH,
         CAUSAL_RANDOM_PATH,
         EAST_TARGET_ONLY_PATH,
+        EQUAL_COMPUTE_PATH,
         Path(__file__).resolve(),
         Path(__file__).with_name("publication_style.py"),
         PACKAGE / "configs/primary_chain_v3c.json",

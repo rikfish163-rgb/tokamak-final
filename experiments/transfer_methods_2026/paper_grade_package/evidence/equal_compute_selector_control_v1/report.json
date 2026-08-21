@@ -1,0 +1,1455 @@
+{
+  "schema_version": "equal-compute-selector-report-v2",
+  "claim_status": "BALANCED360_POST_DEVELOPMENT_MECHANISM_CONTROL",
+  "estimand": "archived active query roster versus block-count-matched random rosters under a new fixed-compute assimilation operator",
+  "seeds": [
+    131,
+    133,
+    137
+  ],
+  "replicates_per_seed": 3,
+  "per_seed": {
+    "131": {
+      "active_archived_roster": {
+        "path": "<PROJECT_ROOT>/experiments/transfer_methods_2026/runs/equal_compute_selector_control_v1/seed131/active_fixed_compute",
+        "metrics": {
+          "FN": 9,
+          "FP": 28,
+          "TN": 152,
+          "TP": 171,
+          "fpr": 0.15555555555555556,
+          "median_lead_ms": 185.99999999999994,
+          "over_3000ms_count": 22,
+          "tpr": 0.95,
+          "tpr_at_30ms": 0.8166666666666667,
+          "utility_tpr30_minus_fpr": 0.6611111111111111
+        },
+        "static_metrics": {
+          "FN": 9,
+          "FP": 28,
+          "TN": 152,
+          "TP": 171,
+          "fpr": 0.15555555555555556,
+          "median_lead_ms": 208.00000000000017,
+          "over_3000ms_count": 22,
+          "tpr": 0.95,
+          "tpr_at_30ms": 0.8222222222222222,
+          "utility_tpr30_minus_fpr": 0.6666666666666666
+        },
+        "metric_recomputation": {
+          "online": {
+            "status": "PASS",
+            "predictions_file": "predictions.jsonl",
+            "predictions_sha256": "4ccdc2fca83f2cdb2aa871ea7ad7a4a9304ed40e86903bc1db8e99d3e79578db",
+            "hdf5_truth_tuple_sha256": "7e70af86badbacc98bbf138f9655b499f697c89c133d4f9887c119738145d20a",
+            "truth_contract": "HDF5 /meta/IsDisrupt and /meta/DownTime",
+            "minimum_lead_ms": 30.0,
+            "metrics": {
+              "TP": 171,
+              "FN": 9,
+              "FP": 28,
+              "TN": 152,
+              "tpr": 0.95,
+              "tpr_at_30ms": 0.8166666666666667,
+              "fpr": 0.15555555555555556,
+              "median_lead_ms": 185.99999999999994,
+              "over_3000ms_count": 22
+            }
+          },
+          "static": {
+            "status": "PASS",
+            "predictions_file": "static_predictions.jsonl",
+            "predictions_sha256": "430aca80856e0391fda9fd4bed891f8714963d924b300f20f33814aa15942f0d",
+            "hdf5_truth_tuple_sha256": "7e70af86badbacc98bbf138f9655b499f697c89c133d4f9887c119738145d20a",
+            "truth_contract": "HDF5 /meta/IsDisrupt and /meta/DownTime",
+            "minimum_lead_ms": 30.0,
+            "metrics": {
+              "TP": 171,
+              "FN": 9,
+              "FP": 28,
+              "TN": 152,
+              "tpr": 0.95,
+              "tpr_at_30ms": 0.8222222222222222,
+              "fpr": 0.15555555555555556,
+              "median_lead_ms": 208.00000000000017,
+              "over_3000ms_count": 22
+            }
+          }
+        },
+        "query_count": 102,
+        "counts": {
+          "alarm_updates": 0,
+          "decision_value_updates": 0,
+          "endpoint_memory_corrections": 0,
+          "episode_blocks": 0,
+          "episode_delays": 0,
+          "episode_escapes": 0,
+          "episode_updates": 0,
+          "fixed_compute_current_windows": 1632,
+          "fixed_compute_private_steps": 204,
+          "fixed_compute_queries": 102,
+          "fixed_compute_replay_windows": 1632,
+          "fixed_compute_shared_steps": 204,
+          "interaction_delays": 0,
+          "interaction_vetoes": 0,
+          "intra_attempts": 0,
+          "intra_nonzero": 0,
+          "private_inter_accepted": 25,
+          "private_inter_rollback": 77,
+          "query_value_updates": 0,
+          "shared_inter_accepted": 102,
+          "shared_inter_rollback": 0,
+          "window_active_selected": 0
+        },
+        "group_counts": {
+          "TN": 19,
+          "FN": 5,
+          "FP": 22,
+          "TP": 43,
+          "TARDY": 13
+        },
+        "compute_shape_stream_sha256": "54388f934ed2c1da5161803bdea6401eeb1fa84042a279b0c49d9a24189e9a2d",
+        "compute_signature_sha256": "9498db09bc85912bd490ba2c5accda027a89086bdf492405168743b4e8106be0",
+        "shared_steps_committed": 204,
+        "private_steps_committed": 50,
+        "causal_effect_stream_sha256": "63825692129805eed56a1067b6a57f85df29a1a8caaccb068240293d60e401e3",
+        "runtime": {
+          "cuda_device": "NVIDIA GeForce RTX 5070 Laptop GPU",
+          "cuda_peak_memory_bytes": 670511104,
+          "elapsed_wall_seconds": 131.27345904999675
+        },
+        "parent_hashes": {
+          "base_before_after": "715a73cc88a4071968e6116dce7ff75eccd5217caba204143bcde14e133edc77",
+          "phase2_initial_shared": "f6fba846257c5db000de590d5d7d315dbaca63d1ac4619b426ff8ef419cf014d",
+          "phase2_initial_private": "83703f08d3121f9dc253a531c32de5db64dbfb6c6eb883f86349b332ad331088",
+          "static_predictions": "430aca80856e0391fda9fd4bed891f8714963d924b300f20f33814aa15942f0d"
+        }
+      },
+      "random_rosters": [
+        {
+          "path": "<PROJECT_ROOT>/experiments/transfer_methods_2026/runs/equal_compute_selector_control_v1/seed131/random_fixed_compute_r0",
+          "metrics": {
+            "FN": 9,
+            "FP": 28,
+            "TN": 152,
+            "TP": 171,
+            "fpr": 0.15555555555555556,
+            "median_lead_ms": 185.99999999999994,
+            "over_3000ms_count": 22,
+            "tpr": 0.95,
+            "tpr_at_30ms": 0.8166666666666667,
+            "utility_tpr30_minus_fpr": 0.6611111111111111
+          },
+          "static_metrics": {
+            "FN": 9,
+            "FP": 28,
+            "TN": 152,
+            "TP": 171,
+            "fpr": 0.15555555555555556,
+            "median_lead_ms": 208.00000000000017,
+            "over_3000ms_count": 22,
+            "tpr": 0.95,
+            "tpr_at_30ms": 0.8222222222222222,
+            "utility_tpr30_minus_fpr": 0.6666666666666666
+          },
+          "metric_recomputation": {
+            "online": {
+              "status": "PASS",
+              "predictions_file": "predictions.jsonl",
+              "predictions_sha256": "faf648f55f9aebb7398383b64faee9abadb66001074ad8c91fe4eaeebb5836d7",
+              "hdf5_truth_tuple_sha256": "7e70af86badbacc98bbf138f9655b499f697c89c133d4f9887c119738145d20a",
+              "truth_contract": "HDF5 /meta/IsDisrupt and /meta/DownTime",
+              "minimum_lead_ms": 30.0,
+              "metrics": {
+                "TP": 171,
+                "FN": 9,
+                "FP": 28,
+                "TN": 152,
+                "tpr": 0.95,
+                "tpr_at_30ms": 0.8166666666666667,
+                "fpr": 0.15555555555555556,
+                "median_lead_ms": 185.99999999999994,
+                "over_3000ms_count": 22
+              }
+            },
+            "static": {
+              "status": "PASS",
+              "predictions_file": "static_predictions.jsonl",
+              "predictions_sha256": "430aca80856e0391fda9fd4bed891f8714963d924b300f20f33814aa15942f0d",
+              "hdf5_truth_tuple_sha256": "7e70af86badbacc98bbf138f9655b499f697c89c133d4f9887c119738145d20a",
+              "truth_contract": "HDF5 /meta/IsDisrupt and /meta/DownTime",
+              "minimum_lead_ms": 30.0,
+              "metrics": {
+                "TP": 171,
+                "FN": 9,
+                "FP": 28,
+                "TN": 152,
+                "tpr": 0.95,
+                "tpr_at_30ms": 0.8222222222222222,
+                "fpr": 0.15555555555555556,
+                "median_lead_ms": 208.00000000000017,
+                "over_3000ms_count": 22
+              }
+            }
+          },
+          "query_count": 102,
+          "counts": {
+            "alarm_updates": 0,
+            "decision_value_updates": 0,
+            "endpoint_memory_corrections": 0,
+            "episode_blocks": 0,
+            "episode_delays": 0,
+            "episode_escapes": 0,
+            "episode_updates": 0,
+            "fixed_compute_current_windows": 1632,
+            "fixed_compute_private_steps": 204,
+            "fixed_compute_queries": 102,
+            "fixed_compute_replay_windows": 1632,
+            "fixed_compute_shared_steps": 204,
+            "interaction_delays": 0,
+            "interaction_vetoes": 0,
+            "intra_attempts": 0,
+            "intra_nonzero": 0,
+            "private_inter_accepted": 16,
+            "private_inter_rollback": 86,
+            "query_value_updates": 0,
+            "shared_inter_accepted": 102,
+            "shared_inter_rollback": 0,
+            "window_active_selected": 0
+          },
+          "group_counts": {
+            "TN": 45,
+            "TP": 39,
+            "FN": 2,
+            "FP": 10,
+            "TARDY": 6
+          },
+          "compute_shape_stream_sha256": "54388f934ed2c1da5161803bdea6401eeb1fa84042a279b0c49d9a24189e9a2d",
+          "compute_signature_sha256": "9498db09bc85912bd490ba2c5accda027a89086bdf492405168743b4e8106be0",
+          "shared_steps_committed": 204,
+          "private_steps_committed": 32,
+          "causal_effect_stream_sha256": "528938c18339f8cf0e4f35d7fca3e2f37e25dde1c01627ee221a72fdf126e232",
+          "runtime": {
+            "cuda_device": "NVIDIA GeForce RTX 5070 Laptop GPU",
+            "cuda_peak_memory_bytes": 670511104,
+            "elapsed_wall_seconds": 128.19036113699985
+          },
+          "parent_hashes": {
+            "base_before_after": "715a73cc88a4071968e6116dce7ff75eccd5217caba204143bcde14e133edc77",
+            "phase2_initial_shared": "f6fba846257c5db000de590d5d7d315dbaca63d1ac4619b426ff8ef419cf014d",
+            "phase2_initial_private": "83703f08d3121f9dc253a531c32de5db64dbfb6c6eb883f86349b332ad331088",
+            "static_predictions": "430aca80856e0391fda9fd4bed891f8714963d924b300f20f33814aa15942f0d"
+          }
+        },
+        {
+          "path": "<PROJECT_ROOT>/experiments/transfer_methods_2026/runs/equal_compute_selector_control_v1/seed131/random_fixed_compute_r1",
+          "metrics": {
+            "FN": 9,
+            "FP": 28,
+            "TN": 152,
+            "TP": 171,
+            "fpr": 0.15555555555555556,
+            "median_lead_ms": 185.99999999999994,
+            "over_3000ms_count": 22,
+            "tpr": 0.95,
+            "tpr_at_30ms": 0.8166666666666667,
+            "utility_tpr30_minus_fpr": 0.6611111111111111
+          },
+          "static_metrics": {
+            "FN": 9,
+            "FP": 28,
+            "TN": 152,
+            "TP": 171,
+            "fpr": 0.15555555555555556,
+            "median_lead_ms": 208.00000000000017,
+            "over_3000ms_count": 22,
+            "tpr": 0.95,
+            "tpr_at_30ms": 0.8222222222222222,
+            "utility_tpr30_minus_fpr": 0.6666666666666666
+          },
+          "metric_recomputation": {
+            "online": {
+              "status": "PASS",
+              "predictions_file": "predictions.jsonl",
+              "predictions_sha256": "3fc19e70afeb2183708316b75d35e259dc83335f0928cad4dede8955c5ada402",
+              "hdf5_truth_tuple_sha256": "7e70af86badbacc98bbf138f9655b499f697c89c133d4f9887c119738145d20a",
+              "truth_contract": "HDF5 /meta/IsDisrupt and /meta/DownTime",
+              "minimum_lead_ms": 30.0,
+              "metrics": {
+                "TP": 171,
+                "FN": 9,
+                "FP": 28,
+                "TN": 152,
+                "tpr": 0.95,
+                "tpr_at_30ms": 0.8166666666666667,
+                "fpr": 0.15555555555555556,
+                "median_lead_ms": 185.99999999999994,
+                "over_3000ms_count": 22
+              }
+            },
+            "static": {
+              "status": "PASS",
+              "predictions_file": "static_predictions.jsonl",
+              "predictions_sha256": "430aca80856e0391fda9fd4bed891f8714963d924b300f20f33814aa15942f0d",
+              "hdf5_truth_tuple_sha256": "7e70af86badbacc98bbf138f9655b499f697c89c133d4f9887c119738145d20a",
+              "truth_contract": "HDF5 /meta/IsDisrupt and /meta/DownTime",
+              "minimum_lead_ms": 30.0,
+              "metrics": {
+                "TP": 171,
+                "FN": 9,
+                "FP": 28,
+                "TN": 152,
+                "tpr": 0.95,
+                "tpr_at_30ms": 0.8222222222222222,
+                "fpr": 0.15555555555555556,
+                "median_lead_ms": 208.00000000000017,
+                "over_3000ms_count": 22
+              }
+            }
+          },
+          "query_count": 102,
+          "counts": {
+            "alarm_updates": 0,
+            "decision_value_updates": 0,
+            "endpoint_memory_corrections": 0,
+            "episode_blocks": 0,
+            "episode_delays": 0,
+            "episode_escapes": 0,
+            "episode_updates": 0,
+            "fixed_compute_current_windows": 1632,
+            "fixed_compute_private_steps": 204,
+            "fixed_compute_queries": 102,
+            "fixed_compute_replay_windows": 1632,
+            "fixed_compute_shared_steps": 204,
+            "interaction_delays": 0,
+            "interaction_vetoes": 0,
+            "intra_attempts": 0,
+            "intra_nonzero": 0,
+            "private_inter_accepted": 20,
+            "private_inter_rollback": 82,
+            "query_value_updates": 0,
+            "shared_inter_accepted": 102,
+            "shared_inter_rollback": 0,
+            "window_active_selected": 0
+          },
+          "group_counts": {
+            "TN": 35,
+            "FN": 2,
+            "TARDY": 6,
+            "TP": 48,
+            "FP": 11
+          },
+          "compute_shape_stream_sha256": "54388f934ed2c1da5161803bdea6401eeb1fa84042a279b0c49d9a24189e9a2d",
+          "compute_signature_sha256": "9498db09bc85912bd490ba2c5accda027a89086bdf492405168743b4e8106be0",
+          "shared_steps_committed": 204,
+          "private_steps_committed": 40,
+          "causal_effect_stream_sha256": "124b643f95b94621fda2e5b7fe495d5ce351afa3fcef4b006497629097a58514",
+          "runtime": {
+            "cuda_device": "NVIDIA GeForce RTX 5070 Laptop GPU",
+            "cuda_peak_memory_bytes": 670511104,
+            "elapsed_wall_seconds": 135.4508852880026
+          },
+          "parent_hashes": {
+            "base_before_after": "715a73cc88a4071968e6116dce7ff75eccd5217caba204143bcde14e133edc77",
+            "phase2_initial_shared": "f6fba846257c5db000de590d5d7d315dbaca63d1ac4619b426ff8ef419cf014d",
+            "phase2_initial_private": "83703f08d3121f9dc253a531c32de5db64dbfb6c6eb883f86349b332ad331088",
+            "static_predictions": "430aca80856e0391fda9fd4bed891f8714963d924b300f20f33814aa15942f0d"
+          }
+        },
+        {
+          "path": "<PROJECT_ROOT>/experiments/transfer_methods_2026/runs/equal_compute_selector_control_v1/seed131/random_fixed_compute_r2",
+          "metrics": {
+            "FN": 9,
+            "FP": 27,
+            "TN": 153,
+            "TP": 171,
+            "fpr": 0.15,
+            "median_lead_ms": 185.99999999999994,
+            "over_3000ms_count": 22,
+            "tpr": 0.95,
+            "tpr_at_30ms": 0.8166666666666667,
+            "utility_tpr30_minus_fpr": 0.6666666666666666
+          },
+          "static_metrics": {
+            "FN": 9,
+            "FP": 28,
+            "TN": 152,
+            "TP": 171,
+            "fpr": 0.15555555555555556,
+            "median_lead_ms": 208.00000000000017,
+            "over_3000ms_count": 22,
+            "tpr": 0.95,
+            "tpr_at_30ms": 0.8222222222222222,
+            "utility_tpr30_minus_fpr": 0.6666666666666666
+          },
+          "metric_recomputation": {
+            "online": {
+              "status": "PASS",
+              "predictions_file": "predictions.jsonl",
+              "predictions_sha256": "62ee970d38f0a699da48d1ff00edf1650762a3adb2a8db4c271da736185751ee",
+              "hdf5_truth_tuple_sha256": "7e70af86badbacc98bbf138f9655b499f697c89c133d4f9887c119738145d20a",
+              "truth_contract": "HDF5 /meta/IsDisrupt and /meta/DownTime",
+              "minimum_lead_ms": 30.0,
+              "metrics": {
+                "TP": 171,
+                "FN": 9,
+                "FP": 27,
+                "TN": 153,
+                "tpr": 0.95,
+                "tpr_at_30ms": 0.8166666666666667,
+                "fpr": 0.15,
+                "median_lead_ms": 185.99999999999994,
+                "over_3000ms_count": 22
+              }
+            },
+            "static": {
+              "status": "PASS",
+              "predictions_file": "static_predictions.jsonl",
+              "predictions_sha256": "430aca80856e0391fda9fd4bed891f8714963d924b300f20f33814aa15942f0d",
+              "hdf5_truth_tuple_sha256": "7e70af86badbacc98bbf138f9655b499f697c89c133d4f9887c119738145d20a",
+              "truth_contract": "HDF5 /meta/IsDisrupt and /meta/DownTime",
+              "minimum_lead_ms": 30.0,
+              "metrics": {
+                "TP": 171,
+                "FN": 9,
+                "FP": 28,
+                "TN": 152,
+                "tpr": 0.95,
+                "tpr_at_30ms": 0.8222222222222222,
+                "fpr": 0.15555555555555556,
+                "median_lead_ms": 208.00000000000017,
+                "over_3000ms_count": 22
+              }
+            }
+          },
+          "query_count": 102,
+          "counts": {
+            "alarm_updates": 0,
+            "decision_value_updates": 0,
+            "endpoint_memory_corrections": 0,
+            "episode_blocks": 0,
+            "episode_delays": 0,
+            "episode_escapes": 0,
+            "episode_updates": 0,
+            "fixed_compute_current_windows": 1632,
+            "fixed_compute_private_steps": 204,
+            "fixed_compute_queries": 102,
+            "fixed_compute_replay_windows": 1632,
+            "fixed_compute_shared_steps": 204,
+            "interaction_delays": 1,
+            "interaction_vetoes": 0,
+            "intra_attempts": 0,
+            "intra_nonzero": 0,
+            "private_inter_accepted": 51,
+            "private_inter_rollback": 51,
+            "query_value_updates": 0,
+            "shared_inter_accepted": 102,
+            "shared_inter_rollback": 0,
+            "window_active_selected": 0
+          },
+          "group_counts": {
+            "TN": 37,
+            "FP": 8,
+            "TP": 48,
+            "FN": 3,
+            "TARDY": 6
+          },
+          "compute_shape_stream_sha256": "54388f934ed2c1da5161803bdea6401eeb1fa84042a279b0c49d9a24189e9a2d",
+          "compute_signature_sha256": "9498db09bc85912bd490ba2c5accda027a89086bdf492405168743b4e8106be0",
+          "shared_steps_committed": 204,
+          "private_steps_committed": 102,
+          "causal_effect_stream_sha256": "f2ca53e5b7a8dfd97028f1b1af4186769db8a6b24dadccf28a247cc949b8d73c",
+          "runtime": {
+            "cuda_device": "NVIDIA GeForce RTX 5070 Laptop GPU",
+            "cuda_peak_memory_bytes": 670511104,
+            "elapsed_wall_seconds": 136.9869123019962
+          },
+          "parent_hashes": {
+            "base_before_after": "715a73cc88a4071968e6116dce7ff75eccd5217caba204143bcde14e133edc77",
+            "phase2_initial_shared": "f6fba846257c5db000de590d5d7d315dbaca63d1ac4619b426ff8ef419cf014d",
+            "phase2_initial_private": "83703f08d3121f9dc253a531c32de5db64dbfb6c6eb883f86349b332ad331088",
+            "static_predictions": "430aca80856e0391fda9fd4bed891f8714963d924b300f20f33814aa15942f0d"
+          }
+        }
+      ],
+      "random_mean": {
+        "tpr_at_30ms": 0.8166666666666667,
+        "fpr": 0.1537037037037037,
+        "utility_tpr30_minus_fpr": 0.662962962962963
+      },
+      "active_minus_random_mean_utility": -0.0018518518518518823,
+      "active_minus_static_utility": -0.005555555555555536,
+      "equal_query_budget": true,
+      "equal_parent_and_static": true,
+      "equal_realized_compute_shape": true
+    },
+    "133": {
+      "active_archived_roster": {
+        "path": "<PROJECT_ROOT>/experiments/transfer_methods_2026/runs/equal_compute_selector_control_v1/seed133/active_fixed_compute",
+        "metrics": {
+          "FN": 14,
+          "FP": 24,
+          "TN": 156,
+          "TP": 166,
+          "fpr": 0.13333333333333333,
+          "median_lead_ms": 175.00000000000028,
+          "over_3000ms_count": 19,
+          "tpr": 0.9222222222222223,
+          "tpr_at_30ms": 0.8333333333333334,
+          "utility_tpr30_minus_fpr": 0.7000000000000001
+        },
+        "static_metrics": {
+          "FN": 14,
+          "FP": 26,
+          "TN": 154,
+          "TP": 166,
+          "fpr": 0.14444444444444443,
+          "median_lead_ms": 175.00000000000028,
+          "over_3000ms_count": 20,
+          "tpr": 0.9222222222222223,
+          "tpr_at_30ms": 0.8388888888888889,
+          "utility_tpr30_minus_fpr": 0.6944444444444444
+        },
+        "metric_recomputation": {
+          "online": {
+            "status": "PASS",
+            "predictions_file": "predictions.jsonl",
+            "predictions_sha256": "f566284b8ac55960b78e8c6473320e2e93d7cbe16f7313b22b45584e291c56e0",
+            "hdf5_truth_tuple_sha256": "7e70af86badbacc98bbf138f9655b499f697c89c133d4f9887c119738145d20a",
+            "truth_contract": "HDF5 /meta/IsDisrupt and /meta/DownTime",
+            "minimum_lead_ms": 30.0,
+            "metrics": {
+              "TP": 166,
+              "FN": 14,
+              "FP": 24,
+              "TN": 156,
+              "tpr": 0.9222222222222223,
+              "tpr_at_30ms": 0.8333333333333334,
+              "fpr": 0.13333333333333333,
+              "median_lead_ms": 175.00000000000028,
+              "over_3000ms_count": 19
+            }
+          },
+          "static": {
+            "status": "PASS",
+            "predictions_file": "static_predictions.jsonl",
+            "predictions_sha256": "413b209039bcf4c9218d3c3f7c26e3552110496c7040f4bbe39a561d045ef612",
+            "hdf5_truth_tuple_sha256": "7e70af86badbacc98bbf138f9655b499f697c89c133d4f9887c119738145d20a",
+            "truth_contract": "HDF5 /meta/IsDisrupt and /meta/DownTime",
+            "minimum_lead_ms": 30.0,
+            "metrics": {
+              "TP": 166,
+              "FN": 14,
+              "FP": 26,
+              "TN": 154,
+              "tpr": 0.9222222222222223,
+              "tpr_at_30ms": 0.8388888888888889,
+              "fpr": 0.14444444444444443,
+              "median_lead_ms": 175.00000000000028,
+              "over_3000ms_count": 20
+            }
+          }
+        },
+        "query_count": 90,
+        "counts": {
+          "alarm_updates": 0,
+          "decision_value_updates": 0,
+          "endpoint_memory_corrections": 0,
+          "episode_blocks": 0,
+          "episode_delays": 0,
+          "episode_escapes": 0,
+          "episode_updates": 0,
+          "fixed_compute_current_windows": 1440,
+          "fixed_compute_private_steps": 180,
+          "fixed_compute_queries": 90,
+          "fixed_compute_replay_windows": 1440,
+          "fixed_compute_shared_steps": 180,
+          "interaction_delays": 0,
+          "interaction_vetoes": 0,
+          "intra_attempts": 0,
+          "intra_nonzero": 0,
+          "private_inter_accepted": 90,
+          "private_inter_rollback": 0,
+          "query_value_updates": 0,
+          "shared_inter_accepted": 41,
+          "shared_inter_rollback": 49,
+          "window_active_selected": 0
+        },
+        "group_counts": {
+          "TN": 23,
+          "TP": 36,
+          "FN": 7,
+          "FP": 18,
+          "TARDY": 6
+        },
+        "compute_shape_stream_sha256": "d3c3c28ad4e1c3c66e80812a8396b66f4393724e061bff0703ac7c7ab165b477",
+        "compute_signature_sha256": "9498db09bc85912bd490ba2c5accda027a89086bdf492405168743b4e8106be0",
+        "shared_steps_committed": 82,
+        "private_steps_committed": 180,
+        "causal_effect_stream_sha256": "471fcbca58f4076f85eba5d2347132ec27a20b0e6b551207e2871ed41a4428d6",
+        "runtime": {
+          "cuda_device": "NVIDIA GeForce RTX 5070 Laptop GPU",
+          "cuda_peak_memory_bytes": 670511104,
+          "elapsed_wall_seconds": 132.6111822189996
+        },
+        "parent_hashes": {
+          "base_before_after": "2db688ceea41a72276fc7d527f3f27c2092708c84c291926c68b71f1c935fe14",
+          "phase2_initial_shared": "5bf58e330ac26a802d9d1386cbace66d241ac97d1ae65d9f8b0fadefba1ce9e9",
+          "phase2_initial_private": "65c4329ac0c5127a2ab9aa4644095af1e3ceea120c77d6879dd78427a3d000e5",
+          "static_predictions": "413b209039bcf4c9218d3c3f7c26e3552110496c7040f4bbe39a561d045ef612"
+        }
+      },
+      "random_rosters": [
+        {
+          "path": "<PROJECT_ROOT>/experiments/transfer_methods_2026/runs/equal_compute_selector_control_v1/seed133/random_fixed_compute_r0",
+          "metrics": {
+            "FN": 14,
+            "FP": 24,
+            "TN": 156,
+            "TP": 166,
+            "fpr": 0.13333333333333333,
+            "median_lead_ms": 175.5,
+            "over_3000ms_count": 20,
+            "tpr": 0.9222222222222223,
+            "tpr_at_30ms": 0.8333333333333334,
+            "utility_tpr30_minus_fpr": 0.7000000000000001
+          },
+          "static_metrics": {
+            "FN": 14,
+            "FP": 26,
+            "TN": 154,
+            "TP": 166,
+            "fpr": 0.14444444444444443,
+            "median_lead_ms": 175.00000000000028,
+            "over_3000ms_count": 20,
+            "tpr": 0.9222222222222223,
+            "tpr_at_30ms": 0.8388888888888889,
+            "utility_tpr30_minus_fpr": 0.6944444444444444
+          },
+          "metric_recomputation": {
+            "online": {
+              "status": "PASS",
+              "predictions_file": "predictions.jsonl",
+              "predictions_sha256": "14bcbba89f50cbfc3d9267dbbb8c0375e5cee7e6e4244a26946995c67177049a",
+              "hdf5_truth_tuple_sha256": "7e70af86badbacc98bbf138f9655b499f697c89c133d4f9887c119738145d20a",
+              "truth_contract": "HDF5 /meta/IsDisrupt and /meta/DownTime",
+              "minimum_lead_ms": 30.0,
+              "metrics": {
+                "TP": 166,
+                "FN": 14,
+                "FP": 24,
+                "TN": 156,
+                "tpr": 0.9222222222222223,
+                "tpr_at_30ms": 0.8333333333333334,
+                "fpr": 0.13333333333333333,
+                "median_lead_ms": 175.5,
+                "over_3000ms_count": 20
+              }
+            },
+            "static": {
+              "status": "PASS",
+              "predictions_file": "static_predictions.jsonl",
+              "predictions_sha256": "413b209039bcf4c9218d3c3f7c26e3552110496c7040f4bbe39a561d045ef612",
+              "hdf5_truth_tuple_sha256": "7e70af86badbacc98bbf138f9655b499f697c89c133d4f9887c119738145d20a",
+              "truth_contract": "HDF5 /meta/IsDisrupt and /meta/DownTime",
+              "minimum_lead_ms": 30.0,
+              "metrics": {
+                "TP": 166,
+                "FN": 14,
+                "FP": 26,
+                "TN": 154,
+                "tpr": 0.9222222222222223,
+                "tpr_at_30ms": 0.8388888888888889,
+                "fpr": 0.14444444444444443,
+                "median_lead_ms": 175.00000000000028,
+                "over_3000ms_count": 20
+              }
+            }
+          },
+          "query_count": 90,
+          "counts": {
+            "alarm_updates": 0,
+            "decision_value_updates": 0,
+            "endpoint_memory_corrections": 0,
+            "episode_blocks": 0,
+            "episode_delays": 0,
+            "episode_escapes": 0,
+            "episode_updates": 0,
+            "fixed_compute_current_windows": 1440,
+            "fixed_compute_private_steps": 180,
+            "fixed_compute_queries": 90,
+            "fixed_compute_replay_windows": 1440,
+            "fixed_compute_shared_steps": 180,
+            "interaction_delays": 0,
+            "interaction_vetoes": 0,
+            "intra_attempts": 0,
+            "intra_nonzero": 0,
+            "private_inter_accepted": 90,
+            "private_inter_rollback": 0,
+            "query_value_updates": 0,
+            "shared_inter_accepted": 90,
+            "shared_inter_rollback": 0,
+            "window_active_selected": 0
+          },
+          "group_counts": {
+            "TN": 34,
+            "TP": 47,
+            "FP": 5,
+            "FN": 2,
+            "TARDY": 2
+          },
+          "compute_shape_stream_sha256": "d3c3c28ad4e1c3c66e80812a8396b66f4393724e061bff0703ac7c7ab165b477",
+          "compute_signature_sha256": "9498db09bc85912bd490ba2c5accda027a89086bdf492405168743b4e8106be0",
+          "shared_steps_committed": 180,
+          "private_steps_committed": 180,
+          "causal_effect_stream_sha256": "717c7759dff931672b4f027f288516420554f4d11885d986923fdd0656e4d711",
+          "runtime": {
+            "cuda_device": "NVIDIA GeForce RTX 5070 Laptop GPU",
+            "cuda_peak_memory_bytes": 670511104,
+            "elapsed_wall_seconds": 136.89106985999388
+          },
+          "parent_hashes": {
+            "base_before_after": "2db688ceea41a72276fc7d527f3f27c2092708c84c291926c68b71f1c935fe14",
+            "phase2_initial_shared": "5bf58e330ac26a802d9d1386cbace66d241ac97d1ae65d9f8b0fadefba1ce9e9",
+            "phase2_initial_private": "65c4329ac0c5127a2ab9aa4644095af1e3ceea120c77d6879dd78427a3d000e5",
+            "static_predictions": "413b209039bcf4c9218d3c3f7c26e3552110496c7040f4bbe39a561d045ef612"
+          }
+        },
+        {
+          "path": "<PROJECT_ROOT>/experiments/transfer_methods_2026/runs/equal_compute_selector_control_v1/seed133/random_fixed_compute_r1",
+          "metrics": {
+            "FN": 14,
+            "FP": 24,
+            "TN": 156,
+            "TP": 166,
+            "fpr": 0.13333333333333333,
+            "median_lead_ms": 175.00000000000028,
+            "over_3000ms_count": 20,
+            "tpr": 0.9222222222222223,
+            "tpr_at_30ms": 0.8333333333333334,
+            "utility_tpr30_minus_fpr": 0.7000000000000001
+          },
+          "static_metrics": {
+            "FN": 14,
+            "FP": 26,
+            "TN": 154,
+            "TP": 166,
+            "fpr": 0.14444444444444443,
+            "median_lead_ms": 175.00000000000028,
+            "over_3000ms_count": 20,
+            "tpr": 0.9222222222222223,
+            "tpr_at_30ms": 0.8388888888888889,
+            "utility_tpr30_minus_fpr": 0.6944444444444444
+          },
+          "metric_recomputation": {
+            "online": {
+              "status": "PASS",
+              "predictions_file": "predictions.jsonl",
+              "predictions_sha256": "fa31559d6080a9e8c3447513c498378df146715415e0c242e3d4b59f6ac34c40",
+              "hdf5_truth_tuple_sha256": "7e70af86badbacc98bbf138f9655b499f697c89c133d4f9887c119738145d20a",
+              "truth_contract": "HDF5 /meta/IsDisrupt and /meta/DownTime",
+              "minimum_lead_ms": 30.0,
+              "metrics": {
+                "TP": 166,
+                "FN": 14,
+                "FP": 24,
+                "TN": 156,
+                "tpr": 0.9222222222222223,
+                "tpr_at_30ms": 0.8333333333333334,
+                "fpr": 0.13333333333333333,
+                "median_lead_ms": 175.00000000000028,
+                "over_3000ms_count": 20
+              }
+            },
+            "static": {
+              "status": "PASS",
+              "predictions_file": "static_predictions.jsonl",
+              "predictions_sha256": "413b209039bcf4c9218d3c3f7c26e3552110496c7040f4bbe39a561d045ef612",
+              "hdf5_truth_tuple_sha256": "7e70af86badbacc98bbf138f9655b499f697c89c133d4f9887c119738145d20a",
+              "truth_contract": "HDF5 /meta/IsDisrupt and /meta/DownTime",
+              "minimum_lead_ms": 30.0,
+              "metrics": {
+                "TP": 166,
+                "FN": 14,
+                "FP": 26,
+                "TN": 154,
+                "tpr": 0.9222222222222223,
+                "tpr_at_30ms": 0.8388888888888889,
+                "fpr": 0.14444444444444443,
+                "median_lead_ms": 175.00000000000028,
+                "over_3000ms_count": 20
+              }
+            }
+          },
+          "query_count": 90,
+          "counts": {
+            "alarm_updates": 0,
+            "decision_value_updates": 0,
+            "endpoint_memory_corrections": 0,
+            "episode_blocks": 0,
+            "episode_delays": 0,
+            "episode_escapes": 0,
+            "episode_updates": 0,
+            "fixed_compute_current_windows": 1440,
+            "fixed_compute_private_steps": 180,
+            "fixed_compute_queries": 90,
+            "fixed_compute_replay_windows": 1440,
+            "fixed_compute_shared_steps": 180,
+            "interaction_delays": 0,
+            "interaction_vetoes": 0,
+            "intra_attempts": 0,
+            "intra_nonzero": 0,
+            "private_inter_accepted": 90,
+            "private_inter_rollback": 0,
+            "query_value_updates": 0,
+            "shared_inter_accepted": 49,
+            "shared_inter_rollback": 41,
+            "window_active_selected": 0
+          },
+          "group_counts": {
+            "TN": 33,
+            "TP": 41,
+            "TARDY": 7,
+            "FP": 7,
+            "FN": 2
+          },
+          "compute_shape_stream_sha256": "d3c3c28ad4e1c3c66e80812a8396b66f4393724e061bff0703ac7c7ab165b477",
+          "compute_signature_sha256": "9498db09bc85912bd490ba2c5accda027a89086bdf492405168743b4e8106be0",
+          "shared_steps_committed": 98,
+          "private_steps_committed": 180,
+          "causal_effect_stream_sha256": "d2afb599c0fd2627ca65b198f4c3b21b936c6fcb416c6a36e247bbfbe042147e",
+          "runtime": {
+            "cuda_device": "NVIDIA GeForce RTX 5070 Laptop GPU",
+            "cuda_peak_memory_bytes": 670511104,
+            "elapsed_wall_seconds": 134.7687779400003
+          },
+          "parent_hashes": {
+            "base_before_after": "2db688ceea41a72276fc7d527f3f27c2092708c84c291926c68b71f1c935fe14",
+            "phase2_initial_shared": "5bf58e330ac26a802d9d1386cbace66d241ac97d1ae65d9f8b0fadefba1ce9e9",
+            "phase2_initial_private": "65c4329ac0c5127a2ab9aa4644095af1e3ceea120c77d6879dd78427a3d000e5",
+            "static_predictions": "413b209039bcf4c9218d3c3f7c26e3552110496c7040f4bbe39a561d045ef612"
+          }
+        },
+        {
+          "path": "<PROJECT_ROOT>/experiments/transfer_methods_2026/runs/equal_compute_selector_control_v1/seed133/random_fixed_compute_r2",
+          "metrics": {
+            "FN": 14,
+            "FP": 24,
+            "TN": 156,
+            "TP": 166,
+            "fpr": 0.13333333333333333,
+            "median_lead_ms": 175.5,
+            "over_3000ms_count": 19,
+            "tpr": 0.9222222222222223,
+            "tpr_at_30ms": 0.8333333333333334,
+            "utility_tpr30_minus_fpr": 0.7000000000000001
+          },
+          "static_metrics": {
+            "FN": 14,
+            "FP": 26,
+            "TN": 154,
+            "TP": 166,
+            "fpr": 0.14444444444444443,
+            "median_lead_ms": 175.00000000000028,
+            "over_3000ms_count": 20,
+            "tpr": 0.9222222222222223,
+            "tpr_at_30ms": 0.8388888888888889,
+            "utility_tpr30_minus_fpr": 0.6944444444444444
+          },
+          "metric_recomputation": {
+            "online": {
+              "status": "PASS",
+              "predictions_file": "predictions.jsonl",
+              "predictions_sha256": "b67753b565a8db50be912713d5c43169321e35815f26636f9ae7e1e684768e49",
+              "hdf5_truth_tuple_sha256": "7e70af86badbacc98bbf138f9655b499f697c89c133d4f9887c119738145d20a",
+              "truth_contract": "HDF5 /meta/IsDisrupt and /meta/DownTime",
+              "minimum_lead_ms": 30.0,
+              "metrics": {
+                "TP": 166,
+                "FN": 14,
+                "FP": 24,
+                "TN": 156,
+                "tpr": 0.9222222222222223,
+                "tpr_at_30ms": 0.8333333333333334,
+                "fpr": 0.13333333333333333,
+                "median_lead_ms": 175.5,
+                "over_3000ms_count": 19
+              }
+            },
+            "static": {
+              "status": "PASS",
+              "predictions_file": "static_predictions.jsonl",
+              "predictions_sha256": "413b209039bcf4c9218d3c3f7c26e3552110496c7040f4bbe39a561d045ef612",
+              "hdf5_truth_tuple_sha256": "7e70af86badbacc98bbf138f9655b499f697c89c133d4f9887c119738145d20a",
+              "truth_contract": "HDF5 /meta/IsDisrupt and /meta/DownTime",
+              "minimum_lead_ms": 30.0,
+              "metrics": {
+                "TP": 166,
+                "FN": 14,
+                "FP": 26,
+                "TN": 154,
+                "tpr": 0.9222222222222223,
+                "tpr_at_30ms": 0.8388888888888889,
+                "fpr": 0.14444444444444443,
+                "median_lead_ms": 175.00000000000028,
+                "over_3000ms_count": 20
+              }
+            }
+          },
+          "query_count": 90,
+          "counts": {
+            "alarm_updates": 0,
+            "decision_value_updates": 0,
+            "endpoint_memory_corrections": 0,
+            "episode_blocks": 0,
+            "episode_delays": 0,
+            "episode_escapes": 0,
+            "episode_updates": 0,
+            "fixed_compute_current_windows": 1440,
+            "fixed_compute_private_steps": 180,
+            "fixed_compute_queries": 90,
+            "fixed_compute_replay_windows": 1440,
+            "fixed_compute_shared_steps": 180,
+            "interaction_delays": 0,
+            "interaction_vetoes": 0,
+            "intra_attempts": 0,
+            "intra_nonzero": 0,
+            "private_inter_accepted": 90,
+            "private_inter_rollback": 0,
+            "query_value_updates": 0,
+            "shared_inter_accepted": 38,
+            "shared_inter_rollback": 52,
+            "window_active_selected": 0
+          },
+          "group_counts": {
+            "TN": 35,
+            "TP": 39,
+            "FN": 3,
+            "TARDY": 4,
+            "FP": 9
+          },
+          "compute_shape_stream_sha256": "d3c3c28ad4e1c3c66e80812a8396b66f4393724e061bff0703ac7c7ab165b477",
+          "compute_signature_sha256": "9498db09bc85912bd490ba2c5accda027a89086bdf492405168743b4e8106be0",
+          "shared_steps_committed": 76,
+          "private_steps_committed": 180,
+          "causal_effect_stream_sha256": "5d32d7c14cfcbbb6e383862f5fa50d1abdea14c2ecab1e265b5e277020b70c34",
+          "runtime": {
+            "cuda_device": "NVIDIA GeForce RTX 5070 Laptop GPU",
+            "cuda_peak_memory_bytes": 670511104,
+            "elapsed_wall_seconds": 136.06456147800054
+          },
+          "parent_hashes": {
+            "base_before_after": "2db688ceea41a72276fc7d527f3f27c2092708c84c291926c68b71f1c935fe14",
+            "phase2_initial_shared": "5bf58e330ac26a802d9d1386cbace66d241ac97d1ae65d9f8b0fadefba1ce9e9",
+            "phase2_initial_private": "65c4329ac0c5127a2ab9aa4644095af1e3ceea120c77d6879dd78427a3d000e5",
+            "static_predictions": "413b209039bcf4c9218d3c3f7c26e3552110496c7040f4bbe39a561d045ef612"
+          }
+        }
+      ],
+      "random_mean": {
+        "tpr_at_30ms": 0.8333333333333334,
+        "fpr": 0.13333333333333333,
+        "utility_tpr30_minus_fpr": 0.7000000000000001
+      },
+      "active_minus_random_mean_utility": 0.0,
+      "active_minus_static_utility": 0.005555555555555647,
+      "equal_query_budget": true,
+      "equal_parent_and_static": true,
+      "equal_realized_compute_shape": true
+    },
+    "137": {
+      "active_archived_roster": {
+        "path": "<PROJECT_ROOT>/experiments/transfer_methods_2026/runs/equal_compute_selector_control_v1/seed137/active_fixed_compute",
+        "metrics": {
+          "FN": 11,
+          "FP": 35,
+          "TN": 145,
+          "TP": 169,
+          "fpr": 0.19444444444444445,
+          "median_lead_ms": 214.0000000000004,
+          "over_3000ms_count": 21,
+          "tpr": 0.9388888888888889,
+          "tpr_at_30ms": 0.8611111111111112,
+          "utility_tpr30_minus_fpr": 0.6666666666666667
+        },
+        "static_metrics": {
+          "FN": 11,
+          "FP": 36,
+          "TN": 144,
+          "TP": 169,
+          "fpr": 0.2,
+          "median_lead_ms": 223.99999999999932,
+          "over_3000ms_count": 21,
+          "tpr": 0.9388888888888889,
+          "tpr_at_30ms": 0.8611111111111112,
+          "utility_tpr30_minus_fpr": 0.6611111111111112
+        },
+        "metric_recomputation": {
+          "online": {
+            "status": "PASS",
+            "predictions_file": "predictions.jsonl",
+            "predictions_sha256": "041558dd415abe958fb1a47127bba48fc923e446c85a7ef8e280b4465f95c2f9",
+            "hdf5_truth_tuple_sha256": "7e70af86badbacc98bbf138f9655b499f697c89c133d4f9887c119738145d20a",
+            "truth_contract": "HDF5 /meta/IsDisrupt and /meta/DownTime",
+            "minimum_lead_ms": 30.0,
+            "metrics": {
+              "TP": 169,
+              "FN": 11,
+              "FP": 35,
+              "TN": 145,
+              "tpr": 0.9388888888888889,
+              "tpr_at_30ms": 0.8611111111111112,
+              "fpr": 0.19444444444444445,
+              "median_lead_ms": 214.0000000000004,
+              "over_3000ms_count": 21
+            }
+          },
+          "static": {
+            "status": "PASS",
+            "predictions_file": "static_predictions.jsonl",
+            "predictions_sha256": "f32df6ac84ed81caeaed39cffd4ee9d6b0f08eb01bee6f567069c7a80f9b9beb",
+            "hdf5_truth_tuple_sha256": "7e70af86badbacc98bbf138f9655b499f697c89c133d4f9887c119738145d20a",
+            "truth_contract": "HDF5 /meta/IsDisrupt and /meta/DownTime",
+            "minimum_lead_ms": 30.0,
+            "metrics": {
+              "TP": 169,
+              "FN": 11,
+              "FP": 36,
+              "TN": 144,
+              "tpr": 0.9388888888888889,
+              "tpr_at_30ms": 0.8611111111111112,
+              "fpr": 0.2,
+              "median_lead_ms": 223.99999999999932,
+              "over_3000ms_count": 21
+            }
+          }
+        },
+        "query_count": 99,
+        "counts": {
+          "alarm_updates": 0,
+          "decision_value_updates": 0,
+          "endpoint_memory_corrections": 0,
+          "episode_blocks": 0,
+          "episode_delays": 0,
+          "episode_escapes": 0,
+          "episode_updates": 0,
+          "fixed_compute_current_windows": 1584,
+          "fixed_compute_private_steps": 198,
+          "fixed_compute_queries": 99,
+          "fixed_compute_replay_windows": 1584,
+          "fixed_compute_shared_steps": 198,
+          "interaction_delays": 2,
+          "interaction_vetoes": 1,
+          "intra_attempts": 0,
+          "intra_nonzero": 0,
+          "private_inter_accepted": 77,
+          "private_inter_rollback": 22,
+          "query_value_updates": 0,
+          "shared_inter_accepted": 99,
+          "shared_inter_rollback": 0,
+          "window_active_selected": 0
+        },
+        "group_counts": {
+          "TN": 28,
+          "FN": 5,
+          "FP": 28,
+          "TARDY": 8,
+          "TP": 30
+        },
+        "compute_shape_stream_sha256": "23c17c6ae8e19cc9f998317843804ecc36122de896f2b0800e35a55a455a6b69",
+        "compute_signature_sha256": "9498db09bc85912bd490ba2c5accda027a89086bdf492405168743b4e8106be0",
+        "shared_steps_committed": 198,
+        "private_steps_committed": 154,
+        "causal_effect_stream_sha256": "6a0c372495bd8bacbf2484b04b4935b7168c56d40b0a2fb4937fd0070557254c",
+        "runtime": {
+          "cuda_device": "NVIDIA GeForce RTX 5070 Laptop GPU",
+          "cuda_peak_memory_bytes": 670511104,
+          "elapsed_wall_seconds": 133.1375715930044
+        },
+        "parent_hashes": {
+          "base_before_after": "d1ecbf884b8caf1a29b0aa4d78d5796635c8f7e0b614bbf647a287ac041dc578",
+          "phase2_initial_shared": "80c85eb86a1f6dcd640a63d14605f6b26b810165dc8086f97d4a3c62ba1255ad",
+          "phase2_initial_private": "e53d657fe8962f866278e45a833352089d0ef8535ae5746175d5ba42d1479e51",
+          "static_predictions": "f32df6ac84ed81caeaed39cffd4ee9d6b0f08eb01bee6f567069c7a80f9b9beb"
+        }
+      },
+      "random_rosters": [
+        {
+          "path": "<PROJECT_ROOT>/experiments/transfer_methods_2026/runs/equal_compute_selector_control_v1/seed137/random_fixed_compute_r0",
+          "metrics": {
+            "FN": 11,
+            "FP": 33,
+            "TN": 147,
+            "TP": 169,
+            "fpr": 0.18333333333333332,
+            "median_lead_ms": 214.0000000000004,
+            "over_3000ms_count": 21,
+            "tpr": 0.9388888888888889,
+            "tpr_at_30ms": 0.8555555555555555,
+            "utility_tpr30_minus_fpr": 0.6722222222222222
+          },
+          "static_metrics": {
+            "FN": 11,
+            "FP": 36,
+            "TN": 144,
+            "TP": 169,
+            "fpr": 0.2,
+            "median_lead_ms": 223.99999999999932,
+            "over_3000ms_count": 21,
+            "tpr": 0.9388888888888889,
+            "tpr_at_30ms": 0.8611111111111112,
+            "utility_tpr30_minus_fpr": 0.6611111111111112
+          },
+          "metric_recomputation": {
+            "online": {
+              "status": "PASS",
+              "predictions_file": "predictions.jsonl",
+              "predictions_sha256": "01fcfd09e89b238650d57d6786208e9dc461a9570f4cc8b0fa509be833b57236",
+              "hdf5_truth_tuple_sha256": "7e70af86badbacc98bbf138f9655b499f697c89c133d4f9887c119738145d20a",
+              "truth_contract": "HDF5 /meta/IsDisrupt and /meta/DownTime",
+              "minimum_lead_ms": 30.0,
+              "metrics": {
+                "TP": 169,
+                "FN": 11,
+                "FP": 33,
+                "TN": 147,
+                "tpr": 0.9388888888888889,
+                "tpr_at_30ms": 0.8555555555555555,
+                "fpr": 0.18333333333333332,
+                "median_lead_ms": 214.0000000000004,
+                "over_3000ms_count": 21
+              }
+            },
+            "static": {
+              "status": "PASS",
+              "predictions_file": "static_predictions.jsonl",
+              "predictions_sha256": "f32df6ac84ed81caeaed39cffd4ee9d6b0f08eb01bee6f567069c7a80f9b9beb",
+              "hdf5_truth_tuple_sha256": "7e70af86badbacc98bbf138f9655b499f697c89c133d4f9887c119738145d20a",
+              "truth_contract": "HDF5 /meta/IsDisrupt and /meta/DownTime",
+              "minimum_lead_ms": 30.0,
+              "metrics": {
+                "TP": 169,
+                "FN": 11,
+                "FP": 36,
+                "TN": 144,
+                "tpr": 0.9388888888888889,
+                "tpr_at_30ms": 0.8611111111111112,
+                "fpr": 0.2,
+                "median_lead_ms": 223.99999999999932,
+                "over_3000ms_count": 21
+              }
+            }
+          },
+          "query_count": 99,
+          "counts": {
+            "alarm_updates": 0,
+            "decision_value_updates": 0,
+            "endpoint_memory_corrections": 0,
+            "episode_blocks": 0,
+            "episode_delays": 0,
+            "episode_escapes": 0,
+            "episode_updates": 0,
+            "fixed_compute_current_windows": 1584,
+            "fixed_compute_private_steps": 198,
+            "fixed_compute_queries": 99,
+            "fixed_compute_replay_windows": 1584,
+            "fixed_compute_shared_steps": 198,
+            "interaction_delays": 0,
+            "interaction_vetoes": 1,
+            "intra_attempts": 0,
+            "intra_nonzero": 0,
+            "private_inter_accepted": 31,
+            "private_inter_rollback": 68,
+            "query_value_updates": 0,
+            "shared_inter_accepted": 99,
+            "shared_inter_rollback": 0,
+            "window_active_selected": 0
+          },
+          "group_counts": {
+            "TN": 38,
+            "TARDY": 5,
+            "TP": 45,
+            "FP": 9,
+            "FN": 2
+          },
+          "compute_shape_stream_sha256": "23c17c6ae8e19cc9f998317843804ecc36122de896f2b0800e35a55a455a6b69",
+          "compute_signature_sha256": "9498db09bc85912bd490ba2c5accda027a89086bdf492405168743b4e8106be0",
+          "shared_steps_committed": 198,
+          "private_steps_committed": 62,
+          "causal_effect_stream_sha256": "a9c4f77b71a28ad29f0fa1d2e95d0962a8cb063a682d339a7c7ae2e3611754df",
+          "runtime": {
+            "cuda_device": "NVIDIA GeForce RTX 5070 Laptop GPU",
+            "cuda_peak_memory_bytes": 670511104,
+            "elapsed_wall_seconds": 135.06957756300108
+          },
+          "parent_hashes": {
+            "base_before_after": "d1ecbf884b8caf1a29b0aa4d78d5796635c8f7e0b614bbf647a287ac041dc578",
+            "phase2_initial_shared": "80c85eb86a1f6dcd640a63d14605f6b26b810165dc8086f97d4a3c62ba1255ad",
+            "phase2_initial_private": "e53d657fe8962f866278e45a833352089d0ef8535ae5746175d5ba42d1479e51",
+            "static_predictions": "f32df6ac84ed81caeaed39cffd4ee9d6b0f08eb01bee6f567069c7a80f9b9beb"
+          }
+        },
+        {
+          "path": "<PROJECT_ROOT>/experiments/transfer_methods_2026/runs/equal_compute_selector_control_v1/seed137/random_fixed_compute_r1",
+          "metrics": {
+            "FN": 11,
+            "FP": 33,
+            "TN": 147,
+            "TP": 169,
+            "fpr": 0.18333333333333332,
+            "median_lead_ms": 214.0000000000004,
+            "over_3000ms_count": 20,
+            "tpr": 0.9388888888888889,
+            "tpr_at_30ms": 0.8555555555555555,
+            "utility_tpr30_minus_fpr": 0.6722222222222222
+          },
+          "static_metrics": {
+            "FN": 11,
+            "FP": 36,
+            "TN": 144,
+            "TP": 169,
+            "fpr": 0.2,
+            "median_lead_ms": 223.99999999999932,
+            "over_3000ms_count": 21,
+            "tpr": 0.9388888888888889,
+            "tpr_at_30ms": 0.8611111111111112,
+            "utility_tpr30_minus_fpr": 0.6611111111111112
+          },
+          "metric_recomputation": {
+            "online": {
+              "status": "PASS",
+              "predictions_file": "predictions.jsonl",
+              "predictions_sha256": "e4ece1c421ef213686573c655f8654a8411d0abb7d8899f225edbd225b54a7d2",
+              "hdf5_truth_tuple_sha256": "7e70af86badbacc98bbf138f9655b499f697c89c133d4f9887c119738145d20a",
+              "truth_contract": "HDF5 /meta/IsDisrupt and /meta/DownTime",
+              "minimum_lead_ms": 30.0,
+              "metrics": {
+                "TP": 169,
+                "FN": 11,
+                "FP": 33,
+                "TN": 147,
+                "tpr": 0.9388888888888889,
+                "tpr_at_30ms": 0.8555555555555555,
+                "fpr": 0.18333333333333332,
+                "median_lead_ms": 214.0000000000004,
+                "over_3000ms_count": 20
+              }
+            },
+            "static": {
+              "status": "PASS",
+              "predictions_file": "static_predictions.jsonl",
+              "predictions_sha256": "f32df6ac84ed81caeaed39cffd4ee9d6b0f08eb01bee6f567069c7a80f9b9beb",
+              "hdf5_truth_tuple_sha256": "7e70af86badbacc98bbf138f9655b499f697c89c133d4f9887c119738145d20a",
+              "truth_contract": "HDF5 /meta/IsDisrupt and /meta/DownTime",
+              "minimum_lead_ms": 30.0,
+              "metrics": {
+                "TP": 169,
+                "FN": 11,
+                "FP": 36,
+                "TN": 144,
+                "tpr": 0.9388888888888889,
+                "tpr_at_30ms": 0.8611111111111112,
+                "fpr": 0.2,
+                "median_lead_ms": 223.99999999999932,
+                "over_3000ms_count": 21
+              }
+            }
+          },
+          "query_count": 99,
+          "counts": {
+            "alarm_updates": 0,
+            "decision_value_updates": 0,
+            "endpoint_memory_corrections": 0,
+            "episode_blocks": 0,
+            "episode_delays": 0,
+            "episode_escapes": 0,
+            "episode_updates": 0,
+            "fixed_compute_current_windows": 1584,
+            "fixed_compute_private_steps": 198,
+            "fixed_compute_queries": 99,
+            "fixed_compute_replay_windows": 1584,
+            "fixed_compute_shared_steps": 198,
+            "interaction_delays": 1,
+            "interaction_vetoes": 2,
+            "intra_attempts": 0,
+            "intra_nonzero": 0,
+            "private_inter_accepted": 84,
+            "private_inter_rollback": 15,
+            "query_value_updates": 0,
+            "shared_inter_accepted": 99,
+            "shared_inter_rollback": 0,
+            "window_active_selected": 0
+          },
+          "group_counts": {
+            "TN": 36,
+            "FN": 3,
+            "FP": 12,
+            "TARDY": 4,
+            "TP": 44
+          },
+          "compute_shape_stream_sha256": "23c17c6ae8e19cc9f998317843804ecc36122de896f2b0800e35a55a455a6b69",
+          "compute_signature_sha256": "9498db09bc85912bd490ba2c5accda027a89086bdf492405168743b4e8106be0",
+          "shared_steps_committed": 198,
+          "private_steps_committed": 168,
+          "causal_effect_stream_sha256": "1f80617e33cfb8da15c2f385c9be9ad3c6f8d9cec6cf7f5ce6afeb2541ddceaf",
+          "runtime": {
+            "cuda_device": "NVIDIA GeForce RTX 5070 Laptop GPU",
+            "cuda_peak_memory_bytes": 670511104,
+            "elapsed_wall_seconds": 135.62604995199945
+          },
+          "parent_hashes": {
+            "base_before_after": "d1ecbf884b8caf1a29b0aa4d78d5796635c8f7e0b614bbf647a287ac041dc578",
+            "phase2_initial_shared": "80c85eb86a1f6dcd640a63d14605f6b26b810165dc8086f97d4a3c62ba1255ad",
+            "phase2_initial_private": "e53d657fe8962f866278e45a833352089d0ef8535ae5746175d5ba42d1479e51",
+            "static_predictions": "f32df6ac84ed81caeaed39cffd4ee9d6b0f08eb01bee6f567069c7a80f9b9beb"
+          }
+        },
+        {
+          "path": "<PROJECT_ROOT>/experiments/transfer_methods_2026/runs/equal_compute_selector_control_v1/seed137/random_fixed_compute_r2",
+          "metrics": {
+            "FN": 11,
+            "FP": 32,
+            "TN": 148,
+            "TP": 169,
+            "fpr": 0.17777777777777778,
+            "median_lead_ms": 214.0000000000004,
+            "over_3000ms_count": 20,
+            "tpr": 0.9388888888888889,
+            "tpr_at_30ms": 0.85,
+            "utility_tpr30_minus_fpr": 0.6722222222222222
+          },
+          "static_metrics": {
+            "FN": 11,
+            "FP": 36,
+            "TN": 144,
+            "TP": 169,
+            "fpr": 0.2,
+            "median_lead_ms": 223.99999999999932,
+            "over_3000ms_count": 21,
+            "tpr": 0.9388888888888889,
+            "tpr_at_30ms": 0.8611111111111112,
+            "utility_tpr30_minus_fpr": 0.6611111111111112
+          },
+          "metric_recomputation": {
+            "online": {
+              "status": "PASS",
+              "predictions_file": "predictions.jsonl",
+              "predictions_sha256": "1ae1cc498c126fb7979413f9dfc97a7faed7601331f4984a9668317d2cccb615",
+              "hdf5_truth_tuple_sha256": "7e70af86badbacc98bbf138f9655b499f697c89c133d4f9887c119738145d20a",
+              "truth_contract": "HDF5 /meta/IsDisrupt and /meta/DownTime",
+              "minimum_lead_ms": 30.0,
+              "metrics": {
+                "TP": 169,
+                "FN": 11,
+                "FP": 32,
+                "TN": 148,
+                "tpr": 0.9388888888888889,
+                "tpr_at_30ms": 0.85,
+                "fpr": 0.17777777777777778,
+                "median_lead_ms": 214.0000000000004,
+                "over_3000ms_count": 20
+              }
+            },
+            "static": {
+              "status": "PASS",
+              "predictions_file": "static_predictions.jsonl",
+              "predictions_sha256": "f32df6ac84ed81caeaed39cffd4ee9d6b0f08eb01bee6f567069c7a80f9b9beb",
+              "hdf5_truth_tuple_sha256": "7e70af86badbacc98bbf138f9655b499f697c89c133d4f9887c119738145d20a",
+              "truth_contract": "HDF5 /meta/IsDisrupt and /meta/DownTime",
+              "minimum_lead_ms": 30.0,
+              "metrics": {
+                "TP": 169,
+                "FN": 11,
+                "FP": 36,
+                "TN": 144,
+                "tpr": 0.9388888888888889,
+                "tpr_at_30ms": 0.8611111111111112,
+                "fpr": 0.2,
+                "median_lead_ms": 223.99999999999932,
+                "over_3000ms_count": 21
+              }
+            }
+          },
+          "query_count": 99,
+          "counts": {
+            "alarm_updates": 0,
+            "decision_value_updates": 0,
+            "endpoint_memory_corrections": 0,
+            "episode_blocks": 0,
+            "episode_delays": 0,
+            "episode_escapes": 0,
+            "episode_updates": 0,
+            "fixed_compute_current_windows": 1584,
+            "fixed_compute_private_steps": 198,
+            "fixed_compute_queries": 99,
+            "fixed_compute_replay_windows": 1584,
+            "fixed_compute_shared_steps": 198,
+            "interaction_delays": 1,
+            "interaction_vetoes": 2,
+            "intra_attempts": 0,
+            "intra_nonzero": 0,
+            "private_inter_accepted": 89,
+            "private_inter_rollback": 10,
+            "query_value_updates": 0,
+            "shared_inter_accepted": 99,
+            "shared_inter_rollback": 0,
+            "window_active_selected": 0
+          },
+          "group_counts": {
+            "TN": 34,
+            "FN": 5,
+            "FP": 8,
+            "TARDY": 5,
+            "TP": 47
+          },
+          "compute_shape_stream_sha256": "23c17c6ae8e19cc9f998317843804ecc36122de896f2b0800e35a55a455a6b69",
+          "compute_signature_sha256": "9498db09bc85912bd490ba2c5accda027a89086bdf492405168743b4e8106be0",
+          "shared_steps_committed": 198,
+          "private_steps_committed": 178,
+          "causal_effect_stream_sha256": "7cf0c9eff23bf94b2ea3aad55c93752f5e3cd029629558f12f9e2cb225514bc5",
+          "runtime": {
+            "cuda_device": "NVIDIA GeForce RTX 5070 Laptop GPU",
+            "cuda_peak_memory_bytes": 670511104,
+            "elapsed_wall_seconds": 135.41936994100251
+          },
+          "parent_hashes": {
+            "base_before_after": "d1ecbf884b8caf1a29b0aa4d78d5796635c8f7e0b614bbf647a287ac041dc578",
+            "phase2_initial_shared": "80c85eb86a1f6dcd640a63d14605f6b26b810165dc8086f97d4a3c62ba1255ad",
+            "phase2_initial_private": "e53d657fe8962f866278e45a833352089d0ef8535ae5746175d5ba42d1479e51",
+            "static_predictions": "f32df6ac84ed81caeaed39cffd4ee9d6b0f08eb01bee6f567069c7a80f9b9beb"
+          }
+        }
+      ],
+      "random_mean": {
+        "tpr_at_30ms": 0.8537037037037036,
+        "fpr": 0.18148148148148147,
+        "utility_tpr30_minus_fpr": 0.6722222222222222
+      },
+      "active_minus_random_mean_utility": -0.005555555555555425,
+      "active_minus_static_utility": 0.005555555555555536,
+      "equal_query_budget": true,
+      "equal_parent_and_static": true,
+      "equal_realized_compute_shape": true
+    }
+  },
+  "aggregate": {
+    "active_minus_random_utility_equal_seed_mean": -0.0024691358024691024,
+    "active_minus_static_utility_equal_seed_mean": 0.0018518518518518823,
+    "seeds_active_better": 0,
+    "seeds_tied": 1,
+    "screening_gate_requires_active_better_in_all_seeds": true,
+    "screening_gate_passed": false,
+    "archived_roster_superiority_supported": false,
+    "adaptive_selector_policy_effect_estimated": false,
+    "equivalence_or_null_proven": false,
+    "confirmatory_claim": false
+  },
+  "adjudication": "The archived active roster fails the post-development, declared all-seed screening rule under this fixed-compute assimilation operator. Archived-roster superiority is not supported under this operator; this does not estimate the adaptive selector-policy effect and does not establish equivalence or a universal null.",
+  "limitations": [
+    "balanced360 informed architecture and policy development",
+    "archived active identities are a roster treatment, not a rerun of the adaptive selector policy",
+    "random block counts condition on the archived active trajectory",
+    "random schedules quantify algorithmic randomization on one reused stream, not independent cohorts",
+    "a new sealed chronological EAST stream remains required"
+  ]
+}

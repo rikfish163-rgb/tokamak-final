@@ -1,83 +1,107 @@
-# Five-way independent audit
+# Five-way independent audit log
 
 Audit date: 2026-08-22  
 Scope: current v3c J-TEXT → EAST transfer → chronological online-active
-development lineage  
-Model used by all reviewers: `gpt-5.6-luna`, maximum reasoning, read-only
+development lineage plus the fixed-shape archived-roster screen  
+Review model: five independent `gpt-5.6-luna` reviewers at maximum reasoning,
+read-only; the main agent integrates fixes but does not substitute its own
+judgement for a reviewer verdict.
 
-## Verdict matrix
+## Final current-tree verdicts
 
-| Review lane | Local package integrity | Nature confirmatory readiness |
-|---|---|---|
-| Statistical methods and uncertainty | PASS | FAIL |
-| Leakage, label lineage and provenance | PASS | FAIL |
-| Causal online adaptation semantics | PASS | FAIL |
-| Reproducibility and software release | PASS | FAIL |
-| Claims, manuscript and visualization | PASS | FAIL |
+After the remediation pass, every reviewer re-read the current working tree
+and Git index and returned the following explicit verdicts:
 
-The five PASS decisions concern the package's declared local scope: files,
-hashes, ledgers, metrics, PDFs and disclosures are internally consistent. They
-do not mean that the development stream is an independent test. All five
-reviewers independently rejected a confirmatory Nature-family performance,
-generalization or deployment claim.
+| Review lane | Local package integrity | Nature confirmatory readiness | Current local blocker |
+|---|---|---|---|
+| Statistical methods and uncertainty | PASS | FAIL | None |
+| Leakage, chronology and label lineage | PASS | FAIL | None |
+| Causal mechanism and ablation semantics | PASS | FAIL | None |
+| Claims, manuscript and visualization | PASS | FAIL | None |
+| Reproducibility and software release | PASS | FAIL | None |
 
-## Local findings repaired after the first review
+The five local PASS decisions concern the declared development-evidence release
+scope: internal metric/ledger consistency, causal access order, claim wording,
+artifact completeness and reproducibility contracts. They do not convert
+development evidence into independent confirmation. All five reviewers
+independently retained Nature confirmatory readiness as FAIL for the external
+evidence reasons below.
 
-The first review identified several fail-closed coverage and release issues.
-The repository now:
+## Remediation verified in the final re-review
 
-1. validates the recoverable Q30 identities, positions, static-roster hash and
-   explicit lost-ledger boundary;
-2. validates, for every primary seed, that the prediction/query/static ledgers
-   have identical 360-shot order, that selected queries equal reveals and
-   query receipts, that prediction/query rows contain no outcome fields, and
-   that queried/unqueried finalization receipts partition the stream;
-3. validates the whole-file SHA-256 of all three sealed EAST target parents;
-4. verifies both input and output hashes in figure and table manifests;
-5. rejects workstation-specific absolute paths in released text artifacts and
-   serializes compact random-query summaries with portable paths;
-6. excludes regenerable online run caches and the parent-fidelity-invalid v1
-   front-load run while retaining the corrected v2 evidence;
-7. aligns `WORKFLOW.md` with the v3c archived-parent replay and adds the paper
-   package validator to CI; and
-8. expands the package validator from 109 to 117 passing checks.
+1. The validator is currently **126/126 PASS** for local package integrity and
+   disclosure completeness. It recomputes all 12 fixed-shape online ledgers and
+   all 12 static ledgers from HDF5 `/meta/IsDisrupt` and `/meta/DownTime`.
+2. The fixed-shape report uses a derived adjudication with positive, tied and
+   negative synthetic fixtures. Its observed active-minus-random-mean utility
+   is `−0.00185185 / 0 / −0.00555556` for seeds 131/133/137: zero seeds better,
+   one tied, and the all-seed screen fails.
+3. The estimand is restricted to an archived active roster versus
+   block-count-matched random rosters under a new fixed-shape assimilation
+   operator. It does not estimate the adaptive selector-policy effect, prove
+   equivalence, or create confirmatory evidence.
+4. Public text and generated tables distinguish equal windows/batch shapes/
+   trainable scopes/**optimizer attempts** from guard-accepted committed
+   parameter updates. The latter are allowed and observed to differ.
+5. `raw8_zero` is described only as an archived episode/protected-calibration
+   screen, not a model-level target-private-channel ablation.
+6. A fail-closed archive command now validates and copies the complete
+   3-seed × 4-arm regenerated bundle before the report and artifact manifest
+   are built from the released directory itself.
+7. The post-run code/environment manifest now hashes the complete Git-indexed
+   local Python/shell, configuration, dependency-lock and CI snapshot (92
+   files in this staged tree), not a hand-maintained 11-file subset. It remains
+   explicitly non-preregistered and is not represented as an execution-time
+   seal.
+8. CI now covers fixed-shape runner/controller contracts, regenerates tables
+   and figures, validates the package, and compiles both LaTeX manuscripts.
+9. Release-critical artifacts, reconstruction scripts, figures and tables are
+   required to be Git tracked; regenerated hashes must match their manifests.
+10. The final local execution produced **293 passed tests** with five existing
+    Transformer nested-tensor warnings, forced XeLaTeX builds of the 16-page
+    main paper and 13-page supplement, and **126/126** validator checks.
 
-## Findings that remain and cannot be repaired with the current evidence
+## Evidence that still cannot be repaired from the current data
 
-1. `balanced360` informed architecture and 972-candidate method selection; no
-   untouched chronological EAST future stream remains.
-2. EAST `support110` is 15 disruptive / 95 safe by HDF5 and is used for both
-   target fitting and threshold selection; there is no independent target
-   validation cohort.
-3. J-TEXT VAL160/TEST220 are count-aligned, outcome-balanced, non-chronological
-   comparators and cannot establish prospective source-domain generalization.
-4. The primary source parent fails the registered padding/context shortcut
-   gate. PADFIX passes that gate but causes negative target transfer under the
-   frozen policy.
-5. Active querying produces about 2.21 times as many realized error-triggered
-   inter-shot update attempts as the matched random schedules. The current
-   comparison tests the full active mechanism, not a selector-only equal-FLOP
-   effect; the exact one-sided three-sign probability is 0.125.
-6. The Q30 shot identities and original ledger SHA are preserved, but the
-   original 360-row decision ledger was lost after a tmpfs reboot. Its
-   historical cutoff/value/route sequence cannot be reconstructed honestly.
-7. Worst chronological blocks, very-early alarms and shortcut diagnostics do
-   not support campaign-general or deployment-ready claims.
-8. Data DOI/controlled access, immutable code DOI, authorship/CRediT/funding/
-   conflicts and device-side latency/fail-safe evidence remain external tasks.
+These are not hidden local-package defects. They define why Nature
+confirmatory readiness remains FAIL even if all five local-integrity lanes pass:
+
+1. `balanced360` informed architecture and a 972-candidate development search;
+   no untouched chronological EAST future stream remains.
+2. EAST `support110` is 15 disruptive / 95 safe by HDF5 and is used for target
+   fitting and threshold selection; there is no independent target validation.
+3. J-TEXT VAL160/TEST220 are count-aligned, outcome-balanced,
+   non-chronological comparators, not prospective source-domain cohorts.
+4. The primary source parent fails the padding/context shortcut gate. PADFIX
+   passes that diagnostic but causes negative target transfer under the frozen
+   target policy.
+5. The earlier causal active-versus-random replay compares the complete active
+   mechanism and has unequal realized error-triggered update attempts. The new
+   fixed-shape roster screen removes the window/attempt-count mediator under a
+   different operator but does not rerun the adaptive policy and is negative.
+6. Q30 identities and the original decision-ledger SHA remain, but the original
+   360-row decision ledger was lost after a tmpfs reboot; historical per-shot
+   cutoff/value/route values cannot be independently reconstructed.
+7. Worst chronological blocks, very-early alarms, shortcut diagnostics and
+   missing device-side latency/fail-safe tests prevent campaign-general or
+   deployment-ready claims.
+8. Data DOI/controlled access, immutable release DOI, authorship/CRediT,
+   funding/conflicts and a newly frozen prospective execution are external
+   publication tasks.
 
 ## Defensible claim ceiling
 
-The package supports an auditable development claim:
+The package supports this development claim locally; remote CI and clean-clone
+verification remain release operations before archival handoff:
 
-> Under HDF5-authoritative labels and the archived v3c lineage, the local
+> Under HDF5-authoritative labels and the archived v3c lineage, the released
 > replay implements `predict → seal → query → selected reveal → later-shot
 > update`; its three-stage point estimates, development controls, negative
-> results and provenance boundaries are internally reproducible from the
-> supplied parents, ledgers and external HDF5 contract.
+> results and provenance boundaries are mutually reproducible from the bundled
+> parents and ledgers under the documented external-HDF5 contract.
 
-It does **not** support an independent-confirmation, future-campaign,
-shortcut-free mechanism, equal-FLOP selector-superiority, or deployment claim.
-The claim-changing experiment is a newly acquired chronological EAST stream
-with all parents, thresholds, query schedules, compute budgets and success
-gates frozen before any outcome is revealed.
+It cannot support an independent-confirmation, future-campaign,
+shortcut-free-mechanism, selector-superiority, or deployment claim. The
+claim-changing experiment is a newly acquired chronological EAST stream with
+parents, thresholds, query policy, compute budget and success gates frozen
+before any outcome is revealed.

@@ -43,9 +43,11 @@ operation.
   is used both for target fitting and support-derived threshold selection.
 - EAST balanced360 has 180/180 and is chronological by shot identifier, but it
   was used for architecture and 972-candidate parameter development.
-- There is no independent future EAST stream. A causal block-matched
-  random-query online baseline is archived, but realized error-triggered
-  update attempts/FLOPs are not exactly matched.
+- There is no independent future EAST stream. The primary causal
+  block-matched random-query baseline has unequal realized error-triggered
+  update counts. A separate fixed-shape selector-roster screen exactly matches
+  realized windows and optimizer attempts, but the archived active roster does
+  not outperform the random mean in any seed.
 
 ## Recorded development metrics
 
@@ -78,10 +80,15 @@ FLOPs.
 - Safe-shot scores retain shot/campaign correlation in some seeds.
 - Twenty to twenty-three disruptive alarms per EAST seed occur more than 3 s
   before disruption and may be operationally ambiguous.
-- Active-query error enrichment is post-hoc on the development stream. Active
-  utility exceeds the block-matched random-query mean in all three seeds, but
-  the comparison is descriptive and partly mediated by more realized
-  error-triggered update attempts.
+- Active-query error enrichment is post-hoc on the development stream. The
+  full primary mechanism exceeds the block-matched random-query mean in all
+  three seeds, but it also realizes more error-triggered updates. When every
+  queried shot is forced through the same 16+16-window, 2+2-optimizer-attempt
+  operator (with potentially different guarded commits), the
+  archived active roster has utility differences of `-0.00185/0/-0.00556`
+  versus the random mean. Archived-roster superiority under that new operator
+  is therefore unsupported; the adaptive selector-policy effect is not estimated;
+  equivalence is not established.
 
 ## Reproducibility and provenance
 

@@ -312,6 +312,29 @@ tau_FP = max(0.50, past disruptive-class FP-score q0.90 + 0.06)
 
 三个 seed 方向一致，但不能写成“同计算量主动选择已被显著证明”：主动臂平均发生36.67次共享炮间更新尝试，随机臂为16.56次，比值2.21。错误触发更多更新既是主动机制的一部分，也是实现计算量的中介变量；精确三符号单侧概率仍为0.125。该对照关闭了“根本没有causal random在线基线”的缺口，但没有关闭严格等FLOPs隔离和未来流确认缺口。
 
+### 8.3 固定窗口、batch形状与optimizer-attempt的查询名单对照
+
+为隔离上一节的实现计算量中介，另建立一个**不同于主在线机制**的固定同化算子。它从同一迁移父模型和同一静态360账本出发，只比较“归档主动查询名单”与“标签不可见、每20炮查询数匹配的随机名单”。炮内更新、报警参数学习、episode gate、query-value learner、error memory 和 typed memory 全部冻结。每个被查询炮无论事后属于 TP/TN/FP/FN/TARDY，均强制执行：
+
+```text
+16个当前炮监督窗口 + 16个固定support110回放窗口
+→ shared adapter恰好2个optimizer attempts
+→ private adapter恰好2个optimizer attempts
+→ 当前炮预测已封存；参数只能影响下一炮及以后
+```
+
+逐炮回执记录窗口索引、batch shape、可训练参数scope hash、尝试/提交/回滚步数和首次可影响的下一炮。三个 seed 的实际预算分别为：
+
+| seed | 查询数 | 当前/回放窗口总数 | shared/private attempts | 主动 J | 随机 J（3重复均值） | 主动−随机 |
+|---:|---:|---:|---:|---:|---:|---:|
+| 131 | 102 | 1632 / 1632 | 204 / 204 | 0.6611 | 0.6630 | -0.00185 |
+| 133 | 90 | 1440 / 1440 | 180 / 180 | 0.7000 | 0.7000 | 0 |
+| 137 | 99 | 1584 / 1584 | 198 / 198 | 0.6667 | 0.6722 | -0.00556 |
+
+事后开发阶段明确写入报告的初筛规则是三个 seed 上主动名单都优于随机均值；它没有独立时间戳预注册凭据。结果为 `0/3` seed 通过，等 seed 平均差为 `-0.00247`。因此必须撤回“查询身份本身已经被证明优于随机”的论点。可支持的较窄结论是：在这个新固定同化算子下，没有观察到归档主动名单相对三条随机名单的稳定优势；该实验不估计原自适应选择策略的政策效应。主在线结果仍只能作为查询身份、错误触发更新强度、同错回放、rollback、报警状态保护和 episode veto 的**耦合处理效应**汇报。
+
+这个负结果不等于证明主动与随机等价，也不等于所有可能同化算子下查询价值无效。原因是只有三个随机日程、balanced360 已参与开发，而且归档主动身份是一个固定 roster treatment，并非在新流上重新执行自适应策略。它只使“这个固定算子下的归档名单优越性”论点失败，不能否定查询身份在原耦合机制中的贡献，也不能给出普遍零效应或确认性统计结论。完整证据见 `evidence/equal_compute_selector_control_v1/report.json`。
+
 ## 9. 负对照与失败证据
 
 | 对照 | 三 seed 总 FP 减少 | operational TP 损失 | 裁决 |
@@ -321,7 +344,7 @@ tau_FP = max(0.50, past disruptive-class FP-score q0.90 + 0.06)
 | 标签错位一炮 | 1 | 0 | 真实增益基本消失 |
 | 标签翻转 | 2 | 23 | 错标签会明显伤害合格报警 |
 | 时间演化特征置零 | 3 | 0 | 只保留部分增益 |
-| raw8 置零 | 3 | 1 | EAST 私有表象提供额外信息 |
+| 名为 `raw8_zero` 的归档episode/保护校准screen | 3 | 1 | 只说明该screen保留部分收益；未封存模型级sidecar干预和完整轨迹重跑，不能解释为八个私有通道的独立消融 |
 | 真实 v3c | 8 | 0 | 最大净收益且不损失合格报警 |
 
 这组对照支持“正确标签 × 炮内时间演化 × EAST 私有特征”共同作用，但不能证明网络学到了所有破裂因果机制。
@@ -393,8 +416,9 @@ FPR <= 0.20
 7. `fig6_causal_false_alarm_rescue_shot73790`：安全炮 73790 的风险、物理支持和 episode veto；
 8. `fig7_negative_controls_and_alarm_robustness`：负对照与前置报警鲁棒性；
 9. `fig8_equal_label_budget_frontload_ablation`：同查询标签预算前置重训、随机前置与因果在线的配对消融；
-10. `fig9_active_vs_causal_random_query`：主动与因果块匹配随机查询的效用差异及实际更新尝试数；
-11. `fig10_target_only_vs_transfer`：严格 EAST-only、source-scaler target-only 与 J-TEXT→EAST 静态迁移的三 seed 比较。
+10. `fig9_active_vs_causal_random_query`：完整主动机制与因果块匹配随机查询的效用差异及实际更新尝试数；
+11. `fig10_target_only_vs_transfer`：严格 EAST-only、source-scaler target-only 与 J-TEXT→EAST 静态迁移的三 seed 比较；
+12. `fig11_equal_compute_selector_screen`：固定16+16窗口、2+2 optimizer attempts（guard提交数可不同）算子下的查询名单负结果。
 
 `figure_manifest.json` 保存所有输入和输出 SHA256。图 4 所需 NPZ 已复制进本论文包，不再依赖 `/home` 的个人工作目录。
 
@@ -443,7 +467,7 @@ FPR <= 0.20
 1. J-TEXT 主划分不是严格时序，VAL/TEST 是 count-aligned 平衡比较集；
 2. EAST support110 同时用于拟合和阈值选择，缺少目标验证；
 3. balanced360 用于972候选筛选，且没有完全未见未来流；
-4. causal random-query 已补齐，但实现更新次数/FLOPs仍未严格相等；同时缺少可公开或受控访问的数据/代码 DOI。
+4. 严格等窗口/等optimizer-attempt查询名单对照已补齐，但主动名单未显示稳定优势；完整在线机制仍没有在独立未来流上做等计算确认，同时缺少可公开或受控访问的数据/代码 DOI。
 
 作者姓名、CRediT、经费、利益冲突和数据访问责任人也必须在投稿前补齐，不能由自动化工具推断。机器可读/逐项裁决见 `NATURE_PORTFOLIO_READINESS.md`。
 

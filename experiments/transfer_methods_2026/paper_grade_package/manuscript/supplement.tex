@@ -285,7 +285,7 @@ The worst online operational TPR by seed is 0.667, 0.791, and 0.733; worst onlin
 \caption{Three-seed totals relative to the same v2.1 sealed trajectories.  A negative TP loss denotes a TP gain.}
 \end{table}
 
-The real gate converts these exact safe seed--shot cases from FP to TN: seed 131 shots 73790, 74928, 76861, 80801; seed 133 shots 71060 and 74562; seed 137 shots 74939 and 75135.  It loses no operational TP.  The controls are compatible with a role for correctly paired labels, temporal evolution and private evidence.  A causal block-matched random-query online replay is archived and has lower mean utility in every seed, but active selection triggers more realized error-conditioned updates; the real configuration was also selected among 972 candidates (55 strict solutions).  The controls therefore do not isolate a selector-only equal-compute effect or provide multiplicity-corrected confirmation.
+The real gate converts these exact safe seed--shot cases from FP to TN: seed 131 shots 73790, 74928, 76861, 80801; seed 133 shots 71060 and 74562; seed 137 shots 74939 and 75135.  It loses no operational TP.  The controls are compatible with a role for correctly paired labels, temporal evolution and private evidence.  The primary causal block-matched random-query replay has lower mean utility in every seed, but active selection triggers more realized error-conditioned updates; the real configuration was also selected among 972 candidates (55 strict solutions).  A separate fixed-shape roster screen removes that optimizer-attempt mediator and does not find archived-roster superiority under its new operator.  It does not estimate the adaptive selector policy; the evidence therefore supports only a coupled full-treatment interpretation and provides no multiplicity-corrected confirmation.
 
 \section{Same-label-access front-load ablation}
 
@@ -321,13 +321,34 @@ For each seed and each contiguous 20-shot block, a label-agnostic sampler draws 
 
 On the direct selected-query complements, equal-seed mean TPR$_{30}$--FPR is 0.8359 for static, 0.7327 for selected-label front-loading, and 0.8490 for causal online.  Front-loading changes TPR$_{30}$ by $+0.0641$ and FPR by $+0.1673$, for a net change of $-0.1032$.  Online exceeds the front-loaded control by $+0.1163$.  Both directions hold in all three seeds.  On the selected/random common masks, static, selected front-load, random front-load, and online values are 0.8387, 0.7322, 0.7033, and 0.8510.  Threshold recalibration on support110 does not rescue the selected front-load (0.7252 on the direct complement).
 
-This ablation shows that the queried labels contain predictive information---front-loading increases sensitivity, warning time, and continuous-score AUC---but ordinary target refitting moves many safe shots across the alarm boundary.  Label count alone is therefore not a sufficient explanation for the online operating point.  The evidence is consistent with a role for delayed error-typed updates, bounded step sizes, support replay, rollback and alarm-state protection.  It does not isolate which component is necessary, because the historical online runner did not archive exact sampled windows, optimizer states, RNG states or FLOPs needed for an equal-gradient replay.  A separate causal random-query online arm now matches label and configured-step budgets and is worse in all three seeds, but its realized update attempts are lower.  Finally, with only three model seeds, the all-sign result has exact one-sided sign-test probability 0.125 and is descriptive rather than confirmatory.
+This ablation shows that the queried labels contain predictive information---front-loading increases sensitivity, warning time, and continuous-score AUC---but ordinary target refitting moves many safe shots across the alarm boundary.  Label count alone is therefore not a sufficient explanation for the online operating point.  The evidence is consistent with a role for delayed error-typed updates, bounded step sizes, support replay, rollback and alarm-state protection.  The historical full-mechanism random-query arm matches label and configured-step budgets but realizes fewer error-triggered updates.  The fixed-shape treatment below closes that narrow optimizer-attempt mediator for a separate assimilation operator and fails its archived-roster superiority screen.  Neither result identifies a necessary individual component, and both remain descriptive on balanced360.
 
 \begin{table}[h]
 \centering
 \small
 \input{tables/causal_random_query.tex}
 \caption{Causal active-versus-random query replay. Random schedules match the active per-block label count, parent, runner and configured step budget. Inter attempts are realized shared-update attempts and reveal the remaining compute mediator.}
+\end{table}
+
+\subsection{Fixed-shape selector-roster screen}
+
+For every archived-active or label-free random query identity, this treatment
+selects exactly 16 current-shot endpoints after reveal, samples exactly 16 rows
+from immutable support110, and attempts two shared plus two private optimizer
+steps.  Current prediction is sealed first; any accepted state can affect only
+the next shot.  Intra-shot adaptation, alarm-parameter learning, episode
+confirmation, query-value learning and error memories are disabled.  Batch
+shapes, trainable-scope hashes, endpoint indices, attempted/committed/rolled
+back steps, wall time and CUDA peak memory are serialized per run.  Windows,
+shapes, scopes and attempts match; guard decisions make committed parameter
+updates differ, so this is not a claim of identical final trajectories or
+hardware-measured FLOPs.
+
+\begin{table}[h]
+\centering
+\small
+\input{tables/equal_compute_selector.tex}
+\caption{Fixed-shape roster screen. Random is the within-seed mean of three block-count-matched schedules. The all-seed archived-roster superiority gate fails (0/3 better; one tie). This new operator does not estimate the adaptive selector policy; three random schedules are also insufficient to prove equivalence or a universal null effect.}
 \end{table}
 
 \subsection{Target-only baselines}

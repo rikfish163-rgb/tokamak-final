@@ -21,7 +21,13 @@ per-block count-matched random front-load rosters are retained per seed. A
 separate causal random-query online replay is complete with three schedules per
 seed. It matches parent lineage, label counts and configured update budgets,
 but active selection produces more realized error-conditioned updates, so it
-does not isolate selector quality at equal FLOPs.
+does not isolate selector quality at equal FLOPs. A separate fixed-shape roster
+screen now matches 16 current and 16 support windows plus two shared and two
+private optimizer attempts per query. It produces active-minus-random utility
+differences of `-0.00185/0/-0.00556`. Guard acceptance makes committed updates
+differ, and archived identities under a new operator do not estimate the
+adaptive selector-policy effect or prove equivalence. The complete evidence is
+under `paper_grade_package/evidence/equal_compute_selector_control_v1/`.
 
 All outcome and disruption-time labels come only from HDF5
 `/meta/IsDisrupt` and `/meta/DownTime`.  J-TEXT TEST220 is non-chronological

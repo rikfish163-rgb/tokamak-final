@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import copy
 import hashlib
+import json
 import math
 from collections.abc import Mapping
 from contextlib import contextmanager
@@ -40,6 +41,30 @@ def module_hash(module: nn.Module) -> str:
         digest.update(str(tuple(tensor.shape)).encode())
         digest.update(tensor.numpy().tobytes())
     return digest.hexdigest()
+
+
+def trainable_scope_signature(module: nn.Module) -> dict[str, Any]:
+    rows = [
+        {
+            "name": name, "shape": list(parameter.shape),
+            "dtype": str(parameter.dtype), "numel": int(parameter.numel()),
+        }
+        for name, parameter in module.named_parameters()
+        if parameter.requires_grad
+    ]
+    canonical = json.dumps(rows, sort_keys=True, separators=(",", ":"))
+    return {
+        "sha256": hashlib.sha256(canonical.encode()).hexdigest(),
+        "parameter_count": int(sum(row["numel"] for row in rows)),
+        "parameters": rows,
+    }
+
+
+def batch_shape_signature(batch: Mapping[str, torch.Tensor]) -> dict[str, Any]:
+    return {
+        name: {"shape": list(value.shape), "dtype": str(value.dtype)}
+        for name, value in sorted(batch.items())
+    }
 
 
 def _batch(values: Mapping[str, torch.Tensor], device: torch.device) -> dict[str, torch.Tensor]:
@@ -404,6 +429,7 @@ class PrivateTwoTimescaleController:
         current_batch: Mapping[str, torch.Tensor],
         replay_batch: Mapping[str, torch.Tensor], steps: int = 2,
         update_scale: float = 1.0,
+        fixed_compute_objective: bool = False,
     ) -> dict[str, Any]:
         self._require_sealed(shot_id)
         if not selected:
@@ -416,6 +442,12 @@ class PrivateTwoTimescaleController:
         for name in ("target", "sealed_logit"):
             if name not in current or name not in replay:
                 raise KeyError(f"private supervised batch requires {name}")
+        if fixed_compute_objective and (
+            "alarm_boundary" not in current or "label" not in current
+        ):
+            raise KeyError(
+                "fixed-compute private updates require label and alarm_boundary"
+            )
         if update_scale == 0:
             self.pending_shot = None
             self.last_finalized_shot = int(shot_id)
@@ -443,18 +475,28 @@ class PrivateTwoTimescaleController:
                 self.persistent, replay,
             )
             guard_logit, _r, _l, _f = self._forward(self.persistent, self.guard)
-            supervised = sealed_temporal_residual_loss(
-                current_logit, current["sealed_logit"], current["target"],
-            )
-            if "alarm_boundary" in current:
+            if fixed_compute_objective:
+                supervised = F.binary_cross_entropy_with_logits(
+                    current_logit - current["alarm_boundary"],
+                    current["label"].to(current_logit.dtype),
+                )
+            else:
+                supervised = sealed_temporal_residual_loss(
+                    current_logit, current["sealed_logit"], current["target"],
+                )
+            if "alarm_boundary" in current and not fixed_compute_objective:
                 supervised = 0.50 * supervised + operational_alarm_boundary_loss(
                     current_logit, current["alarm_boundary"],
                     current["label"] > 0.5,
                 )
             replay_anchor = F.smooth_l1_loss(replay_logit, replay_before)
             guard_anchor = F.smooth_l1_loss(guard_logit, guard_before)
-            auxiliary = self._next_loss(self.persistent, current_latent, current)
-            auxiliary = auxiliary + self._next_loss(self.persistent, replay_latent, replay)
+            auxiliary = (
+                current_logit.sum() * 0.0
+                if fixed_compute_objective else
+                self._next_loss(self.persistent, current_latent, current)
+                + self._next_loss(self.persistent, replay_latent, replay)
+            )
             residual = 0.5 * (
                 current_residual.square().mean() + replay_residual.square().mean()
             )
@@ -486,10 +528,31 @@ class PrivateTwoTimescaleController:
             "event": "private_inter_update", "shot": int(shot_id),
             "accepted": bool(accepted), "updated": bool(accepted),
             "objective": (
-                "operational_alarm_boundary_residual"
-                if "alarm_boundary" in current else "sealed_temporal_residual"
+                "fixed_shape_pointwise_alarm_bce"
+                if fixed_compute_objective else
+                (
+                    "operational_alarm_boundary_residual"
+                    if "alarm_boundary" in current else "sealed_temporal_residual"
+                )
             ),
             "guard_harms": harms, "steps": int(steps),
+            "fixed_compute_signature": (
+                {
+                    "current_windows": int(len(current["label"])),
+                    "replay_windows": int(len(replay["target"])),
+                    "guard_windows": int(len(self.guard["label"])),
+                    "steps": int(steps),
+                    "objective": "fixed_shape_pointwise_alarm_bce",
+                    "current_batch": batch_shape_signature(current),
+                    "replay_batch": batch_shape_signature(replay),
+                    "guard_batch": batch_shape_signature(self.guard),
+                    "trainable_scope": trainable_scope_signature(self.persistent),
+                    "optimizer_steps_attempted": int(steps),
+                    "optimizer_steps_committed": int(steps) if accepted else 0,
+                    "optimizer_steps_rolled_back": 0 if accepted else int(steps),
+                }
+                if fixed_compute_objective else None
+            ),
             "loss": sum(losses) / len(losses), "update_scale": update_scale,
             "persistent_sha256": self.persistent_hash(),
         }
@@ -497,4 +560,5 @@ class PrivateTwoTimescaleController:
 
 __all__ = [
     "EastPrivateDynamicsResidual", "PrivateTwoTimescaleController", "module_hash",
+    "trainable_scope_signature", "batch_shape_signature",
 ]

@@ -106,6 +106,32 @@ def test_query_manifest_reports_explicit_label_oracle_metadata(tmp_path: Path) -
     assert not module.query_manifest_uses_label_oracle(plain)
 
 
+def test_strict_query_manifest_requires_schema_and_explicit_non_oracle(
+    tmp_path: Path,
+) -> None:
+    module = load_module()
+    valid = tmp_path / "valid.json"
+    valid.write_text(json.dumps({
+        "schema_version": "equal-compute-query-manifest-v1",
+        "label_oracle_used": False,
+        "shots": [10, 20], "positions_zero_based": [0, 1],
+    }))
+    assert module.require_explicit_non_oracle_query_manifest(valid)[
+        "label_oracle_used"
+    ] is False
+
+    for payload in (
+        {"label_oracle_used": False, "shots": [10], "positions_zero_based": [0]},
+        {"schema_version": "v1", "shots": [10], "positions_zero_based": [0]},
+        {"schema_version": "v1", "label_oracle_used": True,
+         "shots": [10], "positions_zero_based": [0]},
+    ):
+        invalid = tmp_path / f"invalid-{len(payload)}-{payload.get('label_oracle_used')}.json"
+        invalid.write_text(json.dumps(payload))
+        with pytest.raises((ValueError, PermissionError)):
+            module.require_explicit_non_oracle_query_manifest(invalid)
+
+
 def test_fixed_query_manifest_is_built_only_from_sealed_label_free_decisions() -> None:
     module = load_module()
     roster = [10, 20, 30, 40]

@@ -31,9 +31,16 @@ EQUAL_BUDGET = (
 CAUSAL_RANDOM = (
     PACKAGE / "evidence/causal_random_query_online_v1/comparison.json"
 )
+EQUAL_COMPUTE = (
+    PACKAGE / "evidence/equal_compute_selector_control_v1/report.json"
+)
 EAST_TARGET_ONLY = PACKAGE / "evidence/east_target_only_v1/comparison.json"
 HDF5_CONTENT_MANIFEST = PACKAGE / "evidence/required_hdf5_content_manifest.json"
 Q30_MANIFEST = PACKAGE / "evidence/fixed_query_low_budget30_seed131.json"
+EQUAL_COMPUTE_CODE_MANIFEST = (
+    PACKAGE
+    / "evidence/equal_compute_selector_control_v1/code_environment_manifest.json"
+)
 OUTPUT = PACKAGE / "validation_report.json"
 
 
@@ -173,6 +180,73 @@ def validate_compact_artifact_manifest(path: Path) -> tuple[bool, list[str]]:
     if not seen:
         failures.append("artifact manifest contains no artifacts")
     return not failures, failures
+
+
+def validate_release_code_manifest(path: Path) -> tuple[bool, list[str]]:
+    if not path.is_file():
+        return False, [f"missing release code manifest: {path}"]
+    payload = json.loads(path.read_text())
+    failures: list[str] = []
+    if payload.get("schema_version") != "equal-compute-release-code-manifest-v2":
+        failures.append("unexpected release code manifest schema")
+    if payload.get("provenance_status") != (
+        "POST_RUN_RELEASE_SNAPSHOT_NOT_EXECUTION_TIME_SEAL"
+    ):
+        failures.append("release code provenance boundary is missing")
+    rows = payload.get("source_files", [])
+    seen: set[str] = set()
+    for row in rows:
+        relative = str(row.get("path", ""))
+        candidate = (ROOT / relative).resolve()
+        if (
+            not relative or relative in seen or ROOT not in candidate.parents
+            or candidate == ROOT
+        ):
+            failures.append(f"invalid release source path: {relative!r}")
+            continue
+        seen.add(relative)
+        if not candidate.is_file():
+            failures.append(f"missing release source: {relative}")
+            continue
+        if candidate.stat().st_size != int(row.get("bytes", -1)):
+            failures.append(f"release source size mismatch: {relative}")
+        if sha256_file(candidate) != row.get("sha256"):
+            failures.append(f"release source hash mismatch: {relative}")
+    tracked_result = subprocess.run(
+        ["git", "ls-files", "--cached", "-z"], cwd=ROOT,
+        check=True, capture_output=True,
+    )
+    tracked = {item for item in tracked_result.stdout.decode().split("\0") if item}
+    expected = {
+        relative for relative in tracked if (
+            Path(relative).suffix in {".py", ".pyi", ".sh"}
+            or relative in {
+                "pyproject.toml", "uv.lock", ".python-version",
+                ".github/workflows/ci.yml",
+            }
+            or relative.startswith(("config/", "configs/"))
+        )
+    }
+    if seen != expected:
+        for relative in sorted(expected - seen):
+            failures.append(f"release code manifest omits tracked source: {relative}")
+        for relative in sorted(seen - expected):
+            failures.append(f"release code manifest has out-of-scope source: {relative}")
+    return not failures, failures
+
+
+def validate_git_tracked(paths: list[Path]) -> tuple[bool, list[str]]:
+    """Require release-critical artifacts to be present in the Git index."""
+    if not (ROOT / ".git").exists():
+        return True, ["git metadata unavailable; tracking gate not applicable"]
+    relative = [str(path.resolve().relative_to(ROOT)) for path in paths]
+    result = subprocess.run(
+        ["git", "ls-files", "-z", "--", *relative], cwd=ROOT,
+        check=True, capture_output=True,
+    )
+    tracked = {value for value in result.stdout.decode().split("\0") if value}
+    missing = sorted(set(relative) - tracked)
+    return not missing, [f"untracked release artifact: {value}" for value in missing]
 
 
 def validate_hdf5_content_manifest(path: Path) -> tuple[bool, list[str]]:
@@ -561,6 +635,98 @@ def main() -> None:
         ),
     ])
 
+    equal_compute = json.loads(EQUAL_COMPUTE.read_text())
+    compute_per_seed = equal_compute["per_seed"]
+    expected_compute = {
+        131: (102, 1632, 204, -0.0018518518518518823),
+        133: (90, 1440, 180, 0.0),
+        137: (99, 1584, 198, -0.005555555555555425),
+    }
+    results.extend([
+        check(
+            equal_compute["schema_version"]
+            == "equal-compute-selector-report-v2"
+            and equal_compute["seeds"] == [131, 133, 137]
+            and equal_compute["replicates_per_seed"] == 3,
+            "equal-compute selector report schema and runs",
+        ),
+        check(
+            all(
+                compute_per_seed[str(seed)]["equal_query_budget"]
+                and compute_per_seed[str(seed)]["equal_parent_and_static"]
+                and compute_per_seed[str(seed)]["equal_realized_compute_shape"]
+                for seed in (131, 133, 137)
+            ),
+            "equal-compute parent, budget and realized-shape fidelity",
+        ),
+        check(
+            all(
+                compute_per_seed[str(seed)]["active_archived_roster"]
+                ["query_count"] == expected_compute[seed][0]
+                and compute_per_seed[str(seed)]["active_archived_roster"]
+                ["counts"]["fixed_compute_current_windows"]
+                == expected_compute[seed][1]
+                and compute_per_seed[str(seed)]["active_archived_roster"]
+                ["counts"]["fixed_compute_replay_windows"]
+                == expected_compute[seed][1]
+                and compute_per_seed[str(seed)]["active_archived_roster"]
+                ["counts"]["fixed_compute_shared_steps"]
+                == expected_compute[seed][2]
+                and compute_per_seed[str(seed)]["active_archived_roster"]
+                ["counts"]["fixed_compute_private_steps"]
+                == expected_compute[seed][2]
+                for seed in (131, 133, 137)
+            ),
+            "equal-compute realized window and optimizer totals",
+        ),
+        check(
+            all(close(
+                compute_per_seed[str(seed)]["active_minus_random_mean_utility"],
+                expected_compute[seed][3],
+            ) for seed in (131, 133, 137)),
+            "equal-compute selector deltas",
+            {
+                seed: compute_per_seed[str(seed)][
+                    "active_minus_random_mean_utility"
+                ] for seed in (131, 133, 137)
+            },
+        ),
+        check(
+            equal_compute["aggregate"]["screening_gate_passed"] is False
+            and equal_compute["aggregate"]
+            ["archived_roster_superiority_supported"] is False
+            and equal_compute["aggregate"]
+            ["adaptive_selector_policy_effect_estimated"] is False
+            and equal_compute["aggregate"]["equivalence_or_null_proven"] is False,
+            "equal-compute negative adjudication and claim boundary",
+            equal_compute["aggregate"],
+        ),
+        check(
+            all(
+                all(
+                    arm["metric_recomputation"][phase]["status"] == "PASS"
+                    and arm["metric_recomputation"][phase]["truth_contract"]
+                    == "HDF5 /meta/IsDisrupt and /meta/DownTime"
+                    and arm["metric_recomputation"][phase]["metrics"]
+                    == {
+                        name: (arm["metrics"] if phase == "online" else arm["static_metrics"])[name]
+                        for name in (
+                            "TP", "FN", "FP", "TN", "tpr", "tpr_at_30ms",
+                            "fpr", "median_lead_ms", "over_3000ms_count",
+                        )
+                    }
+                    for phase in ("online", "static")
+                )
+                for seed in (131, 133, 137)
+                for arm in (
+                    [compute_per_seed[str(seed)]["active_archived_roster"]]
+                    + compute_per_seed[str(seed)]["random_rosters"]
+                )
+            ),
+            "equal-compute predictions recomputed from HDF5 truth",
+        ),
+    ])
+
     target_only = json.loads(EAST_TARGET_ONLY.read_text())
     target_local = target_only["target_only_arms"]["target_only_local17"]
     target_matched = target_only["target_only_arms"]["target_only_matched17"]
@@ -665,14 +831,25 @@ def main() -> None:
     target_archive_ok, target_archive_failures = validate_compact_artifact_manifest(
         PACKAGE / "evidence/east_target_only_v1/artifact_manifest.json"
     )
+    compute_archive_ok, compute_archive_failures = validate_compact_artifact_manifest(
+        PACKAGE
+        / "evidence/equal_compute_selector_control_v1/artifact_manifest.json"
+    )
     hdf5_manifest_ok, hdf5_manifest_failures = validate_hdf5_content_manifest(
         HDF5_CONTENT_MANIFEST
+    )
+    code_manifest_ok, code_manifest_failures = validate_release_code_manifest(
+        EQUAL_COMPUTE_CODE_MANIFEST
     )
     results.extend([
         check(random_archive_ok, "causal random-query compact artifact hashes",
               random_archive_failures),
         check(target_archive_ok, "EAST target-only compact artifact hashes",
               target_archive_failures),
+        check(compute_archive_ok, "equal-compute selector artifact hashes",
+              compute_archive_failures),
+        check(code_manifest_ok, "equal-compute release code/environment hashes",
+              code_manifest_failures),
         check(hdf5_manifest_ok, "portable full HDF5 content manifest",
               hdf5_manifest_failures),
     ])
@@ -712,18 +889,44 @@ def main() -> None:
         PACKAGE / "evidence/case_study_seed131_shot73790.npz",
         PACKAGE / "figures/fig5_adaptive_alarm_state_machine.pdf",
         PACKAGE / "figures/fig8_equal_label_budget_frontload_ablation.pdf",
+        PACKAGE / "figures/fig11_equal_compute_selector_screen.pdf",
         PACKAGE / "evidence/equal_label_budget_frontload_v2/common_mask_report/ADJUDICATION_zh.md",
         PACKAGE / "evidence/equal_label_budget_frontload_v2/common_mask_report/adjudication.json",
         CAUSAL_RANDOM,
+        EQUAL_COMPUTE,
         PACKAGE / "evidence/causal_random_query_online_v1/ADJUDICATION.md",
         EAST_TARGET_ONLY,
         PACKAGE / "evidence/east_target_only_v1/ADJUDICATION.md",
         HDF5_CONTENT_MANIFEST,
         Q30_MANIFEST,
+        EQUAL_COMPUTE_CODE_MANIFEST,
     ]
     results.append(check(all(path.is_file() for path in required_files),
                          "required source/report files",
                          [str(path) for path in required_files if not path.is_file()]))
+    compute_manifest_payload = json.loads((
+        PACKAGE / "evidence/equal_compute_selector_control_v1/artifact_manifest.json"
+    ).read_text())
+    compute_release_files = [
+        PACKAGE / "evidence/equal_compute_selector_control_v1" / row["path"]
+        for row in compute_manifest_payload["artifacts"]
+    ]
+    tracked_ok, tracked_failures = validate_git_tracked([
+        *required_files,
+        *compute_release_files,
+        PACKAGE / "figures/fig11_equal_compute_selector_screen.svg",
+        PACKAGE / "figures/fig11_equal_compute_selector_screen.png",
+        MANUSCRIPT / "tables/equal_compute_selector.tex",
+        PACKAGE / "scripts/run_equal_compute_selector_control.py",
+        PACKAGE / "scripts/build_equal_compute_selector_report.py",
+        PACKAGE / "scripts/build_equal_compute_artifact_manifest.py",
+        PACKAGE / "scripts/build_equal_compute_code_manifest.py",
+        PACKAGE / "scripts/archive_equal_compute_selector_results.py",
+    ])
+    results.append(check(
+        tracked_ok, "release-critical equal-compute files are Git tracked",
+        tracked_failures,
+    ))
 
     main_text = (MANUSCRIPT / "main.tex").read_text()
     supplement_text = (MANUSCRIPT / "supplement.tex").read_text()

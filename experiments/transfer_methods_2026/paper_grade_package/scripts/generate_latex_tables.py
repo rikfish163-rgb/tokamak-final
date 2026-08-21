@@ -20,6 +20,9 @@ EQUAL_BUDGET = (
 )
 CAUSAL_RANDOM = PACKAGE / "evidence/causal_random_query_online_v1/comparison.json"
 EAST_TARGET_ONLY = PACKAGE / "evidence/east_target_only_v1/comparison.json"
+EQUAL_COMPUTE = (
+    PACKAGE / "evidence/equal_compute_selector_control_v1/report.json"
+)
 OUT = PACKAGE / "manuscript/tables"
 SEEDS = (131, 133, 137)
 
@@ -278,6 +281,36 @@ def equal_label_budget_table(data: dict) -> str:
     return "\n".join(lines)
 
 
+def equal_compute_selector_table(data: dict) -> str:
+    rows = data["per_seed"]
+    lines = [
+        r"\begin{tabular}{rrrrrrrr}",
+        r"\toprule",
+        r"Seed & Queries & Current & Replay & Attempts shared/private & Active $J$ & Random $J$ & Active$-$random \\",
+        r"\midrule",
+    ]
+    for seed in SEEDS:
+        row = rows[str(seed)]
+        active = row["active_archived_roster"]
+        counts = active["counts"]
+        random_mean = sum(
+            item["metrics"]["utility_tpr30_minus_fpr"]
+            for item in row["random_rosters"]
+        ) / len(row["random_rosters"])
+        lines.append(
+            f"{seed} & {active['query_count']} & "
+            f"{counts['fixed_compute_current_windows']} & "
+            f"{counts['fixed_compute_replay_windows']} & "
+            f"{counts['fixed_compute_shared_steps']}/"
+            f"{counts['fixed_compute_private_steps']} & "
+            f"{fmt(active['metrics']['utility_tpr30_minus_fpr'])} & "
+            f"{fmt(random_mean)} & "
+            f"{fmt(row['active_minus_random_mean_utility'], 5)} \\\\"
+        )
+    lines.extend([r"\bottomrule", r"\end{tabular}"])
+    return "\n".join(lines)
+
+
 def causal_random_table(data: dict) -> str:
     lines = [
         r"\begin{tabular}{rrrrrr}",
@@ -346,6 +379,7 @@ def main() -> None:
     equal_budget = json.loads(EQUAL_BUDGET.read_text())
     causal_random = json.loads(CAUSAL_RANDOM.read_text())
     east_target_only = json.loads(EAST_TARGET_ONLY.read_text())
+    equal_compute = json.loads(EQUAL_COMPUTE.read_text())
     builders = {
         "primary_per_seed.tex": primary_table,
         "time_blocks.tex": block_table,
@@ -360,9 +394,10 @@ def main() -> None:
     write("equal_label_budget.tex", equal_label_budget_table(equal_budget))
     write("causal_random_query.tex", causal_random_table(causal_random))
     write("east_target_only.tex", target_only_table(east_target_only))
+    write("equal_compute_selector.tex", equal_compute_selector_table(equal_compute))
     table_names = [
         *builders, "equal_label_budget.tex", "causal_random_query.tex",
-        "east_target_only.tex",
+        "east_target_only.tex", "equal_compute_selector.tex",
     ]
     manifest = {
         "schema_version": "paper-latex-table-manifest-v2",
@@ -371,6 +406,7 @@ def main() -> None:
             str(EQUAL_BUDGET.relative_to(ROOT)): hashlib.sha256(EQUAL_BUDGET.read_bytes()).hexdigest(),
             str(CAUSAL_RANDOM.relative_to(ROOT)): hashlib.sha256(CAUSAL_RANDOM.read_bytes()).hexdigest(),
             str(EAST_TARGET_ONLY.relative_to(ROOT)): hashlib.sha256(EAST_TARGET_ONLY.read_bytes()).hexdigest(),
+            str(EQUAL_COMPUTE.relative_to(ROOT)): hashlib.sha256(EQUAL_COMPUTE.read_bytes()).hexdigest(),
         },
         "tables": {
             name: hashlib.sha256((OUT / name).read_bytes()).hexdigest()

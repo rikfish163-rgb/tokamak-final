@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import copy
 import hashlib
+import json
 import math
 from contextlib import contextmanager
 from collections.abc import Mapping, Sequence
@@ -55,6 +56,30 @@ def module_hash(module: nn.Module) -> str:
         digest.update(f"{name}:{value.dtype}:{value.shape}".encode())
         digest.update(value.tobytes())
     return digest.hexdigest()
+
+
+def trainable_scope_signature(module: nn.Module) -> dict[str, Any]:
+    rows = [
+        {
+            "name": name, "shape": list(parameter.shape),
+            "dtype": str(parameter.dtype), "numel": int(parameter.numel()),
+        }
+        for name, parameter in module.named_parameters()
+        if parameter.requires_grad
+    ]
+    canonical = json.dumps(rows, sort_keys=True, separators=(",", ":"))
+    return {
+        "sha256": hashlib.sha256(canonical.encode()).hexdigest(),
+        "parameter_count": int(sum(row["numel"] for row in rows)),
+        "parameters": rows,
+    }
+
+
+def batch_shape_signature(batch: Mapping[str, torch.Tensor]) -> dict[str, Any]:
+    return {
+        name: {"shape": list(value.shape), "dtype": str(value.dtype)}
+        for name, value in sorted(batch.items())
+    }
 
 
 def _batch(values: Mapping[str, torch.Tensor], device: torch.device) -> dict[str, torch.Tensor]:
@@ -985,6 +1010,7 @@ class TwoTimescaleAdapterController:
         opposite_batch: Mapping[str, torch.Tensor] | None = None,
         steps: int = 2,
         update_scale: float = 1.0,
+        fixed_compute_objective: bool = False,
     ) -> dict[str, Any]:
         self._require_sealed(shot_id)
         if not selected:
@@ -1002,6 +1028,11 @@ class TwoTimescaleAdapterController:
             raise KeyError("supervised batches require labels")
         if opposite is not None and "label" not in opposite:
             raise KeyError("opposite-outcome replay requires labels")
+        if fixed_compute_objective:
+            if opposite is not None:
+                raise ValueError("fixed-compute updates forbid opposite replay")
+            if "alarm_boundary" not in current:
+                raise KeyError("fixed-compute updates require a sealed alarm boundary")
 
         if update_scale == 0.0:
             self.pending_shot = None
@@ -1044,10 +1075,16 @@ class TwoTimescaleAdapterController:
             guard_logit, _guard_delta, _gate, _latent = self._training_forward(
                 self.persistent, self.guard
             )
-            current_hazard = _deployment_aligned_hazard(
-                current_logit, current,
-                threshold_logit=self.threshold_logit,
-            )
+            if fixed_compute_objective:
+                current_hazard = F.binary_cross_entropy_with_logits(
+                    current_logit - current["alarm_boundary"],
+                    current["label"].to(current_logit.dtype),
+                )
+            else:
+                current_hazard = _deployment_aligned_hazard(
+                    current_logit, current,
+                    threshold_logit=self.threshold_logit,
+                )
             replay_hazard = replay_distillation_loss(replay_logit, replay_before)
             if opposite is not None:
                 opposite_logit, opposite_delta, _gate, _latent = self._training_forward(
@@ -1070,6 +1107,10 @@ class TwoTimescaleAdapterController:
                         minimum_families=self.physics_minimum_families,
                     )
                 )
+            elif fixed_compute_objective:
+                opposite_delta = None
+                supervised_hazard = current_hazard
+                physics = current_logit.sum() * 0.0
             else:
                 opposite_delta = None
                 supervised_hazard = current_hazard
@@ -1079,7 +1120,11 @@ class TwoTimescaleAdapterController:
                     minimum_families=self.physics_minimum_families,
                 )
             hazard = supervised_hazard + replay_hazard
-            auxiliary = _next_loss(self.persistent, current) + _next_loss(self.persistent, replay)
+            auxiliary = (
+                current_logit.sum() * 0.0
+                if fixed_compute_objective else
+                _next_loss(self.persistent, current) + _next_loss(self.persistent, replay)
+            )
             anchor = F.smooth_l1_loss(guard_logit, guard_before)
             residual = 0.5 * (current_delta.square().mean() + replay_delta.square().mean())
             if opposite_delta is not None:
@@ -1118,8 +1163,12 @@ class TwoTimescaleAdapterController:
             "updated": bool(accepted),
             "update_scale": update_scale,
             "objective": (
-                "operational_alarm_boundary_mil"
-                if "alarm_boundary" in current else "shot_level_mil_hazard"
+                "fixed_shape_pointwise_alarm_bce"
+                if fixed_compute_objective else
+                (
+                    "operational_alarm_boundary_mil"
+                    if "alarm_boundary" in current else "shot_level_mil_hazard"
+                )
             ),
             "replay_objective": "sealed_logit_distillation",
             "opposite_outcome_replay": opposite is not None,
@@ -1128,6 +1177,24 @@ class TwoTimescaleAdapterController:
             "current_positive_windows": current_positive_windows,
             "guard_harms": harms,
             "steps": int(steps),
+            "fixed_compute_signature": (
+                {
+                    "current_windows": int(len(current["label"])),
+                    "replay_windows": int(len(replay["label"])),
+                    "guard_windows": int(len(self.guard["label"])),
+                    "steps": int(steps),
+                    "opposite_windows": 0,
+                    "objective": "fixed_shape_pointwise_alarm_bce",
+                    "current_batch": batch_shape_signature(current),
+                    "replay_batch": batch_shape_signature(replay),
+                    "guard_batch": batch_shape_signature(self.guard),
+                    "trainable_scope": trainable_scope_signature(self.persistent),
+                    "optimizer_steps_attempted": int(steps),
+                    "optimizer_steps_committed": int(steps) if accepted else 0,
+                    "optimizer_steps_rolled_back": 0 if accepted else int(steps),
+                }
+                if fixed_compute_objective else None
+            ),
             "loss": sum(losses) / len(losses),
             "persistent_sha256": self.persistent_hash(),
         }
@@ -1141,4 +1208,5 @@ __all__ = [
     "physics_consistency_loss",
     "unlabeled_physics_pseudo_loss",
     "gate_signed_online_increment",
+    "trainable_scope_signature", "batch_shape_signature",
 ]

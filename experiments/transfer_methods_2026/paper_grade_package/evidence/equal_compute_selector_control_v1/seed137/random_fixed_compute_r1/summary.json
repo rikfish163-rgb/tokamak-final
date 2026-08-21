@@ -1,0 +1,314 @@
+{
+  "alarm_contract": {
+    "formula": "margin + physics_weight*support + trend_weight*max(MA5-MA100,0)",
+    "interaction_gate": "combined adapted alarm requires same-endpoint support from model-only or alarm-parameter-only branch; gate can only delay/veto",
+    "learned_episode_gate": null,
+    "minimum_lead_ms": 30.0,
+    "novel_early_min_physics_support": 0.75,
+    "novel_early_min_trend": 0.4,
+    "over_3000ms_counts_as_tpr": true,
+    "parameter_version": 0,
+    "parameters_final": {
+      "early_threshold": 7.9,
+      "high_threshold": 0.0,
+      "physics_weight": 8.0,
+      "trend_weight": 12.0
+    },
+    "projection_bounds": {
+      "early_threshold": [
+        7.1,
+        8.7
+      ],
+      "high_threshold": [
+        -0.1,
+        0.1
+      ],
+      "physics_weight": [
+        6.0,
+        10.0
+      ],
+      "trend_weight": [
+        12.0,
+        15.0
+      ]
+    }
+  },
+  "claim_boundary": "this run is explicitly part of balanced360 architecture and parameter development; its result may select a later frozen replay but is not independent test evidence",
+  "counts": {
+    "alarm_updates": 0,
+    "decision_value_updates": 0,
+    "endpoint_memory_corrections": 0,
+    "episode_blocks": 0,
+    "episode_delays": 0,
+    "episode_escapes": 0,
+    "episode_updates": 0,
+    "fixed_compute_current_windows": 1584,
+    "fixed_compute_private_steps": 198,
+    "fixed_compute_queries": 99,
+    "fixed_compute_replay_windows": 1584,
+    "fixed_compute_shared_steps": 198,
+    "interaction_delays": 1,
+    "interaction_vetoes": 2,
+    "intra_attempts": 0,
+    "intra_nonzero": 0,
+    "private_inter_accepted": 84,
+    "private_inter_rollback": 15,
+    "query_value_updates": 0,
+    "shared_inter_accepted": 99,
+    "shared_inter_rollback": 0,
+    "window_active_selected": 0
+  },
+  "execution_protocol": {
+    "frozen_online_config": null,
+    "hyperparameters_locked_before_phase1": false,
+    "locked_best_v8": {
+      "adaptation_events": 64,
+      "alarm_lr": 0.02,
+      "inter_lr": 0.0005,
+      "inter_steps": 2,
+      "intra_lr": 0.0001,
+      "intra_physics_weight": 0.1,
+      "intra_steps": 1,
+      "novel_early_min_physics_support": 0.0,
+      "private_inter_lr": 0.0002,
+      "private_intra_lr": 0.0001,
+      "private_support_epochs": 8,
+      "query_block_size": 20,
+      "query_history_size": 80,
+      "query_quantile": 0.8,
+      "query_quota": 4,
+      "query_uncertainty_weight": 0.65,
+      "query_value_lr": 0.05
+    },
+    "parent_initialization": "hash_verified_sealed_support_only_state",
+    "phase1": "complete 360-shot static inference and immutable seal",
+    "phase1_static_complete_before_phase2": true,
+    "phase2": "reset to identical migrated parents, then chronological online active replay",
+    "phase2_reset_to_same_migrated_initial_sha": true,
+    "sealed_parent_state": "<PROJECT_ROOT>/experiments/transfer_methods_2026/paper_grade_package/evidence/equal_label_budget_frontload_v2/seed137/support_only/frontloaded_target_state.pt",
+    "selection_on_360_in_this_run": true
+  },
+  "fixed_query_manifest": "<PROJECT_ROOT>/experiments/transfer_methods_2026/runs/equal_compute_selector_control_v1/manifests/seed137_random_query_r1.json",
+  "hashes": {
+    "base_before_after": "d1ecbf884b8caf1a29b0aa4d78d5796635c8f7e0b614bbf647a287ac041dc578",
+    "frozen_online_config": null,
+    "phase2_final_private": "bc84006f2fdfc930b60f678196a22676eedc72d5c1290da8e90faa90e1dcf789",
+    "phase2_final_shared": "c13d8b16c73b914926828c0b7286829c8be65d1ed204143bae5a881561dcfb60",
+    "phase2_initial_private": "e53d657fe8962f866278e45a833352089d0ef8535ae5746175d5ba42d1479e51",
+    "phase2_initial_shared": "80c85eb86a1f6dcd640a63d14605f6b26b810165dc8086f97d4a3c62ba1255ad",
+    "predictions": "e4ece1c421ef213686573c655f8654a8411d0abb7d8899f225edbd225b54a7d2",
+    "queries": "7e56d290599d5560a5d269b7cf79b56a3b9fe3561df00bb914f5cba5852bdef5",
+    "reveals": "cc0ae3af1c862342024a8f0b06fb8d6acf080a8310a45f4e208865e782605938",
+    "sealed_parent_state": "6e0f475830a0325a251c1acdcb54421af450de62c7d78d45e4518c065dfbd707",
+    "source_checkpoint": "ae816b00ea0a10100892d1d2d6c2034eda49e3adf08e310cd6f625e8561a3b31",
+    "static_predictions": "f32df6ac84ed81caeaed39cffd4ee9d6b0f08eb01bee6f567069c7a80f9b9beb",
+    "static_private": "e53d657fe8962f866278e45a833352089d0ef8535ae5746175d5ba42d1479e51",
+    "static_shared": "80c85eb86a1f6dcd640a63d14605f6b26b810165dc8086f97d4a3c62ba1255ad",
+    "updates": "b985ab4c3d663e80bba59762467f2f22555f0d59f7cc844fff21b0803923de54"
+  },
+  "leakage_contract": "phase1 static outputs for all 360 shots are sealed before phase2 starts; phase2 starts from the same migrated parent weights; endpoint outputs are emitted in order; shot prediction and dual alarm are sealed before query; HDF5 outcome is read only for selected shots; all supervised and alarm/query-parameter updates affect later shots only",
+  "order_contract": {
+    "chronological_main_result": true,
+    "claim_status": "CHRONOLOGICAL_ONLINE_DIAGNOSTIC",
+    "is_reordered": false,
+    "query_oracle_result_is_upper_bound_only": false,
+    "query_selection_label_oracle_used": false,
+    "reordered_result_is_upper_bound_only": false,
+    "source": "sealed_parent_roster"
+  },
+  "parameter_scope": {
+    "alarm": "projected high/physics/trend/early continuous parameters; MA widths fixed 5/100",
+    "endpoint_memory": "disabled",
+    "episode_fp_head": "disabled",
+    "episode_learning_feedback": "disabled",
+    "frozen": "J-TEXT/EAST rebuilt17 encoder, source/target head, shared parent anchor",
+    "inter": "shared residual head plus EAST-private dynamics/residual",
+    "intra": "resettable shared adapter fast copy plus resettable raw8 dynamics fast copy"
+  },
+  "query_cost": 0.0,
+  "query_count": 99,
+  "query_cutoff": "past-only rolling q0.70, frozen per 20-shot block",
+  "query_cutoff_source": "preceding 160 unlabeled sealed query scores",
+  "query_score_mode": "current",
+  "query_selector": {
+    "block_size": 20,
+    "budget_semantics": "rolling_tokens_with_carry",
+    "exploration_offset": 3,
+    "exploration_per_block": null,
+    "exploration_stride": 7,
+    "hard_block_cap_enforced": false,
+    "history_size": 160,
+    "mode": "causal-fixed-manifest",
+    "quantile": 0.7,
+    "query_rate_per_shot": 0.3,
+    "quota": 6,
+    "token_capacity": 12.0
+  },
+  "results": {
+    "online_unified": {
+      "FN": 11,
+      "FP": 33,
+      "TN": 147,
+      "TP": 169,
+      "fpr": 0.18333333333333332,
+      "median_lead_ms": 214.0000000000004,
+      "over_3000ms_count": 20,
+      "tpr": 0.9388888888888889,
+      "tpr_at_30ms": 0.8555555555555555
+    },
+    "static_unified": {
+      "FN": 11,
+      "FP": 36,
+      "TN": 144,
+      "TP": 169,
+      "fpr": 0.2,
+      "median_lead_ms": 223.99999999999932,
+      "over_3000ms_count": 21,
+      "tpr": 0.9388888888888889,
+      "tpr_at_30ms": 0.8611111111111112
+    }
+  },
+  "runtime": {
+    "cuda_device": "NVIDIA GeForce RTX 5070 Laptop GPU",
+    "cuda_peak_memory_bytes": 670511104,
+    "elapsed_wall_seconds": 135.62604995199945
+  },
+  "seed": 137,
+  "selector_compute_control": {
+    "alarm_and_side_learners_frozen": true,
+    "claim_status": "BALANCED360_SELECTOR_ROSTER_DEVELOPMENT_CONTROL",
+    "current_windows_per_query": 16,
+    "enabled": true,
+    "estimand": "archived active query roster versus label-free random rosters under a new fixed-compute assimilation operator",
+    "fixed_learning_rate_scale": 1.0,
+    "intra_frozen": true,
+    "not_independent_confirmation": true,
+    "not_the_primary_full_mechanism": true,
+    "private_steps_per_query": 2,
+    "realized_contract": {
+      "alarm_frozen": true,
+      "current_windows": true,
+      "intra_frozen": true,
+      "private_steps": true,
+      "queries": true,
+      "replay_windows": true,
+      "shared_steps": true
+    },
+    "replay_windows_per_query": 16,
+    "shared_steps_per_query": 2
+  },
+  "stage": "STATIC360_THEN_RESET_ONLINE360_DEVELOPMENT_SEARCH",
+  "status": "ONLINE_DIAGNOSTIC",
+  "stream_shots": 360,
+  "support_contract": {
+    "hdf5_outcomes": {
+      "disruptive": 15,
+      "safe": 95
+    },
+    "history_final_loss": null,
+    "parent_initialization": "hash_verified_sealed_support_only_state",
+    "positive_residual_q10": 0.8664518594741821,
+    "positive_window_count": 471,
+    "private_reconstruction_q80": 0.31026525497436525,
+    "raw8_scaler": "fixed110 per-shot-capped median/IQR with causal zero-sentinel availability",
+    "shared_reconstruction_q80": 0.040743739902973176
+  },
+  "threshold": 0.1604071408510208,
+  "threshold_source": "fixed110",
+  "timescale_contract": {
+    "enable_inter": true,
+    "enable_intra": false,
+    "enable_query": true,
+    "enable_reveal": true
+  },
+  "timescale_mode": "inter_only",
+  "transition_report": {
+    "cumulative_error_area_reduction": 381.0,
+    "future_gross_harms": 1,
+    "future_gross_rescues": 3,
+    "future_net_rescues": 2,
+    "future_net_rescues_per_query": 0.020202020202020204,
+    "gross_harms": 1,
+    "gross_rescues": 3,
+    "harm_shots": [
+      93995
+    ],
+    "harmed_tn_to_fp": 0,
+    "harmed_tp_to_error": 1,
+    "net_rescues": 2,
+    "net_rescues_per_query": 0.020202020202020204,
+    "online_cumulative_error_area": 10021.0,
+    "query_count": 99,
+    "query_rate": 0.275,
+    "repaired_fp_to_tn": 3,
+    "rescue_shots": [
+      70043,
+      77835,
+      95930
+    ],
+    "rescued_fn_to_tp": 0,
+    "rescued_tardy_to_tp": 0,
+    "static_cumulative_error_area": 10402.0,
+    "transitions": {
+      "FN->FN": 11,
+      "FP->FP": 33,
+      "FP->TN": 3,
+      "TARDY->TARDY": 14,
+      "TN->TN": 144,
+      "TP->TARDY": 1,
+      "TP->TP": 154
+    }
+  },
+  "value_contract": {
+    "causal_error_memory": null,
+    "episode_value_v3": null,
+    "hdf5_error_cost": "legacy 0.50 temporal BCE + 0.30 operation 5:3:1 + 0.20 lead gap",
+    "intra_components": [
+      "next-state reconstruction",
+      "persistent-teacher disagreement",
+      "registered physics contradiction",
+      "raw8 innovation",
+      "availability",
+      "non-redundancy",
+      "alarm proximity"
+    ],
+    "intra_observed_physics_semantics": "after sealing the current endpoint, correct only strong causal model/physics contradictions in resettable fast weights",
+    "intra_observed_physics_weight": 0.0,
+    "intra_parameter_scope": "legacy",
+    "intra_physics_loss_weight": 0.1,
+    "intra_temporal_risk_weight": 0.0,
+    "intra_temporal_target_gain": 1.0,
+    "intra_temporal_target_max_delta": 0.5,
+    "intra_temporal_target_semantics": "persistent-teacher trajectory extrapolation; not an outcome label or an HDF5-derived hazard target",
+    "intra_value_dead_zone": 0.03,
+    "intra_value_saturation": 0.15,
+    "optimizer_base_learning_rates": {
+      "private_inter": 0.0002,
+      "private_intra": 0.0001,
+      "shared_inter": 0.0005,
+      "shared_intra": 0.0001
+    },
+    "optimizer_control": "value scales actual AdamW learning rate; fixed optimizer steps",
+    "optimizer_steps": {
+      "inter": 2,
+      "intra": 1
+    },
+    "post_reveal_temporal_target": "binary risk target in 0-125 ms; FN/TARDY gradients are selected from the closest sealed dual-alarm evidence in the 30-125 ms timely interval",
+    "query_components": [
+      "uncertainty",
+      "physics_contradiction"
+    ],
+    "query_initial_uncertainty_weight": 0.55,
+    "query_value_learning_rate": 0.05,
+    "query_weight_bounds": [
+      0.55,
+      0.75
+    ],
+    "query_weights_final": {
+      "physics_contradiction": 0.44999999999999996,
+      "uncertainty": 0.55
+    },
+    "strict_window_active": null,
+    "typed_endpoint_memory": null
+  }
+}

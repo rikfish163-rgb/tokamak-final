@@ -4,8 +4,8 @@
   "validation_scope": "local package integrity and disclosure completeness",
   "nature_submission_readiness": "BLOCKED_PENDING_NEW_EVIDENCE_AND_ARCHIVAL_RELEASE",
   "passed": true,
-  "checks_passed": 117,
-  "checks_total": 117,
+  "checks_passed": 126,
+  "checks_total": 126,
   "checks": [
     {
       "name": "evidence status preserves non-independent boundary",
@@ -504,6 +504,51 @@
       ]
     },
     {
+      "name": "equal-compute selector report schema and runs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "equal-compute parent, budget and realized-shape fidelity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "equal-compute realized window and optimizer totals",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "equal-compute selector deltas",
+      "passed": true,
+      "detail": {
+        "131": -0.0018518518518518823,
+        "133": 0.0,
+        "137": -0.005555555555555425
+      }
+    },
+    {
+      "name": "equal-compute negative adjudication and claim boundary",
+      "passed": true,
+      "detail": {
+        "active_minus_random_utility_equal_seed_mean": -0.0024691358024691024,
+        "active_minus_static_utility_equal_seed_mean": 0.0018518518518518823,
+        "seeds_active_better": 0,
+        "seeds_tied": 1,
+        "screening_gate_requires_active_better_in_all_seeds": true,
+        "screening_gate_passed": false,
+        "archived_roster_superiority_supported": false,
+        "adaptive_selector_policy_effect_estimated": false,
+        "equivalence_or_null_proven": false,
+        "confirmatory_claim": false
+      }
+    },
+    {
+      "name": "equal-compute predictions recomputed from HDF5 truth",
+      "passed": true,
+      "detail": null
+    },
+    {
       "name": "EAST target-only report schema and claim boundary",
       "passed": true,
       "detail": null
@@ -652,6 +697,16 @@
       "detail": []
     },
     {
+      "name": "equal-compute selector artifact hashes",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "equal-compute release code/environment hashes",
+      "passed": true,
+      "detail": []
+    },
+    {
       "name": "portable full HDF5 content manifest",
       "passed": true,
       "detail": []
@@ -708,6 +763,11 @@
       "detail": []
     },
     {
+      "name": "release-critical equal-compute files are Git tracked",
+      "passed": true,
+      "detail": []
+    },
+    {
       "name": "mandatory caveats and contracts appear",
       "passed": true,
       "detail": []
@@ -752,9 +812,9 @@
       "passed": true,
       "detail": {
         "exists": true,
-        "pages": 15,
-        "bytes": 502388,
-        "text_chars": 48271
+        "pages": 16,
+        "bytes": 539314,
+        "text_chars": 50940
       }
     },
     {
@@ -763,8 +823,8 @@
       "detail": {
         "exists": true,
         "pages": 13,
-        "bytes": 108428,
-        "text_chars": 37947
+        "bytes": 110327,
+        "text_chars": 39437
       }
     },
     {
@@ -937,15 +997,15 @@
   "pdfs": {
     "main.pdf": {
       "exists": true,
-      "pages": 15,
-      "bytes": 502388,
-      "text_chars": 48271
+      "pages": 16,
+      "bytes": 539314,
+      "text_chars": 50940
     },
     "supplement.pdf": {
       "exists": true,
       "pages": 13,
-      "bytes": 108428,
-      "text_chars": 37947
+      "bytes": 110327,
+      "text_chars": 39437
     }
   }
 }

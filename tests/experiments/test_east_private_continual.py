@@ -307,6 +307,35 @@ def test_private_inter_update_requires_selected_sealed_shot_and_changes_future()
     assert controller.fast_hash() == controller.persistent_hash()
 
 
+def test_private_fixed_compute_update_emits_exact_shape_signature() -> None:
+    module = load_module()
+    controller = make_controller(module)
+    current = make_batch(16)
+    current["alarm_boundary"] = torch.zeros(16)
+    replay = make_batch(16)
+    controller.begin_shot(10)
+    controller.seal_shot(10)
+    receipt = controller.reveal_and_inter_update(
+        10, selected=True, current_batch=current, replay_batch=replay,
+        steps=2, update_scale=1.0, fixed_compute_objective=True,
+    )
+
+    assert receipt["objective"] == "fixed_shape_pointwise_alarm_bce"
+    signature = receipt["fixed_compute_signature"]
+    assert {
+        name: signature[name] for name in (
+            "current_windows", "replay_windows", "guard_windows", "steps",
+            "objective",
+        )
+    } == {
+        "current_windows": 16, "replay_windows": 16,
+        "guard_windows": 16, "steps": 2,
+        "objective": "fixed_shape_pointwise_alarm_bce",
+    }
+    assert signature["optimizer_steps_attempted"] == 2
+    assert signature["trainable_scope"]["parameter_count"] > 0
+
+
 def test_private_unqueried_shot_cannot_use_supervision() -> None:
     module = load_module()
     controller = make_controller(module)

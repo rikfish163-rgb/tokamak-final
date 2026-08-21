@@ -26,6 +26,10 @@ VALIDATOR_SCRIPT = (
     ROOT
     / "experiments/transfer_methods_2026/paper_grade_package/scripts/validate_paper_package.py"
 )
+EQUAL_COMPUTE_REPORT_SCRIPT = (
+    ROOT
+    / "experiments/transfer_methods_2026/paper_grade_package/scripts/build_equal_compute_selector_report.py"
+)
 
 
 def module():
@@ -54,6 +58,16 @@ def table_module():
 
 def validator_module():
     spec = importlib.util.spec_from_file_location("validate_paper_package", VALIDATOR_SCRIPT)
+    assert spec and spec.loader
+    loaded = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(loaded)
+    return loaded
+
+
+def equal_compute_report_module():
+    spec = importlib.util.spec_from_file_location(
+        "build_equal_compute_selector_report", EQUAL_COMPUTE_REPORT_SCRIPT,
+    )
     assert spec and spec.loader
     loaded = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(loaded)
@@ -205,10 +219,12 @@ def test_new_latex_tables_have_valid_row_terminators_and_no_control_chars() -> N
     tables = table_module()
     causal = tables.json.loads(tables.CAUSAL_RANDOM.read_text())
     target = tables.json.loads(tables.EAST_TARGET_ONLY.read_text())
+    equal_compute = tables.json.loads(tables.EQUAL_COMPUTE.read_text())
 
     for rendered in (
         tables.causal_random_table(causal),
         tables.target_only_table(target),
+        tables.equal_compute_selector_table(equal_compute),
     ):
         assert "\r" not in rendered
         data_rows = [
@@ -219,6 +235,9 @@ def test_new_latex_tables_have_valid_row_terminators_and_no_control_chars() -> N
         assert all(line.endswith(r"\\") for line in data_rows)
 
     assert r"J-TEXT $\rightarrow$ EAST" in tables.target_only_table(target)
+    equal_compute_rendered = tables.equal_compute_selector_table(equal_compute)
+    assert "102 & 1632 & 1632 & 204/204" in equal_compute_rendered
+    assert "-0.00185" in equal_compute_rendered
 
 
 def test_compact_archives_and_portable_hdf5_manifest_are_hash_valid() -> None:
@@ -228,6 +247,7 @@ def test_compact_archives_and_portable_hdf5_manifest_are_hash_valid() -> None:
     for manifest in (
         package / "evidence/causal_random_query_online_v1/artifact_manifest.json",
         package / "evidence/east_target_only_v1/artifact_manifest.json",
+        package / "evidence/equal_compute_selector_control_v1/artifact_manifest.json",
     ):
         passed, failures = validator.validate_compact_artifact_manifest(manifest)
         assert passed, failures
@@ -236,6 +256,52 @@ def test_compact_archives_and_portable_hdf5_manifest_are_hash_valid() -> None:
         package / "evidence/required_hdf5_content_manifest.json"
     )
     assert passed, failures
+
+
+def test_equal_compute_metric_recomputation_uses_alarm_times_and_truth() -> None:
+    report = equal_compute_report_module()
+    rows = [
+        {"shot": 1, "alarmed": True, "alarm_time_s": 4.90},
+        {"shot": 2, "alarmed": True, "alarm_time_s": 4.99},
+        {"shot": 3, "alarmed": True, "alarm_time_s": 2.0},
+        {"shot": 4, "alarmed": False, "alarm_time_s": None},
+    ]
+    # The production helper requires 360 unique rows; repeat the four semantic
+    # cases with unique shot ids so this test exercises its fail-closed roster gate.
+    expanded = []
+    truth = {}
+    for offset in range(90):
+        for original in rows:
+            shot = offset * 4 + original["shot"]
+            expanded.append({**original, "shot": shot})
+            disruptive = original["shot"] in (1, 2)
+            truth[shot] = {
+                "is_disrupt": disruptive,
+                "down_time_s": 5.0 if disruptive else None,
+            }
+
+    metrics = report.recompute_alarm_metrics(expanded, truth)
+
+    assert metrics["TP"] == 180
+    assert metrics["FN"] == 0
+    assert metrics["FP"] == 90
+    assert metrics["TN"] == 90
+    assert metrics["tpr_at_30ms"] == pytest.approx(0.5)
+    assert metrics["fpr"] == pytest.approx(0.5)
+
+
+@pytest.mark.parametrize(
+    ("deltas", "expected"),
+    [([0.01, 0.02, 0.03], True), ([0.01, 0.0, 0.03], False),
+     ([-0.01, 0.02, 0.03], False)],
+)
+def test_equal_compute_roster_screen_is_derived_from_deltas(
+    deltas: list[float], expected: bool,
+) -> None:
+    adjudication = equal_compute_report_module().roster_screen_adjudication(deltas)
+
+    assert adjudication["passed"] is expected
+    assert ("passes" in adjudication["adjudication"]) is expected
 
 
 def test_q30_manifest_and_primary_causal_ledgers_are_fail_closed() -> None:

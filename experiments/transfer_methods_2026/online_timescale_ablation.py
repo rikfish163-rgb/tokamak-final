@@ -161,6 +161,25 @@ def query_manifest_uses_label_oracle(path: Path) -> bool:
     )
 
 
+def require_explicit_non_oracle_query_manifest(path: Path) -> dict[str, Any]:
+    """Fail closed for selector controls that claim label-free schedules."""
+    resolved = Path(path).expanduser().resolve()
+    if resolved.suffix.lower() != ".json":
+        raise ValueError("strict query manifest must be a JSON object")
+    payload = json.loads(resolved.read_text())
+    if not isinstance(payload, Mapping):
+        raise ValueError("strict query manifest must be a JSON object")
+    if not isinstance(payload.get("schema_version"), str):
+        raise ValueError("strict query manifest requires schema_version")
+    if payload.get("label_oracle_used") is not False:
+        raise PermissionError("strict query manifest must explicitly be non-oracle")
+    if not isinstance(payload.get("shots"), list) or not isinstance(
+        payload.get("positions_zero_based"), list
+    ):
+        raise ValueError("strict query manifest requires shots and positions")
+    return dict(payload)
+
+
 _CURRENT_OUTCOME_FIELDS = {
     "revealed_is_disrupt", "revealed_down_time_s", "is_disrupt",
     "down_time_s", "static_group", "deployed_group", "learning_group",
@@ -805,6 +824,7 @@ __all__ = [
     "build_causal_random_query_manifest",
     "build_fixed_query_reorder", "build_oracle_error_curriculum",
     "operational_group", "query_manifest_uses_label_oracle",
+    "require_explicit_non_oracle_query_manifest",
     "read_query_manifest", "resolve_online_roster", "rescue_transition_report",
     "sealed_query_score", "timescale_contract",
 ]

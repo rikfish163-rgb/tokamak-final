@@ -824,6 +824,29 @@ class ProjectedAlarmController:
         self.last_finalized_shot = int(shot_id)
         return {"event": "alarm_discard_unqueried", "shot": int(shot_id)}
 
+    def finalize_revealed_no_update(
+        self, shot_id: int, *, discrepancy_group: str,
+    ) -> dict[str, Any]:
+        """Close a revealed shot while freezing the alarm state.
+
+        This is reserved for selector-only compute controls in which query
+        identity is the treatment and every non-model learner is held fixed.
+        """
+        if self.pending_shot != int(shot_id) or self._pending is None:
+            raise RuntimeError("a matching sealed alarm shot is required")
+        if discrepancy_group not in ("TP", "TN", "FP", "FN", "TARDY"):
+            raise ValueError("invalid discrepancy group")
+        receipt = {
+            "event": "alarm_revealed_no_update", "shot": int(shot_id),
+            "discrepancy_group": str(discrepancy_group),
+            "updated": False, "parameter_version_after": self.version,
+            "parameters_after": self.parameters_dict(),
+        }
+        self.pending_shot = None
+        self._pending = None
+        self.last_finalized_shot = int(shot_id)
+        return receipt
+
     def sealed_receipt(self, shot_id: int) -> dict[str, Any]:
         return copy.deepcopy(self._seals[int(shot_id)])
 
@@ -1400,6 +1423,18 @@ class OperationalQueryValueModel:
 
     def discard_without_reveal(self, shot_id: int) -> None:
         self._pending.pop(int(shot_id), None)
+
+    def finalize_revealed_no_update(self, shot_id: int) -> dict[str, Any]:
+        """Consume a sealed queried shot without learning from its outcome."""
+        shot_id = int(shot_id)
+        if shot_id not in self._pending:
+            raise RuntimeError("operational query value must be sealed before reveal")
+        self._pending.pop(shot_id)
+        return {
+            "event": "operational_query_value_revealed_no_update",
+            "shot": shot_id, "updated": False,
+            "version_after": self.version,
+        }
 
 
 __all__ = [

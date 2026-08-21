@@ -82,6 +82,20 @@ triggers 2.21 times as many realized inter-shot update attempts, the exact
 one-sided three-sign probability is 0.125, and balanced360 is the development
 stream rather than prospective confirmation.
 
+An additional selector-roster screen removes the realized window and
+optimizer-attempt-count mediator under a separate operator.
+It replays the archived active identities and three label-free random rosters
+per seed through a separate fixed assimilation operator: every query receives
+exactly 16 current windows, 16 immutable support110 replay windows, two shared
+optimizer attempts and two private attempts; intra-shot, alarm, episode and
+memory learners are frozen. Guard acceptance and committed parameter changes
+can still differ. Active-minus-random-mean `TPR@30-FPR` is `-0.00185`, `0`, and
+`-0.00556` for seeds 131/133/137. The post-development, declared all-seed
+screening rule therefore fails. This does not prove equivalence or a universal
+null and does not estimate the adaptive selector-policy effect. It shows only
+that archived-roster superiority is unsupported under this fixed operator; the
+full online gain remains a coupled treatment that this screen cannot isolate.
+
 ## Contents
 
 ```text
@@ -93,12 +107,14 @@ evidence/
   source_context_shortcut_audit.json
   equal_label_budget_frontload_v2/  selected/random front-load counterfactual
   causal_random_query_online_v1/    3 seeds × 3 causal random-query replays
+  equal_compute_selector_control_v1/
+                                    fixed-window/step selector-roster screen
   east_target_only_v1/              strict EAST-only and scaler controls
   source_lineage/                   source checkpoints and TEST220 ledgers
   primary_online_artifacts/         compact static/online/query/reveal ledgers
   case_study_seed131_shot73790.npz self-contained figure-4 trace
 figures/
-  fig0...fig10.{pdf,svg,png}        vector + 600 dpi publication figures
+  fig0...fig11.{pdf,svg,png}        vector + 600 dpi publication figures
   figure_manifest.json              input/output SHA-256 ledger
 manuscript/
   main.tex / main.pdf               English main manuscript
@@ -146,12 +162,36 @@ conda activate rl_env
 export FUSION_DATA_ROOT=/absolute/path/to/data  # omit when using ./data
 python experiments/transfer_methods_2026/paper_grade_package/scripts/build_evidence.py
 python experiments/transfer_methods_2026/build_equal_label_budget_report.py
+python experiments/transfer_methods_2026/paper_grade_package/scripts/run_equal_compute_selector_control.py \
+  --output-root experiments/transfer_methods_2026/runs/equal_compute_selector_control_v1 \
+  --seeds 131 133 137 --replicates 3 --stage run
+python experiments/transfer_methods_2026/paper_grade_package/scripts/archive_equal_compute_selector_results.py \
+  --source-root experiments/transfer_methods_2026/runs/equal_compute_selector_control_v1 \
+  --destination-root experiments/transfer_methods_2026/paper_grade_package/evidence/equal_compute_selector_control_v1 \
+  --replace
+python experiments/transfer_methods_2026/paper_grade_package/scripts/build_equal_compute_selector_report.py \
+  --root experiments/transfer_methods_2026/paper_grade_package/evidence/equal_compute_selector_control_v1 \
+  --data-root "$FUSION_DATA_ROOT" \
+  --out experiments/transfer_methods_2026/paper_grade_package/evidence/equal_compute_selector_control_v1/report.json
+python experiments/transfer_methods_2026/paper_grade_package/scripts/build_equal_compute_code_manifest.py
+python experiments/transfer_methods_2026/paper_grade_package/scripts/build_equal_compute_artifact_manifest.py
 python experiments/transfer_methods_2026/paper_grade_package/scripts/generate_latex_tables.py
 python experiments/transfer_methods_2026/paper_grade_package/scripts/generate_figures.py
 pytest -q tests/experiments/test_paper_grade_evidence.py \
   tests/experiments/test_jtext_source_padfix.py \
   tests/experiments/test_equal_label_budget_ablation.py
 ```
+
+The archive step validates the complete 3-seed x 4-arm bundle, copies it through
+a temporary directory, and preserves the previous release as a recovery backup
+until the replacement succeeds.  The report and content manifest are then built
+from the released directory itself, so regenerated metrics cannot be paired
+with stale package-local ledgers or checkpoints.
+
+The fixed-shape control consists of 12 RTX 5070 runs and takes roughly 26
+minutes on the recorded machine. `--stage plan` writes and audits commands
+without running them. Its code manifest is explicitly a post-run release
+snapshot, not proof of an execution-time code seal.
 
 Compile and validate:
 
@@ -163,11 +203,11 @@ cd ../../../..
 python experiments/transfer_methods_2026/paper_grade_package/scripts/validate_paper_package.py
 ```
 
-The validator currently checks 117 package invariants, including source and
+The validator currently checks 126 package invariants, including source and
 target-parent lineage, Q30's recoverable identity boundary, primary causal
 ledger relations, compact-ledger decompression hashes, figure/table input and
 output manifests, text-artifact portability, and the portable 2,203-file HDF5
-content manifest. A 117/117 result
+content manifest. A 126/126 result
 means the released development evidence is internally complete and mutually
 consistent; it does **not** upgrade the scientific status to independent
 confirmation.
@@ -209,6 +249,8 @@ Verified:
 - query error enrichment, negative controls, temporal blocks, early-alarm audit;
 - exact-parent, query-label-disjoint selected/random front-load ablation;
 - causal block-matched random-query online replay (three replicates per seed);
+- a fixed-shape selector-roster control with exact realized windows and
+  optimizer attempts, whose active-superiority screen fails;
 - PADFIX passes source context gates but causes negative transfer under the frozen target policy.
 
 Not verified:
@@ -216,7 +258,7 @@ Not verified:
 - an independent, never-used EAST future stream;
 - a strict chronological or prevalence-representative J-TEXT test;
 - an independent target-validation cohort separate from support110;
-- an exactly realized-compute/FLOP-matched random-query isolation;
+- adaptive selector-policy superiority under matched realized compute;
 - deployment latency, actuator integration, or campaign-general operation;
 - a shortcut-free primary parent with preserved transfer performance;
 - proof that the model learned all causal disruption mechanisms.

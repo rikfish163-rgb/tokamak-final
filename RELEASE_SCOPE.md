@@ -7,21 +7,25 @@
 - The exact split manifests and HDF5 data contract used by those modules.
 - The reproducibility CLI and tests.
 - The paper-grade machine evidence, compact prediction/query/reveal ledgers,
-  causal-random-query and EAST-only controls, publication figures and compiled
-  manuscript.
+  causal-random-query, EAST-only and fixed-shape selector-roster controls,
+  publication figures and compiled manuscript.
 - A portable per-file SHA-256 manifest for all 2,203 required HDF5 inputs. Raw
   HDF5 bytes remain external.
 - The three small, hash-bound J-TEXT parent checkpoints required to reproduce
   the current v3c target chain.
 - The three fidelity-verified post-support EAST target-parent states used to
   start static and online branches from identical weights and thresholds.
+- The twelve small final online states from the fixed-shape selector-roster
+  control. They are evidence-bearing outputs bound by the compact artifact
+  manifest, not additional source/target parents.
 - Method documentation needed to interpret the results without treating the 360-shot stream as an untouched final test.
 
 ## Excluded
 
 - Raw HDF5 data and derived NPZ/NPY feature arrays.
-- PyTorch checkpoints outside the six paper-lineage source/target parents,
-  target optimizer states and large training caches.
+- PyTorch checkpoints outside the six paper-lineage source/target parents and
+  the twelve explicitly released fixed-shape-control final states; optimizer
+  states and large training caches remain excluded.
 - Historical failed methods, obsolete reports and non-paper generated figures.
   In particular, the parent-fidelity-invalid equal-label-budget v1 run is not
   released; the corrected, fidelity-verified v2 control is included.
