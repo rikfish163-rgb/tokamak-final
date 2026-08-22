@@ -482,6 +482,664 @@ FPR <= 0.20
 - 证据生成器：`scripts/build_evidence.py`；
 - 图表生成器：`scripts/generate_figures.py`、`scripts/generate_latex_tables.py`；
 - 最终验证：`scripts/validate_paper_package.py`；
-- 本报告：`TECHNICAL_REPORT_zh.md`。
+- 本报告源文件：`TECHNICAL_REPORT_zh.md`；
+- 本报告排版版：`TECHNICAL_REPORT_zh.pdf`（A4，26页）。
 
 本报告的价值不在于把结果包装成“没有漏洞”，而在于把已知漏洞变成可复现的实验对象、把不能支持的结论明确排除，并给出下一次真正能改变证据等级的确认协议。
+
+---
+
+## 18. 数学符号、时间轴与因果信息集
+
+设装置域为 $d\in\{S,T\}$，其中 $S$ 表示 J-TEXT，$T$ 表示 EAST。第 $s$ 炮的多变量观测为
+
+$$
+X_s=\{x_{s,0},x_{s,1},\ldots,x_{s,N_s-1}\},\qquad x_{s,k}\in\mathbb R^C,
+$$
+
+$N_s$ 是实际采样点数；共享输入 $C=17$，EAST 另有 $C_p=8$ 个私有通道。采样时刻由 HDF5 元数据决定：$t_{s,k}=t_{s,0}+k/f_s$。模型在因果端点 $k$ 只能使用
+
+$$
+\mathcal F_{s,k}=\sigma\!\left(x_{s,0},\ldots,x_{s,k};\theta_s^-;\mathcal H_{<s}^{q}\right),
+$$
+
+其中 $\theta_s^-$ 是进入该炮前的持久模型状态，$\mathcal H_{<s}^{q}$ 是此前**被查询**炮已经揭示的历史。当前炮结局、端点之后的数据和未查询炮标签均不属于 $\mathcal F_{s,k}$。
+
+长度 $L=128$ 的因果窗口为
+
+$$
+W_{s,k}=[x_{s,k-L+1},\ldots,x_{s,k}]\in\mathbb R^{L\times17}.
+$$
+
+当 $k<L-1$ 时只允许左填充，不能从右侧借用未来值。真实有效长度和填充率为
+
+$$
+\nu_{s,k}=\min(k+1,L),\qquad \pi_{s,k}=1-\frac{\nu_{s,k}}{L}.
+$$
+
+shortcut audit 检验隐藏表示能否预测 $\pi_{s,k}$ 分桶；这比只查输入是否显式含长度更严格，因为卷积边界和零填充分布也可隐式编码长度。
+
+### 18.1 HDF5 权威结局与窗口标签
+
+逐炮结局严格定义为 $D_s=\operatorname{bool}(\texttt{/meta/IsDisrupt}_s)$。若 $D_s=1$，破裂时刻 $T_s^d=\texttt{/meta/DownTime}_s$，端点到破裂的剩余时间为
+
+$$
+\operatorname{TTD}_{s,k}=10^3(T_s^d-t_{s,k})\ \mathrm{ms}.
+$$
+
+风险监督使用125 ms hazard horizon：
+
+$$
+y_{s,k}=\mathbf1[D_s=1\land0\le\operatorname{TTD}_{s,k}\le125].
+$$
+
+$y_{s,k}$ 表示“在125 ms操作危险窗内”，不等于物理 onset A--F 阶段。安全炮全部窗口为零；破裂炮在125 ms以前的窗口同样为零。
+
+### 18.2 报警、提前量与 operational 指标
+
+设接受报警事件为 $A_{s,k}$，首次报警索引 $k_s^a=\inf\{k:A_{s,k}=1\}$。破裂炮提前量
+
+$$
+\ell_s=10^3(T_s^d-t_{s,k_s^a})\ \mathrm{ms}.
+$$
+
+J-TEXT 与 EAST 的及时命中分别是
+
+$$
+g_s^J=\mathbf1[k_s^a\text{存在且}\ell_s>10],\qquad
+g_s^E=\mathbf1[k_s^a\text{存在且}\ell_s\ge30].
+$$
+
+所以 EAST 破裂炮即使报警，只要 $\ell_s<30$ ms，仍按 operational FN/TARDY 处理。安全炮任意接受报警均为 FP。正式指标为
+
+$$
+\operatorname{TPR}_{op}(L)=\frac1{|\mathcal D|}\sum_{s\in\mathcal D}g_s(L),
+$$
+
+$$
+\operatorname{FPR}=\frac1{|\mathcal N|}\sum_{s\in\mathcal N}\mathbf1[k_s^a\text{存在}],
+$$
+
+$$
+\widetilde\ell=\operatorname{median}\{\ell_s:s\in\mathcal D,g_s(L)=1\}.
+$$
+
+平衡摘要 $J=\operatorname{TPR}_{30}-\operatorname{FPR}$ 只是二者等权差值。若实际漏报/误报代价为 $c_{FN},c_{FP}$，一般风险应写成
+
+$$
+R=c_{FN}(1-\operatorname{TPR}_{30})+c_{FP}\operatorname{FPR}.
+$$
+
+因此 $J$ 不能冒充真实控制系统效用。
+
+## 19. 数据处理与 17+8 特征分解
+
+### 19.1 训练域稳健缩放
+
+共享特征 $c$ 只用 J-TEXT TRAIN1353 拟合
+
+$$
+\mu_c=\operatorname{median}_{(s,k)\in\mathcal T_S}x_{s,k,c},\qquad
+q_c=Q_{0.75}(x_{\cdot,c})-Q_{0.25}(x_{\cdot,c}).
+$$
+
+缩放为
+
+$$
+\widetilde x_{s,k,c}=\operatorname{clip}\left(\frac{x_{s,k,c}-\mu_c}{\max(q_c,\varepsilon)},-10,10\right).
+$$
+
+缺失值先生成 $m_{s,k,c}\in\{0,1\}$，然后才置零：$\bar x_{s,k,c}=m_{s,k,c}\widetilde x_{s,k,c}$。因此零是缩放数值/缺失 sentinel；物理约束必须同时读取 mask。raw8 使用同样形式，但中心/IQR 只在 support110 拟合，并限制每炮贡献。
+
+### 19.2 派生代理量
+
+电流统一后计算
+
+$$
+I_p^A=10^3I_p^{kA},\quad r_{BI}=\frac{B_t}{I_p^A+\varepsilon},\quad
+\Delta I_{p,k}=I_{p,k}^A-I_{p,k-1}^A,
+$$
+
+$$
+Z_{proxy,k}=\frac{V_{loop,k}}{I_{p,k}^A+\varepsilon}.
+$$
+
+这些是可观测代理，不是完整电阻、稳定性边界或第一性原理公式；$Z_{proxy}$ 忽略几何、电感和非稳态项。
+
+### 19.3 为什么不能直接对齐 raw23
+
+抽象地写成 $x_S=g_S(z,\eta_S),x_T=g_T(z,\eta_T)$，其中 $z$ 是潜在共同状态，$\eta_d$ 是装置、探针、单位和缺失机制。直接最小化 $D(P(x_S),P(x_T))$ 时，若 $g_S\ne g_T$ 或类别先验不同，优化器可能通过抹掉结局信息来缩小域距离。因此正式分解为
+
+$$
+z_S=f_{sh}(x_S^{17}),\qquad
+z_T=f_{sh}(x_T^{17})+a_T(x_T^{17})+b_T(x_T^8).
+$$
+
+$f_{sh}$ 承载共享低层表示，$a_T$ 是 EAST 高层时间/风险适配，$b_T$ 是不参与跨域对齐的私有残差。这不宣称17维完全装置不变，只是明确隔离不可强制共享的通道。
+
+### 19.4 raw8 六类因果统计与参数量
+
+对私有通道 $c$ 的窗口构造
+
+$$
+u_c=[x_c^{last},\bar x_c,\operatorname{std}(x_c),x_c^{last}-x_c^{first},x_c^{last}-x_c^{mid},|\Omega_c|/L].
+$$
+
+八通道拼为 $u\in\mathbb R^{48}$，再与基础 logit 拼接：
+
+$$
+r_p=0.5\tanh(\operatorname{MLP}_{49\to16\to16\to1}([u,z_b])),\qquad z_p=z_b+r_p.
+$$
+
+最后一层零初始化使初始 $r_p=0$。参数量为 $(49\times16+16)+(16\times16+16)+(16+1)=1089$。
+
+## 20. 源域 Patch Transformer 完整推导
+
+kernel=stride=8 的卷积把 $W\in\mathbb R^{128\times17}$ 映射为16个64维 token：
+
+$$
+E=\operatorname{Conv1D}_{8,8}(W)\in\mathbb R^{16\times64},\qquad
+H^{(0)}=[e_{cls};E+P]\in\mathbb R^{17\times64}.
+$$
+
+“因果”来自窗口端点不读未来；窗口内部 encoder 是全可见 self-attention，并非自回归三角 mask。第 $l$ 层第 $h$ 个头为
+
+$$
+Q_h=\widehat H^{(l)}W_h^Q,\quad K_h=\widehat H^{(l)}W_h^K,\quad V_h=\widehat H^{(l)}W_h^V,
+$$
+
+$$
+\operatorname{Attn}_h=\operatorname{softmax}\left(\frac{Q_hK_h^\top}{\sqrt{16}}+M_{pad}\right)V_h.
+$$
+
+四头拼接后做预归一化残差 FFN：
+
+$$
+U^{(l)}=H^{(l)}+\operatorname{Dropout}(\operatorname{MHA}(\operatorname{LN}(H^{(l)}))),
+$$
+
+$$
+H^{(l+1)}=U^{(l)}+\operatorname{Dropout}(W_2\operatorname{GELU}(W_1\operatorname{LN}(U^{(l)}))).
+$$
+
+共两层，FFN宽256。最终 $h_s=\operatorname{LN}(H_{cls}^{(2)})$，经 $64\to64\to1$ risk head 得到 $z_s$。
+
+窗口 BCE 为
+
+$$
+\ell_{BCE}(z,y)=-y\log\sigma(z)-(1-y)\log(1-\sigma(z))
+=\operatorname{softplus}(z)-yz.
+$$
+
+代码使用 logits 形式避免数值溢出。训练是平衡采样分布 $Q_S$ 下的估计 $\widehat{\mathcal L}_{src}=128^{-1}\sum_i\ell_{BCE}(z_i,y_i)$。$Q_S$ 与真实部署分布不同，因此输出不能自动解释为校准概率。
+
+VAL160 阈值选择为
+
+$$
+\tau_S^*=\arg\min_{\tau\in\mathcal T}FPR_{val}(\tau)
+\quad\text{s.t.}\quad TPR_{val,>10}(\tau)\ge0.90.
+$$
+
+checkpoint 排名为 $(-FPR,TPR_{>10},AUC)$。TEST220 在 checkpoint 与阈值锁定后读取，但其非时序平衡设计仍不能被称为未来 campaign 验证。
+
+## 21. EAST 小样本迁移结构与损失
+
+迁移采用较弱假设：局部表示可能共享，但长时间动力学不同：
+
+$$
+P_S(h_{local}\mid z_{mech})\approx P_T(h_{local}\mid z_{mech}),\qquad
+P_S(Y\mid h_{1:k})\ne P_T(Y\mid h_{1:k}).
+$$
+
+DynamicHazardAdapter 输入冻结表示 $f$、物理代理 $v$ 和可用掩码 $a$：
+
+$$
+q=\operatorname{MLP}([f,v,a])\in\mathbb R^{32},\quad
+\widehat v_{t+1}=W_nq+b_n,
+$$
+
+$$
+\delta_h=\mathbf1[\sum_j a_j\ge2]\tanh(\operatorname{MLP}([q,z_b])),\qquad z_h=z_b+\delta_h.
+$$
+
+共同物理族不足两个时残差严格为零，最大幅度为1 logit。support 训练组合为
+
+$$
+\mathcal L_{support}=\mathcal L_{hazard}+0.20\operatorname{SmoothL1}(\widehat v_{t+1},v_{t+1})+0.02\mathbb E[\delta_h^2].
+$$
+
+目标阈值由同一 support110 选择：
+
+$$
+\tau_T^*=\arg\min_\tau FPR_{110}(\tau)\quad\text{s.t.}\quad TPR_{110}(\tau)\ge0.8.
+$$
+
+这不是独立验证；HDF5 真标签只有15个破裂炮，故目标泛化解释必须降级为开发证据。
+
+## 22. 双通路报警状态机
+
+基础概率和阈值先转为 logit margin：
+
+$$
+m_t=\operatorname{logit}(p_t)-\operatorname{logit}(\tau_T^*),\qquad \operatorname{logit}(p)=\log\frac p{1-p}.
+$$
+
+对可用物理代理 $v_{t,j}\in[0,1]$，定义
+
+$$
+e_t^{phy}=\frac{\sum_j a_{t,j}v_{t,j}}{\max(\sum_j a_{t,j},1)},\quad
+c_t^{phy}=\frac{\sum_j a_{t,j}\mathbf1(v_{t,j}\ge0.5)}{\max(\sum_j a_{t,j},1)},\quad P_t=e_t^{phy}c_t^{phy}.
+$$
+
+风险趋势 $R_t=[MA_5(m)_t-MA_{100}(m)_t]_+$。两条通路为
+
+$$
+A_t^{high}=\mathbf1[m_t\ge h_t],
+$$
+
+$$
+S_t^{early}=m_t+w_{p,t}P_t+w_{r,t}R_t,\quad A_t^{early}=\mathbf1[S_t^{early}\ge e_t],
+$$
+
+$$
+A_t^{raw}=A_t^{high}\lor A_t^{early}.
+$$
+
+初始参数 $(h,w_p,w_r,e)=(0,8,12,7.9)$；投影范围 $[-0.1,0.1]\times[6,10]\times[12,15]\times[7.1,8.7]$。炮后更新统一写为
+
+$$
+\phi_{s+1}=\Pi_\Phi(\phi_s-\eta_av_sg_{G_s}),
+$$
+
+其中 $G_s$ 是 FP/FN/TARDY/TP/TN 类型。FP 使报警更严格，FN/TARDY 使报警更早；正确轨迹进入保护集合。最终参数来自逐炮账本，不是事后静态网格搜索。
+
+## 23. 炮内无标签适配：训练对象与因果边界
+
+### 23.1 fast/persistent 双时间尺度
+
+进入第 $s$ 炮时复制
+
+$$
+\theta_{s,0}^{fast}\leftarrow\theta_s^{persistent}.
+$$
+
+炮内被选端点只更新 fast copy：
+
+$$
+\theta_{s,k+1}^{fast}=\theta_{s,k}^{fast}-\eta_{intra}v_{s,k}\nabla\mathcal L_{intra}.
+$$
+
+当前炮结束后 fast copy 被丢弃，不直接污染下一炮；只有炮后查询且通过 guard 的 inter update 才写入 persistent。故“炮内个性化”只服务当前炮，“炮间知识”只来自被查询且审计通过的历史错误。
+
+### 23.2 下一状态、教师和风险锚定
+
+动态表示 $q_{s,k}$ 预测下一个已到达的物理摘要：
+
+$$
+\mathcal L_{next}=\operatorname{SmoothL1}(\widehat v_{s,k+1},v_{s,k+1}).
+$$
+
+训练在 $k+1$ 到达后发生，只影响后续端点，绝不回改已封存预测。父模型/EMA 教师提供锚点
+
+$$
+\mathcal L_{anchor}=\operatorname{SmoothL1}(z^{fast},z^{anchor}),\qquad
+\mathcal L_{teacher}=\operatorname{SmoothL1}(q^{student},q^{EMA}),
+$$
+
+$$
+\theta^{EMA}\leftarrow\beta\theta^{EMA}+(1-\beta)\theta^{student}.
+$$
+
+这些项限制单炮噪声造成的漂移，不把模型自身预测当成真实结局。
+
+### 23.3 物理矛盾伪监督
+
+令 $b_t$ 为更新前 base logit，$\tau_l=\operatorname{logit}(\tau_T^*)$。只在两类强矛盾上施加方向性梯度：
+
+$$
+\mathcal I_{FP}=\mathbf1[b_t\ge\tau_l,P_t\le0.10,n_t\ge2],
+$$
+
+$$
+\mathcal I_{FN}=\mathbf1[b_t<\tau_l,P_t\ge0.65,n_t\ge2].
+$$
+
+损失为
+
+$$
+\mathcal L_{phy}^{u}=\frac1{|\mathcal I|}\sum_t
+\left[\mathcal I_{FP}\operatorname{softplus}(z_t-\tau_l)
++\mathcal I_{FN}\operatorname{softplus}(\tau_l-z_t)\right].
+$$
+
+没有激活端点时该损失严格为零。因此物理代理不是硬标签，只在风险和多个可用物理族强烈矛盾时提供伪监督。
+
+### 23.4 炮内总损失和更新价值
+
+共享 fast 路径可概括为
+
+$$
+\mathcal L_{intra}=\mathcal L_{next}+\lambda_a\mathcal L_{anchor}
++0.10\mathcal L_{phy}^{u}+\lambda_t\mathcal L_{temporal}
++\lambda_o\mathcal L_{observed-phy}.
+$$
+
+梯度范数裁剪为0.5，基础学习率 $10^{-4}$，每次1步。更新价值 $v_{s,k}\in[0,1]$ 只缩放学习率：$\eta_{eff}=v_{s,k}\eta_{intra}$。低于 dead zone 0.03 不更新，0.15以上饱和。窗口还有 stride=8、最小间隔8、历史64、$Q_{0.8}$ cutoff和容量4 token 约束，避免高度相关窗口重复训练。
+
+## 24. 主动查询价值与因果预算
+
+### 24.1 查询特征与执行分数
+
+风险峰值的不确定性近似为
+
+$$
+U_s=4p_s^{max}(1-p_s^{max}),
+$$
+
+在 $p=0.5$ 取1，在 $p\to0/1$ 时趋0。物理冲突 $C_s=\max(C_s^{FP},C_s^{FN})$。重建惊讶、教师分歧和私有创新使用炮内端点的 $Q_{0.90}$，避免单尖峰支配。执行的 legacy 分数为
+
+$$
+Q_s=w_sU_s+(1-w_s)C_s,\qquad w_s\in[0.55,0.75].
+$$
+
+五专家复杂价值还包含错误修正、信息增益、物理冲突、预期梯度和覆盖探索；揭示后可用指数权重更新专家。但最终 v3c 只以 shadow 模式记录，因为 v3a 让其直接控制查询后 TPR 下降。
+
+### 24.2 Rolling token bucket
+
+令 token 数为 $B_s$，每炮补充率 $r=0.30$，容量12：
+
+$$
+B_s^-=\min(12,B_{s-1}^++0.30).
+$$
+
+历史 cutoff 只来自过去分数：
+
+$$
+c_s=0.35\quad(|\mathcal H_s|<20),\qquad
+c_s=Q_{0.70}(\mathcal H_s)\quad(|\mathcal H_s|\ge20).
+$$
+
+历史最多160炮，并保留一个与分数无关的探索位置。需要特别区分“注册参数”与“最终执行语义”：独立的 `StratifiedRollingTokenBudgetSelector` 实现具有每20炮最多6次的硬上限；但最终 v3c 使用 shadow/legacy 组合路径，配置中的 `query_quota=6` 参与长期补充/分层控制，并未形成逐块不可突破的硬上限，归档中确有单块11次查询。因此最终执行约束应以 token 可用、过去 cutoff 和实际账本为准，而不能把配置字段错误解释成每块严格6炮。利用查询的基本必要条件仍为
+
+$$
+Q_s\ge\max(c_s,c_{label}),\quad B_s^-\ge1,\quad quota\ available.
+$$
+
+查询后 $B_s^+=B_s^--1$。早期买下的标签不能在看到未来后撤销。主结果实际查询102/90/99炮；Q30是另一条低预算 seed131 消融，二者不能混称。
+
+## 25. 炮后监督、错误类型学习与回滚
+
+### 25.1 从结局到监督价值
+
+只有查询后才读取 HDF5 并定义 $G_s\in\{FP,FN,TARDY,TP,TN\}$。整条 risk trace 与时序目标的 BCE 为
+
+$$
+E_s=-\frac1{N_s}\sum_k[y_{s,k}\log p_{s,k}+(1-y_{s,k})\log(1-p_{s,k})].
+$$
+
+归一化 $r_s=\operatorname{clip}(E_s/\log2,0,1)$。监督价值
+
+$$
+v_s=\operatorname{clip}[0.50r_s+0.30o(G_s)+0.20g(G_s,\ell_s),0,1],
+$$
+
+其中 $o(FN)=1,o(TARDY)=0.6,o(FP)=0.2$；$g(FN)=1$，$g(TARDY)=\operatorname{clip}((30-\ell_s)/30,0,1)$。对 FP 还使用
+
+$$
+v_s^{FP}\leftarrow\max(v_s,0.30+0.20c_s^{episode}),
+$$
+
+保证昂贵误报标签不会因平均 BCE 偏小而失去学习作用。
+
+### 25.2 sealed residual target
+
+私有分支绑定到揭示前封存 logit：
+
+$$
+e_s=y_s-\sigma(z_s^{seal}),\quad
+\Delta_s=\operatorname{clip}(\gamma e_s,-0.5,0.5),\quad
+z_s^{target}=z_s^{seal}+\Delta_s.
+$$
+
+损失为
+
+$$
+\mathcal L_{sealed}=\operatorname{SmoothL1}(z_s,z_s^{target})+0.25\ell_{BCE}(z_s,y_s).
+$$
+
+它明确学习“相对本炮实际犯错修正多少”，不是把查询炮当普通离线样本无限重训。
+
+### 25.3 persistent inter-shot 目标
+
+炮间更新固定2步，共享学习率 $5\times10^{-4}$，私有学习率 $2\times10^{-4}$：
+
+$$
+\mathcal L_{inter}=\mathcal L_{hazard}^{current}
++\mathcal L_{distill}^{replay}+\lambda_p\mathcal L_{physics}
++0.10\mathcal L_{next}+\lambda_g\mathcal L_{guard-anchor}
++0.02\mathcal L_{residual}.
+$$
+
+回放蒸馏 $\mathcal L_{distill}^{replay}=\operatorname{SmoothL1}(z_{replay},z_{replay}^{before})$。same-error memory 只把 FP 与历史 FP、FN 与历史 FN 配对，容量64炮；这学习相似错误的局部修正，不是把所有历史标签混成不断扩大的离线训练集。
+
+### 25.4 守卫与原子回滚
+
+更新前在 support guard 上形成保护集合
+
+$$
+\mathcal G^+=\{i:\mathbf1(z_i^{before}\ge\tau_l)=y_i\}.
+$$
+
+候选更新后的伤害数
+
+$$
+H=\sum_{i\in\mathcal G^+}\mathbf1[\mathbf1(z_i^{after}\ge\tau_l)\ne y_i].
+$$
+
+正式配置要求 $H=0$ 且输出有限；否则参数和 optimizer state 一起恢复。它只保护 guard 覆盖到的已知正确区域，不保证所有未知未来正确炮都不受损。
+
+## 26. 因果误报 episode gate
+
+双通路先产生 $A_s^{raw}$。episode 模型用报警附近20维表示、快慢差分和波动组成 $d_s\in\mathbb R^{60}$，输出 $p_s^{FP}=\sigma(w^\top d_s+b)$。最终
+
+$$
+A_s^{final}=A_s^{raw}\land\neg V_s,
+$$
+
+所以 $A_s^{final}\le A_s^{raw}$：它只能延迟/veto，不能创造或提前报警。
+
+历史至少12例、每类至少3例时，候选阈值
+
+$$
+\tau_s^{FP}=\max[0.50,Q_{0.90}(p^{FP}\mid\text{past disruptive})+0.06].
+$$
+
+还必须与过去安全类 $Q_{0.25}$ 分离且置信度至少0.75；否则 fail-open。若 $P_s\ge0.85$ 则 physics escape。部署 gate 与反事实 raw alarm 学习轨迹隔离，避免本炮被 veto 成 TN 后反向改变同炮更新类型。
+
+## 27. PADFIX：padding shortcut 修复推导
+
+同一端点构造 full view 和只删除更早历史的短视图 $v\in\{32,64,96,128\}$，两者不读未来。记输出 $(z_f,h_f),(z_v,h_v)$，训练目标
+
+$$
+\mathcal L_{padfix}=\mathcal L_{task}+0.5\mathcal L_{view}
++0.2\|z_f-z_v\|_2^2+0.5\|\widehat h_f-\widehat h_v\|_2^2
++0.005\mathcal L_{pad-adv}.
+$$
+
+adversary 按结局条件化并通过梯度反转让主干难以恢复长度桶，避免仅从类别比例预测 padding。probe AUC 降至 `0.624/0.645/0.649`，说明已知 shortcut 受抑制；但完整准入要求 shortcut、源域性能和目标兼容同时通过。PADFIX 未满足全部门，且直接复用旧 v3c 后三 seed FPR 均升高，所以不能继续用 balanced360 调参“救回”。
+
+## 28. 消融如何排除替代解释
+
+### 28.1 同标签访问量前置训练
+
+对 seed $r$，主在线查询集合为 $Q_r$：
+
+$$
+\mathcal T_r^{front}=support110\cup Q_r,
+\qquad \mathcal E_r=balanced360\setminus Q_r.
+$$
+
+静态、front-load、online 均在同一 $\mathcal E_r$ 评分，排除模型在训练炮上得分。front-load 的 TPR 上升但 FPR 增幅更大，$J$ 从0.8359降到0.7327；online 为0.8490。它否定“标签数量本身足以复现在线操作点”，但不声称严格等 FLOPs。
+
+### 28.2 随机查询和等 optimizer-attempt screen
+
+因果随机日程在每个20炮块匹配标签数，控制标签数量和时间密度，但错误类型与 guard 接受数仍可不同。进一步固定每次16个当前窗口、16个 support 窗口、2个 shared 与2个 private optimizer attempts，并关闭其他机制；该 screen 中 archived-active roster 没有稳定优于随机（0/3 better，一次 tie）。因此不能声称 selector 本身已被证明最优，当前证据只支持完整耦合系统的开发性效果。
+
+### 28.3 EAST-only 基线
+
+严格 EAST-only 从随机初始化17维 encoder/head，scaler 只拟合 support110；source-scaler diagnostic 不继承 J-TEXT 权重。迁移相对严格 EAST-only 的 $J$ 提高0.0222，但可训练参数/FLOPs不完全相等。因此它支持“源权重有增量信息”，不证明全部增益来自单一共同物理机制。
+
+## 29. 时间相关统计与 moving-block 重采样
+
+360炮有时间相关性，不能把1080个 seed-shot 当独立样本。长度 $n=360$、块长 $b=20$；随机抽圆形连续块
+
+$$
+B(a_j)=\{a_j,a_j+1,\ldots,a_j+b-1\}\pmod n
+$$
+
+并拼至长度 $n$。相同索引用于三 seed 和 static/online：
+
+$$
+\Delta_r=\frac13\sum_{q\in\{131,133,137\}}[M_{q,r}^{online}-M_{q,r}^{static}].
+$$
+
+5,000次的2.5%与97.5%分位给出描述区间。它没有在重采样历史上重新执行 $\theta_{s+1}=F(\theta_s,x_s,q_s,y_s)$，又未校正972候选选择，因此不是严格总体置信区间或确认性显著性检验。
+
+## 30. 完整因果算法伪代码
+
+```text
+1  用 support110 拟合 EAST 私有 scaler、目标 adapter 和独立 risk head
+2  用 support110 选 tau_T；冻结迁移父模型与全部 SHA256
+3  静态分支对360炮只预测并封存，然后关闭
+4  在线分支重新加载与步骤2完全相同的父模型
+5  for s = 1,...,360（严格炮号顺序）:
+6      persistent -> fast；当前炮标签 oracle 保持关闭
+7      for 每个已到达因果端点 k:
+8          仅用 x[s,<=k] 计算风险、物理支持、重建误差、更新价值
+9          若窗口预算允许，对 fast 做1步无标签更新
+10         输出端点风险和双通路报警
+11     封存预测、首次报警、查询特征、fast/persistent hash
+12     用过去 cutoff + token bucket 决定 query_s
+13     if 未查询：丢弃 fast；不读标签；进入下一炮
+14     if 查询：此时才读取 IsDisrupt/DownTime
+15         生成时序目标和 FP/FN/TARDY/TP/TN 类型
+16         候选更新 persistent、私有支路与报警参数
+17         guard 若受损或非有限则原子回滚
+18         仅用此已查询标签更新 episode/query 历史
+19     丢弃 fast；新的 persistent 仅供 s+1 使用
+20  流结束后才读取全部结局做最终评估
+```
+
+第11步早于查询/揭示是无泄漏核心；第13步保证未查询炮不进入监督学习；第17步限制一次昂贵标签破坏已有正确区域；第19步保证炮后学习只影响未来炮。
+
+## 31. 符号表与代码—公式—证据映射
+
+### 31.1 核心符号表
+
+| 符号 | 含义 | 是否预测时可见 |
+|---|---|---|
+| $s,k$ | 炮序号、炮内因果端点 | 是 |
+| $D_s,T_s^d$ | 结局、HDF5 DownTime | 当前炮预测时否；查询后是 |
+| $W_{s,k}$ | 截止端点 $k$ 的128点窗口 | 是 |
+| $y_{s,k}$ | 125 ms temporal hazard target | 当前炮预测时否 |
+| $p_{s,k},z_{s,k}$ | 风险概率和 logit | 是，由模型产生 |
+| $\tau_S^*,\tau_T^*$ | 源/目标冻结阈值 | 是，流开始前冻结 |
+| $m_t$ | 相对目标阈值的 logit margin | 是 |
+| $P_t,R_t$ | 物理支持、快慢风险趋势 | 是，仅当前/过去 |
+| $h,w_p,w_r,e$ | 双通路报警状态参数 | 是，只由过去查询更新 |
+| $Q_s$ | 不读标签的查询价值 | 是 |
+| $G_s$ | FP/FN/TARDY/TP/TN组 | 查询揭示后才可见 |
+| $\theta^{fast}$ | 当前炮临时个性化状态 | 是；下一炮前重置 |
+| $\theta^{persistent}$ | 跨炮持久目标状态 | 是；只由过去查询更新 |
+
+### 31.2 代码—公式—证据对应表
+
+| 技术对象 | 数学位置 | 实现入口 | 主要证据 |
+|---|---|---|---|
+| HDF5标签与lead | §18 | `train_jtext_source_transformer.py`、`online_active_audit.py` | `three_stage_results.json`、逐炮 predictions |
+| rebuilt17 | §19.1–19.3 | `rebuilt_harness.py` | roster/content manifest |
+| raw8 sidecar | §19.4 | `east_private23_sidecar.py` | private adapter SHA、support scaler |
+| Patch Transformer | §20 | `grid_search.py`、`train_jtext_source_transformer.py` | source checkpoints/history |
+| dynamic hazard | §21 | `dynamic_hazard_adapter.py` | 参数审计、adapter SHA |
+| 双通路报警 | §22 | `dual_threshold_alarm.py` | alarm ledger、鲁棒性 summary |
+| 炮内 fast update | §23 | `two_timescale_online_adapter.py` | intra receipts、状态 SHA |
+| 查询预算 | §24 | `online_episode_value_v3.py` | query ledgers、102/90/99 counts |
+| 炮后更新与回滚 | §25 | `two_timescale_online_adapter.py`、`east_private23_sidecar.py` | update receipts、guard harms |
+| episode veto | §26 | `online_episode_value_v3.py` | shot73790 case、v3c screen |
+| PADFIX | §27 | `train_jtext_source_padfix.py` | shortcut audit、PADFIX transfer summary |
+| 前置/随机/等attempt消融 | §28 | `evidence/` 对应子目录 | comparison/report JSON |
+| moving-block | §29 | `scripts/build_evidence.py` | 描述区间 JSON/LaTeX 表 |
+
+任何结论都应沿“公式定义 → 实现函数 → 不可变账本/哈希”追溯。若三者不一致，以实际 HDF5、冻结执行配置和逐炮账本为准，并把偏差标成 lineage deviation，不能修改定义迎合结果。
+
+## 32. 复现实验的最小完整步骤
+
+### 32.1 CUDA 环境预检
+
+正式训练、迁移和在线执行统一使用用户指定的 `rl_env`：
+
+```bash
+conda run -n rl_env python - <<'PY'
+import torch
+print("torch", torch.__version__)
+print("cuda", torch.cuda.is_available())
+print("device", torch.cuda.get_device_name(0) if torch.cuda.is_available() else None)
+assert torch.cuda.is_available()
+PY
+```
+
+CPU CI 只验证包结构、单元测试和无数据失败关闭，不能替代 RTX 5070 的正式数值执行。
+
+### 32.2 数据挂载和内容验证
+
+仓库不复制 HDF5。外部数据按 README 指定路径挂载后，先核对 `required_hdf5_content_manifest.json`：炮号、结局、DownTime、信号集合和内容 SHA 任一不一致都必须停止。shot list 只提供候选炮号，不能覆盖 HDF5 标签。
+
+### 32.3 固定执行顺序
+
+```text
+数据/标签审计
+→ 三 seed J-TEXT source training + VAL160 threshold lock
+→ TEST220 replay
+→ support110 EAST adaptation + target threshold lock
+→ balanced360 static prediction seal
+→ reset identical parent
+→ balanced360 chronological online replay
+→ evidence/table/figure build
+→ package validator
+```
+
+正式命令从仓库 `README_CN.md` 和 package README 复制，所有 Python 命令加 `conda run -n rl_env`。checkpoint 恢复必须同时绑定代码 SHA、配置 SHA、数据清单 SHA、父 checkpoint SHA 和已完成炮序；任一项变化都禁止续跑。
+
+### 32.4 可重复性与可复现性的区别
+
+同一代码/数据/硬件/seed 得到相同逐炮分数称为计算可重复性；换 campaign 或新 EAST 流仍保持性能才属于经验可复现性。当前包通过冻结哈希、确定性 CUDA 和逐炮账本支持前者；由于缺少全新未来流，尚未完成后者。
+
+## 33. 结果解释的逐层边界
+
+### 33.1 当前数据支持的结论
+
+1. 同一 checkpoint 血缘完成了 J-TEXT 源训练、110炮 EAST 适配和360炮因果在线执行。
+2. shared17/private8 分解在当前开发证据中比 raw23 无条件对齐更稳定。
+3. 在线 v3c 在三个 seed 上均降低 FPR，总体 operational TPR 小幅增加。
+4. 查询炮对后验 operational error 有2.19–2.53倍富集。
+5. 同标签直接前置训练不能复现在线的 TPR/FPR 平衡，原因主要是 FPR 明显增加。
+6. padding shortcut 确实存在；PADFIX 可降低其可探测性，但当前 target policy 与其不兼容。
+
+### 33.2 当前数据不支持的结论
+
+1. 不能说模型识别了所有破裂因果机理；只能说表示对若干时间/物理代理敏感，并排除了部分已知捷径。
+2. 不能说 active selector 本身优于随机；固定形状等 optimizer-attempt screen 没有稳定优势。
+3. 不能说360炮是独立最终测试，因为它参与方法逆向分析和972候选筛选。
+4. 不能说 support110 提供无偏阈值，它同时参与训练和阈值选择。
+5. 不能把 moving-block 描述区间称作选择后校正的显著性检验。
+6. 不能把超过3秒的报警自动解释为破裂前兆；主指标按约定计入，但必须单列 shortcut/campaign 审计。
+
+### 33.3 真正确认所需设计
+
+获得新 EAST 顺序流后，必须在首炮到达前冻结：三 seed checkpoint、阈值、查询率、token bucket、报警投影、更新步数、episode 边界和停止条件。新流不能用于选候选；最好另设 target validation cohort，使 support fitting、threshold selection 和 future confirmation 三者分离。只有这样才能从 `TEST_DRIVEN_EXPLORATION` 升级为 prospective confirmation。
+
+## 34. 技术总结合科研裁决
+
+这套系统的核心不是某个单独迁移损失，而是三个层次的结构化拆分：共享特征只承担有证据的跨装置语义；EAST 私有分支吸收不可比诊断和时间动力学；在线层通过炮内无标签个性化、昂贵标签查询、错误类型监督、保护回滚和单调误报 veto，使一次查询只在因果允许的方向影响未来炮。
+
+当前三阶段数值证明工程链已经贯通，并且所有主结果都能追溯到 HDF5、冻结配置、逐炮预测和哈希。但 balanced360 的方法开发复用、support110 的训练/阈值双重用途、固定形状 selector screen 的负结果以及源域 padding shortcut，共同决定当前成果仍是“可审计的论文开发证据”，不是已经完成的独立确认研究。最严谨的论文表述应同时呈现有效结果和这些边界；只有新未来流才能真正提高证据等级。
