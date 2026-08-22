@@ -133,8 +133,8 @@ scripts/
   archive_east_target_only_results.py
   train_source_padfix.py             shortcut-repair ablation
   evaluate_locked_source_padfix.py
-TECHNICAL_REPORT_zh.md               full Chinese technical report with derivations
-TECHNICAL_REPORT_zh.pdf              rendered 26-page Chinese review copy
+TECHNICAL_REPORT_zh.md               formal Chinese technical report with derivations and evidence grading
+TECHNICAL_REPORT_zh.pdf              rendered 30-page A4 Chinese technical review copy
 NATURE_PORTFOLIO_READINESS.md        submission-readiness gate and blockers
 FIVE_WAY_AUDIT.md                    independent five-lane verdict and fixes
 ```

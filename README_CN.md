@@ -1,6 +1,6 @@
 # J-TEXT → EAST：因果迁移与按时间顺序在线适配
 
-[English](README.md) · [中文详细技术报告](experiments/transfer_methods_2026/paper_grade_package/TECHNICAL_REPORT_zh.md) · [排版 PDF](experiments/transfer_methods_2026/paper_grade_package/TECHNICAL_REPORT_zh.pdf) · [论文级实验包](experiments/transfer_methods_2026/paper_grade_package/README.md) · [数据合同](DATA_CONTRACT.md)
+[English](README.md) · [正式中文技术报告（Markdown）](experiments/transfer_methods_2026/paper_grade_package/TECHNICAL_REPORT_zh.md) · [正式排版 PDF](experiments/transfer_methods_2026/paper_grade_package/TECHNICAL_REPORT_zh.pdf) · [论文级实验包](experiments/transfer_methods_2026/paper_grade_package/README.md) · [数据合同](DATA_CONTRACT.md)
 
 ![证据状态](https://img.shields.io/badge/evidence-development--only-orange?style=flat)
 ![默认 CLI](https://img.shields.io/badge/default%20CLI-v3c%20archived--parent%20replay-2f80ed?style=flat)

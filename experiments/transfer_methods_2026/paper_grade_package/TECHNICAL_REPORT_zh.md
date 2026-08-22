@@ -1,15 +1,62 @@
-# J-TEXT → EAST 小样本迁移 → EAST 在线主动学习：Operational-v2 论文级技术报告
+# J-TEXT 至 EAST 小样本破裂预警迁移与因果在线适配
 
-> 版本状态：`DEVELOPMENT_EVIDENCE_NOT_INDEPENDENT_CONFIRMATION`  
-> 主结果状态：`ONLINE_DIAGNOSTIC / TEST_DRIVEN_EXPLORATION`  
-> 标签权威：逐炮 HDF5 `/meta/IsDisrupt` 与 `/meta/DownTime`  
-> 执行环境：`rl_env`、RTX 5070、单 GPU  
-> 主种子：131 / 133 / 137
-> 正式指标：J-TEXT `TPR@lead>10ms`；EAST `TPR@lead≥30ms`；raw alarm occurrence 仅作机器诊断
+**技术方法、实验验证与证据边界（Operational-v2）**
 
-## 1. 最终结论
+| 文档属性 | 内容 |
+|---|---|
+| 文档编号 | JTE-XFER-OA-TR-02 |
+| 版本 | 2.1 |
+| 编制日期 | 2026-08-23 |
+| 文档性质 | 研究开发技术报告 |
+| 适用对象 | 项目导师、技术评审人员、算法与等离子体诊断研发人员 |
+| 证据状态 | `DEVELOPMENT_EVIDENCE_NOT_INDEPENDENT_CONFIRMATION` |
+| 结果状态 | `ONLINE_DIAGNOSTIC / TEST_DRIVEN_EXPLORATION` |
+| 标签依据 | HDF5 `/meta/IsDisrupt` 与 `/meta/DownTime` |
+| 计算环境 | `rl_env`，NVIDIA RTX 5070，单 GPU |
+| 重复实验 | seeds 131、133、137 |
+| 主评价口径 | J-TEXT：`TPR@lead>10 ms`；EAST：`TPR@lead≥30 ms` |
 
-这项工作已经把用户要求的三段链路在同一模型血缘上完整打通：
+> **证据等级说明。** 本报告记录已经执行并完成审计的开发性实验。EAST balanced360 曾参与方法与参数开发，因此相关结果不得作为独立前瞻验证或部署验收结论使用。
+
+## 文档使用说明
+
+本报告分为三个层次：第1至17节给出研究问题、数据合同、工程方法、主要结果、消融实验和证据成熟度；第18至30节给出数学定义、损失函数、状态更新和完整因果算法；第31至35节给出符号索引、代码与证据映射、复现程序、综合技术结论和参考文献。读者可先阅读第1、3、6、7、8、14和16节掌握结论，再查阅后续公式与实现细节。
+
+术语约定如下：首次出现时使用中文名称并附英文术语；后文保留行业通用缩写。`support110`、`TEST220`、`balanced360` 均为冻结数据角色名称，而非性能等级。本文中的“在线”是按炮号顺序的历史因果回放，不表示已经接入装置控制系统。
+
+### 证据等级
+
+| 等级 | 定义 | 本报告中的典型内容 |
+|---|---|---|
+| E0：合同证据 | 数据角色、标签权威源、信息访问边界和评价公式 | HDF5 标签合同、lead 定义、`predict → seal → reveal → update` 顺序 |
+| E1：执行证据 | 可由代码、配置、哈希、逐炮账本或自动验证器复核的事实 | checkpoint 血缘、炮表 SHA256、逐炮预测、参数更新回执 |
+| E2：开发性实验依据 | 在参与方法开发的数据上获得的比较结果 | TEST220、support110 与 balanced360 上的主结果和消融 |
+| E3：独立确认依据 | 方法、阈值和停止规则冻结后，在未参与开发的新时序流上一次性获得的结果 | **本项目尚未完成** |
+
+除非另有说明，本报告的性能结论均属于 E2；代码可执行性、标签访问顺序和文件哈希等审计结论属于 E1。任何 E2 结果均不得在未补充 E3 验证的情况下解释为部署性能。
+
+### 主要缩略语与数据角色
+
+| 术语 | 定义 |
+|---|---|
+| TPR / FPR | 真阳性率 / 假阳性率；TPR 按规定最低提前量计算 |
+| TTD | Time to disruption，当前因果端点距破裂时刻的剩余时间 |
+| TEST220 | J-TEXT 的220炮平衡比较集；在同次执行中锁定后读取，但并非严格时序未来集 |
+| support110 | EAST 的110炮小样本支持集；用于目标适配和目标阈值选择 |
+| balanced360 | EAST 的180破裂/180安全炮顺序开发流；用于静态比较和因果在线回放 |
+| PADFIX | 针对有效历史长度/左填充捷径的上下文一致性与条件对抗训练 |
+| shared17 / private8 | 17维跨装置共享输入与8维 EAST 私有输入的结构化分解 |
+| static / online | 冻结迁移模型的一次性预测 / 按炮号顺序执行的因果在线适配 |
+
+### 目录
+
+<!-- PDF_TOC -->
+
+## 1. 报告摘要与主要结论
+
+### 1.1 研究目标
+
+本项目研究在 EAST 标注样本受限条件下，如何将 J-TEXT 上学习得到的破裂风险表示迁移至 EAST，并通过严格遵守时间顺序的信息访问协议实施炮内无标签适配和炮间主动监督更新。炮内适配借鉴测试时自适配与持续测试时适配的基本思想[10–12]，炮间查询和更新则与在线持续适配研究的问题设置相关[13]；本项目在此基础上增加了标签访问封存、双时间尺度参数、物理矛盾伪监督和原子回滚。完整计算链路保持统一模型谱系：
 
 ```text
 J-TEXT TRAIN1353 训练 causal Patch Transformer
@@ -22,15 +69,17 @@ J-TEXT TRAIN1353 训练 causal Patch Transformer
 → predict → seal → query → selected HDF5 reveal → later-shot update
 ```
 
-当前最佳、同一血缘的三组核心数据如下：
+各阶段均由相同 seed 的源模型、目标适配器和在线父模型衔接，避免使用彼此无关的 checkpoint 拼接结果。三阶段核心指标如下。
 
 | 阶段 | 正式评估口径 | operational TPR | FPR | AUC | operational median lead |
 |---|---|---:|---:|---:|---:|
 | J-TEXT 源模型 | TEST220，lead > 10 ms | **0.8515** | **0.2121** | **0.9219** | **116.6 ms** |
-| J-TEXT→EAST 静态迁移 | balanced360，lead ≥ 30 ms | **0.8407** | **0.1667** | 未统一保存 | **242.0 ms** |
-| EAST 在线主动 | 同一 balanced360 顺序流，lead ≥ 30 ms | **0.8481** | **0.1519** | 未统一保存 | **229.5 ms** |
+| J-TEXT 至 EAST 静态迁移 | balanced360，lead ≥ 30 ms | **0.8407** | **0.1667** | 未归档统一连续分数 | **242.0 ms** |
+| EAST 因果在线适配 | 同一 balanced360 顺序流，lead ≥ 30 ms | **0.8481** | **0.1519** | 未归档统一连续分数 | **229.5 ms** |
 
-同预算口径的严格 EAST-only 基线只读取 support110，随机初始化完整17维Transformer并使用EAST本地scaler，三seed均值为 `TPR@30=0.7963、FPR=0.1444、J=0.6519、median lead=165.6 ms`。迁移静态相对它提高 `0.0444` TPR、增加 `0.0222` FPR，净提高 `0.0222` 的 `J=TPR30−FPR`，提前量增加约76.5 ms。只复用J-TEXT scaler但不继承权重的随机模型降到 `TPR@30=0.7315、FPR=0.1056`，说明跨装置归一化本身不能直接共用。target-only更新完整encoder，而迁移模型只更新受限目标路径，二者不是严格等参数量或等FLOPs；这些数值同样只是balanced360开发证据。
+严格 EAST-only 基线仅使用 support110，随机初始化完整17维 Transformer，并拟合 EAST 本地稳健缩放器。三个 seed 的均值为 `TPR@30=0.7963`、`FPR=0.1444`、`J=0.6519`、`median lead=165.6 ms`。静态迁移相对该基线的 TPR 增加0.0444、FPR增加0.0222，综合指标 $J=TPR_{30}-FPR$ 增加0.0222，中位提前量增加约76.5 ms。仅复用 J-TEXT 缩放器而不继承源模型权重的随机模型为 `TPR@30=0.7315`、`FPR=0.1056`，表明缩放统计本身不足以构成有效迁移。由于 EAST-only 更新完整编码器，而迁移模型只更新受限目标路径，两者不构成严格的等参数量或等计算量比较。
+
+### 1.2 在线适配的配对变化
 
 在线相对静态的三 seed 配对圆形 moving-block 重采样（block=20，5,000 次）得到：
 
@@ -38,11 +87,13 @@ J-TEXT TRAIN1353 训练 causal Patch Transformer
 - operational TPR@30 ms 变化 `+0.00717`，95% 描述区间 `[+0.00171, +0.01500]`；
 - operational median lead 变化 `-11.66 ms`，95% 描述区间 `[-69.01, +4.00] ms`。
 
-block size 10/20/30/45 的描述方向相同，但这不能当作显著性结论：重采样没有在新历史上重新执行在线学习，而且 balanced360 参与过方法逆向分析和 972 个 episode 候选筛选。它只能描述已选策略在这条开发账本上的局部稳定性，不能重新命名为“未见测试集”或未来流置信区间。operational lead 没有稳定改善。
+block size 10、20、30和45的方向一致。然而，该重采样没有在每一条重构历史上重新执行在线学习，且 balanced360 已用于972个 episode 候选筛选。因此上述区间仅用于描述冻结开发账本上的局部稳定性，不是面向未来数据的选择后置信区间。中位提前量未显示稳定改善。
 
-此外，论文级审计发现了一个不能掩盖的源模型缺陷：当前成功迁移血缘的 J-TEXT 表示可以高精度识别窗口有效历史长度，padding/context probe AUC 为 `0.955/0.929/0.937`，显著超过门槛 `0.65`。PADFIX 能把它降至 `0.624/0.645/0.649`，但会降低源域及时灵敏度，而且把原在线策略直接接到 PADFIX 父模型后，三个 seed 的 FPR 全部上升。这说明当前系统已形成有效工程链路，但还不能声称“完全学到所有破裂机理”或“已经部署级完美”。
+### 1.3 关键技术发现与限制
 
-## 2. 数据合同和标签修复
+审计同时识别出源模型的上下文长度捷径：隐藏表示预测窗口有效历史长度的 probe AUC 为 `0.955/0.929/0.937`，高于预注册门槛0.65。PADFIX 将该指标降至 `0.624/0.645/0.649`，但源域及时灵敏度下降；将既有在线策略直接迁移至 PADFIX 父模型后，三个 seed 的 FPR 均上升。因此，当前结果支持“工程链路可执行且具有开发性增益”，但不足以支持“已识别全部破裂机理”或“达到装置部署验收条件”等更强结论。
+
+## 2. 数据合同与标签依据
 
 ### 2.1 J-TEXT
 
@@ -74,19 +125,19 @@ EAST HDF5 总计 2,953 炮：1,198 破裂、1,755 安全。
 657cab542bd987f9c97c3cb88867a9cc828373b32e6ee58d450451461c6ec825
 ```
 
-历史清单只负责候选炮号来源；任何实验、指标和时刻标签都只读取 HDF5。证据生成器现在同时保存“历史分组 10/100”和“权威结果 15/95”，防止后续再次混用。
+历史清单仅用于记录候选炮号来源；实验标签、指标及时间锚点均以 HDF5 为准。证据生成器同时保留“历史分组10/100”和“HDF5权威分组15/95”，以支持标签谱系审计并防止混用。
 
-## 3. 为什么之前迁移长期失败
+## 3. 跨装置迁移的主要技术障碍
 
-失败不是“深度学习完全不能迁移”，也不只是一个损失权重没调好，而是三种结构性混杂叠加：
+历史迁移实验的性能不足主要由以下三类结构性混杂共同造成，而非单一损失权重设置所致。该判断与既有跨托卡马克迁移研究关于“局部物理特征较易共享、上层时间动力学需要目标域适配”的观察一致[1–4]，同时遵循域适配可识别性限制：当类别先验、观测函数和标签条件分布同时变化时，降低边缘域距离并不保证目标任务风险下降[6–8]。
 
 1. **23 维名义同名不等于物理同构。** CIII、MNM、Mirnov 幅值、`ne_nG`、`qa_proxy`、SXR 均值、XUV ratio 等通道在单位、可用性、探针实现或构造方法上不稳定。直接 DANN/MMD/CORAL 会把装置差异、缺失模式和类别比例一起“对齐”。
 2. **上层时间动力学并不共享。** J-TEXT 炮短，EAST 炮长；两者破裂演化速度和采样上下文分布不同。强制共享完整上层时间读出会造成负迁移。
-3. **源域 padding 成为捷径。** J-TEXT 短炮和破裂窗口的左填充比例不同；即使模型整体指标不差，它也可能利用有效历史长度而不是仅靠物理演化。
+3. **源域 padding 成为捷径。** J-TEXT 短炮和破裂窗口的左填充比例不同；即使模型整体指标不差，它也可能利用有效历史长度而不是仅靠物理演化。这属于典型的 shortcut learning 风险[9]。
 
-真正带来突破的改动是结构重分解：共享可验证的 17 维语义子空间，把剩余 8 维留给 EAST 私有分支；共享低层表达，但允许 EAST 私有时间动力学和风险残差；在线阶段把查询、梯度、告警和误报 veto 的价值分开。
+据此，最终方案采用结构化分解：17维可审计语义进入跨装置共享路径，剩余8维进入 EAST 私有分支；低层表示保留源域初始化，高层时间动力学和风险残差由 EAST 独立适配；在线阶段分别建模炮内更新价值、标签查询价值、揭示后监督价值和部署侧误报保护价值。
 
-## 4. 特征结构
+## 4. 跨装置共享特征与目标私有特征
 
 ### 4.1 跨装置 shared rebuilt17
 
@@ -117,11 +168,11 @@ ne_nG, qa_proxy, sxr_mean, xuv_ratio
 
 它们仍有价值，但只在 EAST 域内进入 1,089 参数的 sidecar。每通道提取最后值、均值、标准差、全窗增量、近期增量和可用率，最后层零初始化，logit 残差有界。raw8 scaler 只由 support110 拟合。
 
-## 5. J-TEXT 源模型
+## 5. J-TEXT 源域风险模型
 
 ### 5.1 实际架构
 
-实际 checkpoint 合同是：
+实际 checkpoint 合同采用 PatchTST 类时间分块表征[5]，具体为：
 
 ```text
 rebuilt17-patch-transformer-128x8-d64-l2-h4-v1
@@ -141,7 +192,7 @@ rebuilt17-patch-transformer-128x8-d64-l2-h4-v1
 | 133 | 90/21/20/89 | 0.8182 | 0.1909 | 0.9253 | 120.7 ms |
 | 137 | 94/24/16/86 | 0.8545 | 0.2182 | 0.9098 | 122.1 ms |
 
-这组数据是后续最佳 EAST 迁移链路实际继承的源 checkpoint，不能换成另一个源模型的指标冒充同一血缘。
+上述数据对应后续最佳 EAST 迁移链路实际继承的源 checkpoint。为保持模型谱系一致性，报告不得用其他源模型的指标替代该组结果。
 
 ## 6. EAST 小样本迁移
 
@@ -165,9 +216,9 @@ DynamicHazardAdapter 使用冻结 CLS、末 token、lag-8 增量及可用物理�
 | 133 | 151/26/29/154 | 0.8389 | 0.1444 | 205.1 ms | 20 |
 | 137 | 155/36/25/144 | 0.8611 | 0.2000 | 258.0 ms | 21 |
 
-用户规定大于 3,000 ms 的报警仍计入 TPR，因此主指标遵守该约定；但论文把数量单列，避免把极早报警直接解释为可用破裂前兆。
+根据本项目预先确定的评价口径，提前量大于3,000 ms 的报警仍计入 TPR。报告同时单列此类报警数量，以避免将极早报警直接解释为已获得物理验证的破裂前兆。
 
-## 7. EAST 在线主动学习
+## 7. EAST 因果在线适配
 
 ### 7.1 严格因果顺序
 
@@ -196,9 +247,9 @@ A1 辅助入口也已改为严格 feature-only 流：训练只读取 support110�
 3. **炮后梯度价值**：HDF5 揭示后比较封存预测与真实时序状态；FN/TARDY 优先选择 30–125 ms 内最接近跨过告警边界的窗口，而不是选择最难学习的最低风险点；固定两步更新，学习率由价值缩放。
 4. **报警 episode 价值**：用 `delta60` 因果片段表示和过去已查询标签学习 FP 概率，只允许延迟或 veto，不允许创造或提前告警；独立物理支持可以 escape。
 
-### 7.2.1 Q30 与主在线查询预算不是同一实验
+### 7.2.1 Q30 与主在线查询预算的关系
 
-项目中“固定30炮”和“主动选择30炮”指向同一个 Q30 实验的两个先后阶段，不矛盾：
+项目记录中的“主动选择30炮”和“冻结30炮清单”分别对应 Q30 实验的在线选择阶段与后续受控消融阶段，二者在时间顺序和用途上并不冲突：
 
 | 对象 | 标签数 | 如何产生 | 后续如何使用 | 评估集合 |
 |---|---:|---|---|---|
@@ -207,7 +258,7 @@ A1 辅助入口也已改为严格 feature-only 流：训练只读取 support110�
 | 同标签预算前置迁移 v2 | 102/90/99 | 不重新选炮；读取每个 seed 已封存的主在线查询清单 | 将查询标签一次性前置加入目标域训练，作为标签访问量对照 | 分别排除训练炮后的258/270/261炮 |
 | 因果随机查询对照 | 与主在线逐块标签数相同 | 标签不可见的块匹配随机日程，每 seed 三次重复 | 使用相同父模型、runner 和配置更新预算 | balanced360 开发流 |
 
-因此，Q30 不是事先人工指定的固定 cohort，也不能表述为看完360炮后取得的“全局最高价值30炮”。更准确的定义是：在每一炮到达时，按当时可见信息、过去分数形成的动态阈值、滚动 token 预算和探索规则，因果地买下标签；已经买下的早期标签不会被未来更高分样本替换。冻结 Q30 只用于控制消融中的标签身份，使不同更新路径比较同一批标签。
+因此，Q30 既不是事先人工指定的固定 cohort，也不是观察完整360炮后离线选出的“全局最高价值30炮”。其严格定义是：每一炮到达后，系统仅依据当时可见信息、由历史分数形成的动态阈值、滚动 token 预算和探索规则，因果地决定是否支付标注成本；已经执行的早期查询不会因未来出现更高分样本而撤销。选择阶段结束后冻结 Q30 清单，仅用于保证各消融实验访问完全相同的标签集合。
 
 当前包已保存 Q30 的30个炮号、流位置、`label_oracle_used=false` 和来源哈希；但 2026-08-21 tmpfs 重启后原始360行 `query_decisions.jsonl` 未恢复，只保留其 SHA256。因此可以审计“冻结清单是什么”和“没有声明标签 oracle”，却不能仅凭现存包逐炮重算原始 cutoff、价值分数与 exploration/exploitation 路由。Q30 结论必须保留为 seed131 的开发性诊断，不能替代主在线三 seed 结果，也不能作为独立确认。
 
@@ -262,7 +313,7 @@ tau_FP = max(0.50, past disruptive-class FP-score q0.90 + 0.06)
 - seed133：71060、74562；
 - seed137：74939、75135。
 
-## 8. 查询是否有针对性
+## 8. 主动查询有效性分析
 
 | seed | 查询率 | 全流 operational error | 查询炮 error | 富集倍数 |
 |---:|---:|---:|---:|---:|
@@ -270,7 +321,7 @@ tau_FP = max(0.50, past disruptive-class FP-score q0.90 + 0.06)
 | 133 | 25.0% | 14.7% | 32.2% | 2.19× |
 | 137 | 27.5% | 16.4% | 41.4% | 2.53× |
 
-说明在 hindsight 标签下，被查询炮的 operational error 比例更高。现已补做 causal random-query 在线重跑，但它只能支持开发流内的方向性比较：查询分数和策略在同一 balanced360 上开发过，三个 seed 也不足以构成确认性显著性证据。
+根据流结束后统一揭示的标签，被查询炮中的 operational error 比例高于全流，表明查询策略对潜在错误炮具有事后富集。项目已补充 causal random-query 在线对照；由于查询分数和策略均曾在 balanced360 上开发，且仅有三个模型 seed，该结果只能支持开发流内的方向性比较，不能作为确认性显著性证据。
 
 ### 8.1 同查询标签预算前置训练消融
 
@@ -293,11 +344,11 @@ tau_FP = max(0.50, past disruptive-class FP-score q0.90 + 0.06)
 ΔJ      = -0.1032
 ```
 
-三个 seed 的方向完全一致：查询标签前置后召回、AUC 和提前量上升，但大量安全炮同时越过报警边界；在线模型相对该前置模型的 `ΔJ=+0.1163`。即使用 support110 重新选阈值，前置模型 J 仍降到 `0.7252`，不能靠阈值重标挽救。
+三个 seed 的方向完全一致：查询标签前置后召回、AUC 和提前量上升，但大量安全炮同时越过报警边界；在线模型相对该前置模型的 `ΔJ=+0.1163`。即使使用 support110 重新选择阈值，前置模型的 $J$ 仍降至 `0.7252`，说明该退化不能通过目标阈值重标定消除。
 
 另做每 20 炮查询数严格匹配、完全不读取标签的 random front-load，每 seed 三个重复，并先在 seed 内平均。common-mask 的静态、selected front-load、random front-load、在线 J 分别为 `0.8387/0.7322/0.7033/0.8510`。因此可以排除“标签数量本身足以解释在线操作点”；结果更符合延迟的错误类型更新、受限步长、support replay、rollback 与报警状态保护共同作用。
 
-该前置消融仍不是最终因果证明：balanced360 参与了方法开发；前置重训只做到 label-access matched，历史在线日志没有保存精确窗口索引、optimizer/RNG 状态和 FLOPs，无法做 exact equal-gradient replay；只有三个模型 seed，三次同向的单侧精确 sign-test 概率为 0.125，不能冒充显著性结论。
+该前置消融仍不构成最终因果证明：balanced360 参与了方法开发；前置重训只实现 label-access matched，历史在线日志未完整保存精确窗口索引、optimizer/RNG 状态和 FLOPs，因而无法执行 exact equal-gradient replay；同时仅有三个模型 seed，三次同向结果对应的单侧精确 sign-test 概率为0.125，不满足确认性显著性要求。
 
 ### 8.2 因果随机查询在线对照
 
@@ -335,7 +386,7 @@ tau_FP = max(0.50, past disruptive-class FP-score q0.90 + 0.06)
 
 这个负结果不等于证明主动与随机等价，也不等于所有可能同化算子下查询价值无效。原因是只有三个随机日程、balanced360 已参与开发，而且归档主动身份是一个固定 roster treatment，并非在新流上重新执行自适应策略。它只使“这个固定算子下的归档名单优越性”论点失败，不能否定查询身份在原耦合机制中的贡献，也不能给出普遍零效应或确认性统计结论。完整证据见 `evidence/equal_compute_selector_control_v1/report.json`。
 
-## 9. 负对照与失败证据
+## 9. 负对照与失败实验记录
 
 | 对照 | 三 seed 总 FP 减少 | operational TP 损失 | 裁决 |
 |---|---:|---:|---|
@@ -349,9 +400,9 @@ tau_FP = max(0.50, past disruptive-class FP-score q0.90 + 0.06)
 
 这组对照支持“正确标签 × 炮内时间演化 × EAST 私有特征”共同作用，但不能证明网络学到了所有破裂因果机制。
 
-已明确否决的路线包括：raw23 无条件全局对齐、普通 DANN/MMD/CORAL 反复加权、高维炮后 residual 盲目增大学习率、复杂价值直接接管查询、跨 seed 固定 FP 概率门、未隔离反馈的 veto、40% 更大查询预算、把 PADFIX 父模型直接接到旧在线策略。
+开发阶段已停止继续投入的路线包括：raw23 无条件全局对齐；反复调节普通 DANN/MMD/CORAL 权重；对高维炮后 residual 直接提高学习率；由复杂价值函数未经隔离地接管查询；跨 seed 共用固定 FP 概率门；反馈未隔离的 veto；40% 查询预算；以及将 PADFIX 父模型直接接入既有在线策略。停止依据均来自已归档的负迁移、操作灵敏度下降或无法隔离因果贡献等证据。
 
-## 10. 时间漂移与科研漏洞
+## 10. 时间漂移与有效性风险
 
 把 balanced360 分成连续四个 90 炮块后，第二块 FPR 很高：
 
@@ -361,9 +412,9 @@ tau_FP = max(0.50, past disruptive-class FP-score q0.90 + 0.06)
 | 133 | 0.7907 | 0.3333 |
 | 137 | 0.7333 | 0.3636 |
 
-safe score 与炮号的 Spearman 相关为 `0.220/0.091/0.311`，seed137 的 campaign/shot-state 风险明显。当前结果因此不能只拿整体均值就声称稳定通过。
+safe score 与炮号的 Spearman 相关为 `0.220/0.091/0.311`，seed137 的 campaign/shot-state 风险明显。因此，整体均值不能替代分时间块稳定性审查，当前结果尚不足以支持跨 campaign 稳定性结论。
 
-另一个核心漏洞是源域 context shortcut。原 checkpoint 在同一 endpoint、只删除更早历史的 32/64/96/128 视图上：
+另一项主要有效性风险是源域 context shortcut。原 checkpoint 在同一 endpoint、仅删除更早历史的32/64/96/128点视图上表现如下：
 
 | seed | padding probe AUC | mean |Δrisk| | alarm flip |
 |---:|---:|---:|---:|
@@ -373,7 +424,7 @@ safe score 与炮号的 Spearman 相关为 `0.220/0.091/0.311`，seed137 的 cam
 
 均未通过 `AUC≤0.65、|Δrisk|≤0.05、flip≤5%`。
 
-## 11. PADFIX：修复捷径但出现负迁移
+## 11. PADFIX 上下文捷径修复及负迁移
 
 PADFIX 为同一 endpoint 构造 `{32,64,96,128}` 合法短上下文，只删过去、不看未来，并加入风险一致性、表示一致性及按结局条件化的 padding 桶对抗项。三个 seed 的 VAL160 audit 全部过门：
 
@@ -390,7 +441,7 @@ PADFIX 为同一 endpoint 构造 `{32,64,96,128}` 合法短上下文，只删过
 | PADFIX → EAST static | 0.8537 | 0.1630 |
 | PADFIX → EAST online | 0.8537 | 0.1704 |
 
-三个 seed 的在线 FPR 都上升。正确解释不是“PADFIX 没用”，而是旧在线策略已适配原源模型的风险几何，不能无代价迁移到新父模型。为了避免继续过拟合 balanced360，本轮停止重调。下一项真正有论文价值的实验应在新的目标验证资源上，为 PADFIX 单独选择目标策略，再一次性跑新未来流。
+三个 seed 的在线 FPR 均上升。该结果不表示 PADFIX 对上下文捷径无效；它表明既有在线策略已适配原源模型的风险几何，不能在不重新验证的情况下迁移至新父模型。为控制 balanced360 上的进一步选择偏差，本轮终止参数重调。后续应在新增目标验证资源上独立选择与 PADFIX 匹配的目标策略，并在冻结后对新的未来流执行一次性确认。
 
 ## 12. 报警参数鲁棒性
 
@@ -401,9 +452,9 @@ operational TPR@30 >= 0.75
 FPR <= 0.20
 ```
 
-注册点为 operational TPR@30 `0.8000`、FPR `0.1222`、median lead `139 ms`。但 bootstrap 的 TPR@30 区间是 `[0.7389,0.8556]`，因此不能说“高置信超过0.8”。该鲁棒性属于前置 alarm stage，不冒充最终 v3c 的完整鲁棒性。
+注册点为 operational TPR@30 `0.8000`、FPR `0.1222`、median lead `139 ms`。但 bootstrap 的 TPR@30 区间为 `[0.7389,0.8556]`，不足以支持“TPR 高置信度超过0.8”的表述。该试验只评价前置 alarm stage 的局部鲁棒性，不代表最终 v3c 全链路的鲁棒性。
 
-## 13. 可视化交付
+## 13. 图表与机器证据目录
 
 全部定量图由机器证据生成，使用色盲友好配色、183 mm 双栏宽、PDF/SVG 矢量和 600 dpi PNG；未使用生成式图片制造曲线或数据点。
 
@@ -422,9 +473,9 @@ FPR <= 0.20
 
 `figure_manifest.json` 保存所有输入和输出 SHA256。图 4 所需 NPZ 已复制进本论文包，不再依赖 `/home` 的个人工作目录。
 
-## 14. 当前能写进论文的主张
+## 14. 结论适用范围
 
-可以写：
+### 14.1 当前证据支持的表述
 
 - 在当前开发链及历史失败对照中，17 维语义共享 + 8 维 EAST 私有分支比继续强行无条件对齐 raw23 更可行；
 - 固定110炮能把 J-TEXT 表示重组为具有较高 EAST balanced360 TPR 的目标模型；
@@ -434,7 +485,7 @@ FPR <= 0.20
 - 最终 episode gate 在三个 seed 上同方向降低误报，且负对照不能保留完整增益；
 - 源模型 padding shortcut、PADFIX 负迁移和 campaign block 漂移是明确、可复现的失败发现。
 
-不能写：
+### 14.2 当前证据尚不支持的表述
 
 - “模型学到了所有破裂机理”；
 - “balanced360 是完全未见独立测试集”；
@@ -447,7 +498,7 @@ FPR <= 0.20
 - “support110 提供了独立目标验证”；
 - “主动查询已在严格等FLOPs、独立未来流上显著优于随机查询”（当前只完成开发流内同标签数、同配置预算的 causal random-query 对照）。
 
-## 15. 下一步唯一科学正确的路线
+## 15. 前瞻确认实施方案
 
 在新 EAST 顺序流到来前，冻结：
 
@@ -460,9 +511,9 @@ FPR <= 0.20
 
 新流逐炮只做一次：静态分支先完整封存；在线分支从相同父模型重置；每炮 predict/seal/query/reveal/update；所有炮必须报告，不能在失败后换阈值或删炮。只有三个 seed 在整体和最差时间块均通过，在线不退化，且随机/no-label/time-shift 等对照不能复现增益，才能把状态升级为独立确认。
 
-## 16. Nature Portfolio 投稿就绪裁决
+## 16. 证据成熟度与成果使用建议
 
-当前材料已经达到“可审计开发稿”的报告完整度：标签、口径、因果顺序、逐炮账本、哈希、负结果和图表均可复查。但它**尚未达到可提交为确认性 Nature 子刊主张的证据等级**。四个不可通过文案修复的阻断项是：
+当前材料已达到“可审计研究开发稿”的完整度：标签、评价口径、因果顺序、逐炮账本、哈希、负结果和图表均可复查。该材料可用于项目阶段汇报、技术评审和后续论文方案论证；但其证据等级**尚不足以支撑确认性期刊主张或装置部署验收**。以下四项限制不能通过文字修订消除：
 
 1. J-TEXT 主划分不是严格时序，VAL/TEST 是 count-aligned 平衡比较集；
 2. EAST support110 同时用于拟合和阈值选择，缺少目标验证；
@@ -471,7 +522,7 @@ FPR <= 0.20
 
 作者姓名、CRediT、经费、利益冲突和数据访问责任人也必须在投稿前补齐，不能由自动化工具推断。机器可读/逐项裁决见 `NATURE_PORTFOLIO_READINESS.md`。
 
-## 17. 产物入口
+## 17. 交付物与复现入口
 
 - 英文主文：`manuscript/main.tex` 与编译后的 `manuscript/main.pdf`；
 - 英文补充材料：`manuscript/supplement.tex` 与 `manuscript/supplement.pdf`；
@@ -483,9 +534,9 @@ FPR <= 0.20
 - 图表生成器：`scripts/generate_figures.py`、`scripts/generate_latex_tables.py`；
 - 最终验证：`scripts/validate_paper_package.py`；
 - 本报告源文件：`TECHNICAL_REPORT_zh.md`；
-- 本报告排版版：`TECHNICAL_REPORT_zh.pdf`（A4，26页）。
+- 本报告排版版：`TECHNICAL_REPORT_zh.pdf`（A4，30页）。
 
-本报告的价值不在于把结果包装成“没有漏洞”，而在于把已知漏洞变成可复现的实验对象、把不能支持的结论明确排除，并给出下一次真正能改变证据等级的确认协议。
+本报告以可审计性为首要目标：将已识别的有效性风险转化为可复现的实验对象，明确区分当前证据可支持与不可支持的结论，并给出能够提升证据等级的前瞻确认协议。
 
 ---
 
@@ -570,7 +621,7 @@ $$
 R=c_{FN}(1-\operatorname{TPR}_{30})+c_{FP}\operatorname{FPR}.
 $$
 
-因此 $J$ 不能冒充真实控制系统效用。
+因此，$J$ 仅用于当前等权操作点的比较，不能替代基于真实漏报和误报代价定义的控制系统效用。
 
 ## 19. 数据处理与 17+8 特征分解
 
@@ -606,7 +657,7 @@ $$
 
 这些是可观测代理，不是完整电阻、稳定性边界或第一性原理公式；$Z_{proxy}$ 忽略几何、电感和非稳态项。
 
-### 19.3 为什么不能直接对齐 raw23
+### 19.3 raw23 全局对齐的不可识别性
 
 抽象地写成 $x_S=g_S(z,\eta_S),x_T=g_T(z,\eta_T)$，其中 $z$ 是潜在共同状态，$\eta_d$ 是装置、探针、单位和缺失机制。直接最小化 $D(P(x_S),P(x_T))$ 时，若 $g_S\ne g_T$ 或类别先验不同，优化器可能通过抹掉结局信息来缩小域距离。因此正式分解为
 
@@ -865,7 +916,7 @@ $$
 Q_s\ge\max(c_s,c_{label}),\quad B_s^-\ge1,\quad quota\ available.
 $$
 
-查询后 $B_s^+=B_s^--1$。早期买下的标签不能在看到未来后撤销。主结果实际查询102/90/99炮；Q30是另一条低预算 seed131 消融，二者不能混称。
+查询后 $B_s^+=B_s^--1$。早期已经执行的标签查询不能在观察未来信息后撤销。主结果实际查询102/90/99炮；Q30是另一条低预算 seed131 消融，二者属于不同实验合同，必须分别报告。
 
 ## 25. 炮后监督、错误类型学习与回滚
 
@@ -966,9 +1017,9 @@ $$
 +0.005\mathcal L_{pad-adv}.
 $$
 
-adversary 按结局条件化并通过梯度反转让主干难以恢复长度桶，避免仅从类别比例预测 padding。probe AUC 降至 `0.624/0.645/0.649`，说明已知 shortcut 受抑制；但完整准入要求 shortcut、源域性能和目标兼容同时通过。PADFIX 未满足全部门，且直接复用旧 v3c 后三 seed FPR 均升高，所以不能继续用 balanced360 调参“救回”。
+adversary 按结局条件化，并通过梯度反转降低主干恢复长度桶的能力，从而抑制仅由类别比例预测 padding。probe AUC 降至 `0.624/0.645/0.649`，说明已知 shortcut 受到抑制；但完整准入同时要求 shortcut、源域性能和目标兼容性通过。PADFIX 未满足全部准入条件，且直接复用旧 v3c 后三个 seed 的 FPR 均升高，因此不得继续使用 balanced360 调参以消除该负结果。
 
-## 28. 消融如何排除替代解释
+## 28. 替代解释与消融验证
 
 ### 28.1 同标签访问量前置训练
 
@@ -1076,7 +1127,7 @@ $$
 
 ### 32.1 CUDA 环境预检
 
-正式训练、迁移和在线执行统一使用用户指定的 `rl_env`：
+正式训练、迁移和在线执行统一使用锁定的 `rl_env` 环境：
 
 ```bash
 conda run -n rl_env python - <<'PY'
@@ -1114,7 +1165,7 @@ CPU CI 只验证包结构、单元测试和无数据失败关闭，不能替代 
 
 同一代码/数据/硬件/seed 得到相同逐炮分数称为计算可重复性；换 campaign 或新 EAST 流仍保持性能才属于经验可复现性。当前包通过冻结哈希、确定性 CUDA 和逐炮账本支持前者；由于缺少全新未来流，尚未完成后者。
 
-## 33. 结果解释的逐层边界
+## 33. 结论分级与适用边界
 
 ### 33.1 当前数据支持的结论
 
@@ -1125,21 +1176,51 @@ CPU CI 只验证包结构、单元测试和无数据失败关闭，不能替代 
 5. 同标签直接前置训练不能复现在线的 TPR/FPR 平衡，原因主要是 FPR 明显增加。
 6. padding shortcut 确实存在；PADFIX 可降低其可探测性，但当前 target policy 与其不兼容。
 
-### 33.2 当前数据不支持的结论
+### 33.2 当前数据尚不支持的结论
 
-1. 不能说模型识别了所有破裂因果机理；只能说表示对若干时间/物理代理敏感，并排除了部分已知捷径。
-2. 不能说 active selector 本身优于随机；固定形状等 optimizer-attempt screen 没有稳定优势。
-3. 不能说360炮是独立最终测试，因为它参与方法逆向分析和972候选筛选。
-4. 不能说 support110 提供无偏阈值，它同时参与训练和阈值选择。
-5. 不能把 moving-block 描述区间称作选择后校正的显著性检验。
-6. 不能把超过3秒的报警自动解释为破裂前兆；主指标按约定计入，但必须单列 shortcut/campaign 审计。
+1. 尚不能认定模型识别了全部破裂因果机理；当前证据仅表明表示对若干时间/物理代理敏感，并排除了部分已知捷径。
+2. 尚不能认定 active selector 本身优于随机；固定形状等 optimizer-attempt screen 未观察到稳定优势。
+3. balanced360 不能定义为独立最终测试集，因为它参与了方法逆向分析和972个候选筛选。
+4. support110 不能提供无偏目标阈值估计，因为它同时参与训练和阈值选择。
+5. moving-block 描述区间不能解释为经过选择后校正的显著性检验。
+6. 提前量超过3秒的报警不能自动解释为已验证破裂前兆；主指标按约定计入，但必须单列 shortcut/campaign 审计。
 
 ### 33.3 真正确认所需设计
 
 获得新 EAST 顺序流后，必须在首炮到达前冻结：三 seed checkpoint、阈值、查询率、token bucket、报警投影、更新步数、episode 边界和停止条件。新流不能用于选候选；最好另设 target validation cohort，使 support fitting、threshold selection 和 future confirmation 三者分离。只有这样才能从 `TEST_DRIVEN_EXPLORATION` 升级为 prospective confirmation。
 
-## 34. 技术总结合科研裁决
+## 34. 综合技术结论
 
 这套系统的核心不是某个单独迁移损失，而是三个层次的结构化拆分：共享特征只承担有证据的跨装置语义；EAST 私有分支吸收不可比诊断和时间动力学；在线层通过炮内无标签个性化、昂贵标签查询、错误类型监督、保护回滚和单调误报 veto，使一次查询只在因果允许的方向影响未来炮。
 
 当前三阶段数值证明工程链已经贯通，并且所有主结果都能追溯到 HDF5、冻结配置、逐炮预测和哈希。但 balanced360 的方法开发复用、support110 的训练/阈值双重用途、固定形状 selector screen 的负结果以及源域 padding shortcut，共同决定当前成果仍是“可审计的论文开发证据”，不是已经完成的独立确认研究。最严谨的论文表述应同时呈现有效结果和这些边界；只有新未来流才能真正提高证据等级。
+
+## 35. 参考文献
+
+[1] Zheng W, Xue F, Chen Z, et al. Disruption prediction for future tokamaks using parameter-based transfer learning. *Communications Physics*. 2023;6:181. doi: [10.1038/s42005-023-01296-9](https://doi.org/10.1038/s42005-023-01296-9).
+
+[2] Shen C, Zheng W, Guo B, et al. Cross-tokamak disruption prediction based on physics-guided feature extraction and domain adaptation. *arXiv*. 2023;arXiv:2309.05361. [https://arxiv.org/abs/2309.05361](https://arxiv.org/abs/2309.05361).
+
+[3] Shen C. *Cross-Tokamak Disruption Prediction Using Machine Learning Based on Physics Features*. Doctoral dissertation. Huazhong University of Science and Technology; 2024. 本项目同时保存本地来源文件 `paper_131.txt`。
+
+[4] Zheng W, et al. Physics-guided domain adaptation for disruption prediction from the first plasma discharge. *IAEA Fusion Energy Conference 2025 Proceedings*. 2025. [会议论文全文](https://conferences.iaea.org/event/392/papers/36206/files/13939-FEC2025_proceeding_WeiZehng2.pdf).
+
+[5] Nie Y, Nguyen NH, Sinthong P, Kalagnanam J. A time series is worth 64 words: Long-term forecasting with transformers. *International Conference on Learning Representations*. 2023. [https://arxiv.org/abs/2211.14730](https://arxiv.org/abs/2211.14730).
+
+[6] Ganin Y, Ustinova E, Ajakan H, et al. Domain-adversarial training of neural networks. *Journal of Machine Learning Research*. 2016;17(59):1–35. [https://jmlr.org/papers/v17/15-239.html](https://jmlr.org/papers/v17/15-239.html).
+
+[7] Sun B, Feng J, Saenko K. Return of frustratingly easy domain adaptation. *Proceedings of the AAAI Conference on Artificial Intelligence*. 2016;30(1). doi: [10.1609/aaai.v30i1.10306](https://doi.org/10.1609/aaai.v30i1.10306).
+
+[8] Ben-David S, Lu T, Luu T, Pál D. Impossibility theorems for domain adaptation. *Proceedings of Machine Learning Research*. 2010;9:129–136. [https://proceedings.mlr.press/v9/david10a.html](https://proceedings.mlr.press/v9/david10a.html).
+
+[9] Geirhos R, Jacobsen JH, Michaelis C, et al. Shortcut learning in deep neural networks. *Nature Machine Intelligence*. 2020;2:665–673. doi: [10.1038/s42256-020-00257-z](https://doi.org/10.1038/s42256-020-00257-z).
+
+[10] Wang D, Shelhamer E, Liu S, Olshausen B, Darrell T. Tent: Fully test-time adaptation by entropy minimization. *International Conference on Learning Representations*. 2021. [https://openreview.net/forum?id=uXl3bZLkr3c](https://openreview.net/forum?id=uXl3bZLkr3c).
+
+[11] Niu S, Wu J, Zhang Y, et al. Efficient test-time model adaptation without forgetting. *Proceedings of Machine Learning Research*. 2022;162:16888–16905. [https://proceedings.mlr.press/v162/niu22a.html](https://proceedings.mlr.press/v162/niu22a.html).
+
+[12] Wang Q, Fink O, Van Gool L, Dai D. Continual test-time domain adaptation. *Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition*. 2022:7201–7211. [论文全文](https://openaccess.thecvf.com/content/CVPR2022/html/Wang_Continual_Test-Time_Domain_Adaptation_CVPR_2022_paper.html).
+
+[13] Zhou S, Zhao H, Zhang S, et al. Online continual adaptation with active self-training. *Proceedings of Machine Learning Research*. 2022;151:8852–8883. [https://proceedings.mlr.press/v151/zhou22d.html](https://proceedings.mlr.press/v151/zhou22d.html).
+
+[14] Shen C, et al. Tokamak plasma disruption precursor onset time study based on semi-supervised anomaly detection. *Nuclear Engineering and Technology*. 2024;56(4):1501–1512. doi: [10.1016/j.net.2023.12.004](https://doi.org/10.1016/j.net.2023.12.004).
