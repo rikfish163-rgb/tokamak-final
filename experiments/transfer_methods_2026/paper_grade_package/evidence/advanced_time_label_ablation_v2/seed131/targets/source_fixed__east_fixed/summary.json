@@ -1,0 +1,74 @@
+{
+  "arm": "source_fixed__east_fixed",
+  "balanced360_outcomes_read_after_complete_prediction_seal": true,
+  "balanced360_used_for_training_or_threshold": false,
+  "east_label_audit": {
+    "advanced_time_above_floor": 0,
+    "advanced_time_covered": 0,
+    "advanced_time_missing": 15,
+    "device": "EAST",
+    "disruptive_shots": 15,
+    "floor_ms": 125.0,
+    "horizon_max_ms": 125.0,
+    "horizon_median_ms": 125.0,
+    "horizon_min_ms": 125.0,
+    "policy": "fixed125",
+    "safe_shots_ignored": 0,
+    "unit": "ms"
+  },
+  "east_label_policy": "fixed125",
+  "metrics": {
+    "FN": 9,
+    "FP": 28,
+    "TN": 152,
+    "TP": 171,
+    "auc": 0.9322222222222222,
+    "fpr": 0.15555555555555556,
+    "median_lead_ms": 208.00000000000017,
+    "over_3000ms_count": 22,
+    "tpr": 0.95,
+    "tpr_at_30ms": 0.8222222222222222,
+    "utility_tpr30_minus_fpr": 0.6666666666666666
+  },
+  "model_hashes": {
+    "encoder_head": "715a73cc88a4071968e6116dce7ff75eccd5217caba204143bcde14e133edc77",
+    "private_adapter": "83703f08d3121f9dc253a531c32de5db64dbfb6c6eb883f86349b332ad331088",
+    "shared_adapter": "f6fba846257c5db000de590d5d7d315dbaca63d1ac4619b426ff8ef419cf014d"
+  },
+  "normality": {
+    "abnormal": false,
+    "rule": "TPR@30ms<0.60 or FPR>0.40"
+  },
+  "pipeline": "encoder-head+shared-hazard+east-private-raw8+dual-threshold-v1",
+  "prediction_fidelity": {
+    "fields": [
+      "shot",
+      "stream_index",
+      "alarmed",
+      "alarm_index",
+      "route",
+      "early_score",
+      "alarm_time_s"
+    ],
+    "passed": true,
+    "rows_compared": 360
+  },
+  "prediction_seal_sha256": "ed8c97b56d1b5b851b181ec3f84701c35eb7d1c6fa7e526472a08b4076ecbb85",
+  "schema_version": "advanced-time-full-static-arm-v2",
+  "seed": 131,
+  "source_label_policy": "fixed125",
+  "status": "DIAGNOSTIC_ONLY_TEST_DRIVEN_EXPLORATION",
+  "target_parent_fidelity": {
+    "encoder_head": "715a73cc88a4071968e6116dce7ff75eccd5217caba204143bcde14e133edc77",
+    "private_adapter": "83703f08d3121f9dc253a531c32de5db64dbfb6c6eb883f86349b332ad331088",
+    "shared_adapter": "f6fba846257c5db000de590d5d7d315dbaca63d1ac4619b426ff8ef419cf014d",
+    "threshold": 0.4169328808784485
+  },
+  "target_state_sha256": "7d581348d721faa463fdc179ed0f14dd6b04e0c823535906dd15b81a9eb0c2b7",
+  "threshold": {
+    "balanced360_used": false,
+    "source": "EAST support110 HDF5 outcomes only",
+    "target_tpr": 0.8,
+    "value": 0.4169328808784485
+  }
+}

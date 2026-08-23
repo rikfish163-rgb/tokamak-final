@@ -53,17 +53,21 @@ trainable capacity or FLOPs, and balanced360 remains development evidence.
 
 ## AdvancedTime positive-horizon ablation
 
-A seed131 2×2 control changed only the positive-window upper boundary. HDF5
-`IsDisrupt`/`DownTime` remained authoritative; the original workspace JSON
-values were interpreted directly as milliseconds. J-TEXT
-`max(25 ms, AdvancedTime)` reduced positive endpoints from 21,912 to 5,557,
-whereas EAST `max(125 ms, AdvancedTime)` added only 34 support endpoints.
-At a diagnostic balanced360 threshold chosen for operational TPR@30=0.8,
-fixed/fixed obtained FPR 0.1944; dynamic J-TEXT obtained 0.3000–0.3056.
-The proposed source label therefore failed the seed131 screen and was not
-promoted to multi-seed confirmation. See
-[the Chinese adjudication](ADVANCED_TIME_LABEL_ABLATION_zh.md) and
-[machine evidence](evidence/advanced_time_label_ablation_seed131.json).
+The v1 `TPR@30=0.50–0.53` result is withdrawn: that runner evaluated a bare
+encoder/head and skipped the shared hazard adapter, EAST-private raw8 residual,
+and dual-threshold state machine.  The corrected 2×2 control runs seeds
+131/133/137 through the complete static pipeline while changing only the
+positive-window upper boundary.  HDF5 `IsDisrupt`/`DownTime` remain
+authoritative and the original JSON values are milliseconds.  Fixed/fixed
+exactly reproduces the archived mean TPR@30 `0.8407` and FPR `0.1667`.
+
+J-TEXT `max(25 ms, AdvancedTime)` reduces actual positive endpoints from
+21,912 to 5,556.  It lowers transferred mean FPR to `0.1370` but also lowers
+mean TPR@30 to `0.8222`; seed 133 reaches only `0.7667`, so the rule is not
+admitted as the primary label.  EAST `max(125 ms, AdvancedTime)` changes only
+two disruptive support shots and adds 34 endpoints; it does not improve the
+utility in every seed.  See [the corrected Chinese adjudication](ADVANCED_TIME_LABEL_ABLATION_zh.md)
+and [the three-seed machine evidence](evidence/advanced_time_label_ablation_v2/).
 
 The alarm executed on the development stream is a causal two-route state
 machine rather than one scalar threshold; it has not undergone tokamak-side
@@ -124,8 +128,8 @@ evidence/
   equal_compute_selector_control_v1/
                                     fixed-window/step selector-roster screen
   east_target_only_v1/              strict EAST-only and scaler controls
-  advanced_time_label_ablation_seed131.json
-                                    fixed/dynamic J-TEXT × EAST label control
+  advanced_time_label_ablation_v2/  corrected three-seed 2×2 label control,
+                                    per-shot seals and machine report
   source_lineage/                   source checkpoints and TEST220 ledgers
   primary_online_artifacts/         compact static/online/query/reveal ledgers
   case_study_seed131_shot73790.npz self-contained figure-4 trace

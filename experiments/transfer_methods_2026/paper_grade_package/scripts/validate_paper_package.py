@@ -39,6 +39,7 @@ EQUAL_COMPUTE = (
     PACKAGE / "evidence/equal_compute_selector_control_v1/report.json"
 )
 EAST_TARGET_ONLY = PACKAGE / "evidence/east_target_only_v1/comparison.json"
+ADVANCED_TIME_V2 = PACKAGE / "evidence/advanced_time_label_ablation_v2"
 HDF5_CONTENT_MANIFEST = PACKAGE / "evidence/required_hdf5_content_manifest.json"
 Q30_MANIFEST = PACKAGE / "evidence/fixed_query_low_budget30_seed131.json"
 PROSPECTIVE_TEMPLATE = ROOT / "configs/prospective_east_confirmation.template.json"
@@ -336,6 +337,86 @@ def validate_hdf5_content_manifest(path: Path) -> tuple[bool, list[str]]:
         )
     if aggregate.hexdigest() != manifest.get("aggregate_sha256"):
         failures.append("HDF5 content aggregate hash mismatch")
+    return not failures, failures
+
+
+def validate_advanced_time_v2(root: Path) -> tuple[bool, list[str]]:
+    """Validate the corrected three-seed label ablation and prediction seals."""
+
+    report_path = root / "report.json"
+    if not report_path.is_file():
+        return False, [f"missing report: {report_path}"]
+    report = json.loads(report_path.read_text())
+    failures: list[str] = []
+    seeds = report.get("seeds", [])
+    arms = (
+        "source_fixed__east_fixed",
+        "source_dynamic__east_fixed",
+        "source_fixed__east_dynamic",
+        "source_dynamic__east_dynamic",
+    )
+    metric_map = {
+        "tpr_at_30ms": "tpr_at_30ms",
+        "fpr": "fpr",
+        "utility": "utility_tpr30_minus_fpr",
+        "auc": "auc",
+        "median_lead_ms": "median_lead_ms",
+    }
+    if report.get("schema_version") != "advanced-time-label-ablation-report-v2":
+        failures.append("unexpected AdvancedTime v2 report schema")
+    if seeds != [131, 133, 137]:
+        failures.append(f"unexpected AdvancedTime seed roster: {seeds}")
+    if report.get("correction", {}).get("invalid_v1_metrics_must_not_be_used") is not True:
+        failures.append("AdvancedTime v1 invalidation boundary is absent")
+    for seed in seeds:
+        for arm in arms:
+            arm_dir = root / f"seed{seed}/targets/{arm}"
+            summary_path = arm_dir / "summary.json"
+            seal_path = arm_dir / "balanced360_prediction_seal.jsonl"
+            if not summary_path.is_file() or not seal_path.is_file():
+                failures.append(f"missing AdvancedTime arm evidence: seed{seed}/{arm}")
+                continue
+            summary = json.loads(summary_path.read_text())
+            rows = read_jsonl(seal_path)
+            released = report["east_balanced360"][arm]["seeds"][str(seed)]
+            if len(rows) != 360:
+                failures.append(f"seed{seed}/{arm} prediction seal is not 360 rows")
+            identities = [(row.get("stream_index"), row.get("shot")) for row in rows]
+            if [index for index, _ in identities] != list(range(360)) or len(
+                {shot for _, shot in identities}
+            ) != 360:
+                failures.append(f"seed{seed}/{arm} prediction order/identity invalid")
+            actual_hash = sha256_file(seal_path)
+            if actual_hash != summary.get("prediction_seal_sha256"):
+                failures.append(f"seed{seed}/{arm} summary seal hash mismatch")
+            if actual_hash != released.get("prediction_seal_sha256"):
+                failures.append(f"seed{seed}/{arm} report seal hash mismatch")
+            for report_key, summary_key in metric_map.items():
+                if not close(released[report_key], summary["metrics"][summary_key]):
+                    failures.append(
+                        f"seed{seed}/{arm} metric mismatch: {report_key}"
+                    )
+            if not close(released["threshold"], summary["threshold"]["value"]):
+                failures.append(f"seed{seed}/{arm} threshold mismatch")
+            if (
+                summary.get("balanced360_used_for_training_or_threshold") is not False
+                or summary.get(
+                    "balanced360_outcomes_read_after_complete_prediction_seal"
+                ) is not True
+            ):
+                failures.append(f"seed{seed}/{arm} seal/evaluation contract invalid")
+            if arm == "source_fixed__east_fixed" and summary.get(
+                "prediction_fidelity", {}
+            ).get("passed") is not True:
+                failures.append(f"seed{seed} fixed control did not pass fidelity")
+    for arm in arms:
+        for metric in metric_map:
+            values = [
+                report["east_balanced360"][arm]["seeds"][str(seed)][metric]
+                for seed in seeds
+            ]
+            if not close(report["east_balanced360"][arm]["mean"][metric], sum(values) / 3):
+                failures.append(f"{arm} mean mismatch: {metric}")
     return not failures, failures
 
 
@@ -901,6 +982,9 @@ def main() -> None:
     code_manifest_ok, code_manifest_failures = validate_release_code_manifest(
         EQUAL_COMPUTE_CODE_MANIFEST
     )
+    advanced_time_ok, advanced_time_failures = validate_advanced_time_v2(
+        ADVANCED_TIME_V2
+    )
     results.extend([
         check(random_archive_ok, "causal random-query compact artifact hashes",
               random_archive_failures),
@@ -912,6 +996,8 @@ def main() -> None:
               code_manifest_failures),
         check(hdf5_manifest_ok, "portable full HDF5 content manifest",
               hdf5_manifest_failures),
+        check(advanced_time_ok, "corrected AdvancedTime v2 prediction seals",
+              advanced_time_failures),
     ])
     portable_ok, portable_failures = validate_text_artifact_portability(PACKAGE)
     results.append(check(portable_ok, "all released text artifacts are portable",
@@ -1001,6 +1087,10 @@ def main() -> None:
         LATEX_REPORT_PDF,
         PACKAGE / "NATURE_PORTFOLIO_READINESS.md", PACKAGE / "MODEL_CARD.md",
         PACKAGE / "FIVE_WAY_AUDIT.md",
+        PACKAGE / "ADVANCED_TIME_LABEL_ABLATION_zh.md",
+        PACKAGE / "configs/advanced_time_label_ablation_v2.json",
+        ADVANCED_TIME_V2 / "README.md",
+        ADVANCED_TIME_V2 / "report.json",
         PACKAGE / "evidence/case_study_seed131_shot73790.npz",
         PACKAGE / "figures/fig5_adaptive_alarm_state_machine.pdf",
         PACKAGE / "figures/fig8_equal_label_budget_frontload_ablation.pdf",

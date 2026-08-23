@@ -230,6 +230,34 @@ def load_rebuilt_training_shots(ids: Sequence[int]) -> list[dict[str, Any]]:
     return shots
 
 
+def historical_target_endpoint_pools(
+    shots: Sequence[Mapping[str, Any]], *, pos_ms: float, gray_ms: float,
+) -> list[dict[str, list[int]]]:
+    """Build the historical parent pools with an optional per-shot horizon."""
+
+    pools: list[dict[str, list[int]]] = []
+    for shot in shots:
+        shot_pos_ms = float(shot.get("positive_horizon_ms", pos_ms))
+        if not math.isfinite(shot_pos_ms) or shot_pos_ms <= 0.0:
+            raise ValueError(f"shot {shot.get('shot')}: invalid positive horizon")
+        values = np.asarray(shot["v"])
+        sample_count = len(values)
+        times = float(shot["start"]) + np.arange(sample_count) / float(shot["rate"])
+        pos_endpoints: list[int] = []
+        neg_endpoints: list[int] = []
+        if bool(shot["is_disrupt"]) and shot.get("down") is not None:
+            for endpoint in range(grid.W - 1, sample_count):
+                ttd_ms = (float(shot["down"]) - times[endpoint]) * 1000.0
+                if 0.0 <= ttd_ms <= shot_pos_ms:
+                    pos_endpoints.append(endpoint)
+                elif shot_pos_ms + float(gray_ms) < ttd_ms <= 60_000.0:
+                    neg_endpoints.append(endpoint)
+        else:
+            neg_endpoints = list(range(grid.W - 1, sample_count))
+        pools.append({"positive": pos_endpoints, "negative": neg_endpoints})
+    return pools
+
+
 def historical_target_sampler(
     shots: Sequence[Mapping[str, Any]], *, pos_ms: float, gray_ms: float,
     seed: int,
@@ -243,25 +271,11 @@ def historical_target_sampler(
     window with probability ``pp`` only when that shot has one.
     """
 
-    positive: list[list[int]] = []
-    negative: list[list[int]] = []
-    for shot in shots:
-        values = np.asarray(shot["v"])
-        sample_count = len(values)
-        times = float(shot["start"]) + np.arange(sample_count) / float(shot["rate"])
-        pos_endpoints: list[int] = []
-        neg_endpoints: list[int] = []
-        if bool(shot["is_disrupt"]) and shot.get("down") is not None:
-            for endpoint in range(grid.W - 1, sample_count):
-                ttd_ms = (float(shot["down"]) - times[endpoint]) * 1000.0
-                if 0.0 <= ttd_ms <= float(pos_ms):
-                    pos_endpoints.append(endpoint)
-                elif float(pos_ms) + float(gray_ms) < ttd_ms <= 60_000.0:
-                    neg_endpoints.append(endpoint)
-        else:
-            neg_endpoints = list(range(grid.W - 1, sample_count))
-        positive.append(pos_endpoints)
-        negative.append(neg_endpoints)
+    pools = historical_target_endpoint_pools(
+        shots, pos_ms=pos_ms, gray_ms=gray_ms,
+    )
+    positive = [pool["positive"] for pool in pools]
+    negative = [pool["negative"] for pool in pools]
 
     generator = np.random.default_rng(int(seed))
 

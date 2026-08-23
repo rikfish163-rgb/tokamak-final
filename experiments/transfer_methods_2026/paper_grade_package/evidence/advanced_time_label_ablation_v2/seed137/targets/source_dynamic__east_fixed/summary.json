@@ -1,0 +1,62 @@
+{
+  "arm": "source_dynamic__east_fixed",
+  "balanced360_outcomes_read_after_complete_prediction_seal": true,
+  "balanced360_used_for_training_or_threshold": false,
+  "east_label_audit": {
+    "advanced_time_above_floor": 0,
+    "advanced_time_covered": 0,
+    "advanced_time_missing": 15,
+    "device": "EAST",
+    "disruptive_shots": 15,
+    "floor_ms": 125.0,
+    "horizon_max_ms": 125.0,
+    "horizon_median_ms": 125.0,
+    "horizon_min_ms": 125.0,
+    "policy": "fixed125",
+    "safe_shots_ignored": 0,
+    "unit": "ms"
+  },
+  "east_label_policy": "fixed125",
+  "metrics": {
+    "FN": 12,
+    "FP": 28,
+    "TN": 152,
+    "TP": 168,
+    "auc": 0.9489506172839506,
+    "fpr": 0.15555555555555556,
+    "median_lead_ms": 209.00000000000028,
+    "over_3000ms_count": 22,
+    "tpr": 0.9333333333333333,
+    "tpr_at_30ms": 0.8333333333333334,
+    "utility_tpr30_minus_fpr": 0.6777777777777778
+  },
+  "model_hashes": {
+    "encoder_head": "c0662b846f691c84268658a4b1dbfb34bf0e6b4a0f34bf0eae756048e7326642",
+    "private_adapter": "34df88afe9c5756ae10eda493f019801470b95d48eb44cd910056142c9ace15d",
+    "shared_adapter": "3965583966419e0c28ca4b59810940e1ab437b242f2ceac25d52a2b2120cea74"
+  },
+  "normality": {
+    "abnormal": false,
+    "rule": "TPR@30ms<0.60 or FPR>0.40"
+  },
+  "pipeline": "encoder-head+shared-hazard+east-private-raw8+dual-threshold-v1",
+  "prediction_fidelity": null,
+  "prediction_seal_sha256": "8a2ef89700e814111645d88854a32021ff5ab334c6b97fce883be9519857b924",
+  "schema_version": "advanced-time-full-static-arm-v2",
+  "seed": 137,
+  "source_label_policy": "advanced_floor",
+  "status": "DIAGNOSTIC_ONLY_TEST_DRIVEN_EXPLORATION",
+  "target_parent_fidelity": {
+    "encoder_head": "c0662b846f691c84268658a4b1dbfb34bf0e6b4a0f34bf0eae756048e7326642",
+    "private_adapter": "34df88afe9c5756ae10eda493f019801470b95d48eb44cd910056142c9ace15d",
+    "shared_adapter": "3965583966419e0c28ca4b59810940e1ab437b242f2ceac25d52a2b2120cea74",
+    "threshold": 0.5148165822029114
+  },
+  "target_state_sha256": "5c4df3e71c61bd364757778c178da62b62c409885e38524e92382c2ccc0cf7e5",
+  "threshold": {
+    "balanced360_used": false,
+    "source": "EAST support110 HDF5 outcomes only",
+    "target_tpr": 0.8,
+    "value": 0.5148165822029114
+  }
+}

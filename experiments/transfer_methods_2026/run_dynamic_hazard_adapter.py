@@ -32,6 +32,22 @@ PHYSICS_DIM = len(a3.FAMILIES)
 LAG = 8
 
 
+def support_window_labels(
+    shot: dict[str, Any], times_s: np.ndarray, *, default_horizon_ms: float = 125.0,
+) -> np.ndarray:
+    """Resolve the same per-shot EAST horizon used by the base target sampler."""
+
+    horizon_ms = float(shot.get("positive_horizon_ms", default_horizon_ms))
+    if not math.isfinite(horizon_ms) or horizon_ms <= 0.0:
+        raise ValueError(f"shot {shot.get('shot')}: invalid positive horizon")
+    return dynamic.alarm_window_labels(
+        times_s,
+        is_disrupt=bool(shot["is_disrupt"]),
+        down_time_s=shot["down"],
+        horizon_ms=horizon_ms,
+    )
+
+
 def evenly_limit(indices: np.ndarray, limit: int) -> np.ndarray:
     indices = np.asarray(indices, dtype=np.int64)
     if len(indices) <= limit:
@@ -75,12 +91,7 @@ def build_support_cache(enc, head, shots, scales, *, max_per_class: int = 32):
         if not len(candidates):
             continue
         times = float(shot["start"]) + candidates / float(shot["rate"])
-        labels = dynamic.alarm_window_labels(
-            times,
-            is_disrupt=bool(shot["is_disrupt"]),
-            down_time_s=shot["down"],
-            horizon_ms=125.0,
-        )
+        labels = support_window_labels(shot, times)
         positive = evenly_limit(candidates[labels], max_per_class)
         negative = evenly_limit(candidates[~labels], max_per_class)
         endpoints = np.sort(np.concatenate([positive, negative]))

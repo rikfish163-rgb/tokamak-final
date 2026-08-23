@@ -1,15 +1,17 @@
 {
-  "schema_version": "advanced-time-label-ablation-v1",
+  "schema_version": "advanced-time-label-ablation-v2",
   "status": "DIAGNOSTIC_ONLY_TEST_DRIVEN_EXPLORATION",
+  "supersedes": "advanced-time-label-ablation-v1",
   "claim_boundary": "balanced360 has been used for method development and is not an independent future confirmation set",
-  "seed_screen": 131,
+  "seeds": [131, 133, 137],
   "label_authority": {
     "outcome": "HDF5 meta/IsDisrupt",
     "disruption_time": "HDF5 meta/DownTime",
     "advanced_time_role": "positive-window upper boundary for HDF5-disruptive shots only",
     "advanced_time_unit": "milliseconds as stored; never multiply by 1000",
     "jtext_formula": "max(25 ms, AdvancedTime_ms); missing -> 25 ms",
-    "east_formula": "max(125 ms, AdvancedTime_ms); missing -> 125 ms"
+    "east_formula": "max(125 ms, AdvancedTime_ms); missing -> 125 ms",
+    "fixed_control_formula": "125 ms on both devices"
   },
   "shotlist_sources": {
     "authoritative_workspace_layout_jtext": "Fuison/shot_list/J-TEXT/AdvancedTime_J-TEXT.json",
@@ -30,34 +32,43 @@
   "held_constant": {
     "features": "rebuilt17",
     "architecture": "patch-transformer-128x8-d64-l2-h4-v1",
-    "source_regularization": {
-      "context_view_weight": 0.5,
-      "consistency_weight": 0.2,
-      "representation_consistency_weight": 0.5,
-      "pad_adversary_weight": 0.005
-    },
     "source_training": {
-      "epochs": 32,
+      "epoch_cap": 30,
+      "minimum_epochs": 12,
+      "patience": 7,
       "steps_per_epoch": 128,
       "batch_size": 128,
       "learning_rate": 0.0003,
-      "validation_target_tpr": 0.9
+      "validation_target_tpr": 0.9,
+      "threshold_split": "J-TEXT VAL160"
     },
     "east_adaptation": {
       "support_shots": 110,
-      "epochs": 12,
-      "steps_per_epoch": 32,
-      "batch_size": 128,
-      "method": "adapt_high",
-      "threshold_target_tpr": 0.8
+      "hdf5_class_counts": {"disruptive": 15, "safe": 95},
+      "base_epochs": 12,
+      "base_steps_per_epoch": 32,
+      "base_batch_size": 128,
+      "method": "adapt_high historical shot-first parent",
+      "shared_hazard_adapter": true,
+      "east_private_raw8_residual_epochs": 8,
+      "threshold_target_raw_tpr": 0.8,
+      "threshold_source": "EAST support110 HDF5 outcomes"
     },
     "evaluation": {
       "stream": "HDF5-authoritative balanced360",
       "shots": 360,
+      "class_counts": {"disruptive": 180, "safe": 180},
       "minimum_lead_ms": 30,
-      "minimum_run_points": 1,
-      "alarms_over_3000ms_count_as_timely": true
+      "alarms_over_3000ms_count_as_timely": true,
+      "alarm": "dual-threshold-v1 physics/trend state machine",
+      "predictions_sealed_before_outcome_read": true,
+      "balanced360_used_for_training_or_threshold": false
     },
-    "runtime": "rl_env / NVIDIA GeForce RTX 5070 Laptop GPU"
+    "runtime": "rl_env / PyTorch 2.11.0+cu128 / NVIDIA GeForce RTX 5070 Laptop GPU"
+  },
+  "admission_rule": {
+    "per_seed_tpr_at_30ms_minimum": 0.8,
+    "per_seed_fpr_maximum": 0.2,
+    "no_seed_degradation_against_fixed_control": true
   }
 }

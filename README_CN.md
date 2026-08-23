@@ -311,7 +311,7 @@ GPU 三 seed 已重新训练完成；后者必须以真实运行目录、日志�
 | 标签访问有哪些控制？ | [equal-label front-load 证据](experiments/transfer_methods_2026/paper_grade_package/evidence/equal_label_budget_frontload_v2/)、[图 8](experiments/transfer_methods_2026/paper_grade_package/figures/fig8_equal_label_budget_frontload_ablation.svg) | 诊断性的 selected-label/front-load 对照，不是等计算量 causal random-query 结果 |
 | 主动查询是否优于因果随机日程？ | [causal random-query 证据](experiments/transfer_methods_2026/paper_grade_package/evidence/causal_random_query_online_v1/)、[图 9](experiments/transfer_methods_2026/paper_grade_package/figures/fig9_active_vs_causal_random_query.svg) | 三个 seed 上主动策略效用均高于随机均值，但实际更新尝试数不同，不能解释为 selector-only 等 FLOP 因果效应 |
 | J-TEXT 迁移是否优于只用 EAST 拟合？ | [target-only 证据](experiments/transfer_methods_2026/paper_grade_package/evidence/east_target_only_v1/)、[图 10](experiments/transfer_methods_2026/paper_grade_package/figures/fig10_target_only_vs_transfer.svg) | balanced360 上迁移相对严格 EAST-only 提高净效用与提前量，同时略增 FPR；两臂容量并不完全匹配 |
-| AdvancedTime 能否直接替换固定正样本上界？ | [中文对照报告](experiments/transfer_methods_2026/paper_grade_package/ADVANCED_TIME_LABEL_ABLATION_zh.md)、[机器结果](experiments/transfer_methods_2026/paper_grade_package/evidence/advanced_time_label_ablation_seed131.json) | seed131 的 2×2 标签消融；动态 J-TEXT 上界删除 74.6% 正端点并造成迁移退化，因此未晋级多 seed |
+| AdvancedTime 能否直接替换固定正样本上界？ | [中文对照报告](experiments/transfer_methods_2026/paper_grade_package/ADVANCED_TIME_LABEL_ABLATION_zh.md)、[v2 三 seed 机器证据](experiments/transfer_methods_2026/paper_grade_package/evidence/advanced_time_label_ablation_v2/) | 完整静态链 2×2 消融；旧 `0.5x` 是漏掉 shared/private/state-machine 的无效裸模型结果。动态源标签降低平均 FPR，但 seed133 TPR@30=0.7667，未获准替换主标签 |
 | 本发布需要哪些精确原始文件？ | [可移植 HDF5 内容清单](experiments/transfer_methods_2026/paper_grade_package/evidence/required_hdf5_content_manifest.json) | 对全部2,203个必需 J-TEXT/EAST HDF5 文件记录 SHA-256，且不嵌入本机绝对路径 |
 | 是否达到 Nature Portfolio 确认性或部署性结论门槛？ | [readiness 审计](experiments/transfer_methods_2026/paper_grade_package/NATURE_PORTFOLIO_READINESS.md) | 没有；当前上限是可审计的开发论文包 |
 | 多方审核是否认可这个边界？ | [五方审核](experiments/transfer_methods_2026/paper_grade_package/FIVE_WAY_AUDIT.md) | 五方均通过本地包完整性、均否决确认性 readiness，并记录了已修复项 |
@@ -323,7 +323,7 @@ GPU 三 seed 已重新训练完成；后者必须以真实运行目录、日志�
 
 严格 EAST-only baseline 也已完成。其等 seed `TPR@30−FPR=0.6519`，J-TEXT→EAST static 为 `0.6741`；迁移提高 TPR 和提前量，也带来小幅 FPR 增加。EAST-only 会更新完整随机初始化 encoder，而迁移只更新受限目标路径，因此该对照说明目标数据可识别性和迁移增量，不是完全等容量架构消融。
 
-AdvancedTime 正样本上界也完成了 seed131 的 2×2 控制。实验只替换破裂炮正窗口上界：J-TEXT 使用 `max(25 ms, AdvancedTime)`，EAST 使用 `max(125 ms, AdvancedTime)`，缺失时回退到对应下限；炮级结局和 DownTime 仍只认 HDF5。动态 J-TEXT 规则把源域正端点从 21,912 减到 5,557，在相同 `TPR@lead≥30 ms=0.8` 的开发流诊断点上将 FPR 从 0.1944 提高到 0.3000–0.3056，因此未进入多 seed 晋级。完整边界和两种阈值口径见[中文对照报告](experiments/transfer_methods_2026/paper_grade_package/ADVANCED_TIME_LABEL_ABLATION_zh.md)。
+AdvancedTime 正样本上界已用 seeds 131/133/137 重新完成 2×2 控制。v1 的 `TPR@30=0.50–0.53` 来自错误的裸 `encoder/head` 单阈值评估，未运行 shared hazard、EAST-private raw8 和双阈值状态机，现已撤回。v2 只替换破裂炮正窗口上界：J-TEXT 使用 `max(25 ms, AdvancedTime)`，EAST 使用 `max(125 ms, AdvancedTime)`，缺失时回退到对应下限；炮级结局和 DownTime 仍只认 HDF5。完整 fixed/fixed 链精确复现三 seed 均值 `TPR@30=0.8407、FPR=0.1667`。动态 J-TEXT 标签把 21,912 个正端点缩减为 5,556 个，迁移后平均 FPR 降至 0.1370，但平均 TPR@30 降至 0.8222，且 seed133 只有 0.7667，因此没有晋级。完整逐 seed 结果和纠错依据见[中文对照报告](experiments/transfer_methods_2026/paper_grade_package/ADVANCED_TIME_LABEL_ABLATION_zh.md)。
 
 从原始 HDF5 复现该控制时，可显式绑定原工程中的 JSON；输出目录必须不存在：
 
@@ -334,7 +334,7 @@ conda run -n rl_env python \
   --data-root "$FUSION_DATA_ROOT" \
   --jtext-advanced-time /absolute/path/to/Fuison/shot_list/J-TEXT/AdvancedTime_J-TEXT.json \
   --east-advanced-time /absolute/path/to/Fuison/shot_list/EAST/AdvancedTime_EAST.json \
-  --output results/generated/advanced-time-label-seed131
+  --output results/generated/advanced-time-label-v2-seed131
 ```
 
 seed131 的低预算 **Q30** 是 balanced360 顺序流推进时，由只使用当前/过去

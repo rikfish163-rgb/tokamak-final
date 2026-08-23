@@ -108,16 +108,21 @@ def window_batch(
 
 
 def temporal_targets(shot: dict, risk_length: int) -> tuple[np.ndarray, np.ndarray]:
+    horizon_ms = float(shot.get("positive_horizon_ms", 125.0))
+    if not math.isfinite(horizon_ms) or horizon_ms <= 0.0:
+        raise ValueError(f"shot {shot.get('shot')}: invalid positive horizon")
     times = float(shot["start"]) + np.arange(alarm.W - 1, alarm.W - 1 + risk_length) / float(shot["rate"])
     binary = dynamic.alarm_window_labels(
         times, is_disrupt=bool(shot["is_disrupt"]),
-        down_time_s=shot["down"], horizon_ms=125.0,
+        down_time_s=shot["down"], horizon_ms=horizon_ms,
     )
     soft = np.zeros(risk_length, dtype=np.float32)
     if shot["is_disrupt"] and shot["down"] is not None:
         ttd = (float(shot["down"]) - times) * 1000.0
-        legal = (ttd >= 0.0) & (ttd <= 125.0)
-        soft[legal] = np.clip((125.0 - ttd[legal]) / 125.0, 0.0, 1.0)
+        legal = (ttd >= 0.0) & (ttd <= horizon_ms)
+        soft[legal] = np.clip(
+            (horizon_ms - ttd[legal]) / horizon_ms, 0.0, 1.0,
+        )
     return binary, soft
 
 

@@ -1,0 +1,139 @@
+{
+  "schema_version": "advanced-time-label-ablation-report-v2",
+  "status": "DIAGNOSTIC_ONLY_TEST_DRIVEN_EXPLORATION",
+  "seeds": [131, 133, 137],
+  "pipeline": "encoder-head+shared-hazard+east-private-raw8+dual-threshold-v1",
+  "correction": {
+    "supersedes": "advanced-time-label-ablation-result-v1",
+    "invalid_v1_metrics_must_not_be_used": true,
+    "root_cause": "v1 evaluated a bare encoder/head with a single per-shot-max threshold and omitted the shared hazard adapter, EAST-private raw8 residual, and dual-threshold physics/trend state machine"
+  },
+  "claim_boundary": "balanced360 is a development comparator and not independent future evidence",
+  "label_authority": {
+    "outcome": "HDF5 meta/IsDisrupt",
+    "disruption_time": "HDF5 meta/DownTime",
+    "jtext_dynamic_positive_horizon": "max(25 ms, AdvancedTime_ms); missing -> 25 ms",
+    "east_dynamic_positive_horizon": "max(125 ms, AdvancedTime_ms); missing -> 125 ms"
+  },
+  "shotlist_sha256": {
+    "jtext_original": "559da4f719373b0c13b96d34e27a2b46b80eba7f0ef185c3b6ac58b3761e0199",
+    "east_original": "1cd6305a659762fb4518c7446fc7c1662abc1bb939060dcca587e9ec02d72002"
+  },
+  "fixed_source_reproduction": {
+    "seed": 131,
+    "archived_model_sha256": "214eb476fb26fe1efc606d0b0ce70bee794ca6558a0a410a6ed6602da23a832c",
+    "current_code_reproduction_model_sha256": "214eb476fb26fe1efc606d0b0ce70bee794ca6558a0a410a6ed6602da23a832c",
+    "encoder_bitwise_equal": true,
+    "head_bitwise_equal": true,
+    "checkpoint_file_sha256_differs_only_because_v2_adds_explicit_label_metadata": true
+  },
+  "window_audit": {
+    "jtext_train1353": {
+      "hdf5_disruptive_shots": 188,
+      "advanced_time_covered": 187,
+      "advanced_time_missing": 1,
+      "advanced_time_above_25ms": 37,
+      "fixed125_positive_endpoints": 21912,
+      "advanced_floor_positive_endpoints": 5556,
+      "positive_endpoint_change": -16356,
+      "relative_change": -0.7464403066812705
+    },
+    "east_support110": {
+      "hdf5_class_counts": {"disruptive": 15, "safe": 95},
+      "advanced_time_covered": 10,
+      "advanced_time_missing": 5,
+      "advanced_time_above_125ms": 2,
+      "fixed125_positive_endpoints": 1865,
+      "advanced_floor_positive_endpoints": 1899,
+      "positive_endpoint_change": 34,
+      "relative_change": 0.018230563002680965
+    }
+  },
+  "source_test220": {
+    "fixed125_mean": {
+      "tpr_at_10ms": 0.8515151515151514,
+      "fpr": 0.21212121212121213,
+      "auc": 0.9219283746556474,
+      "median_lead_ms": 116.63208101704923
+    },
+    "advanced_floor_mean": {
+      "tpr_at_10ms": 0.8666666666666667,
+      "fpr": 0.1303030303030303,
+      "auc": 0.9679063360881543,
+      "median_lead_ms": 67.3543926837159
+    },
+    "seeds": {
+      "131": {
+        "fixed125": {"tpr_at_10ms": 0.8818181818181818, "fpr": 0.22727272727272727, "auc": 0.9306611570247934, "median_lead_ms": 107.17382768371588},
+        "advanced_floor": {"tpr_at_10ms": 0.9, "fpr": 0.15454545454545454, "auc": 0.9790909090909091, "median_lead_ms": 68.87455768371592}
+      },
+      "133": {
+        "fixed125": {"tpr_at_10ms": 0.8181818181818182, "fpr": 0.19090909090909092, "auc": 0.9252892561983471, "median_lead_ms": 120.66092768371593},
+        "advanced_floor": {"tpr_at_10ms": 0.8363636363636363, "fpr": 0.1, "auc": 0.9617355371900826, "median_lead_ms": 63.41495268371588}
+      },
+      "137": {
+        "fixed125": {"tpr_at_10ms": 0.8545454545454545, "fpr": 0.21818181818181817, "auc": 0.9098347107438016, "median_lead_ms": 122.06148768371588},
+        "advanced_floor": {"tpr_at_10ms": 0.8636363636363636, "fpr": 0.13636363636363635, "auc": 0.9628925619834711, "median_lead_ms": 69.7736676837159}
+      }
+    }
+  },
+  "east_balanced360": {
+    "metric_contract": {
+      "primary_tpr": "alarm lead >= 30 ms",
+      "fpr": "safe shots with any alarm",
+      "utility": "tpr_at_30ms - fpr",
+      "threshold_source": "EAST support110 HDF5 outcomes only",
+      "balanced360_used_for_training_or_threshold": false,
+      "all_360_predictions_sealed_before_outcome_read": true,
+      "raw_TP_FN_warning": "TP/FN in arm summaries count any alarm occurrence; timely_TP_at_30ms/timely_FN_at_30ms below enforce the lead rule"
+    },
+    "source_fixed__east_fixed": {
+      "mean": {"tpr_at_30ms": 0.8407407407407407, "fpr": 0.16666666666666666, "utility": 0.674074074074074, "auc": 0.9333024691358025, "median_lead_ms": 202.33333333333326},
+      "seeds": {
+        "131": {"tpr_at_30ms": 0.8222222222222222, "timely_TP_at_30ms": 148, "timely_FN_at_30ms": 32, "fpr": 0.15555555555555556, "utility": 0.6666666666666666, "auc": 0.9322222222222222, "median_lead_ms": 208.00000000000017, "threshold": 0.4169328808784485, "prediction_seal_sha256": "ed8c97b56d1b5b851b181ec3f84701c35eb7d1c6fa7e526472a08b4076ecbb85"},
+        "133": {"tpr_at_30ms": 0.8388888888888889, "timely_TP_at_30ms": 151, "timely_FN_at_30ms": 29, "fpr": 0.14444444444444443, "utility": 0.6944444444444444, "auc": 0.9362345679012346, "median_lead_ms": 175.00000000000028, "threshold": 0.36285272240638733, "prediction_seal_sha256": "c4076fb9a422a7074256efbf42d78099fc35f82b8eb62e098acb61426f27cc88"},
+        "137": {"tpr_at_30ms": 0.8611111111111112, "timely_TP_at_30ms": 155, "timely_FN_at_30ms": 25, "fpr": 0.2, "utility": 0.6611111111111112, "auc": 0.9314506172839506, "median_lead_ms": 223.99999999999932, "threshold": 0.1604071408510208, "prediction_seal_sha256": "e585d59921ae779aa6ceb947ba73a92b37c6c942359a0d4dd8abaceab48ab772"}
+      }
+    },
+    "source_dynamic__east_fixed": {
+      "mean": {"tpr_at_30ms": 0.8222222222222223, "fpr": 0.13703703703703704, "utility": 0.6851851851851851, "auc": 0.9468209876543211, "median_lead_ms": 170.33333333333343},
+      "mean_delta_vs_fixed_fixed": {"tpr_at_30ms": -0.01851851851851838, "fpr": -0.029629629629629617, "utility": 0.011111111111111072, "auc": 0.013518518518518596, "median_lead_ms": -31.99999999999983},
+      "seeds": {
+        "131": {"tpr_at_30ms": 0.8666666666666667, "timely_TP_at_30ms": 156, "timely_FN_at_30ms": 24, "fpr": 0.1388888888888889, "utility": 0.7277777777777779, "auc": 0.9538888888888889, "median_lead_ms": 166.00000000000037, "threshold": 0.24815429747104645, "prediction_seal_sha256": "dbccaaf6012512df5bd753899a012087301bc7ac567044c8cdff091669f0840b"},
+        "133": {"tpr_at_30ms": 0.7666666666666667, "timely_TP_at_30ms": 138, "timely_FN_at_30ms": 42, "fpr": 0.11666666666666667, "utility": 0.65, "auc": 0.9376234567901235, "median_lead_ms": 135.99999999999966, "threshold": 0.46221545338630676, "prediction_seal_sha256": "5338e58a8fe9bcaa8fe9f8feedec25430628de3268a9bec0465111ca40997e7a"},
+        "137": {"tpr_at_30ms": 0.8333333333333334, "timely_TP_at_30ms": 150, "timely_FN_at_30ms": 30, "fpr": 0.15555555555555556, "utility": 0.6777777777777778, "auc": 0.9489506172839506, "median_lead_ms": 209.00000000000028, "threshold": 0.5148165822029114, "prediction_seal_sha256": "8a2ef89700e814111645d88854a32021ff5ab334c6b97fce883be9519857b924"}
+      }
+    },
+    "source_fixed__east_dynamic": {
+      "mean": {"tpr_at_30ms": 0.8462962962962964, "fpr": 0.16666666666666666, "utility": 0.6796296296296296, "auc": 0.9333847736625515, "median_lead_ms": 198.50000000000014},
+      "mean_delta_vs_fixed_fixed": {"tpr_at_30ms": 0.005555555555555758, "fpr": 0.0, "utility": 0.005555555555555536, "auc": 0.00008230452674895528, "median_lead_ms": -3.8333333333331154},
+      "seeds": {
+        "131": {"tpr_at_30ms": 0.8611111111111112, "timely_TP_at_30ms": 155, "timely_FN_at_30ms": 25, "fpr": 0.17222222222222222, "utility": 0.6888888888888889, "auc": 0.9341358024691359, "median_lead_ms": 209.99999999999997, "threshold": 0.41906973719596863, "prediction_seal_sha256": "a6944898208a112429014419b29623fbfc6679f7138143785f3a4c14627791a7"},
+        "133": {"tpr_at_30ms": 0.8388888888888889, "timely_TP_at_30ms": 151, "timely_FN_at_30ms": 29, "fpr": 0.15, "utility": 0.6888888888888889, "auc": 0.9362654320987654, "median_lead_ms": 177.50000000000023, "threshold": 0.40312469005584717, "prediction_seal_sha256": "2c031b3749911a8e524f1b958a7583cf00244752475b9cf212b5af54e9d18b74"},
+        "137": {"tpr_at_30ms": 0.8388888888888889, "timely_TP_at_30ms": 151, "timely_FN_at_30ms": 29, "fpr": 0.17777777777777778, "utility": 0.6611111111111111, "auc": 0.9297530864197531, "median_lead_ms": 208.00000000000017, "threshold": 0.16094796359539032, "prediction_seal_sha256": "90a62e6475e43bde33a0dc236b7c8f2f839713db91998f362f9c532b9869b587"}
+      }
+    },
+    "source_dynamic__east_dynamic": {
+      "mean": {"tpr_at_30ms": 0.8185185185185185, "fpr": 0.1425925925925926, "utility": 0.6759259259259259, "auc": 0.9450308641975308, "median_lead_ms": 173.99999999999986},
+      "mean_delta_vs_fixed_fixed": {"tpr_at_30ms": -0.022222222222222143, "fpr": -0.024074074074074053, "utility": 0.0018518518518518823, "auc": 0.011728395061728292, "median_lead_ms": -28.3333333333334},
+      "seeds": {
+        "131": {"tpr_at_30ms": 0.8555555555555555, "timely_TP_at_30ms": 154, "timely_FN_at_30ms": 26, "fpr": 0.14444444444444443, "utility": 0.711111111111111, "auc": 0.9536111111111111, "median_lead_ms": 167.00000000000006, "threshold": 0.2590111196041107, "prediction_seal_sha256": "5374e45d33d29bc1061a1fafd158faf1bab9b57a4746190bfa6cd7afec832a7b"},
+        "133": {"tpr_at_30ms": 0.7666666666666667, "timely_TP_at_30ms": 138, "timely_FN_at_30ms": 42, "fpr": 0.12222222222222222, "utility": 0.6444444444444445, "auc": 0.9359567901234568, "median_lead_ms": 137.9999999999999, "threshold": 0.4730347990989685, "prediction_seal_sha256": "274154573833f05e740bde3ab4bd1fe9d201d9894973203be5a2140b1a8e6a2c"},
+        "137": {"tpr_at_30ms": 0.8333333333333334, "timely_TP_at_30ms": 150, "timely_FN_at_30ms": 30, "fpr": 0.16111111111111112, "utility": 0.6722222222222223, "auc": 0.9455246913580246, "median_lead_ms": 216.99999999999963, "threshold": 0.5140283107757568, "prediction_seal_sha256": "b2a7ff9077b7dde568ab8d56483a47fd87be18e3081e4cf039619c7f53dd05ff"}
+      }
+    }
+  },
+  "fixed_control_fidelity": {
+    "all_three_seeds_passed": true,
+    "rows_compared_per_seed": 360,
+    "fields": ["shot", "stream_index", "alarmed", "alarm_index", "route", "early_score", "alarm_time_s"]
+  },
+  "adjudication": {
+    "fixed125": "RETAIN_AS_CURRENT_PRIMARY_LABEL",
+    "jtext_advanced_floor": "NOT_ADMITTED_SEED133_TPR30_BELOW_0.80",
+    "east_advanced_floor": "NOT_ADMITTED_NO_STABLE_ALL_SEED_UTILITY_GAIN",
+    "dynamic_dynamic": "NOT_ADMITTED_SEED133_TPR30_BELOW_0.80",
+    "interpretation": "AdvancedTime improves source discrimination and lowers mean target FPR, but hard label replacement shortens lead and has seed-unstable cross-device sensitivity",
+    "future_use": "evaluate as a preregistered horizon/onset auxiliary target or continuous stage weight on an independent future stream"
+  }
+}
