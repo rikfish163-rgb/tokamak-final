@@ -189,7 +189,7 @@ def test_local_readme_images_are_manifested_and_git_tracked() -> None:
     )
     manifest_files = {str(value) for value in manifest["tracked_files"]}
     local_images: set[str] = set()
-    for readme_name in ("README.md", "README_CN.md"):
+    for readme_name in ("README.md", "README_CN.md", "README_EN.md"):
         readme = (ROOT / readme_name).read_text()
         for target in re.findall(r"!\[[^]]*\]\(([^)]+)\)", readme):
             if "://" not in target:
@@ -210,6 +210,31 @@ def test_local_readme_images_are_manifested_and_git_tracked() -> None:
         if raw
     }
     assert sorted(local_images - tracked) == []
+
+
+def test_default_readme_is_chinese_with_a_complete_english_version() -> None:
+    default_readme = (ROOT / "README.md").read_text()
+    chinese_mirror = (ROOT / "README_CN.md").read_text()
+    english_readme = (ROOT / "README_EN.md").read_text()
+
+    assert default_readme == chinese_mirror
+    assert default_readme.startswith(
+        "# J-TEXT → EAST：托卡马克破裂预警的因果迁移与时序在线主动适配"
+    )
+    assert "[English](README_EN.md)" in default_readme
+    assert english_readme.startswith("# J-TEXT → EAST: causal transfer")
+    assert "[简体中文（默认）](README.md)" in english_readme
+    for required_badge in (
+        "Python-3.11",
+        "PyTorch-2.11",
+        "CUDA-12.8",
+        "HDF5-authoritative%20labels",
+        "model-causal%20Transformer",
+        "online-chronological%20active%20learning",
+        "reproducibility-hash--bound",
+    ):
+        assert required_badge in default_readme
+        assert required_badge in english_readme
 
 
 def test_reference_verifier_accepts_committed_multiseed_result() -> None:
@@ -259,10 +284,17 @@ def test_reproduction_reference_can_be_scoped_to_requested_seeds() -> None:
     assert verdict["passed"] is True
 
 
-def test_readme_distinguishes_cpu_audit_from_cuda_and_checkout_cli() -> None:
-    readme = (ROOT / "README.md").read_text()
+def test_readmes_distinguish_cpu_audit_from_cuda_and_checkout_cli() -> None:
+    chinese = (ROOT / "README.md").read_text()
+    english = (ROOT / "README_EN.md").read_text()
 
-    assert "uv sync --frozen --extra dev" not in readme
-    assert "uv sync --frozen --only-group ci --no-install-project" in readme
-    assert "not a standalone wheel" in readme.lower()
-    assert "FUSION_PROJECT_ROOT" in readme
+    cpu_command = "uv sync --frozen --only-group ci --no-install-project"
+    assert cpu_command in chinese
+    assert cpu_command in english
+    assert 'UV_PROJECT_ENVIRONMENT="$CONDA_PREFIX" uv sync --frozen --extra dev' in chinese
+    assert "CUDA" in chinese and "rl_env" in chinese
+    assert "CUDA" in english and "rl_env" in english
+    assert "并不发布一个可脱离仓库独立运行的 wheel" in chinese
+    assert "not a standalone wheel" in english.lower()
+    assert "FUSION_PROJECT_ROOT" in chinese
+    assert "FUSION_PROJECT_ROOT" in english

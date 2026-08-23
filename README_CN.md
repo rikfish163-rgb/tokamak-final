@@ -1,16 +1,29 @@
-# J-TEXT → EAST：因果迁移与按时间顺序在线适配
+# J-TEXT → EAST：托卡马克破裂预警的因果迁移与时序在线主动适配
 
-[English](README.md) · [代码级实现说明：损失、价值函数与更新顺序](IMPLEMENTATION_DETAILS_CN.md) · [正式中文技术报告（LaTeX 工程）](experiments/transfer_methods_2026/paper_grade_package/technical_report_zh/README.md) · [审计正文（Markdown）](experiments/transfer_methods_2026/paper_grade_package/TECHNICAL_REPORT_zh.md) · [正式排版 PDF](experiments/transfer_methods_2026/paper_grade_package/TECHNICAL_REPORT_zh.pdf) · [论文级实验包](experiments/transfer_methods_2026/paper_grade_package/README.md) · [数据合同](DATA_CONTRACT.md)
+**语言 / Language：** **简体中文（默认）** · [English](README_EN.md)
 
-![证据状态](https://img.shields.io/badge/evidence-development--only-orange?style=flat)
-![默认 CLI](https://img.shields.io/badge/default%20CLI-v3c%20archived--parent%20replay-2f80ed?style=flat)
-![独立未来流](https://img.shields.io/badge/independent%20future%20stream-not%20available-red?style=flat)
-![仓库合同](https://github.com/rikfish163-rgb/tokamak-final/actions/workflows/ci.yml/badge.svg)
-![许可证](https://img.shields.io/badge/license-MIT-blue?style=flat)
+[代码级方法细节](IMPLEMENTATION_DETAILS_CN.md) · [复现与部署](#cn-quickstart) · [论文级实验包](experiments/transfer_methods_2026/paper_grade_package/README.md) · [数据合同](DATA_CONTRACT.md) · [中文技术报告 PDF](experiments/transfer_methods_2026/paper_grade_package/TECHNICAL_REPORT_zh.pdf)
 
-> 这是一个以可复现和可审计为中心的研究包，用于 J-TEXT → EAST 因果迁移与按时间顺序的在线适配；标签以 HDF5 为权威，并保留封存后的 query/reveal 账本。
+[![仓库合同](https://github.com/rikfish163-rgb/tokamak-final/actions/workflows/ci.yml/badge.svg)](https://github.com/rikfish163-rgb/tokamak-final/actions/workflows/ci.yml)
+![证据边界](https://img.shields.io/badge/evidence-development%20only-E69F00?style=flat-square)
+![前瞻确认](https://img.shields.io/badge/prospective%20confirmation-pending-D55E00?style=flat-square)
+![发布谱系](https://img.shields.io/badge/release-paper%20v3c%20archived--parent-2F80ED?style=flat-square)
+
+![Python](https://img.shields.io/badge/Python-3.11-3776AB?style=flat-square&logo=python&logoColor=white)
+![PyTorch](https://img.shields.io/badge/PyTorch-2.11-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
+![CUDA](https://img.shields.io/badge/CUDA-12.8-76B900?style=flat-square&logo=nvidia&logoColor=white)
+![HDF5](https://img.shields.io/badge/HDF5-authoritative%20labels-00599C?style=flat-square)
+![平台](https://img.shields.io/badge/platform-Linux%20GPU-555555?style=flat-square&logo=linux&logoColor=white)
+
+![模型](https://img.shields.io/badge/model-causal%20Transformer-0072B2?style=flat-square)
+![跨装置迁移](https://img.shields.io/badge/transfer-J--TEXT%20%E2%86%92%20EAST-009E73?style=flat-square)
+![在线学习](https://img.shields.io/badge/online-chronological%20active%20learning-8E6C8A?style=flat-square)
+![可复现性](https://img.shields.io/badge/reproducibility-hash--bound-2F80ED?style=flat-square)
+![许可证](https://img.shields.io/badge/license-MIT-0072B2?style=flat-square)
+
+> 面向 J-TEXT → EAST 跨装置破裂预警研究的可复现仓库。主线覆盖源域因果 Transformer、小样本目标迁移、EAST 私有信号适配，以及严格按炮序执行的在线主动学习；结局与破裂时刻以 HDF5 为唯一权威，并保存预测、封存、查询、揭示和更新账本。
 >
-> 当前证据上限：`DEVELOPMENT_EVIDENCE_NOT_INDEPENDENT_CONFIRMATION`。`balanced360` 是方法开发流，不是独立最终测试或部署确认。
+> **证据边界：** 当前结果属于 `DEVELOPMENT_EVIDENCE_NOT_INDEPENDENT_CONFIRMATION`。`balanced360` 是方法开发流，不是独立最终测试集，也不构成装置部署确认。
 
 <a id="cn-toc"></a>
 ## 目录
