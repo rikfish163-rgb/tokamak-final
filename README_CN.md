@@ -1,6 +1,6 @@
 # J-TEXT → EAST：因果迁移与按时间顺序在线适配
 
-[English](README.md) · [正式中文技术报告（LaTeX 工程）](experiments/transfer_methods_2026/paper_grade_package/technical_report_zh/README.md) · [审计正文（Markdown）](experiments/transfer_methods_2026/paper_grade_package/TECHNICAL_REPORT_zh.md) · [正式排版 PDF](experiments/transfer_methods_2026/paper_grade_package/TECHNICAL_REPORT_zh.pdf) · [论文级实验包](experiments/transfer_methods_2026/paper_grade_package/README.md) · [数据合同](DATA_CONTRACT.md)
+[English](README.md) · [代码级实现说明：损失、价值函数与更新顺序](IMPLEMENTATION_DETAILS_CN.md) · [正式中文技术报告（LaTeX 工程）](experiments/transfer_methods_2026/paper_grade_package/technical_report_zh/README.md) · [审计正文（Markdown）](experiments/transfer_methods_2026/paper_grade_package/TECHNICAL_REPORT_zh.md) · [正式排版 PDF](experiments/transfer_methods_2026/paper_grade_package/TECHNICAL_REPORT_zh.pdf) · [论文级实验包](experiments/transfer_methods_2026/paper_grade_package/README.md) · [数据合同](DATA_CONTRACT.md)
 
 ![证据状态](https://img.shields.io/badge/evidence-development--only-orange?style=flat)
 ![默认 CLI](https://img.shields.io/badge/default%20CLI-v3c%20archived--parent%20replay-2f80ed?style=flat)
@@ -17,8 +17,9 @@
 
 - [项目范围与状态](#cn-scope)
 - [架构与因果协议](#cn-architecture)
+- [主线是怎样工作的](#cn-method-details)
 - [三阶段结果](#cn-results)
-- [快速开始](#cn-quickstart)
+- [部署与复现](#cn-quickstart)
 - [数据合同](#cn-data-contract)
 - [可复现合同](#cn-reproducibility)
 - [证据映射](#cn-evidence-map)
@@ -62,6 +63,27 @@ predict → seal → query → 揭示被选炮的结局 → 后续炮更新
 
 当前炮的结局不能进入当前炮的预测。EAST 静态评估先完成并封存，在线分支随后重置到相同的迁移后父模型，因此在记录的谱系内两个 EAST 分支是阶段隔离的。
 
+<a id="cn-method-details"></a>
+## 主线是怎样工作的
+
+主线不是把 23 个信号直接拼起来做一次普通微调，而是把跨装置共享信息和
+EAST 私有信息分开处理：
+
+1. J-TEXT Transformer 只学习经过单位修复和物理重构的 shared17；
+2. support110 只微调最高一层 Transformer、LayerNorm 和独立 EAST head，随后
+   拟合有界 shared dynamics residual 与 raw8 EAST-private residual；
+3. 每炮开始把 persistent 适配器复制成 fast 模型，炮内只用已经到达的下一状态、
+   fast/slow 一致性和物理矛盾做无标签更新，fast 在炮后丢弃；
+4. 整炮预测封存后，由“报警边界不确定性 + 模型/物理矛盾”价值函数配合滚动
+   token 预算决定是否查询。只有被选炮才打开 HDF5 标签，并用部署一致的 MIL
+   报警损失更新 persistent 模型；若伤害任一已知正确 guard，整次更新回滚。
+
+风险 logit 的残差如何叠加、每个损失的公式、窗口价值如何换算成学习率、查询
+cutoff 如何形成、FP/FN/TARDY 如何改变报警参数，以及哪些代码虽存在但在 v3c
+中权重为零，均在[代码级实现说明](IMPLEMENTATION_DETAILS_CN.md)中逐项展开。主线
+文件清单由 [`config/mainline_code_manifest.json`](config/mainline_code_manifest.json)
+机器校验，避免发布时漏掉间接依赖。
+
 <a id="cn-results"></a>
 ## 三阶段结果
 
@@ -76,7 +98,22 @@ predict → seal → query → 揭示被选炮的结局 → 后续炮更新
 这张表是开发流证据，不是前瞻性泛化结论。早于 3 s 的告警仍按已注册合同保留资格，并单独审计；raw alarm occurrence 只作为机器证据字段，不提升为第二个主结果。
 
 <a id="cn-quickstart"></a>
-## 快速开始
+## 部署与复现
+
+以下命令面向一台配有 NVIDIA GPU 的 Linux 工作站。论文主线使用 Python 3.11、
+CUDA 版 PyTorch 和名为 `rl_env` 的 Conda 环境；CPU 公共 CI 只验证合同、证据构建
+与合成控制器测试，不替代 GPU 回放。
+
+### 0. 获取代码并固定版本
+
+```bash
+git clone https://github.com/rikfish163-rgb/tokamak-final.git
+cd tokamak-final
+git status --short --branch
+```
+
+正式复现应记录具体 commit SHA；不要在一次多 seed 回放中途切换分支、修改配置或
+替换 HDF5 文件。
 
 ### 1. 环境与数据
 
@@ -104,7 +141,43 @@ data/
 
 原始 HDF5 不随 Git 提交。生成的账本最好写入 ext4 路径；部分 `ntfs3` 挂载点上的高频 `fsync` 可能阻塞。
 
-### 2. 不执行训练，只查看冻结的 v3c 链路
+先确认使用的确实是 `rl_env` 中的 Python、PyTorch 与 GPU：
+
+```bash
+conda run -n rl_env python -c \
+  'import sys,h5py,torch; print("python:",sys.version); print("h5py:",h5py.__version__); print("torch:",torch.__version__); print("cuda_available:",torch.cuda.is_available()); print("cuda_device:",torch.cuda.get_device_name(0) if torch.cuda.is_available() else None); raise SystemExit(0 if torch.cuda.is_available() else 2)'
+```
+
+若是新机器，可先创建 Python 3.11 的 `rl_env`，再按本仓库的 `uv.lock` 同步依赖；
+已有论文工作站环境不要在回放前临时升级 PyTorch 或 CUDA：
+
+```bash
+conda create -n rl_env python=3.11 -y
+eval "$(conda shell.bash hook)"
+conda activate rl_env
+python -m pip install uv
+UV_PROJECT_ENVIRONMENT="$CONDA_PREFIX" uv sync --frozen --extra dev
+```
+
+这里显式把 `UV_PROJECT_ENVIRONMENT` 指向激活后的 Conda 前缀，避免又创建一套
+与 `rl_env` 并存的 `.venv`。无论采用哪一种环境管理方式，执行主线命令时都应
+固定同一个 Python 解释器并在运行清单中记录版本。
+
+### 2. 数据预检
+
+轻量审计检查目录、炮表和必要字段；完整审计还会逐炮打开 HDF5。若需要跨机器
+核对原始数据，可额外生成内容哈希清单：
+
+```bash
+conda run -n rl_env python -m reproducibility.cli audit \
+  --data-root "$FUSION_DATA_ROOT" --full --content-hash --portable \
+  --output results/generated/data_audit.json
+
+conda run -n rl_env python -m reproducibility.cli smoke \
+  --data-root "$FUSION_DATA_ROOT"
+```
+
+### 3. 不执行训练，只查看冻结的 v3c 链路
 
 `plan` 阶段只打印 source → support → static → reset → online 的确切命令，不执行回放：
 
@@ -116,7 +189,13 @@ conda run -n rl_env python \
 
 将 `--stage plan` 换成 `--stage all` 可从随仓库提供的、哈希绑定的 J-TEXT 源 checkpoint 和通过 fidelity 验证的 EAST 归档父模型执行一个 seed。输出目录必须是新的或为空的目录。
 
-### 3. 运行默认可复现 CLI
+默认 `all` **不会重新拟合 target parent**：它使用随仓库发布并经过 fidelity
+检查的 archived EAST 父状态，然后执行 static360 → reset → online360。若要从
+HDF5 重新训练 J-TEXT 源模型，显式加 `--retrain-source`。参数
+`--rebuild-target-current-sampler` 只用于诊断当前 sampler，不能替代归档父状态的
+论文 fidelity 回放。
+
+### 4. 运行一个 seed 或三个 seed
 
 在完整 source checkout 中，`python -m reproducibility.cli reproduce` 和
 editable 安装的 `fusion-reproduce reproduce` 都使用 paper v3c
@@ -140,7 +219,25 @@ conda run -n rl_env python -m reproducibility.cli smoke \
   --data-root "$FUSION_DATA_ROOT"
 ```
 
-### 4. 重建并验证论文证据
+单 seed 调试建议先用新的输出目录运行 seed 131；三 seed 正式回放再使用另一个空
+目录：
+
+```bash
+conda run -n rl_env python -m reproducibility.cli reproduce \
+  --data-root "$FUSION_DATA_ROOT" \
+  --output results/reproduced-v3c-seed131 \
+  --seeds 131
+
+conda run -n rl_env python -m reproducibility.cli verify \
+  --actual results/reproduced-v3c-seed131/multiseed_summary.json
+```
+
+输出目录已存在且非空时 CLI 会失败关闭，避免把两次运行写进同一账本。每个 seed
+的关键结果在 `seed<id>/final_episode_v3/summary.json`，逐炮静态预测、在线预测、
+query、reveal 和 update receipt 分别保存；最终聚合写入
+`multiseed_summary.json`。
+
+### 5. 重建并验证论文证据
 
 以下命令会重建/检查论文包证据，需要满足数据合同并使用项目环境：
 
@@ -152,6 +249,16 @@ conda run -n rl_env python \
 ```
 
 完整合同、回放说明和缺失确认证据见 [REPRODUCIBILITY.md](REPRODUCIBILITY.md)。
+
+### 6. 运行仓库合同测试
+
+```bash
+conda run -n rl_env python -m pytest -q
+```
+
+测试会检查数据角色零重叠、标签只能来自 HDF5、封存顺序、主线代码清单、参考
+结果比较器和未来确认 seal 等合同。测试通过说明代码与证据合同自洽，不等同于
+GPU 三 seed 已重新训练完成；后者必须以真实运行目录、日志和摘要为证。
 
 <a id="cn-data-contract"></a>
 ## 数据合同
@@ -260,6 +367,8 @@ conda run -n rl_env python -m reproducibility.cli prospective-verify \
 ```text
 reproducibility/                                       # 数据审计与 v3c 回放 CLI
 experiments/transfer_methods_2026/paper_grade_package/ # 论文、图、账本与验证器
+IMPLEMENTATION_DETAILS_CN.md                            # 损失、价值函数和更新顺序
+config/mainline_code_manifest.json                     # 主线代码/父状态机器清单
 config/splits/                                          # 固定的 J-TEXT/EAST 切分合同
 splits/                                                 # 可读的 J-TEXT 炮号清单
 results/reference/                                      # 小型参考摘要

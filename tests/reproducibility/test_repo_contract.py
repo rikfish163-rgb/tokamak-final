@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import ast
 import importlib.util
 import json
 import subprocess
@@ -119,6 +120,66 @@ def test_github_repository_has_no_file_at_or_above_100_mb() -> None:
         if path.is_file() and path.stat().st_size >= 100_000_000:
             offenders.append(str(path.relative_to(ROOT)))
     assert offenders == []
+
+
+def test_mainline_manifest_is_complete_and_git_tracked() -> None:
+    manifest_path = ROOT / "config/mainline_code_manifest.json"
+    manifest = json.loads(manifest_path.read_text())
+    files = [str(value) for value in manifest["tracked_files"]]
+
+    assert manifest["schema_version"] == "jtext-east-mainline-code-manifest-v1"
+    assert len(files) == len(set(files))
+    assert set(manifest["entrypoints"].values()).issubset(files)
+
+    missing = [relative for relative in files if not (ROOT / relative).is_file()]
+    assert missing == []
+
+    search_roots = (ROOT, ROOT / "experiments/transfer_methods_2026")
+
+    def resolve_local_module(module: str) -> Path | None:
+        relative = Path(*module.split("."))
+        for base in search_roots:
+            source = base / relative.with_suffix(".py")
+            package = base / relative / "__init__.py"
+            if source.is_file():
+                return source
+            if package.is_file():
+                return package
+        return None
+
+    queue = [ROOT / relative for relative in manifest["entrypoints"].values()]
+    closure: set[str] = set()
+    visited: set[Path] = set()
+    while queue:
+        path = queue.pop()
+        if path in visited:
+            continue
+        visited.add(path)
+        closure.add(path.relative_to(ROOT).as_posix())
+        tree = ast.parse(path.read_text())
+        modules = []
+        for node in ast.walk(tree):
+            if isinstance(node, ast.Import):
+                modules.extend(alias.name for alias in node.names)
+            elif isinstance(node, ast.ImportFrom) and node.module:
+                modules.append(node.module)
+        for module in modules:
+            resolved = resolve_local_module(module)
+            if resolved is not None:
+                queue.append(resolved)
+    assert sorted(closure - set(files)) == []
+
+    if not (ROOT / ".git").is_dir():
+        pytest.skip("tracked mainline check runs after local git initialization")
+    tracked = {
+        raw.decode()
+        for raw in subprocess.run(
+            ["git", "ls-files", "-z"], cwd=ROOT, check=True,
+            capture_output=True,
+        ).stdout.split(b"\0")
+        if raw
+    }
+    assert sorted(set(files) - tracked) == []
 
 
 def test_reference_verifier_accepts_committed_multiseed_result() -> None:

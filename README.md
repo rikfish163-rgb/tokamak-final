@@ -1,6 +1,6 @@
 # J-TEXT → EAST: causal transfer and chronological online adaptation
 
-[中文说明](README_CN.md) · [Paper-grade package](experiments/transfer_methods_2026/paper_grade_package/README.md) · [Data contract](DATA_CONTRACT.md)
+[中文说明](README_CN.md) · [Code-level method details (Chinese)](IMPLEMENTATION_DETAILS_CN.md) · [Paper-grade package](experiments/transfer_methods_2026/paper_grade_package/README.md) · [Data contract](DATA_CONTRACT.md)
 
 ![Evidence status](https://img.shields.io/badge/evidence-development--only-orange?style=flat)
 ![Default CLI](https://img.shields.io/badge/default%20CLI-v3c%20archived--parent%20replay-2f80ed?style=flat)
@@ -263,6 +263,8 @@ The only claim-changing next step is a fully frozen replay on newly acquired chr
 ```text
 reproducibility/                                      # data audit and v3c replay CLI
 experiments/transfer_methods_2026/paper_grade_package/ # manuscript, figures, ledgers, validators
+IMPLEMENTATION_DETAILS_CN.md                           # exact losses, values and update order
+config/mainline_code_manifest.json                    # machine-checked mainline inventory
 config/splits/                                         # fixed J-TEXT/EAST split contracts
 splits/                                                # readable J-TEXT shot lists
 results/reference/                                     # compact reference summaries
