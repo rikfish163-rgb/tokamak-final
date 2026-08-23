@@ -1,0 +1,215 @@
+\documentclass[11pt,a4paper]{article}
+
+% -----------------------------------------------------------------------------
+% Engine and language: compile with XeLaTeX.
+% -----------------------------------------------------------------------------
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setdefaultlanguage{chinese}
+\setotherlanguage{english}
+\setmainfont{Noto Serif CJK SC}[
+  ItalicFont={Noto Serif CJK SC},
+  ItalicFeatures={FakeSlant=0.16}
+]
+\setsansfont{Noto Sans CJK SC}
+\setmonofont{Noto Sans Mono CJK SC}[Scale=0.88]
+\newfontfamily\chinesefont{Noto Serif CJK SC}[
+  ItalicFont={Noto Serif CJK SC},
+  ItalicFeatures={FakeSlant=0.16}
+]
+\newfontfamily\chinesefontsf{Noto Sans CJK SC}
+\newfontfamily\chinesefonttt{Noto Sans Mono CJK SC}[Scale=0.88]
+\XeTeXlinebreaklocale "zh"
+\XeTeXlinebreakskip=0pt plus 1pt
+
+% -----------------------------------------------------------------------------
+% Page geometry, mathematics, tables, figures, references, and navigation.
+% -----------------------------------------------------------------------------
+\usepackage[left=22mm,right=22mm,top=20mm,bottom=22mm,headheight=15pt]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{xltabular}
+\usepackage{array}
+\usepackage{ragged2e}
+\usepackage[table,dvipsnames]{xcolor}
+\usepackage{enumitem}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{hyperref}
+\usepackage{bookmark}
+\usepackage{caption}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage[most]{tcolorbox}
+\usepackage{fvextra}
+\usepackage{placeins}
+\usepackage{needspace}
+\usepackage{float}
+\usepackage{url}
+
+\definecolor{auditnavy}{HTML}{16324F}
+\definecolor{auditblue}{HTML}{0072B2}
+\definecolor{auditcyan}{HTML}{56B4E9}
+\definecolor{auditteal}{HTML}{009E73}
+\definecolor{auditamber}{HTML}{E69F00}
+\definecolor{auditred}{HTML}{B2182B}
+\definecolor{auditgray}{HTML}{5B6573}
+
+\graphicspath{{figures/}{../figures/}}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.35em}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.12}
+\setlist{nosep,leftmargin=2.25em,topsep=0.35em}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{2}
+\emergencystretch=2em
+\Urlmuskip=0mu plus 1mu\relax
+
+\titleformat{\section}
+  {\Large\bfseries\sffamily\color{auditnavy}}
+  {\thesection}{0.75em}{}
+  [\vspace{0.2em}\color{auditblue}\titlerule]
+\titleformat{\subsection}
+  {\large\bfseries\sffamily\color{auditnavy}}
+  {\thesubsection}{0.65em}{}
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\sffamily\color{auditgray}}
+  {\thesubsubsection}{0.6em}{}
+\titlespacing*{\section}{0pt}{2.2ex plus 0.8ex minus 0.2ex}{1.2ex}
+\titlespacing*{\subsection}{0pt}{1.8ex plus 0.5ex minus 0.2ex}{0.8ex}
+
+\captionsetup{
+  font=small,
+  labelfont={bf,color=auditnavy},
+  labelsep=quad,
+  justification=justified,
+  singlelinecheck=false,
+  skip=6pt
+}
+
+\newtcolorbox{evidencebox}{
+  enhanced,
+  breakable,
+  colback=auditblue!4,
+  colframe=auditblue!55,
+  boxrule=0.6pt,
+  arc=1mm,
+  left=2mm,right=2mm,top=1.5mm,bottom=1.5mm
+}
+
+\DefineVerbatimEnvironment{ReportVerbatim}{Verbatim}{
+  fontsize=\small,
+  breaklines=true,
+  breakanywhere=true,
+  frame=single,
+  framesep=2mm,
+  rulecolor=\color{auditgray!40}
+}
+
+\renewcommand{\contentsname}{目录}
+\renewcommand{\listfigurename}{图目录}
+\renewcommand{\listtablename}{表目录}
+\renewcommand{\figurename}{图}
+\renewcommand{\tablename}{表}
+\renewcommand{\refname}{参考文献}
+
+\hypersetup{
+  unicode=true,
+  colorlinks=true,
+  linkcolor=auditnavy,
+  citecolor=auditteal,
+  urlcolor=auditblue,
+  pdftitle={J-TEXT 至 EAST 小样本迁移与因果在线主动适配技术报告},
+  pdfauthor={J-TEXT--EAST Project},
+  pdfsubject={可审计的跨装置破裂预警研究与复现说明},
+  pdfkeywords={tokamak, disruption prediction, transfer learning, online adaptation}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\sffamily J-TEXT 至 EAST 破裂预警研究}
+\fancyhead[R]{\small\sffamily JTE-XFER-OA-TR-02 · v3.0}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.35pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyfoot[C]{\small\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+}
+
+\begin{document}
+\hypersetup{pageanchor=false}
+
+\begin{titlepage}
+  \thispagestyle{empty}
+  \begin{flushright}
+    {\small\sffamily\color{auditgray}技术报告编号：JTE-XFER-OA-TR-02\par}
+    {\small\sffamily\color{auditgray}版本：3.0 · 2026年8月23日\par}
+  \end{flushright}
+
+  \vspace*{18mm}
+  \noindent{\color{auditblue}\rule{\textwidth}{2.2pt}}\par
+  \vspace{8mm}
+  {\Huge\bfseries\sffamily\color{auditnavy}
+    J-TEXT 至 EAST 小样本迁移与\par
+    因果在线主动适配技术报告\par}
+  \vspace{4mm}
+  {\Large\sffamily\color{auditgray}
+    数据合同、模型方法、消融验证与证据边界\par}
+  \vspace{7mm}
+  \noindent{\color{auditblue}\rule{\textwidth}{0.7pt}}\par
+
+  \vfill
+  \noindent\begin{tabularx}{\textwidth}{@{}>{\bfseries\sffamily\color{auditnavy}}p{34mm}X@{}}
+    文档用途 & 面向导师、同行评审与相关技术部门的正式研究底稿及复现说明 \\
+    研究主线 & J-TEXT 源模型 $\rightarrow$ EAST 110炮适配 $\rightarrow$ EAST 360炮因果在线回放 \\
+    标签权威源 & HDF5 中的结局、DownTime 与信号内容；历史炮表不得覆盖 HDF5 标签 \\
+    正式执行环境 & \texttt{rl\_env}，NVIDIA GeForce RTX 5070；单 GPU 因果执行 \\
+    证据状态 & \texttt{DEVELOPMENT\_EVIDENCE\_NOT\_}\allowbreak{}\texttt{INDEPENDENT\_CONFIRMATION} \\
+    数据发布边界 & 原始 HDF5 不进入 Git 仓库；通过内容清单和 SHA256 绑定外部数据 \\
+  \end{tabularx}
+
+  \vspace{12mm}
+  \begin{evidencebox}
+    \textbf{证据声明。} 本报告中的 TEST220、support110 和 balanced360 均参与了不同程度的方法开发、模型选择或阈值选择。全部主结果因此属于可审计的开发性实验依据，不得解释为独立未来流确认或装置部署验收结果。
+  \end{evidencebox}
+
+  \vfill
+  {\small\sffamily\color{auditgray}
+    仓库交付包含标准 XeLaTeX 工程、机器可读证据、逐炮账本、确定性统计图和概念方法图。\par}
+\end{titlepage}
+
+\hypersetup{pageanchor=true}
+\pagenumbering{roman}
+\section*{摘要}
+\addcontentsline{toc}{section}{摘要}
+本报告系统说明 J-TEXT 至 EAST 破裂预警链路的研究目标、数据与标签合同、跨装置共享/私有特征分解、小样本迁移、炮内无标签个性化、炮间主动查询与监督更新，以及相应消融和负对照。统一三随机种子谱系的开发性结果为：J-TEXT TEST220 的 operational TPR（提前量大于10 ms）为0.8515、FPR为0.2121、AUC为0.9219；EAST balanced360 静态迁移的 TPR（提前量不小于30 ms）为0.8407、FPR为0.1667；同一父模型的因果在线回放对应为0.8481和0.1519。在线阶段在当前开发流上降低了误报，同时保持灵敏度，但中位提前量未显示稳定改善。
+
+上述结果不等价于独立验证：balanced360 曾参与方法逆向分析和候选筛选，support110 同时用于目标适配与阈值选择，源域仍存在已经识别但尚未与现有目标策略兼容的 padding shortcut。报告因此把“链路已贯通”“开发性增益存在”与“尚未完成未来流确认”明确分开，并给出能够升级证据等级的冻结式前瞻验证方案。
+
+\noindent\textbf{关键词：} 托卡马克；破裂预警；小样本迁移；测试时适配；在线主动学习；因果评估；证据审计
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.80\textwidth]{concept_graphical_abstract_v1.png}
+  \caption{J-TEXT 源表示、共享/目标私有迁移和 EAST 因果在线适配的图形摘要。该图由生成式图像工具制作，仅表达方法结构，不包含测量数据、模型输出或实验数值。}
+  \label{fig:graphical-abstract}
+\end{figure}
+
+\clearpage
+\tableofcontents
+\clearpage
+\listoffigures
+\clearpage
+
+\pagenumbering{arabic}
+\input{report_body.tex}
+
+\FloatBarrier
+\clearpage
+\bibliographystyle{unsrtnat}
+\bibliography{references}
+
+\end{document}

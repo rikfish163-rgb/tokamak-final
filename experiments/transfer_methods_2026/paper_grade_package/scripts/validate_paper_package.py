@@ -11,6 +11,7 @@ import os
 from pathlib import Path
 import re
 import shutil
+import struct
 import subprocess
 from typing import Any
 
@@ -24,6 +25,9 @@ FIGURE_MANIFEST = PACKAGE / "figures/figure_manifest.json"
 TABLE_MANIFEST = PACKAGE / "manuscript/tables/table_manifest.json"
 MANUSCRIPT = PACKAGE / "manuscript"
 REPORT = PACKAGE / "TECHNICAL_REPORT_zh.md"
+LATEX_REPORT = PACKAGE / "technical_report_zh"
+LATEX_REPORT_PDF = PACKAGE / "TECHNICAL_REPORT_zh.pdf"
+IMAGEGEN_MANIFEST = LATEX_REPORT / "imagegen_manifest.json"
 EQUAL_BUDGET = (
     PACKAGE
     / "evidence/equal_label_budget_frontload_v2/common_mask_report/summary.json"
@@ -105,6 +109,50 @@ def pdf_info(path: Path) -> dict[str, Any]:
         "bytes": path.stat().st_size,
         "text_chars": text_chars,
     }
+
+
+def validate_imagegen_manifest(path: Path) -> tuple[bool, list[str]]:
+    """Verify conceptual image assets without conflating them with data figures."""
+    if not path.is_file():
+        return False, [f"missing manifest: {path}"]
+    payload = json.loads(path.read_text())
+    root = path.parent.resolve()
+    failures: list[str] = []
+    if payload.get("schema") != "jtext-east.imagegen-provenance.v1":
+        failures.append("unexpected image-generation manifest schema")
+    if payload.get("evidence_role") != "conceptual_non_data":
+        failures.append("image-generation assets are not marked conceptual_non_data")
+    assets = payload.get("assets", [])
+    if len(assets) != 2:
+        failures.append(f"expected two conceptual assets, found {len(assets)}")
+    for row in assets:
+        relative = Path(str(row.get("path", "")))
+        candidate = (root / relative).resolve()
+        if (
+            relative.is_absolute() or ".." in relative.parts
+            or root not in candidate.parents
+        ):
+            failures.append(f"invalid conceptual image path: {relative}")
+            continue
+        if not candidate.is_file():
+            failures.append(f"missing conceptual image: {candidate}")
+            continue
+        if sha256_file(candidate) != row.get("sha256"):
+            failures.append(f"conceptual image hash mismatch: {candidate}")
+        if row.get("contains_experimental_data") is not False:
+            failures.append(f"conceptual image data boundary missing: {candidate}")
+        header = candidate.read_bytes()[:24]
+        if len(header) < 24 or header[:8] != b"\x89PNG\r\n\x1a\n":
+            failures.append(f"conceptual image is not a PNG: {candidate}")
+            continue
+        width, height = struct.unpack(">II", header[16:24])
+        expected = (int(row.get("width_px", -1)), int(row.get("height_px", -1)))
+        if (width, height) != expected or width < 1200 or height < 800:
+            failures.append(
+                f"conceptual image dimensions mismatch: {candidate} "
+                f"actual={(width, height)} expected={expected}"
+            )
+    return not failures, failures
 
 
 def validate_manifest(path: Path, output_base: Path, key: str) -> tuple[bool, list[str]]:
@@ -428,6 +476,11 @@ def validate_text_artifact_portability(root: Path) -> tuple[bool, list[str]]:
     patterns = ("/media/", "/home/", "/dev/shm/", "C:\\Users\\")
     for path in root.rglob("*"):
         if not path.is_file() or path.suffix.lower() not in suffixes:
+            continue
+        # OUTPUT is regenerated only after all checks finish and may contain
+        # absolute paths in failure diagnostics from the previous run.  It is
+        # not an input artifact and must not poison the next validation pass.
+        if path.resolve() == OUTPUT.resolve():
             continue
         text = path.read_text(errors="replace")
         matched = [pattern for pattern in patterns if pattern in text]
@@ -825,6 +878,12 @@ def main() -> None:
         check(figures_ok, "figure hashes", figure_failures),
         check(tables_ok, "table hashes", table_failures),
     ])
+    imagegen_ok, imagegen_failures = validate_imagegen_manifest(IMAGEGEN_MANIFEST)
+    results.append(check(
+        imagegen_ok,
+        "image-generation conceptual asset hashes and non-data role",
+        imagegen_failures,
+    ))
 
     random_archive_ok, random_archive_failures = validate_compact_artifact_manifest(
         PACKAGE / "evidence/causal_random_query_online_v1/artifact_manifest.json"
@@ -932,6 +991,14 @@ def main() -> None:
     required_files = [
         PACKAGE / "README.md", REPORT, MANUSCRIPT / "main.tex",
         MANUSCRIPT / "supplement.tex", MANUSCRIPT / "references.bib",
+        LATEX_REPORT / "main.tex", LATEX_REPORT / "report_body.tex",
+        LATEX_REPORT / "references.bib",
+        LATEX_REPORT / "Makefile", LATEX_REPORT / "README.md",
+        LATEX_REPORT / "IMAGEGEN_PROVENANCE.md", IMAGEGEN_MANIFEST,
+        LATEX_REPORT / "figures/concept_graphical_abstract_v1.png",
+        LATEX_REPORT / "figures/concept_causal_online_v1.png",
+        PACKAGE / "scripts/convert_technical_report_zh_to_latex.py",
+        LATEX_REPORT_PDF,
         PACKAGE / "NATURE_PORTFOLIO_READINESS.md", PACKAGE / "MODEL_CARD.md",
         PACKAGE / "FIVE_WAY_AUDIT.md",
         PACKAGE / "evidence/case_study_seed131_shot73790.npz",
@@ -981,6 +1048,10 @@ def main() -> None:
     main_text = (MANUSCRIPT / "main.tex").read_text()
     supplement_text = (MANUSCRIPT / "supplement.tex").read_text()
     report_text = REPORT.read_text()
+    latex_report_text = "\n".join((
+        (LATEX_REPORT / "main.tex").read_text(),
+        (LATEX_REPORT / "report_body.tex").read_text(),
+    ))
     readiness_text = (PACKAGE / "NATURE_PORTFOLIO_READINESS.md").read_text()
     combined = "\n".join((main_text, supplement_text, report_text, readiness_text))
     mandatory = (
@@ -1006,6 +1077,11 @@ def main() -> None:
         "source comparator is not mislabeled independent/chronological",
         [token for token in forbidden_evidence_labels if token in combined.lower()],
     ))
+    results.append(check(
+        latex_report_text.count("生成式图像工具制作") == 2
+        and latex_report_text.count("不包含测量数据") == 2,
+        "Chinese LaTeX report marks both generated visuals as conceptual non-data",
+    ))
     results.extend([
         check("\\section*{Data availability}" in main_text,
               "separate Data availability section"),
@@ -1027,6 +1103,7 @@ def main() -> None:
     ))
 
     pdfs = {name: pdf_info(MANUSCRIPT / name) for name in ("main.pdf", "supplement.pdf")}
+    pdfs["TECHNICAL_REPORT_zh.pdf"] = pdf_info(LATEX_REPORT_PDF)
     results.extend([
         check(pdfs["main.pdf"]["exists"] and pdfs["main.pdf"]["pages"] >= 6
               and pdfs["main.pdf"]["bytes"] >= 50_000
@@ -1036,6 +1113,12 @@ def main() -> None:
               and pdfs["supplement.pdf"]["bytes"] >= 50_000
               and pdfs["supplement.pdf"]["text_chars"] >= 20_000,
               "compiled supplement PDF", pdfs["supplement.pdf"]),
+        check(pdfs["TECHNICAL_REPORT_zh.pdf"]["exists"]
+              and pdfs["TECHNICAL_REPORT_zh.pdf"]["pages"] >= 35
+              and pdfs["TECHNICAL_REPORT_zh.pdf"]["bytes"] >= 2_000_000
+              and pdfs["TECHNICAL_REPORT_zh.pdf"]["text_chars"] >= 45_000,
+              "compiled Chinese XeLaTeX technical report",
+              pdfs["TECHNICAL_REPORT_zh.pdf"]),
     ])
 
     for seed, hashes in lineage["artifact_hashes"].items():
@@ -1084,7 +1167,7 @@ def main() -> None:
 
     passed = all(item["passed"] for item in results)
     payload = {
-        "schema_version": "paper-package-validation-v4",
+        "schema_version": "paper-package-validation-v5",
         "status": "PASSED" if passed else "FAILED",
         "validation_scope": "local package integrity and disclosure completeness",
         "nature_submission_readiness": "BLOCKED_PENDING_NEW_EVIDENCE_AND_ARCHIVAL_RELEASE",

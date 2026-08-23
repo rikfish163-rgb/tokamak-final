@@ -324,6 +324,36 @@ def test_q30_manifest_and_primary_causal_ledgers_are_fail_closed() -> None:
     assert passed, failures
 
 
+def test_portability_scan_ignores_its_previous_failure_report(
+    tmp_path: Path,
+) -> None:
+    validator = validator_module()
+    validator.OUTPUT = tmp_path / "validation_report.json"
+    validator.OUTPUT.write_text('{"diagnostic": "/media/workstation/path"}')
+    (tmp_path / "portable.md").write_text("portable release text")
+
+    passed, failures = validator.validate_text_artifact_portability(tmp_path)
+
+    assert passed, failures
+    (tmp_path / "other.json").write_text('{"bad": "/media/workstation/path"}')
+    passed, failures = validator.validate_text_artifact_portability(tmp_path)
+    assert not passed
+    assert failures == ["workstation path in other.json: ['/media/']"]
+
+
+def test_conceptual_image_manifest_is_hash_bound_and_non_data() -> None:
+    validator = validator_module()
+    manifest = (
+        ROOT
+        / "experiments/transfer_methods_2026/paper_grade_package"
+        / "technical_report_zh/imagegen_manifest.json"
+    )
+
+    passed, failures = validator.validate_imagegen_manifest(manifest)
+
+    assert passed, failures
+
+
 def test_alarm_state_machine_audit_records_real_parameter_updates() -> None:
     evidence = module().read_json(
         ROOT / "experiments/transfer_methods_2026/paper_grade_package/evidence/three_stage_results.json"

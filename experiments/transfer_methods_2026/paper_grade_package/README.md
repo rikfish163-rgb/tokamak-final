@@ -133,8 +133,11 @@ scripts/
   archive_east_target_only_results.py
   train_source_padfix.py             shortcut-repair ablation
   evaluate_locked_source_padfix.py
+  convert_technical_report_zh_to_latex.py
+                                      deterministic Markdown-to-LaTeX synchronization
 TECHNICAL_REPORT_zh.md               formal Chinese technical report with derivations and evidence grading
-TECHNICAL_REPORT_zh.pdf              rendered 30-page A4 Chinese technical review copy
+technical_report_zh/                 standard XeLaTeX project and conceptual-image provenance
+TECHNICAL_REPORT_zh.pdf              compiled A4 Chinese technical report
 NATURE_PORTFOLIO_READINESS.md        submission-readiness gate and blockers
 FIVE_WAY_AUDIT.md                    independent five-lane verdict and fixes
 ```
@@ -200,15 +203,18 @@ Compile and validate:
 cd experiments/transfer_methods_2026/paper_grade_package/manuscript
 latexmk -xelatex -interaction=nonstopmode -halt-on-error main.tex
 latexmk -xelatex -interaction=nonstopmode -halt-on-error supplement.tex
+cd ../technical_report_zh
+make
 cd ../../../..
 python experiments/transfer_methods_2026/paper_grade_package/scripts/validate_paper_package.py
 ```
 
-The validator currently checks 128 package invariants, including source and
+The validator currently checks 131 package invariants, including source and
 target-parent lineage, Q30's recoverable identity boundary, primary causal
 ledger relations, compact-ledger decompression hashes, figure/table input and
 output manifests, text-artifact portability, and the portable 2,203-file HDF5
-content manifest. A 128/128 result
+content manifest, the Chinese XeLaTeX report, and the explicit non-data role and
+hashes of its generated conceptual visuals. A 131/131 result
 means the released development evidence is internally complete and mutually
 consistent; it does **not** upgrade the scientific status to independent
 confirmation.

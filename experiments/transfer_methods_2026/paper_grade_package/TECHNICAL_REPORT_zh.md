@@ -327,7 +327,7 @@ tau_FP = max(0.50, past disruptive-class FP-score q0.90 + 0.06)
 
 为排除“在线主动只是因为多看了 EAST 标签”这一替代解释，针对每个 seed 读取其真实查询炮身份，把这些炮的 HDF5 标签在流开始前直接加入普通迁移重训。所有被加入训练的查询炮随后从该 seed 的评分集合剔除；静态模型、前置重训模型和因果在线模型只在完全相同的标签不相交补集上比较。
 
-正式比较前先做父模型复现门。support110-only 重训的 encoder/head、shared adapter、private adapter SHA256、support 阈值和静态预测均与历史最佳父模型完全一致。早期 v1 因后来采样器从“先抽炮、再在炮内抽窗口”漂移成“先抽类别、再抽炮”而未通过复现门，已标记 `INVALID_PARENT_FIDELITY`，不进入结论。
+正式比较前先执行父模型复现门；support110-only 重训所得的各模块 SHA256、阈值和静态预测必须与历史最佳父模型完全一致。早期 v1 因后来采样器从“先抽炮、再在炮内抽窗口”漂移成“先抽类别、再抽炮”而未通过复现门，已标记 `INVALID_PARENT_FIDELITY`，不进入结论。
 
 | seed | 查询 D/N | 评分 D/N | 静态 TPR30/FPR/J | 查询标签前置 TPR30/FPR/J | 在线 TPR30/FPR/J |
 |---:|---:|---:|---:|---:|---:|
@@ -468,7 +468,7 @@ FPR <= 0.20
 8. `fig7_negative_controls_and_alarm_robustness`：负对照与前置报警鲁棒性；
 9. `fig8_equal_label_budget_frontload_ablation`：同查询标签预算前置重训、随机前置与因果在线的配对消融；
 10. `fig9_active_vs_causal_random_query`：完整主动机制与因果块匹配随机查询的效用差异及实际更新尝试数；
-11. `fig10_target_only_vs_transfer`：严格 EAST-only、source-scaler target-only 与 J-TEXT→EAST 静态迁移的三 seed 比较；
+11. `fig10_target_only_vs_transfer`：EAST-only、source-scaler target-only 和跨装置静态迁移的三 seed 比较；
 12. `fig11_equal_compute_selector_screen`：固定16+16窗口、2+2 optimizer attempts（guard提交数可不同）算子下的查询名单负结果。
 
 `figure_manifest.json` 保存所有输入和输出 SHA256。图 4 所需 NPZ 已复制进本论文包，不再依赖 `/home` 的个人工作目录。
@@ -534,7 +534,7 @@ FPR <= 0.20
 - 图表生成器：`scripts/generate_figures.py`、`scripts/generate_latex_tables.py`；
 - 最终验证：`scripts/validate_paper_package.py`；
 - 本报告源文件：`TECHNICAL_REPORT_zh.md`；
-- 本报告排版版：`TECHNICAL_REPORT_zh.pdf`（A4，30页）。
+- 本报告排版版：`TECHNICAL_REPORT_zh.pdf`（A4，标准 XeLaTeX 编译）。
 
 本报告以可审计性为首要目标：将已识别的有效性风险转化为可复现的实验对象，明确区分当前证据可支持与不可支持的结论，并给出能够提升证据等级的前瞻确认协议。
 
@@ -722,7 +722,13 @@ $$
 =\operatorname{softplus}(z)-yz.
 $$
 
-代码使用 logits 形式避免数值溢出。训练是平衡采样分布 $Q_S$ 下的估计 $\widehat{\mathcal L}_{src}=128^{-1}\sum_i\ell_{BCE}(z_i,y_i)$。$Q_S$ 与真实部署分布不同，因此输出不能自动解释为校准概率。
+代码使用 logits 形式避免数值溢出。训练是平衡采样分布 $Q_S$ 下的估计
+
+$$
+\widehat{\mathcal L}_{src}=128^{-1}\sum_i\ell_{BCE}(z_i,y_i).
+$$
+
+$Q_S$ 与真实部署分布不同，因此输出不能自动解释为校准概率。
 
 VAL160 阈值选择为
 

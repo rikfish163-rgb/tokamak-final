@@ -1,11 +1,11 @@
 {
-  "schema_version": "paper-package-validation-v4",
+  "schema_version": "paper-package-validation-v5",
   "status": "PASSED",
   "validation_scope": "local package integrity and disclosure completeness",
   "nature_submission_readiness": "BLOCKED_PENDING_NEW_EVIDENCE_AND_ARCHIVAL_RELEASE",
   "passed": true,
-  "checks_passed": 128,
-  "checks_total": 128,
+  "checks_passed": 131,
+  "checks_total": 131,
   "checks": [
     {
       "name": "evidence status preserves non-independent boundary",
@@ -687,6 +687,11 @@
       "detail": []
     },
     {
+      "name": "image-generation conceptual asset hashes and non-data role",
+      "passed": true,
+      "detail": []
+    },
+    {
       "name": "causal random-query compact artifact hashes",
       "passed": true,
       "detail": []
@@ -793,6 +798,11 @@
       "detail": []
     },
     {
+      "name": "Chinese LaTeX report marks both generated visuals as conceptual non-data",
+      "passed": true,
+      "detail": null
+    },
+    {
       "name": "separate Data availability section",
       "passed": true,
       "detail": null
@@ -835,6 +845,16 @@
         "pages": 13,
         "bytes": 110327,
         "text_chars": 39437
+      }
+    },
+    {
+      "name": "compiled Chinese XeLaTeX technical report",
+      "passed": true,
+      "detail": {
+        "exists": true,
+        "pages": 40,
+        "bytes": 3081226,
+        "text_chars": 55143
       }
     },
     {
@@ -1016,6 +1036,12 @@
       "pages": 13,
       "bytes": 110327,
       "text_chars": 39437
+    },
+    "TECHNICAL_REPORT_zh.pdf": {
+      "exists": true,
+      "pages": 40,
+      "bytes": 3081226,
+      "text_chars": 55143
     }
   }
 }
