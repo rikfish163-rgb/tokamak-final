@@ -200,6 +200,58 @@ def train_adapter(adapter, cache, *, seed: int, threshold: float):
     return history
 
 
+def fit_selected_shared_parent(
+    support_parent: dict[str, Any], *, seed: int,
+) -> dict[str, Any]:
+    """Fit only the shared support110 adapter for the selected parent.
+
+    The caller must already have used ``train_selected_support_parent``.  This
+    function deliberately has no fallback to ``shot_alarm.train()``, whose
+    legacy path opens balanced360 while constructing the base model.
+    """
+
+    required = {
+        "encoder", "head", "support", "physics_scales", "threshold",
+    }
+    missing = sorted(required.difference(support_parent))
+    if missing:
+        raise ValueError(
+            "selected support parent is missing: " + ", ".join(missing)
+        )
+    encoder = support_parent["encoder"]
+    head = support_parent["head"]
+    encoder.eval(); head.eval()
+    for parameter in encoder.parameters():
+        parameter.requires_grad_(False)
+    for parameter in head.parameters():
+        parameter.requires_grad_(False)
+    base_hash = a1.model_sha256(encoder, head)
+    cache = build_support_cache(
+        encoder, head, support_parent["support"],
+        support_parent["physics_scales"],
+    )
+    if not cache:
+        raise RuntimeError("selected shared adapter has no support110 cache")
+    torch.manual_seed(int(seed) + 5000)
+    shared = dynamic.DynamicHazardAdapter(
+        feature_dim=FEATURE_DIM, physics_dim=PHYSICS_DIM, hidden=16,
+        max_logit_residual=1.0, min_physics_families=2,
+    ).to(alarm.DEV)
+    history = train_adapter(
+        shared, cache, seed=int(seed),
+        threshold=float(support_parent["threshold"]),
+    )
+    shared.eval()
+    if a1.model_sha256(encoder, head) != base_hash:
+        raise RuntimeError("selected shared adapter changed the frozen EAST base")
+    return {
+        "shared": shared,
+        "support_cache": cache,
+        "training_history": history,
+        "base_sha256_before_after": base_hash,
+    }
+
+
 def score_shot(
     adapter, enc, head, shot, scales, base_risk, *,
     minimum_positive_residual: float = 0.0,

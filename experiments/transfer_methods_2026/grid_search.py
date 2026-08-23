@@ -17,6 +17,7 @@ Metric: 360 balanced test, per-shot max-pool over candidate windows;
 """
 import argparse, json, math, os, time, sys
 os.environ.setdefault("CUBLAS_WORKSPACE_CONFIG", ":4096:8")
+import h5py
 import numpy as np, torch, torch.nn as nn, torch.nn.functional as F
 from pathlib import Path
 
@@ -32,6 +33,9 @@ DEV = "cuda" if torch.cuda.is_available() else "cpu"
 W = 128
 SOURCE_CHECKPOINT_SCHEMA = "jtext_rebuilt17_transformer_source_v1"
 SOURCE_ARCHITECTURE_VERSION = "rebuilt17-patch-transformer-128x8-d64-l2-h4-v1"
+SELECTED_EAST_SUPPORT_ROSTER = (
+    ROOT / "config/splits/east_support110_label_free_roster.jsonl"
+)
 
 
 def source_model_config(channels):
@@ -57,13 +61,18 @@ def default_source_checkpoint(seed):
     return bundled
 
 
-def _load_rebuilt_shots(device, ids):
+def _load_rebuilt_shots(device, ids, *, require_timebase=False):
     out, miss = [], []
     for sid in ids:
+        path = RH.DATA/device/"unified_hdf5"/str(sid//100*100)/f"{sid}.hdf5"
         try:
+            if require_timebase:
+                import selected_mainline_contract as selected_contract
+
+                with h5py.File(path, "r") as handle:
+                    selected_contract.read_required_timebase(handle["data/ip"])
             arr, rate, start, down, isd = RH.load_raw(
-                RH.DATA/device/"unified_hdf5"/str(sid//100*100)/f"{sid}.hdf5",
-                device,
+                path, device,
             )
         except Exception:
             miss.append(int(sid))
@@ -92,6 +101,27 @@ def load_east(*, include_test=True):
             f"transfer={missing_transfer}, test={missing_test}"
         )
     return transfer, test
+
+
+def load_east_selected_support(
+    roster_manifest=SELECTED_EAST_SUPPORT_ROSTER,
+):
+    """Load only hash-bound support110 IDs; never construct ``DataSpec``."""
+
+    import selected_mainline_contract as selected_contract
+
+    support_ids = selected_contract.load_label_free_roster(
+        roster_manifest, expected_count=110,
+    )
+    transfer, missing = _load_rebuilt_shots(
+        "EAST", support_ids, require_timebase=True,
+    )
+    if missing:
+        raise RuntimeError(f"missing selected EAST support HDF5 shots: {missing}")
+    actual_ids = [int(shot["shot"]) for shot in transfer]
+    if actual_ids != support_ids:
+        raise RuntimeError("selected EAST support roster order mismatch")
+    return transfer, []
 
 
 def load_all(*, include_test=True):
@@ -281,8 +311,18 @@ class Head(nn.Module):
     def forward(self, z): return self.net(z).squeeze(-1)
 
 
-def load_source_checkpoint(path, *, channels, expected_seed=None, device=None):
+def load_source_checkpoint(
+    path, *, channels, expected_seed=None, device=None, allow_fallback=True,
+):
     run_device = device or DEV
+    if path is None:
+        if not allow_fallback:
+            raise ValueError(
+                "explicit source checkpoint is required when fallback is disabled"
+            )
+        if expected_seed is None:
+            raise ValueError("source checkpoint fallback requires an expected seed")
+        path = default_source_checkpoint(expected_seed)
     path = Path(path).expanduser().resolve()
     if not path.is_file():
         raise FileNotFoundError(f"J-TEXT source checkpoint does not exist: {path}")
@@ -318,7 +358,7 @@ def load_source_checkpoint(path, *, channels, expected_seed=None, device=None):
 
 def train_adapt(
     src_sampler, tr_sampler, C, epochs=12, bs=128, seed=0,
-    *, source_checkpoint=None, device=None,
+    *, source_checkpoint=None, device=None, allow_fallback=True,
 ):
     run_device = device or DEV
     torch.manual_seed(seed); np.random.seed(seed); torch.cuda.manual_seed_all(seed)
@@ -327,9 +367,14 @@ def train_adapt(
     torch.use_deterministic_algorithms(True)
     if source_checkpoint is not None:
         enc, head, _checkpoint = load_source_checkpoint(
-            source_checkpoint, channels=C, expected_seed=seed, device=run_device
+            source_checkpoint, channels=C, expected_seed=seed, device=run_device,
+            allow_fallback=allow_fallback,
         )
     else:
+        if not allow_fallback:
+            raise ValueError(
+                "selected adaptation requires an explicit source checkpoint"
+            )
         if src_sampler is None:
             raise ValueError("legacy source training requires a source sampler")
         enc = Enc(C).to(run_device); head = Head().to(run_device)

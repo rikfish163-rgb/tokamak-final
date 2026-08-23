@@ -47,6 +47,7 @@ import run_online_active_a1 as a1  # noqa: E402
 import run_online_active_a3 as a3  # noqa: E402
 import run_online_protected_residual as old_online  # noqa: E402
 import run_two_timescale_online as two_runner  # noqa: E402
+import selected_mainline_contract as selected_mainline  # noqa: E402
 import shot_alarm as alarm  # noqa: E402
 import two_timescale_online_adapter as two_scale  # noqa: E402
 import unified_online_value as value_module  # noqa: E402
@@ -122,10 +123,26 @@ def resolve_parent_directories(
 
 
 def validate_sealed_parent_contract(
-    payload: dict[str, Any], fidelity: dict[str, Any], *, seed: int,
+    payload: dict[str, Any], fidelity: dict[str, Any] | None, *, seed: int,
     source_checkpoint_sha256: str,
+    selected_contract: selected_mainline.SelectedMainlineContract | None = None,
 ) -> dict[str, Any]:
     """Fail closed unless an archived support-only parent has exact lineage."""
+    if payload.get("schema_version") == selected_mainline.SELECTED_PARENT_SCHEMA:
+        if selected_contract is None:
+            raise RuntimeError(
+                "selected parent requires a selected mainline contract"
+            )
+        if selected_contract.seed != int(seed):
+            raise RuntimeError("selected mainline contract seed mismatch")
+        if (
+            selected_contract.source_checkpoint_sha256
+            != str(source_checkpoint_sha256)
+        ):
+            raise RuntimeError("selected mainline contract source checkpoint mismatch")
+        return selected_mainline.validate_selected_parent(payload, selected_contract)
+    if selected_contract is not None:
+        raise RuntimeError("selected mainline rejects legacy parent schema")
     if payload.get("schema_version") != "equal-label-budget-frontload-v2":
         raise RuntimeError("sealed parent schema mismatch")
     if int(payload.get("seed", -1)) != int(seed):
@@ -134,7 +151,7 @@ def validate_sealed_parent_contract(
         raise RuntimeError("sealed parent must come from the support_only fidelity arm")
     if payload.get("source_checkpoint_sha256") != str(source_checkpoint_sha256):
         raise RuntimeError("sealed parent source checkpoint mismatch")
-    if not bool(fidelity.get("passed")):
+    if not isinstance(fidelity, dict) or not bool(fidelity.get("passed")):
         raise RuntimeError("sealed parent fidelity gate did not pass")
     expected = fidelity.get("expected")
     actual = fidelity.get("actual")
@@ -458,12 +475,18 @@ def fixed_compute_supervised_indices(
 
 def seal_static_phase_trace(
     path: Path, *, shot_id: int, static_logit: np.ndarray,
-) -> None:
-    np.savez_compressed(
-        path,
-        shot_id=np.asarray([int(shot_id)], dtype=np.int64),
-        static_logit=np.asarray(static_logit, dtype=np.float32),
-    )
+) -> str:
+    if path.exists():
+        raise FileExistsError(f"static phase trace already exists: {path}")
+    with path.open("xb") as handle:
+        np.savez_compressed(
+            handle,
+            shot_id=np.asarray([int(shot_id)], dtype=np.int64),
+            static_logit=np.asarray(static_logit, dtype=np.float32),
+        )
+        handle.flush()
+        os.fsync(handle.fileno())
+    return a1.sha256_file(path)
 
 
 def load_static_phase_trace(path: Path, *, expected_shot_id: int) -> np.ndarray:
@@ -2129,6 +2152,14 @@ def score_online_shot(
     }
 
 
+def load_selected_mainline_contract(
+    path: Path,
+) -> selected_mainline.SelectedMainlineContract:
+    document = json.loads(Path(path).expanduser().resolve().read_text())
+    payload = document.get("selected_contract", document)
+    return selected_mainline.SelectedMainlineContract.from_dict(payload)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--seed", type=int, default=131)
@@ -2292,6 +2323,14 @@ def main() -> None:
         help="mark this 360-shot replay as architecture/parameter development",
     )
     parser.add_argument("--frozen-online-config", type=Path, default=None)
+    parser.add_argument(
+        "--selected-mainline-contract", type=Path, default=None,
+        help="fail-closed dynamic-source/fixed125 run contract",
+    )
+    parser.add_argument(
+        "--static-only", action="store_true",
+        help="stop after hashing the complete static seal and post-seal outcome join",
+    )
     args = parser.parse_args()
     run_started_at = time.perf_counter()
     cuda_available = bool(
@@ -2308,6 +2347,23 @@ def main() -> None:
     validate_locked_best_v8_arguments(args)
     validate_episode_v3_arguments(args)
     validate_timescale_ablation_arguments(args)
+    selected_contract = (
+        load_selected_mainline_contract(args.selected_mainline_contract)
+        if args.selected_mainline_contract is not None else None
+    )
+    if selected_contract is not None:
+        if int(args.seed) != selected_contract.seed:
+            raise ValueError("selected mainline seed mismatch")
+        if args.source_checkpoint is None:
+            raise ValueError("selected mainline requires an explicit source checkpoint")
+        if args.sealed_parent_state is None:
+            raise ValueError("selected mainline requires an explicit EAST parent")
+        if args.roster_manifest is None:
+            raise ValueError("selected mainline requires an explicit balanced360 roster")
+        if int(args.max_shots) != 360:
+            raise ValueError("selected mainline requires the complete 360-shot roster")
+    elif args.static_only:
+        raise ValueError("static-only mode requires a selected mainline contract")
     if args.locked_best_v8 and (
         args.strict_window_active or args.typed_endpoint_memory
     ):
@@ -2315,22 +2371,37 @@ def main() -> None:
     args.out = args.out or HERE / f"unified_online_active_seed{args.seed}_v1"
     if args.out.exists():
         raise FileExistsError(f"output exists: {args.out}")
-    args.out.mkdir(parents=True)
-    (args.out / "risk_traces").mkdir()
-    (args.out / "static_risk_traces").mkdir()
+    if selected_contract is None:
+        args.out.mkdir(parents=True)
+        (args.out / "risk_traces").mkdir()
+        (args.out / "static_risk_traces").mkdir()
     if args.max_shots <= 0 or args.max_shots > 360:
         raise ValueError("max-shots must lie in [1, 360]")
 
     sealed_parent_requested = args.sealed_parent_state is not None
-    a1_dir, adapter_dir = resolve_parent_directories(
-        seed=args.seed, a1_dir=args.a1_dir, adapter_dir=args.adapter_dir,
-    )
+    if selected_contract is not None:
+        a1_dir = adapter_dir = None
+    else:
+        a1_dir, adapter_dir = resolve_parent_directories(
+            seed=args.seed, a1_dir=args.a1_dir, adapter_dir=args.adapter_dir,
+        )
     if sealed_parent_requested and args.roster_manifest is not None:
         a1_config = None
         threshold = float("nan")
         scales = None
-        roster_rows = load_jsonl(args.roster_manifest.expanduser().resolve())
-        base_roster = [int(row["shot"]) for row in roster_rows]
+        if selected_contract is not None:
+            base_roster = selected_mainline.load_label_free_roster(
+                args.roster_manifest, expected_count=360,
+            )
+            if (
+                selected_contract.east_test_roster_sha256 is None
+                or selected_mainline.sha256_json(base_roster)
+                != selected_contract.east_test_roster_sha256
+            ):
+                raise RuntimeError("selected EAST test roster SHA256 mismatch")
+        else:
+            roster_rows = load_jsonl(args.roster_manifest.expanduser().resolve())
+            base_roster = [int(row["shot"]) for row in roster_rows]
     else:
         a1_config = json.loads((a1_dir / "config.json").read_text())
         threshold = float(a1_config["threshold"])
@@ -2361,9 +2432,6 @@ def main() -> None:
         torch.set_float32_matmul_precision("highest")
         if not sealed_parent_path.is_file():
             raise FileNotFoundError(sealed_parent_path)
-        fidelity_path = sealed_parent_path.parent / "parent_fidelity.json"
-        if not fidelity_path.is_file():
-            raise RuntimeError("sealed parent is missing parent_fidelity.json")
         source_path = Path(
             args.source_checkpoint or alarm.source_checkpoint_path(args.seed)
         ).expanduser().resolve()
@@ -2371,19 +2439,51 @@ def main() -> None:
         sealed_parent_payload = torch.load(
             sealed_parent_path, map_location=alarm.DEV, weights_only=True,
         )
-        sealed_parent_lineage = validate_sealed_parent_contract(
-            sealed_parent_payload, json.loads(fidelity_path.read_text()),
-            seed=args.seed, source_checkpoint_sha256=source_sha256,
-        )
-        enc, head, source_contract = alarm.GS.load_source_checkpoint(
-            source_path, channels=len(alarm.GS.RH.REBUILD),
-            expected_seed=args.seed, device=alarm.DEV,
-        )
+        if selected_contract is not None:
+            sealed_parent_lineage = validate_sealed_parent_contract(
+                sealed_parent_payload, None,
+                seed=args.seed, source_checkpoint_sha256=source_sha256,
+                selected_contract=selected_contract,
+            )
+            enc, head, source_contract = (
+                selected_mainline.load_selected_source_checkpoint(
+                    source_path, args.seed,
+                )
+            )
+            enc.to(alarm.DEV); head.to(alarm.DEV)
+        else:
+            fidelity_path = sealed_parent_path.parent / "parent_fidelity.json"
+            if not fidelity_path.is_file():
+                raise RuntimeError("sealed parent is missing parent_fidelity.json")
+            sealed_parent_lineage = validate_sealed_parent_contract(
+                sealed_parent_payload, json.loads(fidelity_path.read_text()),
+                seed=args.seed, source_checkpoint_sha256=source_sha256,
+            )
+            enc, head, source_contract = alarm.GS.load_source_checkpoint(
+                source_path, channels=len(alarm.GS.RH.REBUILD),
+                expected_seed=args.seed, device=alarm.DEV,
+            )
         enc.load_state_dict(sealed_parent_payload["encoder"], strict=True)
         head.load_state_dict(sealed_parent_payload["head"], strict=True)
-        transfer, unexpected_test = alarm.GS.load_east(include_test=False)
+        transfer, unexpected_test = (
+            alarm.GS.load_east_selected_support()
+            if selected_contract is not None
+            else alarm.GS.load_east(include_test=False)
+        )
         if unexpected_test:
             raise RuntimeError("sealed parent loader unexpectedly opened EAST test")
+        if selected_contract is not None:
+            support_ids = sorted(int(shot["shot"]) for shot in transfer)
+            if (
+                selected_mainline.sha256_json(support_ids)
+                != selected_contract.east_support_roster_sha256
+            ):
+                raise RuntimeError("selected EAST support roster SHA256 mismatch")
+            transfer, target_label_audit = alarm.prepare_east_training_labels(
+                transfer, policy="fixed125",
+            )
+            if target_label_audit.get("policy") != "fixed125":
+                raise RuntimeError("selected EAST target label audit mismatch")
         transfer = alarm.GS.transform(transfer, "base")
         med17 = source_contract["scaler_center"].cpu().numpy()
         scale17 = source_contract["scaler_scale"].cpu().numpy()
@@ -2471,6 +2571,37 @@ def main() -> None:
         seed=args.seed + 41001,
     )
     shared_error_q80 = shared_reconstruction_scale(shared_parent, support_cache)
+    if selected_contract is not None:
+        recomputed_preprocessing = {
+            "target_scaler": {
+                "center": np.asarray(med17).tolist(),
+                "scale": np.asarray(scale17).tolist(),
+            },
+            "raw8_scaler": {
+                "center": np.asarray(median8).tolist(),
+                "scale": np.asarray(scale8).tolist(),
+            },
+            "physics_scales": {
+                str(name): float(value) for name, value in scales.items()
+            },
+            "reconstruction_constants": {
+                "minimum_positive_residual": float(minimum_positive),
+                "positive_support_windows": int(positive_count),
+                "shared_reconstruction_q80": float(shared_error_q80),
+                "private_reconstruction_q80": float(
+                    private_contract["private_reconstruction_q80"]
+                ),
+            },
+        }
+        for name, value in recomputed_preprocessing.items():
+            if (
+                selected_mainline.sha256_json(value)
+                != getattr(selected_contract, f"{name}_sha256")
+                or value != sealed_parent_payload.get(name)
+            ):
+                raise RuntimeError(
+                    f"selected startup {name.replace('_', ' ')} mismatch"
+                )
     shared_controller = two_scale.TwoTimescaleAdapterController(
         copy.deepcopy(shared_parent), guard_batch=shared_guard,
         intra_lr=args.intra_lr, inter_lr=args.inter_lr,
@@ -2640,13 +2771,24 @@ def main() -> None:
     if phase2_initial_private_hash != static_private_hash:
         raise RuntimeError("phase2 private model did not reset to static migrated parent")
 
+    if selected_contract is not None:
+        # All decoded state, receipts, rosters, scalers, and reconstruction
+        # constants have been recomputed above.  Only now may output exist.
+        args.out.mkdir(parents=True)
+        (args.out / "risk_traces").mkdir()
+        (args.out / "static_risk_traces").mkdir()
+
     # Phase 1 is completed and sealed for the entire roster before any online
     # query controller, outcome oracle, or update path is used.
     static_rows: list[dict[str, Any]] = []
+    static_trace_manifest: list[dict[str, Any]] = []
     static_writer = a1.JsonlSealWriter(args.out / "static_predictions.jsonl")
     try:
         for stream_index, shot_id in enumerate(roster):
-            shot = two_runner.load_east_signal_only(shot_id, med17, scale17)
+            shot = two_runner.load_east_signal_only(
+                shot_id, med17, scale17,
+                require_timebase=selected_contract is not None,
+            )
             base_risk = base_risk_for_parent(
                 enc, head, shot,
                 cached_path=(
@@ -2722,28 +2864,111 @@ def main() -> None:
                 "shared_parent_sha256": static_shared_hash,
                 "private_parent_sha256": static_private_hash,
             }
-            static_rows.append(static_row)
-            static_writer.append(static_row)
-            seal_static_phase_trace(
-                args.out / "static_risk_traces" / f"{shot_id}.npz",
+            trace_relative = Path("static_risk_traces") / f"{shot_id}.npz"
+            trace_sha = seal_static_phase_trace(
+                args.out / trace_relative,
                 shot_id=shot_id, static_logit=static_logit,
             )
+            static_row["risk_trace_path"] = str(trace_relative)
+            static_row["risk_trace_sha256"] = trace_sha
+            static_trace_manifest.append({
+                "shot": int(shot_id),
+                "path": str(trace_relative),
+                "sha256": trace_sha,
+            })
+            static_rows.append(static_row)
+            static_writer.append(static_row)
             if (stream_index + 1) % 20 == 0:
                 print(
                     f"[STATIC PHASE] sealed {stream_index + 1}/{len(roster)}",
                     flush=True,
                 )
     finally:
+        if not static_writer.handle.closed:
+            static_writer.handle.flush()
+            os.fsync(static_writer.handle.fileno())
         static_writer.close()
     if len(static_rows) != len(roster):
         raise RuntimeError("static phase did not seal the complete roster")
     static_predictions_hash = a1.sha256_file(args.out / "static_predictions.jsonl")
+    static_seal_manifest_path = args.out / "static_seal_manifest.json"
+    static_seal_manifest_sha256 = None
+    if selected_contract is not None:
+        _static_manifest, static_seal_manifest_sha256 = (
+            selected_mainline.write_static_seal_manifest(
+                static_seal_manifest_path,
+                stage="east-static",
+                prediction_path=args.out / "static_predictions.jsonl",
+                roster=roster,
+                risk_traces=static_trace_manifest,
+                threshold_receipt_sha256=(
+                    selected_contract.east_threshold_receipt_sha256
+                ),
+                parent_fingerprint_sha256=sealed_parent_payload[
+                    "canonical_parent_fingerprint_sha256"
+                ],
+            )
+        )
+        selected_mainline.validate_static_seal_manifest(
+            static_seal_manifest_path,
+            expected_count=360,
+            expected_stage="east-static",
+        )
     print(
         f"[STATIC PHASE] complete sha256={static_predictions_hash}; "
         "starting reset online phase",
         flush=True,
     )
 
+    if args.static_only:
+        # The outcome reader is first referenced only after the 360-row writer
+        # has closed and its immutable ledger hash has been computed.
+        static_outcomes = {
+            int(shot_id): two_runner.read_hdf5_outcome(int(shot_id))
+            for shot_id in roster
+        }
+        static_metrics = alarm_metrics(static_rows, static_outcomes)
+        static_summary = {
+            "status": "STATIC_BALANCED360_SEALED",
+            "stage": "SELECTED_EAST_STATIC",
+            "seed": int(args.seed),
+            "schema_version": selected_mainline.SELECTED_PARENT_SCHEMA,
+            "selected_label_arm": selected_mainline.SELECTED_LABEL_ARM,
+            "claim_status": selected_contract.claim_status,
+            "rows": len(static_rows),
+            "threshold": float(threshold),
+            "threshold_source": "EAST support110",
+            "results": {"static": static_metrics},
+            "hashes": {
+                "source_checkpoint": selected_contract.source_checkpoint_sha256,
+                "source_input_contract": (
+                    selected_contract.source_input_contract_sha256
+                ),
+                "source_preprocessing": (
+                    selected_contract.source_preprocessing_sha256
+                ),
+                "selected_parent": a1.sha256_file(sealed_parent_path),
+                "static_shared": static_shared_hash,
+                "static_private": static_private_hash,
+                "static_predictions": static_predictions_hash,
+                "static_seal_manifest": static_seal_manifest_sha256,
+            },
+            "balanced360_outcomes_read_after_complete_prediction_seal": True,
+            "balanced360_used_for_training_or_threshold": False,
+        }
+        (args.out / "summary.json").write_text(
+            json.dumps(static_summary, indent=2, sort_keys=True) + "\n"
+        )
+        print(json.dumps(static_summary["results"], indent=2), flush=True)
+        return
+
+    if selected_contract is not None:
+        # Phase 2 independently re-opens and re-hashes every row and trace.
+        selected_mainline.validate_static_seal_manifest(
+            static_seal_manifest_path,
+            expected_count=360,
+            expected_stage="east-static",
+        )
     shared_replay = two_scale.CausalReplayBuffer(capacity_shots=64)
     replay_rng = np.random.default_rng(args.seed + 42000)
     vault = audit.LazyShotOutcomeOracle(

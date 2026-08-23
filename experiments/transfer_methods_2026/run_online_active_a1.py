@@ -9,6 +9,8 @@ are opened only after all 360 predictions and query decisions are complete.
 from __future__ import annotations
 
 import argparse
+from collections.abc import Iterator, Mapping
+from dataclasses import dataclass
 import hashlib
 import json
 import os
@@ -28,12 +30,47 @@ sys.path.insert(0, str(HERE))
 import common as common  # noqa: E402
 import online_active_audit as audit  # noqa: E402
 import rebuilt_harness as rebuilt  # noqa: E402
+import selected_mainline_contract as selected_contract  # noqa: E402
 import shot_alarm as alarm  # noqa: E402
 
 
 MANIFEST = ROOT / "config/splits/east_hdf5_authoritative_balanced360_v1.json"
 REFERENCE_DIR = HERE / "final_delivery_hdf5_deterministic_v2" / "seeds"
 METHOD = "rebuilt17+ea125+adapt_high+per-shot-max"
+
+
+@dataclass(frozen=True)
+class SelectedSupportParent(Mapping[str, Any]):
+    """Typed support110-only result consumed by selected parent builders."""
+
+    encoder: torch.nn.Module
+    head: torch.nn.Module
+    support: list[dict[str, Any]]
+    center: np.ndarray
+    scale: np.ndarray
+    physics_scales: dict[str, float]
+    threshold: float
+    threshold_record: dict[str, Any]
+    threshold_receipt: dict[str, Any]
+    threshold_source: str
+    target_label_policy: str
+    target_label_audit: dict[str, Any]
+    source_checkpoint: Path
+    source_contract: dict[str, Any]
+    support_roster_sha256: str
+    support_data_manifest_sha256: str
+    support_outcome_manifest_sha256: str
+
+    def __getitem__(self, name: str) -> Any:
+        if name not in self.__dataclass_fields__:
+            raise KeyError(name)
+        return getattr(self, name)
+
+    def __iter__(self) -> Iterator[str]:
+        return iter(self.__dataclass_fields__)
+
+    def __len__(self) -> int:
+        return len(self.__dataclass_fields__)
 
 
 def selection_score(components: dict[str, float], threshold: float, mode: str) -> float:
@@ -161,6 +198,88 @@ def reference_contract(seed: int) -> tuple[float, dict[int, float], Path]:
     threshold = float(data["support_selected_threshold"]["threshold"])
     scores = {int(row["shot"]): float(row["score"]) for row in data["predictions"]}
     return threshold, scores, path
+
+
+def train_selected_support_parent(
+    *, seed: int, source_checkpoint: Path | None,
+    target_label_policy: str = "fixed125", target_tpr: float = 0.80,
+) -> dict[str, Any]:
+    """Fit the selected EAST base on support110 without opening balanced360."""
+
+    if source_checkpoint is None:
+        raise ValueError("selected mainline requires an explicit source checkpoint")
+    if target_label_policy != selected_contract.EAST_TARGET_LABEL_POLICY:
+        raise ValueError("selected EAST target label policy must be fixed125")
+    source_path = Path(source_checkpoint).expanduser().resolve()
+    _source_encoder, _source_head, source_payload = (
+        selected_contract.load_selected_source_checkpoint(source_path, int(seed))
+    )
+    del _source_encoder, _source_head
+    encoder, head, support, center, scale, label_audit = alarm.train_support_only(
+        int(seed), source_path,
+        target_label_policy=target_label_policy,
+        return_label_audit=True,
+    )
+    if label_audit.get("policy") != selected_contract.EAST_TARGET_LABEL_POLICY:
+        raise RuntimeError("selected EAST support label audit is not fixed125")
+    ordered_support = sorted(support, key=lambda shot: int(shot["shot"]))
+    support_scores = np.asarray([
+        float(alarm.full_risk(encoder, head, shot).max())
+        for shot in ordered_support
+    ])
+    support_labels = np.asarray([
+        bool(shot["is_disrupt"]) for shot in ordered_support
+    ])
+    threshold_record = alarm.select_tpr_first_threshold(
+        support_scores, support_labels, target_tpr=float(target_tpr),
+    )
+    data_manifest_sha = selected_contract.support_data_manifest_sha256(
+        ordered_support
+    )
+    outcome_manifest_sha = selected_contract.support_outcome_manifest_sha256(
+        ordered_support
+    )
+    threshold_receipt = selected_contract.build_threshold_receipt(
+        scope="EAST support110",
+        predictions=[
+            {
+                "shot": int(shot["shot"]),
+                "score": float(score),
+                "outcome": bool(label),
+            }
+            for shot, score, label in zip(
+                ordered_support, support_scores, support_labels,
+            )
+        ],
+        data_manifest_sha256=data_manifest_sha,
+        outcome_manifest_sha256=outcome_manifest_sha,
+        target_tpr=float(target_tpr),
+    )
+    selected_contract.validate_threshold_receipt(
+        threshold_receipt,
+        expected_scope="EAST support110",
+        expected_roster=[int(shot["shot"]) for shot in ordered_support],
+        expected_threshold=float(threshold_record["threshold"]),
+    )
+    return SelectedSupportParent(
+        encoder=encoder,
+        head=head,
+        support=ordered_support,
+        center=np.asarray(center),
+        scale=np.asarray(scale),
+        physics_scales=fit_support_physics_scales(ordered_support),
+        threshold=float(threshold_receipt["chosen_threshold"]),
+        threshold_record=dict(threshold_record),
+        threshold_receipt=threshold_receipt,
+        threshold_source="EAST support110",
+        target_label_policy=target_label_policy,
+        target_label_audit=dict(label_audit),
+        source_checkpoint=source_path,
+        source_contract=source_payload,
+        support_roster_sha256=threshold_receipt["roster_sha256"],
+        support_data_manifest_sha256=data_manifest_sha,
+        support_outcome_manifest_sha256=outcome_manifest_sha,
+    )
 
 
 def main() -> None:

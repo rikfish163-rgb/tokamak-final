@@ -33,11 +33,11 @@ def _source_contract(seed, source_checkpoint=None):
     )
     center = checkpoint["scaler_center"].cpu().numpy()
     scale = checkpoint["scaler_scale"].cpu().numpy()
-    return path, center, scale
+    return path, center, scale, checkpoint
 
 
 def train(seed=131, source_checkpoint=None):
-    source_path, med, sc = _source_contract(seed, source_checkpoint)
+    source_path, med, sc, _checkpoint = _source_contract(seed, source_checkpoint)
     tr, te = GS.load_east(include_test=True)
     tr = GS.transform(tr, "base"); te = GS.transform(te, "base")
     for g in (tr, te): GS.apply_scale(g, med, sc)
@@ -90,8 +90,16 @@ def train_support_only(
     adapt_batch_size=128, return_label_audit=False,
 ):
     """Train the identical model without loading any EAST test shot or label."""
-    source_path, med, sc = _source_contract(seed, source_checkpoint)
-    tr, te = GS.load_east(include_test=False)
+    source_path, med, sc, checkpoint = _source_contract(seed, source_checkpoint)
+    selected_source = (
+        isinstance(checkpoint.get("input_contract"), dict)
+        and checkpoint["input_contract"].get("schema")
+        == "jtext-rebuilt17-prefix-causal-v2"
+    )
+    tr, te = (
+        GS.load_east_selected_support()
+        if selected_source else GS.load_east(include_test=False)
+    )
     if te:
         raise RuntimeError("support-only training unexpectedly loaded test shots")
     tr = GS.transform(tr, "base")
@@ -106,6 +114,7 @@ def train_support_only(
     enc, head = GS.train_adapt(
         None, ts, channels, int(adapt_epochs), int(adapt_batch_size), seed,
         source_checkpoint=source_path,
+        allow_fallback=not selected_source,
     )
     result = (enc, head, tr, med, sc)
     return result + (label_audit,) if return_label_audit else result

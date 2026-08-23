@@ -42,7 +42,9 @@ def load_jsonl(path: Path) -> list[dict]:
     return [json.loads(line) for line in path.read_text().splitlines() if line.strip()]
 
 
-def load_east_signal_only(shot_id: int, med: np.ndarray, scale: np.ndarray) -> dict:
+def load_east_signal_only(
+    shot_id: int, med: np.ndarray, scale: np.ndarray, *, require_timebase: bool = False,
+) -> dict:
     """Load data/* and timebase attrs without touching any HDF5 meta dataset."""
     path = DATA / "EAST/unified_hdf5" / str(shot_id // 100 * 100) / f"{shot_id}.hdf5"
     with h5py.File(path, "r") as handle:
@@ -50,12 +52,18 @@ def load_east_signal_only(shot_id: int, med: np.ndarray, scale: np.ndarray) -> d
             name: np.asarray(handle[f"data/{name}"][:], dtype=np.float32)
             for name in rebuilt.RAW23
         }
-        rate = float(np.asarray(
-            handle["data/ip"].attrs.get("SampleRate", 1000.0)
-        ).reshape(-1)[0])
-        start = float(np.asarray(
-            handle["data/ip"].attrs.get("StartTime", 0.0)
-        ).reshape(-1)[0])
+        signal = handle["data/ip"]
+        if require_timebase:
+            import selected_mainline_contract as selected_contract
+
+            rate, start = selected_contract.read_required_timebase(signal)
+        else:
+            rate = float(np.asarray(
+                signal.attrs.get("SampleRate", 1000.0)
+            ).reshape(-1)[0])
+            start = float(np.asarray(
+                signal.attrs.get("StartTime", 0.0)
+            ).reshape(-1)[0])
     values, available = rebuilt.rebuild_features(arrays, "EAST")
     values = np.clip((values - med) / scale, -10, 10)
     values = np.where(available, values, 0.0).astype(np.float32)
