@@ -49,9 +49,10 @@ J-TEXT 源域拟合
 <a id="cn-architecture"></a>
 ## 架构与因果协议
 
-下图直接展示实际执行的模型架构：
+下图概括实际执行的三阶段架构；损失函数、生效/影子分支和更新顺序仍以
+[代码级实现说明](IMPLEMENTATION_DETAILS_CN.md)与仓库代码为准：
 
-![J-TEXT 源模型、EAST 小样本迁移与在线主动架构](experiments/transfer_methods_2026/paper_grade_package/figures/fig0_end_to_end_model_architecture.svg)
+![J-TEXT 源模型、EAST 小样本迁移与在线主动架构](docs/figures/jtext_east_mainline_architecture_v2.png)
 
 独立的数据 roster 与信息访问协议见[协议图](experiments/transfer_methods_2026/paper_grade_package/figures/fig1_protocol_and_causal_contract.svg)。
 

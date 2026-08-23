@@ -3,6 +3,7 @@ from __future__ import annotations
 import ast
 import importlib.util
 import json
+import re
 import subprocess
 from pathlib import Path
 
@@ -180,6 +181,35 @@ def test_mainline_manifest_is_complete_and_git_tracked() -> None:
         if raw
     }
     assert sorted(set(files) - tracked) == []
+
+
+def test_local_readme_images_are_manifested_and_git_tracked() -> None:
+    manifest = json.loads(
+        (ROOT / "config/mainline_code_manifest.json").read_text()
+    )
+    manifest_files = {str(value) for value in manifest["tracked_files"]}
+    local_images: set[str] = set()
+    for readme_name in ("README.md", "README_CN.md"):
+        readme = (ROOT / readme_name).read_text()
+        for target in re.findall(r"!\[[^]]*\]\(([^)]+)\)", readme):
+            if "://" not in target:
+                local_images.add(target)
+
+    assert local_images
+    assert sorted(path for path in local_images if not (ROOT / path).is_file()) == []
+    assert sorted(local_images - manifest_files) == []
+
+    if not (ROOT / ".git").is_dir():
+        pytest.skip("tracked README image check runs after local git initialization")
+    tracked = {
+        raw.decode()
+        for raw in subprocess.run(
+            ["git", "ls-files", "-z"], cwd=ROOT, check=True,
+            capture_output=True,
+        ).stdout.split(b"\0")
+        if raw
+    }
+    assert sorted(local_images - tracked) == []
 
 
 def test_reference_verifier_accepts_committed_multiseed_result() -> None:

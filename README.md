@@ -45,9 +45,12 @@ All outcome and disruption-time labels come from HDF5 `/meta/IsDisrupt` and `/me
 
 ## Architecture and causal protocol
 
-The executed model architecture is embedded from the paper package:
+The following publication-style overview summarizes the executed architecture. The
+tracked code and [implementation details](IMPLEMENTATION_DETAILS_CN.md) remain the
+authoritative specification for losses, active versus shadow branches, and update
+order:
 
-![J-TEXT source, EAST few-shot transfer, and online-active architecture](experiments/transfer_methods_2026/paper_grade_package/figures/fig0_end_to_end_model_architecture.svg)
+![J-TEXT source, EAST few-shot transfer, and online-active architecture](docs/figures/jtext_east_mainline_architecture_v2.png)
 
 The separate roster and information-access protocol is available as
 [Figure 1](experiments/transfer_methods_2026/paper_grade_package/figures/fig1_protocol_and_causal_contract.svg).
