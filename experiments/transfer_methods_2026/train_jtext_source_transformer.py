@@ -36,6 +36,7 @@ sys.path.insert(0, str(HERE))
 
 import grid_search as GS  # noqa: E402
 import rebuilt_harness as RH  # noqa: E402
+import advanced_time_labels as ATL  # noqa: E402
 
 
 CANONICAL_INDEX = Path("artifacts/canonical/jtext_source_bundle_p131_v1/index.json")
@@ -43,6 +44,7 @@ EXPECTED_COUNTS = {"train": 1353, "val": 160, "test": 220}
 SOURCE_HORIZON_MS = 125.0
 MINIMUM_LEAD_MS = 10.0
 NEGATIVE_MAX_MS = 60_000.0
+JTEXT_ADVANCED_TIME = ROOT / "shot_list/J-TEXT/AdvancedTime_J-TEXT.json"
 
 
 def sha256_file(path: Path) -> str:
@@ -187,13 +189,19 @@ class BalancedSourceSampler:
         self.positive: dict[int, np.ndarray] = {}
         self.negative: dict[int, np.ndarray] = {}
         for index, shot in enumerate(shots):
+            shot_horizon_ms = float(shot.get("positive_horizon_ms", horizon_ms))
+            if not math.isfinite(shot_horizon_ms) or shot_horizon_ms <= 0.0:
+                raise ValueError(f"shot {shot.get('shot')}: invalid positive horizon")
             endpoints = np.arange(len(shot["v"]), dtype=np.int64)
             if shot["is_disrupt"]:
                 times = shot["start"] + endpoints / shot["rate"]
                 ttd_ms = (float(shot["down"]) - times) * 1000.0
-                positive = endpoints[(ttd_ms >= 0.0) & (ttd_ms <= horizon_ms)]
+                positive = endpoints[
+                    (ttd_ms >= 0.0) & (ttd_ms <= shot_horizon_ms)
+                ]
                 negative = endpoints[
-                    (ttd_ms > horizon_ms) & (ttd_ms <= NEGATIVE_MAX_MS)
+                    (ttd_ms > shot_horizon_ms)
+                    & (ttd_ms <= NEGATIVE_MAX_MS)
                 ]
             else:
                 positive = np.empty(0, dtype=np.int64)
@@ -389,6 +397,51 @@ def metrics_at_threshold(rows: list[dict], *, threshold: float) -> tuple[dict, l
     return metrics, predictions
 
 
+def source_training_label_contract(
+    *, policy: str, audit: dict, advanced_time_path: Path | None,
+) -> dict:
+    """Serialize the source-window rule without treating it as an outcome source."""
+
+    if policy == "fixed125":
+        positive: list[float] | dict = [0.0, SOURCE_HORIZON_MS]
+        negative: list[float] | dict = [SOURCE_HORIZON_MS, NEGATIVE_MAX_MS]
+        formula = "upper_ms=125"
+    elif policy == "advanced_floor":
+        positive = {
+            "lower_ms_inclusive": 0.0,
+            "upper_ms_per_disruptive_shot": "max(25, AdvancedTime_ms)",
+            "missing_advanced_time_fallback_ms": 25.0,
+        }
+        negative = {
+            "lower_ms_per_disruptive_shot": "max(25, AdvancedTime_ms)",
+            "upper_ms_inclusive": NEGATIVE_MAX_MS,
+        }
+        formula = "upper_ms=max(25, AdvancedTime_ms); missing->25"
+    else:
+        raise ValueError(f"unsupported source label policy: {policy}")
+    return {
+        "policy": policy,
+        "outcome_authority": "HDF5 meta/IsDisrupt",
+        "down_time_authority": "HDF5 meta/DownTime",
+        "advanced_time_role": "positive-window upper boundary only",
+        "advanced_time_unit": "ms",
+        "advanced_time_used": bool(advanced_time_path is not None),
+        "advanced_time_path": (
+            str(advanced_time_path.relative_to(ROOT))
+            if advanced_time_path is not None
+            and advanced_time_path.is_relative_to(ROOT)
+            else str(advanced_time_path) if advanced_time_path is not None else None
+        ),
+        "advanced_time_sha256": (
+            ATL.sha256_file(advanced_time_path) if advanced_time_path is not None else None
+        ),
+        "formula": formula,
+        "positive_ttd_ms": positive,
+        "negative_ttd_ms": negative,
+        "audit": dict(audit),
+    }
+
+
 def _checkpoint_payload(
     *,
     encoder: torch.nn.Module,
@@ -399,6 +452,7 @@ def _checkpoint_payload(
     seed: int,
     epoch: int,
     validation: dict,
+    training_label: dict | None = None,
 ) -> dict:
     return {
         "schema_version": GS.SOURCE_CHECKPOINT_SCHEMA,
@@ -414,9 +468,11 @@ def _checkpoint_payload(
         "split_counts": dict(EXPECTED_COUNTS),
         "split_sha256": split_sha256(roles),
         "label_authority": "data/J-TEXT/unified_hdf5/*/meta/{IsDisrupt,DownTime}",
-        "training_label": {
+        "training_label": training_label or {
+            "policy": "fixed125",
             "positive_ttd_ms": [0.0, SOURCE_HORIZON_MS],
             "negative_ttd_ms": [SOURCE_HORIZON_MS, NEGATIVE_MAX_MS],
+            "advanced_time_used": False,
         },
         "validation_threshold": float(validation["threshold"]),
         "validation_metrics": validation,
@@ -439,6 +495,19 @@ def train_source(args: argparse.Namespace) -> tuple[Path, dict]:
     roles = load_canonical_jtext_roles(ROOT)
     train = load_jtext_shots(roles["train"])
     validation = load_jtext_shots(roles["val"])
+    advanced_path = Path(args.advanced_time_path).expanduser().resolve()
+    advanced = (
+        ATL.load_advanced_time_ms(advanced_path)
+        if args.label_policy == "advanced_floor" else None
+    )
+    train, label_audit = ATL.attach_positive_horizons(
+        train, device="J-TEXT", policy=args.label_policy,
+        advanced_time_ms=advanced,
+    )
+    training_label = source_training_label_contract(
+        policy=args.label_policy, audit=label_audit,
+        advanced_time_path=advanced_path if advanced is not None else None,
+    )
     center, scale = GS.fit_scale(train)
     GS.apply_scale(train, center, scale)
     GS.apply_scale(validation, center, scale)
@@ -514,6 +583,7 @@ def train_source(args: argparse.Namespace) -> tuple[Path, dict]:
                 seed=args.seed,
                 epoch=epoch,
                 validation=val_metrics,
+                training_label=training_label,
             )
             temporary = checkpoint_path.with_suffix(".pt.tmp")
             torch.save(payload, temporary)
@@ -532,6 +602,8 @@ def train_source(args: argparse.Namespace) -> tuple[Path, dict]:
         "split_counts": dict(EXPECTED_COUNTS),
         "split_sha256": split_sha256(roles),
         "label_authority": "HDF5 meta only",
+        "training_label": training_label,
+        "training_label_audit": label_audit,
         "feature_names": list(RH.REBUILD),
         "model_config": GS.source_model_config(len(RH.REBUILD)),
         "trainable_parameters": sum(
@@ -617,6 +689,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--batch-size", type=int, default=128)
     parser.add_argument("--learning-rate", type=float, default=3e-4)
     parser.add_argument("--target-tpr", type=float, default=0.90)
+    parser.add_argument(
+        "--label-policy", choices=ATL.POLICIES, default="fixed125",
+    )
+    parser.add_argument(
+        "--advanced-time-path", type=Path, default=JTEXT_ADVANCED_TIME,
+    )
     parser.add_argument("--device", choices=("cuda", "cpu"), default="cuda")
     parser.add_argument("--skip-test", action="store_true")
     parser.add_argument("--output", type=Path)

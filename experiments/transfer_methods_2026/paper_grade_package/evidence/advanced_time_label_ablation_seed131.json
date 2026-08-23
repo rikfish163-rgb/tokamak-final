@@ -1,0 +1,132 @@
+{
+  "schema_version": "advanced-time-label-ablation-result-v1",
+  "status": "DIAGNOSTIC_ONLY_TEST_DRIVEN_EXPLORATION",
+  "seed": 131,
+  "label_authority": "HDF5 meta/IsDisrupt and meta/DownTime",
+  "shotlist_provenance": {
+    "original_file_sha256": {
+      "jtext": "559da4f719373b0c13b96d34e27a2b46b80eba7f0ef185c3b6ac58b3761e0199",
+      "east": "1cd6305a659762fb4518c7446fc7c1662abc1bb939060dcca587e9ec02d72002"
+    },
+    "repository_file_sha256": {
+      "jtext": "65ccd390e65e5670a2d8c87ca6035e174521b29cfb23ee143d6b9f25bcfb44c3",
+      "east": "c5cc3f60dd414d8ecc45ebf949d3559d66b19774cbed872d9d011a71b67566c0"
+    },
+    "canonical_mapping_sha256": {
+      "jtext": "522d09174d30598b6e0e0a86e4ec76945d8a28110ee1bd4eaf5e4c86ead0ecbe",
+      "east": "1400af2219f915ddefbc11351140e7d606fb1f7daaa1a83eecb19596bc3ed86b"
+    },
+    "original_and_repository_mappings_equal": {
+      "jtext": true,
+      "east": true
+    },
+    "file_byte_difference": "repository mirrors add only a trailing newline"
+  },
+  "window_audit": {
+    "jtext_train1353": {
+      "hdf5_disruptive_shots": 188,
+      "advanced_time_covered": 187,
+      "advanced_time_missing": 1,
+      "advanced_time_above_25ms": 37,
+      "fixed125_positive_endpoints": 21912,
+      "advanced_floor_positive_endpoints": 5557,
+      "positive_endpoint_change": -16355,
+      "relative_change": -0.7463901058780577
+    },
+    "east_support110": {
+      "hdf5_disruptive_shots": 15,
+      "advanced_time_covered": 10,
+      "advanced_time_missing": 5,
+      "advanced_time_above_125ms": 2,
+      "fixed125_positive_endpoints": 1867,
+      "advanced_floor_positive_endpoints": 1901,
+      "positive_endpoint_change": 34,
+      "relative_change": 0.01821098018211034
+    }
+  },
+  "source_test220": {
+    "fixed125": {
+      "selected_epoch": 31,
+      "encoder_state_sha256": "c172828b244c7de7c255fb86831dcea087205273abe2cfd565c041298ee83585",
+      "matches_existing_padfix_parent_encoder": true,
+      "raw_tpr": 0.8818181818181818,
+      "tpr_lead_ge_10ms": 0.8545454545454545,
+      "fpr": 0.17272727272727273,
+      "auc": 0.9268595041322314,
+      "median_lead_ms": 117.00394268371592
+    },
+    "advanced_floor": {
+      "selected_epoch": 15,
+      "encoder_state_sha256": "d0bd9c83236a3a5cc6e2ec925f1df6bc63107e7b0e7b6d3f5e1651f882e67554",
+      "raw_tpr": 0.9818181818181818,
+      "tpr_lead_ge_10ms": 0.8181818181818182,
+      "fpr": 0.10909090909090909,
+      "auc": 0.9810743801652893,
+      "median_lead_ms": 44.06333768371593
+    }
+  },
+  "east_balanced360_support_selected": {
+    "source_fixed__east_fixed": {
+      "threshold": 0.9564694166183472,
+      "raw_tpr": 0.7888888888888889,
+      "tpr_lead_ge_30ms": 0.5277777777777778,
+      "fpr": 0.06111111111111111,
+      "auc": 0.9265123456790123,
+      "median_timely_lead_ms": 151.9999999999997
+    },
+    "source_dynamic__east_fixed": {
+      "threshold": 0.9094951748847961,
+      "raw_tpr": 0.7166666666666667,
+      "tpr_lead_ge_30ms": 0.5055555555555555,
+      "fpr": 0.07777777777777778,
+      "auc": 0.8989197530864198,
+      "median_timely_lead_ms": 157.9999999999995
+    },
+    "source_fixed__east_dynamic": {
+      "threshold": 0.956474781036377,
+      "raw_tpr": 0.7722222222222223,
+      "tpr_lead_ge_30ms": 0.5111111111111111,
+      "fpr": 0.06666666666666667,
+      "auc": 0.9248765432098766,
+      "median_timely_lead_ms": 136.4999999999996
+    },
+    "source_dynamic__east_dynamic": {
+      "threshold": 0.908596396446228,
+      "raw_tpr": 0.7222222222222222,
+      "tpr_lead_ge_30ms": 0.5055555555555555,
+      "fpr": 0.07777777777777778,
+      "auc": 0.8966975308641976,
+      "median_timely_lead_ms": 157.9999999999995
+    }
+  },
+  "east_balanced360_test_selected_tpr80": {
+    "paper131_raw_tpr_target": {
+      "source_fixed__east_fixed": {"raw_tpr": 0.8, "tpr_lead_ge_30ms": 0.5333333333333333, "fpr": 0.06111111111111111},
+      "source_dynamic__east_fixed": {"raw_tpr": 0.8, "tpr_lead_ge_30ms": 0.65, "fpr": 0.11666666666666667},
+      "source_fixed__east_dynamic": {"raw_tpr": 0.8, "tpr_lead_ge_30ms": 0.5333333333333333, "fpr": 0.06666666666666667},
+      "source_dynamic__east_dynamic": {"raw_tpr": 0.8, "tpr_lead_ge_30ms": 0.65, "fpr": 0.12222222222222222}
+    },
+    "operational_tpr_lead_ge_30ms_target": {
+      "source_fixed__east_fixed": {"raw_tpr": 0.9222222222222223, "tpr_lead_ge_30ms": 0.8, "fpr": 0.19444444444444445},
+      "source_dynamic__east_fixed": {"raw_tpr": 0.9, "tpr_lead_ge_30ms": 0.8, "fpr": 0.3055555555555556},
+      "source_fixed__east_dynamic": {"raw_tpr": 0.9277777777777778, "tpr_lead_ge_30ms": 0.8, "fpr": 0.20555555555555555},
+      "source_dynamic__east_dynamic": {"raw_tpr": 0.8944444444444445, "tpr_lead_ge_30ms": 0.8, "fpr": 0.3}
+    },
+    "deployable": false,
+    "reason": "thresholds were selected after the balanced360 prediction seal using balanced360 outcomes"
+  },
+  "paired_seed131_support_selected": {
+    "comparison": "source_dynamic__east_fixed minus source_fixed__east_fixed",
+    "disruptive_raw_alarm_discordance": {"fixed_only": 16, "dynamic_only": 3, "exact_binomial_p": 0.004425048828125},
+    "disruptive_timely_alarm_discordance": {"fixed_only": 11, "dynamic_only": 7, "exact_binomial_p": 0.480682373046875},
+    "safe_alarm_discordance": {"fixed_only": 0, "dynamic_only": 3, "exact_binomial_p": 0.25},
+    "interpretation": "single-seed paired diagnostics; not a substitute for multi-seed confirmation"
+  },
+  "adjudication": {
+    "jtext_advanced_floor": "REJECT_AS_PRIMARY_LABEL",
+    "east_advanced_floor": "NO_MEANINGFUL_GAIN_ON_SUPPORT110",
+    "main_reason": "the J-TEXT rule removes 74.6% of source positive endpoints, concentrates learning on terminal behavior, shortens source lead time, and worsens EAST discrimination",
+    "recommended_primary": "retain fixed125 for the current backbone; if AdvancedTime is reused, add it as an auxiliary horizon/onset task instead of replacing the full precursor-positive interval",
+    "seed_scope": "seed131 screen only because the proposed arm failed directionally; no admission claim"
+  }
+}

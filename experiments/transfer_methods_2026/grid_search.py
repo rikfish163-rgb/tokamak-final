@@ -173,6 +173,35 @@ def causal_window(values, *, endpoint, width=W, context_points=None):
     return np.ascontiguousarray(observed)
 
 
+def build_endpoint_pools(
+    shots, *, pos_ms, gray_ms, minimum_pos_ms=0.0, allow_left_padding=False,
+):
+    """Build per-shot pools, honoring an optional per-shot positive horizon."""
+
+    pos, neg = [], []
+    for s in shots:
+        shot_pos_ms = float(s.get("positive_horizon_ms", pos_ms))
+        if not math.isfinite(shot_pos_ms) or shot_pos_ms <= float(minimum_pos_ms):
+            raise ValueError(f"shot {s.get('shot')}: invalid positive horizon")
+        n = s["v"].shape[0]; t = s["start"] + np.arange(n)/s["rate"]
+        p, q = [], []
+        first_endpoint = 0 if allow_left_padding else W - 1
+        if s["is_disrupt"] and s["down"] is not None:
+            for end in range(first_endpoint, n):
+                ttd = (s["down"] - t[end]) * 1000.0
+                if minimum_pos_ms + 1e-9 < ttd <= shot_pos_ms:
+                    p.append(end)
+                elif shot_pos_ms + gray_ms < ttd <= 60000.0:
+                    q.append(end)
+        else:
+            q = list(range(first_endpoint, n))
+        pos.append(p); neg.append(q)
+    return [
+        {"positive": positive, "negative": negative}
+        for positive, negative in zip(pos, neg)
+    ]
+
+
 def build_sampler(
     shots, device, pos_ms, gray_ms, seed=0, *, minimum_pos_ms=0.0,
     allow_left_padding=False, context_lengths=(W,),
@@ -180,19 +209,12 @@ def build_sampler(
     context_lengths = tuple(int(value) for value in context_lengths)
     if not context_lengths or any(not 0 < value <= W for value in context_lengths):
         raise ValueError("context lengths must lie in [1, W]")
-    pos, neg = [], []
-    for s in shots:
-        n = s["v"].shape[0]; t = s["start"] + np.arange(n)/s["rate"]
-        p, q = [], []
-        first_endpoint = 0 if allow_left_padding else W - 1
-        if s["is_disrupt"] and s["down"] is not None:
-            for end in range(first_endpoint, n):
-                ttd = (s["down"] - t[end]) * 1000.0
-                if minimum_pos_ms + 1e-9 < ttd <= pos_ms: p.append(end)
-                elif pos_ms + gray_ms < ttd <= 60000.0: q.append(end)
-        else:
-            q = list(range(first_endpoint, n))
-        pos.append(p); neg.append(q)
+    pools = build_endpoint_pools(
+        shots, pos_ms=pos_ms, gray_ms=gray_ms,
+        minimum_pos_ms=minimum_pos_ms, allow_left_padding=allow_left_padding,
+    )
+    pos = [pool["positive"] for pool in pools]
+    neg = [pool["negative"] for pool in pools]
     rng = np.random.default_rng(seed)
     positive_shots = np.flatnonzero([bool(values) for values in pos])
     negative_shots = np.flatnonzero([bool(values) for values in neg])

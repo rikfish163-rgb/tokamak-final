@@ -16,9 +16,11 @@ import argparse, json, sys
 from pathlib import Path
 import numpy as np, torch
 import grid_search as GS
+import advanced_time_labels as ATL
 
 DEV = "cuda" if torch.cuda.is_available() else "cpu"
 W = 128
+EAST_ADVANCED_TIME = GS.ROOT / "shot_list/EAST/AdvancedTime_EAST.json"
 
 def source_checkpoint_path(seed=131):
     return GS.default_source_checkpoint(seed)
@@ -48,22 +50,65 @@ def train(seed=131, source_checkpoint=None):
     return enc, head, tr, te
 
 
-def train_support_only(seed=131, source_checkpoint=None):
+def prepare_east_training_labels(
+    shots, *, policy="fixed125", advanced_time_path=EAST_ADVANCED_TIME,
+):
+    """Attach per-shot horizons while retaining HDF5 as outcome authority."""
+
+    advanced_path = Path(advanced_time_path).expanduser().resolve()
+    advanced = (
+        ATL.load_advanced_time_ms(advanced_path)
+        if policy == "advanced_floor" else None
+    )
+    prepared, audit = ATL.attach_positive_horizons(
+        shots, device="EAST", policy=policy, advanced_time_ms=advanced,
+    )
+    audit = dict(audit)
+    audit.update({
+        "outcome_authority": "EAST HDF5 meta/IsDisrupt",
+        "down_time_authority": "EAST HDF5 meta/DownTime",
+        "advanced_time_role": "positive-window upper boundary only",
+        "advanced_time_path": (
+            str(advanced_path.relative_to(GS.ROOT))
+            if advanced is not None and advanced_path.is_relative_to(GS.ROOT)
+            else str(advanced_path) if advanced is not None else None
+        ),
+        "advanced_time_sha256": (
+            ATL.sha256_file(advanced_path) if advanced is not None else None
+        ),
+        "formula": (
+            "upper_ms=max(125, AdvancedTime_ms); missing->125"
+            if policy == "advanced_floor" else "upper_ms=125"
+        ),
+    })
+    return prepared, audit
+
+
+def train_support_only(
+    seed=131, source_checkpoint=None, *, target_label_policy="fixed125",
+    advanced_time_path=EAST_ADVANCED_TIME, adapt_epochs=12,
+    adapt_batch_size=128, return_label_audit=False,
+):
     """Train the identical model without loading any EAST test shot or label."""
     source_path, med, sc = _source_contract(seed, source_checkpoint)
     tr, te = GS.load_east(include_test=False)
     if te:
         raise RuntimeError("support-only training unexpectedly loaded test shots")
     tr = GS.transform(tr, "base")
+    tr, label_audit = prepare_east_training_labels(
+        tr, policy=target_label_policy, advanced_time_path=advanced_time_path,
+    )
     for group in (tr,):
         GS.apply_scale(group, med, sc)
     pos, gray = GS.POS["ea125"], GS.GRAY["gray0"]
     ts = GS.build_sampler(tr, None, pos["ea"], gray["ea"], seed)
     channels = len(GS.RH.REBUILD)
     enc, head = GS.train_adapt(
-        None, ts, channels, 12, 128, seed, source_checkpoint=source_path
+        None, ts, channels, int(adapt_epochs), int(adapt_batch_size), seed,
+        source_checkpoint=source_path,
     )
-    return enc, head, tr, med, sc
+    result = (enc, head, tr, med, sc)
+    return result + (label_audit,) if return_label_audit else result
 
 def full_risk(enc, head, s, bs=512):
     v=s["v"]; n=len(v)

@@ -38,6 +38,7 @@ sys.path.insert(0, str(HERE))
 import grid_search as GS  # noqa: E402
 import rebuilt_harness as RH  # noqa: E402
 import train_jtext_source_transformer as BASE  # noqa: E402
+import advanced_time_labels as ATL  # noqa: E402
 
 
 CONTEXT_LENGTHS = (32, 64, 96, 128)
@@ -344,6 +345,19 @@ def train(args: argparse.Namespace) -> tuple[Path, dict]:
     roles = BASE.load_canonical_jtext_roles(ROOT)
     source_train = BASE.load_jtext_shots(roles["train"])
     validation = BASE.load_jtext_shots(roles["val"])
+    advanced_path = Path(args.advanced_time_path).expanduser().resolve()
+    advanced = (
+        ATL.load_advanced_time_ms(advanced_path)
+        if args.label_policy == "advanced_floor" else None
+    )
+    source_train, label_audit = ATL.attach_positive_horizons(
+        source_train, device="J-TEXT", policy=args.label_policy,
+        advanced_time_ms=advanced,
+    )
+    training_label = BASE.source_training_label_contract(
+        policy=args.label_policy, audit=label_audit,
+        advanced_time_path=advanced_path if advanced is not None else None,
+    )
     center, scale = GS.fit_scale(source_train)
     GS.apply_scale(source_train, center, scale)
     GS.apply_scale(validation, center, scale)
@@ -476,6 +490,7 @@ def train(args: argparse.Namespace) -> tuple[Path, dict]:
             payload = BASE._checkpoint_payload(
                 encoder=encoder, head=head, center=center, scale=scale,
                 roles=roles, seed=args.seed, epoch=epoch, validation=metrics,
+                training_label=training_label,
             )
             payload["training_regularization"] = {
                 "context_lengths": list(CONTEXT_LENGTHS),
@@ -510,6 +525,8 @@ def train(args: argparse.Namespace) -> tuple[Path, dict]:
         "split_counts": dict(BASE.EXPECTED_COUNTS),
         "split_sha256": BASE.split_sha256(roles),
         "label_authority": "HDF5 meta only",
+        "training_label": training_label,
+        "training_label_audit": label_audit,
         "feature_names": list(RH.REBUILD),
         "model_config": GS.source_model_config(len(RH.REBUILD)),
         "best_epoch": best_epoch,
@@ -545,6 +562,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--batch-size", type=int, default=128)
     parser.add_argument("--learning-rate", type=float, default=3e-4)
     parser.add_argument("--target-tpr", type=float, default=0.90)
+    parser.add_argument(
+        "--label-policy", choices=ATL.POLICIES, default="fixed125",
+    )
+    parser.add_argument(
+        "--advanced-time-path", type=Path, default=BASE.JTEXT_ADVANCED_TIME,
+    )
     parser.add_argument("--context-view-weight", type=float, default=0.50)
     parser.add_argument("--consistency-weight", type=float, default=0.10)
     parser.add_argument("--representation-consistency-weight", type=float, default=0.0)

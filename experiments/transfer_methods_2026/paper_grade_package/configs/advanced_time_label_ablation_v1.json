@@ -1,0 +1,63 @@
+{
+  "schema_version": "advanced-time-label-ablation-v1",
+  "status": "DIAGNOSTIC_ONLY_TEST_DRIVEN_EXPLORATION",
+  "claim_boundary": "balanced360 has been used for method development and is not an independent future confirmation set",
+  "seed_screen": 131,
+  "label_authority": {
+    "outcome": "HDF5 meta/IsDisrupt",
+    "disruption_time": "HDF5 meta/DownTime",
+    "advanced_time_role": "positive-window upper boundary for HDF5-disruptive shots only",
+    "advanced_time_unit": "milliseconds as stored; never multiply by 1000",
+    "jtext_formula": "max(25 ms, AdvancedTime_ms); missing -> 25 ms",
+    "east_formula": "max(125 ms, AdvancedTime_ms); missing -> 125 ms"
+  },
+  "shotlist_sources": {
+    "authoritative_workspace_layout_jtext": "Fuison/shot_list/J-TEXT/AdvancedTime_J-TEXT.json",
+    "authoritative_workspace_layout_east": "Fuison/shot_list/EAST/AdvancedTime_EAST.json",
+    "repository_mirror_jtext": "shot_list/J-TEXT/AdvancedTime_J-TEXT.json",
+    "repository_mirror_east": "shot_list/EAST/AdvancedTime_EAST.json",
+    "original_raw_sha256_jtext": "559da4f719373b0c13b96d34e27a2b46b80eba7f0ef185c3b6ac58b3761e0199",
+    "original_raw_sha256_east": "1cd6305a659762fb4518c7446fc7c1662abc1bb939060dcca587e9ec02d72002",
+    "canonical_mapping_sha256_jtext": "522d09174d30598b6e0e0a86e4ec76945d8a28110ee1bd4eaf5e4c86ead0ecbe",
+    "canonical_mapping_sha256_east": "1400af2219f915ddefbc11351140e7d606fb1f7daaa1a83eecb19596bc3ed86b"
+  },
+  "factorial_arms": [
+    ["source_fixed__east_fixed", "fixed125", "fixed125"],
+    ["source_dynamic__east_fixed", "advanced_floor", "fixed125"],
+    ["source_fixed__east_dynamic", "fixed125", "advanced_floor"],
+    ["source_dynamic__east_dynamic", "advanced_floor", "advanced_floor"]
+  ],
+  "held_constant": {
+    "features": "rebuilt17",
+    "architecture": "patch-transformer-128x8-d64-l2-h4-v1",
+    "source_regularization": {
+      "context_view_weight": 0.5,
+      "consistency_weight": 0.2,
+      "representation_consistency_weight": 0.5,
+      "pad_adversary_weight": 0.005
+    },
+    "source_training": {
+      "epochs": 32,
+      "steps_per_epoch": 128,
+      "batch_size": 128,
+      "learning_rate": 0.0003,
+      "validation_target_tpr": 0.9
+    },
+    "east_adaptation": {
+      "support_shots": 110,
+      "epochs": 12,
+      "steps_per_epoch": 32,
+      "batch_size": 128,
+      "method": "adapt_high",
+      "threshold_target_tpr": 0.8
+    },
+    "evaluation": {
+      "stream": "HDF5-authoritative balanced360",
+      "shots": 360,
+      "minimum_lead_ms": 30,
+      "minimum_run_points": 1,
+      "alarms_over_3000ms_count_as_timely": true
+    },
+    "runtime": "rl_env / NVIDIA GeForce RTX 5070 Laptop GPU"
+  }
+}

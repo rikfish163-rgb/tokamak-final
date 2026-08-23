@@ -6,6 +6,7 @@
     "user_cli": "reproducibility/cli.py",
     "frozen_chain_wrapper": "experiments/transfer_methods_2026/paper_grade_package/scripts/reproduce_primary_chain.py",
     "source_training": "experiments/transfer_methods_2026/train_jtext_source_transformer.py",
+    "advanced_time_label_ablation": "experiments/transfer_methods_2026/run_advanced_time_label_ablation.py",
     "target_support_adaptation": "experiments/transfer_methods_2026/run_online_active_a1.py",
     "target_dynamic_adapter": "experiments/transfer_methods_2026/run_dynamic_hazard_adapter.py",
     "chronological_online_replay": "experiments/transfer_methods_2026/run_unified_online_active.py"
@@ -43,8 +44,10 @@
     "experiments/transfer_methods_2026/common.py",
     "experiments/transfer_methods_2026/rebuilt_harness.py",
     "experiments/transfer_methods_2026/grid_search.py",
+    "experiments/transfer_methods_2026/advanced_time_labels.py",
     "experiments/transfer_methods_2026/train_jtext_source_transformer.py",
     "experiments/transfer_methods_2026/shot_alarm.py",
+    "experiments/transfer_methods_2026/run_advanced_time_label_ablation.py",
     "experiments/transfer_methods_2026/run_online_active_a1.py",
     "experiments/transfer_methods_2026/dynamic_hazard_adapter.py",
     "experiments/transfer_methods_2026/run_dynamic_hazard_adapter.py",
@@ -66,6 +69,10 @@
     "experiments/transfer_methods_2026/run_two_timescale_online.py",
     "experiments/transfer_methods_2026/run_unified_online_active.py",
     "experiments/transfer_methods_2026/paper_grade_package/configs/primary_chain_v3c.json",
+    "experiments/transfer_methods_2026/paper_grade_package/configs/advanced_time_label_ablation_v1.json",
+    "experiments/transfer_methods_2026/paper_grade_package/ADVANCED_TIME_LABEL_ABLATION_zh.md",
+    "experiments/transfer_methods_2026/paper_grade_package/evidence/advanced_time_label_ablation_seed131.json",
+    "experiments/transfer_methods_2026/paper_grade_package/scripts/train_source_padfix.py",
     "experiments/transfer_methods_2026/paper_grade_package/scripts/reproduce_primary_chain.py",
     "experiments/transfer_methods_2026/paper_grade_package/scripts/build_evidence.py",
     "experiments/transfer_methods_2026/paper_grade_package/scripts/generate_figures.py",
@@ -81,7 +88,10 @@
     "experiments/transfer_methods_2026/paper_grade_package/evidence/primary_online_artifacts/seed133/static_predictions.jsonl",
     "experiments/transfer_methods_2026/paper_grade_package/evidence/primary_online_artifacts/seed137/static_predictions.jsonl",
     "experiments/transfer_methods_2026/paper_grade_package/evidence/required_hdf5_content_manifest.json",
+    "shot_list/J-TEXT/AdvancedTime_J-TEXT.json",
+    "shot_list/EAST/AdvancedTime_EAST.json",
     "results/reference/paper_v3c_multiseed_summary.json",
+    "tests/experiments/test_advanced_time_label_ablation.py",
     "tests/reproducibility/test_repo_contract.py"
   ]
 }

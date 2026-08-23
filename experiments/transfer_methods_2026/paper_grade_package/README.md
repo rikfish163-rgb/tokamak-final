@@ -51,6 +51,20 @@ to TPR@30 `0.7315`, exposing a normalization mismatch. These controls use the
 same target window and configured optimizer-step budget, but not equal
 trainable capacity or FLOPs, and balanced360 remains development evidence.
 
+## AdvancedTime positive-horizon ablation
+
+A seed131 2×2 control changed only the positive-window upper boundary. HDF5
+`IsDisrupt`/`DownTime` remained authoritative; the original workspace JSON
+values were interpreted directly as milliseconds. J-TEXT
+`max(25 ms, AdvancedTime)` reduced positive endpoints from 21,912 to 5,557,
+whereas EAST `max(125 ms, AdvancedTime)` added only 34 support endpoints.
+At a diagnostic balanced360 threshold chosen for operational TPR@30=0.8,
+fixed/fixed obtained FPR 0.1944; dynamic J-TEXT obtained 0.3000–0.3056.
+The proposed source label therefore failed the seed131 screen and was not
+promoted to multi-seed confirmation. See
+[the Chinese adjudication](ADVANCED_TIME_LABEL_ABLATION_zh.md) and
+[machine evidence](evidence/advanced_time_label_ablation_seed131.json).
+
 The alarm executed on the development stream is a causal two-route state
 machine rather than one scalar threshold; it has not undergone tokamak-side
 deployment acceptance. `high_threshold`, `physics_weight`, `trend_weight`, and
@@ -110,6 +124,8 @@ evidence/
   equal_compute_selector_control_v1/
                                     fixed-window/step selector-roster screen
   east_target_only_v1/              strict EAST-only and scaler controls
+  advanced_time_label_ablation_seed131.json
+                                    fixed/dynamic J-TEXT × EAST label control
   source_lineage/                   source checkpoints and TEST220 ledgers
   primary_online_artifacts/         compact static/online/query/reveal ledgers
   case_study_seed131_shot73790.npz self-contained figure-4 trace
@@ -139,6 +155,7 @@ TECHNICAL_REPORT_zh.md               formal Chinese technical report with deriva
 technical_report_zh/                 standard XeLaTeX project and conceptual-image provenance
 TECHNICAL_REPORT_zh.pdf              compiled A4 Chinese technical report
 NATURE_PORTFOLIO_READINESS.md        submission-readiness gate and blockers
+ADVANCED_TIME_LABEL_ABLATION_zh.md   AdvancedTime label-window adjudication
 FIVE_WAY_AUDIT.md                    independent five-lane verdict and fixes
 ```
 
