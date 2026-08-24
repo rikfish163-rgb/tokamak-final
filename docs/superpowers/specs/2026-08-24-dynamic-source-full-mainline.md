@@ -2,9 +2,10 @@
 
 ## 1. Research question and evidence boundary
 
-This specification freezes the development candidate selected by the corrected
-four-arm label ablation and defines the only allowed execution path for the
-next full-chain experiment.
+This specification freezes the post-adjudication development candidate that the
+user chose to rerun after inspecting the corrected four-arm label ablation.  It
+defines the only allowed execution path for the next full-chain experiment; it
+does not rewrite the historical ablation adjudication.
 
 The selected label arm is `source_dynamic__east_fixed`:
 
@@ -22,9 +23,13 @@ D_s = \operatorname{meta/IsDisrupt}_s, \qquad
 T^d_s = \operatorname{meta/DownTime}_s.
 \]
 
-The arm was selected by mean balanced360
-`J = operational_TPR - FPR`; this is a development selection, not independent
-confirmation.  All current TEST220 and balanced360 outputs retain
+The arm has the largest mean balanced360
+`J = operational_TPR - FPR`, but the historical preregistered per-seed gate
+failed because seed133 had `TPR@30 < 0.80`; fixed125 therefore remained the
+historical admitted primary label.  The new machine-readable role is
+`post_adjudication_user_selected_development_candidate`, with
+`historical_admission=FAIL` and `confirmation_eligible=false`.  All current
+TEST220 and balanced360 outputs retain
 `TEST_DRIVEN_EXPLORATION` or `PREQUENTIAL_DIAGNOSTIC` status.  Only a new,
 previously untouched chronological stream can provide confirmatory evidence.
 
@@ -41,6 +46,37 @@ previously untouched chronological stream can provide confirmatory evidence.
 All rosters, source checkpoint, scaler, thresholds, label maps, configurations,
 and prediction ledgers are hash-bound.  The source and target runners fail
 closed when a required artifact is absent or when a hash/policy differs.
+
+The TEST220 and balanced360 prediction phases consume ordered, label-free
+rosters containing shot identifiers only.  Class-partitioned manifests and
+objects containing outcome, terminal time, `AdvancedTime`, or equivalent label
+fields are forbidden before the corresponding static seal.  A static seal is
+complete only after every prediction row and every per-shot risk-trace digest
+has been closed, flushed, fsynced, and covered by a seal manifest.  The lazy
+outcome oracle may be constructed only after that receipt exists.
+
+The source checkpoint also binds the exact causal input contract.  The old
+whole-shot availability rule is prohibited because future suffix values can
+change whether an early prefix is treated as available.  The selected contract
+is:
+
+```text
+schema: jtext-rebuilt17-prefix-causal-v2
+history_alignment: right
+left_padding: constant_zero
+window_points: 128
+valid_lengths_required: true
+valid_length_range: [1, 128]
+patch_mask_rule: patch_end <= window_points - valid_length
+availability: finite-and-prefix-causal-seen-nonzero-v1
+preprocessing_sha256: required
+```
+
+The availability state at endpoint `k` may depend only on samples through
+`k`.  Mutating any suffix after `k` must leave its features, valid length,
+embedding, risk, query value, and prediction seal unchanged.  Existing dynamic
+checkpoints without this contract are historical reproduction artifacts only
+and are rejected by the selected runner.
 
 ## 3. Two isolated branches from one source parent
 
@@ -72,10 +108,13 @@ same locked dynamic source checkpoint
 -> ordered TEST220 predict/seal/query/reveal/update replay
 ```
 
-The final online-updated J-TEXT state is diagnostic and must not become the
-formal EAST transfer parent.  A separate
-`JTEXT_ONLINE_PRECONDITIONED_TRANSFER_DIAGNOSTIC` arm may be run only after the
-isolated primary chain exists and only with a no-J-TEXT-online matched control.
+The final online-updated J-TEXT state is diagnostic and must not become an
+EAST transfer parent.  For this goal, even a separately named
+`JTEXT_ONLINE_PRECONDITIONED_TRANSFER_DIAGNOSTIC` arm is prohibited: every EAST
+run starts from the pre-online source checkpoint sealed immediately after
+TRAIN1353/VAL160 training.  TEST220 online residuals, optimizer state,
+normalization state, thresholds, selector/value memory, replay, and query
+receipts remain confined to Branch B.
 
 ## 4. Mandatory lineage and fail-closed behavior
 
@@ -91,6 +130,13 @@ The selected production entry point must reject all of the following:
 - reading EAST or J-TEXT test outcome fields before the complete static seal;
 - using an unqueried online shot to construct a supervised target;
 - changing a prediction after its endpoint or shot seal.
+- a label-bearing TEST220 or balanced360 roster before the static seal;
+- a threshold without a hash-bound selection receipt or outside `0 < t < 1`;
+- a target preprocessing, physics scale, reconstruction constant, padding, or
+  state digest that differs between static and online reset;
+- a static risk trace whose recomputed digest differs from the seal manifest;
+- a selected-path metadata fallback for missing `SampleRate` or `StartTime`
+  unless the fallback rule and its invocation are explicitly hash-bound.
 
 The selected parent schema is `dynamic-source-east-fixed-parent-v1`.  It must
 contain at least:
@@ -98,21 +144,55 @@ contain at least:
 ```text
 schema_version
 seed
+selection_role
+historical_admission
+confirmation_eligible
+corrected_ablation_report_sha256
+selection_metric
+historical_failure_reason
 source_checkpoint_sha256
 source_label_policy
 source_label_map_sha256
 source_split_sha256
 source_scaler_sha256
+source_input_contract_sha256
 east_target_label_policy
 east_target_horizon_ms
 east_support_roster_sha256
+east_support_data_manifest_sha256
+east_support_outcome_manifest_sha256
+east_threshold_receipt_sha256
 east_threshold
+target_scaler_sha256
+physics_scales_sha256
+reconstruction_constants_sha256
 target_encoder_sha256
 target_head_sha256
 shared_parent_sha256
 private_parent_sha256
 claim_status
 ```
+
+The source VAL threshold and EAST support threshold are distinct decisions and
+have distinct receipts.  The EAST receipt binds the actual recomputed support
+roster, support predictions, candidate rule, target TPR, selected finite
+threshold, and all support data/outcome manifest digests.  State hashes use one
+canonical byte codec shared by the parent writer, selected validator, and
+unified loader; embedded hashes are never trusted without recomputing them from
+the decoded state.
+
+The selected state machine is:
+
+```text
+source-train -> jtext-static -> east-parent -> east-static -> east-online
+```
+
+`jtext-static` and `east-static` produce their complete outcome-free seals
+before their first outcome read.  `east-parent` is constructed from a typed
+support110 result only; it cannot call a loader that includes balanced360,
+consume A1 balanced360 replay artifacts, or inherit a historical threshold.
+Every resume receipt binds the code/config plus the individual source split,
+label map, support roster, test roster, and HDF5-manifest digests.
 
 Legacy schemas remain readable only by legacy replay commands; the selected
 runner never silently converts them.
@@ -140,7 +220,8 @@ prefix input
 -> next shot
 ```
 
-The feature-only loader reads signal datasets and sample-rate metadata but not
+The feature-only loader reads the 14 raw signals needed to construct rebuilt17
+and sample-rate metadata but not
 `meta/IsDisrupt`, `meta/DownTime`, or `AdvancedTime`.  A lazy oracle may read
 the HDF5 outcome only after the shot seal and only for a selected query.
 `AdvancedTime` may be read only after the same reveal receipt and only for a
@@ -154,6 +235,15 @@ updates are limited to a zero-initialized, bounded J-TEXT residual/controller:
 - `persistent` parameters change only after selected reveal;
 - replay contains only previously revealed examples;
 - model and optimizer are restored together when a guard rejects an update.
+
+The J-TEXT controller is a dedicated transaction boundary, not a thin alias of
+the EAST two-timescale controller.  Its intra batch is a field-whitelist type
+that cannot carry outcome, terminal, TTD, AdvancedTime, or horizon fields.  A
+loss receipt records `enabled`, coefficient, raw loss, and weighted loss for
+each term.  Inter update checks loss, gradients, parameters, and optimizer state
+for finite values and restores model plus optimizer on any failure.  Complete
+resume state is written only at a finalized shot boundary and includes model,
+optimizer, replay, selector, value memory, cursor, RNG state, and all hashes.
 
 The first implementation uses the locked rebuilt17 path.  EAST-private raw8,
 EAST support normalization, and EAST physics thresholds are forbidden in the
@@ -175,7 +265,8 @@ Every non-zero coefficient must appear in the effective configuration and
 update receipt.  A zero-weight or shadow term is described as disabled and is
 not credited for an observed gain.
 
-The query score is label-free:
+The query score is implemented by a J-TEXT-specific immutable value object and
+is label-free:
 
 \[
 V_s = w_s U_s + (1-w_s) C_s + \eta N_s,
@@ -222,12 +313,13 @@ reported as very-early alarms.
 For each device and arm report:
 
 ```text
-raw TPR
-operational TPR
+raw TP/FN and raw TPR
+TARDY, operational TP/FN and operational TPR
 FPR
 J = operational TPR - FPR
 AUC
-median and IQR of operational TP lead
+median and IQR of raw-alarm lead
+median and IQR of operational-TP lead
 very-early alarm rate
 TP/FN/TARDY/FP/TN counts
 four chronological blocks and worst block
@@ -238,17 +330,40 @@ Any full arm with `TPR < 0.60` or `FPR > 0.40` stops before hyperparameter
 tuning and triggers a label, threshold, alarm-index, scaler, order, and output
 audit.
 
+The result schema must not reuse the ambiguous historical field
+`median_lead_ms`.  It writes `raw_alarm_lead_ms` and
+`operational_tp_lead_ms` separately.  For two arms, an arm-wise median
+difference is composition-sensitive and is not called paired.  A paired timing
+delta is calculated only on the common set of shots that are operational true
+positives under both arms, and reports that common-shot count.
+
 ## 9. Statistical interpretation
 
 - Show every seed; do not treat three seeds as independent physical shots.
-- Use shot-paired differences for static versus online comparisons.
-- Use Wilson intervals for descriptive binomial TPR/FPR uncertainty.
+- Use shot-paired binary differences for static versus online TPR/FPR/J
+  comparisons after verifying shot-order, truth-join, and evaluation-mask SHA.
+- Use per-seed Wilson intervals for descriptive binomial raw TPR, operational
+  TPR, and FPR uncertainty; never pool identical physical shots over seeds.
 - Use chronological block bootstrap only as a descriptive adaptive-stream
   sensitivity analysis.
 - Do not attach confirmatory p-values to the arm selected on balanced360.
 - If multiple primary contrasts are tested, apply Holm correction.
 - A mechanism claim requires active to beat the strongest matched random or
   shuffled control in every seed, not only in the mean.
+
+Current development cohorts emit no confirmatory p-values; their multiplicity
+mode is `disabled_post_selection_development`.  Holm is implemented and tested
+for a future preregistered stream only.
+
+The new front-load, random, and equal-compute controls must be executed from the
+new parent and write their own complete ledgers.  Historical controls may be
+reported as historical falsification context but cannot satisfy a new arm's
+completion receipt.  A primary front-load control freezes its suffix start
+before any TEST outcome read, obtains labels only from the prefix using a
+label-free rule, fits once, and evaluates all arms on the identical suffix
+mask.  A control that moves labels selected from the future suffix into the
+prefix is named `frontload_same_future_labels_oracle` and remains a separate
+post-selection diagnostic.
 
 ## 10. Evidence, figures, report, and acceptance
 
@@ -260,7 +375,18 @@ risk traces, metrics, and an explicit claim status.
 Quantitative figures are generated from these artifacts with Matplotlib in
 PDF/SVG and 600-dpi PNG.  They use an accessible palette plus markers and line
 styles that remain distinguishable in grayscale.  Image generation is allowed
-only for a clearly marked non-data conceptual graphic.
+only for a clearly marked non-data conceptual graphic without quantitative
+curves, axes, values, or model outputs.  Scientific text, arrows, event order,
+cohort counts, and policy labels are deterministic vector overlays.  The
+legacy fixed125/paper-v3c report and figures remain an explicitly named archive;
+they are not edited or renamed into the selected dynamic-source package.
+
+Every quantitative panel has its own lineage entry, including claim status,
+cohort and physical-shot count, model-seed count, statistic, uncertainty
+definition, artifact schema/path/digest, row selector, parent digest, label
+policy, and generator/config/caption/output digests.  No generator may fall
+back to a legacy or external run directory.  Single-shot outcome annotations
+come from the post-seal join, never from hard-coded plotting literals.
 
 The Chinese report is authored from one Markdown source and compiled into
 standard LaTeX/PDF.  It includes a symbol glossary, formula-to-code map,
