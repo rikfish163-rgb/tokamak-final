@@ -1,0 +1,103 @@
+{
+  "schema_version": "jtext-online-active-v1",
+  "claim_status": "TEST_DRIVEN_EXPLORATION",
+  "research_claim": "JTEXT_TEST220_ORDERED_PREQUENTIAL_DIAGNOSTIC",
+  "confirmation_eligible": false,
+  "cohort": {
+    "name": "J-TEXT TEST220",
+    "shot_count": 220,
+    "order_contract": "jtext-test220-ordered-v1",
+    "input_contract": "jtext-rebuilt17-prefix-causal-v2"
+  },
+  "arms": [
+    "static",
+    "intra_only",
+    "inter_random",
+    "inter_active",
+    "full_random",
+    "full_active",
+    "frontload_equal_labels",
+    "equal_compute_random"
+  ],
+  "budgets_percent": [10, 20, 30],
+  "primary_budget": {
+    "percent": 20,
+    "block_size": 20,
+    "queries_per_block": 4,
+    "block_count": 11,
+    "query_count": 44
+  },
+  "query_value": {
+    "formula": "V=wU+(1-w)C+eta*N",
+    "w": 0.65,
+    "eta": 0.1,
+    "uncertainty_scale": 1.0,
+    "contradiction_scale": 1.0,
+    "novelty_scale": 1.0,
+    "selection_scope": "TRAIN1353/VAL160 simulations only",
+    "frozen_on_test220": true,
+    "novelty_memory": "strictly previously revealed J-TEXT phenotypes only"
+  },
+  "losses": {
+    "intra": {
+      "next": 1.0,
+      "teacher": 0.5,
+      "risk_anchor": 0.25,
+      "physics": 0.0
+    },
+    "inter": {
+      "supervised": 1.0,
+      "replay": 0.5,
+      "risk_anchor": 0.25,
+      "physics": 0.0
+    },
+    "zero_weight_terms_are_disabled": true,
+    "receipt_fields": ["enabled", "weight", "raw", "weighted"]
+  },
+  "compute_caps": {
+    "current_windows": 8,
+    "replay_windows": 8,
+    "guard_windows": 8,
+    "optimizer_attempts": 2,
+    "active_random_match_required": true
+  },
+  "causal_order": ["predict", "seal", "query", "reveal", "update"],
+  "source_isolation": {
+    "source_encoder_frozen": true,
+    "source_head_frozen": true,
+    "east_transfer_parent": "raw_static_jtext_source_checkpoint_only",
+    "jtext_online_state_transfer_allowed": false,
+    "online_state_confined_to_test220_branch": [
+      "residual",
+      "optimizer",
+      "selector",
+      "value_memory",
+      "replay",
+      "resume_receipts"
+    ]
+  },
+  "forbidden_inputs": [
+    "EAST_raw8",
+    "EAST_support_normalization",
+    "EAST_thresholds"
+  ],
+  "frontload": {
+    "selection": "label-free chronological prefix",
+    "suffix_start_frozen_before_outcome_access": true,
+    "training_shots_excluded_from_evaluation": true
+  },
+  "abnormal_run_gate": {
+    "full_arm_operational_tpr_minimum": 0.6,
+    "full_arm_fpr_maximum": 0.4,
+    "on_trigger": "STOPPED_ABNORMAL_RUN",
+    "tuning_allowed_after_trigger": false,
+    "required_audits": [
+      "label",
+      "threshold",
+      "alarm_index",
+      "scaler",
+      "order",
+      "output"
+    ]
+  }
+}
