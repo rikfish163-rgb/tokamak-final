@@ -40,6 +40,8 @@ def test_dynamic_report_contract_is_current_and_hash_bound(tmp_path: Path) -> No
     assert payload["headline_metrics"]["east_static"]["fpr"] == 0.142593
     assert payload["headline_metrics"]["east_online"]["j"] == 0.681481
     assert all(len(item["sha256"]) == 64 for item in payload["artifacts"])
+    assert "README.md" not in {item["path"] for item in payload["artifacts"]}
+    assert "README_CN.md" not in {item["path"] for item in payload["artifacts"]}
 
 
 def test_retired_v3c_numbers_are_rejected_from_active_documents() -> None:
@@ -56,3 +58,43 @@ def test_latex_project_declares_glossary_and_formula_code_mapping() -> None:
     assert "公式与代码映射" in tex
     assert "TEST\\_DRIVEN\\_EXPLORATION" in tex
     assert "max(25" in tex
+
+
+def test_root_readme_preserves_original_v3c_and_budget_controls() -> None:
+    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+
+    # Original paper-v3c lineage remains the repository headline result.
+    assert "0.840741" in readme
+    assert "0.166667" in readme
+    assert "0.848148" in readme
+    assert "0.151852" in readme
+    assert "102/90/99" in readme
+
+    # Query-budget curve and the same-30-label direct-frontload control remain visible.
+    for token in ("16", "35", "66", "97", "0.830189", "0.140351",
+                  "0.836478", "0.134503", "0.937107", "0.274854"):
+        assert token in readme
+
+    # Dynamic-label reruns are retained only as a separately named appendix.
+    assert "AdvancedTime 动态标签重跑附录" in readme
+    assert "不得覆盖原 paper-v3c 主结果" in readme
+
+
+def test_root_headline_matches_sealed_v3c_and_q30_evidence() -> None:
+    evidence = PACKAGE / "evidence"
+    primary = json.loads((evidence / "three_stage_results.json").read_text())
+    lineage = primary["primary_lineage"]
+    static = lineage["east_static360"]["aggregate"]
+    online = lineage["east_online360"]["aggregate"]
+    assert static["tpr_at_30ms"]["mean"] == 0.8407407407407407
+    assert static["fpr"]["mean"] == 0.16666666666666666
+    assert online["tpr_at_30ms"]["mean"] == 0.8481481481481481
+    assert online["fpr"]["mean"] == 0.15185185185185185
+
+    q30 = json.loads((
+        evidence / "causal_timescale_equal_budget_seed131_20260821/report.json"
+    ).read_text())
+    complement = q30["same_label_disjoint_330_complement"]
+    assert complement["online_intra_inter"]["utility_tpr30_minus_fpr"] == 0.7019750634447754
+    assert complement["direct_frontload_support110_recalibrated"]["utility_tpr30_minus_fpr"] == 0.6676597153260511
+    assert q30["equal_label_budget_verdict"]["compute_matched"] is False

@@ -2,7 +2,7 @@
 
 **Language:** [简体中文（默认）](README.md) · **English**
 
-[Chinese technical report](experiments/transfer_methods_2026/paper_grade_package/DYNAMIC_MAINLINE_TECHNICAL_REPORT_zh.md) · [XeLaTeX source](experiments/transfer_methods_2026/paper_grade_package/technical_report_dynamic/main.tex) · [Data contract](DATA_CONTRACT.md)
+[Paper-v3c Chinese technical report](experiments/transfer_methods_2026/paper_grade_package/TECHNICAL_REPORT_zh.md) · [AdvancedTime dynamic-label appendix](experiments/transfer_methods_2026/paper_grade_package/DYNAMIC_MAINLINE_TECHNICAL_REPORT_zh.md) · [Data contract](DATA_CONTRACT.md)
 
 ![Python](https://img.shields.io/badge/Python-3.11-3776AB) ![PyTorch](https://img.shields.io/badge/PyTorch-2.11-EE4C2C) ![CUDA](https://img.shields.io/badge/CUDA-12.8-76B900) ![HDF5](https://img.shields.io/badge/HDF5-authoritative%20labels-00599C)
 ![model](https://img.shields.io/badge/model-causal%20Transformer-0072B2) ![online](https://img.shields.io/badge/online-chronological%20active%20learning-009E73) ![reproducibility](https://img.shields.io/badge/reproducibility-hash--bound-2F80ED)
@@ -29,13 +29,15 @@ Equal-weight means across seeds 131, 133, and 137 are shown below. Operational T
 
 | Stage | TPR | FPR | AUC | J = TPR - FPR |
 |---|---:|---:|---:|---:|
-| J-TEXT static TEST220 | **0.866667** | **0.130303** | **0.967906** | **0.736364** |
-| EAST static balanced360 | **0.824074** | **0.142593** | not reported | **0.681481** |
-| EAST online balanced360 | **0.824074** | **0.142593** | not reported | **0.681481** |
+| Original J-TEXT source TEST220 | **0.851515** | **0.212121** | **0.921928** | **0.639394** |
+| EAST static transfer balanced360 | **0.840741** | **0.166667** | not reported | **0.674074** |
+| Original EAST v3c online balanced360 | **0.848148** | **0.151852** | not reported | **0.696296** |
 
-After restoring the historical shot-first support110 sampler and the unmodified v3c online configuration, EAST online-minus-static delta-J is `-0.005556`, `+0.005556`, and `0` by seed, with a mean of `0`. The seed-level changes cancel, so this is not evidence of a stable online gain. Seed 133 fails the TPR gate, hence `T0_ADMITTED=false`.
+In the sealed original paper-v3c lineage, online adaptation increases TPR@30 by `0.007407` and reduces FPR by `0.014815`, giving mean delta-J `+0.022222`. Across the three model seeds it adds four timely detections and removes eight false alarms; query counts are `102/90/99`. These are development-stream results, not independent future confirmation.
 
-The retired paper-v3c operating point used a different source checkpoint, label contract, and alarm lineage. It is archived and must not be combined with this table.
+The later AdvancedTime dynamic-label rerun (`0.824074/0.142593` static and online) is retained as a separate appendix and must not replace the original v3c headline. The newly added J-TEXT online branch is also isolated and never initializes EAST transfer.
+
+Paper-v3c is the repository headline lineage. The AdvancedTime dynamic-label rerun and the isolated J-TEXT online branch are appendices with different checkpoints and must not be merged into the paper-v3c averages.
 
 ## Label and method contract
 

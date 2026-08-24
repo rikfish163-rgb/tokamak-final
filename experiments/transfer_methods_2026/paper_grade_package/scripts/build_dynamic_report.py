@@ -26,16 +26,14 @@ HEADLINE_METRICS = {
     "east_online": {"tpr": 0.824074, "fpr": 0.142593, "j": 0.681481},
 }
 
-# These values belong to the retired paper-v3c archived-parent lineage.  They
-# may remain in explicitly archived files, but not in the active dynamic report
-# or the two active root README documents.
+# These values belong to the separate paper-v3c lineage.  They may remain in
+# the repository headline README, but must not be copied into this dynamic-label
+# appendix as though both reports shared one checkpoint and label contract.
 RETIRED_V3C_TOKENS = (
     "0.8515", "0.2121", "0.9219", "0.8407", "0.1667", "0.8481", "0.1519",
 )
 
 ACTIVE_ARTIFACTS = (
-    Path("README.md"),
-    Path("README_CN.md"),
     Path("experiments/transfer_methods_2026/paper_grade_package/DYNAMIC_MAINLINE_TECHNICAL_REPORT_zh.md"),
     Path("experiments/transfer_methods_2026/paper_grade_package/technical_report_dynamic/main.tex"),
     Path("experiments/transfer_methods_2026/paper_grade_package/evidence_dynamic/dynamic_mainline_report.json"),
