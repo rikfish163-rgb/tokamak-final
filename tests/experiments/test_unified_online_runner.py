@@ -407,6 +407,40 @@ def test_expected_query_count_requires_complete_exact_budget_blocks() -> None:
         module.expected_query_count(359, block_size=20, quota=4)
 
 
+def test_rolling_token_budget_allows_unspent_queries_without_exceeding_cap() -> None:
+    module = load_module()
+    module.validate_query_count(
+        query_count=63, expected_queries=72,
+        enable_query=True, rolling_no_forced_fill=True,
+        episode_value_v3=False, error_memory_enabled=False,
+        fixed_query_count=None,
+    )
+    with pytest.raises(RuntimeError, match="query cap exceeded"):
+        module.validate_query_count(
+            query_count=73, expected_queries=72,
+            enable_query=True, rolling_no_forced_fill=True,
+            episode_value_v3=False, error_memory_enabled=False,
+            fixed_query_count=None,
+        )
+
+
+def test_exact_budget_selector_still_requires_every_query() -> None:
+    module = load_module()
+    module.validate_query_count(
+        query_count=72, expected_queries=72,
+        enable_query=True, rolling_no_forced_fill=False,
+        episode_value_v3=False, error_memory_enabled=False,
+        fixed_query_count=None,
+    )
+    with pytest.raises(RuntimeError, match="exact query budget failed"):
+        module.validate_query_count(
+            query_count=63, expected_queries=72,
+            enable_query=True, rolling_no_forced_fill=False,
+            episode_value_v3=False, error_memory_enabled=False,
+            fixed_query_count=None,
+        )
+
+
 def test_zero_inter_steps_becomes_a_no_gradient_finalize() -> None:
     module = load_module()
     assert module.inter_update_control(0, 0.8) == (1, 0.0)

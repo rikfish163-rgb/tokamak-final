@@ -444,6 +444,33 @@ def expected_query_count(
     return int(shot_count // block_size * quota)
 
 
+def validate_query_count(
+    *, query_count: int, expected_queries: int, enable_query: bool,
+    rolling_no_forced_fill: bool, episode_value_v3: bool,
+    error_memory_enabled: bool, fixed_query_count: int | None,
+) -> None:
+    """Validate the selector's declared budget semantics.
+
+    Exact block selectors must consume the complete quota. Rolling-token and
+    error-memory selectors intentionally do not force low-value queries, so
+    their block-derived budget is a cap rather than an equality constraint.
+    """
+    if not enable_query:
+        if query_count != 0:
+            raise RuntimeError("intra-only mode accessed the label-query budget")
+        return
+    if fixed_query_count is not None and query_count != fixed_query_count:
+        raise RuntimeError("fixed query manifest was not consumed exactly")
+    capped = bool(
+        episode_value_v3 or rolling_no_forced_fill or error_memory_enabled
+    )
+    if capped:
+        if query_count > expected_queries:
+            raise RuntimeError("causal query cap exceeded")
+    elif query_count != expected_queries:
+        raise RuntimeError("unified exact query budget failed")
+
+
 def inter_update_control(steps: int, update_scale: float) -> tuple[int, float]:
     """Map an ablation with zero steps to a state-finalizing zero-gradient call."""
     if int(steps) < 0:
@@ -3812,26 +3839,17 @@ def main() -> None:
         )
         if mode_contract.enable_query else 0
     )
-    if not mode_contract.enable_query and query_count != 0:
-        raise RuntimeError("intra-only mode accessed the label-query budget")
-    if (
-        mode_contract.enable_query and args.episode_value_v3
-        and query_count > expected_queries
-    ):
-        raise RuntimeError("episode v3 causal query cap exceeded")
-    if (
-        mode_contract.enable_query and not args.episode_value_v3
-        and error_memory is None and args.fixed_query_manifest is None
-        and query_count != expected_queries
-    ):
-        raise RuntimeError("unified exact query budget failed")
-    if (
-        mode_contract.enable_query and not args.episode_value_v3
-        and error_memory is not None and query_count > expected_queries
-    ):
-        raise RuntimeError("causal error-memory query cap exceeded")
-    if fixed_query_shots is not None and query_count != len(fixed_query_shots):
-        raise RuntimeError("fixed query manifest was not consumed exactly")
+    validate_query_count(
+        query_count=query_count,
+        expected_queries=expected_queries,
+        enable_query=mode_contract.enable_query,
+        rolling_no_forced_fill=bool(args.query_token_capacity > 0),
+        episode_value_v3=bool(args.episode_value_v3),
+        error_memory_enabled=error_memory is not None,
+        fixed_query_count=(
+            len(fixed_query_shots) if fixed_query_shots is not None else None
+        ),
+    )
     if args.selector_compute_control:
         expected_current = query_count * int(args.fixed_compute_current_windows)
         expected_replay = query_count * int(args.fixed_compute_replay_windows)
