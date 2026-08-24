@@ -84,6 +84,60 @@ def prepare_east_training_labels(
     return prepared, audit
 
 
+def historical_shot_first_sampler(shots, *, pos_ms, gray_ms, seed):
+    """Reproduce the sealed support110 migration sampler exactly.
+
+    The registered EAST migration first samples a shot uniformly and only then
+    chooses a positive or negative endpoint inside that shot.  In particular,
+    it must not rebalance the 15D/95N support cohort by choosing the class
+    before the shot.
+    """
+
+    pools = []
+    for shot in shots:
+        shot_pos_ms = float(shot.get("positive_horizon_ms", pos_ms))
+        values = np.asarray(shot["v"])
+        times = float(shot["start"]) + np.arange(len(values)) / float(shot["rate"])
+        pos_endpoints = []
+        neg_endpoints = []
+        if bool(shot["is_disrupt"]) and shot.get("down") is not None:
+            for endpoint in range(W - 1, len(values)):
+                ttd_ms = (float(shot["down"]) - times[endpoint]) * 1000.0
+                if 0.0 <= ttd_ms <= shot_pos_ms:
+                    pos_endpoints.append(endpoint)
+                elif shot_pos_ms + float(gray_ms) < ttd_ms <= 60_000.0:
+                    neg_endpoints.append(endpoint)
+        else:
+            neg_endpoints = list(range(W - 1, len(values)))
+        pools.append({"positive": pos_endpoints, "negative": neg_endpoints})
+    positive = [pool["positive"] for pool in pools]
+    negative = [pool["negative"] for pool in pools]
+    generator = np.random.default_rng(int(seed))
+
+    def sample(positive_probability=0.5):
+        while True:
+            shot_index = int(generator.integers(len(shots)))
+            pos_endpoints = positive[shot_index]
+            neg_endpoints = negative[shot_index]
+            if not pos_endpoints and not neg_endpoints:
+                continue
+            if pos_endpoints and generator.random() < float(positive_probability):
+                endpoints = pos_endpoints
+                label = np.float32(1.0)
+            else:
+                if not neg_endpoints:
+                    continue
+                endpoints = neg_endpoints
+                label = np.float32(0.0)
+            endpoint = endpoints[int(generator.integers(len(endpoints)))]
+            window = np.asarray(shots[shot_index]["v"])[
+                endpoint - W + 1:endpoint + 1
+            ]
+            return np.ascontiguousarray(window), label
+
+    return sample
+
+
 def train_support_only(
     seed=131, source_checkpoint=None, *, target_label_policy="fixed125",
     advanced_time_path=EAST_ADVANCED_TIME, adapt_epochs=12,
@@ -109,7 +163,9 @@ def train_support_only(
     for group in (tr,):
         GS.apply_scale(group, med, sc)
     pos, gray = GS.POS["ea125"], GS.GRAY["gray0"]
-    ts = GS.build_sampler(tr, None, pos["ea"], gray["ea"], seed)
+    ts = historical_shot_first_sampler(
+        tr, pos_ms=pos["ea"], gray_ms=gray["ea"], seed=seed,
+    )
     channels = len(GS.RH.REBUILD)
     enc, head = GS.train_adapt(
         None, ts, channels, int(adapt_epochs), int(adapt_batch_size), seed,

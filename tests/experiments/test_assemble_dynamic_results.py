@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib.util
+import json
 from pathlib import Path
 
 import pytest
@@ -105,3 +106,22 @@ def test_absolute_paths_are_confined_to_nonportable_provenance() -> None:
     report["report_body"]["bad"] = "/tmp/leak"
     with pytest.raises(ValueError, match="absolute path"):
         module.validate_portable_report(report)
+
+
+def test_written_portable_report_omits_workstation_provenance(tmp_path: Path) -> None:
+    module = _module()
+    output = tmp_path / "portable.json"
+    report = {
+        "report_body": {"claim": "TEST_DRIVEN_EXPLORATION"},
+        "nonportable_provenance": {
+            "east_root": "/tmp/east",
+            "jtext_online_root": "/tmp/jtext",
+            "data_root": "/tmp/data",
+        },
+    }
+
+    module._write_report(report, output)
+
+    written = json.loads(output.read_text(encoding="utf-8"))
+    assert written == {"report_body": report["report_body"]}
+    assert "/tmp/" not in output.read_text(encoding="utf-8")

@@ -35,14 +35,14 @@ J-TEXT TEST220 还运行一条独立在线诊断支路；该支路的在线参�
 | 阶段 | TPR | FPR | AUC | $J=\mathrm{TPR}-\mathrm{FPR}$ |
 |---|---:|---:|---:|---:|
 | J-TEXT static TEST220 | **0.866667** | **0.130303** | **0.967906** | **0.736364** |
-| EAST static balanced360 | **0.725926** | **0.220370** | — | **0.505556** |
-| EAST online balanced360 | **0.733333** | **0.220370** | — | **0.512963** |
+| EAST static balanced360 | **0.824074** | **0.142593** | — | **0.681481** |
+| EAST online balanced360 | **0.824074** | **0.142593** | — | **0.681481** |
 
-EAST online 相对 static 的平均 $\Delta J=+0.007407$，但不跨 seed 稳定；seed133 的 TPR 低于 0.80，seed137 的 FPR 高于 0.20，因此 `T0_ADMITTED=false`。J-TEXT 20% full-active 的三 seed $\Delta J$ 为 0、−0.009091、0，因此 `ONLINE_SUPPORTED=false`。
+恢复原 support110 炮优先采样器和原 v3c 在线配置后，EAST static 与 online 的三 seed 平均指标相同，平均 $\Delta J=0$。逐 seed 有小幅正负变化但相互抵消，因此不能宣称稳定在线增益；seed133 的 TPR 低于 0.80，故 `T0_ADMITTED=false`。J-TEXT 20% full-active 的三 seed $\Delta J$ 为 0、−0.009091、0，因此 `ONLINE_SUPPORTED=false`。
 
-EAST 在线增益按 seed 分别为 $+0.005556、+0.016667、0$；三 seed 的 FPR 均保持不变，改善来自把 1、3、0 炮由迟报/漏报转为满足 30 ms 的及时报警。旧 v3c 数值属于不同源 checkpoint、标签和报警谱系，已归档，不能与本表拼接比较。
+EAST 在线 $\Delta J$ 按 seed 分别为 $-0.005556、+0.005556、0$；对应查询 103、100、97 炮。这里保留的是原方法的真实结果，没有为了制造增益而修改采样、查询、更新或报警规则。
 
-这些值已由证据装配脚本从逐炮封存预测和 HDF5 真值重新计算；紧凑证据报告包含 80 个输入产物哈希，当前 SHA-256 为 `04e7319843304d28ec58e6b2b483bf85c5b4dea8dedd521825a6625d319dae2e`。文档与该报告不一致时必须失败关闭。
+这些值已由证据装配脚本从逐炮封存预测和 HDF5 真值重新计算；紧凑证据报告包含 80 个输入产物哈希，当前 SHA-256 为 `35915b782b6c247ff768e643d02d370f4776586fab10ce54f9f8c1305a9cdbff`。文档与该报告不一致时必须失败关闭。
 
 ## 当前标签合同
 
@@ -111,11 +111,12 @@ for seed in 131 133 137; do
   $PY experiments/transfer_methods_2026/run_selected_full_mainline.py \
     --seed "$seed" \
     --stage all \
-    --output-root /ext4/runs/selected_full_mainline/prefix_causal_v2c
+    --data-root "$FUSION_DATA_ROOT" \
+    --output "/ext4/runs/selected_full_mainline/seed${seed}"
 done
 ```
 
-固定阶段顺序为 `source-train → jtext-static → east-parent → east-static → east-online`。迁移必须读取同 seed 的**原始静态 J-TEXT checkpoint**，不能读取 J-TEXT 在线状态。
+固定阶段顺序为 `source-train → jtext-static → jtext-online → east-parent → east-static → east-online`。`jtext-online` 是独立诊断分支；`east-parent` 仍只读取同 seed 的**原始静态 J-TEXT checkpoint**，禁止读取 J-TEXT 在线状态。
 
 ### 3. J-TEXT 在线诊断
 
@@ -124,8 +125,10 @@ for seed in 131 133 137; do
   $PY experiments/transfer_methods_2026/run_jtext_online_active.py \
     --seed "$seed" \
     --arm full_active \
-    --budget-percent 20 \
-    --output /ext4/runs/jtext_online_v2
+    --budget 20 \
+    --data-root "$FUSION_DATA_ROOT" \
+    --source-checkpoint "/ext4/runs/selected_full_mainline/seed${seed}/source-train/source_checkpoint.pt" \
+    --output "/ext4/runs/jtext_online_v2/seed${seed}/full_active_b20"
 done
 ```
 

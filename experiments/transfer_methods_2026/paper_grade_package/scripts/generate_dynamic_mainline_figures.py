@@ -186,22 +186,22 @@ def _render_real_figures(results: dict[str, Any]) -> dict[str, Any]:
     east_static = [results["east_static_online_three_seed"][seed]["static"] for seed in seeds]
     east_online = [results["east_static_online_three_seed"][seed]["online"] for seed in seeds]
 
-    fig2, axes = plt.subplots(1, 3, figsize=(7.1, 2.45))
+    fig2, axes = plt.subplots(1, 3, figsize=(7.1, 2.45), layout="constrained")
     _metric_axis(axes[0], seeds, [("J-TEXT static", [x["operational_tpr"] for x in source], 4)], "TPR (>10 ms)", (.55, 1.0))
     _metric_axis(axes[1], seeds, [("J-TEXT static", [x["fpr"] for x in source], 5)], "FPR", (0, .32))
     _metric_axis(axes[2], seeds, [("J-TEXT static", [x["auc"] for x in source], 2)], "AUC", (.85, 1.0))
     for label, ax in zip("ABC", axes): ax.text(.01, .99, label, transform=ax.transAxes, fontweight="bold", fontsize=9, va="top")
 
-    fig3, axes = plt.subplots(1, 3, figsize=(7.1, 2.45))
-    _metric_axis(axes[0], seeds, [("static", [x["operational_tpr"] for x in east_static], 4), ("online", [x["operational_tpr"] for x in east_online], 2)], "TPR (>=30 ms)", (.5, .85))
+    fig3, axes = plt.subplots(1, 3, figsize=(7.1, 2.45), layout="constrained")
+    _metric_axis(axes[0], seeds, [("static", [x["operational_tpr"] for x in east_static], 4), ("online", [x["operational_tpr"] for x in east_online], 2)], "TPR (>=30 ms)", (.70, .90))
     _metric_axis(axes[1], seeds, [("static", [x["fpr"] for x in east_static], 5), ("online", [x["fpr"] for x in east_online], 0)], "FPR", (0, .34))
-    _metric_axis(axes[2], seeds, [("static", [x["j_operational"] for x in east_static], 4), ("online", [x["j_operational"] for x in east_online], 2)], "J = TPR - FPR", (.4, .58))
+    _metric_axis(axes[2], seeds, [("static", [x["j_operational"] for x in east_static], 4), ("online", [x["j_operational"] for x in east_online], 2)], "J = TPR - FPR", (.55, .75))
     for label, ax in zip("ABC", axes): ax.text(.01, .99, label, transform=ax.transAxes, fontweight="bold", fontsize=9, va="top")
 
     arms = results["jtext_seed131_arm_matrix"]
     arm_order = ["static", "intra_only", "inter_active", "full_active", "full_random"]
     arm_labels = ["Static", "Intra", "Inter", "Full active", "Full random"]
-    fig4, axes = plt.subplots(1, 3, figsize=(7.1, 2.55))
+    fig4, axes = plt.subplots(1, 3, figsize=(7.1, 2.55), layout="constrained")
     _metric_axis(axes[0], arm_labels, [("seed 131", [arms[x]["metrics"]["operational_tpr"] for x in arm_order], 4)], "TPR (>10 ms)", (.84, .92))
     _metric_axis(axes[1], arm_labels, [("seed 131", [arms[x]["metrics"]["fpr"] for x in arm_order], 5)], "FPR", (.12, .18))
     _metric_axis(axes[2], arm_labels, [("seed 131", [arms[x]["metrics"]["j_operational"] for x in arm_order], 2)], "J", (.70, .77))
@@ -211,7 +211,7 @@ def _render_real_figures(results: dict[str, Any]) -> dict[str, Any]:
     budgets = results["jtext_seed131_budget"]
     resource = results["jtext_seed131_active_random_resource_match"]
     front = results["jtext_seed131_frontload_common_176"]
-    fig5, axes = plt.subplots(1, 3, figsize=(7.1, 2.55))
+    fig5, axes = plt.subplots(1, 3, figsize=(7.1, 2.55), layout="constrained")
     bkeys, blabels = ["b10", "b20", "b30"], ["10%", "20%", "30%"]
     _metric_axis(axes[0], blabels, [("active", [budgets[x]["metrics"]["j_operational"] for x in bkeys], 2)], "J", (.70, .77))
     totals = resource["resource_totals"]

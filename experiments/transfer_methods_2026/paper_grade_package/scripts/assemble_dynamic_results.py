@@ -691,11 +691,11 @@ def assemble_report(
 def _write_report(report: dict[str, Any], output: Path) -> None:
     output = Path(output).expanduser().resolve()
     output.parent.mkdir(parents=True, exist_ok=True)
-    report["nonportable_provenance"]["output"] = str(output)
     validate_portable_report(report)
+    portable = {"report_body": report["report_body"]}
     temporary = output.with_name(f".{output.name}.tmp-{os.getpid()}")
     with temporary.open("x", encoding="utf-8") as handle:
-        json.dump(report, handle, indent=2, sort_keys=True, ensure_ascii=False, allow_nan=False)
+        json.dump(portable, handle, indent=2, sort_keys=True, ensure_ascii=False, allow_nan=False)
         handle.write("\n")
         handle.flush()
         os.fsync(handle.fileno())

@@ -173,6 +173,9 @@ def _parent_payload(contract: selected.SelectedMainlineContract) -> dict:
 
 def test_selected_config_freezes_source_dynamic_east_fixed_values() -> None:
     config = runner.load_selected_config(CONFIG)
+    frozen_v3c = json.loads((
+        HERE / "paper_grade_package/configs/primary_chain_v3c.json"
+    ).read_text(encoding="utf-8"))
 
     assert config["schema_version"] == "primary-chain-dynamic-source-v1"
     assert config["selected_label_arm"] == "source_dynamic__east_fixed"
@@ -183,8 +186,12 @@ def test_selected_config_freezes_source_dynamic_east_fixed_values() -> None:
     assert config["east"]["target_label_policy"] == "fixed125"
     assert config["east"]["target_horizon_ms"] == 125.0
     assert config["east"]["threshold_source"] == "EAST support110"
-    assert config["online"]["query_block_size"] == 20
-    assert config["online"]["query_quota"] == 4
+    assert config["online"] == frozen_v3c["online"]
+    assert config["jtext_online"] == {
+        "arm": "full_active",
+        "budget_percent": 20,
+        "state_transfer_to_east_allowed": False,
+    }
     assert config["claim_status"] == "TEST_DRIVEN_EXPLORATION"
     assert config["selection_role"] == (
         "post_adjudication_user_selected_development_candidate"
@@ -192,9 +199,83 @@ def test_selected_config_freezes_source_dynamic_east_fixed_values() -> None:
     assert config["historical_admission"] == "FAIL"
     assert config["confirmation_eligible"] is False
     assert config["stage_sequence"] == [
-        "source-train", "jtext-static", "east-parent",
+        "source-train", "jtext-static", "jtext-online", "east-parent",
         "east-static", "east-online",
     ]
+
+
+def test_selected_east_support_training_uses_historical_shot_first_sampler(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    source_path = tmp_path / "source.pt"
+    source_path.write_bytes(b"source")
+    encoder = torch.nn.Linear(2, 2)
+    head = torch.nn.Linear(2, 1)
+    support = [
+        {"shot": 1, "is_disrupt": True, "v": np.zeros((128, 2), np.float32)},
+        {"shot": 2, "is_disrupt": False, "v": np.zeros((128, 2), np.float32)},
+    ]
+    calls: list[str] = []
+
+    monkeypatch.setattr(
+        a1.selected_contract, "load_selected_source_checkpoint",
+        lambda *_args, **_kwargs: (encoder, head, {
+            "input_contract": {"schema": "jtext-rebuilt17-prefix-causal-v2"},
+        }),
+    )
+    monkeypatch.setattr(
+        a1.alarm, "_source_contract",
+        lambda *_args, **_kwargs: (
+            source_path.resolve(), np.zeros(2), np.ones(2),
+            {"input_contract": {"schema": "jtext-rebuilt17-prefix-causal-v2"}},
+        ),
+    )
+    monkeypatch.setattr(
+        a1.alarm.GS, "load_east_selected_support", lambda: (support, []),
+    )
+    monkeypatch.setattr(a1.alarm.GS, "transform", lambda rows, _mode: rows)
+    monkeypatch.setattr(a1.alarm.GS, "apply_scale", lambda *_args: None)
+    monkeypatch.setattr(
+        a1.alarm, "prepare_east_training_labels",
+        lambda rows, **_kwargs: (rows, {"policy": "fixed125"}),
+    )
+    monkeypatch.setattr(
+        a1.alarm.GS, "build_sampler",
+        lambda *_args, **_kwargs: (_ for _ in ()).throw(
+            AssertionError("class-first sampler must not be used")
+        ),
+    )
+    monkeypatch.setattr(
+        a1.alarm, "historical_shot_first_sampler",
+        lambda *_args, **_kwargs: calls.append("shot-first") or object(),
+        raising=False,
+    )
+    monkeypatch.setattr(
+        a1.alarm.GS, "train_adapt", lambda *_args, **_kwargs: (encoder, head),
+    )
+
+    a1.alarm.train_support_only(131, source_path)
+
+    assert calls == ["shot-first"]
+
+
+def test_jtext_online_stage_command_uses_static_source_only(tmp_path: Path) -> None:
+    config = runner.load_selected_config(CONFIG)
+    command = runner.jtext_online_stage_command(
+        seed=131,
+        output=tmp_path / "jtext-online",
+        source_checkpoint=tmp_path / "source.pt",
+        data_root=tmp_path / "data",
+        config=config,
+        python=Path(sys.executable),
+    )
+
+    assert command[command.index("--source-checkpoint") + 1] == str(
+        tmp_path / "source.pt"
+    )
+    assert command[command.index("--arm") + 1] == "full_active"
+    assert command[command.index("--budget") + 1] == "20"
+    assert "east-parent" not in " ".join(command)
 
 
 def test_selected_config_is_portable_and_contains_no_absolute_media_path() -> None:

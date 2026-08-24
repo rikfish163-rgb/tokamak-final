@@ -22,8 +22,8 @@ LATEX_DIR = PACKAGE / "technical_report_dynamic"
 
 HEADLINE_METRICS = {
     "jtext_static": {"tpr": 0.866667, "fpr": 0.130303, "auc": 0.967906, "j": 0.736364},
-    "east_static": {"tpr": 0.725926, "fpr": 0.220370, "j": 0.505556},
-    "east_online": {"tpr": 0.733333, "fpr": 0.220370, "j": 0.512963},
+    "east_static": {"tpr": 0.824074, "fpr": 0.142593, "j": 0.681481},
+    "east_online": {"tpr": 0.824074, "fpr": 0.142593, "j": 0.681481},
 }
 
 # These values belong to the retired paper-v3c archived-parent lineage.  They
@@ -80,10 +80,9 @@ def audit_repository(repo: Path = REPO) -> dict:
         "/meta/DownTime",
         "0.866667",
         "0.130303",
-        "0.725926",
-        "0.220370",
-        "0.733333",
-        "0.512963",
+        "0.824074",
+        "0.142593",
+        "0.681481",
         "80 个",
     )
     absent = [token for token in required if token not in merged]

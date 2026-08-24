@@ -5,7 +5,7 @@
 - 主线：J-TEXT 动态正样本边界源模型 → EAST support110 小样本迁移 → EAST balanced360 静态评估 → 同父模型顺序在线主动适配。
 - 证据状态：`TEST_DRIVEN_EXPLORATION`；`DEVELOPMENT_EVIDENCE_NOT_INDEPENDENT_CONFIRMATION`。
 - 结论边界：J-TEXT `TEST220` 与 EAST `balanced360` 均参与方法开发，不能表述为独立未来确认、装置部署成绩或因果机理证明。
-- 数值来源：证据装配脚本已从封存预测与 HDF5 真值逐炮重算，并核对 80 个输入产物的 SHA-256。紧凑报告 SHA-256 为 `04e7319843304d28ec58e6b2b483bf85c5b4dea8dedd521825a6625d319dae2e`；若文档与机器证据不一致，应失败关闭并修正文档，不能修改评价口径迁就正文。
+- 数值来源：证据装配脚本已从封存预测与 HDF5 真值逐炮重算，并核对 80 个输入产物的 SHA-256。紧凑报告 SHA-256 为 `35915b782b6c247ff768e643d02d370f4776586fab10ce54f9f8c1305a9cdbff`；若文档与机器证据不一致，应失败关闭并修正文档，不能修改评价口径迁就正文。
 
 ## 1. 研究问题与严格主线
 
@@ -214,14 +214,14 @@ $$
 
 | seed | J-TEXT TPR@10 | J-TEXT FPR | J-TEXT AUC | EAST static TPR@30 | EAST static FPR | EAST online TPR@30 | EAST online FPR | EAST queries |
 |---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| 131 | 0.900000 | 0.154545 | 0.978926 | 0.766667 | 0.233333 | 0.772222 | 0.233333 | 63 |
-| 133 | 0.836364 | 0.100000 | 0.961736 | 0.627778 | 0.155556 | 0.644444 | 0.155556 | 63 |
-| 137 | 0.863636 | 0.136364 | 0.963058 | 0.783333 | 0.272222 | 0.783333 | 0.272222 | 62 |
-| 等 seed 均值 | **0.866667** | **0.130303** | **0.967906** | **0.725926** | **0.220370** | **0.733333** | **0.220370** | 62.67 |
+| 131 | 0.900000 | 0.154545 | 0.978926 | 0.866667 | 0.138889 | 0.861111 | 0.138889 | 103 |
+| 133 | 0.836364 | 0.100000 | 0.961736 | 0.766667 | 0.122222 | 0.766667 | 0.116667 | 100 |
+| 137 | 0.863636 | 0.136364 | 0.963058 | 0.838889 | 0.166667 | 0.844444 | 0.172222 | 97 |
+| 等 seed 均值 | **0.866667** | **0.130303** | **0.967906** | **0.824074** | **0.142593** | **0.824074** | **0.142593** | 100.00 |
 
-EAST online 相对 static 的 $\Delta J$ 按 seed 为 $+0.005556、+0.016667、0$，对应及时真阳性净增加 1、3、0 炮；三个 seed 的 FPR 均未变化。因此当前在线模块表现为“有限的及时性增益”，尚不能表述为稳定降低误报。旧 v3c 的较高 TPR/FPR 组合来自 archived-parent、固定标签及另一套报警状态机，不属于本动态源模型谱系。
+EAST online 相对 static 的 $\Delta J$ 按 seed 为 $-0.005556、+0.005556、0$。seed131 少 1 个及时真阳性；seed133 少 1 个假阳性；seed137 同时增加 1 个及时真阳性和 1 个假阳性。三 seed 变化相互抵消，不能表述为稳定在线增益。该结果来自恢复后的历史炮优先 support110 采样器和未经删改的原 v3c 在线配置。
 
-$J$ 的均值为：J-TEXT static **0.736364**，EAST static **0.505556**，EAST online **0.512963**；EAST 在线相对静态 $\Delta J=+0.007407$。增益很小且不跨 seed 稳定，seed137 无变化。seed133 TPR 未达到 0.80，seed137 FPR 超过 0.20，因此 `T0_ADMITTED=false`。
+$J$ 的均值为：J-TEXT static **0.736364**，EAST static **0.681481**，EAST online **0.681481**；EAST 在线相对静态 $\Delta J=0$。seed133 TPR 未达到 0.80，因此 `T0_ADMITTED=false`。
 
 J-TEXT 20% full-active 相对 static 的 $\Delta J$ 为 0、−0.009091、0，故 `ONLINE_SUPPORTED=false`。seed131 的 10%/20%/30% 均未改变炮级 operational 指标。active 与 equal-compute random 均查询 44 炮，集合只重合 4 炮，却都只覆盖 6 个静态错误型炮，显示当前价值函数对可纠正错误富集不足。44 个前缀标签直接训练的同后缀对照从 $J=0.763025$ 降至 0.751261；它排除“同样标签直接加到迁移必然更好”的简单解释，但不证明在线策略优越。
 
@@ -230,7 +230,7 @@ J-TEXT 20% full-active 相对 static 的 $\Delta J$ 为 0、−0.009091、0，�
 1. J-TEXT `intra_only` 的炮级指标不变，虽有最大概率位移约 0.0239。
 2. `inter_active` 在 seed131 丢失一个 operational TP，炮间监督并非单调有益。
 3. `full_active` 与 `full_random` 在 seed131 均不改善，主动查询未稳定优于等计算随机。
-4. EAST 在线均值只提升 0.007407，FPR 没有降低，不能写成“在线机制已解决误报”。
+4. EAST 在线三 seed 平均 $\Delta J=0$，不能写成“在线机制已稳定提升”或“已解决误报”。
 5. 贡献是可审计的特征拆分、因果封存、目标私有支路与两时间尺度实现；不是部署通过，也不是所有破裂因果机理证明。
 
 ## 10. 符号与缩写
@@ -278,11 +278,7 @@ PY=${CONDA_PREFIX}/bin/python
 $PY -c 'import torch,h5py; print(torch.__version__,torch.cuda.is_available(),torch.cuda.get_device_name(0))'
 
 for seed in 131 133 137; do
-  $PY experiments/transfer_methods_2026/run_selected_full_mainline.py --seed \"$seed\" --stage all --output-root /ext4/runs/selected_full_mainline/prefix_causal_v2c
-done
-
-for seed in 131 133 137; do
-  $PY experiments/transfer_methods_2026/run_jtext_online_active.py --seed \"$seed\" --arm full_active --budget-percent 20 --output /ext4/runs/jtext_online_v2
+  $PY experiments/transfer_methods_2026/run_selected_full_mainline.py --seed \"$seed\" --stage all --data-root \"$FUSION_DATA_ROOT\" --output \"/ext4/runs/selected_full_mainline/seed${seed}\"
 done
 
 $PY experiments/transfer_methods_2026/paper_grade_package/scripts/build_dynamic_report.py --check-only

@@ -35,6 +35,7 @@ HDF5_CONTENT_MANIFEST = (
 )
 SOURCE_TRAINER = HERE / "train_jtext_source_transformer.py"
 UNIFIED_RUNNER = HERE / "run_unified_online_active.py"
+JTEXT_ONLINE_RUNNER = HERE / "run_jtext_online_active.py"
 JTEXT_ADVANCED_TIME = ROOT / "shot_list/J-TEXT/AdvancedTime_J-TEXT.json"
 if str(HERE) not in sys.path:
     sys.path.insert(0, str(HERE))
@@ -54,7 +55,8 @@ import jtext_online_io as jtext_io  # noqa: E402
 RUN_SCHEMA = "selected-full-mainline-run-v1"
 RECEIPT_SCHEMA = "selected-mainline-stage-receipt-v1"
 STAGES = (
-    "source-train", "jtext-static", "east-parent", "east-static", "east-online",
+    "source-train", "jtext-static", "jtext-online", "east-parent",
+    "east-static", "east-online",
 )
 
 
@@ -104,7 +106,15 @@ def load_selected_config(path: Path = DEFAULT_CONFIG) -> dict[str, Any]:
         (payload.get("east", {}).get("target_horizon_ms"), 125.0),
         (payload.get("east", {}).get("threshold_source"), "EAST support110"),
         (payload.get("online", {}).get("query_block_size"), 20),
-        (payload.get("online", {}).get("query_quota"), 4),
+        (payload.get("online", {}).get("query_quota"), 6),
+        (payload.get("jtext_online", {}).get("arm"), "full_active"),
+        (payload.get("jtext_online", {}).get("budget_percent"), 20),
+        (
+            payload.get("jtext_online", {}).get(
+                "state_transfer_to_east_allowed"
+            ),
+            False,
+        ),
     )
     if any(actual != expected for actual, expected in checks):
         raise ValueError("selected mainline configuration contract mismatch")
@@ -142,6 +152,31 @@ def _add_option(command: list[str], name: str, value: Any) -> None:
     command.extend([name, str(value)])
 
 
+def jtext_online_stage_command(
+    *, seed: int, output: Path, source_checkpoint: Path, data_root: Path,
+    config: Mapping[str, Any], python: Path,
+) -> list[str]:
+    """Build the isolated J-TEXT online branch command.
+
+    The command receives only the static J-TEXT source checkpoint.  No EAST
+    parent, adapter, scaler or threshold can enter this branch, and its online
+    state is never returned to the EAST migration stages.
+    """
+
+    online = config["jtext_online"]
+    if bool(online.get("state_transfer_to_east_allowed")):
+        raise ValueError("J-TEXT online state must not transfer into EAST")
+    return [
+        str(Path(python)), str(JTEXT_ONLINE_RUNNER),
+        "--source-checkpoint", str(Path(source_checkpoint)),
+        "--arm", str(online["arm"]),
+        "--budget", str(int(online["budget_percent"])),
+        "--seed", str(int(seed)),
+        "--data-root", str(Path(data_root)),
+        "--output", str(Path(output)),
+    ]
+
+
 def unified_stage_command(
     *, stage: str, seed: int, output: Path, source_checkpoint: Path,
     parent_state: Path, run_contract: Path, roster_manifest: Path,
@@ -159,31 +194,13 @@ def unified_stage_command(
         "--selected-mainline-contract", str(Path(run_contract)),
         "--roster-manifest", str(Path(roster_manifest)),
     ]
-    option_names = {
-        "max_shots": "--max-shots",
-        "private_support_epochs": "--private-support-epochs",
-        "adaptation_events": "--adaptation-events",
-        "intra_steps": "--intra-steps",
-        "inter_steps": "--inter-steps",
-        "intra_lr": "--intra-lr",
-        "private_intra_lr": "--private-intra-lr",
-        "intra_physics_weight": "--intra-physics-weight",
-        "inter_lr": "--inter-lr",
-        "private_inter_lr": "--private-inter-lr",
-        "alarm_lr": "--alarm-lr",
-        "query_block_size": "--query-block-size",
-        "query_quota": "--query-quota",
-        "query_history_size": "--query-history-size",
-        "query_quantile": "--query-quantile",
-        "query_uncertainty_weight": "--query-uncertainty-weight",
-        "query_value_lr": "--query-value-lr",
-        "query_initial_cutoff": "--query-initial-cutoff",
-        "query_token_capacity": "--query-token-capacity",
-    }
-    for key, option in option_names.items():
-        _add_option(command, option, online[key])
-    if bool(online.get("development_search")):
-        command.append("--development-search")
+    for key, value in online.items():
+        option = "--" + key.replace("_", "-")
+        if isinstance(value, bool):
+            if value:
+                command.append(option)
+        else:
+            _add_option(command, option, value)
     if stage == "east-static":
         command.append("--static-only")
     return command
@@ -905,6 +922,8 @@ def selected_code_closure_paths() -> tuple[Path, ...]:
         "east_private_continual.py",
         "evaluate_dynamic_positive_gate.py",
         "grid_search.py",
+        "jtext_online_adapter.py",
+        "jtext_online_io.py",
         "online_active_audit.py",
         "online_auxiliary.py",
         "online_episode_value_v3.py",
@@ -914,6 +933,7 @@ def selected_code_closure_paths() -> tuple[Path, ...]:
         "reverse_online_value.py",
         "run_dynamic_hazard_adapter.py",
         "run_east_private23_online.py",
+        "run_jtext_online_active.py",
         "run_online_active_a1.py",
         "run_online_active_a3.py",
         "run_online_protected_residual.py",
@@ -1477,6 +1497,51 @@ def main() -> None:
                     "summary": result["summary_path"],
                 },
                 command=[str(Path(sys.executable)), str(Path(__file__)), "--stage", "jtext-static"],
+            )
+
+    if "jtext-online" in requested:
+        if not _stage_receipts(ledger, "jtext-static"):
+            raise RuntimeError("jtext-online requires completed jtext-static receipt")
+        receipts = _stage_receipts(ledger, "jtext-online")
+        if receipts:
+            require_resumable_stage(
+                ledger, stage="jtext-online", binding=source_binding,
+            )
+        else:
+            jtext_online_output = output / "jtext-online"
+            command = jtext_online_stage_command(
+                seed=args.seed,
+                output=jtext_online_output,
+                source_checkpoint=source_path,
+                data_root=data_root,
+                config=config,
+                python=Path(sys.executable),
+            )
+            _run_subprocess(command, data_root=data_root)
+            summary_path = jtext_online_output / "summary.json"
+            summary = json.loads(summary_path.read_text(encoding="utf-8"))
+            if summary.get("east_transfer_parent") != (
+                "raw_static_jtext_source_checkpoint_only"
+            ):
+                raise RuntimeError("J-TEXT online source-isolation contract failed")
+            if summary.get("jtext_online_state_transfer_allowed") is not False:
+                raise RuntimeError("J-TEXT online state leaked toward EAST")
+            append_stage_receipt(
+                ledger,
+                stage="jtext-online",
+                binding=source_binding,
+                outputs={
+                    "summary": summary_path,
+                    "static_predictions": (
+                        jtext_online_output / "static_predictions.jsonl"
+                    ),
+                    "endpoint_receipts": (
+                        jtext_online_output / "endpoint_receipts.jsonl"
+                    ),
+                    "query_ledger": jtext_online_output / "query_ledger.jsonl",
+                    "update_ledger": jtext_online_output / "update_ledger.jsonl",
+                },
+                command=command,
             )
 
     if "east-parent" in requested:

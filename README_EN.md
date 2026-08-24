@@ -30,10 +30,10 @@ Equal-weight means across seeds 131, 133, and 137 are shown below. Operational T
 | Stage | TPR | FPR | AUC | J = TPR - FPR |
 |---|---:|---:|---:|---:|
 | J-TEXT static TEST220 | **0.866667** | **0.130303** | **0.967906** | **0.736364** |
-| EAST static balanced360 | **0.725926** | **0.220370** | not reported | **0.505556** |
-| EAST online balanced360 | **0.733333** | **0.220370** | not reported | **0.512963** |
+| EAST static balanced360 | **0.824074** | **0.142593** | not reported | **0.681481** |
+| EAST online balanced360 | **0.824074** | **0.142593** | not reported | **0.681481** |
 
-EAST online-minus-static delta-J is `+0.005556`, `+0.016667`, and `0` by seed, mean `+0.007407`. FPR is unchanged for every seed; the limited gain comes from converting 1, 3, and 0 disruptive shots into timely alarms. This is a small, seed-unstable timing gain, not reliable false-alarm reduction. Seed 133 fails the TPR gate and seed 137 fails the FPR gate, so `T0_ADMITTED=false`.
+After restoring the historical shot-first support110 sampler and the unmodified v3c online configuration, EAST online-minus-static delta-J is `-0.005556`, `+0.005556`, and `0` by seed, with a mean of `0`. The seed-level changes cancel, so this is not evidence of a stable online gain. Seed 133 fails the TPR gate, hence `T0_ADMITTED=false`.
 
 The retired paper-v3c operating point used a different source checkpoint, label contract, and alarm lineage. It is archived and must not be combined with this table.
 
@@ -73,7 +73,7 @@ export FUSION_PROJECT_ROOT="$PWD"
 Run one formal seed with:
 
 ```bash
-$PY experiments/transfer_methods_2026/run_selected_full_mainline.py --seed 131 --stage all --output-root /ext4/runs/selected_full_mainline/prefix_causal_v2c
+$PY experiments/transfer_methods_2026/run_selected_full_mainline.py --seed 131 --stage all --data-root "$FUSION_DATA_ROOT" --output /ext4/runs/selected_full_mainline/seed131
 ```
 
 Repeat for seeds 133 and 137. Then run evidence assembly, report generation, and the test suite using the scripts under `experiments/transfer_methods_2026/paper_grade_package/scripts/`.
@@ -82,7 +82,7 @@ Repeat for seeds 133 and 137. Then run evidence assembly, report generation, and
 
 ## Evidence and limitations
 
-The portable evidence object is [dynamic_mainline_report.json](experiments/transfer_methods_2026/paper_grade_package/evidence_dynamic/dynamic_mainline_report.json), SHA-256 `04e7319843304d28ec58e6b2b483bf85c5b4dea8dedd521825a6625d319dae2e`. It binds 80 input artifacts and records `summary_metrics_used=false`.
+The portable evidence object is [dynamic_mainline_report.json](experiments/transfer_methods_2026/paper_grade_package/evidence_dynamic/dynamic_mainline_report.json), SHA-256 `35915b782b6c247ff768e643d02d370f4776586fab10ce54f9f8c1305a9cdbff`. It binds 80 input artifacts and records `summary_metrics_used=false`.
 
 The engineering chain is executable and hash-auditable. Scientific admission is not achieved: EAST transfer remains below the registered three-seed gate, J-TEXT active selection does not outperform equal-compute random querying, and an independent future chronological stream is still required.
 

@@ -36,10 +36,10 @@
 \maketitle
 
 \begin{abstract}
-本文给出当前动态主线的模型、标签、损失、查询价值、炮内与炮间更新、评价口径及证据边界。J-TEXT 破裂炮正样本上界使用每炮 $\max(25\ \mathrm{ms},\mathrm{AdvancedTime})$，缺失时取 25 ms；EAST support110 仍使用固定 125 ms。三随机种子等权均值为：J-TEXT TEST220 的 operational TPR/FPR/AUC 为 0.866667/0.130303/0.967906；EAST balanced360 静态 TPR/FPR 为 0.725926/0.220370；按炮号在线主动适配后为 0.733333/0.220370。EAST 在线净效用 $J=\mathrm{TPR}-\mathrm{FPR}$ 的均值增量仅为 $+0.007407$，且不跨随机种子稳定。本文将工程完成度与科学准入分开：链路已经实现并可审计，但 EAST 准入和 J-TEXT 在线支持门均未通过。
+本文给出当前动态主线的模型、标签、损失、查询价值、炮内与炮间更新、评价口径及证据边界。J-TEXT 破裂炮正样本上界使用每炮 $\max(25\ \mathrm{ms},\mathrm{AdvancedTime})$，缺失时取 25 ms；EAST support110 仍使用固定 125 ms。三随机种子等权均值为：J-TEXT TEST220 的 operational TPR/FPR/AUC 为 0.866667/0.130303/0.967906；EAST balanced360 静态 TPR/FPR 为 0.824074/0.142593；按炮号在线主动适配后仍为 0.824074/0.142593。EAST 在线净效用 $J=\mathrm{TPR}-\mathrm{FPR}$ 的三 seed 平均增量为 0，逐 seed 小幅变化相互抵消。本文将工程完成度与科学准入分开：链路已经实现并可审计，但 EAST 准入和 J-TEXT 在线支持门均未通过。
 \end{abstract}
 
-\statusbox{\textbf{证据状态。} \texttt{TEST\_DRIVEN\_EXPLORATION}；\texttt{DEVELOPMENT\_EVIDENCE\_NOT\_INDEPENDENT\_CONFIRMATION}。证据装配脚本已从逐炮封存预测与 HDF5 真值重算指标，并核对 80 个输入产物的 SHA-256；紧凑报告 SHA-256 为 \texttt{04e7319843304d28ec58e6b2b483bf85c5b4dea8dedd521825a6625d319dae2e}。任何不一致均应失败关闭。}
+\statusbox{\textbf{证据状态。} \texttt{TEST\_DRIVEN\_EXPLORATION}；\texttt{DEVELOPMENT\_EVIDENCE\_NOT\_INDEPENDENT\_CONFIRMATION}。证据装配脚本已从逐炮封存预测与 HDF5 真值重算指标，并核对 80 个输入产物的 SHA-256；紧凑报告 SHA-256 为 \texttt{35915b782b6c247ff768e643d02d370f4776586fab10ce54f9f8c1305a9cdbff}。任何不一致均应失败关闭。}
 
 \tableofcontents
 \newpage
@@ -264,18 +264,18 @@ V=wU+(1-w)C+\eta N,\qquad w=0.65,\quad\eta=0.10.
 \toprule
 seed & J-T TPR & J-T FPR & J-T AUC & E-S TPR & E-S FPR & E-O TPR & E-O FPR\\
 \midrule
-131 & .900000 & .154545 & .978926 & .766667 & .233333 & .772222 & .233333\\
-133 & .836364 & .100000 & .961736 & .627778 & .155556 & .644444 & .155556\\
-137 & .863636 & .136364 & .963058 & .783333 & .272222 & .783333 & .272222\\
+131 & .900000 & .154545 & .978926 & .866667 & .138889 & .861111 & .138889\\
+133 & .836364 & .100000 & .961736 & .766667 & .122222 & .766667 & .116667\\
+137 & .863636 & .136364 & .963058 & .838889 & .166667 & .844444 & .172222\\
 均值 & \textbf{.866667} & \textbf{.130303} & \textbf{.967906} &
-\textbf{.725926} & \textbf{.220370} & \textbf{.733333} & \textbf{.220370}\\
+\textbf{.824074} & \textbf{.142593} & \textbf{.824074} & \textbf{.142593}\\
 \bottomrule
 \end{tabular}
 \end{center}
 
-EAST online 相对 static 的 $\Delta J$ 按 seed 为 $+0.005556、+0.016667、0$，对应及时真阳性净增加 1、3、0 炮；三个 seed 的 FPR 均未变化。因此当前在线模块表现为有限的及时性增益，尚不能表述为稳定降低误报。旧 v3c 的较高 TPR/FPR 组合来自 archived-parent、固定标签及另一套报警状态机，不属于本动态源模型谱系。
+EAST online 相对 static 的 $\Delta J$ 按 seed 为 $-0.005556、+0.005556、0$。三 seed 变化相互抵消，不能表述为稳定在线增益。该结果来自恢复后的历史炮优先 support110 采样器和未经删改的原 v3c 在线配置。
 
-J-TEXT static、EAST static、EAST online 的 $J$ 分别为 0.736364、0.505556、0.512963。EAST 在线 $\Delta J=+0.007407$，但不跨 seed 稳定。seed133 TPR 未达到 0.80，seed137 FPR 超过 0.20，故 \texttt{T0\_ADMITTED=false}。
+J-TEXT static、EAST static、EAST online 的 $J$ 分别为 0.736364、0.681481、0.681481。EAST 在线三 seed 平均 $\Delta J=0$。seed133 TPR 未达到 0.80，故 \texttt{T0\_ADMITTED=false}。
 
 J-TEXT 20\% full-active 相对 static 的 $\Delta J$ 为 0、$-0.009091$、0，故 \texttt{ONLINE\_SUPPORTED=false}。seed131 的 10\%/20\%/30\% 预算均不改变炮级指标。active 与 equal-compute random 的 44 炮集合只重合 4 炮，却都只覆盖 6 个静态错误型炮。44 个前缀标签直接训练的后缀对照从 $J=0.763025$ 降到 0.751261；这反驳“标签数相同就必然提升”，但不证明主动策略优越。
 
@@ -361,7 +361,8 @@ $PY -c 'import torch,h5py; print(torch.cuda.is_available())'
 for seed in 131 133 137; do
   $PY experiments/transfer_methods_2026/run_selected_full_mainline.py \
     --seed "$seed" --stage all \
-    --output-root /ext4/runs/selected_full_mainline/prefix_causal_v2c
+    --data-root "$FUSION_DATA_ROOT" \
+    --output "/ext4/runs/selected_full_mainline/seed${seed}"
 done
 
 $PY experiments/transfer_methods_2026/paper_grade_package/scripts/\
