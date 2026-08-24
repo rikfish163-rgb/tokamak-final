@@ -47,6 +47,7 @@ import run_two_timescale_online as two_runner  # noqa: E402
 import run_unified_online_active as unified  # noqa: E402
 import selected_mainline_contract as selected  # noqa: E402
 import train_jtext_source_transformer as source_trainer  # noqa: E402
+import jtext_online_io as jtext_io  # noqa: E402
 
 
 RUN_SCHEMA = "selected-full-mainline-run-v1"
@@ -649,23 +650,9 @@ def run_selected_jtext_static_stage(
         )
 
     def predict(stream_index: int, shot: int) -> dict[str, Any]:
-        path = shot_path(shot)
-        with h5py.File(path, "r") as handle:
-            arrays = {
-                name: np.asarray(handle[f"data/{name}"][:], dtype=np.float32)
-                for name in selected.SOURCE_RAW_SIGNAL_NAMES
-            }
-            selected.read_required_timebase(handle["data/ip"])
-        values, available = rebuilt.rebuild_features(arrays, "J-TEXT")
-        for feature in ("Mir_avg_fre", "mode_number_n"):
-            index = rebuilt.REBUILD.index(feature)
-            seen_nonzero = np.cumsum(
-                (
-                    available[:, index]
-                    & ~np.isclose(values[:, index], 0.0)
-                ).astype(np.int64)
-            ) > 0
-            available[:, index] &= seen_nonzero
+        signal = jtext_io.load_jtext_signal_only(data_root, shot)
+        values = np.asarray(signal.values, dtype=np.float32)
+        available = np.asarray(signal.availability, dtype=bool)
         values = np.clip((values - center) / scale, -10.0, 10.0)
         values = np.where(available, values, 0.0).astype(np.float32)
         _endpoints, trace = source_trainer.score_trace(
@@ -690,7 +677,7 @@ def run_selected_jtext_static_stage(
                     np.asarray(handle["meta/IsDisrupt"][()]).reshape(-1)[0]
                 )
                 down = np.asarray(handle["meta/DownTime"][()]).reshape(-1)
-            advanced_ms = advanced.get(str(int(shot)))
+            advanced_ms = advanced.get(str(int(shot))) if is_disrupt else None
             return {
                 "is_disrupt": is_disrupt,
                 "down_time_s": (

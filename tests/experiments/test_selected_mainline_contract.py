@@ -20,6 +20,7 @@ if str(HERE) not in sys.path:
 selected = importlib.import_module("selected_mainline_contract")
 grid = importlib.import_module("grid_search")
 source_trainer = importlib.import_module("train_jtext_source_transformer")
+jtext_io = importlib.import_module("jtext_online_io")
 a1 = importlib.import_module("run_online_active_a1")
 auxiliary = importlib.import_module("online_auxiliary")
 
@@ -66,23 +67,7 @@ def _literal_threshold_receipt(
 
 
 def _input_contract() -> dict:
-    return {
-        "schema": "jtext-rebuilt17-prefix-causal-v2",
-        "raw_signal_names": [
-            "Bt", "ip", "v_loop", "sxr_kurt", "sxr_skew", "sxr_var",
-            "xuv_kurt", "xuv_skew", "xuv_var", "Mir_avg_fre",
-            "n=1 amplitude", "mode_number_n", "dx_a", "dy_a",
-        ],
-        "feature_names": list(grid.RH.REBUILD),
-        "window_points": 128,
-        "history_alignment": "right",
-        "left_padding": "constant_zero",
-        "valid_lengths_required": True,
-        "valid_length_range": [1, 128],
-        "patch_mask_rule": "patch_end <= window_points - valid_length",
-        "availability": "finite-and-prefix-causal-seen-nonzero-v1",
-        "preprocessing_sha256": "9" * 64,
-    }
+    return jtext_io.build_source_input_contract(ROOT)
 
 
 def _source_payload(*, seed: int = 131) -> dict:

@@ -100,6 +100,27 @@ def rebuild_features(arr, device):
     return out, avail
 
 
+def rebuild_features_prefix_causal(arr, device):
+    """Rebuild features with endpoint-local MHD availability.
+
+    The legacy harness treated ``Mir_avg_fre`` and ``mode_number_n`` as
+    available at every time point whenever either signal became non-zero at
+    any later point in the shot.  That whole-shot test leaks the future into an
+    early causal prefix.  The selected source path instead marks each channel
+    available only after finite, non-zero evidence has appeared in that prefix.
+    """
+
+    out, avail = rebuild_features(arr, device)
+    for name in ("Mir_avg_fre", "mode_number_n"):
+        column = REBUILD.index(name)
+        raw = np.asarray(arr[name], dtype=np.float32)
+        evidence = np.isfinite(raw) & ~np.isclose(raw, 0.0)
+        seen_nonzero = np.logical_or.accumulate(evidence)
+        avail[:, column] = np.isfinite(raw) & seen_nonzero
+        out[~avail[:, column], column] = 0.0
+    return np.ascontiguousarray(out), np.ascontiguousarray(avail)
+
+
 class Shots:
     def __init__(self, device, ids, scaler=None):
         self.device = device

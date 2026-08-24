@@ -687,6 +687,7 @@ def validate_source_input_contract(payload: Mapping[str, Any]) -> dict[str, Any]
     if not isinstance(value, Mapping):
         raise ValueError("selected source input contract is missing")
     import grid_search as grid
+    import jtext_online_io as jtext_io
 
     exact_fields: dict[str, Any] = {
         "schema": SOURCE_INPUT_SCHEMA,
@@ -703,6 +704,12 @@ def validate_source_input_contract(payload: Mapping[str, Any]) -> dict[str, Any]
     for name, expected in exact_fields.items():
         if value.get(name) != expected:
             raise ValueError(f"selected source input contract mismatch: {name}")
+    current_manifest = jtext_io.build_preprocessing_manifest(ROOT)
+    if value.get("preprocessing_manifest") != current_manifest:
+        raise ValueError(
+            "selected source input contract preprocessing manifest mismatch"
+        )
+    expected_preprocessing_sha = sha256_json(current_manifest)
     try:
         preprocessing_sha = _require_sha256(
             value.get("preprocessing_sha256"),
@@ -712,7 +719,12 @@ def validate_source_input_contract(payload: Mapping[str, Any]) -> dict[str, Any]
         raise ValueError(
             "selected source input contract mismatch: preprocessing_sha256"
         ) from exc
+    if preprocessing_sha != expected_preprocessing_sha:
+        raise ValueError(
+            "selected source input contract preprocessing_sha256 mismatch"
+        )
     normalized = {name: value[name] for name in exact_fields}
+    normalized["preprocessing_manifest"] = current_manifest
     normalized["preprocessing_sha256"] = preprocessing_sha
     return normalized
 

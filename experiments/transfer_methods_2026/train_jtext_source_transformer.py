@@ -25,6 +25,7 @@ os.environ.setdefault("CUBLAS_WORKSPACE_CONFIG", ":4096:8")
 import numpy as np
 import torch
 import torch.nn.functional as F
+import h5py
 
 
 ROOT = Path(
@@ -37,6 +38,8 @@ sys.path.insert(0, str(HERE))
 import grid_search as GS  # noqa: E402
 import rebuilt_harness as RH  # noqa: E402
 import advanced_time_labels as ATL  # noqa: E402
+import jtext_online_io as JIO  # noqa: E402
+import selected_mainline_contract as SELECTED  # noqa: E402
 
 
 CANONICAL_INDEX = Path("artifacts/canonical/jtext_source_bundle_p131_v1/index.json")
@@ -83,38 +86,7 @@ def state_sha256(state: dict[str, torch.Tensor]) -> str:
 
 
 def load_canonical_jtext_roles(root: Path = ROOT) -> dict[str, list[int]]:
-    index_path = root / CANONICAL_INDEX
-    if index_path.is_file():
-        payload = json.loads(index_path.read_text())
-        raw = payload.get("split_shot_ids")
-        if not isinstance(raw, dict):
-            raise ValueError("canonical J-TEXT bundle has no split_shot_ids")
-        roles = {
-            name: [int(shot) for shot in raw[name]]
-            for name in ("train", "val", "test")
-        }
-    else:
-        roles = {
-            name: [
-                int(line.strip())
-                for line in (root / f"splits/{name}.txt").read_text().splitlines()
-                if line.strip()
-            ]
-            for name in ("train", "val", "test")
-        }
-    counts = {name: len(ids) for name, ids in roles.items()}
-    if counts != EXPECTED_COUNTS:
-        raise ValueError(f"canonical J-TEXT role counts changed: {counts}")
-    for name, ids in roles.items():
-        if len(ids) != len(set(ids)):
-            raise ValueError(f"duplicate shot IDs in J-TEXT {name}")
-    if set(roles["train"]) & set(roles["val"]):
-        raise ValueError("J-TEXT TRAIN1353 overlaps VAL160")
-    if set(roles["train"]) & set(roles["test"]):
-        raise ValueError("J-TEXT TRAIN1353 overlaps TEST220")
-    if set(roles["val"]) & set(roles["test"]):
-        raise ValueError("J-TEXT VAL160 overlaps TEST220")
-    return roles
+    return JIO.load_canonical_jtext_roles(root)
 
 
 def load_jtext_shots(
@@ -122,32 +94,37 @@ def load_jtext_shots(
 ) -> list[dict]:
     shots: list[dict] = []
     missing: list[int] = []
+    resolved_data_root = (
+        Path(data_root).expanduser().resolve()
+        if data_root is not None
+        else Path(os.environ.get("FUSION_DATA_ROOT", root / "data")).expanduser().resolve()
+    )
     for shot_id in shot_ids:
-        resolved_data_root = (
-            Path(data_root).expanduser().resolve()
-            if data_root is not None
-            else Path(os.environ.get("FUSION_DATA_ROOT", root / "data")).expanduser().resolve()
-        )
-        path = (
-            resolved_data_root / "J-TEXT/unified_hdf5"
-            / str(int(shot_id) // 100 * 100) / f"{int(shot_id)}.hdf5"
-        )
+        path = JIO.jtext_shot_path(resolved_data_root, shot_id)
         try:
-            raw, rate, start, down, is_disrupt = RH.load_raw(path, "J-TEXT")
+            signal = JIO.load_jtext_signal_only(resolved_data_root, shot_id)
         except Exception:  # noqa: BLE001 - fail closed with the complete list
             missing.append(int(shot_id))
             continue
-        values, available = RH.rebuild_features(raw, "J-TEXT")
+        # TRAIN1353 and VAL160 are supervised roles.  Outcome access remains a
+        # separate explicit HDF5 read; the signal loader above cannot carry it.
+        with h5py.File(path, "r") as handle:
+            raw_outcome = np.asarray(handle["meta/IsDisrupt"][()]).reshape(-1)
+            if raw_outcome.size != 1:
+                raise ValueError(f"J-TEXT shot {shot_id} has non-scalar IsDisrupt")
+            is_disrupt = bool(raw_outcome[0])
+            raw_down = np.asarray(handle["meta/DownTime"][()]).reshape(-1)
+        down = float(raw_down[0]) if is_disrupt and raw_down.size else None
         if is_disrupt and (down is None or not math.isfinite(float(down))):
             raise ValueError(f"disruptive J-TEXT shot {shot_id} has no finite DownTime")
         shots.append({
             "shot": int(shot_id),
-            "v": values.astype(np.float32),
-            "a": available.astype(bool),
+            "v": np.asarray(signal.values, dtype=np.float32).copy(),
+            "a": np.asarray(signal.availability, dtype=bool).copy(),
             "is_disrupt": bool(is_disrupt),
             "down": float(down) if is_disrupt else None,
-            "start": float(start),
-            "rate": float(rate),
+            "start": float(signal.start_time_s),
+            "rate": float(signal.sample_rate_hz),
         })
     if missing:
         raise FileNotFoundError(f"missing J-TEXT HDF5 shots: {missing}")
@@ -159,22 +136,7 @@ def causal_window(
 ) -> tuple[np.ndarray, int]:
     """Return history ending at ``endpoint`` with causal left padding."""
 
-    values = np.asarray(values, dtype=np.float32)
-    endpoint = int(endpoint)
-    window = int(window)
-    if values.ndim != 2:
-        raise ValueError("values must be [time, channel]")
-    if endpoint < 0 or endpoint >= len(values):
-        raise IndexError("causal endpoint is outside the shot")
-    if window <= 0:
-        raise ValueError("window must be positive")
-    start = max(0, endpoint - window + 1)
-    history = values[start : endpoint + 1]
-    if len(history) > window:
-        raise RuntimeError("causal window unexpectedly exceeds its budget")
-    result = np.zeros((window, values.shape[1]), dtype=np.float32)
-    result[-len(history) :] = history
-    return np.ascontiguousarray(result), int(len(history))
+    return JIO.causal_prefix_window(values, endpoint, window)
 
 
 class BalancedSourceSampler:
@@ -442,6 +404,55 @@ def source_training_label_contract(
     }
 
 
+def source_data_manifest_sha256(shots: list[dict]) -> str:
+    """Bind the exact scaled causal inputs used by one supervised role."""
+
+    rows = []
+    for shot in shots:
+        rows.append({
+            "shot": int(shot["shot"]),
+            "values_sha256": SELECTED.array_sha256(shot["v"]),
+            "availability_sha256": SELECTED.array_sha256(shot["a"]),
+            "sample_rate_hz": float(shot["rate"]),
+            "start_time_s": float(shot["start"]),
+        })
+    return SELECTED.sha256_json(rows)
+
+
+def source_outcome_manifest_sha256(shots: list[dict]) -> str:
+    """Bind HDF5-authoritative outcomes separately from signal inputs."""
+
+    rows = [
+        {
+            "shot": int(shot["shot"]),
+            "is_disrupt": bool(shot["is_disrupt"]),
+            "down_time_s": (
+                float(shot["down"]) if shot["is_disrupt"] else None
+            ),
+        }
+        for shot in shots
+    ]
+    return SELECTED.sha256_json(rows)
+
+
+def threshold_receipt_predictions(rows: list[dict]) -> list[dict]:
+    """Use timely scores for disruptions and whole-trace scores for safe shots."""
+
+    predictions: list[dict] = []
+    for row in rows:
+        score = row["timely_score"] if row["is_disrupt"] else row["score"]
+        if not math.isfinite(float(score)):
+            raise RuntimeError(
+                f"VAL160 shot {int(row['shot'])} has no finite threshold score"
+            )
+        predictions.append({
+            "shot": int(row["shot"]),
+            "score": float(score),
+            "outcome": bool(row["is_disrupt"]),
+        })
+    return predictions
+
+
 def _checkpoint_payload(
     *,
     encoder: torch.nn.Module,
@@ -453,7 +464,17 @@ def _checkpoint_payload(
     epoch: int,
     validation: dict,
     training_label: dict | None = None,
+    input_contract: dict | None = None,
+    validation_threshold_receipt: dict | None = None,
+    train_data_manifest_sha256: str | None = None,
+    train_outcome_manifest_sha256: str | None = None,
+    validation_data_manifest_sha256: str | None = None,
+    validation_outcome_manifest_sha256: str | None = None,
 ) -> dict:
+    if input_contract is None:
+        input_contract = JIO.build_source_input_contract(ROOT)
+    if validation_threshold_receipt is None:
+        raise ValueError("source checkpoint requires a VAL160 threshold receipt")
     return {
         "schema_version": GS.SOURCE_CHECKPOINT_SCHEMA,
         "architecture_version": GS.SOURCE_ARCHITECTURE_VERSION,
@@ -467,6 +488,7 @@ def _checkpoint_payload(
         "scaler_scale": torch.as_tensor(scale, dtype=torch.float32).cpu(),
         "split_counts": dict(EXPECTED_COUNTS),
         "split_sha256": split_sha256(roles),
+        "input_contract": input_contract,
         "label_authority": "data/J-TEXT/unified_hdf5/*/meta/{IsDisrupt,DownTime}",
         "training_label": training_label or {
             "policy": "fixed125",
@@ -475,7 +497,20 @@ def _checkpoint_payload(
             "advanced_time_used": False,
         },
         "validation_threshold": float(validation["threshold"]),
+        "validation_threshold_receipt": validation_threshold_receipt,
+        "train_data_manifest_sha256": train_data_manifest_sha256,
+        "train_outcome_manifest_sha256": train_outcome_manifest_sha256,
+        "validation_data_manifest_sha256": validation_data_manifest_sha256,
+        "validation_outcome_manifest_sha256": validation_outcome_manifest_sha256,
         "validation_metrics": validation,
+        "scaler_sha256": SELECTED.scaler_sha256(
+            torch.as_tensor(center, dtype=torch.float32),
+            torch.as_tensor(scale, dtype=torch.float32),
+        ),
+        "label_map_sha256": (
+            training_label.get("advanced_time_sha256")
+            if training_label is not None else None
+        ),
         "test_shards_read": 0,
     }
 
@@ -511,6 +546,11 @@ def train_source(args: argparse.Namespace) -> tuple[Path, dict]:
     center, scale = GS.fit_scale(train)
     GS.apply_scale(train, center, scale)
     GS.apply_scale(validation, center, scale)
+    input_contract = JIO.build_source_input_contract(ROOT)
+    train_data_sha = source_data_manifest_sha256(train)
+    train_outcome_sha = source_outcome_manifest_sha256(train)
+    validation_data_sha = source_data_manifest_sha256(validation)
+    validation_outcome_sha = source_outcome_manifest_sha256(validation)
     sampler = BalancedSourceSampler(train, seed=args.seed)
 
     encoder = GS.Enc(len(RH.REBUILD)).to(device)
@@ -551,6 +591,20 @@ def train_source(args: argparse.Namespace) -> tuple[Path, dict]:
         operating_point = select_validation_threshold(
             val_rows, target_tpr=args.target_tpr
         )
+        validation_receipt = SELECTED.build_threshold_receipt(
+            scope="J-TEXT VAL160",
+            predictions=threshold_receipt_predictions(val_rows),
+            data_manifest_sha256=validation_data_sha,
+            outcome_manifest_sha256=validation_outcome_sha,
+            target_tpr=args.target_tpr,
+        )
+        if not math.isclose(
+            float(validation_receipt["chosen_threshold"]),
+            float(operating_point["threshold"]),
+            rel_tol=0.0,
+            abs_tol=0.0,
+        ):
+            raise RuntimeError("VAL160 threshold selector and receipt disagree")
         val_metrics, _ = metrics_at_threshold(
             val_rows, threshold=operating_point["threshold"]
         )
@@ -584,6 +638,12 @@ def train_source(args: argparse.Namespace) -> tuple[Path, dict]:
                 epoch=epoch,
                 validation=val_metrics,
                 training_label=training_label,
+                input_contract=input_contract,
+                validation_threshold_receipt=validation_receipt,
+                train_data_manifest_sha256=train_data_sha,
+                train_outcome_manifest_sha256=train_outcome_sha,
+                validation_data_manifest_sha256=validation_data_sha,
+                validation_outcome_manifest_sha256=validation_outcome_sha,
             )
             temporary = checkpoint_path.with_suffix(".pt.tmp")
             torch.save(payload, temporary)
@@ -604,6 +664,11 @@ def train_source(args: argparse.Namespace) -> tuple[Path, dict]:
         "label_authority": "HDF5 meta only",
         "training_label": training_label,
         "training_label_audit": label_audit,
+        "input_contract": input_contract,
+        "train_data_manifest_sha256": train_data_sha,
+        "train_outcome_manifest_sha256": train_outcome_sha,
+        "validation_data_manifest_sha256": validation_data_sha,
+        "validation_outcome_manifest_sha256": validation_outcome_sha,
         "feature_names": list(RH.REBUILD),
         "model_config": GS.source_model_config(len(RH.REBUILD)),
         "trainable_parameters": sum(
