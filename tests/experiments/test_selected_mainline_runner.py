@@ -1098,7 +1098,9 @@ def _track_runtime_root_mutations(monkeypatch: pytest.MonkeyPatch) -> None:
         (runner.rebuilt, "DATA"),
         (runner.source_trainer, "DATA_ROOT"),
         (runner.two_runner, "DATA"),
+        (runner.two_runner.reverse_value, "DATA"),
         (runner.unified, "DATA"),
+        (runner.unified.old_private, "DATA"),
     ):
         monkeypatch.setattr(module, attribute, getattr(module, attribute))
     monkeypatch.setenv(
@@ -1152,7 +1154,9 @@ def test_selected_runtime_rebinds_every_inprocess_reader_to_cli_data_root(
         "rebuilt_harness.DATA",
         "train_jtext_source_transformer.DATA_ROOT",
         "run_two_timescale_online.DATA",
+        "run_two_timescale_online.reverse_online_value.DATA",
         "run_unified_online_active.DATA",
+        "run_unified_online_active.run_east_private23_online.DATA",
     }
     assert all(Path(value) == data_root.resolve() for value in receipt.values())
     assert runner.a1.rebuilt.DATA == data_root.resolve()

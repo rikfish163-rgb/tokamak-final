@@ -1010,7 +1010,17 @@ def bind_runtime_data_root(data_root: Path) -> dict[str, str]:
         ("rebuilt_harness.DATA", rebuilt, "DATA"),
         ("train_jtext_source_transformer.DATA_ROOT", source_trainer, "DATA_ROOT"),
         ("run_two_timescale_online.DATA", two_runner, "DATA"),
+        (
+            "run_two_timescale_online.reverse_online_value.DATA",
+            two_runner.reverse_value,
+            "DATA",
+        ),
         ("run_unified_online_active.DATA", unified, "DATA"),
+        (
+            "run_unified_online_active.run_east_private23_online.DATA",
+            unified.old_private,
+            "DATA",
+        ),
     )
     os.environ["FUSION_DATA_ROOT"] = str(resolved)
     result: dict[str, str] = {}
