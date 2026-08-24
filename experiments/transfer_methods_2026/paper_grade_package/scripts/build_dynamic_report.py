@@ -36,6 +36,9 @@ RETIRED_V3C_TOKENS = (
 ACTIVE_ARTIFACTS = (
     Path("experiments/transfer_methods_2026/paper_grade_package/DYNAMIC_MAINLINE_TECHNICAL_REPORT_zh.md"),
     Path("experiments/transfer_methods_2026/paper_grade_package/technical_report_dynamic/main.tex"),
+    Path("experiments/transfer_methods_2026/paper_grade_package/technical_report_dynamic/executive_summary.tex"),
+    Path("experiments/transfer_methods_2026/paper_grade_package/technical_report_dynamic/report_body.tex"),
+    Path("experiments/transfer_methods_2026/paper_grade_package/technical_report_dynamic/references.bib"),
     Path("experiments/transfer_methods_2026/paper_grade_package/evidence_dynamic/dynamic_source_online_gain/report.json"),
     Path("experiments/transfer_methods_2026/paper_grade_package/configs/dynamic_source_online_alarm_search_v1.json"),
 )
@@ -90,7 +93,7 @@ def audit_repository(repo: Path = REPO) -> dict:
     if absent:
         raise ValueError(f"dynamic report contract tokens missing: {absent}")
     return {
-        "schema_version": "dynamic-mainline-report-manifest-v2",
+        "schema_version": "dynamic-mainline-report-manifest-v3",
         "claim_status": "TEST_DRIVEN_EXPLORATION",
         "evidence_status": "DEVELOPMENT_EVIDENCE_NOT_INDEPENDENT_CONFIRMATION",
         "independent_confirmation": False,

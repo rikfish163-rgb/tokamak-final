@@ -19,6 +19,10 @@ from publication_style import (
 )
 
 
+PACKAGE = Path(__file__).resolve().parents[1]
+REPO = PACKAGE.parents[2]
+
+
 def sha256_file(path: Path) -> str:
     digest = hashlib.sha256()
     with path.open("rb") as handle:
@@ -116,7 +120,7 @@ def generate(report_path: Path, output_base: Path) -> dict:
             "exact per-seed paired proportions; no inferential error bars because "
             "the three seeds are not independent physical-shot cohorts"
         ),
-        "input": str(report_path.resolve()),
+        "input": str(report_path.resolve().relative_to(REPO)),
         "input_sha256": sha256_file(report_path),
         "rows": rows,
         "outputs": {

@@ -52,6 +52,18 @@ def test_archived_parent_replay_uses_ordered_unique_roster_manifest_without_a1(
         "shot_alarm", "two_timescale_online_adapter", "unified_online_value",
     ):
         monkeypatch.setitem(sys.modules, name, types.ModuleType(name))
+    sys.modules["unified_online_value"].ProjectedAlarmController = type(
+        "ProjectedAlarmController",
+        (),
+        {
+            "PARAMETER_BOUNDS": {
+                "high_threshold": (-0.1, 0.1),
+                "physics_weight": (6.0, 10.0),
+                "trend_weight": (12.0, 15.0),
+                "early_threshold": (7.1, 8.7),
+            },
+        },
+    )
     runner = load_module(
         "run_unified_online_active_archived_parent_test",
         HERE / "run_unified_online_active.py",

@@ -1,388 +1,201 @@
 \documentclass[11pt,a4paper]{article}
+
+% XeLaTeX, Chinese/English typography.
 \usepackage{fontspec}
-\setmainfont{Noto Sans CJK SC}
+\usepackage{polyglossia}
+\setdefaultlanguage{chinese}
+\setotherlanguage{english}
+\setmainfont{Noto Serif CJK SC}[
+  ItalicFont={Noto Serif CJK SC},
+  ItalicFeatures={FakeSlant=0.16}
+]
 \setsansfont{Noto Sans CJK SC}
+\setmonofont{Noto Sans Mono CJK SC}[Scale=0.86]
+\newfontfamily\chinesefont{Noto Serif CJK SC}[
+  ItalicFont={Noto Serif CJK SC},
+  ItalicFeatures={FakeSlant=0.16}
+]
+\newfontfamily\chinesefontsf{Noto Sans CJK SC}
+\newfontfamily\chinesefonttt{Noto Sans Mono CJK SC}[Scale=0.86]
 \XeTeXlinebreaklocale "zh"
 \XeTeXlinebreakskip=0pt plus 1pt
-\usepackage[a4paper,margin=2.15cm,headheight=15pt]{geometry}
-\usepackage{amsmath,amssymb,booktabs,longtable,array,tabularx}
-\usepackage{xcolor,hyperref,fancyhdr,enumitem,microtype}
+
+% Layout, mathematics, tables, figures and navigation.
+\usepackage[left=22mm,right=22mm,top=20mm,bottom=22mm,headheight=15pt]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
 \usepackage{graphicx}
-\definecolor{navy}{HTML}{17365D}
-\definecolor{blue}{HTML}{0072B2}
-\definecolor{orange}{HTML}{E69F00}
-\definecolor{red}{HTML}{D55E00}
-\definecolor{green}{HTML}{009E73}
-\hypersetup{colorlinks=true,linkcolor=navy,urlcolor=blue,citecolor=green}
+\usepackage{booktabs,longtable,tabularx,array,ragged2e,multirow}
+\usepackage[table,dvipsnames]{xcolor}
+\usepackage{enumitem}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{hyperref,bookmark}
+\usepackage{caption}
+\usepackage{fancyhdr,titlesec}
+\usepackage[most]{tcolorbox}
+\usepackage{fvextra}
+\usepackage{placeins,needspace,float,url,microtype}
+
+% Restrained technical-report palette; Okabe--Ito compatible accents.
+\definecolor{reportnavy}{HTML}{17365D}
+\definecolor{reportblue}{HTML}{0072B2}
+\definecolor{reportcyan}{HTML}{56B4E9}
+\definecolor{reportteal}{HTML}{009E73}
+\definecolor{reportamber}{HTML}{E69F00}
+\definecolor{reportred}{HTML}{B2182B}
+\definecolor{reportgray}{HTML}{5B6573}
+\definecolor{reportlight}{HTML}{F4F7FA}
+
+\graphicspath{{../figures_dynamic/}}
 \setlength{\parindent}{2em}
-\setlength{\parskip}{0.25em}
-\setlist{nosep,leftmargin=2em}
+\setlength{\parskip}{0.32em}
+\setlength{\tabcolsep}{4.5pt}
+\renewcommand{\arraystretch}{1.14}
+\setlist{nosep,leftmargin=2.2em,topsep=0.35em}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{2}
+\emergencystretch=2em
+\Urlmuskip=0mu plus 1mu\relax
+
+\titleformat{\section}
+  {\Large\bfseries\sffamily\color{reportnavy}}
+  {\thesection}{0.75em}{}
+  [\vspace{0.15em}\color{reportblue}\titlerule]
+\titleformat{\subsection}
+  {\large\bfseries\sffamily\color{reportnavy}}
+  {\thesubsection}{0.65em}{}
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\sffamily\color{reportgray}}
+  {\thesubsubsection}{0.6em}{}
+\titlespacing*{\section}{0pt}{2.3ex plus 0.8ex minus 0.2ex}{1.2ex}
+\titlespacing*{\subsection}{0pt}{1.8ex plus 0.5ex minus 0.2ex}{0.8ex}
+
+\captionsetup{
+  font=small,
+  labelfont={bf,color=reportnavy},
+  labelsep=quad,
+  justification=justified,
+  singlelinecheck=false,
+  skip=6pt
+}
+
+\newtcolorbox{evidencebox}[1][]{
+  enhanced,breakable,
+  colback=reportblue!4,colframe=reportblue!55,
+  boxrule=0.6pt,arc=1mm,
+  left=2mm,right=2mm,top=1.5mm,bottom=1.5mm,#1
+}
+\newtcolorbox{decisionbox}[1][]{
+  enhanced,breakable,
+  colback=reportteal!4,colframe=reportteal!60,
+  boxrule=0.6pt,arc=1mm,
+  left=2mm,right=2mm,top=1.5mm,bottom=1.5mm,#1
+}
+\newtcolorbox{riskbox}[1][]{
+  enhanced,breakable,
+  colback=reportamber!7,colframe=reportamber!75!black,
+  boxrule=0.6pt,arc=1mm,
+  left=2mm,right=2mm,top=1.5mm,bottom=1.5mm,#1
+}
+
+\DefineVerbatimEnvironment{ReportVerbatim}{Verbatim}{
+  fontsize=\small,breaklines=true,breakanywhere=true,
+  frame=single,framesep=2mm,rulecolor=\color{reportgray!40}
+}
+\newcommand{\code}[1]{\texttt{\detokenize{#1}}}
+\newcommand{\metric}[1]{\textbf{\sffamily #1}}
+\newcommand{\status}[1]{\texttt{\detokenize{#1}}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\ind}{\mathbf{1}}
+
+\renewcommand{\contentsname}{目录}
+\renewcommand{\listfigurename}{图目录}
+\renewcommand{\listtablename}{表目录}
+\renewcommand{\figurename}{图}
+\renewcommand{\tablename}{表}
+\renewcommand{\refname}{参考文献}
+
+\hypersetup{
+  unicode=true,colorlinks=true,
+  linkcolor=reportnavy,citecolor=reportteal,urlcolor=reportblue,
+  pdftitle={J-TEXT 至 EAST 动态标签迁移与时序在线主动适配技术报告},
+  pdfauthor={J-TEXT--EAST Project},
+  pdfsubject={可复现的跨装置破裂预警方法、实验与证据审计},
+  pdfkeywords={tokamak, disruption prediction, transfer learning, online active learning}
+}
+
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[L]{J-TEXT$\rightarrow$EAST 动态主线技术报告}
-\fancyhead[R]{开发期证据}
-\fancyfoot[C]{\thepage}
-\newcommand{\code}[1]{\texttt{\detokenize{#1}}}
-\newcommand{\statusbox}[1]{\par\noindent\fcolorbox{orange}{orange!8}{\parbox{0.96\linewidth}{#1}}\par}
-\newcommand{\riskbox}[1]{\par\noindent\fcolorbox{red}{red!6}{\parbox{0.96\linewidth}{#1}}\par}
-\newcommand{\okbox}[1]{\par\noindent\fcolorbox{green}{green!6}{\parbox{0.96\linewidth}{#1}}\par}
-\renewcommand{\contentsname}{目录}
-\renewcommand{\figurename}{图}
-\title{\bfseries J-TEXT$\rightarrow$EAST\\动态源模型、小样本迁移与时序在线主动适配}
-\author{可复现实验技术报告}
-\date{2026年8月25日}
+\fancyhead[L]{\small\sffamily J-TEXT 至 EAST 破裂预警研究}
+\fancyhead[R]{\small\sffamily JTE-XFER-OA-TR-03 · v4.0}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.35pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{
+  \fancyhf{}\fancyfoot[C]{\small\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+}
 
 \begin{document}
-\maketitle
+\hypersetup{pageanchor=false}
 
-\begin{abstract}
-本文给出当前动态主线的模型、标签、损失、查询价值、炮内与炮间更新、评价口径及证据边界。J-TEXT 破裂炮正样本上界使用每炮 $\max(25\ \mathrm{ms},\mathrm{AdvancedTime})$，缺失时取 25 ms；EAST support110 仍使用固定 125 ms。三随机种子等权均值为：J-TEXT TEST220 的 operational TPR/FPR/AUC 为 0.866667/0.130303/0.967906；EAST balanced360 同报警初值静态 TPR/FPR 为 0.820370/0.157407；按炮号在线主动适配后为 0.824074/0.146296。EAST 在线净效用 $J=\mathrm{TPR}-\mathrm{FPR}$ 的三 seed 平均增量为 $+0.014815$，且三个 seed 方向一致。本文将工程完成度与科学准入分开：开发流支持在线增益，但 balanced360 参与参数选择，故仍不是独立未来确认。
-\end{abstract}
+\begin{titlepage}
+  \thispagestyle{empty}
+  \begin{flushright}
+    {\small\sffamily\color{reportgray}技术报告编号：JTE-XFER-OA-TR-03\par}
+    {\small\sffamily\color{reportgray}版本：4.0 · 2026年8月25日\par}
+  \end{flushright}
 
-\statusbox{\textbf{证据状态。} \texttt{TEST\_DRIVEN\_EXPLORATION}；\allowbreak
-证据边界为“开发证据，不是独立确认”。验证器已从 HDF5 真值重算三 seed 共 1080 组静态/在线预测，并核对查询、揭示、更新和风险轨迹哈希；增益报告 SHA-256 前缀为 \texttt{50feb28453b6}，完整哈希见机器可读报告。任何不一致均应失败关闭。}
+  \vspace*{18mm}
+  \noindent{\color{reportblue}\rule{\textwidth}{2.2pt}}\par
+  \vspace{8mm}
+  {\Huge\bfseries\sffamily\color{reportnavy}
+    J-TEXT 至 EAST 动态标签迁移与\par
+    时序在线主动适配技术报告\par}
+  \vspace{4mm}
+  {\Large\sffamily\color{reportgray}
+    方法定义、因果协议、状态机选择与开发期证据\par}
+  \vspace{7mm}
+  \noindent{\color{reportblue}\rule{\textwidth}{0.7pt}}\par
 
+  \vfill
+  \noindent\begin{tabularx}{\textwidth}{@{}>{\bfseries\sffamily\color{reportnavy}}p{36mm}X@{}}
+    文档用途 & 面向导师、同行评审与相关技术部门的正式研究底稿及复现说明 \\
+    核心链路 & 新 J-TEXT 标签源模型 $\rightarrow$ EAST support110 小样本迁移 $\rightarrow$ balanced360 顺序在线主动回放 \\
+    标签合同 & J-TEXT：$\max(25\,\mathrm{ms},\mathrm{AdvancedTime})$；EAST support110：固定 125 ms \\
+    正式环境 & \texttt{rl\_env}；NVIDIA GeForce RTX 5070；单 GPU、逐 seed 独立进程 \\
+    开发结论 & 三 seed 在线 $J=\mathrm{TPR}_{30}-\mathrm{FPR}$ 均相对同参数静态分支提高 \\
+    证据等级 & \status{TEST_DRIVEN_EXPLORATION}；不是独立未来流确认 \\
+  \end{tabularx}
+
+  \vspace{12mm}
+  \begin{riskbox}
+    \textbf{阅读前提。} balanced360 同时承担报警状态机初值开发与顺序回放，support110 同时承担目标适配与阈值选择。报告可以证明已执行链路的内部一致性和开发期配对增益，不能据此宣称独立泛化、部署通过或统计显著的装置级收益。
+  \end{riskbox}
+
+  \vfill
+  {\small\sffamily\color{reportgray}
+    报告与机器证据绑定：验证报告 SHA-256 前缀 \texttt{b54c42da3388}；完整哈希见复现附录。\par}
+\end{titlepage}
+
+\hypersetup{pageanchor=true}
+\pagenumbering{roman}
+
+\section*{执行摘要}
+\addcontentsline{toc}{section}{执行摘要}
+\input{executive_summary.tex}
+
+\clearpage
 \tableofcontents
-\newpage
+\clearpage
+\listoffigures
+\clearpage
 
-\section{问题、贡献与结论边界}
+\pagenumbering{arabic}
+\input{report_body.tex}
 
-研究问题是在目标装置标签稀缺时，如何保留 J-TEXT 源模型中的可迁移时间表示，同时利用 EAST 私有通道和顺序到达的少量标签。当前实现的主要技术贡献是：
-\begin{enumerate}
-  \item 将 23 路候选信号拆为跨装置 shared17 与 EAST-private raw8，避免把语义或尺度不一致通道强制对齐；
-  \item 使用原始静态 J-TEXT checkpoint 作为唯一 EAST 源父模型，EAST 独立风险头不读取 J-TEXT 部署分数；
-  \item 静态分支和在线分支从同一迁移后父状态出发，在线过程执行预测、封存、查询、揭示、更新的严格因果顺序；
-  \item 把炮内 fast 个性化与炮间 persistent 学习解耦，并为更新提供 replay、guard、有限值检查和事务回滚；
-  \item 在 J-TEXT TEST220 上实现同构在线诊断支路，并完成预算、随机查询和前置训练对照。
-\end{enumerate}
-
-\riskbox{\textbf{不能做的表述。} TEST220 和 balanced360 均参与方法开发；support110 同时承担目标拟合与阈值校准。因此本文不能声称独立未来确认、装置部署通过、在线主动策略已稳定优于随机查询，也不能声称模型学到了全部破裂因果机理。}
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\linewidth]{../figures_dynamic/F1_causal_data_role_pipeline.pdf}
-\caption{数据角色、静态源父模型隔离和因果在线事件顺序。J-TEXT 在线状态不进入 EAST 迁移。}
-\end{figure}
-
-\section{数据角色、标签与时间口径}
-
-\subsection{数据角色}
-
-\begin{center}
-\begin{tabular}{llll}
-\toprule
-装置与角色 & 炮数 & HDF5 构成 & 用途\\
-\midrule
-J-TEXT TRAIN1353 & 1353 & 188 破裂 & 源参数与 scaler\\
-J-TEXT VAL160 & 160 & 80/80 & epoch 与阈值\\
-J-TEXT TEST220 & 220 & 110/110 & 开发期比较及在线诊断\\
-EAST support110 & 110 & 15/95 & 小样本迁移及阈值\\
-EAST balanced360 & 360 & 180/180 & 静态与在线开发流\\
-\bottomrule
-\end{tabular}
-\end{center}
-
-support110 的 15 破裂/95 安全来自实际 HDF5；旧炮表标题中的 10/100 不作为标签权威。support110 与 balanced360 炮号互斥，但 balanced360 参与了方法开发，因此不是独立测试集。
-
-\subsection{真值与正样本边界}
-
-对炮 $s$，$d_s\in\{0,1\}$ 表示整炮结局，$t_s^{\mathrm{down}}$ 表示破裂时刻。二者只能来自 HDF5 元数据：\code{/meta/IsDisrupt} 与 \code{/meta/DownTime}。JSON AdvancedTime 仅是正样本时间窗的上界信息。
-
-J-TEXT 的当前上界为
-\begin{equation}
-H_s^J=\max(25\ \mathrm{ms},A_s),
-\label{eq:jtext-horizon}
-\end{equation}
-其中 $A_s$ 是 AdvancedTime；缺失时 $H_s^J=25$ ms。定义
-\begin{equation}
-\mathrm{TTD}_{s,t}=1000(t_s^{\mathrm{down}}-t)\ \mathrm{ms},
-\end{equation}
-则
-\begin{equation}
-y_{s,t}^{J}=\mathbf 1\{d_s=1,\ 0\leq\mathrm{TTD}_{s,t}\leq H_s^J\}.
-\label{eq:jtext-label}
-\end{equation}
-EAST support110 保持固定 125 ms：
-\begin{equation}
-y_{s,t}^{E}=\mathbf 1\{d_s=1,\ 0\leq\mathrm{TTD}_{s,t}\leq125\ \mathrm{ms}\}.
-\label{eq:east-label}
-\end{equation}
-因此当前标签臂是 \texttt{source\_dynamic\_\_east\_fixed}。它由开发期 $J=\mathrm{TPR}-\mathrm{FPR}$ 决定，不能被描述为预注册确认臂。
-
-\subsection{报警与 operational 指标}
-
-首次报警时间记为 $t_s^{\mathrm{alarm}}$，提前量为
-\begin{equation}
-\ell_s=1000(t_s^{\mathrm{down}}-t_s^{\mathrm{alarm}})\ \mathrm{ms}.
-\end{equation}
-J-TEXT operational TP 要求 $\ell_s>10$ ms；EAST 要求 $\ell_s\geq30$ ms。当前状态机不要求连续 10 点，任一因果端点满足冻结条件即可。早于破裂 3 s 以上的报警仍保留资格，但单独审计捷径。
-
-\begin{equation}
-\mathrm{TPR}=\frac{TP}{TP+FN},\qquad
-\mathrm{FPR}=\frac{FP}{FP+TN},\qquad
-J=\mathrm{TPR}-\mathrm{FPR}.
-\label{eq:metrics}
-\end{equation}
-$TP,FP,TN,FN$ 分别是合格真阳性、假阳性、真阴性和操作假阴性。raw TPR 只说明发生过报警；提前量不足仍是 operational FN。本文主表不混用两种 TPR。
-
-\section{共享表示与 J-TEXT 源模型}
-
-\subsection{rebuilt17 与因果预处理}
-
-共享主干使用 rebuilt17。J-TEXT 电流只执行一次 $I_p^A=1000I_p^{kA}$，并重构 $B_t/I_p$、$\Delta I_p(t)=I_p(t)-I_p(t-1)$ 和 $Z_{\mathrm{proxy}}=V_{\mathrm{loop}}/I_p$。TRAIN1353 拟合中位数 $m_c$ 与四分位距 $q_c$：
-\begin{equation}
-\tilde x_{t,c}=\operatorname{clip}
-\left(\frac{x_{t,c}-m_c}{\max(q_c,10^{-6})},-10,10\right).
-\label{eq:scaler}
-\end{equation}
-$x_{t,c}$ 是端点 $t$ 的通道 $c$，$\tilde x_{t,c}$ 是归一化值。EAST shared17 不重新拟合该 scaler。availability mask 区分缺测和物理零；短历史只在左侧补零，\texttt{valid\_lengths} 形成 patch mask，不读取未来端点。
-
-\subsection{网络与源域损失}
-
-输入是 $128\times17$ 因果窗；patch 宽 8、步长 8，共 16 个时间 token。模型含一个 CLS token、正弦位置编码，以及两层 4 头 Transformer。隐藏宽度 $d_{\mathrm{model}}=64$，前馈层宽度为 256；风险头为 \texttt{64--64--GELU--Dropout(0.1)--1}。
-
-\begin{equation}
-\mathcal L_{\mathrm{src}}=-\frac1B\sum_{i=1}^{B}
-[y_i\log\sigma(z_i)+(1-y_i)\log(1-\sigma(z_i))],
-\label{eq:source-loss}
-\end{equation}
-其中 $B$ 是 batch 大小，$y_i$ 是窗口标签，$z_i$ 是风险 logit，$\sigma$ 为 sigmoid。AdamW 的学习率为 $3\times10^{-4}$，weight decay 为 $10^{-4}$，batch 128，梯度范数上限 1；最多 30 epoch、每 epoch 128 step、至少 12 epoch、patience 7。VAL160 先约束 timely TPR$\geq0.90$，再最小化 FPR；锁定 checkpoint 与阈值前 \texttt{test\_shards\_read=0}。
-
-\section{J-TEXT 到 EAST 的小样本迁移}
-
-\subsection{高层目标适配}
-
-只加载同 seed 的静态 J-TEXT checkpoint。冻结 patch embedding、CLS 和第一层 Transformer；解冻最后一层及最终 LayerNorm；丢弃源风险头，初始化独立 EAST 风险头。support110 上的目标为
-\begin{equation}
-\mathcal L_{\mathrm{adapt}}=
-\operatorname{BCEWithLogits}(z_{s,t}^{E},y_{s,t}^{E}).
-\end{equation}
-训练 12 epoch，每 epoch 32 batch，batch 128，AdamW 学习率 $10^{-4}$。support110 还用于选择满足 timely TPR$\geq0.80$ 时 FPR 最低的目标阈值，故不存在独立目标验证。
-
-\subsection{共享动态残差}
-
-\begin{equation}
-\delta_t^{\mathrm{shared}}=
-g_t\tanh f_{\mathrm{shared}}(h_t,q_t,a_t,z_t^0),
-\qquad|\delta_t^{\mathrm{shared}}|\leq1.
-\label{eq:shared}
-\end{equation}
-$h_t$ 是隐藏状态，$q_t$ 是共享物理向量，$a_t$ 是可用掩码，$z_t^0$ 是基础 logit，$g_t$ 是物理可用门。其支持集损失为
-\begin{equation}
-\mathcal L_{\mathrm{DHA}}=\mathcal L_{\mathrm{BCE}}
-+0.20\mathcal L_{\mathrm{next}}
-+1.00\mathcal L_{\mathrm{anchor}}
-+0.05\,\mathbb E[(\delta_t^{\mathrm{shared}})^2].
-\label{eq:dha}
-\end{equation}
-$\mathcal L_{\mathrm{next}}$ 重建下一因果状态，$\mathcal L_{\mathrm{anchor}}$ 保护已判对的支持窗口。
-
-\subsection{EAST-private raw8}
-
-不强制对齐的 8 个 EAST 通道各提取 6 个因果摘要，形成 48 维 $r_t$：
-\begin{equation}
-\delta_t^{\mathrm{private}}=
-0.5\tanh f_{\mathrm{private}}(r_t,z_t^{\mathrm{shared}}),
-\qquad|\delta_t^{\mathrm{private}}|\leq0.5,
-\end{equation}
-\begin{equation}
-z_t^E=z_t^0+\delta_t^{\mathrm{shared}}+\delta_t^{\mathrm{private}}.
-\label{eq:target-logit}
-\end{equation}
-这意味着 23 维并未简单丢弃：shared17 负责跨装置可比较表示，raw8 只在 EAST 小支路中补充目标表象。
-
-\section{EAST 在线主动适配}
-
-每炮顺序是：预测、端点封存、可选炮内 fast 更新、整炮封存、查询、仅选中炮揭示、persistent 更新或回滚。当前炮结局和未来端点不可进入当前预测。
-
-每炮开始从 persistent 深复制 fast；炮内无标签梯度只改变 fast，炮后丢弃，persistent 哈希必须不变。EAST 查询结合报警边界不确定性和模型--物理矛盾，并使用滚动 token 预算。配置为：20 炮名义配额 6、历史 160、分位数 0.7、不确定性权重 0.55、初始 cutoff 0.35、token capacity 12；三 seeds 实际查询 101/100/95 炮。
-
-动态标签改变了迁移后 logit 尺度，故只在原投影边界内筛选报警初值：
-\begin{equation}
-(\theta_{high},w_{phys},w_{trend},\theta_{early})=(-0.1,6.0,13.5,7.5).
-\end{equation}
-源 checkpoint、support110 parent、balanced360 炮序、查询器和模型更新范围保持不变。静态与在线使用相同初值；只有在线分支在查询并揭示后更新状态机，因此不是通过给在线分支更宽松阈值制造增益。
-
-炮间仅在选中炮封存后读取标签。更新含部署边界监督、replay、物理、下一状态与 guard。更新前保存模型和优化器；非有限损失、梯度、参数、优化器状态或 guard 失败均回滚。新 persistent 只影响后续炮。
-
-\section{J-TEXT TEST220 在线诊断支路}
-
-\subsection{有界残差与炮内损失}
-
-在线模块只有 2241 个可训练参数，源 encoder/head 冻结：
-\begin{equation}
-z_t=z_t^0+\Delta z_t,\qquad
-\Delta z_t=0.5\tanh f_{\mathrm{res}}(x_t,a_t,\sigma(z_t^0)).
-\end{equation}
-零初始化保证初始输出等于静态父模型。实际炮内损失为
-\begin{equation}
-\mathcal L_{\mathrm{intra}}=
-1.0\mathcal L_{\mathrm{next}}+
-0.5\mathcal L_{\mathrm{teacher}}+
-0.25\mathcal L_{\mathrm{anchor}}+
-0.0\mathcal L_{\mathrm{physics}}.
-\label{eq:j-intra}
-\end{equation}
-最后一项权重为 0，不能写成生效贡献。
-
-\subsection{查询价值}
-
-风险概率序列为 $p_1,\ldots,p_T$：
-\begin{equation}
-U=\frac1T\sum_{t=1}^{T}(1-|2p_t-1|),
-\end{equation}
-\begin{equation}
-\Delta_x=\frac{\operatorname{mean}|x_T-x_1|}
-{1+\operatorname{mean}|x_T-x_1|},\qquad
-C=\operatorname{clip}(\lvert |p_T-p_1|-\Delta_x\rvert,0,1).
-\end{equation}
-$U$ 是不确定性，$C$ 是风险变化与特征变化的矛盾度。炮表型
-$\phi=[\operatorname{mean}(p),\max(p),p_T-p_1,\Delta_x]$。只在过去已查询并揭示的表型库 $\mathcal M$ 中计算
-\begin{equation}
-N=\operatorname{clip}
-\left(\min_{\psi\in\mathcal M}
-\sqrt{\operatorname{mean}(\phi-\psi)^2},0,1\right),
-\end{equation}
-空库时 $N=0$。最终
-\begin{equation}
-V=wU+(1-w)C+\eta N,\qquad w=0.65,\quad\eta=0.10.
-\label{eq:query}
-\end{equation}
-20\% 预算按连续 20 炮块恰好查询 4 炮，共 44 炮。先选 $V\geq0.5$ 的炮，块末用 causal forced-fill 补足预算。10\%/30\% 对应 22/66 炮。
-
-\subsection{炮间损失与事务保护}
-
-每次查询取当前 8 窗、replay 8 窗、guard 8 窗，执行 2 个 optimizer steps：
-\begin{equation}
-\mathcal L_{\mathrm{inter}}=
-1.0\mathcal L_{\mathrm{sup}}+
-0.5\mathcal L_{\mathrm{replay}}+
-0.25\mathcal L_{\mathrm{anchor}}+
-0.0\mathcal L_{\mathrm{physics}}.
-\label{eq:j-inter}
-\end{equation}
-三个 seeds 均查询 44 炮、尝试 88 步、无回滚；active 与 random 的窗口和报告 FLOPs 匹配。
-
-\section{结果与裁决}
-
-\begin{center}
-\small
-\begin{tabular}{rrrrrrrr}
-\toprule
-seed & J-T TPR & J-T FPR & J-T AUC & E-S TPR & E-S FPR & E-O TPR & E-O FPR\\
-\midrule
-131 & .900000 & .154545 & .978926 & .861111 & .155556 & .861111 & .133333\\
-133 & .836364 & .100000 & .961736 & .761111 & .127778 & .766667 & .116667\\
-137 & .863636 & .136364 & .963058 & .838889 & .188889 & .844444 & .188889\\
-均值 & \textbf{.866667} & \textbf{.130303} & \textbf{.967906} &
-\textbf{.820370} & \textbf{.157407} & \textbf{.824074} & \textbf{.146296}\\
-\bottomrule
-\end{tabular}
-\end{center}
-
-EAST online 相对同参数 static 的 $\Delta J$ 按 seed 为 $+0.022222、+0.016667、+0.005556$。三 seed 共 9 次 gross rescue、1 次 gross harm，净挽救 8 炮；296 次查询的净挽救率为 0.0270/查询。
-
-J-TEXT static、EAST static、EAST online 的 $J$ 分别为 0.736364、0.662963、0.677778。EAST 在线三 seed 平均 $\Delta J=+0.014815$。seed133 TPR 未达到 0.80，且 balanced360 参与了报警初值选择，故 \texttt{T0\_ADMITTED=false}。
-
-J-TEXT 20\% full-active 相对 static 的 $\Delta J$ 为 0、$-0.009091$、0，故 \texttt{ONLINE\_SUPPORTED=false}。seed131 的 10\%/20\%/30\% 预算均不改变炮级指标。active 与 equal-compute random 的 44 炮集合只重合 4 炮，却都只覆盖 6 个静态错误型炮。44 个前缀标签直接训练的后缀对照从 $J=0.763025$ 降到 0.751261；这反驳“标签数相同就必然提升”，但不证明主动策略优越。
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\linewidth]{../figures_dynamic/F2_jtext_source_three_seed.pdf}
-\caption{J-TEXT TEST220 三随机种子源模型表现。每根柱对应一个独立训练 seed，不把 220 炮伪作独立重复。}
-\end{figure}
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\linewidth]{../figures_dynamic/F3_east_static_online_dynamic_source_gain.pdf}
-\caption{EAST balanced360 上同父模型、同报警初值的静态与在线配对结果。a，operational TPR；b，FPR；c，每个模型 seed 的 $\Delta J$ 与实际查询数。三点是独立训练 seed，不是三个独立物理炮集，因此展示精确配对比例而不添加伪推断误差条。}
-\end{figure}
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\linewidth]{../figures_dynamic/F4_jtext_online_ablation.pdf}
-\caption{J-TEXT seed131 的炮内、炮间、完整主动与等计算随机查询消融。}
-\end{figure}
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\linewidth]{../figures_dynamic/F5_budget_falsification_controls.pdf}
-\caption{查询预算、等资源随机对照与 44 炮前置直接训练的共同后缀比较。}
-\end{figure}
-
-\okbox{\textbf{工程结论。} 静态源、目标小样本迁移、静态封存、顺序在线、查询揭示和事务更新已形成一条可执行链路。}
-\riskbox{\textbf{科学结论。} EAST 动态标签源在线分支在 balanced360 开发流上获得三 seed 一致正增益，但尚未达到 EAST admission；J-TEXT 在线主动也未通过支持门。balanced360 和 TEST220 上的结果都只能作为开发证据。}
-
-\section{符号与缩写}
-
-\begin{longtable}{p{0.23\linewidth}p{0.68\linewidth}}
-\toprule
-符号或缩写 & 定义\\
-\midrule
-$s,t$ & 炮编号与炮内因果端点\\
-$d_s,t_s^{\mathrm{down}}$ & HDF5 结局与破裂时刻\\
-$A_s,H_s^J$ & AdvancedTime 与 J-TEXT 正样本上界\\
-TTD & time to disruption，距离破裂的剩余时间\\
-$x_t,a_t$ & rebuilt17 特征与可用掩码\\
-$h_t,q_t,r_t$ & 隐状态、共享物理向量、EAST raw8 摘要\\
-$z,p$ & 风险 logit 与 sigmoid 风险概率\\
-$\delta^{\mathrm{shared}},\delta^{\mathrm{private}}$ & 共享与目标私有 logit 残差\\
-$U,C,N,V$ & 不确定性、矛盾度、新颖度、查询价值\\
-$w,\eta$ & 查询混合权重与新颖度系数\\
-fast/persistent & 炮内临时模型与跨炮慢状态\\
-TP/FP/TN/FN & 真阳性、假阳性、真阴性、操作假阴性\\
-TPR/FPR/AUC/$J$ & 真阳性率、假阳性率、ROC AUC、TPR$-$FPR\\
-SHA-256 & 绑定代码、数据、模型和证据字节的哈希\\
-\bottomrule
-\end{longtable}
-
-\section{公式与代码映射}
-
-\begin{longtable}{p{0.34\linewidth}p{0.57\linewidth}}
-\toprule
-公式或过程 & 代码入口\\
-\midrule
-式(\ref{eq:jtext-horizon})--(\ref{eq:east-label}) & \code{advanced_time_labels.py}; \code{train_jtext_source_transformer.py}\\
-式(\ref{eq:scaler})与 rebuilt17 & \code{rebuilt_harness.py}\\
-式(\ref{eq:source-loss})与 Transformer & \code{grid_search.py::Enc/Head}; \code{train_jtext_source_transformer.py}\\
-高层 EAST 适配 & \code{grid_search.py::train_adapt}; \code{run_selected_full_mainline.py}\\
-式(\ref{eq:shared})--(\ref{eq:dha}) & \code{dynamic_hazard_adapter.py}; \code{run_dynamic_hazard_adapter.py}\\
-式(\ref{eq:target-logit}) & \code{east_private23_sidecar.py}; \code{east_private_continual.py}\\
-EAST 顺序在线 & \code{run_unified_online_active.py}; \code{unified_online_value.py}\\
-式(\ref{eq:j-intra})、(\ref{eq:j-inter}) & \code{jtext_online_adapter.py}\\
-式(\ref{eq:query}) & \code{run_jtext_online_active.py::JTextQueryValue}\\
-最终证据核验 & \code{paper_grade_package/scripts/build_dynamic_mainline_evidence.py} 与最终装配脚本\\
-报告合同与编译 & \code{paper_grade_package/scripts/build_dynamic_report.py}\\
-\bottomrule
-\end{longtable}
-
-\section{复现命令}
-
-\begin{verbatim}
-cd /path/to/tokamak-final
-export FUSION_DATA_ROOT=/path/to/data
-PY=${CONDA_PREFIX}/bin/python
-
-$PY -c 'import torch,h5py; print(torch.cuda.is_available())'
-
-for seed in 131 133 137; do
-  $PY experiments/transfer_methods_2026/run_selected_full_mainline.py \
-    --seed "$seed" --stage all \
-    --data-root "$FUSION_DATA_ROOT" \
-    --output "/ext4/runs/selected_full_mainline/seed${seed}"
-done
-
-$PY experiments/transfer_methods_2026/paper_grade_package/scripts/\
-build_dynamic_report.py --check-only
-$PY experiments/transfer_methods_2026/paper_grade_package/scripts/\
-build_dynamic_report.py
-$PY -m pytest -q tests/experiments/test_dynamic_mainline_report.py
-\end{verbatim}
-
-跨机复现还必须保存代码 SHA、配置 SHA、HDF5 内容清单、炮表 SHA、checkpoint SHA、阈值回执、逐炮预测和查询/更新回执。单独复现汇总表不等于复现完整主线。
-
-\section{当前结论}
-
-工程链路已经打通并可审计，EAST 动态标签源在线分支在 balanced360 开发流上获得三 seed 一致正增益；逐炮 HDF5 重算与哈希核验已完成。EAST admission 与 J-TEXT \texttt{ONLINE\_SUPPORTED} 仍未通过。下一步是冻结当前配置，在新未来流上预注册确认。不能把本轮 balanced360 调参与回放结果升级为确认性结论。
+\FloatBarrier
+\clearpage
+\bibliographystyle{unsrtnat}
+\bibliography{references}
 
 \end{document}

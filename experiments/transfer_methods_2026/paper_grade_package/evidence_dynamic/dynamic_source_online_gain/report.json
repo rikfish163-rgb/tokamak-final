@@ -21,7 +21,7 @@
     "seed_count": 3,
     "strictly_positive_seed_count": 3
   },
-  "artifact_root": "/media/hetaisheng/044A81D94A81C83E/Fuison-dynamic-source-online-search/alarm_state_v1",
+  "artifact_root": "${FUSION_RUN_ROOT}",
   "claim_status": "TEST_DRIVEN_EXPLORATION",
   "independent_future_confirmation": false,
   "schema_version": "dynamic-source-online-alarm-replay-v1",
@@ -66,7 +66,7 @@
       },
       "query_count": 101,
       "seed": 131,
-      "summary": "/media/hetaisheng/044A81D94A81C83E/Fuison-dynamic-source-online-search/alarm_state_v1/seed131/east-online/summary.json",
+      "summary": "${FUSION_RUN_ROOT}/seed131/east-online/summary.json",
       "summary_sha256": "d71d43b960dd6af8166f9417375246dd31b04b4c28f5b39ec5335be930ca679b"
     },
     {
@@ -109,7 +109,7 @@
       },
       "query_count": 100,
       "seed": 133,
-      "summary": "/media/hetaisheng/044A81D94A81C83E/Fuison-dynamic-source-online-search/alarm_state_v1/seed133/east-online/summary.json",
+      "summary": "${FUSION_RUN_ROOT}/seed133/east-online/summary.json",
       "summary_sha256": "97836bc8f28ca8cef054cbcc420552ec2c5577995cb14d4e3fc6caabcc97f151"
     },
     {
@@ -152,7 +152,7 @@
       },
       "query_count": 95,
       "seed": 137,
-      "summary": "/media/hetaisheng/044A81D94A81C83E/Fuison-dynamic-source-online-search/alarm_state_v1/seed137/east-online/summary.json",
+      "summary": "${FUSION_RUN_ROOT}/seed137/east-online/summary.json",
       "summary_sha256": "f1d8ebe4c666bdd0ce842c1a8716ac1c0a35298e32a21d43266bc5d8f971c5c2"
     }
   ],
@@ -199,9 +199,9 @@
       "static_sealed_before_online": true
     },
     "claim_status": "TEST_DRIVEN_EXPLORATION",
-    "config": "/media/hetaisheng/044A81D94A81C83E/Fuison-JTEXT-EAST-mainline-clean-20260818/experiments/transfer_methods_2026/paper_grade_package/configs/dynamic_source_online_alarm_search_v1.json",
+    "config": "experiments/transfer_methods_2026/paper_grade_package/configs/dynamic_source_online_alarm_search_v1.json",
     "config_sha256": "d90560c41bd04fede80a4a98055b92a22d0aa21c8ab735e732402c7a39222b9f",
-    "data_root": "/media/hetaisheng/044A81D94A81C83E/Fuison/data",
+    "data_root": "${FUSION_DATA_ROOT}",
     "independent_future_confirmation": false,
     "schema_version": "dynamic-source-online-gain-validation-v1",
     "seeds": [
@@ -238,7 +238,7 @@
             "tpr_at_30ms": 0.8611111111111112
           }
         },
-        "run_dir": "/media/hetaisheng/044A81D94A81C83E/Fuison-dynamic-source-online-search/alarm_state_v1/seed131/east-online",
+        "run_dir": "${FUSION_RUN_ROOT}/seed131/east-online",
         "sealed_parent_sha256": "f451c16fa65713c8dedab86cbb46a97dd3bad1c8fb0bfae5e1f81ddf52af29ce",
         "seed": 131,
         "source_checkpoint_sha256": "a366d2c25f4fc0af80bf240084fb4fedac13e9f39a2a40af160334a9395f12ff",
@@ -310,7 +310,7 @@
             "tpr_at_30ms": 0.7611111111111111
           }
         },
-        "run_dir": "/media/hetaisheng/044A81D94A81C83E/Fuison-dynamic-source-online-search/alarm_state_v1/seed133/east-online",
+        "run_dir": "${FUSION_RUN_ROOT}/seed133/east-online",
         "sealed_parent_sha256": "53c853cdac66517aca65748e9b06ac653941ed30ef78b231a5fcf085614dd121",
         "seed": 133,
         "source_checkpoint_sha256": "02643660123fce6e01d180a5569139aee54b19be8ffccc4b68bfffbe73c97d35",
@@ -382,7 +382,7 @@
             "tpr_at_30ms": 0.8388888888888889
           }
         },
-        "run_dir": "/media/hetaisheng/044A81D94A81C83E/Fuison-dynamic-source-online-search/alarm_state_v1/seed137/east-online",
+        "run_dir": "${FUSION_RUN_ROOT}/seed137/east-online",
         "sealed_parent_sha256": "091cd29ed208ebd9112921537072ca60f7f3cb5a1de4510d43d99e17c1f5c05c",
         "seed": 137,
         "source_checkpoint_sha256": "488957128df145707f388f1aefdf9304b00420c8c2276b4e3f5fa8c7580fad05",
@@ -424,7 +424,7 @@
         }
       }
     ],
-    "source_report": "/media/hetaisheng/044A81D94A81C83E/Fuison-dynamic-source-online-search/alarm_state_v1/report.json",
+    "source_report": "${FUSION_RUN_ROOT}/report.json",
     "source_report_sha256": "f26f2e22005a9992bbc160fb69f6d92f3cfbe17c3364f594e891257231ea08b0",
     "status": "PASS"
   }

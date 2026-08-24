@@ -1,0 +1,39 @@
+本报告研究一个受数据约束的工程问题：在 EAST 只提供少量有标签适配炮的条件下，如何复用 J-TEXT 上学到的破裂演化表示，并让模型在 EAST 炮序中利用当前炮的无标签前缀和少量昂贵的炮后结局持续修正。方法不是对 23 路信号做无条件全局对齐，而是将跨装置可比的 rebuilt17 表示与 EAST-private raw8 支路分开；源 Transformer 和源风险头保持封存，EAST 使用独立目标头、共享动态残差和目标私有残差。
+
+J-TEXT 破裂炮的窗口标签改为
+\[
+H_s^J=\max(25\ \mathrm{ms},A_s),\qquad
+y_{s,t}^J=\ind\{d_s=1,\ 0\leq \mathrm{TTD}_{s,t}\leq H_s^J\},
+\]
+其中 $A_s$ 为 AdvancedTime；缺失时取 25 ms。EAST support110 保持固定 125 ms。该改动只重建 J-TEXT 静态源模型；J-TEXT 在线状态不进入 EAST 迁移。
+
+EAST 在线阶段从与静态分支字节一致的迁移父状态出发。每炮执行“端点预测与封存 $\rightarrow$ 炮内无标签 fast 更新 $\rightarrow$ 整炮报警与查询封存 $\rightarrow$ 仅对选中炮揭示结局 $\rightarrow$ 炮间 persistent 更新或回滚”。报警器含一条高风险通路和一条物理支持的早期通路。balanced360 上只筛选其四个连续初值，不改变源模型、迁移父模型、查询器、更新范围或炮序；最终初值为
+\[
+(\theta_h,w_p,w_r,\theta_e)=(-0.1,6.0,13.5,7.5).
+\]
+
+\begin{center}
+\begin{tabular}{lrrrr}
+\toprule
+阶段 & operational TPR & FPR & AUC & $J=\mathrm{TPR}-\mathrm{FPR}$\\
+\midrule
+J-TEXT TEST220 静态源模型 & 0.866667 & 0.130303 & 0.967906 & 0.736364\\
+EAST balanced360 静态迁移 & 0.820370 & 0.157407 & --- & 0.662963\\
+EAST balanced360 在线主动 & 0.824074 & 0.146296 & --- & 0.677778\\
+\midrule
+EAST 在线相对静态 & $+0.003704$ & $-0.011111$ & --- & \metric{$+0.014815$}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+三个独立训练 seed 的配对 $\Delta J$ 分别为 $+0.022222$、$+0.016667$ 和 $+0.005556$。三 seed 共查询 296 炮，记录 9 次 gross rescue、1 次 gross harm，净挽救 8 炮。独立验证器从 HDF5 重新连接真值并复算 1080 组静态/在线预测，归档结果与重新计算结果字节一致。
+
+\begin{decisionbox}
+\textbf{可支持的结论。} 在本次新标签源模型、既定迁移结构和同一报警初值下，顺序在线分支在 balanced360 开发流上的三个 seed 均提高了 $\mathrm{TPR}_{30}-\mathrm{FPR}$，平均收益主要来自 FPR 降低。
+\end{decisionbox}
+
+\begin{riskbox}
+\textbf{尚不可支持的结论。} seed133 的 TPR 为 0.766667，未达到预设的单 seed 0.80 门；balanced360 参与了初值选择；三个 seed 不是三个独立物理炮集。因此当前状态仍为 \status{TEST_DRIVEN_EXPLORATION}，不能升级为 \status{T0_ADMITTED} 或部署有效性结论。
+\end{riskbox}
+
+\noindent\textbf{关键词：} 托卡马克；破裂预警；小样本迁移；测试时适配；在线主动学习；因果评估；状态机；证据审计

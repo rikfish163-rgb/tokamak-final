@@ -32,7 +32,7 @@ def test_dynamic_report_contract_is_current_and_hash_bound(tmp_path: Path) -> No
 
     assert completed.returncode == 0, completed.stdout + completed.stderr
     payload = json.loads(manifest.read_text(encoding="utf-8"))
-    assert payload["schema_version"] == "dynamic-mainline-report-manifest-v2"
+    assert payload["schema_version"] == "dynamic-mainline-report-manifest-v3"
     assert payload["claim_status"] == "TEST_DRIVEN_EXPLORATION"
     assert payload["independent_confirmation"] is False
     assert payload["retired_v3c_token_hits"] == []
@@ -52,12 +52,19 @@ def test_retired_v3c_numbers_are_rejected_from_active_documents() -> None:
 
 
 def test_latex_project_declares_glossary_and_formula_code_mapping() -> None:
-    tex = (PACKAGE / "technical_report_dynamic/main.tex").read_text(encoding="utf-8")
+    report_dir = PACKAGE / "technical_report_dynamic"
+    tex = "\n".join(
+        (report_dir / name).read_text(encoding="utf-8")
+        for name in ("main.tex", "executive_summary.tex", "report_body.tex")
+    )
 
-    assert "符号与缩写" in tex
-    assert "公式与代码映射" in tex
-    assert "TEST\\_DRIVEN\\_EXPLORATION" in tex
+    assert "符号与实现映射" in tex
+    assert "关键超参数清单" in tex
+    assert "TEST_DRIVEN_EXPLORATION" in tex
     assert "max(25" in tex
+    assert "V_t^{\\mathrm{intra}}" in tex
+    assert "V_s^{\\mathrm{query}}" in tex
+    assert "V_s^{\\mathrm{sup}}" in tex
 
 
 def test_root_readme_preserves_original_v3c_and_budget_controls() -> None:

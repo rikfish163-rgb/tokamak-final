@@ -75,7 +75,7 @@ Q30 是按时间顺序、只用当时可见特征因果选出的 30 炮；选择
 
 ## 新增 J-TEXT 在线支路与动态标签附录
 
-J-TEXT 在线主动是后来新增的独立诊断支路；其任何在线状态都不得进入 EAST。AdvancedTime 动态标签重跑的 `0.824074/0.142593 → 0.824074/0.142593` 属于另一 checkpoint/标签谱系，只保留在附录中，**不得覆盖原 paper-v3c 主结果**。
+J-TEXT 在线主动是后来新增的独立诊断支路；其任何在线状态都不得进入 EAST。AdvancedTime 动态标签源在重新注册报警状态机初值后得到 `0.820370/0.157407 → 0.824074/0.146296`，属于另一 checkpoint/标签谱系，只保留在附录中，**不得覆盖原 paper-v3c 主结果**。
 
 ## AdvancedTime 附录标签合同（非 paper-v3c）
 
@@ -86,6 +86,17 @@ H_s^J=\max(25\ \mathrm{ms},\mathrm{AdvancedTime}_s),
 $$
 
 AdvancedTime 缺失时取 25 ms。EAST support110 仍使用固定 125 ms 上界。AdvancedTime 只改变窗口上界，不覆盖 HDF5 结局或 DownTime。当前臂名称为 `source_dynamic__east_fixed`。
+
+在保持源 checkpoint、EAST support110 parent、balanced360 炮序、v3c 查询器和模型更新范围不变时，仅在预注册投影范围内筛选报警状态机初值。选定值为 `high=-0.1, physics=6.0, trend=13.5, early=7.5`。完整真实在线回放结果为：
+
+| seed | 同参数静态 TPR@30/FPR | 在线 TPR@30/FPR | $\Delta J$ | 查询 |
+|---:|---:|---:|---:|---:|
+| 131 | 0.861111 / 0.155556 | 0.861111 / 0.133333 | +0.022222 | 101 |
+| 133 | 0.761111 / 0.127778 | 0.766667 / 0.116667 | +0.016667 | 100 |
+| 137 | 0.838889 / 0.188889 | 0.844444 / 0.188889 | +0.005556 | 95 |
+| 等 seed 均值 | **0.820370 / 0.157407** | **0.824074 / 0.146296** | **+0.014815** | 98.67 |
+
+三 seed 合计查询 296 次，逐炮转移为 9 次挽救、1 次伤害，净挽救 8 炮。机器证据见 [`dynamic_source_online_gain/report.json`](experiments/transfer_methods_2026/paper_grade_package/evidence_dynamic/dynamic_source_online_gain/report.json)。balanced360 同时用于参数筛选和回放，故这只支持“该开发流上存在在线增益”，不构成独立未来确认。
 
 ## 方法概览
 
@@ -151,6 +162,22 @@ done
 
 固定阶段顺序为 `source-train → jtext-static → jtext-online → east-parent → east-static → east-online`。`jtext-online` 是独立诊断分支；`east-parent` 仍只读取同 seed 的**原始静态 J-TEXT checkpoint**，禁止读取 J-TEXT 在线状态。
 
+动态标签源的报警初值筛选与三 seed 真在线回放复用上述封存 source/parent；每个 seed 使用独立 CUDA 进程：
+
+```bash
+$PY experiments/transfer_methods_2026/run_dynamic_source_online_alarm_search.py \
+  --seeds 131 --exec-single \
+  --parent-root /ext4/runs/corrected_mainline_screen \
+  --output-root /ext4/runs/dynamic_source_alarm_v1
+
+$PY experiments/transfer_methods_2026/paper_grade_package/scripts/validate_dynamic_source_online_gain.py \
+  --report /ext4/runs/dynamic_source_alarm_v1/report.json \
+  --run-root /ext4/runs/dynamic_source_alarm_v1 \
+  --data-root "$FUSION_DATA_ROOT"
+```
+
+对 133/137 重复第一条命令，再用 `--reuse-complete` 聚合三 seed。不要在同一 Python 父进程中连续托管多个 CUDA replay。
+
 ### 3. J-TEXT 在线诊断
 
 ```bash
@@ -203,7 +230,10 @@ experiments/transfer_methods_2026/
     ├── DYNAMIC_MAINLINE_TECHNICAL_REPORT_zh.md
     ├── technical_report_dynamic/main.tex
     ├── configs/primary_chain_dynamic_source_v1.json
+    ├── configs/dynamic_source_online_alarm_search_v1.json
     ├── configs/jtext_online_active_v1.json
+    ├── evidence_dynamic/dynamic_source_online_gain/report.json
+    ├── scripts/validate_dynamic_source_online_gain.py
     └── scripts/build_dynamic_report.py
 ```
 

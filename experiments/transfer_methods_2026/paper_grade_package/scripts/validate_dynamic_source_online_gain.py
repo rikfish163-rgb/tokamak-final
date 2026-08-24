@@ -19,6 +19,7 @@ import numpy as np
 
 SCRIPT = Path(__file__).resolve()
 PACKAGE = SCRIPT.parents[1]
+REPO = PACKAGE.parents[2]
 DEFAULT_CONFIG = PACKAGE / "configs/dynamic_source_online_alarm_search_v1.json"
 FORBIDDEN_QUERY_LABEL_KEYS = {
     "is_disrupt", "down_time_s", "revealed_is_disrupt",
@@ -419,7 +420,7 @@ def validate(
         })
         all_receipts.append({
             "seed": seed,
-            "run_dir": str(run_dir),
+            "run_dir": f"${{FUSION_RUN_ROOT}}/seed{seed}/east-online",
             "summary_sha256": sha256_file(summary_path),
             "source_checkpoint_sha256": hashes["source_checkpoint"],
             "sealed_parent_sha256": hashes["sealed_parent_state"],
@@ -482,11 +483,11 @@ def validate(
         "status": "PASS",
         "claim_status": "TEST_DRIVEN_EXPLORATION",
         "independent_future_confirmation": False,
-        "source_report": str(report_path.resolve()),
+        "source_report": "${FUSION_RUN_ROOT}/report.json",
         "source_report_sha256": sha256_file(report_path),
-        "config": str(config_path.resolve()),
+        "config": str(config_path.resolve().relative_to(REPO)),
         "config_sha256": sha256_file(config_path),
-        "data_root": str(data_root.resolve()),
+        "data_root": "${FUSION_DATA_ROOT}",
         "checks": {
             "hdf5_outcomes_authoritative": True,
             "static_sealed_before_online": True,
@@ -504,9 +505,7 @@ def validate(
     }
     archived = dict(report)
     archived["validation"] = validation
-    archived["artifact_root"] = str(
-        (run_root if run_root is not None else Path(all_receipts[0]["run_dir"]).parents[1]).resolve()
-    )
+    archived["artifact_root"] = "${FUSION_RUN_ROOT}"
     return validation, archived
 
 

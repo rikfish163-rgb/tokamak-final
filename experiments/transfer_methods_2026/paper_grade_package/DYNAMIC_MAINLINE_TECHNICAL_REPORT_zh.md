@@ -5,7 +5,7 @@
 - 主线：J-TEXT 动态正样本边界源模型 → EAST support110 小样本迁移 → EAST balanced360 静态评估 → 同父模型顺序在线主动适配。
 - 证据状态：`TEST_DRIVEN_EXPLORATION`；`DEVELOPMENT_EVIDENCE_NOT_INDEPENDENT_CONFIRMATION`。
 - 结论边界：J-TEXT `TEST220` 与 EAST `balanced360` 均参与方法开发，不能表述为独立未来确认、装置部署成绩或因果机理证明。
-- 数值来源：在线增益验证器从 HDF5 `IsDisrupt/DownTime` 重新计算三 seed 共 1080 组静态/在线预测，核对查询、揭示、更新与静态风险轨迹 SHA-256。增益证据报告 SHA-256 为 `50feb28453b685794d9d1202431187cd5b18f068218dcd179f61afc47a372f39`；若文档与机器证据不一致，应失败关闭并修正文档，不能修改评价口径迁就正文。
+- 数值来源：在线增益验证器从 HDF5 `IsDisrupt/DownTime` 重新计算三 seed 共 1080 组静态/在线预测，核对查询、揭示、更新与静态风险轨迹 SHA-256。增益证据报告 SHA-256 为 `b54c42da33888880b3cd1840fd81bd19e4a8b093388c87c744e253d5cfdabe8e`；若文档与机器证据不一致，应失败关闭并修正文档，不能修改评价口径迁就正文。
 
 ## 1. 研究问题与严格主线
 
