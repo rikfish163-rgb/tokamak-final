@@ -863,6 +863,60 @@ def test_novel_online_early_alarm_accepts_physics_or_strong_causal_trend() -> No
     assert admitted_by_physics["alarmed"] is True
 
 
+def test_fusion_model_branch_uses_registered_initial_alarm_parameters() -> None:
+    module = load_module()
+    online = np.linspace(-1.5, -0.05, 200)
+    static = np.full(200, -4.0)
+    support = np.full(200, 0.70)
+    adapted = {
+        "high_threshold": -0.10,
+        "physics_weight": 6.0,
+        "trend_weight": 13.5,
+        "early_threshold": 7.5,
+    }
+
+    trace = module.supported_fusion_trace(
+        online_logit=online,
+        static_logit=static,
+        physics_support=support,
+        threshold_logit=0.0,
+        alarm_parameters=adapted,
+        model_alarm_parameters=adapted,
+    )
+    expected = module.dual_alarm.dual_threshold_trace(
+        online, support, **adapted,
+    )
+
+    np.testing.assert_array_equal(
+        trace["model_branch"]["alarm_mask"], expected["alarm_mask"],
+    )
+
+
+def test_registered_initial_alarm_parameters_fail_closed_instead_of_clipping() -> None:
+    module = load_module()
+    valid = SimpleNamespace(
+        initial_high_threshold=-0.10,
+        initial_physics_weight=6.0,
+        initial_trend_weight=13.5,
+        initial_early_threshold=7.5,
+    )
+    assert module.registered_initial_alarm_parameters(valid) == {
+        "high_threshold": -0.10,
+        "physics_weight": 6.0,
+        "trend_weight": 13.5,
+        "early_threshold": 7.5,
+    }
+
+    invalid = SimpleNamespace(
+        initial_high_threshold=-0.20,
+        initial_physics_weight=6.0,
+        initial_trend_weight=13.5,
+        initial_early_threshold=7.5,
+    )
+    with pytest.raises(ValueError, match="initial alarm parameter"):
+        module.registered_initial_alarm_parameters(invalid)
+
+
 def test_query_features_are_label_free_and_bounded() -> None:
     module = load_module()
     features, components = module.query_features(

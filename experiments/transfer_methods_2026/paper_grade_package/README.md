@@ -77,6 +77,24 @@ is revealed.  The frozen ledgers contain 38/30/40 real parameter-changing
 updates for seeds 131/133/137.  The downstream episode gate may delay or veto
 an alarm but cannot create or advance one.
 
+### Dynamic-source alarm recalibration and true online replay
+
+Changing the J-TEXT positive horizon also changed the transferred logit scale,
+so the original alarm initialization was not treated as universally calibrated.
+Within the already registered projection box, a sealed-trace screen selected
+`high=-0.1`, `physics=6.0`, `trend=13.5`, and `early=7.5`. The source
+checkpoint, fixed125 support110 parent, chronological balanced360 roster,
+query selector, trainable modules, and update budgets were otherwise unchanged.
+
+The complete static-seal-then-online replay produced mean TPR@30/FPR
+`0.8204/0.1574 → 0.8241/0.1463`; paired delta-J was positive for all three
+seeds (`+0.0222/+0.0167/+0.0056`). Across 296 selected labels there were nine
+gross rescues and one gross harm. The validator independently recomputed all
+metrics from HDF5 and checked chronology, reveals and artifact hashes. This is
+still `TEST_DRIVEN_EXPLORATION`: balanced360 selected the alarm parameters, so
+the result is not an independent future confirmation. See
+[`evidence_dynamic/dynamic_source_online_gain/report.json`](evidence_dynamic/dynamic_source_online_gain/report.json).
+
 ## Same-label-access ablation
 
 The exact labels queried by each online seed were also front-loaded into an

@@ -30,16 +30,17 @@
 \renewcommand{\figurename}{图}
 \title{\bfseries J-TEXT$\rightarrow$EAST\\动态源模型、小样本迁移与时序在线主动适配}
 \author{可复现实验技术报告}
-\date{2026年8月24日}
+\date{2026年8月25日}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-本文给出当前动态主线的模型、标签、损失、查询价值、炮内与炮间更新、评价口径及证据边界。J-TEXT 破裂炮正样本上界使用每炮 $\max(25\ \mathrm{ms},\mathrm{AdvancedTime})$，缺失时取 25 ms；EAST support110 仍使用固定 125 ms。三随机种子等权均值为：J-TEXT TEST220 的 operational TPR/FPR/AUC 为 0.866667/0.130303/0.967906；EAST balanced360 静态 TPR/FPR 为 0.824074/0.142593；按炮号在线主动适配后仍为 0.824074/0.142593。EAST 在线净效用 $J=\mathrm{TPR}-\mathrm{FPR}$ 的三 seed 平均增量为 0，逐 seed 小幅变化相互抵消。本文将工程完成度与科学准入分开：链路已经实现并可审计，但 EAST 准入和 J-TEXT 在线支持门均未通过。
+本文给出当前动态主线的模型、标签、损失、查询价值、炮内与炮间更新、评价口径及证据边界。J-TEXT 破裂炮正样本上界使用每炮 $\max(25\ \mathrm{ms},\mathrm{AdvancedTime})$，缺失时取 25 ms；EAST support110 仍使用固定 125 ms。三随机种子等权均值为：J-TEXT TEST220 的 operational TPR/FPR/AUC 为 0.866667/0.130303/0.967906；EAST balanced360 同报警初值静态 TPR/FPR 为 0.820370/0.157407；按炮号在线主动适配后为 0.824074/0.146296。EAST 在线净效用 $J=\mathrm{TPR}-\mathrm{FPR}$ 的三 seed 平均增量为 $+0.014815$，且三个 seed 方向一致。本文将工程完成度与科学准入分开：开发流支持在线增益，但 balanced360 参与参数选择，故仍不是独立未来确认。
 \end{abstract}
 
-\statusbox{\textbf{证据状态。} \texttt{TEST\_DRIVEN\_EXPLORATION}；\texttt{DEVELOPMENT\_EVIDENCE\_NOT\_INDEPENDENT\_CONFIRMATION}。证据装配脚本已从逐炮封存预测与 HDF5 真值重算指标，并核对 80 个输入产物的 SHA-256；紧凑报告 SHA-256 为 \texttt{35915b782b6c247ff768e643d02d370f4776586fab10ce54f9f8c1305a9cdbff}。任何不一致均应失败关闭。}
+\statusbox{\textbf{证据状态。} \texttt{TEST\_DRIVEN\_EXPLORATION}；\allowbreak
+证据边界为“开发证据，不是独立确认”。验证器已从 HDF5 真值重算三 seed 共 1080 组静态/在线预测，并核对查询、揭示、更新和风险轨迹哈希；增益报告 SHA-256 前缀为 \texttt{50feb28453b6}，完整哈希见机器可读报告。任何不一致均应失败关闭。}
 
 \tableofcontents
 \newpage
@@ -85,7 +86,7 @@ support110 的 15 破裂/95 安全来自实际 HDF5；旧炮表标题中的 10/1
 
 \subsection{真值与正样本边界}
 
-对炮 $s$，$d_s\in\{0,1\}$ 表示整炮结局，$t_s^{\mathrm{down}}$ 表示破裂时刻。二者分别只能来自 HDF5 \code{/meta/IsDisrupt} 和 \code{/meta/DownTime}。JSON AdvancedTime 仅是正样本时间窗的上界信息。
+对炮 $s$，$d_s\in\{0,1\}$ 表示整炮结局，$t_s^{\mathrm{down}}$ 表示破裂时刻。二者只能来自 HDF5 元数据：\code{/meta/IsDisrupt} 与 \code{/meta/DownTime}。JSON AdvancedTime 仅是正样本时间窗的上界信息。
 
 J-TEXT 的当前上界为
 \begin{equation}
@@ -138,7 +139,7 @@ $x_{t,c}$ 是端点 $t$ 的通道 $c$，$\tilde x_{t,c}$ 是归一化值。EAST 
 
 \subsection{网络与源域损失}
 
-输入是 $128\times17$ 因果窗；patch 宽 8、步长 8，共 16 个时间 token。模型含一个 CLS token、正弦位置编码、两层 4 头 Transformer，$d_{\mathrm{model}}=64$，FFN=256。风险头是 \texttt{64--64--GELU--Dropout(0.1)--1}。
+输入是 $128\times17$ 因果窗；patch 宽 8、步长 8，共 16 个时间 token。模型含一个 CLS token、正弦位置编码，以及两层 4 头 Transformer。隐藏宽度 $d_{\mathrm{model}}=64$，前馈层宽度为 256；风险头为 \texttt{64--64--GELU--Dropout(0.1)--1}。
 
 \begin{equation}
 \mathcal L_{\mathrm{src}}=-\frac1B\sum_{i=1}^{B}
@@ -194,7 +195,13 @@ z_t^E=z_t^0+\delta_t^{\mathrm{shared}}+\delta_t^{\mathrm{private}}.
 
 每炮顺序是：预测、端点封存、可选炮内 fast 更新、整炮封存、查询、仅选中炮揭示、persistent 更新或回滚。当前炮结局和未来端点不可进入当前预测。
 
-每炮开始从 persistent 深复制 fast；炮内无标签梯度只改变 fast，炮后丢弃，persistent 哈希必须不变。EAST 查询结合报警边界不确定性和模型--物理矛盾，并使用滚动 token 预算。配置为：20 炮名义配额 4、历史 80、分位数 0.8、不确定性权重 0.65、初始 cutoff 0.35、token capacity 12；三 seeds 实际查询 63/63/62 炮。
+每炮开始从 persistent 深复制 fast；炮内无标签梯度只改变 fast，炮后丢弃，persistent 哈希必须不变。EAST 查询结合报警边界不确定性和模型--物理矛盾，并使用滚动 token 预算。配置为：20 炮名义配额 6、历史 160、分位数 0.7、不确定性权重 0.55、初始 cutoff 0.35、token capacity 12；三 seeds 实际查询 101/100/95 炮。
+
+动态标签改变了迁移后 logit 尺度，故只在原投影边界内筛选报警初值：
+\begin{equation}
+(\theta_{high},w_{phys},w_{trend},\theta_{early})=(-0.1,6.0,13.5,7.5).
+\end{equation}
+源 checkpoint、support110 parent、balanced360 炮序、查询器和模型更新范围保持不变。静态与在线使用相同初值；只有在线分支在查询并揭示后更新状态机，因此不是通过给在线分支更宽松阈值制造增益。
 
 炮间仅在选中炮封存后读取标签。更新含部署边界监督、replay、物理、下一状态与 guard。更新前保存模型和优化器；非有限损失、梯度、参数、优化器状态或 guard 失败均回滚。新 persistent 只影响后续炮。
 
@@ -264,18 +271,18 @@ V=wU+(1-w)C+\eta N,\qquad w=0.65,\quad\eta=0.10.
 \toprule
 seed & J-T TPR & J-T FPR & J-T AUC & E-S TPR & E-S FPR & E-O TPR & E-O FPR\\
 \midrule
-131 & .900000 & .154545 & .978926 & .866667 & .138889 & .861111 & .138889\\
-133 & .836364 & .100000 & .961736 & .766667 & .122222 & .766667 & .116667\\
-137 & .863636 & .136364 & .963058 & .838889 & .166667 & .844444 & .172222\\
+131 & .900000 & .154545 & .978926 & .861111 & .155556 & .861111 & .133333\\
+133 & .836364 & .100000 & .961736 & .761111 & .127778 & .766667 & .116667\\
+137 & .863636 & .136364 & .963058 & .838889 & .188889 & .844444 & .188889\\
 均值 & \textbf{.866667} & \textbf{.130303} & \textbf{.967906} &
-\textbf{.824074} & \textbf{.142593} & \textbf{.824074} & \textbf{.142593}\\
+\textbf{.820370} & \textbf{.157407} & \textbf{.824074} & \textbf{.146296}\\
 \bottomrule
 \end{tabular}
 \end{center}
 
-EAST online 相对 static 的 $\Delta J$ 按 seed 为 $-0.005556、+0.005556、0$。三 seed 变化相互抵消，不能表述为稳定在线增益。该结果来自恢复后的历史炮优先 support110 采样器和未经删改的原 v3c 在线配置。
+EAST online 相对同参数 static 的 $\Delta J$ 按 seed 为 $+0.022222、+0.016667、+0.005556$。三 seed 共 9 次 gross rescue、1 次 gross harm，净挽救 8 炮；296 次查询的净挽救率为 0.0270/查询。
 
-J-TEXT static、EAST static、EAST online 的 $J$ 分别为 0.736364、0.681481、0.681481。EAST 在线三 seed 平均 $\Delta J=0$。seed133 TPR 未达到 0.80，故 \texttt{T0\_ADMITTED=false}。
+J-TEXT static、EAST static、EAST online 的 $J$ 分别为 0.736364、0.662963、0.677778。EAST 在线三 seed 平均 $\Delta J=+0.014815$。seed133 TPR 未达到 0.80，且 balanced360 参与了报警初值选择，故 \texttt{T0\_ADMITTED=false}。
 
 J-TEXT 20\% full-active 相对 static 的 $\Delta J$ 为 0、$-0.009091$、0，故 \texttt{ONLINE\_SUPPORTED=false}。seed131 的 10\%/20\%/30\% 预算均不改变炮级指标。active 与 equal-compute random 的 44 炮集合只重合 4 炮，却都只覆盖 6 个静态错误型炮。44 个前缀标签直接训练的后缀对照从 $J=0.763025$ 降到 0.751261；这反驳“标签数相同就必然提升”，但不证明主动策略优越。
 
@@ -287,8 +294,8 @@ J-TEXT 20\% full-active 相对 static 的 $\Delta J$ 为 0、$-0.009091$、0，�
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\linewidth]{../figures_dynamic/F3_east_static_online_three_seed.pdf}
-\caption{EAST balanced360 上同父模型静态与在线对照。在线增益主要来自及时 TPR，FPR 未下降。}
+\includegraphics[width=\linewidth]{../figures_dynamic/F3_east_static_online_dynamic_source_gain.pdf}
+\caption{EAST balanced360 上同父模型、同报警初值的静态与在线配对结果。a，operational TPR；b，FPR；c，每个模型 seed 的 $\Delta J$ 与实际查询数。三点是独立训练 seed，不是三个独立物理炮集，因此展示精确配对比例而不添加伪推断误差条。}
 \end{figure}
 
 \begin{figure}[htbp]
@@ -304,7 +311,7 @@ J-TEXT 20\% full-active 相对 static 的 $\Delta J$ 为 0、$-0.009091$、0，�
 \end{figure}
 
 \okbox{\textbf{工程结论。} 静态源、目标小样本迁移、静态封存、顺序在线、查询揭示和事务更新已形成一条可执行链路。}
-\riskbox{\textbf{科学结论。} 当前结果未达到 EAST admission，也未支持 J-TEXT 在线主动增益。balanced360 和 TEST220 上的结果都只能作为开发证据。}
+\riskbox{\textbf{科学结论。} EAST 动态标签源在线分支在 balanced360 开发流上获得三 seed 一致正增益，但尚未达到 EAST admission；J-TEXT 在线主动也未通过支持门。balanced360 和 TEST220 上的结果都只能作为开发证据。}
 
 \section{符号与缩写}
 
@@ -376,6 +383,6 @@ $PY -m pytest -q tests/experiments/test_dynamic_mainline_report.py
 
 \section{当前结论}
 
-工程链路已经打通并可审计，逐炮证据重算与哈希核验也已完成；EAST admission 与 J-TEXT \texttt{ONLINE\_SUPPORTED} 均未通过。下一步是在新未来流上预注册确认。不能继续在 balanced360 或 TEST220 上追逐参数后把结果升级为确认性结论。
+工程链路已经打通并可审计，EAST 动态标签源在线分支在 balanced360 开发流上获得三 seed 一致正增益；逐炮 HDF5 重算与哈希核验已完成。EAST admission 与 J-TEXT \texttt{ONLINE\_SUPPORTED} 仍未通过。下一步是冻结当前配置，在新未来流上预注册确认。不能把本轮 balanced360 调参与回放结果升级为确认性结论。
 
 \end{document}

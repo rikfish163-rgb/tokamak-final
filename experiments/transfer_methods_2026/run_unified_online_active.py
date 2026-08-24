@@ -60,6 +60,43 @@ INITIAL_ALARM_PARAMETERS = {
     "early_threshold": 7.9,
 }
 
+
+def registered_initial_alarm_parameters(
+    args: argparse.Namespace,
+) -> dict[str, float]:
+    """Return a fail-closed registered alarm initialization.
+
+    ``ProjectedAlarmController`` projects every post-reveal update back into
+    its registered robustness box.  Initialization is different: silently
+    clipping a development candidate would make the executed experiment differ
+    from its command and config, so an out-of-box or coupled-invalid candidate
+    is rejected before any balanced360 artifact is created.
+    """
+
+    parameters = {
+        "high_threshold": float(args.initial_high_threshold),
+        "physics_weight": float(args.initial_physics_weight),
+        "trend_weight": float(args.initial_trend_weight),
+        "early_threshold": float(args.initial_early_threshold),
+    }
+    for name, value in parameters.items():
+        lower, upper = value_module.ProjectedAlarmController.PARAMETER_BOUNDS[name]
+        if not math.isfinite(value) or not lower <= value <= upper:
+            raise ValueError(
+                f"initial alarm parameter {name}={value!r} lies outside "
+                f"registered bounds [{lower}, {upper}]"
+            )
+    if (
+        parameters["early_threshold"] >= 7.9
+        and parameters["physics_weight"] < 8.0
+    ):
+        raise ValueError(
+            "initial alarm parameter coupling requires physics_weight >= 8.0 "
+            "when early_threshold >= 7.9"
+        )
+    return parameters
+
+
 LOCKED_BEST_V8 = {
     "private_support_epochs": 8,
     "adaptation_events": 64,
@@ -1320,6 +1357,7 @@ def supported_fusion_trace(
     *, online_logit: np.ndarray, static_logit: np.ndarray,
     physics_support: np.ndarray, threshold_logit: float,
     alarm_parameters: dict[str, float],
+    model_alarm_parameters: dict[str, float] | None = None,
     novel_early_min_physics_support: float = 0.0,
     novel_early_min_trend: float = 0.0,
 ) -> dict[str, Any]:
@@ -1337,8 +1375,12 @@ def supported_fusion_trace(
     actual = dual_alarm.dual_threshold_trace(
         online_margin, support, **alarm_parameters,
     )
+    registered_model_parameters = (
+        INITIAL_ALARM_PARAMETERS
+        if model_alarm_parameters is None else model_alarm_parameters
+    )
     model_branch = dual_alarm.dual_threshold_trace(
-        online_margin, support, **INITIAL_ALARM_PARAMETERS,
+        online_margin, support, **registered_model_parameters,
     )
     alarm_branch = dual_alarm.dual_threshold_trace(
         static_margin, support, **alarm_parameters,
@@ -1386,6 +1428,7 @@ def supported_fusion_alarm(
     *, online_logit: np.ndarray, static_logit: np.ndarray,
     physics_support: np.ndarray, threshold_logit: float,
     alarm_parameters: dict[str, float],
+    model_alarm_parameters: dict[str, float] | None = None,
     novel_early_min_physics_support: float = 0.0,
     novel_early_min_trend: float = 0.0,
 ) -> dict[str, Any]:
@@ -1400,6 +1443,7 @@ def supported_fusion_alarm(
         online_logit=online_logit, static_logit=static_logit,
         physics_support=physics_support, threshold_logit=threshold_logit,
         alarm_parameters=alarm_parameters,
+        model_alarm_parameters=model_alarm_parameters,
         novel_early_min_physics_support=novel_early_min_physics_support,
         novel_early_min_trend=novel_early_min_trend,
     )
@@ -1675,6 +1719,7 @@ def score_online_shot(
     threshold_logit: float, shared_error_scale: float,
     private_error_scale: float, adaptation_events: int,
     intra_steps: int, start_time_s: float, sample_rate_hz: float,
+    model_alarm_parameters: dict[str, float] | None = None,
     novel_early_min_physics_support: float = 0.0,
     novel_early_min_trend: float = 0.0,
     strict_window_active: bool = False,
@@ -1696,6 +1741,7 @@ def score_online_shot(
     shared_controller.begin_shot(state_id)
     private_controller.begin_shot(state_id)
     alarm_controller.begin_shot(state_id)
+    shot_alarm_parameters = alarm_controller.parameters_dict()
     risk_length = len(base_risk)
     dynamic_offset = dha.LAG
     if len(endpoints) != risk_length - dynamic_offset:
@@ -2029,7 +2075,11 @@ def score_online_shot(
             margin = float(immutable_logit - threshold_logit)
             boundary_proximity = math.exp(-abs(margin) / 1.5)
             early_proximity = 1.0 / (1.0 + math.exp(-float(np.clip(
-                (margin + 8.0 * support - 7.9) / 1.5, -30, 30,
+                (
+                    margin
+                    + shot_alarm_parameters["physics_weight"] * support
+                    - shot_alarm_parameters["early_threshold"]
+                ) / 1.5, -30, 30,
             ))))
             cheap_value = float(np.clip(max(
                 boundary_proximity, early_proximity, support,
@@ -2077,6 +2127,7 @@ def score_online_shot(
         physics_support=physics_support[alarm.W - 1:],
         threshold_logit=threshold_logit,
         alarm_parameters=alarm_parameters,
+        model_alarm_parameters=model_alarm_parameters,
         novel_early_min_physics_support=novel_early_min_physics_support,
         novel_early_min_trend=novel_early_min_trend,
     )
@@ -2086,6 +2137,7 @@ def score_online_shot(
         physics_support=physics_support[alarm.W - 1:],
         threshold_logit=threshold_logit,
         alarm_parameters=alarm_parameters,
+        model_alarm_parameters=model_alarm_parameters,
         novel_early_min_physics_support=novel_early_min_physics_support,
         novel_early_min_trend=novel_early_min_trend,
     )
@@ -2257,6 +2309,22 @@ def main() -> None:
     parser.add_argument("--inter-lr", type=float, default=5e-4)
     parser.add_argument("--private-inter-lr", type=float, default=2e-4)
     parser.add_argument("--alarm-lr", type=float, default=0.02)
+    parser.add_argument(
+        "--initial-high-threshold", type=float,
+        default=INITIAL_ALARM_PARAMETERS["high_threshold"],
+    )
+    parser.add_argument(
+        "--initial-physics-weight", type=float,
+        default=INITIAL_ALARM_PARAMETERS["physics_weight"],
+    )
+    parser.add_argument(
+        "--initial-trend-weight", type=float,
+        default=INITIAL_ALARM_PARAMETERS["trend_weight"],
+    )
+    parser.add_argument(
+        "--initial-early-threshold", type=float,
+        default=INITIAL_ALARM_PARAMETERS["early_threshold"],
+    )
     parser.add_argument("--query-block-size", type=int, default=20)
     parser.add_argument("--query-quota", type=int, default=4)
     parser.add_argument("--query-history-size", type=int, default=80)
@@ -2417,6 +2485,7 @@ def main() -> None:
     validate_locked_best_v8_arguments(args)
     validate_episode_v3_arguments(args)
     validate_timescale_ablation_arguments(args)
+    initial_alarm_parameters = registered_initial_alarm_parameters(args)
     selected_contract = (
         load_selected_mainline_contract(args.selected_mainline_contract)
         if args.selected_mainline_contract is not None else None
@@ -2700,6 +2769,7 @@ def main() -> None:
         intra_parameter_scope=args.intra_parameter_scope,
     )
     alarm_controller = value_module.ProjectedAlarmController(
+        **initial_alarm_parameters,
         learning_rate=args.alarm_lr, max_guard_harms=0,
     )
     # Label-free smoke calibration: values below .03 are indistinguishable
@@ -2921,6 +2991,7 @@ def main() -> None:
             static_alarm = dual_alarm.dual_threshold_alarm(
                 static_logit - threshold_logit,
                 physics_support[alarm.W - 1:],
+                **initial_alarm_parameters,
             )
             static_time = (
                 float(shot["start"])
@@ -3010,6 +3081,7 @@ def main() -> None:
             "rows": len(static_rows),
             "threshold": float(threshold),
             "threshold_source": "EAST support110",
+            "alarm_parameters": initial_alarm_parameters,
             "results": {"static": static_metrics},
             "hashes": {
                 "source_checkpoint": selected_contract.source_checkpoint_sha256,
@@ -3136,6 +3208,7 @@ def main() -> None:
                 intra_steps=args.intra_steps,
                 start_time_s=float(shot["start"]),
                 sample_rate_hz=float(shot["rate"]),
+                model_alarm_parameters=initial_alarm_parameters,
                 novel_early_min_physics_support=(
                     args.novel_early_min_physics_support
                 ),
@@ -4257,6 +4330,7 @@ def main() -> None:
         },
         "alarm_contract": {
             "formula": "margin + physics_weight*support + trend_weight*max(MA5-MA100,0)",
+            "parameters_initial": initial_alarm_parameters,
             "parameters_final": alarm_controller.parameters_dict(),
             "parameter_version": alarm_controller.version,
             "projection_bounds": alarm_controller.PARAMETER_BOUNDS,

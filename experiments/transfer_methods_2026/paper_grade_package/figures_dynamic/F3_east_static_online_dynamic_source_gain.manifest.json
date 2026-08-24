@@ -1,0 +1,52 @@
+{
+  "claim_status": "TEST_DRIVEN_EXPLORATION",
+  "cohort": "same EAST balanced360 roster (180 disruptive / 180 safe)",
+  "input": "/media/hetaisheng/044A81D94A81C83E/Fuison-JTEXT-EAST-mainline-clean-20260818/experiments/transfer_methods_2026/paper_grade_package/evidence_dynamic/dynamic_source_online_gain/report.json",
+  "input_sha256": "50feb28453b685794d9d1202431187cd5b18f068218dcd179f61afc47a372f39",
+  "outputs": {
+    "pdf": {
+      "path": "experiments/transfer_methods_2026/paper_grade_package/figures_dynamic/F3_east_static_online_dynamic_source_gain.pdf",
+      "sha256": "6644aa6edb7403bc045fe1ae672b30915ca6e74cc18ad6b15e8175672a95db9a"
+    },
+    "png": {
+      "path": "experiments/transfer_methods_2026/paper_grade_package/figures_dynamic/F3_east_static_online_dynamic_source_gain.png",
+      "sha256": "6be04d18063bf1333a2913eb9648fe11036cbf0ed277f5102bef76711ad18a1b"
+    },
+    "svg": {
+      "path": "experiments/transfer_methods_2026/paper_grade_package/figures_dynamic/F3_east_static_online_dynamic_source_gain.svg",
+      "sha256": "b912a6d3789603544f7f92a77c73d2e2fc4943f284b71fc8011b9d41b5f6ae3d"
+    }
+  },
+  "replication_unit": "three independently trained model seeds",
+  "rows": [
+    {
+      "delta_j": 0.022222222222222254,
+      "online_fpr": 0.13333333333333333,
+      "online_tpr": 0.8611111111111112,
+      "queries": 101,
+      "seed": 131,
+      "static_fpr": 0.15555555555555556,
+      "static_tpr": 0.8611111111111112
+    },
+    {
+      "delta_j": 0.01666666666666672,
+      "online_fpr": 0.11666666666666667,
+      "online_tpr": 0.7666666666666667,
+      "queries": 100,
+      "seed": 133,
+      "static_fpr": 0.12777777777777777,
+      "static_tpr": 0.7611111111111111
+    },
+    {
+      "delta_j": 0.005555555555555536,
+      "online_fpr": 0.18888888888888888,
+      "online_tpr": 0.8444444444444444,
+      "queries": 95,
+      "seed": 137,
+      "static_fpr": 0.18888888888888888,
+      "static_tpr": 0.8388888888888889
+    }
+  ],
+  "schema_version": "dynamic-source-online-gain-figure-v1",
+  "uncertainty": "exact per-seed paired proportions; no inferential error bars because the three seeds are not independent physical-shot cohorts"
+}

@@ -709,6 +709,31 @@ def test_unified_stage_commands_bind_source_parent_contract_and_static_mode(
     assert "--static-only" not in online
 
 
+def test_unified_stage_command_forwards_registered_alarm_initialization(
+    tmp_path: Path,
+) -> None:
+    config = copy.deepcopy(runner.load_selected_config(CONFIG))
+    config["online"].update({
+        "initial_high_threshold": -0.10,
+        "initial_physics_weight": 6.0,
+        "initial_trend_weight": 13.5,
+        "initial_early_threshold": 7.5,
+    })
+    command = runner.unified_stage_command(
+        stage="east-online", seed=131, output=tmp_path / "online",
+        source_checkpoint=tmp_path / "source.pt",
+        parent_state=tmp_path / "parent.pt",
+        run_contract=tmp_path / "run_contract.json",
+        roster_manifest=tmp_path / "balanced360.jsonl",
+        config=config, python=Path(sys.executable),
+    )
+
+    assert command[command.index("--initial-high-threshold") + 1] == "-0.1"
+    assert command[command.index("--initial-physics-weight") + 1] == "6.0"
+    assert command[command.index("--initial-trend-weight") + 1] == "13.5"
+    assert command[command.index("--initial-early-threshold") + 1] == "7.5"
+
+
 def test_completed_stage_resume_requires_identical_bindings_and_outputs(
     tmp_path: Path,
 ) -> None:

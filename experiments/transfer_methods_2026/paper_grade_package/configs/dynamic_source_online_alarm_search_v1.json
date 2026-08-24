@@ -1,0 +1,52 @@
+{
+  "schema_version": "dynamic-source-online-alarm-search-v1",
+  "base_config": "primary_chain_dynamic_source_v1.json",
+  "claim_status": "TEST_DRIVEN_EXPLORATION",
+  "selection_stream": "EAST balanced360",
+  "selection_stream_role": "method_and_parameter_development",
+  "independent_future_confirmation": false,
+  "method_change_scope": "alarm_state_initialization_only",
+  "preserved_contracts": [
+    "J-TEXT max(25 ms, AdvancedTime) source checkpoint",
+    "EAST fixed125 support110 parent",
+    "balanced360 chronological roster",
+    "v3c query selector and query budget",
+    "strict causal intra-shot updates",
+    "post-seal queried inter-shot updates",
+    "typed endpoint memory and protected episode gate"
+  ],
+  "search_space": {
+    "initial_high_threshold": [-0.1, -0.05, 0.0, 0.05, 0.1],
+    "initial_physics_weight": [6.0, 7.0, 8.0, 9.0, 10.0],
+    "initial_trend_weight": [12.0, 13.5, 15.0],
+    "initial_early_threshold": [7.1, 7.5, 7.9, 8.3, 8.7]
+  },
+  "selection_rule": [
+    "non-negative paired delta(TPR30-FPR) in every seed",
+    "maximum mean paired delta(TPR30-FPR)",
+    "mean TPR30 >= 0.80 and mean FPR <= 0.20",
+    "prefer lower FPR, then fewer changed parameters"
+  ],
+  "selected_candidate": {
+    "initial_high_threshold": -0.1,
+    "initial_physics_weight": 6.0,
+    "initial_trend_weight": 13.5,
+    "initial_early_threshold": 7.5
+  },
+  "screen_receipt": {
+    "screen_type": "sealed-trace causal alarm replay",
+    "all_positive_candidates": 7,
+    "selected_mean_online_tpr30": 0.8240740740740741,
+    "selected_mean_online_fpr": 0.15185185185185185,
+    "selected_mean_paired_delta_j": 0.0092592592592593,
+    "requires_true_online_replay": true
+  },
+  "true_replay_gate": {
+    "seeds": [131, 133, 137],
+    "shots_per_seed": 360,
+    "minimum_mean_tpr30": 0.8,
+    "maximum_mean_fpr": 0.2,
+    "minimum_paired_delta_j_each_seed": 0.0,
+    "minimum_strictly_positive_seeds": 3
+  }
+}

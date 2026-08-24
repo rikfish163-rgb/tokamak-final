@@ -32,13 +32,13 @@ def test_dynamic_report_contract_is_current_and_hash_bound(tmp_path: Path) -> No
 
     assert completed.returncode == 0, completed.stdout + completed.stderr
     payload = json.loads(manifest.read_text(encoding="utf-8"))
-    assert payload["schema_version"] == "dynamic-mainline-report-manifest-v1"
+    assert payload["schema_version"] == "dynamic-mainline-report-manifest-v2"
     assert payload["claim_status"] == "TEST_DRIVEN_EXPLORATION"
     assert payload["independent_confirmation"] is False
     assert payload["retired_v3c_token_hits"] == []
     assert payload["headline_metrics"]["jtext_static"]["tpr"] == 0.866667
-    assert payload["headline_metrics"]["east_static"]["fpr"] == 0.142593
-    assert payload["headline_metrics"]["east_online"]["j"] == 0.681481
+    assert payload["headline_metrics"]["east_static"]["fpr"] == 0.157407
+    assert payload["headline_metrics"]["east_online"]["j"] == 0.677778
     assert all(len(item["sha256"]) == 64 for item in payload["artifacts"])
     assert "README.md" not in {item["path"] for item in payload["artifacts"]}
     assert "README_CN.md" not in {item["path"] for item in payload["artifacts"]}
