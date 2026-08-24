@@ -17,7 +17,7 @@ import os
 import sys
 import time
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 
 import h5py
 import numpy as np
@@ -185,6 +185,32 @@ def validate_sealed_parent_contract(
         "expected_shared_sha256": expected["shared_adapter"],
         "expected_private_sha256": expected["private_adapter"],
     }
+
+
+def validate_selected_startup_inputs(
+    *, payload: dict[str, Any], contract: selected_mainline.SelectedMainlineContract,
+    seed: int, source_checkpoint_sha256: str,
+    actual_roster: list[int],
+) -> dict[str, Any]:
+    """Validate the decoded selected parent and test roster used by ``main``."""
+
+    try:
+        lineage = validate_sealed_parent_contract(
+            payload, None, seed=seed,
+            source_checkpoint_sha256=source_checkpoint_sha256,
+            selected_contract=contract,
+        )
+    except (TypeError, ValueError, RuntimeError) as exc:
+        raise RuntimeError(f"selected startup parent mismatch: {exc}") from exc
+    roster = [int(shot) for shot in actual_roster]
+    if (
+        len(roster) != 360
+        or len(set(roster)) != 360
+        or selected_mainline.sha256_json(roster)
+        != contract.east_test_roster_sha256
+    ):
+        raise RuntimeError("selected startup roster mismatch")
+    return lineage
 
 
 def validate_locked_best_v8_arguments(args: argparse.Namespace) -> None:
@@ -1557,6 +1583,23 @@ def alarm_metrics(rows: list[dict], outcomes: dict[int, dict]) -> dict[str, Any]
     }
 
 
+def read_selected_static_outcomes_after_seal(
+    *, static_seal_manifest: Path, roster: list[int],
+    outcome_reader: Callable[[int], dict[str, Any]],
+) -> dict[int, dict[str, Any]]:
+    """Open balanced360 outcomes only after revalidating the production seal."""
+
+    ordered = [int(shot) for shot in roster]
+    if len(ordered) != 360 or len(set(ordered)) != 360:
+        raise RuntimeError("selected EAST static outcome join requires 360 shots")
+    selected_mainline.validate_static_seal_manifest(
+        Path(static_seal_manifest),
+        expected_count=360,
+        expected_stage="east-static",
+    )
+    return {shot: dict(outcome_reader(shot)) for shot in ordered}
+
+
 def fit_support_query_cutoff(
     enc: torch.nn.Module, head: torch.nn.Module, transfer: list[dict],
     scales: dict[str, float], *, threshold: float, quantile: float = 0.80,
@@ -2394,8 +2437,7 @@ def main() -> None:
                 args.roster_manifest, expected_count=360,
             )
             if (
-                selected_contract.east_test_roster_sha256 is None
-                or selected_mainline.sha256_json(base_roster)
+                selected_mainline.sha256_json(base_roster)
                 != selected_contract.east_test_roster_sha256
             ):
                 raise RuntimeError("selected EAST test roster SHA256 mismatch")
@@ -2440,10 +2482,12 @@ def main() -> None:
             sealed_parent_path, map_location=alarm.DEV, weights_only=True,
         )
         if selected_contract is not None:
-            sealed_parent_lineage = validate_sealed_parent_contract(
-                sealed_parent_payload, None,
-                seed=args.seed, source_checkpoint_sha256=source_sha256,
-                selected_contract=selected_contract,
+            sealed_parent_lineage = validate_selected_startup_inputs(
+                payload=sealed_parent_payload,
+                contract=selected_contract,
+                seed=args.seed,
+                source_checkpoint_sha256=source_sha256,
+                actual_roster=base_roster,
             )
             enc, head, source_contract = (
                 selected_mainline.load_selected_source_checkpoint(
@@ -2922,11 +2966,12 @@ def main() -> None:
 
     if args.static_only:
         # The outcome reader is first referenced only after the 360-row writer
-        # has closed and its immutable ledger hash has been computed.
-        static_outcomes = {
-            int(shot_id): two_runner.read_hdf5_outcome(int(shot_id))
-            for shot_id in roster
-        }
+        # has closed and the complete production seal has been revalidated.
+        static_outcomes = read_selected_static_outcomes_after_seal(
+            static_seal_manifest=static_seal_manifest_path,
+            roster=roster,
+            outcome_reader=two_runner.read_hdf5_outcome,
+        )
         static_metrics = alarm_metrics(static_rows, static_outcomes)
         static_summary = {
             "status": "STATIC_BALANCED360_SEALED",

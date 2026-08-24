@@ -48,11 +48,18 @@ def _literal_threshold_receipt(
         ),
         "target_tpr": float(target_tpr),
         "predictions": predictions,
-        "candidates": [{
-            "threshold": float(chosen_threshold),
-            "tpr": 1.0,
-            "fpr": 0.0,
-        }],
+        "candidates": [
+            {
+                "threshold": float(chosen_threshold),
+                "tpr": 1.0,
+                "fpr": 0.0,
+            },
+            {
+                "threshold": 0.1,
+                "tpr": 1.0,
+                "fpr": 1.0,
+            },
+        ],
         "chosen_threshold": float(chosen_threshold),
     }
     return {**body, "receipt_sha256": selected.sha256_json(body)}
@@ -187,6 +194,8 @@ def _contract(source_path: Path, payload: dict) -> selected.SelectedMainlineCont
         reconstruction_constants_sha256=selected.sha256_json(
             reconstruction_constants
         ),
+        jtext_test_roster_sha256=selected.sha256_json(list(range(220))),
+        east_test_roster_sha256=selected.sha256_json(list(range(360))),
         claim_status="TEST_DRIVEN_EXPLORATION",
     )
 
@@ -425,6 +434,8 @@ def test_selected_contract_is_immutable_and_rejects_missing_source_sha() -> None
         "physics_scales_sha256": "9" * 64,
         "reconstruction_constants_sha256": "0" * 64,
         "claim_status": "TEST_DRIVEN_EXPLORATION",
+        "jtext_test_roster_sha256": "a" * 64,
+        "east_test_roster_sha256": "b" * 64,
     }
     contract = selected.SelectedMainlineContract(**values)
     with pytest.raises(FrozenInstanceError):
@@ -496,6 +507,47 @@ def test_threshold_receipt_binds_roster_predictions_rule_and_manifests() -> None
                 expected_roster=[101, 102],
                 expected_threshold=0.9,
             )
+
+
+def test_threshold_receipt_rejects_an_incomplete_recomputed_candidate_set() -> None:
+    receipt = selected.build_threshold_receipt(
+        scope="EAST support110",
+        predictions=[
+            {"shot": 101, "score": 0.9, "outcome": True},
+            {"shot": 102, "score": 0.1, "outcome": False},
+        ],
+        data_manifest_sha256="6" * 64,
+        outcome_manifest_sha256="7" * 64,
+        target_tpr=0.80,
+    )
+    incomplete = copy.deepcopy(receipt)
+    incomplete["candidates"] = [incomplete["candidates"][0]]
+    body = {key: value for key, value in incomplete.items() if key != "receipt_sha256"}
+    incomplete["receipt_sha256"] = selected.sha256_json(body)
+
+    with pytest.raises(RuntimeError, match="candidate recomputation mismatch"):
+        selected.validate_threshold_receipt(
+            incomplete,
+            expected_scope="EAST support110",
+            expected_roster=[101, 102],
+            expected_threshold=0.9,
+        )
+
+
+@pytest.mark.parametrize(
+    "missing",
+    ["jtext_test_roster_sha256", "east_test_roster_sha256"],
+)
+def test_selected_contract_requires_full_chain_test_roster_hashes(
+    tmp_path: Path, missing: str,
+) -> None:
+    source_path = tmp_path / "source.pt"
+    source_payload = _write_source(source_path)
+    values = _contract(source_path, source_payload).to_dict()
+    values.pop(missing)
+
+    with pytest.raises(ValueError, match=missing):
+        selected.SelectedMainlineContract.from_dict(values)
 
 
 def test_canonical_state_hash_matches_parent_writer_and_unified_helpers() -> None:

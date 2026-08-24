@@ -55,9 +55,12 @@ def _literal_threshold_receipt(
             }
             for index, shot in enumerate(roster)
         ],
-        "candidates": [{
-            "threshold": float(threshold), "tpr": 1.0, "fpr": 0.0,
-        }],
+        "candidates": [
+            {
+                "threshold": float(threshold), "tpr": 1.0, "fpr": 0.0,
+            },
+            {"threshold": 0.1, "tpr": 1.0, "fpr": 1.0},
+        ],
         "chosen_threshold": float(threshold),
     }
     return {**body, "receipt_sha256": selected.sha256_json(body)}
@@ -760,8 +763,12 @@ def test_c_mut_01_real_hdf5_meta_and_advanced_time_follow_complete_trace_seal(
         def read(shot: int) -> dict:
             path = disruptive_path if shot % 2 else safe_path
             with h5py.File(path, "r") as handle:
-                disruptive = bool(handle["meta/IsDisrupt"][()])
-                down = float(handle["meta/DownTime"][()])
+                disruptive = bool(
+                    np.asarray(handle["meta/IsDisrupt"][()]).reshape(-1)[0]
+                )
+                down = float(
+                    np.asarray(handle["meta/DownTime"][()]).reshape(-1)[0]
+                )
             if allow_advanced_time:
                 events.append(("advanced-time", int(shot)))
                 json.loads(advanced_path.read_text(encoding="utf-8"))
@@ -921,12 +928,12 @@ def test_c_mut_03_selected_startup_recomputes_parent_before_first_ledger_row(
     ledger = tmp_path / f"{phase}.jsonl"
 
     with pytest.raises(RuntimeError, match="selected startup .* mismatch"):
-        runner.open_selected_phase_writer(
-            phase=phase,
-            parent_payload=online_copy,
+        unified.validate_selected_startup_inputs(
+            payload=online_copy,
             contract=contract,
             actual_roster=roster,
-            ledger_path=ledger,
+            seed=contract.seed,
+            source_checkpoint_sha256=contract.source_checkpoint_sha256,
         )
 
     assert not ledger.exists()
@@ -1039,5 +1046,222 @@ def test_resume_code_closure_includes_source_and_preprocessing_dependencies() ->
         "experiments/transfer_methods_2026/rebuilt_harness.py",
         "experiments/transfer_methods_2026/grid_search.py",
         "experiments/transfer_methods_2026/selected_mainline_contract.py",
+        "experiments/transfer_methods_2026/run_two_timescale_online.py",
+        "experiments/transfer_methods_2026/run_unified_online_active.py",
         "experiments/transfer_methods_2026/run_selected_full_mainline.py",
+        "config/mainline_code_manifest.json",
     }.issubset(relative)
+
+
+def _tiny_live_manifest(
+    tmp_path: Path,
+) -> tuple[Path, Path, dict, Path]:
+    data_root = tmp_path / "data"
+    relative = Path("J-TEXT/unified_hdf5/0/1.hdf5")
+    target = data_root / relative
+    target.parent.mkdir(parents=True)
+    target.write_bytes(b"registered-hdf5-bytes")
+    file_sha = hashlib.sha256(target.read_bytes()).hexdigest()
+    row = {
+        "relative_path": relative.as_posix(),
+        "bytes": target.stat().st_size,
+        "sha256": file_sha,
+    }
+    aggregate = hashlib.sha256(
+        f"{row['relative_path']}\0{row['bytes']}\0{row['sha256']}\n".encode()
+    ).hexdigest()
+    manifest = tmp_path / "hdf5_manifest.json"
+    manifest.write_text(json.dumps({
+        "content_manifest": {
+            "algorithm": "sha256",
+            "file_count": 1,
+            "aggregate_sha256": aggregate,
+            "files": [row],
+        },
+    }, sort_keys=True) + "\n", encoding="utf-8")
+    config = json.loads(CONFIG.read_text(encoding="utf-8"))
+    config["data_contract"]["hdf5_content_manifest_sha256"] = (
+        selected.sha256_file(manifest)
+    )
+    config["data_contract"]["hdf5_content_aggregate_sha256"] = aggregate
+    config_path = tmp_path / "selected_config.json"
+    config_path.write_text(
+        json.dumps(config, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    return data_root, manifest, config, config_path
+
+
+def _track_runtime_root_mutations(monkeypatch: pytest.MonkeyPatch) -> None:
+    for module, attribute in (
+        (runner.common, "DATA"),
+        (runner.rebuilt, "DATA"),
+        (runner.source_trainer, "DATA_ROOT"),
+        (runner.two_runner, "DATA"),
+        (runner.unified, "DATA"),
+    ):
+        monkeypatch.setattr(module, attribute, getattr(module, attribute))
+    monkeypatch.setenv(
+        "FUSION_DATA_ROOT",
+        "/media/hetaisheng/044A81D94A81C83E/Fuison/data",
+    )
+
+
+def test_formal_main_rejects_live_hdf5_byte_drift_before_any_output_write(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    data_root, manifest, config, config_path = _tiny_live_manifest(tmp_path)
+    output = tmp_path / "run"
+    output.mkdir()
+    (output / "effective_config.json").write_text(
+        json.dumps(config, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    (output / "prior-artifact.bin").write_bytes(b"immutable")
+    before = _snapshot_tree(output)
+    registered = data_root / "J-TEXT/unified_hdf5/0/1.hdf5"
+    registered.write_bytes(registered.read_bytes() + b"x")
+    _track_runtime_root_mutations(monkeypatch)
+    monkeypatch.setattr(runner, "HDF5_CONTENT_MANIFEST", manifest)
+    monkeypatch.setattr(sys, "argv", [
+        str(runner.__file__),
+        "--seed", "131",
+        "--data-root", str(data_root),
+        "--output", str(output),
+        "--stage", "source-train",
+        "--config", str(config_path),
+    ])
+
+    with pytest.raises(runner.ResumeBindingMismatch, match="HDF5 live content"):
+        runner.main()
+
+    assert _snapshot_tree(output) == before
+
+
+def test_selected_runtime_rebinds_every_inprocess_reader_to_cli_data_root(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    data_root = tmp_path / "explicit-cli-data"
+    data_root.mkdir()
+    _track_runtime_root_mutations(monkeypatch)
+
+    receipt = runner.bind_runtime_data_root(data_root)
+
+    assert set(receipt) == {
+        "common.DATA",
+        "rebuilt_harness.DATA",
+        "train_jtext_source_transformer.DATA_ROOT",
+        "run_two_timescale_online.DATA",
+        "run_unified_online_active.DATA",
+    }
+    assert all(Path(value) == data_root.resolve() for value in receipt.values())
+    assert runner.a1.rebuilt.DATA == data_root.resolve()
+    assert runner.a1.alarm.GS.RH.DATA == data_root.resolve()
+
+
+def test_formal_source_stage_refuses_unreceipted_preexisting_checkpoint(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    output = tmp_path / "run"
+    source_dir = output / "source-train"
+    source_dir.mkdir(parents=True)
+    config = json.loads(CONFIG.read_text(encoding="utf-8"))
+    (output / "effective_config.json").write_text(
+        json.dumps(config, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    torch.save({"fabricated": torch.tensor([1.0])}, source_dir / "source_checkpoint.pt")
+    before = _snapshot_tree(output)
+    _track_runtime_root_mutations(monkeypatch)
+    monkeypatch.setattr(sys, "argv", [
+        str(runner.__file__),
+        "--seed", "131",
+        "--data-root", "/media/hetaisheng/044A81D94A81C83E/Fuison/data",
+        "--output", str(output),
+        "--stage", "source-train",
+        "--config", str(CONFIG),
+    ])
+
+    with pytest.raises(
+        runner.ResumeBindingMismatch,
+        match="unreceipted pre-existing output",
+    ):
+        runner.main()
+
+    assert _snapshot_tree(output) == before
+
+
+def test_unified_production_static_gate_revalidates_before_outcome_access(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    roster = [70_000 + index for index in range(360)]
+    rows = [
+        {
+            "stream_index": index,
+            "shot": shot,
+            "alarmed": False,
+            "risk_trace": np.asarray([0.1, 0.2], dtype=np.float32),
+        }
+        for index, shot in enumerate(roster)
+    ]
+    sealed = runner.seal_static_predictions_then_read_outcomes(
+        rows=rows,
+        seal_path=tmp_path / "static_predictions.jsonl",
+        stage="east-static",
+        expected_count=360,
+        outcome_oracle_factory=lambda: (
+            lambda _shot: {"is_disrupt": False, "down_time_s": None}
+        ),
+        threshold_receipt_sha256="a" * 64,
+        parent_fingerprint_sha256="b" * 64,
+    )
+    events: list[str] = []
+    original_validate = selected.validate_static_seal_manifest
+
+    def tracked_validate(*args, **kwargs):
+        result = original_validate(*args, **kwargs)
+        events.append("validated")
+        return result
+
+    def outcome_reader(_shot: int) -> dict:
+        assert events and events[0] == "validated"
+        events.append("outcome")
+        return {"is_disrupt": False, "down_time_s": None}
+
+    monkeypatch.setattr(
+        unified.selected_mainline,
+        "validate_static_seal_manifest",
+        tracked_validate,
+    )
+    outcomes = unified.read_selected_static_outcomes_after_seal(
+        static_seal_manifest=sealed["seal_manifest_path"],
+        roster=roster,
+        outcome_reader=outcome_reader,
+    )
+
+    assert len(outcomes) == 360
+    assert events == ["validated"] + ["outcome"] * 360
+
+
+def test_static_seal_does_not_monkeypatch_h5py_dataset_getitem(
+    tmp_path: Path,
+) -> None:
+    original = h5py.Dataset.__getitem__
+    result = runner.seal_static_predictions_then_read_outcomes(
+        rows=[{
+            "stream_index": 0,
+            "shot": 1,
+            "risk_trace": np.asarray([0.1], dtype=np.float32),
+        }],
+        seal_path=tmp_path / "static_predictions.jsonl",
+        stage="jtext-static",
+        expected_count=1,
+        outcome_oracle_factory=lambda: (
+            lambda _shot: {"is_disrupt": False, "down_time_s": None}
+        ),
+        threshold_receipt_sha256="a" * 64,
+        parent_fingerprint_sha256="b" * 64,
+    )
+
+    assert result["outcomes"][1]["is_disrupt"] is False
+    assert h5py.Dataset.__getitem__ is original

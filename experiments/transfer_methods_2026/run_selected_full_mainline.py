@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import argparse
 from datetime import datetime, timezone
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -28,6 +29,9 @@ ROOT = Path(__file__).resolve().parents[2]
 HERE = ROOT / "experiments" / "transfer_methods_2026"
 PACKAGE = HERE / "paper_grade_package"
 DEFAULT_CONFIG = PACKAGE / "configs/primary_chain_dynamic_source_v1.json"
+HDF5_CONTENT_MANIFEST = (
+    PACKAGE / "evidence/required_hdf5_content_manifest.json"
+)
 SOURCE_TRAINER = HERE / "train_jtext_source_transformer.py"
 UNIFIED_RUNNER = HERE / "run_unified_online_active.py"
 JTEXT_ADVANCED_TIME = ROOT / "shot_list/J-TEXT/AdvancedTime_J-TEXT.json"
@@ -550,26 +554,11 @@ def seal_static_predictions_then_read_outcomes(
     )
 
     # This is intentionally the first point at which the lazy outcome oracle
-    # exists.  Its constructor may itself touch outcome-bearing artifacts.
+    # exists.  Concrete HDF5 readers normalize their own scalar metadata;
+    # globally replacing h5py.Dataset.__getitem__ would be process-wide and
+    # could bypass or race access guards in another thread.
     outcome_reader = outcome_oracle_factory()
-    # h5py returns a one-element ndarray for historical ``meta`` datasets that
-    # were stored with shape ``(1,)``.  Normalize only that representation to a
-    # scalar while still delegating to (and therefore preserving) any access
-    # guard installed on Dataset.__getitem__.
-    original_getitem = h5py.Dataset.__getitem__
-
-    def scalar_meta_getitem(dataset: h5py.Dataset, key: Any) -> Any:
-        value = original_getitem(dataset, key)
-        array = np.asarray(value)
-        if dataset.name.startswith("/meta/") and array.size == 1:
-            return array.reshape(-1)[0]
-        return value
-
-    h5py.Dataset.__getitem__ = scalar_meta_getitem
-    try:
-        outcomes = {shot: dict(outcome_reader(shot)) for shot in shots}
-    finally:
-        h5py.Dataset.__getitem__ = original_getitem
+    outcomes = {shot: dict(outcome_reader(shot)) for shot in shots}
     return {
         "prediction_seal_sha256": prediction_sha,
         "seal_manifest_sha256": manifest_sha,
@@ -727,28 +716,6 @@ def run_selected_jtext_static_stage(
     )
 
 
-def open_selected_phase_writer(
-    *, phase: str, parent_payload: Mapping[str, Any],
-    contract: selected.SelectedMainlineContract, actual_roster: Sequence[int],
-    ledger_path: Path,
-) -> a1.JsonlSealWriter:
-    """Validate the decoded online copy before creating its first ledger file."""
-
-    if phase not in {"east-static", "east-online"}:
-        raise ValueError("selected phase must be east-static or east-online")
-    try:
-        selected.validate_selected_parent(parent_payload, contract)
-    except (TypeError, ValueError, RuntimeError) as exc:
-        raise RuntimeError(f"selected startup parent mismatch: {exc}") from exc
-    roster = [int(shot) for shot in actual_roster]
-    if (
-        contract.east_test_roster_sha256 is None
-        or selected.sha256_json(roster) != contract.east_test_roster_sha256
-    ):
-        raise RuntimeError("selected startup roster mismatch")
-    return a1.JsonlSealWriter(Path(ledger_path).expanduser().resolve())
-
-
 def append_stage_receipt(
     ledger: Path, *, stage: str, binding: Mapping[str, Any],
     outputs: Mapping[str, Path], command: Sequence[str],
@@ -817,25 +784,53 @@ def require_resumable_stage(
 def selected_code_closure_paths() -> tuple[Path, ...]:
     """Files whose current bytes define selected-stage resume compatibility."""
 
-    return (
-        HERE / "train_jtext_source_transformer.py",
-        HERE / "rebuilt_harness.py",
-        HERE / "grid_search.py",
-        HERE / "advanced_time_labels.py",
-        HERE / "shot_alarm.py",
-        HERE / "selected_mainline_contract.py",
-        HERE / "run_online_active_a1.py",
-        HERE / "run_dynamic_hazard_adapter.py",
-        HERE / "run_unified_online_active.py",
-        Path(__file__).resolve(),
+    relative = (
+        "advanced_time_labels.py",
+        "common.py",
+        "dual_threshold_alarm.py",
+        "dynamic_hazard_adapter.py",
+        "east_private23_sidecar.py",
+        "east_private_continual.py",
+        "evaluate_dynamic_positive_gate.py",
+        "grid_search.py",
+        "online_active_audit.py",
+        "online_auxiliary.py",
+        "online_episode_value_v3.py",
+        "online_protected_residual.py",
+        "online_timescale_ablation.py",
+        "rebuilt_harness.py",
+        "reverse_online_value.py",
+        "run_dynamic_hazard_adapter.py",
+        "run_east_private23_online.py",
+        "run_online_active_a1.py",
+        "run_online_active_a3.py",
+        "run_online_protected_residual.py",
+        "run_selected_full_mainline.py",
+        "run_two_timescale_online.py",
+        "run_unified_online_active.py",
+        "selected_mainline_contract.py",
+        "shot_alarm.py",
+        "train_jtext_source_transformer.py",
+        "two_timescale_online_adapter.py",
+        "unified_online_value.py",
+    )
+    return tuple(HERE / name for name in relative) + (
+        ROOT / "config/mainline_code_manifest.json",
     )
 
 
 def _collection_sha256(paths: Sequence[Path]) -> str:
+    def identity(raw: Path) -> str:
+        path = Path(raw).expanduser().resolve()
+        try:
+            return path.relative_to(ROOT).as_posix()
+        except ValueError:
+            return str(path)
+
     rows = [
         {
             "index": index,
-            "name": Path(path).name,
+            "path": identity(Path(path)),
             "sha256": selected.sha256_file(Path(path)),
         }
         for index, path in enumerate(paths)
@@ -953,8 +948,12 @@ def run_two_shot_cpu_resume_stage(
     def oracle_factory() -> Callable[[int], Mapping[str, Any]]:
         def read(shot: int) -> Mapping[str, Any]:
             with h5py.File(by_shot[shot], "r") as handle:
-                is_disrupt = bool(handle["meta/IsDisrupt"][()])
-                down = float(handle["meta/DownTime"][()])
+                is_disrupt = bool(
+                    np.asarray(handle["meta/IsDisrupt"][()]).reshape(-1)[0]
+                )
+                down = float(
+                    np.asarray(handle["meta/DownTime"][()]).reshape(-1)[0]
+                )
             return {"is_disrupt": is_disrupt, "down_time_s": down}
 
         return read
@@ -993,28 +992,153 @@ def _code_sha256() -> str:
     })
 
 
+def bind_runtime_data_root(data_root: Path) -> dict[str, str]:
+    """Bind every in-process selected reader to the explicit CLI data root.
+
+    Several historical modules cache ``FUSION_DATA_ROOT`` at import time.  The
+    selected orchestrator also builds the EAST parent in-process, so merely
+    passing an environment variable to later subprocesses is insufficient.
+    This explicit binding is the single selected-path compatibility bridge;
+    all values are checked immediately after assignment.
+    """
+
+    resolved = Path(data_root).expanduser().resolve()
+    if not resolved.is_dir():
+        raise FileNotFoundError(f"selected data root does not exist: {resolved}")
+    bindings = (
+        ("common.DATA", common, "DATA"),
+        ("rebuilt_harness.DATA", rebuilt, "DATA"),
+        ("train_jtext_source_transformer.DATA_ROOT", source_trainer, "DATA_ROOT"),
+        ("run_two_timescale_online.DATA", two_runner, "DATA"),
+        ("run_unified_online_active.DATA", unified, "DATA"),
+    )
+    os.environ["FUSION_DATA_ROOT"] = str(resolved)
+    result: dict[str, str] = {}
+    for name, module, attribute in bindings:
+        setattr(module, attribute, resolved)
+        actual = Path(getattr(module, attribute)).expanduser().resolve()
+        if actual != resolved:
+            raise RuntimeError(f"selected runtime data-root binding failed: {name}")
+        result[name] = str(actual)
+    return result
+
+
+def validate_live_hdf5_content_manifest(
+    *, data_root: Path, manifest_path: Path,
+    expected_manifest_sha256: str, expected_aggregate_sha256: str,
+) -> dict[str, Any]:
+    """Rehash every registered HDF5 byte beneath ``data_root`` fail closed."""
+
+    root = Path(data_root).expanduser().resolve()
+    path = Path(manifest_path).expanduser().resolve()
+    if not root.is_dir():
+        raise FileNotFoundError(f"selected data root does not exist: {root}")
+    if not path.is_file():
+        raise FileNotFoundError(f"selected HDF5 manifest does not exist: {path}")
+    if selected.sha256_file(path) != str(expected_manifest_sha256):
+        raise RuntimeError("selected HDF5 content manifest SHA256 mismatch")
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise RuntimeError("selected HDF5 content manifest is unreadable") from exc
+    manifest = payload.get("content_manifest")
+    if not isinstance(manifest, Mapping):
+        raise RuntimeError("selected HDF5 content manifest body is missing")
+    rows = manifest.get("files")
+    if (
+        manifest.get("algorithm") != "sha256"
+        or not isinstance(rows, list)
+        or int(manifest.get("file_count", -1)) != len(rows)
+        or not rows
+    ):
+        raise RuntimeError("selected HDF5 content manifest schema mismatch")
+
+    aggregate = hashlib.sha256()
+    seen: set[str] = set()
+    total_bytes = 0
+    for row in rows:
+        if not isinstance(row, Mapping):
+            raise RuntimeError("selected HDF5 content manifest row mismatch")
+        relative_text = str(row.get("relative_path", ""))
+        relative = Path(relative_text)
+        if (
+            not relative_text
+            or relative.is_absolute()
+            or ".." in relative.parts
+            or relative_text in seen
+        ):
+            raise RuntimeError(
+                f"selected HDF5 manifest has unsafe/duplicate path: {relative_text!r}"
+            )
+        seen.add(relative_text)
+        candidate = (root / relative).resolve()
+        try:
+            candidate.relative_to(root)
+        except ValueError as exc:
+            raise RuntimeError(
+                f"selected HDF5 path escapes data root: {relative_text}"
+            ) from exc
+        if not candidate.is_file():
+            raise FileNotFoundError(
+                f"selected HDF5 file does not exist: {candidate}"
+            )
+        expected_size = int(row.get("bytes", -1))
+        actual_size = int(candidate.stat().st_size)
+        if actual_size != expected_size:
+            raise ResumeBindingMismatch(
+                f"HDF5 live content mismatch: {relative_text} (size)"
+            )
+        actual_sha = selected.sha256_file(candidate)
+        if actual_sha != str(row.get("sha256", "")):
+            raise ResumeBindingMismatch(
+                f"HDF5 live content mismatch: {relative_text} (sha256)"
+            )
+        aggregate.update(
+            f"{relative_text}\0{actual_size}\0{actual_sha}\n".encode("utf-8")
+        )
+        total_bytes += actual_size
+    actual_aggregate = aggregate.hexdigest()
+    if (
+        actual_aggregate != manifest.get("aggregate_sha256")
+        or actual_aggregate != str(expected_aggregate_sha256)
+    ):
+        raise ResumeBindingMismatch("HDF5 live content aggregate mismatch")
+    return {
+        "file_count": len(rows),
+        "total_bytes": total_bytes,
+        "aggregate_sha256": actual_aggregate,
+    }
+
+
 def _binding_base(
     *, config_path: Path, config: Mapping[str, Any], data_root: Path,
 ) -> dict[str, Any]:
-    hdf5_manifest = (
-        PACKAGE / "evidence/required_hdf5_content_manifest.json"
-    )
+    hdf5_manifest = HDF5_CONTENT_MANIFEST
     expected_manifest_sha = config["data_contract"][
         "hdf5_content_manifest_sha256"
     ]
-    if selected.sha256_file(hdf5_manifest) != expected_manifest_sha:
-        raise RuntimeError("selected HDF5 content manifest SHA256 mismatch")
+    live_hdf5 = validate_live_hdf5_content_manifest(
+        data_root=data_root,
+        manifest_path=hdf5_manifest,
+        expected_manifest_sha256=expected_manifest_sha,
+        expected_aggregate_sha256=config["data_contract"][
+            "hdf5_content_aggregate_sha256"
+        ],
+    )
     return {
         "code_sha256": _code_sha256(),
         "config_sha256": selected.sha256_file(config_path),
         "data_sha256": selected.sha256_json({
             "data_root": str(data_root),
             "data_contract": config["data_contract"],
+            "live_hdf5_aggregate_sha256": live_hdf5["aggregate_sha256"],
         }),
         "hdf5_content_manifest_sha256": expected_manifest_sha,
         "hdf5_content_aggregate_sha256": config["data_contract"][
             "hdf5_content_aggregate_sha256"
         ],
+        "hdf5_live_file_count": live_hdf5["file_count"],
+        "hdf5_live_total_bytes": live_hdf5["total_bytes"],
     }
 
 
@@ -1105,6 +1229,7 @@ def main() -> None:
     data_root = args.data_root.expanduser().resolve()
     if not data_root.is_dir():
         raise FileNotFoundError(f"selected data root does not exist: {data_root}")
+    bind_runtime_data_root(data_root)
     config_path = args.config.expanduser().resolve()
     config = load_selected_config(config_path)
     jtext_roster_path, jtext_roster = _configured_roster(
@@ -1124,6 +1249,12 @@ def main() -> None:
 
     output = args.output.expanduser().resolve()
     effective_config = output / "effective_config.json"
+    # Recompute current code, roster/config and every external HDF5 byte before
+    # creating or modifying the output tree.  This ordering is part of the
+    # selected resume contract, not an optimization.
+    base_binding = _binding_base(
+        config_path=config_path, config=config, data_root=data_root,
+    )
     if output.exists():
         if not effective_config.is_file():
             raise ResumeBindingMismatch(
@@ -1143,9 +1274,6 @@ def main() -> None:
     parent_dir = output / "east-parent"
     parent_path = parent_dir / "east_fixed_parent.pt"
     roster_path = parent_dir / "balanced360_roster.jsonl"
-    base_binding = _binding_base(
-        config_path=config_path, config=config, data_root=data_root,
-    )
     requested = STAGES if args.stage == "all" else (args.stage,)
 
     source_command = source_stage_command(
@@ -1175,8 +1303,11 @@ def main() -> None:
                 ledger, stage="source-train", binding=binding,
             )
         else:
-            if not source_path.is_file():
-                _run_subprocess(source_command, data_root=data_root)
+            if source_dir.exists() and any(source_dir.iterdir()):
+                raise ResumeBindingMismatch(
+                    "source-train has unreceipted pre-existing output"
+                )
+            _run_subprocess(source_command, data_root=data_root)
             # Revised Task 2 must add input_contract.  Current legacy dynamic
             # checkpoints stop here rather than entering EAST silently.
             selected.load_selected_source_checkpoint(source_path, args.seed)

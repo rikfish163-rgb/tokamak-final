@@ -273,16 +273,18 @@ def validate_threshold_receipt(
     if not math.isfinite(target) or not 0.0 < target <= 1.0:
         raise fail("target TPR mismatch")
     all_candidates = _threshold_candidates(normalized)
-    candidate_by_threshold = {row["threshold"]: row for row in all_candidates}
     serialized_candidates = body.get("candidates")
     if not isinstance(serialized_candidates, list) or not serialized_candidates:
         raise fail("candidates are missing")
-    for candidate in serialized_candidates:
-        if not isinstance(candidate, Mapping):
+    if len(serialized_candidates) != len(all_candidates):
+        raise fail("candidate recomputation mismatch")
+    for candidate, expected in zip(serialized_candidates, all_candidates):
+        if (
+            not isinstance(candidate, Mapping)
+            or set(candidate) != {"threshold", "tpr", "fpr"}
+        ):
             raise fail("candidate schema mismatch")
-        threshold = float(candidate.get("threshold", float("nan")))
-        expected = candidate_by_threshold.get(threshold)
-        if expected is None or any(
+        if any(
             not math.isclose(
                 float(candidate.get(name, float("nan"))), float(expected[name]),
                 rel_tol=0.0, abs_tol=1e-12,
@@ -341,8 +343,8 @@ class SelectedMainlineContract:
     physics_scales_sha256: str
     reconstruction_constants_sha256: str
     claim_status: str
-    jtext_test_roster_sha256: str | None = None
-    east_test_roster_sha256: str | None = None
+    jtext_test_roster_sha256: str
+    east_test_roster_sha256: str
 
     def __post_init__(self) -> None:
         if isinstance(self.seed, bool) or int(self.seed) not in ALLOWED_SEEDS:
@@ -386,9 +388,7 @@ class SelectedMainlineContract:
         ):
             _require_sha256(getattr(self, name), name)
         for name in ("jtext_test_roster_sha256", "east_test_roster_sha256"):
-            value = getattr(self, name)
-            if value is not None:
-                _require_sha256(value, name)
+            _require_sha256(getattr(self, name), name)
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
@@ -398,8 +398,7 @@ class SelectedMainlineContract:
         if not isinstance(value, Mapping):
             raise ValueError("selected mainline contract must be a mapping")
         field_names = {field.name for field in fields(cls)}
-        optional = {"jtext_test_roster_sha256", "east_test_roster_sha256"}
-        missing = sorted(field_names.difference(optional).difference(value))
+        missing = sorted(field_names.difference(value))
         if missing:
             raise ValueError(
                 "selected mainline contract is missing: " + ", ".join(missing)
