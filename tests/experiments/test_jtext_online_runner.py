@@ -567,3 +567,21 @@ def test_two_shot_cpu_static_full_active_resume_is_byte_identical(tmp_path: Path
         assert (tmp_path / "resumed" / name).read_bytes() == (
             tmp_path / "uninterrupted" / name
         ).read_bytes()
+
+
+def test_cli_controller_parent_is_deterministic_per_seed() -> None:
+    module = load_runner()
+
+    def source_modules():
+        torch.manual_seed(17)
+        return torch.nn.Linear(2, 2), torch.nn.Linear(2, 1)
+
+    encoder_a, head_a = source_modules()
+    encoder_b, head_b = source_modules()
+    first = module.build_cli_controller(seed=131, encoder=encoder_a, head=head_a)
+    second = module.build_cli_controller(seed=131, encoder=encoder_b, head=head_b)
+    assert first.persistent_hash() == second.persistent_hash()
+
+    encoder_c, head_c = source_modules()
+    third = module.build_cli_controller(seed=133, encoder=encoder_c, head=head_c)
+    assert third.persistent_hash() != first.persistent_hash()

@@ -1273,6 +1273,26 @@ def _selected_source_trace_builder(
     return build
 
 
+def build_cli_controller(
+    *, seed: int, encoder: torch.nn.Module, head: torch.nn.Module,
+) -> online_adapter.JTextOnlineController:
+    """Construct the registered residual parent deterministically per seed."""
+    np.random.seed(int(seed))
+    torch.manual_seed(int(seed))
+    residual = online_adapter.JTextOnlineResidual(
+        feature_count=len(jtext_io.REBUILD_FEATURE_NAMES),
+        hidden_size=32,
+        max_logit_shift=0.5,
+    ).to("cpu")
+    return online_adapter.JTextOnlineController(
+        residual,
+        source_encoder=encoder,
+        source_head=head,
+        intra_lr=1e-4,
+        inter_lr=5e-4,
+    )
+
+
 def main(argv: Sequence[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     import selected_mainline_contract as selected
@@ -1297,17 +1317,8 @@ def main(argv: Sequence[str] | None = None) -> int:
             start_time_s=raw.start_time_s,
         )
 
-    residual = online_adapter.JTextOnlineResidual(
-        feature_count=len(jtext_io.REBUILD_FEATURE_NAMES),
-        hidden_size=32,
-        max_logit_shift=0.5,
-    ).to("cpu")
-    controller = online_adapter.JTextOnlineController(
-        residual,
-        source_encoder=encoder,
-        source_head=head,
-        intra_lr=1e-4,
-        inter_lr=5e-4,
+    controller = build_cli_controller(
+        seed=args.seed, encoder=encoder, head=head,
     )
 
     def oracle_factory(remaining: tuple[int, ...]):
@@ -1353,6 +1364,7 @@ __all__ = [
     "audit_matched_controls",
     "build_frontload_plan",
     "abnormal_run_gate",
+    "build_cli_controller",
     "run_jtext_online_stream",
     "save_runner_resume",
     "load_runner_resume",
