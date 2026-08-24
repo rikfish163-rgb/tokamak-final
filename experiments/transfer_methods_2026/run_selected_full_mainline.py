@@ -14,6 +14,7 @@ import argparse
 from datetime import datetime, timezone
 import hashlib
 import json
+import math
 import os
 from pathlib import Path
 import subprocess
@@ -565,6 +566,108 @@ def seal_static_predictions_then_read_outcomes(
         "seal_manifest_sha256": manifest_sha,
         "seal_manifest_path": manifest_path,
         "outcomes": outcomes,
+        "sealed_rows": serialized,
+    }
+
+
+def compute_postseal_jtext_static_metrics(
+    *, sealed_rows: Sequence[Mapping[str, Any]],
+    outcomes: Mapping[int, Mapping[str, Any]], output: Path,
+    threshold: float,
+) -> dict[str, Any]:
+    """Evaluate TEST220 only from validated, already-sealed traces and outcomes."""
+
+    cutoff = float(threshold)
+    if not 0.0 < cutoff < 1.0:
+        raise ValueError("J-TEXT post-seal threshold must lie in (0, 1)")
+    root = Path(output).expanduser().resolve()
+    labels: list[bool] = []
+    scores: list[float] = []
+    timely_hits: list[bool] = []
+    raw_hits: list[bool] = []
+    false_alarms: list[bool] = []
+    leads: list[float] = []
+    early_over_3000: list[int] = []
+    per_shot: list[dict[str, Any]] = []
+    for row in sealed_rows:
+        shot = int(row["shot"])
+        trace_path = root / str(row["risk_trace_path"])
+        expected_sha = str(row["risk_trace_sha256"])
+        if not trace_path.is_file() or selected.sha256_file(trace_path) != expected_sha:
+            raise RuntimeError(f"J-TEXT post-seal risk trace hash mismatch: {shot}")
+        with np.load(trace_path, allow_pickle=False) as payload:
+            trace_shot = int(np.asarray(payload["shot_id"]).reshape(-1)[0])
+            trace = np.asarray(payload["risk_trace"], dtype=np.float32)
+        if trace_shot != shot or trace.ndim != 1 or not len(trace):
+            raise RuntimeError(f"J-TEXT post-seal risk trace identity mismatch: {shot}")
+        if not np.isfinite(trace).all():
+            raise RuntimeError(f"J-TEXT post-seal risk trace is non-finite: {shot}")
+        score = float(np.max(trace))
+        if score != float(row["score"]):
+            raise RuntimeError(f"J-TEXT post-seal shot score mismatch: {shot}")
+        if shot not in outcomes:
+            raise RuntimeError(f"J-TEXT post-seal outcome is missing: {shot}")
+        outcome = outcomes[shot]
+        is_disrupt = bool(outcome["is_disrupt"])
+        passing = np.flatnonzero(trace >= cutoff)
+        fired = bool(len(passing))
+        alarm_index = int(passing[0]) if fired else None
+        lead_ms: float | None = None
+        timely = False
+        if is_disrupt:
+            down = outcome.get("down_time_s")
+            if down is None or not math.isfinite(float(down)):
+                raise RuntimeError(f"disruptive J-TEXT shot {shot} has no DownTime")
+            raw_hits.append(fired)
+            if fired:
+                alarm_time = float(row["start_time_s"]) + alarm_index / float(
+                    row["sample_rate_hz"]
+                )
+                lead_ms = (float(down) - alarm_time) * 1000.0
+                timely = bool(lead_ms > source_trainer.MINIMUM_LEAD_MS)
+                if timely:
+                    leads.append(float(lead_ms))
+                if lead_ms > 3000.0:
+                    early_over_3000.append(shot)
+            timely_hits.append(timely)
+        else:
+            false_alarms.append(fired)
+        labels.append(is_disrupt)
+        scores.append(score)
+        per_shot.append({
+            "shot": shot,
+            "is_disrupt": is_disrupt,
+            "score": score,
+            "alarm": fired,
+            "alarm_trace_index": alarm_index,
+            "timely": timely if is_disrupt else None,
+            "lead_ms": lead_ms,
+        })
+    label_array = np.asarray(labels, dtype=bool)
+    score_array = np.asarray(scores, dtype=np.float64)
+    tp = int(np.sum(timely_hits))
+    fn = int(len(timely_hits) - tp)
+    fp = int(np.sum(false_alarms))
+    tn = int(len(false_alarms) - fp)
+    return {
+        "claim_status": selected.CLAIM_STATUS,
+        "threshold": cutoff,
+        "threshold_origin": "J-TEXT VAL160",
+        "minimum_run": 1,
+        "minimum_lead_ms": source_trainer.MINIMUM_LEAD_MS,
+        "n_shots": len(sealed_rows),
+        "n_disruptions": int(label_array.sum()),
+        "n_non_disruptions": int((~label_array).sum()),
+        "TP": tp, "FN": fn, "FP": fp, "TN": tn,
+        "raw_tpr": float(np.mean(raw_hits)),
+        "timely_tpr": float(np.mean(timely_hits)),
+        "fpr": float(np.mean(false_alarms)),
+        "tpr_minus_fpr": float(np.mean(timely_hits) - np.mean(false_alarms)),
+        "auc": source_trainer._auc(label_array, score_array),
+        "median_lead_ms": float(np.median(leads)) if leads else None,
+        "early_over_3000_ms_count": len(early_over_3000),
+        "early_over_3000_ms_shots": early_over_3000,
+        "shots": per_shot,
     }
 
 
@@ -574,6 +677,10 @@ def execute_static_stage_boundary(
     outcome_oracle_factory: Callable[[], Callable[[int], Mapping[str, Any]]],
     threshold_receipt_sha256: str, parent_fingerprint_sha256: str,
     expected_count: int | None = None,
+    postseal_evaluator: Callable[
+        [Sequence[Mapping[str, Any]], Mapping[int, Mapping[str, Any]], Path],
+        Mapping[str, Any],
+    ] | None = None,
 ) -> dict[str, Any]:
     """Execute a real static phase with a hard prediction/outcome boundary."""
 
@@ -604,6 +711,11 @@ def execute_static_stage_boundary(
         threshold_receipt_sha256=threshold_receipt_sha256,
         parent_fingerprint_sha256=parent_fingerprint_sha256,
     )
+    postseal_metrics = None
+    if postseal_evaluator is not None:
+        postseal_metrics = dict(postseal_evaluator(
+            result["sealed_rows"], result["outcomes"], output,
+        ))
     summary = {
         "schema_version": selected.STATIC_SEAL_SCHEMA,
         "stage": stage,
@@ -612,6 +724,8 @@ def execute_static_stage_boundary(
         "seal_manifest_sha256": result["seal_manifest_sha256"],
         "outcomes_read_after_complete_static_seal": True,
     }
+    if postseal_metrics is not None:
+        summary["metrics"] = postseal_metrics
     _write_json(output / "summary.json", summary)
     receipt = {
         "schema_version": RECEIPT_SCHEMA,
@@ -624,7 +738,10 @@ def execute_static_stage_boundary(
         handle.write(json.dumps(receipt, sort_keys=True) + "\n")
         handle.flush()
         os.fsync(handle.fileno())
-    return {**result, "summary_path": output / "summary.json"}
+    return {
+        **result, "postseal_metrics": postseal_metrics,
+        "summary_path": output / "summary.json",
+    }
 
 
 def run_selected_jtext_static_stage(
@@ -663,6 +780,8 @@ def run_selected_jtext_static_stage(
             "shot": shot,
             "score": float(np.max(trace)),
             "alarmed": bool(np.max(trace) >= threshold),
+            "start_time_s": float(signal.start_time_s),
+            "sample_rate_hz": float(signal.sample_rate_hz),
             "risk_trace": trace,
         }
 
@@ -700,6 +819,12 @@ def run_selected_jtext_static_stage(
             source_payload["source_val_threshold_receipt_sha256"]
         ),
         parent_fingerprint_sha256=source_payload["source_checkpoint_sha256"],
+        postseal_evaluator=lambda rows, outcomes, stage_output: (
+            compute_postseal_jtext_static_metrics(
+                sealed_rows=rows, outcomes=outcomes, output=stage_output,
+                threshold=threshold,
+            )
+        ),
     )
 
 

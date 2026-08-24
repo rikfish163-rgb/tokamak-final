@@ -845,6 +845,51 @@ def test_c_mut_01_direct_h5py_meta_read_mutant_fails_before_receipt(
     assert not (output / "stage_receipts.jsonl").exists()
 
 
+def test_postseal_jtext_metrics_use_first_crossing_and_strict_ten_ms(
+    tmp_path: Path,
+) -> None:
+    rows = []
+    traces = {
+        1: np.asarray([0.1, 0.8], dtype=np.float32),
+        2: np.asarray([0.1, 0.8], dtype=np.float32),
+        3: np.asarray([0.1, 0.8], dtype=np.float32),
+        4: np.asarray([0.1, 0.2], dtype=np.float32),
+    }
+    for stream_index, shot in enumerate((1, 2, 3, 4)):
+        relative = Path("risk_traces") / f"{stream_index:04d}_{shot}.npz"
+        digest = selected.write_trace_file(
+            tmp_path / relative, shot=shot, risk_trace=traces[shot],
+        )
+        rows.append({
+            "stream_index": stream_index,
+            "shot": shot,
+            "score": float(traces[shot].max()),
+            "risk_trace_path": str(relative),
+            "risk_trace_sha256": digest,
+            "start_time_s": 0.0,
+            "sample_rate_hz": 1000.0,
+        })
+    outcomes = {
+        1: {"is_disrupt": True, "down_time_s": 0.020},
+        2: {"is_disrupt": True, "down_time_s": 0.010},
+        3: {"is_disrupt": False, "down_time_s": None},
+        4: {"is_disrupt": False, "down_time_s": None},
+    }
+
+    metrics = runner.compute_postseal_jtext_static_metrics(
+        sealed_rows=rows, outcomes=outcomes, output=tmp_path, threshold=0.5,
+    )
+
+    assert metrics["TP"] == metrics["FN"] == 1
+    assert metrics["FP"] == metrics["TN"] == 1
+    assert metrics["raw_tpr"] == 1.0
+    assert metrics["timely_tpr"] == 0.5
+    assert metrics["fpr"] == 0.5
+    assert metrics["median_lead_ms"] == pytest.approx(19.0)
+    assert metrics["minimum_lead_ms"] == 10.0
+    assert metrics["minimum_run"] == 1
+
+
 @pytest.mark.parametrize(
     ("forbidden_key", "forbidden_value"),
     [
