@@ -1,410 +1,180 @@
 # J-TEXT → EAST：托卡马克破裂预警的因果迁移与时序在线主动适配
 
-**语言 / Language：** **简体中文（默认）** · [English](README_EN.md)
+**默认语言：简体中文** · [English](README_EN.md) · [详细中文说明](README_CN.md)
 
-[代码级方法细节](IMPLEMENTATION_DETAILS_CN.md) · [复现与部署](#cn-quickstart) · [论文级实验包](experiments/transfer_methods_2026/paper_grade_package/README.md) · [数据合同](DATA_CONTRACT.md) · [中文技术报告 PDF](experiments/transfer_methods_2026/paper_grade_package/TECHNICAL_REPORT_zh.pdf)
+[动态主线技术报告](experiments/transfer_methods_2026/paper_grade_package/DYNAMIC_MAINLINE_TECHNICAL_REPORT_zh.md) · [XeLaTeX 源码](experiments/transfer_methods_2026/paper_grade_package/technical_report_dynamic/main.tex) · [实现细节](IMPLEMENTATION_DETAILS_CN.md) · [数据合同](DATA_CONTRACT.md)
 
-[![仓库合同](https://github.com/rikfish163-rgb/tokamak-final/actions/workflows/ci.yml/badge.svg)](https://github.com/rikfish163-rgb/tokamak-final/actions/workflows/ci.yml)
-![证据边界](https://img.shields.io/badge/evidence-development%20only-E69F00?style=flat-square)
-![前瞻确认](https://img.shields.io/badge/prospective%20confirmation-pending-D55E00?style=flat-square)
-![发布谱系](https://img.shields.io/badge/release-paper%20v3c%20archived--parent-2F80ED?style=flat-square)
-
-![Python](https://img.shields.io/badge/Python-3.11-3776AB?style=flat-square&logo=python&logoColor=white)
-![PyTorch](https://img.shields.io/badge/PyTorch-2.11-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
-![CUDA](https://img.shields.io/badge/CUDA-12.8-76B900?style=flat-square&logo=nvidia&logoColor=white)
-![HDF5](https://img.shields.io/badge/HDF5-authoritative%20labels-00599C?style=flat-square)
-![平台](https://img.shields.io/badge/platform-Linux%20GPU-555555?style=flat-square&logo=linux&logoColor=white)
-
-![模型](https://img.shields.io/badge/model-causal%20Transformer-0072B2?style=flat-square)
-![跨装置迁移](https://img.shields.io/badge/transfer-J--TEXT%20%E2%86%92%20EAST-009E73?style=flat-square)
-![在线学习](https://img.shields.io/badge/online-chronological%20active%20learning-8E6C8A?style=flat-square)
-![可复现性](https://img.shields.io/badge/reproducibility-hash--bound-2F80ED?style=flat-square)
-![许可证](https://img.shields.io/badge/license-MIT-0072B2?style=flat-square)
-
-> 面向 J-TEXT → EAST 跨装置破裂预警研究的可复现仓库。主线覆盖源域因果 Transformer、小样本目标迁移、EAST 私有信号适配，以及严格按炮序执行的在线主动学习；结局与破裂时刻以 HDF5 为唯一权威，并保存预测、封存、查询、揭示和更新账本。
->
-> **证据边界：** 当前结果属于 `DEVELOPMENT_EVIDENCE_NOT_INDEPENDENT_CONFIRMATION`。`balanced360` 是方法开发流，不是独立最终测试集，也不构成装置部署确认。
-
-<a id="cn-toc"></a>
-## 目录
-
-- [项目范围与状态](#cn-scope)
-- [架构与因果协议](#cn-architecture)
-- [主线是怎样工作的](#cn-method-details)
-- [三阶段结果](#cn-results)
-- [部署与复现](#cn-quickstart)
-- [数据合同](#cn-data-contract)
-- [可复现合同](#cn-reproducibility)
-- [证据映射](#cn-evidence-map)
-- [已完成的开发控制](#cn-completed-controls)
-- [未来独立确认封存](#cn-prospective-seal)
-- [限制与结论边界](#cn-limitations)
-- [仓库结构](#cn-layout)
-- [引用与许可证](#cn-citation)
-
-<a id="cn-scope"></a>
-## 项目范围与状态
-
-本 checkout 打包的是一条可追溯链路：
-
-```text
-J-TEXT 源域拟合
-→ EAST support110 小样本迁移
-→ EAST balanced360 静态评估
-→ 重置到同一个迁移后父模型
-→ 按炮号顺序进行 balanced360 在线主动回放
-```
-
-这条链路用于可审计的方法开发。`balanced360` 曾参与架构开发和 972 个候选参数筛选，因此其静态和在线指标不能被表述为未使用过的测试集、独立未来实验或部署结果。当前默认 CLI 是 paper **v3c archived-parent replay**；历史 v8 不属于最终论文谱系发布合同。
-
-所有结局和破裂时间标签均来自 HDF5 `/meta/IsDisrupt` 与 `/meta/DownTime`。论文级实验包、机器证据、图和 readiness 审计集中在[论文级实验包](experiments/transfer_methods_2026/paper_grade_package/README.md)。
-
-<a id="cn-architecture"></a>
-## 架构与因果协议
-
-下图概括实际执行的三阶段架构；损失函数、生效/影子分支和更新顺序仍以
-[代码级实现说明](IMPLEMENTATION_DETAILS_CN.md)与仓库代码为准：
+![Python](https://img.shields.io/badge/Python-3.11-3776AB) ![PyTorch](https://img.shields.io/badge/PyTorch-2.11-EE4C2C) ![CUDA](https://img.shields.io/badge/CUDA-12.8-76B900) ![HDF5](https://img.shields.io/badge/HDF5-authoritative%20labels-00599C)
+![model](https://img.shields.io/badge/model-causal%20Transformer-0072B2) ![online](https://img.shields.io/badge/online-chronological%20active%20learning-009E73) ![reproducibility](https://img.shields.io/badge/reproducibility-hash--bound-2F80ED)
 
 ![J-TEXT 源模型、EAST 小样本迁移与在线主动架构](docs/figures/jtext_east_mainline_architecture_v2.png)
 
-独立的数据 roster 与信息访问协议见[协议图](experiments/transfer_methods_2026/paper_grade_package/figures/fig1_protocol_and_causal_contract.svg)。
+![evidence](https://img.shields.io/badge/evidence-TEST__DRIVEN__EXPLORATION-E69F00?style=flat-square)
+![confirmation](https://img.shields.io/badge/independent%20confirmation-pending-D55E00?style=flat-square)
+![labels](https://img.shields.io/badge/labels-HDF5%20authoritative-0072B2?style=flat-square)
+![runtime](https://img.shields.io/badge/runtime-rl__env%20%2B%20CUDA-009E73?style=flat-square)
 
-在线合同是：
+本仓库实现一条可审计的托卡马克破裂预警研究链：
 
 ```text
-predict → seal → query → 揭示被选炮的结局 → 后续炮更新
+J-TEXT TRAIN1353 源模型
+→ EAST support110 小样本迁移
+→ EAST balanced360 静态封存
+→ 重置到同一迁移后父模型
+→ balanced360 按炮号顺序在线主动适配
 ```
 
-当前炮的结局不能进入当前炮的预测。EAST 静态评估先完成并封存，在线分支随后重置到相同的迁移后父模型，因此在记录的谱系内两个 EAST 分支是阶段隔离的。
+J-TEXT TEST220 还运行一条独立在线诊断支路；该支路的在线参数**禁止**进入 EAST 迁移。所有整炮结局与破裂时刻只由 HDF5 `/meta/IsDisrupt` 和 `/meta/DownTime` 定义。
 
-<a id="cn-method-details"></a>
-## 主线是怎样工作的
+> 证据边界：当前状态为 `TEST_DRIVEN_EXPLORATION` / `DEVELOPMENT_EVIDENCE_NOT_INDEPENDENT_CONFIRMATION`。TEST220 与 balanced360 均参与方法开发，不是独立未来确认集，也不是装置部署成绩。
 
-主线不是把 23 个信号直接拼起来做一次普通微调，而是把跨装置共享信息和
-EAST 私有信息分开处理：
+## 当前动态主线结果
 
-1. J-TEXT Transformer 只学习经过单位修复和物理重构的 shared17；
-2. support110 只微调最高一层 Transformer、LayerNorm 和独立 EAST head，随后
-   拟合有界 shared dynamics residual 与 raw8 EAST-private residual；
-3. 每炮开始把 persistent 适配器复制成 fast 模型，炮内只用已经到达的下一状态、
-   fast/slow 一致性和物理矛盾做无标签更新，fast 在炮后丢弃；
-4. 整炮预测封存后，由“报警边界不确定性 + 模型/物理矛盾”价值函数配合滚动
-   token 预算决定是否查询。只有被选炮才打开 HDF5 标签，并用部署一致的 MIL
-   报警损失更新 persistent 模型；若伤害任一已知正确 guard，整次更新回滚。
+以下是 seeds 131/133/137 的等权均值。TPR 是满足提前量规则的 operational TPR；J-TEXT 要求 lead $>10$ ms，EAST 要求 lead $\geq30$ ms。
 
-风险 logit 的残差如何叠加、每个损失的公式、窗口价值如何换算成学习率、查询
-cutoff 如何形成、FP/FN/TARDY 如何改变报警参数，以及哪些代码虽存在但在 v3c
-中权重为零，均在[代码级实现说明](IMPLEMENTATION_DETAILS_CN.md)中逐项展开。主线
-文件清单由 [`config/mainline_code_manifest.json`](config/mainline_code_manifest.json)
-机器校验，避免发布时漏掉间接依赖。
+| 阶段 | TPR | FPR | AUC | $J=\mathrm{TPR}-\mathrm{FPR}$ |
+|---|---:|---:|---:|---:|
+| J-TEXT static TEST220 | **0.866667** | **0.130303** | **0.967906** | **0.736364** |
+| EAST static balanced360 | **0.725926** | **0.220370** | — | **0.505556** |
+| EAST online balanced360 | **0.733333** | **0.220370** | — | **0.512963** |
 
-<a id="cn-results"></a>
-## 三阶段结果
+EAST online 相对 static 的平均 $\Delta J=+0.007407$，但不跨 seed 稳定；seed133 的 TPR 低于 0.80，seed137 的 FPR 高于 0.20，因此 `T0_ADMITTED=false`。J-TEXT 20% full-active 的三 seed $\Delta J$ 为 0、−0.009091、0，因此 `ONLINE_SUPPORTED=false`。
 
-以下是当前论文级谱系维护的三 seed 均值。正式 TPR 只统计满足对应提前量规则的告警；EAST `lead<30 ms` 的告警在正式口径中计为 operational false negative。当前三阶段表只在 J-TEXT 源域阶段报告 AUC。
+EAST 在线增益按 seed 分别为 $+0.005556、+0.016667、0$；三 seed 的 FPR 均保持不变，改善来自把 1、3、0 炮由迟报/漏报转为满足 30 ms 的及时报警。旧 v3c 数值属于不同源 checkpoint、标签和报警谱系，已归档，不能与本表拼接比较。
 
-| 阶段 | 评估角色 | Operational TPR | FPR | AUC | Operational 中位提前量 |
-|---|---|---:|---:|---:|---:|
-| J-TEXT source | 非时序 TEST220 比较集，lead `>10 ms` | 0.8515 | 0.2121 | 0.9219 | 116.6 ms |
-| EAST static | support110 迁移后的 balanced360，lead `≥30 ms` | 0.8407 | 0.1667 | — | 242.0 ms |
-| EAST online active | 重置到同一迁移后父模型，按时间顺序回放 balanced360，lead `≥30 ms` | 0.8481 | 0.1519 | — | 229.5 ms |
+这些值已由证据装配脚本从逐炮封存预测和 HDF5 真值重新计算；紧凑证据报告包含 80 个输入产物哈希，当前 SHA-256 为 `04e7319843304d28ec58e6b2b483bf85c5b4dea8dedd521825a6625d319dae2e`。文档与该报告不一致时必须失败关闭。
 
-这张表是开发流证据，不是前瞻性泛化结论。早于 3 s 的告警仍按已注册合同保留资格，并单独审计；raw alarm occurrence 只作为机器证据字段，不提升为第二个主结果。
+## 当前标签合同
 
-<a id="cn-quickstart"></a>
-## 部署与复现
+J-TEXT 破裂炮正样本上界为
 
-以下命令面向一台配有 NVIDIA GPU 的 Linux 工作站。论文主线使用 Python 3.11、
-CUDA 版 PyTorch 和名为 `rl_env` 的 Conda 环境；CPU 公共 CI 只验证合同、证据构建
-与合成控制器测试，不替代 GPU 回放。
+$$
+H_s^J=\max(25\ \mathrm{ms},\mathrm{AdvancedTime}_s),
+$$
 
-### 0. 获取代码并固定版本
+AdvancedTime 缺失时取 25 ms。EAST support110 仍使用固定 125 ms 上界。AdvancedTime 只改变窗口上界，不覆盖 HDF5 结局或 DownTime。当前臂名称为 `source_dynamic__east_fixed`。
+
+## 方法概览
+
+- **源模型**：$128\times17$ 因果窗；patch 8/stride 8；两层 4 头 Transformer，$d_{\text{model}}=64$。
+- **跨装置输入**：shared17 使用 J-TEXT TRAIN1353 的 median/IQR scaler；EAST 不重拟合共享 scaler。
+- **EAST 私有输入**：8 个不适合强制同义对齐的通道形成 48 维因果摘要，进入有界目标残差支路。
+- **小样本迁移**：冻结低层，只适配最后一层 Transformer、LayerNorm、独立 EAST head、共享动态与私有残差。
+- **炮内更新**：每炮创建 fast 副本，只使用当前及过去端点做无标签适配；炮后丢弃。
+- **炮间更新**：整炮预测和查询先封存；只有被选择炮才揭示标签并更新 persistent，失败时事务回滚。
+- **报警**：任一因果端点满足冻结状态机即可，不要求连续 10 点；过早报警另行审计。
+
+损失、查询价值、每个变量定义和公式—代码映射见[动态主线技术报告](experiments/transfer_methods_2026/paper_grade_package/DYNAMIC_MAINLINE_TECHNICAL_REPORT_zh.md)。
+
+## 快速复现
+
+### 1. 环境和数据
+
+统一使用带 CUDA 的 `rl_env`：
 
 ```bash
-git clone https://github.com/rikfish163-rgb/tokamak-final.git
-cd tokamak-final
-git status --short --branch
+export FUSION_DATA_ROOT=/absolute/path/to/data
+PY=${CONDA_PREFIX}/bin/python
+
+$PY -c 'import torch,h5py; print(torch.__version__); print(torch.cuda.is_available()); print(torch.cuda.get_device_name(0))'
 ```
 
-正式复现应记录具体 commit SHA；不要在一次多 seed 回放中途切换分支、修改配置或
-替换 HDF5 文件。
-
-### 1. 环境与数据
-
-使用项目 `rl_env` 环境。原始 HDF5 数据可以放在 checkout 下的 `data/`，也可以通过 `FUSION_DATA_ROOT` 指向外部目录：
-
-公共 CI 的 CPU 单元测试/审计环境使用独立锁定组，不安装 CUDA 项目运行时：
+公共 CPU CI 只安装合同审计依赖，不替代 GPU 训练或在线回放：
 
 ```bash
 uv sync --frozen --only-group ci --no-install-project
 ```
 
-GPU 训练和回放统一使用带 CUDA 的 `rl_env`。本仓库本身才是复现产物，
-并不发布一个可脱离仓库独立运行的 wheel；`fusion-reproduce` 仅指从完整
-checkout editable 安装得到的入口，仍需完整仓库，或用
-`FUSION_PROJECT_ROOT` 显式指向它，因为冻结脚本、checkpoint、划分合同和参考
-结果不在 Python 包内部。
+GPU 开发环境保持在当前 Conda 环境中：
 
 ```bash
-export FUSION_DATA_ROOT=/absolute/path/to/data
+UV_PROJECT_ENVIRONMENT="$CONDA_PREFIX" uv sync --frozen --extra dev
+export FUSION_PROJECT_ROOT="$PWD"
+```
 
+`fusion-reproduce` 是完整 checkout 的 editable CLI；本项目并不发布一个可脱离仓库独立运行的 wheel。它仍需要 `FUSION_PROJECT_ROOT` 指向的仓库配置、炮表和脚本。
+
+数据目录：
+
+```text
 data/
 ├── J-TEXT/unified_hdf5/<shot//100*100>/<shot>.hdf5
 └── EAST/unified_hdf5/<shot//100*100>/<shot>.hdf5
 ```
 
-原始 HDF5 不随 Git 提交。生成的账本最好写入 ext4 路径；部分 `ntfs3` 挂载点上的高频 `fsync` 可能阻塞。
+原始 HDF5 不提交到 Git。高频运行输出建议写入 ext4；不要把大量逐端点账本写到存在稳定性问题的 NTFS 路径。
 
-先确认使用的确实是 `rl_env` 中的 Python、PyTorch 与 GPU：
-
-```bash
-conda run -n rl_env python -c \
-  'import sys,h5py,torch; print("python:",sys.version); print("h5py:",h5py.__version__); print("torch:",torch.__version__); print("cuda_available:",torch.cuda.is_available()); print("cuda_device:",torch.cuda.get_device_name(0) if torch.cuda.is_available() else None); raise SystemExit(0 if torch.cuda.is_available() else 2)'
-```
-
-若是新机器，可先创建 Python 3.11 的 `rl_env`，再按本仓库的 `uv.lock` 同步依赖；
-已有论文工作站环境不要在回放前临时升级 PyTorch 或 CUDA：
+### 2. 三 seed 动态主线
 
 ```bash
-conda create -n rl_env python=3.11 -y
-eval "$(conda shell.bash hook)"
-conda activate rl_env
-python -m pip install uv
-UV_PROJECT_ENVIRONMENT="$CONDA_PREFIX" uv sync --frozen --extra dev
+for seed in 131 133 137; do
+  $PY experiments/transfer_methods_2026/run_selected_full_mainline.py \
+    --seed "$seed" \
+    --stage all \
+    --output-root /ext4/runs/selected_full_mainline/prefix_causal_v2c
+done
 ```
 
-这里显式把 `UV_PROJECT_ENVIRONMENT` 指向激活后的 Conda 前缀，避免又创建一套
-与 `rl_env` 并存的 `.venv`。无论采用哪一种环境管理方式，执行主线命令时都应
-固定同一个 Python 解释器并在运行清单中记录版本。
+固定阶段顺序为 `source-train → jtext-static → east-parent → east-static → east-online`。迁移必须读取同 seed 的**原始静态 J-TEXT checkpoint**，不能读取 J-TEXT 在线状态。
 
-### 2. 数据预检
-
-轻量审计检查目录、炮表和必要字段；完整审计还会逐炮打开 HDF5。若需要跨机器
-核对原始数据，可额外生成内容哈希清单：
+### 3. J-TEXT 在线诊断
 
 ```bash
-conda run -n rl_env python -m reproducibility.cli audit \
-  --data-root "$FUSION_DATA_ROOT" --full --content-hash --portable \
-  --output results/generated/data_audit.json
-
-conda run -n rl_env python -m reproducibility.cli smoke \
-  --data-root "$FUSION_DATA_ROOT"
+for seed in 131 133 137; do
+  $PY experiments/transfer_methods_2026/run_jtext_online_active.py \
+    --seed "$seed" \
+    --arm full_active \
+    --budget-percent 20 \
+    --output /ext4/runs/jtext_online_v2
+done
 ```
 
-### 3. 不执行训练，只查看冻结的 v3c 链路
-
-`plan` 阶段只打印 source → support → static → reset → online 的确切命令，不执行回放：
+### 4. 报告、测试与最终证据核验
 
 ```bash
-conda run -n rl_env python \
-  experiments/transfer_methods_2026/paper_grade_package/scripts/reproduce_primary_chain.py \
-  --seed 131 --stage plan --output-root results/reproduced-v3c
+$PY experiments/transfer_methods_2026/paper_grade_package/scripts/build_dynamic_report.py --check-only
+$PY experiments/transfer_methods_2026/paper_grade_package/scripts/build_dynamic_report.py
+$PY -m pytest -q tests/experiments/test_dynamic_mainline_report.py
 ```
 
-将 `--stage plan` 换成 `--stage all` 可从随仓库提供的、哈希绑定的 J-TEXT 源 checkpoint 和通过 fidelity 验证的 EAST 归档父模型执行一个 seed。输出目录必须是新的或为空的目录。
+报告构建器会拒绝活动文档混入旧 archived-parent 主结果，并生成文件 SHA-256 清单。证据装配与整仓合同测试必须同时通过；文档数值不得代替机器证据。
 
-默认 `all` **不会重新拟合 target parent**：它使用随仓库发布并经过 fidelity
-检查的 archived EAST 父状态，然后执行 static360 → reset → online360。若要从
-HDF5 重新训练 J-TEXT 源模型，显式加 `--retrain-source`。参数
-`--rebuild-target-current-sampler` 只用于诊断当前 sampler，不能替代归档父状态的
-论文 fidelity 回放。
+## 数据访问顺序
 
-### 4. 运行一个 seed 或三个 seed
-
-在完整 source checkout 中，`python -m reproducibility.cli reproduce` 和
-editable 安装的 `fusion-reproduce reproduce` 都使用 paper v3c
-archived-parent 路径，并与
-`results/reference/paper_v3c_multiseed_summary.json` 比对：
-
-```bash
-conda run -n rl_env python -m reproducibility.cli reproduce \
-  --data-root "$FUSION_DATA_ROOT" \
-  --output results/reproduced-v3c \
-  --seeds 131 133 137
-```
-
-只做合同审计或 GPU/参考结果 smoke 检查：
-
-```bash
-conda run -n rl_env python -m reproducibility.cli audit \
-  --data-root "$FUSION_DATA_ROOT" --full \
-  --output results/generated/data_audit.json
-conda run -n rl_env python -m reproducibility.cli smoke \
-  --data-root "$FUSION_DATA_ROOT"
-```
-
-单 seed 调试建议先用新的输出目录运行 seed 131；三 seed 正式回放再使用另一个空
-目录：
-
-```bash
-conda run -n rl_env python -m reproducibility.cli reproduce \
-  --data-root "$FUSION_DATA_ROOT" \
-  --output results/reproduced-v3c-seed131 \
-  --seeds 131
-
-conda run -n rl_env python -m reproducibility.cli verify \
-  --actual results/reproduced-v3c-seed131/multiseed_summary.json
-```
-
-输出目录已存在且非空时 CLI 会失败关闭，避免把两次运行写进同一账本。每个 seed
-的关键结果在 `seed<id>/final_episode_v3/summary.json`，逐炮静态预测、在线预测、
-query、reveal 和 update receipt 分别保存；最终聚合写入
-`multiseed_summary.json`。
-
-### 5. 重建并验证论文证据
-
-以下命令会重建/检查论文包证据，需要满足数据合同并使用项目环境：
-
-```bash
-conda run -n rl_env python \
-  experiments/transfer_methods_2026/paper_grade_package/scripts/build_evidence.py
-conda run -n rl_env python \
-  experiments/transfer_methods_2026/paper_grade_package/scripts/validate_paper_package.py
-```
-
-完整合同、回放说明和缺失确认证据见 [REPRODUCIBILITY.md](REPRODUCIBILITY.md)。
-
-### 6. 运行仓库合同测试
-
-```bash
-conda run -n rl_env python -m pytest -q
-```
-
-测试会检查数据角色零重叠、标签只能来自 HDF5、封存顺序、主线代码清单、参考
-结果比较器和未来确认 seal 等合同。测试通过说明代码与证据合同自洽，不等同于
-GPU 三 seed 已重新训练完成；后者必须以真实运行目录、日志和摘要为证。
-
-<a id="cn-data-contract"></a>
-## 数据合同
-
-- 原始输入是 `J-TEXT/unified_hdf5/` 与 `EAST/unified_hdf5/` 下的 HDF5 文件；`FUSION_DATA_ROOT` 可以指向 checkout 外部。
-- 只有 HDF5 `/meta/IsDisrupt` 与 `/meta/DownTime` 定义结局和破裂时间。CSV/JSON 只提供炮表、切分元数据或审计信息，不覆盖 HDF5 真值。
-- J-TEXT `TEST220` 是 110/110 的 count-aligned、非时序平衡比较集，不是严格按时间顺序或真实发生率构造的测试集。
-- EAST `support110` 共 110 炮，按 HDF5 为 15 炮破裂 / 95 炮安全。它同时用于拟合目标组件和选择目标阈值，因此不存在独立 EAST 验证队列。
-- `support110` 与 `balanced360` 互不重叠，但 `balanced360` 仍参与了方法开发和候选筛选。
-
-完整字段、切分和炮表合同见 [DATA_CONTRACT.md](DATA_CONTRACT.md)；论文包的逐项说明见[论文级 README](experiments/transfer_methods_2026/paper_grade_package/README.md)。
-
-<a id="cn-reproducibility"></a>
-## 可复现合同
-
-当前发布内容围绕以下检查组织：
-
-1. 源域与目标域阶段使用记录中的 checkpoint 谱系。
-2. EAST 静态预测先完成并封存，在线分支再重置到相同的迁移后父模型。
-3. 每一炮都先封存预测和 query 决策，再揭示被选炮的结局。
-4. 证据构建器从 HDF5 真值和归档告警时间重新计算标签与 J-TEXT lead，发现不一致时 fail closed。
-5. 大型在线账本会针对解压后的原始字节做哈希校验；仅有提交的指标摘要不算成功复现。
-
-当前发布范围见 [RELEASE_SCOPE.md](RELEASE_SCOPE.md)。历史 v8 不属于最终论文谱系的默认复现合同。
-
-<a id="cn-evidence-map"></a>
-## 证据映射
-
-| 问题 | 主要证据 | 可以证明什么 |
-|---|---|---|
-| 在线顺序是否因果？ | [图 1](experiments/transfer_methods_2026/paper_grade_package/figures/fig1_protocol_and_causal_contract.svg)、[online artifacts](experiments/transfer_methods_2026/paper_grade_package/evidence/primary_online_artifacts/)、[validator](experiments/transfer_methods_2026/paper_grade_package/scripts/validate_paper_package.py) | 记录的 `predict → seal → query → reveal → later-shot update` 顺序 |
-| 三阶段均值来自哪里？ | [three_stage_results.json](experiments/transfer_methods_2026/paper_grade_package/evidence/three_stage_results.json)、[table_three_stage.csv](experiments/transfer_methods_2026/paper_grade_package/evidence/table_three_stage.csv) | 与哈希绑定的机器结果摘要 |
-| 哪些标签和炮表权威？ | [DATA_CONTRACT.md](DATA_CONTRACT.md)、[切分清单](config/splits/)、HDF5 `/meta/*` | 数据和标签谱系；CSV/JSON 不覆盖标签 |
-| 投稿图是否有哈希账本？ | [figure_manifest.json](experiments/transfer_methods_2026/paper_grade_package/figures/figure_manifest.json) | 图的输入/输出 SHA-256 记录 |
-| 源表示是否摆脱 shortcut？ | [source_context_shortcut_audit.json](experiments/transfer_methods_2026/paper_grade_package/evidence/source_context_shortcut_audit.json)、[图 3](experiments/transfer_methods_2026/paper_grade_package/figures/fig3_source_shortcut_and_padfix_tradeoff.svg) | 已记录的 shortcut 失败与 PADFIX 权衡，而不是“无 shortcut”结论 |
-| 标签访问有哪些控制？ | [equal-label front-load 证据](experiments/transfer_methods_2026/paper_grade_package/evidence/equal_label_budget_frontload_v2/)、[图 8](experiments/transfer_methods_2026/paper_grade_package/figures/fig8_equal_label_budget_frontload_ablation.svg) | 诊断性的 selected-label/front-load 对照，不是等计算量 causal random-query 结果 |
-| 主动查询是否优于因果随机日程？ | [causal random-query 证据](experiments/transfer_methods_2026/paper_grade_package/evidence/causal_random_query_online_v1/)、[图 9](experiments/transfer_methods_2026/paper_grade_package/figures/fig9_active_vs_causal_random_query.svg) | 三个 seed 上主动策略效用均高于随机均值，但实际更新尝试数不同，不能解释为 selector-only 等 FLOP 因果效应 |
-| J-TEXT 迁移是否优于只用 EAST 拟合？ | [target-only 证据](experiments/transfer_methods_2026/paper_grade_package/evidence/east_target_only_v1/)、[图 10](experiments/transfer_methods_2026/paper_grade_package/figures/fig10_target_only_vs_transfer.svg) | balanced360 上迁移相对严格 EAST-only 提高净效用与提前量，同时略增 FPR；两臂容量并不完全匹配 |
-| AdvancedTime 能否直接替换固定正样本上界？ | [中文对照报告](experiments/transfer_methods_2026/paper_grade_package/ADVANCED_TIME_LABEL_ABLATION_zh.md)、[v2 三 seed 机器证据](experiments/transfer_methods_2026/paper_grade_package/evidence/advanced_time_label_ablation_v2/) | 完整静态链 2×2 消融；旧 `0.5x` 是漏掉 shared/private/state-machine 的无效裸模型结果。动态源标签降低平均 FPR，但 seed133 TPR@30=0.7667，未获准替换主标签 |
-| 本发布需要哪些精确原始文件？ | [可移植 HDF5 内容清单](experiments/transfer_methods_2026/paper_grade_package/evidence/required_hdf5_content_manifest.json) | 对全部2,203个必需 J-TEXT/EAST HDF5 文件记录 SHA-256，且不嵌入本机绝对路径 |
-| 是否达到 Nature Portfolio 确认性或部署性结论门槛？ | [readiness 审计](experiments/transfer_methods_2026/paper_grade_package/NATURE_PORTFOLIO_READINESS.md) | 没有；当前上限是可审计的开发论文包 |
-| 多方审核是否认可这个边界？ | [五方审核](experiments/transfer_methods_2026/paper_grade_package/FIVE_WAY_AUDIT.md) | 五方均通过本地包完整性、均否决确认性 readiness，并记录了已修复项 |
-
-<a id="cn-completed-controls"></a>
-## 已完成的开发控制
-
-因果块匹配 random-query 回放已完成：seeds 131/133/137 各有三个随机日程。主动相对随机均值的 `TPR@30−FPR` 分别为 `+0.0204/+0.0093/+0.0185`，等 seed 均值为 `+0.0160`。但主动策略触发的实际错误条件化炮间更新尝试约为随机策略的 `2.21×`，所以这支持的是开发流上的完整主动机制，而不是 selector-only 等 FLOP 因果效应，也不能让 balanced360 事后变成独立确认集。
-
-严格 EAST-only baseline 也已完成。其等 seed `TPR@30−FPR=0.6519`，J-TEXT→EAST static 为 `0.6741`；迁移提高 TPR 和提前量，也带来小幅 FPR 增加。EAST-only 会更新完整随机初始化 encoder，而迁移只更新受限目标路径，因此该对照说明目标数据可识别性和迁移增量，不是完全等容量架构消融。
-
-AdvancedTime 正样本上界已用 seeds 131/133/137 重新完成 2×2 控制。v1 的 `TPR@30=0.50–0.53` 来自错误的裸 `encoder/head` 单阈值评估，未运行 shared hazard、EAST-private raw8 和双阈值状态机，现已撤回。v2 只替换破裂炮正窗口上界：J-TEXT 使用 `max(25 ms, AdvancedTime)`，EAST 使用 `max(125 ms, AdvancedTime)`，缺失时回退到对应下限；炮级结局和 DownTime 仍只认 HDF5。完整 fixed/fixed 链精确复现三 seed 均值 `TPR@30=0.8407、FPR=0.1667`。动态 J-TEXT 标签把 21,912 个正端点缩减为 5,556 个，迁移后平均 FPR 降至 0.1370，但平均 TPR@30 降至 0.8222，且 seed133 只有 0.7667，因此没有晋级。完整逐 seed 结果和纠错依据见[中文对照报告](experiments/transfer_methods_2026/paper_grade_package/ADVANCED_TIME_LABEL_ABLATION_zh.md)。
-
-从原始 HDF5 复现该控制时，可显式绑定原工程中的 JSON；输出目录必须不存在：
-
-```bash
-conda run -n rl_env python \
-  experiments/transfer_methods_2026/run_advanced_time_label_ablation.py \
-  --seed 131 \
-  --data-root "$FUSION_DATA_ROOT" \
-  --jtext-advanced-time /absolute/path/to/Fuison/shot_list/J-TEXT/AdvancedTime_J-TEXT.json \
-  --east-advanced-time /absolute/path/to/Fuison/shot_list/EAST/AdvancedTime_EAST.json \
-  --output results/generated/advanced-time-label-v2-seed131
-```
-
-seed131 的低预算 **Q30** 是 balanced360 顺序流推进时，由只使用当前/过去
-无标签证据的炮级查询价值、滚动阈值、token 预算和探索机制因果选出的；只有
-在选择完成后才冻结清单，让 `inter_only`、`intra+inter` 和30炮前置迁移复用
-完全相同的标签身份。它不是人工预设 cohort，也不是看完360炮后的全局 top-30。
-30个炮号与流位置见 [Q30 manifest](experiments/transfer_methods_2026/paper_grade_package/evidence/fixed_query_low_budget30_seed131.json)。
-原始360行逐炮决策账本在 tmpfs 重启后丢失，因此 Q30 只能作为开发诊断，不能
-作为可独立重放的 selector 证据。主 v3c 是另一组实验，三个 seed 分别动态查询
-`102/90/99` 炮。
-
-<a id="cn-prospective-seal"></a>
-## 未来独立确认封存
-
-balanced360 不能重新变成独立确认集，但未来实验的结局前合同已经可以执行。
-先用一个与 support 拟合和确认流都互斥的新目标验证 cohort 生成并提交阈值产物；
-在打开任何确认流结局前：
-
-1. 将[未来确认模板](configs/prospective_east_confirmation.template.json)复制到
-   checkout 外；
-2. 替换其中 git SHA、目标验证阈值、预封存随机日程和冻结执行计划占位符；
-3. 分别提供只含单列递增炮号的目标验证炮表和未来确认炮表；
-4. 在干净、已提交的 checkout 上生成并复核外部 seal：
-
-```bash
-conda run -n rl_env python -m reproducibility.cli prospective-seal \
-  --spec /external/preregistration.json \
-  --validation-roster /external/target-validation-shots.txt \
-  --roster /external/future-confirmation-shots.txt \
-  --output /external/future-confirmation.seal.json
-
-conda run -n rl_env python -m reproducibility.cli prospective-verify \
-  --seal /external/future-confirmation.seal.json \
-  --spec /external/preregistration.json \
-  --validation-roster /external/target-validation-shots.txt \
-  --roster /external/future-confirmation-shots.txt
-```
-
-工具会对既有炮重叠、验证/确认重叠、含标签或元数据的炮表、脏工作树、git SHA
-不匹配、冻结产物缺失和封存后字节变化全部失败关闭。它只补齐预注册能力，并不
-假装尚未获得的新未来流已经完成。
-
-<a id="cn-limitations"></a>
-## 限制与结论边界
-
-- `balanced360` 参与了架构和 972 个候选的筛选，是方法开发流，不是未触碰过的最终测试集。
-- J-TEXT `VAL160`/`TEST220` 是非时序、count-aligned 的平衡比较集，不能证明源域的前瞻性泛化。
-- `support110` 同时用于目标拟合和阈值选择，不存在独立 EAST 验证队列。
-- 主源父模型存在 padding/context shortcut，并未通过注册的 shortcut gate。PADFIX 通过上下文检查，但在冻结目标策略下出现负迁移。
-- 没有独立、从未用于开发的按时间顺序 EAST 未来流；causal random-query 已完成，但错误触发的实际计算量不同且仍属于开发流。
-- 尚未完成装置侧部署验收，包括延迟、执行器集成、故障安全和跨 campaign 运行。
-- 本仓库不把当前证据表述为 Nature Portfolio-ready 的确认性结果，也不声称模型学到了所有因果破裂机制。
-
-唯一能改变结论的下一步，是在新获得的按时间顺序 EAST 炮流上完全冻结代码、阈值、目标验证规则、静态/在线/无标签分支和等预算随机查询分支，并在揭示结局前完成封存。不要在当前 `balanced360` 上继续调参来改变上述边界。
-
-<a id="cn-layout"></a>
-## 仓库结构
+在线每炮必须遵守：
 
 ```text
-reproducibility/                                       # 数据审计与 v3c 回放 CLI
-experiments/transfer_methods_2026/paper_grade_package/ # 论文、图、账本与验证器
-IMPLEMENTATION_DETAILS_CN.md                            # 损失、价值函数和更新顺序
-config/mainline_code_manifest.json                     # 主线代码/父状态机器清单
-config/splits/                                          # 固定的 J-TEXT/EAST 切分合同
-splits/                                                 # 可读的 J-TEXT 炮号清单
-results/reference/                                      # 小型参考摘要
-tests/                                                  # 复现与实验合同测试
+predict
+→ endpoint/shot seal
+→ query decision seal
+→ reveal selected outcome only
+→ update or rollback
+→ next shot
 ```
 
-<a id="cn-citation"></a>
-## 引用与许可证
+当前炮的 `IsDisrupt`、`DownTime`、AdvancedTime 和未来端点在当前炮预测时不可达。未查询炮的结局不能进入参数更新或表型记忆。
 
-仓库引用元数据见 [CITATION.cff](CITATION.cff)。当前 checkout 声明使用 [MIT 许可证](LICENSE)。本 README 不编造 DOI、不添加作者名单，也不把证据升级为部署或 Nature Portfolio-ready 结论；最终作者、机构、版本和 DOI 元数据须由维护者提供。
+## 仓库主线文件
+
+```text
+experiments/transfer_methods_2026/
+├── train_jtext_source_transformer.py
+├── run_selected_full_mainline.py
+├── run_unified_online_active.py
+├── jtext_online_adapter.py
+├── run_jtext_online_active.py
+└── paper_grade_package/
+    ├── DYNAMIC_MAINLINE_TECHNICAL_REPORT_zh.md
+    ├── technical_report_dynamic/main.tex
+    ├── configs/primary_chain_dynamic_source_v1.json
+    ├── configs/jtext_online_active_v1.json
+    └── scripts/build_dynamic_report.py
+```
+
+## 历史结果隔离
+
+旧 paper-v3c archived-parent 材料只作为历史归档，不是本分支默认结果。活动 README 和动态报告不再混写旧主结果；若需要复核历史实验，应在独立归档入口中明确标注其 checkpoint、标签和报警口径。
+
+## 许可证与引用
+
+许可证见 [LICENSE](LICENSE)，引用元数据见 [CITATION.cff](CITATION.cff)。提交论文或向技术部门交付前，仍须补充独立未来流确认；当前机器证据、产物哈希和版本 SHA 已固化在动态主线包中。

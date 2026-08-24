@@ -1,0 +1,742 @@
+{
+  "config": {
+    "east_root_role": "selected_full_mainline",
+    "jtext_root_role": "jtext_online_v2",
+    "legacy_fallback": false,
+    "seeds": [
+      131,
+      133,
+      137
+    ],
+    "sha256": "55da0f3c148c06dd987e6670aa3f379bb48b511d489ea7a2e8f1bb6739a9077d"
+  },
+  "figures": [
+    {
+      "id": "F1",
+      "kind": "conceptual_non_data",
+      "output_sha256": {
+        "pdf": "5d7a91bf82d6d3ce0a1fdace64481905f200565ad5949623882dcae88dcda529",
+        "png": "c869f8a3987eb8698806cfa303cf19cfe09131b2370c523063e32f68fd1df470",
+        "svg": "49c808b6c17d354256e126beb001ecce7e3cf8293754f28ba84aeddfd5192cdc"
+      },
+      "outputs": {
+        "pdf": {
+          "path": "F1_causal_data_role_pipeline.pdf",
+          "sha256": "5d7a91bf82d6d3ce0a1fdace64481905f200565ad5949623882dcae88dcda529"
+        },
+        "png": {
+          "path": "F1_causal_data_role_pipeline.png",
+          "sha256": "c869f8a3987eb8698806cfa303cf19cfe09131b2370c523063e32f68fd1df470"
+        },
+        "svg": {
+          "path": "F1_causal_data_role_pipeline.svg",
+          "sha256": "49c808b6c17d354256e126beb001ecce7e3cf8293754f28ba84aeddfd5192cdc"
+        }
+      },
+      "panels": [
+        {
+          "claim_status": "CONCEPTUAL_NON_DATA",
+          "id": "F1A",
+          "kind": "conceptual_non_data",
+          "output_sha256": {
+            "pdf": "5d7a91bf82d6d3ce0a1fdace64481905f200565ad5949623882dcae88dcda529",
+            "png": "c869f8a3987eb8698806cfa303cf19cfe09131b2370c523063e32f68fd1df470",
+            "svg": "49c808b6c17d354256e126beb001ecce7e3cf8293754f28ba84aeddfd5192cdc"
+          }
+        },
+        {
+          "claim_status": "CONCEPTUAL_NON_DATA",
+          "id": "F1B",
+          "kind": "conceptual_non_data",
+          "output_sha256": {
+            "pdf": "5d7a91bf82d6d3ce0a1fdace64481905f200565ad5949623882dcae88dcda529",
+            "png": "c869f8a3987eb8698806cfa303cf19cfe09131b2370c523063e32f68fd1df470",
+            "svg": "49c808b6c17d354256e126beb001ecce7e3cf8293754f28ba84aeddfd5192cdc"
+          }
+        },
+        {
+          "claim_status": "CONCEPTUAL_NON_DATA",
+          "event_order": [
+            "predict",
+            "endpoint_seal",
+            "optional_intra_update",
+            "later_endpoint_prediction",
+            "shot_seal",
+            "query",
+            "reveal",
+            "persistent_update_or_rollback"
+          ],
+          "id": "F1C",
+          "kind": "conceptual_non_data",
+          "output_sha256": {
+            "pdf": "5d7a91bf82d6d3ce0a1fdace64481905f200565ad5949623882dcae88dcda529",
+            "png": "c869f8a3987eb8698806cfa303cf19cfe09131b2370c523063e32f68fd1df470",
+            "svg": "49c808b6c17d354256e126beb001ecce7e3cf8293754f28ba84aeddfd5192cdc"
+          }
+        }
+      ],
+      "title": "Causal and data-role contract"
+    },
+    {
+      "id": "F2",
+      "kind": "quantitative_hash_bound",
+      "output_sha256": {
+        "pdf": "e2b4895ad901993d8b262e8bea3d6dd3f018c5a2558a1748c9efd01e600748cf",
+        "png": "3f4804cdd94e90153c85538eda2bce7a20965818189f386c50ef3cddfd19494d",
+        "svg": "5f1ba998c6bbfffee33bf01bd4ac600877a4055c5f8981a274bfcfac7a047c40"
+      },
+      "outputs": {
+        "pdf": {
+          "path": "F2_jtext_source_three_seed.pdf",
+          "sha256": "e2b4895ad901993d8b262e8bea3d6dd3f018c5a2558a1748c9efd01e600748cf"
+        },
+        "png": {
+          "path": "F2_jtext_source_three_seed.png",
+          "sha256": "3f4804cdd94e90153c85538eda2bce7a20965818189f386c50ef3cddfd19494d"
+        },
+        "svg": {
+          "path": "F2_jtext_source_three_seed.svg",
+          "sha256": "5f1ba998c6bbfffee33bf01bd4ac600877a4055c5f8981a274bfcfac7a047c40"
+        }
+      },
+      "panels": [
+        {
+          "caption": "J-TEXT source performance (TEST220). Values are recomputed after prediction sealing; error bars are not pooled across shots.",
+          "caption_sha256": "ba11cbde6c681ba7e6b85119c96f0ed7f2c8a2c86330ffbba7ca1a60a68b3425",
+          "claim_status": "TEST_DRIVEN_EXPLORATION",
+          "cohort": "J-TEXT TEST220",
+          "config_sha256": "55da0f3c148c06dd987e6670aa3f379bb48b511d489ea7a2e8f1bb6739a9077d",
+          "generator_sha256": "b764b5341849be137a87d0b13a508f273d9cc3588981e3be0f9b9c1815e7521a",
+          "id": "F2A",
+          "input_sha256": [
+            "04e7319843304d28ec58e6b2b483bf85c5b4dea8dedd521825a6625d319dae2e"
+          ],
+          "inputs": [
+            {
+              "role": "dynamic_evidence_report",
+              "sha256": "04e7319843304d28ec58e6b2b483bf85c5b4dea8dedd521825a6625d319dae2e"
+            }
+          ],
+          "kind": "quantitative",
+          "label_policy": "J-TEXT max(25ms, AdvancedTime); EAST fixed125 support labels",
+          "label_policy_sha256": "0dd9b725ecaeb5c665d8d69c86638dbf1bf3ecde9f5a7b4e948cad2131877862",
+          "model_seed_count": 3,
+          "output_sha256": {
+            "pdf": "e2b4895ad901993d8b262e8bea3d6dd3f018c5a2558a1748c9efd01e600748cf",
+            "png": "3f4804cdd94e90153c85538eda2bce7a20965818189f386c50ef3cddfd19494d",
+            "svg": "5f1ba998c6bbfffee33bf01bd4ac600877a4055c5f8981a274bfcfac7a047c40"
+          },
+          "parent_sha256": null,
+          "physical_shot_count": 220,
+          "row_selector": "all sealed rows in the named cohort",
+          "seed_count": 3,
+          "statistic": "sealed-shot operational metrics",
+          "status": "available",
+          "title": "J-TEXT source performance (TEST220)",
+          "uncertainty": "three seeds shown separately; no pseudo-replication",
+          "values": [
+            {
+              "evidence_sha256": "04e7319843304d28ec58e6b2b483bf85c5b4dea8dedd521825a6625d319dae2e"
+            }
+          ]
+        },
+        {
+          "caption": "J-TEXT source performance (TEST220). Values are recomputed after prediction sealing; error bars are not pooled across shots.",
+          "caption_sha256": "ba11cbde6c681ba7e6b85119c96f0ed7f2c8a2c86330ffbba7ca1a60a68b3425",
+          "claim_status": "TEST_DRIVEN_EXPLORATION",
+          "cohort": "J-TEXT TEST220",
+          "config_sha256": "55da0f3c148c06dd987e6670aa3f379bb48b511d489ea7a2e8f1bb6739a9077d",
+          "generator_sha256": "b764b5341849be137a87d0b13a508f273d9cc3588981e3be0f9b9c1815e7521a",
+          "id": "F2B",
+          "input_sha256": [
+            "04e7319843304d28ec58e6b2b483bf85c5b4dea8dedd521825a6625d319dae2e"
+          ],
+          "inputs": [
+            {
+              "role": "dynamic_evidence_report",
+              "sha256": "04e7319843304d28ec58e6b2b483bf85c5b4dea8dedd521825a6625d319dae2e"
+            }
+          ],
+          "kind": "quantitative",
+          "label_policy": "J-TEXT max(25ms, AdvancedTime); EAST fixed125 support labels",
+          "label_policy_sha256": "0dd9b725ecaeb5c665d8d69c86638dbf1bf3ecde9f5a7b4e948cad2131877862",
+          "model_seed_count": 3,
+          "output_sha256": {
+            "pdf": "e2b4895ad901993d8b262e8bea3d6dd3f018c5a2558a1748c9efd01e600748cf",
+            "png": "3f4804cdd94e90153c85538eda2bce7a20965818189f386c50ef3cddfd19494d",
+            "svg": "5f1ba998c6bbfffee33bf01bd4ac600877a4055c5f8981a274bfcfac7a047c40"
+          },
+          "parent_sha256": null,
+          "physical_shot_count": 220,
+          "row_selector": "all sealed rows in the named cohort",
+          "seed_count": 3,
+          "statistic": "sealed-shot operational metrics",
+          "status": "available",
+          "title": "J-TEXT source performance (TEST220)",
+          "uncertainty": "three seeds shown separately; no pseudo-replication",
+          "values": [
+            {
+              "evidence_sha256": "04e7319843304d28ec58e6b2b483bf85c5b4dea8dedd521825a6625d319dae2e"
+            }
+          ]
+        },
+        {
+          "caption": "J-TEXT source performance (TEST220). Values are recomputed after prediction sealing; error bars are not pooled across shots.",
+          "caption_sha256": "ba11cbde6c681ba7e6b85119c96f0ed7f2c8a2c86330ffbba7ca1a60a68b3425",
+          "claim_status": "TEST_DRIVEN_EXPLORATION",
+          "cohort": "J-TEXT TEST220",
+          "config_sha256": "55da0f3c148c06dd987e6670aa3f379bb48b511d489ea7a2e8f1bb6739a9077d",
+          "generator_sha256": "b764b5341849be137a87d0b13a508f273d9cc3588981e3be0f9b9c1815e7521a",
+          "id": "F2C",
+          "input_sha256": [
+            "04e7319843304d28ec58e6b2b483bf85c5b4dea8dedd521825a6625d319dae2e"
+          ],
+          "inputs": [
+            {
+              "role": "dynamic_evidence_report",
+              "sha256": "04e7319843304d28ec58e6b2b483bf85c5b4dea8dedd521825a6625d319dae2e"
+            }
+          ],
+          "kind": "quantitative",
+          "label_policy": "J-TEXT max(25ms, AdvancedTime); EAST fixed125 support labels",
+          "label_policy_sha256": "0dd9b725ecaeb5c665d8d69c86638dbf1bf3ecde9f5a7b4e948cad2131877862",
+          "model_seed_count": 3,
+          "output_sha256": {
+            "pdf": "e2b4895ad901993d8b262e8bea3d6dd3f018c5a2558a1748c9efd01e600748cf",
+            "png": "3f4804cdd94e90153c85538eda2bce7a20965818189f386c50ef3cddfd19494d",
+            "svg": "5f1ba998c6bbfffee33bf01bd4ac600877a4055c5f8981a274bfcfac7a047c40"
+          },
+          "parent_sha256": null,
+          "physical_shot_count": 220,
+          "row_selector": "all sealed rows in the named cohort",
+          "seed_count": 3,
+          "statistic": "sealed-shot operational metrics",
+          "status": "available",
+          "title": "J-TEXT source performance (TEST220)",
+          "uncertainty": "three seeds shown separately; no pseudo-replication",
+          "values": [
+            {
+              "evidence_sha256": "04e7319843304d28ec58e6b2b483bf85c5b4dea8dedd521825a6625d319dae2e"
+            }
+          ]
+        }
+      ],
+      "title": "J-TEXT source performance (TEST220)"
+    },
+    {
+      "id": "F3",
+      "kind": "quantitative_hash_bound",
+      "output_sha256": {
+        "pdf": "473fcd04914bf4440d61a03b83123b7318aec04e722743437251275eb126a8b2",
+        "png": "ac757037fbbc6054f82b96f5a54740b37a0a88835696c9fb4aec0eb8d030e2e1",
+        "svg": "8413eb1c9e79d5305239acd087be060089a5ffc6279524c6b5fb32f6f56a14ec"
+      },
+      "outputs": {
+        "pdf": {
+          "path": "F3_east_static_online_three_seed.pdf",
+          "sha256": "473fcd04914bf4440d61a03b83123b7318aec04e722743437251275eb126a8b2"
+        },
+        "png": {
+          "path": "F3_east_static_online_three_seed.png",
+          "sha256": "ac757037fbbc6054f82b96f5a54740b37a0a88835696c9fb4aec0eb8d030e2e1"
+        },
+        "svg": {
+          "path": "F3_east_static_online_three_seed.svg",
+          "sha256": "8413eb1c9e79d5305239acd087be060089a5ffc6279524c6b5fb32f6f56a14ec"
+        }
+      },
+      "panels": [
+        {
+          "caption": "EAST static transfer and chronological online adaptation (balanced360). Values are recomputed after prediction sealing; error bars are not pooled across shots.",
+          "caption_sha256": "b62606f8eeb998fe83612f5306ce37b9082ca7cb680f54187e44782520769825",
+          "claim_status": "TEST_DRIVEN_EXPLORATION",
+          "cohort": "EAST balanced360",
+          "config_sha256": "55da0f3c148c06dd987e6670aa3f379bb48b511d489ea7a2e8f1bb6739a9077d",
+          "generator_sha256": "b764b5341849be137a87d0b13a508f273d9cc3588981e3be0f9b9c1815e7521a",
+          "id": "F3A",
+          "input_sha256": [
+            "04e7319843304d28ec58e6b2b483bf85c5b4dea8dedd521825a6625d319dae2e"
+          ],
+          "inputs": [
+            {
+              "role": "dynamic_evidence_report",
+              "sha256": "04e7319843304d28ec58e6b2b483bf85c5b4dea8dedd521825a6625d319dae2e"
+            }
+          ],
+          "kind": "quantitative",
+          "label_policy": "J-TEXT max(25ms, AdvancedTime); EAST fixed125 support labels",
+          "label_policy_sha256": "0dd9b725ecaeb5c665d8d69c86638dbf1bf3ecde9f5a7b4e948cad2131877862",
+          "model_seed_count": 3,
+          "output_sha256": {
+            "pdf": "473fcd04914bf4440d61a03b83123b7318aec04e722743437251275eb126a8b2",
+            "png": "ac757037fbbc6054f82b96f5a54740b37a0a88835696c9fb4aec0eb8d030e2e1",
+            "svg": "8413eb1c9e79d5305239acd087be060089a5ffc6279524c6b5fb32f6f56a14ec"
+          },
+          "parent_sha256": null,
+          "physical_shot_count": 360,
+          "row_selector": "all sealed rows in the named cohort",
+          "seed_count": 3,
+          "statistic": "sealed-shot operational metrics",
+          "status": "available",
+          "title": "EAST static transfer and chronological online adaptation (balanced360)",
+          "uncertainty": "three seeds shown separately; no pseudo-replication",
+          "values": [
+            {
+              "evidence_sha256": "04e7319843304d28ec58e6b2b483bf85c5b4dea8dedd521825a6625d319dae2e"
+            }
+          ]
+        },
+        {
+          "caption": "EAST static transfer and chronological online adaptation (balanced360). Values are recomputed after prediction sealing; error bars are not pooled across shots.",
+          "caption_sha256": "b62606f8eeb998fe83612f5306ce37b9082ca7cb680f54187e44782520769825",
+          "claim_status": "TEST_DRIVEN_EXPLORATION",
+          "cohort": "EAST balanced360",
+          "config_sha256": "55da0f3c148c06dd987e6670aa3f379bb48b511d489ea7a2e8f1bb6739a9077d",
+          "generator_sha256": "b764b5341849be137a87d0b13a508f273d9cc3588981e3be0f9b9c1815e7521a",
+          "id": "F3B",
+          "input_sha256": [
+            "04e7319843304d28ec58e6b2b483bf85c5b4dea8dedd521825a6625d319dae2e"
+          ],
+          "inputs": [
+            {
+              "role": "dynamic_evidence_report",
+              "sha256": "04e7319843304d28ec58e6b2b483bf85c5b4dea8dedd521825a6625d319dae2e"
+            }
+          ],
+          "kind": "quantitative",
+          "label_policy": "J-TEXT max(25ms, AdvancedTime); EAST fixed125 support labels",
+          "label_policy_sha256": "0dd9b725ecaeb5c665d8d69c86638dbf1bf3ecde9f5a7b4e948cad2131877862",
+          "model_seed_count": 3,
+          "output_sha256": {
+            "pdf": "473fcd04914bf4440d61a03b83123b7318aec04e722743437251275eb126a8b2",
+            "png": "ac757037fbbc6054f82b96f5a54740b37a0a88835696c9fb4aec0eb8d030e2e1",
+            "svg": "8413eb1c9e79d5305239acd087be060089a5ffc6279524c6b5fb32f6f56a14ec"
+          },
+          "parent_sha256": null,
+          "physical_shot_count": 360,
+          "row_selector": "all sealed rows in the named cohort",
+          "seed_count": 3,
+          "statistic": "sealed-shot operational metrics",
+          "status": "available",
+          "title": "EAST static transfer and chronological online adaptation (balanced360)",
+          "uncertainty": "three seeds shown separately; no pseudo-replication",
+          "values": [
+            {
+              "evidence_sha256": "04e7319843304d28ec58e6b2b483bf85c5b4dea8dedd521825a6625d319dae2e"
+            }
+          ]
+        },
+        {
+          "caption": "EAST static transfer and chronological online adaptation (balanced360). Values are recomputed after prediction sealing; error bars are not pooled across shots.",
+          "caption_sha256": "b62606f8eeb998fe83612f5306ce37b9082ca7cb680f54187e44782520769825",
+          "claim_status": "TEST_DRIVEN_EXPLORATION",
+          "cohort": "EAST balanced360",
+          "config_sha256": "55da0f3c148c06dd987e6670aa3f379bb48b511d489ea7a2e8f1bb6739a9077d",
+          "generator_sha256": "b764b5341849be137a87d0b13a508f273d9cc3588981e3be0f9b9c1815e7521a",
+          "id": "F3C",
+          "input_sha256": [
+            "04e7319843304d28ec58e6b2b483bf85c5b4dea8dedd521825a6625d319dae2e"
+          ],
+          "inputs": [
+            {
+              "role": "dynamic_evidence_report",
+              "sha256": "04e7319843304d28ec58e6b2b483bf85c5b4dea8dedd521825a6625d319dae2e"
+            }
+          ],
+          "kind": "quantitative",
+          "label_policy": "J-TEXT max(25ms, AdvancedTime); EAST fixed125 support labels",
+          "label_policy_sha256": "0dd9b725ecaeb5c665d8d69c86638dbf1bf3ecde9f5a7b4e948cad2131877862",
+          "model_seed_count": 3,
+          "output_sha256": {
+            "pdf": "473fcd04914bf4440d61a03b83123b7318aec04e722743437251275eb126a8b2",
+            "png": "ac757037fbbc6054f82b96f5a54740b37a0a88835696c9fb4aec0eb8d030e2e1",
+            "svg": "8413eb1c9e79d5305239acd087be060089a5ffc6279524c6b5fb32f6f56a14ec"
+          },
+          "parent_sha256": null,
+          "physical_shot_count": 360,
+          "row_selector": "all sealed rows in the named cohort",
+          "seed_count": 3,
+          "statistic": "sealed-shot operational metrics",
+          "status": "available",
+          "title": "EAST static transfer and chronological online adaptation (balanced360)",
+          "uncertainty": "three seeds shown separately; no pseudo-replication",
+          "values": [
+            {
+              "evidence_sha256": "04e7319843304d28ec58e6b2b483bf85c5b4dea8dedd521825a6625d319dae2e"
+            }
+          ]
+        }
+      ],
+      "title": "EAST static transfer and chronological online adaptation (balanced360)"
+    },
+    {
+      "id": "F4",
+      "kind": "quantitative_hash_bound",
+      "output_sha256": {
+        "pdf": "d0377b0ef14bab9c49ea060a17b49ad94eeff091e6c4cf889dcfb6ad868189a5",
+        "png": "d92e42db31003b27f754ac1e60c719d5f30498f9b2763b21aa310d825914ea9b",
+        "svg": "72f90b33b8ee05f6ab3c217e5b9d6185e2466a81669a8ac0f467774dada387fa"
+      },
+      "outputs": {
+        "pdf": {
+          "path": "F4_jtext_online_ablation.pdf",
+          "sha256": "d0377b0ef14bab9c49ea060a17b49ad94eeff091e6c4cf889dcfb6ad868189a5"
+        },
+        "png": {
+          "path": "F4_jtext_online_ablation.png",
+          "sha256": "d92e42db31003b27f754ac1e60c719d5f30498f9b2763b21aa310d825914ea9b"
+        },
+        "svg": {
+          "path": "F4_jtext_online_ablation.svg",
+          "sha256": "72f90b33b8ee05f6ab3c217e5b9d6185e2466a81669a8ac0f467774dada387fa"
+        }
+      },
+      "panels": [
+        {
+          "caption": "J-TEXT online component ablations (seed 131). Values are recomputed after prediction sealing; error bars are not pooled across shots.",
+          "caption_sha256": "0765662d730452c31473da4795c781627139b04d0026292115fcada374fdcd7c",
+          "claim_status": "TEST_DRIVEN_EXPLORATION",
+          "cohort": "J-TEXT TEST220",
+          "config_sha256": "55da0f3c148c06dd987e6670aa3f379bb48b511d489ea7a2e8f1bb6739a9077d",
+          "generator_sha256": "b764b5341849be137a87d0b13a508f273d9cc3588981e3be0f9b9c1815e7521a",
+          "id": "F4A",
+          "input_sha256": [
+            "04e7319843304d28ec58e6b2b483bf85c5b4dea8dedd521825a6625d319dae2e"
+          ],
+          "inputs": [
+            {
+              "role": "dynamic_evidence_report",
+              "sha256": "04e7319843304d28ec58e6b2b483bf85c5b4dea8dedd521825a6625d319dae2e"
+            }
+          ],
+          "kind": "quantitative",
+          "label_policy": "J-TEXT max(25ms, AdvancedTime); EAST fixed125 support labels",
+          "label_policy_sha256": "0dd9b725ecaeb5c665d8d69c86638dbf1bf3ecde9f5a7b4e948cad2131877862",
+          "model_seed_count": 3,
+          "output_sha256": {
+            "pdf": "d0377b0ef14bab9c49ea060a17b49ad94eeff091e6c4cf889dcfb6ad868189a5",
+            "png": "d92e42db31003b27f754ac1e60c719d5f30498f9b2763b21aa310d825914ea9b",
+            "svg": "72f90b33b8ee05f6ab3c217e5b9d6185e2466a81669a8ac0f467774dada387fa"
+          },
+          "parent_sha256": null,
+          "physical_shot_count": 220,
+          "row_selector": "all sealed rows in the named cohort",
+          "seed_count": 3,
+          "statistic": "sealed-shot operational metrics",
+          "status": "available",
+          "title": "J-TEXT online component ablations (seed 131)",
+          "uncertainty": "three seeds shown separately; no pseudo-replication",
+          "values": [
+            {
+              "evidence_sha256": "04e7319843304d28ec58e6b2b483bf85c5b4dea8dedd521825a6625d319dae2e"
+            }
+          ]
+        },
+        {
+          "caption": "J-TEXT online component ablations (seed 131). Values are recomputed after prediction sealing; error bars are not pooled across shots.",
+          "caption_sha256": "0765662d730452c31473da4795c781627139b04d0026292115fcada374fdcd7c",
+          "claim_status": "TEST_DRIVEN_EXPLORATION",
+          "cohort": "J-TEXT TEST220",
+          "config_sha256": "55da0f3c148c06dd987e6670aa3f379bb48b511d489ea7a2e8f1bb6739a9077d",
+          "generator_sha256": "b764b5341849be137a87d0b13a508f273d9cc3588981e3be0f9b9c1815e7521a",
+          "id": "F4B",
+          "input_sha256": [
+            "04e7319843304d28ec58e6b2b483bf85c5b4dea8dedd521825a6625d319dae2e"
+          ],
+          "inputs": [
+            {
+              "role": "dynamic_evidence_report",
+              "sha256": "04e7319843304d28ec58e6b2b483bf85c5b4dea8dedd521825a6625d319dae2e"
+            }
+          ],
+          "kind": "quantitative",
+          "label_policy": "J-TEXT max(25ms, AdvancedTime); EAST fixed125 support labels",
+          "label_policy_sha256": "0dd9b725ecaeb5c665d8d69c86638dbf1bf3ecde9f5a7b4e948cad2131877862",
+          "model_seed_count": 3,
+          "output_sha256": {
+            "pdf": "d0377b0ef14bab9c49ea060a17b49ad94eeff091e6c4cf889dcfb6ad868189a5",
+            "png": "d92e42db31003b27f754ac1e60c719d5f30498f9b2763b21aa310d825914ea9b",
+            "svg": "72f90b33b8ee05f6ab3c217e5b9d6185e2466a81669a8ac0f467774dada387fa"
+          },
+          "parent_sha256": null,
+          "physical_shot_count": 220,
+          "row_selector": "all sealed rows in the named cohort",
+          "seed_count": 3,
+          "statistic": "sealed-shot operational metrics",
+          "status": "available",
+          "title": "J-TEXT online component ablations (seed 131)",
+          "uncertainty": "three seeds shown separately; no pseudo-replication",
+          "values": [
+            {
+              "evidence_sha256": "04e7319843304d28ec58e6b2b483bf85c5b4dea8dedd521825a6625d319dae2e"
+            }
+          ]
+        },
+        {
+          "caption": "J-TEXT online component ablations (seed 131). Values are recomputed after prediction sealing; error bars are not pooled across shots.",
+          "caption_sha256": "0765662d730452c31473da4795c781627139b04d0026292115fcada374fdcd7c",
+          "claim_status": "TEST_DRIVEN_EXPLORATION",
+          "cohort": "J-TEXT TEST220",
+          "config_sha256": "55da0f3c148c06dd987e6670aa3f379bb48b511d489ea7a2e8f1bb6739a9077d",
+          "generator_sha256": "b764b5341849be137a87d0b13a508f273d9cc3588981e3be0f9b9c1815e7521a",
+          "id": "F4C",
+          "input_sha256": [
+            "04e7319843304d28ec58e6b2b483bf85c5b4dea8dedd521825a6625d319dae2e"
+          ],
+          "inputs": [
+            {
+              "role": "dynamic_evidence_report",
+              "sha256": "04e7319843304d28ec58e6b2b483bf85c5b4dea8dedd521825a6625d319dae2e"
+            }
+          ],
+          "kind": "quantitative",
+          "label_policy": "J-TEXT max(25ms, AdvancedTime); EAST fixed125 support labels",
+          "label_policy_sha256": "0dd9b725ecaeb5c665d8d69c86638dbf1bf3ecde9f5a7b4e948cad2131877862",
+          "model_seed_count": 3,
+          "output_sha256": {
+            "pdf": "d0377b0ef14bab9c49ea060a17b49ad94eeff091e6c4cf889dcfb6ad868189a5",
+            "png": "d92e42db31003b27f754ac1e60c719d5f30498f9b2763b21aa310d825914ea9b",
+            "svg": "72f90b33b8ee05f6ab3c217e5b9d6185e2466a81669a8ac0f467774dada387fa"
+          },
+          "parent_sha256": null,
+          "physical_shot_count": 220,
+          "row_selector": "all sealed rows in the named cohort",
+          "seed_count": 3,
+          "statistic": "sealed-shot operational metrics",
+          "status": "available",
+          "title": "J-TEXT online component ablations (seed 131)",
+          "uncertainty": "three seeds shown separately; no pseudo-replication",
+          "values": [
+            {
+              "evidence_sha256": "04e7319843304d28ec58e6b2b483bf85c5b4dea8dedd521825a6625d319dae2e"
+            }
+          ]
+        }
+      ],
+      "title": "J-TEXT online component ablations (seed 131)"
+    },
+    {
+      "id": "F5",
+      "kind": "quantitative_hash_bound",
+      "output_sha256": {
+        "pdf": "a778f0ff6759ac0efb8ccf5203f39291d6820295d633bfd33e5eaec7b31a148c",
+        "png": "c144c718fa0abda01dda9e7494c96e71332cc9b6066b5169d308405e0dd959e8",
+        "svg": "771fce8368576c8e5c2fb9cd53fd15fe97ed59b0c454ef54740c6b0ef536762e"
+      },
+      "outputs": {
+        "pdf": {
+          "path": "F5_budget_falsification_controls.pdf",
+          "sha256": "a778f0ff6759ac0efb8ccf5203f39291d6820295d633bfd33e5eaec7b31a148c"
+        },
+        "png": {
+          "path": "F5_budget_falsification_controls.png",
+          "sha256": "c144c718fa0abda01dda9e7494c96e71332cc9b6066b5169d308405e0dd959e8"
+        },
+        "svg": {
+          "path": "F5_budget_falsification_controls.svg",
+          "sha256": "771fce8368576c8e5c2fb9cd53fd15fe97ed59b0c454ef54740c6b0ef536762e"
+        }
+      },
+      "panels": [
+        {
+          "caption": "Budget and equal-resource falsification controls (seed 131). Values are recomputed after prediction sealing; error bars are not pooled across shots.",
+          "caption_sha256": "e66b984828921474385faaeaa66979d7b93329a9bc1bd7a1216750df50cb843c",
+          "claim_status": "TEST_DRIVEN_EXPLORATION",
+          "cohort": "J-TEXT TEST220 / common suffix176",
+          "config_sha256": "55da0f3c148c06dd987e6670aa3f379bb48b511d489ea7a2e8f1bb6739a9077d",
+          "generator_sha256": "b764b5341849be137a87d0b13a508f273d9cc3588981e3be0f9b9c1815e7521a",
+          "id": "F5A",
+          "input_sha256": [
+            "04e7319843304d28ec58e6b2b483bf85c5b4dea8dedd521825a6625d319dae2e"
+          ],
+          "inputs": [
+            {
+              "role": "dynamic_evidence_report",
+              "sha256": "04e7319843304d28ec58e6b2b483bf85c5b4dea8dedd521825a6625d319dae2e"
+            }
+          ],
+          "kind": "quantitative",
+          "label_policy": "J-TEXT max(25ms, AdvancedTime); EAST fixed125 support labels",
+          "label_policy_sha256": "0dd9b725ecaeb5c665d8d69c86638dbf1bf3ecde9f5a7b4e948cad2131877862",
+          "model_seed_count": 3,
+          "output_sha256": {
+            "pdf": "a778f0ff6759ac0efb8ccf5203f39291d6820295d633bfd33e5eaec7b31a148c",
+            "png": "c144c718fa0abda01dda9e7494c96e71332cc9b6066b5169d308405e0dd959e8",
+            "svg": "771fce8368576c8e5c2fb9cd53fd15fe97ed59b0c454ef54740c6b0ef536762e"
+          },
+          "parent_sha256": null,
+          "physical_shot_count": 220,
+          "row_selector": "all sealed rows in the named cohort",
+          "seed_count": 3,
+          "statistic": "sealed-shot operational metrics",
+          "status": "available",
+          "title": "Budget and equal-resource falsification controls (seed 131)",
+          "uncertainty": "three seeds shown separately; no pseudo-replication",
+          "values": [
+            {
+              "evidence_sha256": "04e7319843304d28ec58e6b2b483bf85c5b4dea8dedd521825a6625d319dae2e"
+            }
+          ]
+        },
+        {
+          "caption": "Budget and equal-resource falsification controls (seed 131). Values are recomputed after prediction sealing; error bars are not pooled across shots.",
+          "caption_sha256": "e66b984828921474385faaeaa66979d7b93329a9bc1bd7a1216750df50cb843c",
+          "claim_status": "TEST_DRIVEN_EXPLORATION",
+          "cohort": "J-TEXT TEST220 / common suffix176",
+          "config_sha256": "55da0f3c148c06dd987e6670aa3f379bb48b511d489ea7a2e8f1bb6739a9077d",
+          "generator_sha256": "b764b5341849be137a87d0b13a508f273d9cc3588981e3be0f9b9c1815e7521a",
+          "id": "F5B",
+          "input_sha256": [
+            "04e7319843304d28ec58e6b2b483bf85c5b4dea8dedd521825a6625d319dae2e"
+          ],
+          "inputs": [
+            {
+              "role": "dynamic_evidence_report",
+              "sha256": "04e7319843304d28ec58e6b2b483bf85c5b4dea8dedd521825a6625d319dae2e"
+            }
+          ],
+          "kind": "quantitative",
+          "label_policy": "J-TEXT max(25ms, AdvancedTime); EAST fixed125 support labels",
+          "label_policy_sha256": "0dd9b725ecaeb5c665d8d69c86638dbf1bf3ecde9f5a7b4e948cad2131877862",
+          "model_seed_count": 3,
+          "output_sha256": {
+            "pdf": "a778f0ff6759ac0efb8ccf5203f39291d6820295d633bfd33e5eaec7b31a148c",
+            "png": "c144c718fa0abda01dda9e7494c96e71332cc9b6066b5169d308405e0dd959e8",
+            "svg": "771fce8368576c8e5c2fb9cd53fd15fe97ed59b0c454ef54740c6b0ef536762e"
+          },
+          "parent_sha256": null,
+          "physical_shot_count": 220,
+          "row_selector": "all sealed rows in the named cohort",
+          "seed_count": 3,
+          "statistic": "sealed-shot operational metrics",
+          "status": "available",
+          "title": "Budget and equal-resource falsification controls (seed 131)",
+          "uncertainty": "three seeds shown separately; no pseudo-replication",
+          "values": [
+            {
+              "evidence_sha256": "04e7319843304d28ec58e6b2b483bf85c5b4dea8dedd521825a6625d319dae2e"
+            }
+          ]
+        },
+        {
+          "caption": "Budget and equal-resource falsification controls (seed 131). Values are recomputed after prediction sealing; error bars are not pooled across shots.",
+          "caption_sha256": "e66b984828921474385faaeaa66979d7b93329a9bc1bd7a1216750df50cb843c",
+          "claim_status": "TEST_DRIVEN_EXPLORATION",
+          "cohort": "J-TEXT TEST220 / common suffix176",
+          "config_sha256": "55da0f3c148c06dd987e6670aa3f379bb48b511d489ea7a2e8f1bb6739a9077d",
+          "generator_sha256": "b764b5341849be137a87d0b13a508f273d9cc3588981e3be0f9b9c1815e7521a",
+          "id": "F5C",
+          "input_sha256": [
+            "04e7319843304d28ec58e6b2b483bf85c5b4dea8dedd521825a6625d319dae2e"
+          ],
+          "inputs": [
+            {
+              "role": "dynamic_evidence_report",
+              "sha256": "04e7319843304d28ec58e6b2b483bf85c5b4dea8dedd521825a6625d319dae2e"
+            }
+          ],
+          "kind": "quantitative",
+          "label_policy": "J-TEXT max(25ms, AdvancedTime); EAST fixed125 support labels",
+          "label_policy_sha256": "0dd9b725ecaeb5c665d8d69c86638dbf1bf3ecde9f5a7b4e948cad2131877862",
+          "model_seed_count": 3,
+          "output_sha256": {
+            "pdf": "a778f0ff6759ac0efb8ccf5203f39291d6820295d633bfd33e5eaec7b31a148c",
+            "png": "c144c718fa0abda01dda9e7494c96e71332cc9b6066b5169d308405e0dd959e8",
+            "svg": "771fce8368576c8e5c2fb9cd53fd15fe97ed59b0c454ef54740c6b0ef536762e"
+          },
+          "parent_sha256": null,
+          "physical_shot_count": 220,
+          "row_selector": "all sealed rows in the named cohort",
+          "seed_count": 3,
+          "statistic": "sealed-shot operational metrics",
+          "status": "available",
+          "title": "Budget and equal-resource falsification controls (seed 131)",
+          "uncertainty": "three seeds shown separately; no pseudo-replication",
+          "values": [
+            {
+              "evidence_sha256": "04e7319843304d28ec58e6b2b483bf85c5b4dea8dedd521825a6625d319dae2e"
+            }
+          ]
+        }
+      ],
+      "title": "Budget and equal-resource falsification controls (seed 131)"
+    }
+  ],
+  "generator": {
+    "path": "scripts/generate_dynamic_mainline_figures.py",
+    "sha256": "b764b5341849be137a87d0b13a508f273d9cc3588981e3be0f9b9c1815e7521a"
+  },
+  "schema_version": "figure-manifest-v2",
+  "style": {
+    "colors": [
+      "#E69F00",
+      "#56B4E9",
+      "#009E73",
+      "#F0E442",
+      "#0072B2",
+      "#D55E00",
+      "#CC79A7",
+      "#000000"
+    ],
+    "grayscale_redundant": true,
+    "minimum_font_size_pt": 6.0,
+    "palette": "Okabe-Ito",
+    "raster_dpi": 600,
+    "series_encodings": [
+      {
+        "color": "#E69F00",
+        "hatch": "",
+        "linestyle": "-",
+        "marker": "o"
+      },
+      {
+        "color": "#56B4E9",
+        "hatch": "///",
+        "linestyle": "--",
+        "marker": "s"
+      },
+      {
+        "color": "#009E73",
+        "hatch": "\\\\",
+        "linestyle": "-.",
+        "marker": "^"
+      },
+      {
+        "color": "#F0E442",
+        "hatch": "xx",
+        "linestyle": ":",
+        "marker": "D"
+      },
+      {
+        "color": "#0072B2",
+        "hatch": "..",
+        "linestyle": [
+          0,
+          [
+            5,
+            1
+          ]
+        ],
+        "marker": "v"
+      },
+      {
+        "color": "#D55E00",
+        "hatch": "++",
+        "linestyle": [
+          0,
+          [
+            3,
+            1,
+            1,
+            1
+          ]
+        ],
+        "marker": "P"
+      }
+    ],
+    "vector_formats": [
+      "pdf",
+      "svg"
+    ]
+  }
+}
