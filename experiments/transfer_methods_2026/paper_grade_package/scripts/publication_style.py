@@ -17,6 +17,45 @@ OKABE_ITO = (
     "#0072B2", "#D55E00", "#CC79A7", "#000000",
 )
 
+MARKERS = ("o", "s", "^", "D", "v", "P", "X", "<")
+LINE_STYLES = (
+    "-",
+    "--",
+    "-.",
+    ":",
+    (0, (5, 1)),
+    (0, (3, 1, 1, 1)),
+    (0, (1, 1)),
+    (0, (5, 2, 1, 2)),
+)
+HATCHES = ("", "///", "\\\\", "xx", "..", "++", "oo", "--")
+_FONT_SIZE_KEYS = (
+    "font.size",
+    "axes.labelsize",
+    "axes.titlesize",
+    "xtick.labelsize",
+    "ytick.labelsize",
+    "legend.fontsize",
+)
+
+
+def series_encoding(index: int) -> dict[str, object]:
+    """Return color plus grayscale-redundant encodings for one series."""
+
+    normalized = int(index) % len(OKABE_ITO)
+    return {
+        "color": OKABE_ITO[normalized],
+        "marker": MARKERS[normalized],
+        "linestyle": LINE_STYLES[normalized],
+        "hatch": HATCHES[normalized],
+    }
+
+
+def minimum_configured_font_size() -> float:
+    """Return the smallest publication text size currently configured."""
+
+    return min(float(mpl.rcParams[key]) for key in _FONT_SIZE_KEYS)
+
 
 def apply_nature_style() -> None:
     plt.rcParams.update({
@@ -97,4 +136,13 @@ def save_publication_figure(
     return outputs
 
 
-__all__ = ["OKABE_ITO", "apply_nature_style", "save_publication_figure"]
+__all__ = [
+    "HATCHES",
+    "LINE_STYLES",
+    "MARKERS",
+    "OKABE_ITO",
+    "apply_nature_style",
+    "minimum_configured_font_size",
+    "save_publication_figure",
+    "series_encoding",
+]
