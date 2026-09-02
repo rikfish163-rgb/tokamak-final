@@ -27,6 +27,23 @@ data audit → A0/A1 chronological query audit
 - 运行输出只能写入 `results/generated/` 或用户指定的空目录。
 - 缺少数据、CUDA、固定炮表或参考合同时非零退出，不生成假结果。
 
+## Isolated J-TEXT Adv25 extension
+
+该扩展不修改默认 EAST V3C 归档线。它使用
+`max(25 ms, AdvancedTime_ms)` 作为 J-TEXT 破裂炮的正样本窗口上界，HDF5
+`meta/IsDisrupt` 与 `meta/DownTime` 仍是结局权威。运行入口是：
+
+```bash
+conda run -n rl_env python -m experiments.transfer_methods_2026.jtext_online.runner \
+  --data-root /path/to/data \
+  --output /path/to/empty/output --budget 20 --device cuda
+```
+
+TEST220 按升序炮号分成 20 炮块。一个块内执行
+`signal prefix → predict → seal all predictions → query → reveal selected outcomes`
+，反馈只改变下一块的冻结源专家权重。J-TEXT 在线状态明确禁止用于 EAST 迁移；
+该分支的结果状态为 `TEST_DRIVEN_EXPLORATION`，不是未来确认结果。
+
 ## Commands
 
 ```bash

@@ -48,6 +48,21 @@ J-TEXT 源模型阈值只由 VAL160 选择，TEST220 只评估一次。破裂炮
 越阈严格早于 `DownTime` 超过 10 ms 才计 TP；恰好 10 ms 不计。短炮只允许复制
 已经观测到的最早历史值作左补齐，不能读取当前端点之后的数据。
 
+## Adv25 J-TEXT label extension
+
+Adv25 源模型的训练窗口上界按炮定义为
+`max(25 ms, AdvancedTime_ms)`；炮表缺失 AdvancedTime 时使用 25 ms。该规则只
+作用于已经由 HDF5 判定为破裂的炮，安全炮上的同名 JSON 条目会被忽略。JSON
+文件的 SHA-256 和版本清单记录在
+`config/splits/jtext_test220_ordered_v1.json` 与
+`config/mainline_code_manifest.json` 中。它是辅助时间窗元数据，不是结局标签，
+也不能覆盖 HDF5 的 `IsDisrupt` 或 `DownTime`。
+
+Adv25 J-TEXT 在线回放使用无标签的升序 TEST220 清单。一个 20 炮块必须先完成
+所有预测和 SHA-256 seal，再按预算选择查询炮；只有被选择的炮可以在块结束前
+读取 HDF5 结局。反馈更新的是冻结源专家的组合权重，J-TEXT 在线状态不得传给
+EAST 迁移。
+
 ## Leakage boundary
 
 数据审计不把标签复制到输入特征。在线运行要求：

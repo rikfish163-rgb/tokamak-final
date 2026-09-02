@@ -56,6 +56,31 @@ The chain is designed for auditable method development. `balanced360` was used f
 
 All outcome and disruption-time labels come from HDF5 `/meta/IsDisrupt` and `/meta/DownTime`. The paper-grade package, machine evidence, figures, and readiness audit are collected in [the paper-grade package](experiments/transfer_methods_2026/paper_grade_package/README.md).
 
+### Two explicitly isolated experiment lineages
+
+The repository keeps two scientifically different lines side by side; neither
+entry point silently overwrites the other:
+
+| Lineage | J-TEXT source label | Online stage | Allowed as an EAST transfer parent |
+|---|---|---|---|
+| `paper-v3c-archived-parent-replay` | fixed 125 ms (archived release line) | EAST V3C two-timescale adaptation | yes, under the archive contract |
+| `jtext-adv25-online` | `max(25 ms, AdvancedTime)` | delayed-feedback TEST220 replay | no; J-TEXT online state is forbidden as an EAST parent |
+
+The latest J-TEXT branch is in
+[experiments/transfer_methods_2026/jtext_online/](experiments/transfer_methods_2026/jtext_online/).
+It uses the three registered static Adv25 checkpoints and processes TEST220 in
+shot order. Each complete block seals all predictions before the query budget
+opens selected HDF5 outcomes. The online component updates only the convex
+weights of frozen source experts, so it demonstrates delayed-feedback decision
+adaptation rather than online Transformer representation learning. Its exact
+command and field contract are documented in the package
+[README](experiments/transfer_methods_2026/jtext_online/README.md).
+
+The committed Adv25 reference summary contains only the budget-20 run that was
+actually preserved; missing runs are not interpolated or invented. Its status
+remains `TEST_DRIVEN_EXPLORATION` because TEST220 participated in method
+development.
+
 ## Architecture and causal protocol
 
 The following publication-style overview summarizes the executed architecture. The
@@ -178,6 +203,12 @@ See [REPRODUCIBILITY.md](REPRODUCIBILITY.md) for the complete contract, replay n
 
 The full field, split, and roster contract is documented in [DATA_CONTRACT.md](DATA_CONTRACT.md) and the package-level account is in [the paper-grade README](experiments/transfer_methods_2026/paper_grade_package/README.md).
 
+The Adv25 J-TEXT branch additionally reads
+`shot_list/AdvancedTime_J-TEXT.json`. This file defines only the positive-window
+upper edge for disruptive shots: missing values fall back to 25 ms and present
+values use `max(25 ms, AdvancedTime)`. Entries for safe shots are ignored; HDF5
+outcome fields remain authoritative.
+
 ## Reproducibility contract
 
 The release is organized around the following checks:
@@ -279,9 +310,11 @@ The only claim-changing next step is a fully frozen replay on newly acquired chr
 ```text
 reproducibility/                                      # data audit and v3c replay CLI
 experiments/transfer_methods_2026/paper_grade_package/ # manuscript, figures, ledgers, validators
+experiments/transfer_methods_2026/jtext_online/      # isolated Adv25 J-TEXT online branch
 IMPLEMENTATION_DETAILS_CN.md                           # exact losses, values and update order
 config/mainline_code_manifest.json                    # machine-checked mainline inventory
 config/splits/                                         # fixed J-TEXT/EAST split contracts
+shot_list/AdvancedTime_J-TEXT.json                    # Adv25 positive-window metadata
 splits/                                                # readable J-TEXT shot lists
 results/reference/                                     # compact reference summaries
 tests/                                                 # reproducibility and experiment contract tests

@@ -1,0 +1,49 @@
+{
+  "schema_version": "jtext-adv25-online-reference-v1",
+  "claim_status": "TEST_DRIVEN_EXPLORATION",
+  "evidence_role": "historical_reference_summary",
+  "label_policy": "max(25 ms, AdvancedTime_ms)",
+  "label_source": "shot_list/AdvancedTime_J-TEXT.json",
+  "label_source_sha256": "559da4f719373b0c13b96d34e27a2b46b80eba7f0ef185c3b6ac58b3761e0199",
+  "source_checkpoint_role": "static J-TEXT Adv25 checkpoints; J-TEXT online state is not an EAST parent",
+  "source_checkpoint_sha256": {
+    "131": "85eaa32b912adf83cd5bc794cba55f1271d51728c3f278b114b0f11bbf2bf91e",
+    "133": "9c2b908c2958b17f1b18275fb7aef0923aa129afd90f2e4b4497f81a4fabe783",
+    "137": "c1594751c72209eab1990cba309cdb49a33163e2c0a44f16abe397c3d961cc01"
+  },
+  "test_role": {
+    "device": "J-TEXT",
+    "shots": 220,
+    "order": "ascending_shot_id",
+    "roster_sha256": "f516765dcbbb5c8ea4554a931fcd44759a18b311eeb3eaf3e2fe798ff9ccbaba"
+  },
+  "budget_percent": 20,
+  "query_count": 44,
+  "block_size": 20,
+  "queries_per_block": 4,
+  "minimum_lead_rule": "lead_ms > 10",
+  "static": {
+    "operational_tpr": 0.8363636363636363,
+    "fpr": 0.10909090909090909,
+    "j_operational": 0.7272727272727272,
+    "auc": 0.9742148760330579,
+    "operational_median_lead_ms": 68.46624768371592
+  },
+  "online": {
+    "operational_tpr": 0.8545454545454545,
+    "fpr": 0.10909090909090909,
+    "j_operational": 0.7454545454545454,
+    "auc": 0.9756198347107438,
+    "operational_median_lead_ms": 68.46624768371592
+  },
+  "delta": {
+    "operational_tpr": 0.018181818181818188,
+    "fpr": 0.0,
+    "j_operational": 0.018181818181818188,
+    "auc": 0.0014049586776858636,
+    "operational_tp_delta": 2,
+    "fp_delta": 0
+  },
+  "very_early_alarm_rule": "lead_ms > 3000 is reported separately; observed count was 0",
+  "provenance_note": "Values are copied from the recorded budget-20 diagnostic summary; absent budget runs are not reconstructed or imputed."
+}

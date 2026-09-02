@@ -10,6 +10,34 @@
     "target_dynamic_adapter": "experiments/transfer_methods_2026/run_dynamic_hazard_adapter.py",
     "chronological_online_replay": "experiments/transfer_methods_2026/run_unified_online_active.py"
   },
+  "diagnostic_extensions": {
+    "jtext_adv25_online": {
+      "status": "TEST_DRIVEN_EXPLORATION",
+      "label_policy": "max(25 ms, AdvancedTime_ms)",
+      "entrypoint": "experiments/transfer_methods_2026/jtext_online/runner.py",
+      "source_training": "experiments/transfer_methods_2026/train_jtext_source_transformer.py",
+      "source_checkpoint_role": "static J-TEXT Adv25 source checkpoints only",
+      "online_update": "delayed-feedback active expert weights; Transformer frozen",
+      "jtext_online_state_used_for_east": false,
+      "reference_result": "results/reference/jtext_adv25_online_budget20.json",
+      "files": [
+        "shot_list/AdvancedTime_J-TEXT.json",
+        "config/splits/jtext_test220_ordered_v1.json",
+        "config/splits/jtext_test220_ordered_v1.txt",
+        "experiments/transfer_methods_2026/jtext_online/__init__.py",
+        "experiments/transfer_methods_2026/jtext_online/labels.py",
+        "experiments/transfer_methods_2026/jtext_online/io.py",
+        "experiments/transfer_methods_2026/jtext_online/controller.py",
+        "experiments/transfer_methods_2026/jtext_online/runner.py",
+        "experiments/transfer_methods_2026/jtext_online/README.md",
+        "experiments/transfer_methods_2026/paper_grade_package/evidence/jtext_adv25_source_lineage/seed131_source_checkpoint.pt",
+        "experiments/transfer_methods_2026/paper_grade_package/evidence/jtext_adv25_source_lineage/seed133_source_checkpoint.pt",
+        "experiments/transfer_methods_2026/paper_grade_package/evidence/jtext_adv25_source_lineage/seed137_source_checkpoint.pt",
+        "results/reference/jtext_adv25_online_budget20.json",
+        "tests/experiments/test_jtext_adv25_online_contract.py"
+      ]
+    }
+  },
   "tracked_files": [
     ".github/workflows/ci.yml",
     ".gitignore",
@@ -30,9 +58,12 @@
     "config/splits/SPLIT_SPECIFICATION.txt",
     "config/splits/east_hdf5_authoritative_balanced360_v1.json",
     "config/splits/east_paper131_split_all_in.json",
+    "config/splits/jtext_test220_ordered_v1.json",
+    "config/splits/jtext_test220_ordered_v1.txt",
     "splits/train.txt",
     "splits/val.txt",
     "splits/test.txt",
+    "shot_list/AdvancedTime_J-TEXT.json",
     "reproducibility/__init__.py",
     "reproducibility/cli.py",
     "reproducibility/data_contract.py",
@@ -65,6 +96,12 @@
     "experiments/transfer_methods_2026/run_online_protected_residual.py",
     "experiments/transfer_methods_2026/run_two_timescale_online.py",
     "experiments/transfer_methods_2026/run_unified_online_active.py",
+    "experiments/transfer_methods_2026/jtext_online/__init__.py",
+    "experiments/transfer_methods_2026/jtext_online/labels.py",
+    "experiments/transfer_methods_2026/jtext_online/io.py",
+    "experiments/transfer_methods_2026/jtext_online/controller.py",
+    "experiments/transfer_methods_2026/jtext_online/runner.py",
+    "experiments/transfer_methods_2026/jtext_online/README.md",
     "experiments/transfer_methods_2026/paper_grade_package/configs/primary_chain_v3c.json",
     "experiments/transfer_methods_2026/paper_grade_package/scripts/reproduce_primary_chain.py",
     "experiments/transfer_methods_2026/paper_grade_package/scripts/build_evidence.py",
@@ -81,7 +118,12 @@
     "experiments/transfer_methods_2026/paper_grade_package/evidence/primary_online_artifacts/seed133/static_predictions.jsonl",
     "experiments/transfer_methods_2026/paper_grade_package/evidence/primary_online_artifacts/seed137/static_predictions.jsonl",
     "experiments/transfer_methods_2026/paper_grade_package/evidence/required_hdf5_content_manifest.json",
+    "experiments/transfer_methods_2026/paper_grade_package/evidence/jtext_adv25_source_lineage/seed131_source_checkpoint.pt",
+    "experiments/transfer_methods_2026/paper_grade_package/evidence/jtext_adv25_source_lineage/seed133_source_checkpoint.pt",
+    "experiments/transfer_methods_2026/paper_grade_package/evidence/jtext_adv25_source_lineage/seed137_source_checkpoint.pt",
     "results/reference/paper_v3c_multiseed_summary.json",
-    "tests/reproducibility/test_repo_contract.py"
+    "results/reference/jtext_adv25_online_budget20.json",
+    "tests/reproducibility/test_repo_contract.py",
+    "tests/experiments/test_jtext_adv25_online_contract.py"
   ]
 }

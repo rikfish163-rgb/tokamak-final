@@ -36,6 +36,11 @@ sys.path.insert(0, str(HERE))
 
 import grid_search as GS  # noqa: E402
 import rebuilt_harness as RH  # noqa: E402
+from jtext_online.labels import (  # noqa: E402
+    ADV25_POLICY,
+    load_advanced_time_ms,
+    sha256_file as advanced_time_sha256,
+)
 
 
 CANONICAL_INDEX = Path("artifacts/canonical/jtext_source_bundle_p131_v1/index.json")
@@ -43,6 +48,7 @@ EXPECTED_COUNTS = {"train": 1353, "val": 160, "test": 220}
 SOURCE_HORIZON_MS = 125.0
 MINIMUM_LEAD_MS = 10.0
 NEGATIVE_MAX_MS = 60_000.0
+DEFAULT_ADVANCED_TIME_PATH = ROOT / "shot_list/AdvancedTime_J-TEXT.json"
 
 
 def sha256_file(path: Path) -> str:
@@ -180,7 +186,7 @@ class BalancedSourceSampler:
 
     def __init__(
         self, shots: list[dict], *, seed: int,
-        horizon_ms: float = SOURCE_HORIZON_MS,
+        horizon_ms: float | None = SOURCE_HORIZON_MS,
     ) -> None:
         self.shots = shots
         self.rng = np.random.default_rng(int(seed))
@@ -189,11 +195,20 @@ class BalancedSourceSampler:
         for index, shot in enumerate(shots):
             endpoints = np.arange(len(shot["v"]), dtype=np.int64)
             if shot["is_disrupt"]:
+                horizon = shot.get("positive_horizon_ms", horizon_ms)
+                if horizon is None:
+                    raise ValueError(
+                        "each disruptive J-TEXT shot requires positive_horizon_ms "
+                        "when horizon_ms is None"
+                    )
+                horizon = float(horizon)
+                if not math.isfinite(horizon) or horizon <= 0.0:
+                    raise ValueError("J-TEXT positive horizon must be finite and positive")
                 times = shot["start"] + endpoints / shot["rate"]
                 ttd_ms = (float(shot["down"]) - times) * 1000.0
-                positive = endpoints[(ttd_ms >= 0.0) & (ttd_ms <= horizon_ms)]
+                positive = endpoints[(ttd_ms >= 0.0) & (ttd_ms <= horizon)]
                 negative = endpoints[
-                    (ttd_ms > horizon_ms) & (ttd_ms <= NEGATIVE_MAX_MS)
+                    (ttd_ms > horizon) & (ttd_ms <= NEGATIVE_MAX_MS)
                 ]
             else:
                 positive = np.empty(0, dtype=np.int64)
@@ -399,7 +414,32 @@ def _checkpoint_payload(
     seed: int,
     epoch: int,
     validation: dict,
+    label_policy: str = "fixed125",
+    advanced_time_path: Path | None = None,
+    advanced_time_mapping: dict[int, float] | None = None,
 ) -> dict:
+    if label_policy not in {"fixed125", ADV25_POLICY}:
+        raise ValueError(f"unsupported J-TEXT source label policy: {label_policy}")
+    if label_policy == ADV25_POLICY:
+        if advanced_time_path is None or advanced_time_mapping is None:
+            raise ValueError("Adv25 checkpoint requires its AdvancedTime source")
+        training_label = {
+            "policy": ADV25_POLICY,
+            "outcome_authority": "data/J-TEXT/unified_hdf5/*/meta/{IsDisrupt,DownTime}",
+            "advanced_time_floor_ms": 25.0,
+            "positive_ttd_ms": [0.0, "effective_horizon_ms"],
+            "negative_ttd_ms": ["effective_horizon_ms", NEGATIVE_MAX_MS],
+            "advanced_time_source": "shot_list/AdvancedTime_J-TEXT.json",
+            "advanced_time_source_sha256": advanced_time_sha256(advanced_time_path),
+            "advanced_time_entry_count": len(advanced_time_mapping),
+        }
+    else:
+        # Keep the historical fixed125 payload byte-compatible in meaning;
+        # the archived V3C source line depends on this contract.
+        training_label = {
+            "positive_ttd_ms": [0.0, SOURCE_HORIZON_MS],
+            "negative_ttd_ms": [SOURCE_HORIZON_MS, NEGATIVE_MAX_MS],
+        }
     return {
         "schema_version": GS.SOURCE_CHECKPOINT_SCHEMA,
         "architecture_version": GS.SOURCE_ARCHITECTURE_VERSION,
@@ -414,10 +454,7 @@ def _checkpoint_payload(
         "split_counts": dict(EXPECTED_COUNTS),
         "split_sha256": split_sha256(roles),
         "label_authority": "data/J-TEXT/unified_hdf5/*/meta/{IsDisrupt,DownTime}",
-        "training_label": {
-            "positive_ttd_ms": [0.0, SOURCE_HORIZON_MS],
-            "negative_ttd_ms": [SOURCE_HORIZON_MS, NEGATIVE_MAX_MS],
-        },
+        "training_label": training_label,
         "validation_threshold": float(validation["threshold"]),
         "validation_metrics": validation,
         "test_shards_read": 0,
@@ -437,12 +474,26 @@ def train_source(args: argparse.Namespace) -> tuple[Path, dict]:
     torch.set_float32_matmul_precision("high")
 
     roles = load_canonical_jtext_roles(ROOT)
+    advanced_mapping = None
+    advanced_path = None
+    if args.jtext_label_policy == ADV25_POLICY:
+        advanced_path = Path(args.advanced_time).expanduser().resolve()
+        advanced_mapping = load_advanced_time_ms(advanced_path)
     train = load_jtext_shots(roles["train"])
     validation = load_jtext_shots(roles["val"])
+    if advanced_mapping is not None:
+        for shot in train + validation:
+            if shot["is_disrupt"]:
+                shot["positive_horizon_ms"] = max(
+                    25.0, float(advanced_mapping.get(shot["shot"], 25.0))
+                )
     center, scale = GS.fit_scale(train)
     GS.apply_scale(train, center, scale)
     GS.apply_scale(validation, center, scale)
-    sampler = BalancedSourceSampler(train, seed=args.seed)
+    sampler = BalancedSourceSampler(
+        train, seed=args.seed,
+        horizon_ms=None if advanced_mapping is not None else SOURCE_HORIZON_MS,
+    )
 
     encoder = GS.Enc(len(RH.REBUILD)).to(device)
     head = GS.Head().to(device)
@@ -514,6 +565,9 @@ def train_source(args: argparse.Namespace) -> tuple[Path, dict]:
                 seed=args.seed,
                 epoch=epoch,
                 validation=val_metrics,
+                label_policy=args.jtext_label_policy,
+                advanced_time_path=advanced_path,
+                advanced_time_mapping=advanced_mapping,
             )
             temporary = checkpoint_path.with_suffix(".pt.tmp")
             torch.save(payload, temporary)
@@ -532,6 +586,11 @@ def train_source(args: argparse.Namespace) -> tuple[Path, dict]:
         "split_counts": dict(EXPECTED_COUNTS),
         "split_sha256": split_sha256(roles),
         "label_authority": "HDF5 meta only",
+        "label_policy": args.jtext_label_policy,
+        "advanced_time_source": (
+            "shot_list/AdvancedTime_J-TEXT.json"
+            if advanced_path is not None else None
+        ),
         "feature_names": list(RH.REBUILD),
         "model_config": GS.source_model_config(len(RH.REBUILD)),
         "trainable_parameters": sum(
@@ -617,6 +676,18 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--batch-size", type=int, default=128)
     parser.add_argument("--learning-rate", type=float, default=3e-4)
     parser.add_argument("--target-tpr", type=float, default=0.90)
+    parser.add_argument(
+        "--jtext-label-policy", choices=("fixed125", ADV25_POLICY),
+        default="fixed125",
+        help=(
+            "J-TEXT source target-window contract; fixed125 preserves the "
+            "archived V3C line, advanced_floor25 uses max(25 ms, AdvancedTime)"
+        ),
+    )
+    parser.add_argument(
+        "--advanced-time", type=Path, default=DEFAULT_ADVANCED_TIME_PATH,
+        help="shot-to-duration JSON used only with --jtext-label-policy advanced_floor25",
+    )
     parser.add_argument("--device", choices=("cuda", "cpu"), default="cuda")
     parser.add_argument("--skip-test", action="store_true")
     parser.add_argument("--output", type=Path)

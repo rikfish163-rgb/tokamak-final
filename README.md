@@ -59,6 +59,27 @@ J-TEXT 源域拟合
 
 所有结局和破裂时间标签均来自 HDF5 `/meta/IsDisrupt` 与 `/meta/DownTime`。论文级实验包、机器证据、图和 readiness 审计集中在[论文级实验包](experiments/transfer_methods_2026/paper_grade_package/README.md)。
 
+### 两条明确隔离的实验谱系
+
+仓库同时保存两条有不同科学含义的线，入口和结果不会相互覆盖：
+
+| 谱系 | J-TEXT 源标签 | 在线阶段 | 能否作为 EAST 迁移父模型 |
+|---|---|---|---|
+| `paper-v3c-archived-parent-replay` | 固定 125 ms（已归档发布线） | EAST V3C 双时间尺度适配 | 可以，按归档合同复现 |
+| `jtext-adv25-online` | `max(25 ms, AdvancedTime)` | J-TEXT TEST220 延迟反馈主动回放 | 不可以；J-TEXT 在线状态禁止进入 EAST |
+
+最新的 J-TEXT 分支位于
+[experiments/transfer_methods_2026/jtext_online/](experiments/transfer_methods_2026/jtext_online/)。
+它使用仓库内登记的三个静态 Adv25 checkpoint，按炮序预测 TEST220；每个完整炮块
+先完成预测并写入 seal，随后才在查询预算内揭示 HDF5 结局。在线组件只更新三个
+冻结源专家的组合权重，因此该分支可以复现“延迟标签后的决策适应”，不能被描述为
+Transformer 底层表示发生了在线更新。详细运行命令和字段说明见该目录的
+[README](experiments/transfer_methods_2026/jtext_online/README.md)。
+
+已提交的 Adv25 参考摘要只包含实际保存的 budget-20 结果；没有保存的预算或运行
+不会在仓库中被补写、插值或伪造。其状态仍为
+`TEST_DRIVEN_EXPLORATION`，因为 TEST220 曾参与方法开发。
+
 <a id="cn-architecture"></a>
 ## 架构与因果协议
 
@@ -274,6 +295,24 @@ conda run -n rl_env python -m pytest -q
 结果比较器和未来确认 seal 等合同。测试通过说明代码与证据合同自洽，不等同于
 GPU 三 seed 已重新训练完成；后者必须以真实运行目录、日志和摘要为证。
 
+<a id="cn-jtext-adv25"></a>
+## 运行 Adv25 J-TEXT 在线分支
+
+在 `rl_env` 中运行以下命令即可重放仓库登记的 J-TEXT 分支；原始 HDF5 数据仍由
+`--data-root` 指向仓库外部目录，输出目录必须为空：
+
+```bash
+conda run -n rl_env python -m experiments.transfer_methods_2026.jtext_online.runner \
+  --data-root /absolute/path/to/data \
+  --output /absolute/path/to/empty/jtext-adv25-budget20 \
+  --budget 20 --device cuda
+```
+
+预算 10%、20%、30% 在每个 20 炮块内分别选择 2、4、6 炮；当前仓库提交的参考
+摘要是实际保存的 budget-20 运行。需要随机基线时只替换
+`--query-policy random`，其余炮序、块大小和揭示边界保持不变。这个分支不读取
+EAST，也不产生 EAST 迁移父模型。
+
 <a id="cn-data-contract"></a>
 ## 数据合同
 
@@ -284,6 +323,11 @@ GPU 三 seed 已重新训练完成；后者必须以真实运行目录、日志�
 - `support110` 与 `balanced360` 互不重叠，但 `balanced360` 仍参与了方法开发和候选筛选。
 
 完整字段、切分和炮表合同见 [DATA_CONTRACT.md](DATA_CONTRACT.md)；论文包的逐项说明见[论文级 README](experiments/transfer_methods_2026/paper_grade_package/README.md)。
+
+Adv25 J-TEXT 训练和在线分支额外使用
+`shot_list/AdvancedTime_J-TEXT.json`。该文件只定义破裂炮的正样本时间窗上界：
+缺失值使用 25 ms，已有值取与 25 ms 的最大值；安全炮的 AdvancedTime 条目会被
+忽略。HDF5 结局字段仍具有最高优先级。
 
 <a id="cn-reproducibility"></a>
 ## 可复现合同
@@ -381,9 +425,11 @@ conda run -n rl_env python -m reproducibility.cli prospective-verify \
 ```text
 reproducibility/                                       # 数据审计与 v3c 回放 CLI
 experiments/transfer_methods_2026/paper_grade_package/ # 论文、图、账本与验证器
+experiments/transfer_methods_2026/jtext_online/      # Adv25 J-TEXT 隔离在线分支
 IMPLEMENTATION_DETAILS_CN.md                            # 损失、价值函数和更新顺序
 config/mainline_code_manifest.json                     # 主线代码/父状态机器清单
 config/splits/                                          # 固定的 J-TEXT/EAST 切分合同
+shot_list/AdvancedTime_J-TEXT.json                     # Adv25 正样本窗口辅助标签
 splits/                                                 # 可读的 J-TEXT 炮号清单
 results/reference/                                      # 小型参考摘要
 tests/                                                  # 复现与实验合同测试
