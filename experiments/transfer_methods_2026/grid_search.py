@@ -176,7 +176,20 @@ def causal_window(values, *, endpoint, width=W, context_points=None):
 def build_sampler(
     shots, device, pos_ms, gray_ms, seed=0, *, minimum_pos_ms=0.0,
     allow_left_padding=False, context_lengths=(W,),
+    sampling_mode="class_first",
 ):
+    """Build a causal window sampler.
+
+    ``class_first`` is retained for the historical feature/label sweep.  The
+    registered V3C EAST support adaptation used ``shot_first``: draw a shot
+    uniformly, then draw its positive/negative branch.  Those two operations
+    are not interchangeable when the support cohort is 15 disruptive versus
+    95 safe shots, so callers that belong to the V3C lineage must select the
+    mode explicitly.
+    """
+    sampling_mode = str(sampling_mode)
+    if sampling_mode not in {"class_first", "shot_first"}:
+        raise ValueError(f"unknown sampling mode: {sampling_mode}")
     context_lengths = tuple(int(value) for value in context_lengths)
     if not context_lengths or any(not 0 < value <= W for value in context_lengths):
         raise ValueError("context lengths must lie in [1, W]")
@@ -196,6 +209,36 @@ def build_sampler(
     rng = np.random.default_rng(seed)
     positive_shots = np.flatnonzero([bool(values) for values in pos])
     negative_shots = np.flatnonzero([bool(values) for values in neg])
+
+    if sampling_mode == "shot_first":
+        def sample(pp=0.5):
+            # This is the exact V3C order: shot -> branch -> endpoint.  A
+            # safe shot cannot produce a positive example, and a disruptive
+            # shot with no eligible negative endpoint is retried, matching the
+            # sealed historical support-parent recipe.
+            while True:
+                i = int(rng.integers(len(shots)))
+                positive_endpoints = pos[i]
+                negative_endpoints = neg[i]
+                if not positive_endpoints and not negative_endpoints:
+                    continue
+                if positive_endpoints and rng.random() < float(pp):
+                    endpoints = positive_endpoints
+                    label = np.float32(1.0)
+                else:
+                    if not negative_endpoints:
+                        continue
+                    endpoints = negative_endpoints
+                    label = np.float32(0.0)
+                endpoint = endpoints[int(rng.integers(len(endpoints)))]
+                context = context_lengths[int(rng.integers(len(context_lengths)))]
+                window = causal_window(
+                    shots[i]["v"], endpoint=endpoint, width=W,
+                    context_points=context,
+                )
+                return np.ascontiguousarray(window), label
+        return sample
+
     def sample(pp=0.5):
         if not len(positive_shots) and not len(negative_shots):
             raise RuntimeError("sampler has no eligible causal window")

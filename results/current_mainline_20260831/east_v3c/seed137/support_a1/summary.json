@@ -1,0 +1,69 @@
+{
+  "base_metrics": {
+    "fpr": 0.05,
+    "tpr": 0.7833333333333333
+  },
+  "base_predictor_updated": false,
+  "block_query_counts": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+  ],
+  "claim_boundary": "A1 audits query enrichment only; it does not improve predictions and is not an independent locked-test result.",
+  "hashes": {
+    "queries_jsonl": "f24bc98ec233ad794715dd8392598add0efaf56d6587e45850990b8731e56f11",
+    "seals_jsonl": "0eec6954ac33c2480486781226faf5e4765fbd3c34efcf05a98ef7d720bda050",
+    "source_checkpoint": "5183dc09239409325dd4f10fde8a6af4b6da4e28accc9ff88b11ff07a4d826cf",
+    "test_manifest": "657cab542bd987f9c97c3cb88867a9cc828373b32e6ee58d450451461c6ec825"
+  },
+  "max_abs_reference_score_delta": null,
+  "method": "rebuilt17+ea125+adapt_high+per-shot-max",
+  "model_sha256_before_after": "f1726381a730969ca497b2a376bc4dc346759409f16865524112077c3e50cce4",
+  "query_budget": {
+    "block_size": 20,
+    "per_block": 4,
+    "total": 72
+  },
+  "query_capture": {
+    "confusion": {
+      "FN": 39,
+      "FP": 9,
+      "TN": 171,
+      "TP": 141
+    },
+    "error_enrichment_vs_stream": 1.875,
+    "queried_by_group": {
+      "FN": 14,
+      "FP": 4,
+      "TN": 33,
+      "TP": 21
+    },
+    "query_count": 72,
+    "query_error_precision": 0.25,
+    "stream_error_rate": 0.13333333333333333
+  },
+  "query_cutoff": 0.7674784813923182,
+  "query_cutoff_source": "label-free support query-score q0.80",
+  "query_mode": "balanced",
+  "seed": 137,
+  "stage": "A0_STATIC_PLUS_A1_QUERY_AUDIT",
+  "status": "LOCKED_PREQUENTIAL_DIAGNOSTIC_REPLAY",
+  "test_labels_used_for_query_scoring": false,
+  "threshold": 0.49025946855545044,
+  "threshold_source": "current HDF5 EAST110 support; TPR>=0.80, then minimum FPR"
+}

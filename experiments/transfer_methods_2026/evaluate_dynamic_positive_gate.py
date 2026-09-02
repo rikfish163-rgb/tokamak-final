@@ -12,7 +12,7 @@ import numpy as np
 import torch
 
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path("/media/hetaisheng/044A81D94A81C83E/Fuison")
 HERE = ROOT / "experiments/transfer_methods_2026"
 sys.path.insert(0, str(HERE))
 
@@ -22,6 +22,7 @@ import online_auxiliary as auxiliary  # noqa: E402
 import run_dynamic_hazard_adapter as runner  # noqa: E402
 import run_online_active_a1 as a1  # noqa: E402
 import shot_alarm as alarm  # noqa: E402
+import common  # noqa: E402
 
 
 def support_positive_threshold(adapter, cache, quantile: float) -> tuple[float, int]:
@@ -53,6 +54,10 @@ def main() -> None:
     parser.add_argument("--a1", type=Path, default=HERE / "online_active_a1_seed131")
     parser.add_argument("--parent", type=Path, default=HERE / "dynamic_hazard_adapter_seed131")
     parser.add_argument("--out", type=Path, default=HERE / "dynamic_hazard_adapter_seed131_positive_gate")
+    parser.add_argument(
+        "--source-checkpoint", type=Path, default=None,
+        help="explicit source checkpoint; support training must not read EAST TEST",
+    )
     parser.add_argument("--support-positive-quantile", type=float, default=0.10)
     args = parser.parse_args()
     if args.out.exists():
@@ -64,7 +69,13 @@ def main() -> None:
     scales = json.loads((args.a1 / "config.json").read_text())["innovation_scales"]
 
     print(f"[DHA-GATE] reproduce frozen base seed={args.seed}", flush=True)
-    enc, head, transfer, test = alarm.train(args.seed)
+    # This artifact is a support-calibrated static reference.  Do not call
+    # ``alarm.train`` here: that helper loads the test cohort, which would
+    # violate the no-test-access contract even when the optimizer samples
+    # support rows only.
+    enc, head, transfer, center, scale = alarm.train_support_only(
+        args.seed, args.source_checkpoint,
+    )
     base_hash = a1.model_sha256(enc, head)
     if base_hash != parent_summary["base_model_sha256_before_after"]:
         raise RuntimeError("parent/base hash mismatch")
@@ -84,8 +95,9 @@ def main() -> None:
     minimum_positive, positive_count = support_positive_threshold(
         adapter, cache, args.support_positive_quantile
     )
-    labels_map = {int(shot["shot"]): bool(shot["is_disrupt"]) for shot in test}
-    vault = audit.OutcomeVault(labels_map)
+    test_ids = sorted(int(shot) for shot in common.DataSpec().east["test_locked"])
+    test = a1.load_test_features_only(test_ids, center, scale)
+    vault = audit.LazyShotOutcomeOracle(test_ids, a1.read_outcome_after_seal)
     writer = a1.JsonlSealWriter(args.out / "predictions.jsonl")
     records = []
     print(f"[DHA-GATE] seal 360 with minimum positive residual={minimum_positive:.6f}", flush=True)
@@ -104,13 +116,19 @@ def main() -> None:
                 "minimum_positive_residual": minimum_positive,
             }
             writer.append(record); records.append(record)
+            # Advance the lazy oracle without revealing this unqueried shot;
+            # labels remain inaccessible until the final, post-seal audit.
+            vault.seal_current(shot_id)
+            vault.discard_unqueried(shot_id)
             if number % 40 == 0:
                 print(f"[DHA-GATE] sealed {number}/{len(test)}", flush=True)
     finally:
         writer.close()
 
-    vault.open_final_evaluation(); labels = vault.all_labels()
-    y = np.asarray([labels[int(row["shot"])] for row in records], bool)
+    vault.open_final_evaluation(); outcomes = vault.all_outcomes()
+    y = np.asarray(
+        [outcomes[int(row["shot"])] ["is_disrupt"] for row in records], bool
+    )
     base_scores = np.asarray([row["base_score"] for row in records])
     adapted_scores = np.asarray([row["adapted_score"] for row in records])
     bp, ap = base_scores >= threshold, adapted_scores >= threshold
@@ -150,6 +168,16 @@ def main() -> None:
             "fpr_not_above_0_10": adapted_conf["FP"] / (adapted_conf["FP"] + adapted_conf["TN"]) <= 0.10,
         },
         "hashes": {"predictions": a1.sha256_file(args.out / "predictions.jsonl")},
+        "source_checkpoint": str(
+            Path(args.source_checkpoint).expanduser().resolve()
+            if args.source_checkpoint is not None
+            else alarm.source_checkpoint_path(args.seed).expanduser().resolve()
+        ),
+        "source_checkpoint_sha256": a1.sha256_file(
+            Path(args.source_checkpoint).expanduser().resolve()
+            if args.source_checkpoint is not None
+            else alarm.source_checkpoint_path(args.seed).expanduser().resolve()
+        ),
         "claim_boundary": "Support-calibrated gate, evaluated on already test-driven balanced360.",
     }
     summary["screen_gate"]["passed"] = all(summary["screen_gate"].values())

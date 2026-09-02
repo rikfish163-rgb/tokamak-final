@@ -1,0 +1,1171 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[a4paper,top=22mm,bottom=21mm,left=23mm,right=23mm,headheight=15pt]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{booktabs,longtable,tabularx,array,multirow}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{microtype}
+\usepackage{lastpage}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{fontspec}
+
+% The standard TeX installation on the experiment machine does not include
+% ctexart/xeCJK.  XeLaTeX plus a Unicode fallback font is sufficient for this
+% report and keeps the source portable to a normal XeLaTeX environment.
+\setmainfont[AutoFakeBold=2]{Noto Sans CJK SC}
+\setsansfont[AutoFakeBold=2]{Noto Sans CJK SC}
+\setmonofont[AutoFakeBold=1]{Noto Sans CJK SC}
+% Enable Unicode CJK line breaking without requiring the non-standard xeCJK
+% package, which is not installed in the reproducibility environment.
+\XeTeXlinebreaklocale "zh"
+\XeTeXlinebreakskip = 0pt plus 1pt minus 0.1pt
+\emergencystretch=2em
+
+\definecolor{ReportGray}{HTML}{555555}
+\definecolor{RuleGray}{HTML}{AAAAAA}
+\definecolor{BoxGray}{HTML}{F5F5F5}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  urlcolor=black,
+  citecolor=black,
+  pdftitle={J-TEXT到EAST跨装置破裂预测与因果在线主动适应技术报告},
+  pdfauthor={Fuison Research Project}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\footnotesize J-TEXT $\rightarrow$ EAST：跨装置破裂预测}
+\fancyhead[R]{\footnotesize 面向答辩的技术报告}
+\fancyfoot[R]{\footnotesize 第 \thepage\ 页 / 共 \pageref{LastPage} 页}
+\renewcommand{\headrulewidth}{0.35pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\linespread{1.13}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{4pt}
+\setlist[itemize]{leftmargin=2em,itemsep=3pt,topsep=4pt}
+\setlist[enumerate]{leftmargin=2.2em,itemsep=3pt,topsep=4pt}
+\renewcommand{\arraystretch}{1.32}
+\captionsetup{font=small,labelfont=bf,labelsep=quad}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcommand{\code}[1]{\texttt{\small #1}}
+\newcommand{\pathcode}[1]{\path{#1}}
+
+% article.cls is intentionally used for portability; restore Chinese labels.
+\renewcommand{\contentsname}{目录}
+\renewcommand{\tablename}{表}
+\renewcommand{\figurename}{图}
+\renewcommand{\refname}{参考文献}
+\renewcommand{\abstractname}{摘要}
+
+\lstset{
+  basicstyle=\ttfamily\small,
+  frame=single,
+  rulecolor=\color{RuleGray},
+  backgroundcolor=\color{BoxGray},
+  columns=fullflexible,
+  breaklines=true,
+  keepspaces=true,
+  showstringspaces=false,
+  xleftmargin=1em,
+  xrightmargin=1em
+}
+
+\begin{document}
+
+\begin{titlepage}
+\thispagestyle{empty}
+\vspace*{20mm}
+\begin{center}
+{\fontsize{24}{32}\selectfont\bfseries
+J-TEXT $\rightarrow$ EAST\\[2mm]
+跨装置破裂预测与因果在线主动适应\par}
+\vspace{8mm}
+{\Large 方法、实验与证据边界\par}
+\vspace{5mm}
+{\large 从标签合同、因果 PatchTST 主干，到少样本迁移与炮内/炮间持续适应\par}
+\vspace{18mm}
+\begin{tabularx}{0.90\textwidth}{>{\bfseries}lY}
+报告版本 & 2026-08-31\\
+当前状态 & \code{DIAGNOSTIC\_ONLY / TEST\_DRIVEN\_EXPLORATION}\\
+运行环境 & \code{rl\_env}；PyTorch 2.11.0+cu128；NVIDIA RTX 5070 Laptop GPU\\
+数据状态 & J-TEXT TEST220 与 EAST balanced360 已参与方法开发，尚无完全未见的 EAST future stream\\
+\end{tabularx}
+\vfill
+\begin{center}
+\begin{tabular}{c}
+J-TEXT 静态源模型\\
+$\downarrow$\\
+J-TEXT 独立在线附加分支 \quad\quad EAST 少样本静态迁移\\
+$\hspace{65mm}\downarrow$\\[-1mm]
+$\hspace{62mm}$EAST V3C 炮内/炮间在线主动
+\end{tabular}
+\end{center}
+\vfill
+{\small 本报告区分可复现的工程事实、诊断性实验结果与尚待独立验证的科学命题。}
+\end{center}
+\end{titlepage}
+
+\begin{abstract}
+本文系统整理 J-TEXT 至 EAST 的跨装置破裂预测实验链路，并给出炮内无监督适应与炮间主动查询更新的可复现定义。源域模型采用基于因果 patch embedding 的 PatchTST 编码器，在 J-TEXT 上以 \(H_i=\max(25\,\mathrm{ms},\mathrm{AdvancedTime}_i)\) 构造破裂前监督区间；EAST 迁移阶段冻结 J-TEXT 静态编码器，仅训练目标侧共享适配器、EAST 私有特征残差分支和独立风险头。在线阶段遵循 \emph{predict--seal--query--reveal--update} 的严格访问顺序：炮内更新仅使用当前炮已观测到的无标签信号，炮间更新仅在查询后使用 HDF5 权威结局。当前封存结果表明，J-TEXT 源模型在 TEST220 上的三 seed 平均及时真正率为 0.866667，误报率为 0.130303；EAST V3C 开发回放的三 seed 平均 TPR@30ms 由 0.790741 增至 0.792593，误报率由 0.120370 降至 0.114815。严格的同父模型消融显示，该 EAST 增益是包含报警保护和错误记忆在内的系统级效应，尚不足以单独证明 Transformer 底层表示获得了新的可迁移物理规律。由于 TEST220 与 balanced360 均参与方法开发，本文将现有结果限定为诊断性证据，并明确未来独立时序流确认所需的实验条件。
+\end{abstract}
+
+\noindent\textbf{关键词：} 核聚变破裂预测；跨装置迁移；PatchTST；在线持续学习；主动查询；因果访问；安全适应
+
+\tableofcontents
+\newpage
+
+\section{研究范围、问题定义与结论}
+
+\subsection{研究目标与实验谱系}
+
+本研究考察一条严格遵守时间因果性的跨装置预测链路。研究对象不是离线混合数据上的分类性能，而是：源装置模型如何在少量目标装置标注条件下完成适配，以及适配模型如何在目标装置的按炮时序流中进行受约束的在线更新。
+
+具体而言，模型首先在 J-TEXT 历史数据上训练。随后使用少量 EAST 支持炮学习目标装置的尺度与目标侧参数。进入在线流后，每一炮必须先完成预测和结果封存，查询策略再决定是否支付标签获取成本；只有被查询炮的真实结局被揭示后，持久状态才可以更新，并影响后续炮。该顺序将预测、查询和监督更新三个过程在时间上分离。
+
+为避免谱系混淆，本文将下列四个实验对象分别记录：
+
+\begin{lstlisting}
+J-TEXT 静态源模型
+    ├── J-TEXT TEST220 静态评估
+    └── J-TEXT TEST220 独立在线附加分支
+
+J-TEXT 静态源模型 ── EAST support110 适配 ── EAST 静态迁移模型
+                                           └── EAST V3C 炮内/炮间在线主动
+\end{lstlisting}
+
+J-TEXT 在线分支不参与 EAST 迁移。EAST 的迁移 parent 始终是 J-TEXT 静态 checkpoint。TEST220 与 balanced360 已参与方法开发，因此相关结果可用于工程诊断、机制分析和方法比较，但不具有完全独立未来确认集的统计地位。
+
+\subsection{主要结果与证据等级}
+
+表 \ref{tab:main-result} 汇总已写入封存回执的结果。J-TEXT 采用
+\(\mathrm{lead}>10\) ms，EAST 采用 \(\mathrm{lead}\geq30\) ms；两套
+TPR 的正类判定窗口不同，不能作未经校正的数值横向比较。
+
+\begin{table}[H]
+\centering
+\caption{当前主线的主要结果。}
+\label{tab:main-result}
+\small
+\begin{tabularx}{\textwidth}{p{34mm} p{34mm} C{16mm} C{16mm} C{16mm} C{22mm}}
+\toprule
+阶段 & 评价对象 & TPR & FPR & AUC & median lead\\
+\midrule
+J-TEXT 源模型 & TEST220，三 seed 均值 & 0.866667 & 0.130303 & 0.967906 & 67.354 ms\\
+J-TEXT 在线主动 & TEST220，20\% 查询 & 0.854545 & 0.109091 & 0.975620 & 68.466 ms\\
+EAST 静态迁移 & balanced360，三 seed 均值 & 0.790741 & 0.120370 & 未报告 & 139.833 ms\\
+EAST V3C 在线主动 & balanced360，三 seed 均值 & 0.792593 & 0.114815 & 未报告 & 144.500 ms\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+其中
+\[
+J=\mathrm{TPR}-\mathrm{FPR}.
+\]
+
+EAST 的逐 seed 结果为：
+
+\begin{table}[H]
+\centering
+\caption{EAST balanced360 的 V3C 系统级开发回放。}
+\begin{tabular}{c c c c c c}
+\toprule
+seed & static TPR/FPR & online TPR/FPR & $\Delta$TPR & $\Delta$FPR & 查询炮数\\
+\midrule
+131 & 0.794444/0.100000 & 0.800000/0.094444 & +0.005556 & -0.005556 & 94\\
+133 & 0.761111/0.116667 & 0.761111/0.111111 & 0 & -0.005556 & 99\\
+137 & 0.816667/0.144444 & 0.816667/0.138889 & 0 & -0.005556 & 98\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+综合结果的可辩护结论是：工程链路已经实现，并在开发流上观察到小幅系统级在线增益。然而，现有消融不能将增益全部独立归因于 Transformer 表示学习；由于开发流参与了方法选择，结果也不能被表述为独立未来部署确认。
+
+\subsection{实际模型配置与复现边界}
+
+早期计划文字中出现过 \code{256$\times$8}，但当前封存并产生上述结果的
+源模型实际是：
+
+\[
+\text{窗口长度}=128,\quad
+\text{patch}=8,\quad
+\text{stride}=8,\quad
+d_{\mathrm{model}}=64,\quad
+L=2,\quad H=4.
+\]
+
+实际代码版本为
+\code{rebuilt17-patch-transformer-128x8-d64-l2-h4-v1}。因此答辩时必须明确：
+
+本文所有数值均对应封存代码中的 128 点窗口版本；256 点窗口仅属于早期设计合同，并非本文结果的实际实验配置。因此，任何 256 点窗口的比较都必须重新训练模型、重新确定阈值并重新生成封存回执。
+
+\section{术语、评价指标与判定规则}
+
+\subsection{实验对象、时间窗与因果端点}
+
+本文将一次完整的等离子体放电记为一炮（shot），并以炮作为最终性能评价的
+统计单位。对第 (i) 炮在时刻 (t) 的观测前缀记为
+(X_{i,1:t})，其因果时间窗记为 (W_{i,t})。时间窗只包含截至 (t) 已经
+到达的信号；当历史长度不足窗口长度时，左侧使用固定零填充，并同时保存
+真实历史长度。
+
+端点（endpoint）是时间窗的右端时刻。模型在端点输出风险 logit
+(ell_{i,t}) 及其概率 (p_{i,t}=sigma(ell_{i,t}))。炮内适应只修改当前
+炮的临时快速状态 (	heta^{\mathrm{fast}}_i)，该状态在炮结束后丢弃。炮间
+适应则要求当前炮已经完成预测封存、查询决策和真实结局揭示，随后才允许修改
+持久状态 (	heta^{\mathrm{persistent}}_{i+1})。因此，炮内适应描述当前炮的
+个性化校正，炮间适应描述经延迟反馈约束的跨炮持续学习。
+
+\subsection{炮级评价指标与报警判定}
+
+设破裂炮集合为 \(\mathcal{D}\)，安全炮集合为 \(\mathcal{N}\)，并令
+\(N_D=|\mathcal{D}|\)、\(N_N=|\mathcal{N}|\)。对于报警阈值 \(\tau\)，
+定义第 \(i\) 炮的首个报警端点为
+
+\[
+t_i^{\mathrm{alarm}}(\tau)=\inf\{t:p_{i,t}\geq\tau\},
+\]
+
+若集合为空，则该炮记为无报警。对破裂炮，设真实破裂时刻为
+\(t_i^{\mathrm{down}}\)，报警提前量定义为：
+
+\[
+\mathrm{lead}_i=t_i^{\mathrm{down}}-t_i^{\mathrm{alarm}}.
+\]
+
+令 \(L\) 表示 operational 提前量门槛，则炮级及时命中指示量为
+
+\[
+\mathbf{1}_{i}^{\mathrm{timely}}(\tau;L)=
+\mathbf{1}\!\left[t_i^{\mathrm{alarm}}(\tau)<\infty,
+\ t_i^{\mathrm{down}}-t_i^{\mathrm{alarm}}(\tau)\geq L\right].
+\]
+
+据此，及时真正率和误报率分别为：
+
+\[
+\mathrm{TPR}_{L}(\tau)=
+\frac{1}{N_D}\sum_{i\in\mathcal{D}}
+\mathbf{1}_{i}^{\mathrm{timely}}(\tau;L),
+\qquad
+\mathrm{FPR}(\tau)=
+\frac{1}{N_N}\sum_{i\in\mathcal{N}}
+\mathbf{1}\!\left[t_i^{\mathrm{alarm}}(\tau)<\infty\right].
+\]
+
+J-TEXT 的 operational 门槛为 \(\mathrm{lead}>10\) ms，EAST 的主门槛为
+\(\mathrm{lead}\geq30\) ms。EAST 中 \(\mathrm{lead}>3000\) ms 的报警仍被
+纳入 TPR@30ms，但另行报告秒级过早报警数量，以区分形式上满足门槛与具有
+实际运行意义的提前量。
+
+对每一炮，模型先取越过报警规则的最早端点。破裂炮的分类为：
+
+对破裂炮，若 \(\mathbf{1}_{i}^{\mathrm{timely}}=1\)，则记为 TP；若存在报警
+但 \(\mathrm{lead}<L\)，则记为 TARDY；若没有报警，则记为 FN。对安全炮，
+有报警记为 FP，无报警记为 TN。因此，报警事件与 operational 及时命中属于
+两个不同层次的判定，不能将所有报警直接等同于 TP。
+
+\section{数据划分、标签合同与因果访问约束}
+
+\subsection{J-TEXT 数据分工}
+
+\begin{table}[H]
+\centering
+\caption{J-TEXT 的固定数据角色。}
+\begin{tabularx}{\textwidth}{l C{18mm} Y}
+\toprule
+角色 & 炮数 & 用途\\
+\midrule
+TRAIN1353 & 1353 & 训练源模型、拟合源域 scaler\\
+VAL160 & 160 & 选择 epoch 和风险阈值\\
+TEST220 & 220 & checkpoint 和阈值封存后评估；当前也用于在线方法开发\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+J-TEXT 破裂炮的监督窗口由炮级 AdvancedTime 与预设下限共同确定：
+
+\[
+H_{\mathrm{JTEXT},i}
+=\max\left(25\ \mathrm{ms},\mathrm{AdvancedTime}_i\right).
+\]
+
+当 shot list 未提供第 (i) 炮的 AdvancedTime 时，按预注册规则令
+(H_i=25\,\mathrm{ms})。需要区分炮级硬结局与用于确定监督范围的时间信息：
+
+HDF5 的 \code{meta/IsDisrupt} 是炮级结局的唯一权威，
+\code{meta/DownTime} 是破裂时刻的唯一权威。AdvancedTime 只用于确定破裂前
+监督窗口，不能覆盖或修正 HDF5 中的结局字段。
+
+对破裂炮，当前主标签为：
+
+\[
+y(t)=
+\begin{cases}
+1,&0\leq \mathrm{TTD}(t)\leq H_i,\\
+0,&H_i<\mathrm{TTD}(t)\leq60000\ \mathrm{ms}.
+\end{cases}
+\]
+
+在 Adv25 主实验中，区间 \(H_i\) 至 125 ms 未被另行编码为未知类。这是因为
+增加未知类会同时改变监督函数、窗口采样分布和比较合同。若采用未知带，必须
+作为独立实验臂预先登记，不能在现有结果中静默混入。
+
+\subsection{EAST 数据分工}
+
+\begin{table}[H]
+\centering
+\caption{EAST 的固定数据角色。}
+\begin{tabularx}{\textwidth}{l C{25mm} Y}
+\toprule
+角色 & 炮数 & 用途\\
+\midrule
+support110 & 110 & 目标适配、目标 scaler、support 训练\\
+balanced360 & 360（180D/180N） & 先静态封存，再按炮序在线主动；已参与方法开发\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+EAST 的 operational 口径为 \(\mathrm{lead}\geq30\) ms。需要特别说明：
+历史角色表曾将 support110 写成 10D+100N，但逐炮读取 HDF5
+\code{meta/IsDisrupt} 得到权威组成是 15D+95N。因此当前 support 结果是
+历史兼容复现，而不是干净的 10D+100N 正式结论。
+
+\subsection{预测阶段的标签不可达性}
+
+当前炮的严格访问顺序为：
+
+\begin{lstlisting}
+当前炮信号前缀
+    -> 端点预测
+    -> 封存预测与报警轨迹
+    -> 使用无标签特征计算 query value
+    -> 只对选中炮 reveal HDF5 结局
+    -> 计算 FP/FN/TARDY 等误差
+    -> 更新持久状态，供下一炮使用
+\end{lstlisting}
+
+在当前炮预测前不可读取：
+
+\begin{itemize}
+\item 当前炮的 \code{IsDisrupt}、\code{DownTime}、AdvancedTime；
+\item 当前炮未来时间窗；
+\item 未查询炮的 HDF5 结局。
+\end{itemize}
+
+实现还检查 shot id 严格递增。EAST 静态阶段先完成 360 炮预测封存，在线阶段
+从相同迁移 parent 重置。这样 static 和 online 才有可比的共同起点。
+
+\section{特征重构与源域 Transformer 编码器}
+
+\subsection{共享 rebuilt17 与 EAST-private raw8}
+
+原始观测由 23 个通道组成。当前跨装置共享路径保留 17 个经过单位和可用性
+审计的特征，以下简称 rebuilt17：
+
+\begin{lstlisting}
+Bt, ip_A, Bt_over_Ip, Ip_diff, v_loop, Z_proxy,
+sxr_kurt, sxr_skew, sxr_var,
+xuv_kurt, xuv_skew, xuv_var,
+Mir_avg_fre, n=1 amplitude, mode_number_n, dx_a, dy_a
+\end{lstlisting}
+
+其中，\(I_p\) 首先完成单位换算；随后构造 \(Bt/I_p\)、电流差分和
+\(Z_{\mathrm{proxy}}=v_{\mathrm{loop}}/I_p\)，并同步保留通道可用性掩码。
+通道不可用时，掩码用于告知模型该观测缺失，而不是将缺失值解释为物理零值。
+
+被排除在共享对齐之外的 raw8 为：
+
+\begin{lstlisting}
+CIII, MNM, Mir_VV, Mir_avg_amp,
+ne_nG, qa_proxy, sxr_mean, xuv_ratio
+\end{lstlisting}
+
+raw8 并非没有物理意义，而是现有证据不足以支持其在两台装置之间具有同构的
+测量语义。因此，本文不对 raw8 施加跨装置共享约束，而是在 EAST-private
+sidecar 中学习目标装置特有的局部关系。该设计同时降低了两类风险：
+
+\begin{itemize}
+\item 对全部 23 维施加全局对齐，导致装置差异被误解释为可迁移信息；
+\item 直接删除 raw8，造成 EAST 独有先兆信息的不可逆损失。
+\end{itemize}
+
+对每个 raw8 通道，私有分支计算末值、均值、标准差、全窗口变化、后半段变化
+和有效比例六类因果统计量，并与基础 logit 拼接。所有统计量均由当前端点及其
+历史前缀计算，不使用未来采样点。
+
+\subsection{源模型前向计算}
+
+设 rebuilt17 输入窗口为 \(X_{i,t}\in\mathbb{R}^{128\times17}\)。patch
+embedding 将连续时间序列投影为长度为 16 的 token 序列：
+
+\[
+P_{i,t}=\mathrm{Conv1D}_{17\rightarrow64}(X_{i,t};k=8,s=8).
+\]
+
+加入位置编码和可学习的 \code{[CLS]} token：
+
+\[
+Z_{i,t}^{(0)}=[\mathrm{CLS};P_{i,t}+E_{\mathrm{pos}}].
+\]
+
+经过两层、四头的 Transformer encoder，取 \code{[CLS]} 表示：
+
+\[
+z_{i,t}=\mathrm{LayerNorm}\left(
+\mathrm{Transformer}_2(
+\mathrm{Transformer}_1(Z_{i,t}^{(0)}))_{\mathrm{CLS}}\right),
+\qquad z_{i,t}\in\mathbb{R}^{64}.
+\]
+
+风险头将端点表示映射为 logit：
+
+\[
+\ell_{i,t}=W_2\,\mathrm{GELU}(W_1z_{i,t}+b_1)+b_2,
+\qquad p_{i,t}=\sigma(\ell_{i,t}).
+\]
+
+其中，\(\ell_{i,t}\) 是未校准风险 logit，\(p_{i,t}\) 是经 sigmoid 映射后的
+风险概率。在线报警器使用封存的 logit 或概率轨迹，而不读取真实结局。
+
+\subsection{源域训练损失和阈值}
+
+源域训练以炮级平衡采样后的二元交叉熵为主目标。对训练批次
+\(\mathcal{B}\)，经验风险为：
+
+\[
+\mathcal{L}_{src}(\theta)
+=-\frac{1}{|\mathcal{B}|}\sum_{(X,y)\in\mathcal{B}}
+\left[y\log\sigma(\ell_\theta(X))
++(1-y)\log\left(1-\sigma(\ell_\theta(X))\right)\right].
+\]
+
+采样器在 batch 层面平衡破裂炮与安全炮，并对炮级贡献进行约束，避免单个长
+炮因窗口数较多而支配经验风险。参数通过 AdamW 更新，并在每个优化步骤后
+进行梯度范数裁剪。
+
+阈值只在 VAL160 上选择。对候选阈值 \(\tau\)，以炮级首个报警事件计算：
+
+\[
+\mathrm{TPR}_{val}(\tau)
+=
+\frac{1}{N_D}\sum_{i\in D}
+\mathbf{1}\left[
+\max_{t:\,\mathrm{lead}_i(t)>10\mathrm{ms}}p_i(t)\ge\tau
+\right],
+\]
+
+\[
+\mathrm{FPR}_{val}(\tau)
+=
+\frac{1}{N_N}\sum_{i\in N}
+\mathbf{1}\left[
+\max_t p_i(t)\ge\tau
+\right].
+\]
+
+先保留 \(\mathrm{TPR}_{val}\ge0.90\) 的阈值，再选 FPR 最低者；并列时优先
+最终阈值按以下词典序规则确定：
+
+\[
+\tau^*=\mathop{\arg\min}_{\tau\in\mathcal{T}:\,
+\mathrm{TPR}_{val}(\tau)\geq0.90}
+\left(\mathrm{FPR}_{val}(\tau),-\tau\right).
+\]
+
+该规则先约束验证集 TPR 不低于 0.90，再最小化 FPR；若 FPR 相同，则选择
+较高阈值。TEST220 不参与阈值选择。
+
+\section{EAST 静态迁移模型与参数作用域}
+
+\subsection{迁移 parent 和冻结范围}
+
+EAST 只使用 J-TEXT 静态 checkpoint：
+
+\[
+\begin{aligned}
+&\text{J-TEXT static encoder/head}\\[-1mm]
+&\qquad\xrightarrow{\text{support110}}\quad
+\text{EAST shared17 + private raw8 + independent risk head}.
+\end{aligned}
+\]
+
+冻结内容包括 J-TEXT encoder、source risk head 以及源侧辅助头。目标侧训练：
+
+\begin{enumerate}
+\item shared17 target adapter；
+\item EAST-private raw8 residual branch；
+\item 独立 EAST risk head 或目标残差头。
+\end{enumerate}
+
+部署时不直接使用 J-TEXT risk score。J-TEXT 在线专家权重、查询记录和在线记忆
+均不进入 EAST。
+
+\subsection{shared17 adapter}
+
+目标 adapter 用冻结的共享表示、物理代理和 base logit 产生有界残差：
+
+\[
+\ell_{E,\mathrm{shared}}
+=\ell_{\mathrm{base}}+\delta_{\mathrm{shared}},
+\]
+
+\[
+\delta_{\mathrm{shared}}
+=r_{\max}\tanh
+\left(f_{\mathrm{shared}}(x_{17},q,\ell_{\mathrm{base}})\right)
+g(q).
+\]
+
+其中 \(q\) 是可用物理代理，\(g(q)\) 是 availability gate，\(r_{\max}\) 限制
+logit 残差幅度。残差末层零初始化，使适配初期接近 parent。
+
+\subsection{EAST-private raw8 分支}
+
+将 raw8 因果统计量记为 \(u_{raw8}\)，私有分支输出：
+
+\[
+\ell_{E,\mathrm{private}}
+=\ell_{\mathrm{base}}+
+r_{\mathrm{private}}(u_{raw8},\ell_{\mathrm{base}}).
+\]
+
+私有 residual 末层同样零初始化，残差约束在有限范围内。它负责补偿 EAST
+观测通道的局部关系，不重写 J-TEXT 的底层 Transformer。
+
+\subsection{support 训练损失}
+
+support 适配需要同时约束破裂合法预警区、安全炮和破裂窗口之外的误报：
+
+\[
+\mathcal{L}_{support}
+=\mathcal{L}_{hazard}
++0.20\mathcal{L}_{next}
++0.02\mathcal{L}_{residual}.
+\]
+
+这是静态目标适配，不是在线学习。balanced360 在这一步不参与训练。
+
+\section{EAST 炮内无监督适应}
+
+\subsection{快速状态的生命周期与持久状态隔离}
+
+第 \(k\) 炮到来时复制持久状态：
+
+\[
+\theta^{fast}_k\leftarrow\theta^{persistent}_k.
+\]
+
+炮内更新只写入 \(\theta^{fast}_k\)，炮结束后释放。只有查询并揭示真实结局、
+且更新通过保护检查，才改变 \(\theta^{persistent}\)。
+
+这不是假设相邻两炮的等离子体状态连续，而是把上一炮确认的错误轨迹作为
+“可能在未来重复出现的模式”。是否泛化由相似度、历史支持、错误类型和 guard
+共同决定。
+
+\subsection{下一状态重建损失}
+
+若当前目标表示为 \(h_t\)，预测下一状态：
+
+\[
+\widehat q_{t+1}=f_{next}(h_t).
+\]
+
+只有在之后的端点 \(t'>t\) 已真实观测到时才计算：
+
+\[
+\mathcal{L}_{next}
+=\mathrm{SmoothL1}(\widehat q_{t+1},q_{t+1}).
+\]
+
+这里的 \(q_{t+1}\) 是后续观测得到的无标签物理代理，不是结局标签。
+
+\subsection{物理伪监督}
+
+从当前可观测物理代理得到有界活动支持：
+
+\[
+s_t=\mathrm{energy}_t\cdot\mathrm{concurrence}_t\in[0,1].
+\]
+
+代码把两个明显冲突的情况作为伪监督：
+
+\[
+\mathcal{L}_{pseudo}(t)=
+\begin{cases}
+\mathrm{softplus}(m_t),
+&\ell_t\ge\tau,\ s_t\le0.10,\\
+\mathrm{softplus}(-m_t),
+&\ell_t<\tau,\ s_t\ge0.65,\\
+0,&\text{其他情况},
+\end{cases}
+\qquad m_t=\ell_t-\tau.
+\]
+
+第一种是“模型风险高、物理支持低”的 FP-like 情况；第二种是“模型风险低、
+物理支持高”的 FN-like 情况。这是可观测代理的弱约束，不是完整 MHD 定律。
+
+\subsection{teacher anchor 和综合损失}
+
+单独使用伪监督可能把噪声当成结构性变化，因此保留 parent anchor：
+
+\[
+\mathcal{L}_{anchor}
+=\mathrm{SmoothL1}(\ell^{fast}_t,\ell^{persistent}_t).
+\]
+
+总体可写为：
+
+\[
+\mathcal{L}_{intra}
+=\lambda_{next}\mathcal{L}_{next}
++\lambda_{anchor}\mathcal{L}_{anchor}
++\lambda_{phys}\mathcal{L}_{pseudo}
++\lambda_{temp}\mathcal{L}_{temporal}.
+\]
+
+典型当前权重为 \(\lambda_{next}=1\)、teacher 权重约 0.50、物理权重 0.10；
+canonical V3C 中 temporal risk 权重为 0。teacher anchor 的作用是限制无标签
+更新幅度，而不是要求当前风险永远不变。
+
+\section{EAST 炮间延迟监督适应}
+
+\subsection{揭示后的炮级误差类型}
+
+查询后读取 HDF5 结局，并根据已封存的报警和 DownTime 分类：
+
+\begin{table}[H]
+\centering
+\caption{查询后错误类型及更新方向。}
+\begin{tabularx}{\textwidth}{l l Y}
+\toprule
+组别 & 含义 & 更新方向\\
+\midrule
+TP & 破裂且 lead 达到 30 ms & 保护已有正确边界\\
+TN & 安全且无报警 & 保护低风险区域\\
+FP & 安全但报警 & 压低相似轨迹风险或提高相应门槛\\
+FN & 破裂且无报警 & 提高相似轨迹风险\\
+TARDY & 报警但 lead 未达 30 ms & 让相似轨迹更早进入合法报警区\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{基于封存预测的监督目标构造}
+
+令 \(\ell_i^{sealed}\) 是 reveal 前已经封存的 logit，\(y_i\) 是 reveal 后得到的
+标签，定义：
+
+\[
+e_i=y_i-\sigma(\ell_i^{sealed}),
+\qquad
+\Delta_i=\mathrm{clip}(\gamma e_i,-\Delta_{\max},\Delta_{\max}),
+\]
+
+\[
+\ell_i^{target}
+=\ell_i^{sealed}+\Delta_i.
+\]
+
+这有两个意义：第一，学习方向来自模型当时的实际错误；第二，单个查询炮
+不能产生无限大的 logit 改动。
+
+\subsection{回放、保护约束与可回退更新}
+
+炮间损失包括：
+
+\[
+\mathcal{L}_{inter}
+=\mathcal{L}_{sealed\ residual}
++0.25\mathcal{L}_{replay}
++\lambda_{guard}\mathcal{L}_{guard}
++0.10\mathcal{L}_{next}
++0.02\mathcal{L}_{residual}.
+\]
+
+\begin{itemize}
+\item \(\mathcal{L}_{replay}\)：回放更早已揭示的同类错误，避免只适应最后一炮；
+\item \(\mathcal{L}_{guard}\)：保护已知正确的 TP/TN，检查更新是否制造新错误；
+\item \(\mathcal{L}_{residual}\)：限制目标 residual 幅度。
+\end{itemize}
+
+当前固定计算量对照使用每次查询 16 个当前窗口、16 个历史 replay 窗口和
+2 个 optimizer step。更新后只要 guard 出现不允许的伤害，恢复更新前的
+参数和 optimizer 状态。
+
+\subsection{endpoint memory}
+
+确认后的错误先进入 typed endpoint memory，而不是立即写成全局规律。键包含：
+
+\begin{itemize}
+\item 归一化 latent endpoint；
+\item 有界 source/target logit；
+\item risk trend；
+\item elapsed time；
+\item 物理支持度和 availability。
+\end{itemize}
+
+只有相似度达到阈值、支持炮达到最低数量、物理 gate 通过且 TP/TN 保护比例
+允许时，记忆才产生有限的 logit shift。FP 与 FN 的记忆分开保存，正向修正
+不会覆盖负向修正。这样才能实现“遇到相似错误时纠正”，同时保留回退空间。
+
+\section{主动查询价值函数与标签预算分配}
+
+\subsection{查询决策的可观测信息}
+
+查询决策发生在 reveal 之前，只能使用 outcome-blind 特征：
+
+\begin{itemize}
+\item 风险峰值、均值、尾部均值、最后风险；
+\item 风险变化速度、突变和恢复；
+\item shared/private 分支不一致；
+\item 物理冲突和可用性；
+\item 与已有错误记忆的距离；
+\item 预计梯度可行动性和决策可改变性；
+\item 新颖性、历史覆盖度和保护风险。
+\end{itemize}
+
+不能用当前炮的 HDF5 结局倒推查询。
+
+\subsection{端点更新价值}
+
+端点级价值可以理解为：
+
+\[
+V_{update}
+=aV_{recon}+bV_{teacher}+cV_{physics}
++dV_{private},
+\]
+
+并用冗余惩罚和有效观测比例进行缩放。低于 dead zone 的普通噪声不更新；
+极端冲突的价值饱和，避免一次异常造成过大步长。
+
+\subsection{炮级查询价值模型}
+
+当前 V3C 开发路径的炮级模型为：
+
+\[
+V_{query}
+=\mathrm{clip}\left(
+0.05+\sum_jw_jE_j-P_{protect},0,1\right).
+\]
+
+五类专家项为：
+
+\begin{enumerate}
+\item error correction：错误概率、决策可改变性和梯度有效性；
+\item information gain：不确定性、新颖性和覆盖价值；
+\item physics conflict：物理冲突和代理可靠性；
+\item gradient actionability：梯度作用性、私有分支创新和稳定性；
+\item coverage exploration：新轨迹覆盖与历史探索。
+\end{enumerate}
+
+直观地说，一炮越接近边界、物理代理越矛盾、不同分支越不一致，同时又
+具有较高的未来纠错可能性，就越值得查询。稳定且重复的正确炮不应消耗预算。
+
+\subsection{预算解释}
+
+J-TEXT canonical 在线 20\% 预算查询 44/220 炮；10\% 和 30\% 诊断预算分别
+查询 22 和 66 炮。EAST 当前 V3C 封存回执实际查询 94、99、98 炮。应以回执
+中的实际数值为准，不能事后把它们改写成整齐的百分比。
+
+\section{EAST 因果报警状态机}
+
+\subsection{高风险路径与早期物理路径}
+
+EAST V3C 不是单一 \(p_t\geq0.5\)。令：
+
+\[
+m_t=\ell_t-\tau_h,
+\]
+
+\[
+trend_t=\max\left(
+\mathrm{MA}_5(m_t)-\mathrm{MA}_{100}(m_t),0
+\right),
+\]
+
+\[
+early_t=m_t+w_ps_t+w_ttrend_t.
+\]
+
+报警条件为：
+
+\[
+alarm_t=
+\mathbf{1}[m_t\geq h_t]
+\lor
+\mathbf{1}[early_t\geq e_t\ \land\ s_t
+\text{满足早期路线条件}].
+\]
+
+高风险路线直接看 margin；早期路线综合风险、物理支持和上升趋势。快慢
+移动平均宽度 5 和 100 当前固定，不在线改变离散历史算子。
+
+\subsection{状态参数、有界投影与反馈更新}
+
+当前连续参数如下：
+
+\begin{table}[H]
+\centering
+\caption{EAST V3C 报警状态机参数。}
+\begin{tabular}{l c c}
+\toprule
+参数 & 初始值 & 允许范围\\
+\midrule
+\code{high\_threshold} & 0.0 & [-0.10, 0.10]\\
+\code{physics\_weight} & 8.0 & [6.0, 10.0]\\
+\code{trend\_weight} & 12.0 & [12.0, 15.0]\\
+\code{early\_threshold} & 7.9 & [7.1, 8.7]\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+每次查询揭示后的调整步长为：
+
+\[
+\mathrm{step}
+=\mathrm{alarm\_lr}\times V_{query},
+\qquad \mathrm{alarm\_lr}=0.02.
+\]
+
+FP 时提高相应门槛、降低早期物理/趋势推动；FN/TARDY 时做相反方向。
+更新后投影回合法区间，并用已保护的 TP/TN 检查；一旦 guard 被破坏，拒绝
+整次更新。
+
+\subsection{代码对象和数学动作的对应关系}
+
+为了让复核者可以从公式回到实现，当前主线的关键对应关系如下：
+
+\begin{table}[H]
+\centering
+\caption{代码对象与研究动作的对应关系。}
+\small
+\begin{tabularx}{\textwidth}{p{31mm} p{80mm} Y}
+\toprule
+研究动作 & 代码对象 & 实际职责\\
+\midrule
+读取 J-TEXT 炮和硬结局 &
+\code{load\_jtext\_shots}、\code{jtext\_label\_contract} &
+读取信号；HDF5 提供 IsDisrupt/DownTime；AdvancedTime 只生成 \(H_i\)\\
+因果窗口 &
+\code{causal\_window}、\code{causal\_prefix\_window} &
+截取当前及更早历史，左侧补零并记录 valid length\\
+源模型前向 &
+\code{grid\_search.Enc}\allowbreak\code{.forward}、\code{grid\_search.Head}\allowbreak\code{.forward} &
+patch embedding、位置编码、Transformer 和风险 logit\\
+阈值选择 &
+\code{select\_validation\_threshold} &
+只在 VAL160 满足 TPR 门槛后压低 FPR\\
+EAST 目标适配 &
+\code{DynamicHazardAdapter}、\code{EastPrivateDynamics}\allowbreak\code{Residual} &
+shared17 有界 residual，raw8 EAST-private residual\\
+炮内状态 &
+\code{begin\_shot}、\code{intra\_update} &
+从持久状态复制 fast state；只用无标签重建和物理伪监督\\
+炮间监督 &
+\code{reveal\_and\_inter\_update} &
+reveal 后使用封存预测、真实标签、replay 和 guard\\
+错误记忆 &
+\code{TypedEndpoint}\allowbreak\code{ResidualMemory}、\code{SameError}\allowbreak\code{ReplayBuffer} &
+分离 FP/FN，按相似度和保护条件做局部修正\\
+查询价值 &
+\code{CausalDecision}\allowbreak\code{QueryValue}、\code{CausalUpdateValue} &
+在 reveal 前计算价值，在更新时缩放学习率\\
+报警状态机 &
+\code{IncrementalAlarm}、\code{ProjectedAlarm}\allowbreak\code{Controller} &
+因果 MA5/MA100、high/early 双路线和有界投影\\
+结果封存 &
+\code{build\_mainline\_receipt.py} &
+汇总封存 JSON，拒绝缺字段、非有限指标和错误状态\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{消融实验与增益归因}
+
+\subsection{在线系统因素分解}
+
+为了可归因，定义四个二元因素：
+
+\[
+I=\text{炮内神经适应},\quad
+R=\text{炮间持久神经适应},
+\]
+\[
+A=\text{报警/记忆侧更新},\quad
+W=\text{专家权重更新}.
+\]
+
+消融必须固定相同 parent、相同 query manifest、相同 threshold、相同报警器
+和相同炮序。否则不能把差异归因到模块。
+
+\subsection{EAST seed131 同父模型配对结果}
+
+\begin{table}[H]
+\centering
+\caption{同一 parent、同一查询清单下的 EAST seed131 配对诊断。}
+\label{tab:ablation}
+\small
+\begin{tabularx}{\textwidth}{p{28mm} C{10mm} C{10mm} C{16mm} p{31mm} C{19mm} Y}
+\toprule
+实验臂 & 炮内 & 炮间 & 侧路径 & online TPR/FPR & $\Delta J$ & 解释\\
+\midrule
+static reference & 否 & 否 & 否 & 0.794444/0.100000 & 0 & 共同起点\\
+intra-only & 是 & 否 & 否 & 0.794444/0.100000 & 0 & 反向传播发生，但边界未变\\
+inter-only & 否 & 是 & 是 & 0.805556/0.100000 & +0.011111 & 恢复一个 timely lead\\
+intra+inter & 是 & 是 & 是 & 0.800000/0.094444 & +0.011111 & 少一个 FP，但不能独立归因\\
+neural-only & 否 & 是 & 否 & 0.794444/0.100000 & 0 & 固定计算量神经更新无边界变化\\
+side-only & 否 & 否 & 是 & 0.794444/0.094444 & +0.005556 & 侧路径单独少一个 FP\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+这张表的正确解释不是“神经模块没用”，而是：
+
+\begin{quote}
+代码层面确实执行了炮内和炮间反向传播；然而在当前 seed131、固定
+parent、固定报警器和固定 query manifest 下，纯神经路径没有产生可见的
+炮级边界变化，而侧路径可以单独复现一个 FP 减少。因此完整 V3C 系统的
+增益不能独立归因于 Transformer 表示变化。
+\end{quote}
+
+J-TEXT 的真正局部 neural episode 诊断也允许 representation path 训练，
+但 static 和 online 的炮级 TPR、FPR、AUC、median lead 完全相同。当前
+J-TEXT canonical 的可见增益来自专家权重/决策层的延迟反馈。
+
+\subsection{关于物理机制学习的证据边界}
+
+当前使用的物理代理、下一状态重建和状态机约束增强了可解释性，但它们
+不是完整磁流体方程，也不等于对因果机制的直接识别。严谨表述应为：
+
+\begin{quote}
+方法利用可观测物理代理约束在线适应方向，并用时间一致性、跨分支一致性、
+错误类型记忆与 guard 提高安全性和可解释性；现有证据不足以证明模型已经
+识别完整的破裂因果机制。
+\end{quote}
+
+\section{常见技术质询及规范性回答}
+
+\subsection*{Q1：J-TEXT 的破裂/非破裂标签从哪里来？}
+
+硬结局只来自 HDF5 的 \code{meta/IsDisrupt} 和 \code{meta/DownTime}。
+AdvancedTime 只决定破裂前监督窗口。当前 \(H_i=\max(25\mathrm{ms},
+AdvancedTime_i)\)，缺失时取 25 ms。JSON 炮表不是硬结局来源。
+
+\subsection*{Q2：为什么不用固定 125 ms？}
+
+固定 125 ms 会把不同炮的先兆时长强行设成一样。Adv25 合同利用每炮
+AdvancedTime，同时保留 25 ms 下限。不过它仍然是弱标签，不能当作真实
+因果起点。
+
+\subsection*{Q3：EAST 和 J-TEXT 的标签窗口相同吗？}
+
+不相同。J-TEXT 当前使用 Adv25，J-TEXT operational lead 为 10 ms；
+EAST 主评价 lead 为 30 ms。目标适配使用 EAST 自己的目标合同。
+
+\subsection*{Q4：为什么 support110 的组成会冲突？}
+
+shot list 是角色和顺序登记，HDF5 的 \code{IsDisrupt} 是硬标签。历史文字
+表为 10D+100N，但 HDF5 审计为 15D+95N，因此 support110 只能作为历史兼容
+诊断，不能伪装成严格 10D+100N。
+
+\subsection*{Q5：为什么不是 23 维全部共享？}
+
+23 个通道在两个装置上的定义、可用性和统计关系不完全同构。rebuilt17
+承担共享路径，raw8 进入 EAST-private sidecar。它们不是无意义特征，而是
+不适合直接做全局同分布对齐的特征。
+
+\subsection*{Q6：当前源模型是 256 点还是 128 点？}
+
+当前封存结果是 128 点、patch8、stride8、\(d=64\)、2 层 4 头。256 点是
+早期计划，未用于本报告结果。
+
+\subsection*{Q7：迁移时冻结了什么？}
+
+J-TEXT encoder 和 source risk head 冻结；EAST 训练 target adapter、EAST
+private raw8 分支和独立 EAST risk head。部署分数来自 EAST head。
+
+\subsection*{Q8：EAST 迁移用了 J-TEXT 在线模型吗？}
+
+没有。EAST parent 是 J-TEXT 静态 checkpoint。J-TEXT 在线分支是独立研究
+附加项，不向 EAST 传递权重、查询记录或在线记忆。
+
+\subsection*{Q9：炮内更新为什么不泄漏？}
+
+炮内只看当前及更早信号。下一状态目标必须等后续观测到来后才能计算，代码
+拒绝 label、DownTime、IsDisrupt 和 sealed outcome 等字段。fast state 每炮
+重置。
+
+\subsection*{Q10：炮内更新和重新训练有什么区别？}
+
+重新训练可以重复使用数据集标签和历史窗口；炮内更新只能使用当前炮实时
+到来的无标签前缀，并且只更新临时 fast adapter。其目标是当前炮个性化，
+不是重新训练完整源模型。
+
+\subsection*{Q11：炮间更新是不是假设相邻两炮有连续物理状态？}
+
+不是。炮间更新只把已揭示错误作为潜在可重复模式，必须通过相似度、支持炮数、
+错误类型和 guard。没有重复证据时，更新会被限制或拒绝。
+
+\subsection*{Q12：为什么不随机查询？}
+
+标签查询昂贵。价值函数优先查询可能错误、物理冲突、分支不一致且具有纠错
+空间的炮；随机查询是公平对照。
+
+\subsection*{Q13：查询分数是否用了真实标签？}
+
+没有。查询分数只用风险轨迹、物理代理、可用性、分支不一致和历史距离。
+只有 query 决定后才 reveal HDF5 结局。
+
+\subsection*{Q14：FP 和 FN 的更新方向相同吗？}
+
+不同。FP 需要压低相似风险或提高相应门槛；FN/TARDY 需要抬高相似风险或
+让早期路线更敏感。两种记忆分开存储。
+
+\subsection*{Q15：TP/TN 为什么也记录？}
+
+它们主要用于 protection/guard，防止修正一个错误时破坏原来正确的 TP/TN。
+不是每个正确炮都要被强行拿来改变模型。
+
+\subsection*{Q16：在线增益是不是证明学到了新物理规律？}
+
+不能这样说。EAST seed131 的 side-only 仍减少一个 FP，neural-only 固定
+计算量没有改变边界，所以当前证据支持系统级收益，但不足以单独证明
+Transformer 学到了新的跨装置物理表示。
+
+\subsection*{Q17：这是不是强化学习？}
+
+严格说不是完整强化学习。它有查询价值和未来收益思想，但当前更新由 reveal
+后的监督误差、重建损失和 guard 驱动，更准确的名称是延迟反馈在线监督/
+持续学习。称为强化学习还需要明确状态、动作、奖励和策略更新。
+
+\subsection*{Q18：能不能现在直接写成 Nature 或 ICLR 的最终结果？}
+
+不能。TEST220 和 balanced360 已参与方法开发，support110 还有角色表与
+HDF5 组成差异，也没有独立 future stream。因此当前是
+\code{DIAGNOSTIC\_ONLY}。正式投稿需要锁定 parent、阈值、query policy、
+更新预算和代码，在完全未参与开发的未来 EAST 顺序流上一次性确认，并完成
+同 parent 多 seed 的正交归因。
+
+\section{论文表述边界与外推限制}
+
+\subsection{现有证据支持的陈述}
+
+\begin{itemize}
+\item J-TEXT Adv25 源模型在 TEST220 上具有较高的炮级区分能力；
+\item rebuilt17 共享路径加 EAST-private raw8 可以形成可运行的静态迁移模型；
+\item EAST V3C 遵循 predict--seal--query--reveal--update；
+\item EAST 开发回放中，在线系统平均 TPR@30 略升、FPR 略降；
+\item J-TEXT 20\% 查询下，canonical 决策级在线分支的 \(J\) 有提升；
+\item 炮内和炮间反向传播在代码层面确实存在；
+\item 物理代理、错误记忆和 guard 为在线更新提供了安全约束。
+\end{itemize}
+
+\subsection{现有证据不支持的陈述}
+
+\begin{itemize}
+\item balanced360 是完全未见测试集；
+\item 模型已证明学习了完整破裂因果机理；
+\item J-TEXT 在线模型是 EAST 的迁移 parent；
+\item J-TEXT 10 ms TPR 与 EAST 30 ms TPR 可直接比较；
+\item side-only 的增益全部来自神经底层表示；
+\item support110 可以无条件写成 10D+100N；
+\item 当前 128 点模型是 256 点模型；
+\item 三 seed 算术均值等同于统计显著性证明。
+\end{itemize}
+
+\section{可复现性、产物与验证记录}
+
+\subsection{运行环境与入口}
+
+\begin{lstlisting}[language=bash]
+source /home/hetaisheng/miniconda3/bin/activate rl_env
+export FUSION_PROJECT_ROOT=/media/hetaisheng/044A81D94A81C83E/Fuison
+export FUSION_DATA_ROOT=/media/hetaisheng/044A81D94A81C83E/Fuison/data
+python -c "import torch; print(torch.__version__, \
+torch.cuda.is_available(), torch.cuda.get_device_name(0))"
+\end{lstlisting}
+
+\subsection{主线回执与代码定位}
+
+\begin{lstlisting}[language=bash]
+cd /media/hetaisheng/044A81D94A81C83E/Fuison
+python experiments/transfer_methods_2026/build_mainline_receipt.py
+\end{lstlisting}
+
+机器可读结果：
+
+\begin{itemize}
+\item \pathcode{/media/hetaisheng/044A81D94A81C83E/Fuison/fuison_ext4_runs/mainline_receipt_20260831/mainline_results.json}
+\item \pathcode{/media/hetaisheng/044A81D94A81C83E/Fuison/fuison_ext4_runs/mainline_receipt_20260831/MAINLINE_RESULTS_CN.md}
+\item \pathcode{/media/hetaisheng/044A81D94A81C83E/Fuison/fuison_ext4_runs/mainline_audit_20260831_v2.json}
+\end{itemize}
+
+主要代码：
+
+\begin{itemize}
+\item \pathcode{/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/transfer_methods_2026/train_jtext_source_transformer.py}
+\item \pathcode{/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/transfer_methods_2026/jtext_label_contract.py}
+\item \pathcode{/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/transfer_methods_2026/run_jtext_adv25_active_mainline.py}
+\item \pathcode{/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/transfer_methods_2026/v3c_success_compat/run_unified_online_active.py}
+\item \pathcode{/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/transfer_methods_2026/v3c_success_compat/two_timescale_online_adapter.py}
+\item \pathcode{/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/transfer_methods_2026/v3c_success_compat/unified_online_value.py}
+\end{itemize}
+
+回归测试命令：
+
+\begin{lstlisting}[language=bash]
+/home/hetaisheng/miniconda3/envs/rl_env/bin/python -m pytest -q tests/experiments
+\end{lstlisting}
+
+本次工程核验结果为 \code{297 passed, 6 warnings}。这说明回归测试通过，
+但不等于统计显著性，也不等于独立未来流验收。
+
+\section{独立确认与正式投稿前的必要工作}
+
+正式投稿或部署前，建议只按以下顺序推进：
+
+\begin{enumerate}
+\item 明确是否要求 J-TEXT 和 EAST 使用同一 source checkpoint SHA；若要求，必须
+用同一 SHA 完整重跑两条下游分支。
+\item 以 HDF5 为唯一权威，固定 support110 的真实标签名单，解决 10D+100N
+文字表与 15D+95N 审计结果的冲突。
+\item 锁定 source parent、support parent、阈值、报警参数、query manifest、
+更新预算和代码 SHA。
+\item 在同一 parent、同一 query manifest 下完成三个 seed 的
+static/intra-only/inter-only/intra+inter/side-only/neural-only。
+\item 报告 source 参数哈希、目标参数哈希、latent 变化、logit 变化和炮级
+边界变化，不能只报告最终 TPR/FPR。
+\item 预先冻结方法和超参数，在完全未参与开发的 EAST future stream 上一次性运行。
+\item 单独报告秒级过早报警、炮长相关性、炮号相关性、查询炮分布和 guard 拒绝率。
+\end{enumerate}
+
+\section*{附录：技术质询速查表}
+
+\begin{tabularx}{\textwidth}{>{\bfseries}p{23mm}Y}
+标签 & HDF5 的 IsDisrupt/DownTime 是硬结局；J-TEXT 窗口为
+\(H=\max(25\mathrm{ms},\mathrm{AdvancedTime})\)。\\
+源模型 & TRAIN1353 训练，VAL160 选择 epoch 和阈值，TEST220 在封存后读取。\\
+实际结构 & rebuilt17，128 点窗口，patch 8，stride 8，\(d=64\)，2 层 4 头。\\
+迁移 & 只用 J-TEXT 静态 checkpoint；support110 训练 EAST 目标侧。\\
+静态 EAST & balanced360 先完整预测并封存。\\
+在线顺序 & \code{predict -> seal -> query -> reveal -> update}；未查询炮不读结局。\\
+炮内 & fast state；无标签下一状态重建/物理伪监督；每炮重置。\\
+炮间 & 查询后使用真实标签，按 FP/FN/TARDY 分型，用 residual、replay 和 guard。\\
+查询 & 不确定性、物理冲突、分支不一致、梯度可行动性和新颖性。\\
+报警 & high-margin 路线与 physics/trend early 路线；参数有界投影。\\
+结果边界 & EAST 在线平均 \(J\) 增加 0.007407，但当前是开发流系统级诊断。\\
+最诚实结论 & 工程链路已打通；神经表示独立增益尚未充分证明；未来流确认未完成。\\
+\end{tabularx}
+
+\end{document}

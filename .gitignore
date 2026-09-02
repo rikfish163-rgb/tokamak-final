@@ -121,3 +121,9 @@ tests/experiments/test_precursor_physics_guard.py
 .tmp_*/
 pytest-of-*/
 MANIFEST/SHA256SUMS
+
+# The compact 2026-08-31 current-mainline receipt is an explicit publication
+# surface. It contains manifests, ledgers, summaries and small evidence states;
+# raw HDF5 and derived feature arrays remain excluded.
+!results/current_mainline_20260831/
+!results/current_mainline_20260831/**

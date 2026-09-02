@@ -1,0 +1,208 @@
+{
+  "claim_boundary": "TEST_DRIVEN_EXPLORATION; no independent future confirmation",
+  "east_fresh_seed131": {
+    "claim_status": "TEST_DRIVEN_EXPLORATION",
+    "delta": {
+      "fpr": -0.03888888888888889,
+      "j": 0.03888888888888886,
+      "tpr": 0.0
+    },
+    "fresh_replay": true,
+    "online": {
+      "FN": 18,
+      "FP": 35,
+      "TN": 145,
+      "TP": 162,
+      "fpr": 0.19444444444444445,
+      "median_lead_ms": 124.00000000000055,
+      "over_3000ms_count": 13,
+      "tpr": 0.7666666666666667,
+      "tpr_key": "tpr_at_30ms"
+    },
+    "path": "/media/hetaisheng/044A81D94A81C83E/Fuison/fuison_ext4_runs/adv25_v3c_canonical_replay_20260831/seed131",
+    "query_count": 86,
+    "seed": 131,
+    "static": {
+      "FN": 18,
+      "FP": 42,
+      "TN": 138,
+      "TP": 162,
+      "fpr": 0.23333333333333334,
+      "median_lead_ms": 127.50000000000038,
+      "over_3000ms_count": 12,
+      "tpr": 0.7666666666666667,
+      "tpr_key": "tpr_at_30ms"
+    }
+  },
+  "east_three_seed_diagnostic": {
+    "mean_delta_j": 0.016666666666666646,
+    "mean_online_fpr": 0.2074074074074074,
+    "mean_online_tpr_at_30ms": 0.7351851851851853,
+    "mean_static_fpr": 0.21296296296296294,
+    "mean_static_tpr_at_30ms": 0.724074074074074,
+    "runs": [
+      {
+        "claim_status": "TEST_DRIVEN_EXPLORATION",
+        "delta": {
+          "fpr": -0.03888888888888889,
+          "j": 0.03888888888888886,
+          "tpr": 0.0
+        },
+        "fresh_replay": false,
+        "online": {
+          "FN": 18,
+          "FP": 35,
+          "TN": 145,
+          "TP": 162,
+          "fpr": 0.19444444444444445,
+          "median_lead_ms": 124.00000000000055,
+          "over_3000ms_count": 13,
+          "tpr": 0.7666666666666667,
+          "tpr_key": "tpr_at_30ms"
+        },
+        "path": "/media/hetaisheng/044A81D94A81C83E/Fuison/fuison_ext4_runs/adv25_v3c_classfirst_replay_20260831/seed131",
+        "query_count": 86,
+        "seed": 131,
+        "static": {
+          "FN": 18,
+          "FP": 42,
+          "TN": 138,
+          "TP": 162,
+          "fpr": 0.23333333333333334,
+          "median_lead_ms": 127.50000000000038,
+          "over_3000ms_count": 12,
+          "tpr": 0.7666666666666667,
+          "tpr_key": "tpr_at_30ms"
+        }
+      },
+      {
+        "claim_status": "TEST_DRIVEN_EXPLORATION",
+        "delta": {
+          "fpr": 0.0111111111111111,
+          "j": 0.005555555555555647,
+          "tpr": 0.01666666666666672
+        },
+        "fresh_replay": false,
+        "online": {
+          "FN": 34,
+          "FP": 30,
+          "TN": 150,
+          "TP": 146,
+          "fpr": 0.16666666666666666,
+          "median_lead_ms": 106.95000000000033,
+          "over_3000ms_count": 13,
+          "tpr": 0.6444444444444445,
+          "tpr_key": "tpr_at_30ms"
+        },
+        "path": "/media/hetaisheng/044A81D94A81C83E/Fuison/fuison_ext4_runs/adv25_v3c_classfirst_replay_20260831/seed133",
+        "query_count": 95,
+        "seed": 133,
+        "static": {
+          "FN": 36,
+          "FP": 28,
+          "TN": 152,
+          "TP": 144,
+          "fpr": 0.15555555555555556,
+          "median_lead_ms": 99.99999999999943,
+          "over_3000ms_count": 11,
+          "tpr": 0.6277777777777778,
+          "tpr_key": "tpr_at_30ms"
+        }
+      },
+      {
+        "claim_status": "TEST_DRIVEN_EXPLORATION",
+        "delta": {
+          "fpr": 0.011111111111111127,
+          "j": 0.005555555555555425,
+          "tpr": 0.016666666666666607
+        },
+        "fresh_replay": false,
+        "online": {
+          "FN": 13,
+          "FP": 47,
+          "TN": 133,
+          "TP": 167,
+          "fpr": 0.2611111111111111,
+          "median_lead_ms": 169.00000000000048,
+          "over_3000ms_count": 14,
+          "tpr": 0.7944444444444444,
+          "tpr_key": "tpr_at_30ms"
+        },
+        "path": "/media/hetaisheng/044A81D94A81C83E/Fuison/fuison_ext4_runs/adv25_v3c_classfirst_replay_20260831/seed137",
+        "query_count": 92,
+        "seed": 137,
+        "static": {
+          "FN": 15,
+          "FP": 45,
+          "TN": 135,
+          "TP": 165,
+          "fpr": 0.25,
+          "median_lead_ms": 152.00000000000014,
+          "over_3000ms_count": 13,
+          "tpr": 0.7777777777777778,
+          "tpr_key": "tpr_at_30ms"
+        }
+      }
+    ]
+  },
+  "generated_at_utc": "2026-08-30T21:54:32.566060+00:00",
+  "interpretation": {
+    "east_active_gain": "retained V3C class-first parent with chronological intra/inter online path and alarm state machine",
+    "formal_admission": false,
+    "jtext_active_gain": "delayed queried-feedback expert-weight update; no Transformer representation update"
+  },
+  "jtext": {
+    "budget_percent": 20,
+    "claim_status": "TEST_DRIVEN_EXPLORATION",
+    "delta": {
+      "auc": 0.0014049586776858636,
+      "fpr": 0.0,
+      "j": 0.018181818181818188,
+      "tpr": 0.018181818181818188
+    },
+    "online": {
+      "FN": 16,
+      "FP": 12,
+      "TN": 98,
+      "TP": 94,
+      "fpr": 0.10909090909090909,
+      "median_lead_ms": 68.46624768371592,
+      "over_3000ms_count": 0,
+      "tpr": 0.8545454545454545,
+      "tpr_key": "operational_tpr"
+    },
+    "path": "/media/hetaisheng/044A81D94A81C83E/Fuison/fuison_ext4_runs/jtext_adv25_active_canonical_replay_20260831/budget20",
+    "query_count": 44,
+    "source_checkpoint_sha256": {
+      "131": "85eaa32b912adf83cd5bc794cba55f1271d51728c3f278b114b0f11bbf2bf91e",
+      "133": "9c2b908c2958b17f1b18275fb7aef0923aa129afd90f2e4b4497f81a4fabe783",
+      "137": "c1594751c72209eab1990cba309cdb49a33163e2c0a44f16abe397c3d961cc01"
+    },
+    "static": {
+      "FN": 18,
+      "FP": 12,
+      "TN": 98,
+      "TP": 92,
+      "fpr": 0.10909090909090909,
+      "median_lead_ms": 68.46624768371592,
+      "over_3000ms_count": 0,
+      "tpr": 0.8363636363636363,
+      "tpr_key": "operational_tpr"
+    }
+  },
+  "mainline": {
+    "causal_order": "predict -> seal -> query -> reveal -> update",
+    "east_static_and_online_share_parent": true,
+    "jtext_online_state_used_for_east": false,
+    "jtext_static_is_east_parent": false
+  },
+  "schema_version": "mainline-audit-v1",
+  "status": "DIAGNOSTIC_ONLY",
+  "storage": {
+    "final_root_on_mounted_device": true,
+    "legacy_local_root_exists": false,
+    "local_root_device": 66311,
+    "published_device": 66307,
+    "published_root": "/media/hetaisheng/044A81D94A81C83E/Fuison/fuison_ext4_runs"
+  }
+}

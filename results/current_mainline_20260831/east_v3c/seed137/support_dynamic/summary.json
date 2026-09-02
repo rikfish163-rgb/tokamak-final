@@ -1,0 +1,145 @@
+{
+  "adapted_confusion": {
+    "FN": 24,
+    "FP": 14,
+    "TN": 166,
+    "TP": 156
+  },
+  "adapted_metrics": {
+    "fpr": 0.07777777777777778,
+    "tpr": 0.8666666666666667
+  },
+  "adapter_parameters": 3893,
+  "adapter_sha256": "42e2b459be410945c1b3938c54f61a75c9697ebaf956f369d816db97f73c4237",
+  "base_confusion": {
+    "FN": 39,
+    "FP": 9,
+    "TN": 171,
+    "TP": 141
+  },
+  "base_metrics": {
+    "fpr": 0.05,
+    "tpr": 0.7833333333333333
+  },
+  "base_model_sha256_before_after": "f1726381a730969ca497b2a376bc4dc346759409f16865524112077c3e50cce4",
+  "claim_boundary": "110-support-trained, balanced360 test-driven diagnostic; no online updates during test.",
+  "hashes": {
+    "predictions": "f9a5dee9114e678cbfd92f0c75fc95928f3c8d8941e0c79035461eb47ff04ee0",
+    "source_checkpoint": "5183dc09239409325dd4f10fde8a6af4b6da4e28accc9ff88b11ff07a4d826cf"
+  },
+  "history": [
+    {
+      "epoch": 0,
+      "loss": 0.03376572565175593,
+      "phase": "aux_pretrain"
+    },
+    {
+      "epoch": 1,
+      "loss": 0.022897098725661636,
+      "phase": "aux_pretrain"
+    },
+    {
+      "epoch": 2,
+      "loss": 0.02178309066221118,
+      "phase": "aux_pretrain"
+    },
+    {
+      "epoch": 3,
+      "loss": 0.02078352733515203,
+      "phase": "aux_pretrain"
+    },
+    {
+      "anchor": 0.00038404517341916744,
+      "aux": 0.028542656218633056,
+      "epoch": 0,
+      "hazard": 0.7293076875309149,
+      "loss": 0.7354023170967897,
+      "phase": "joint_hazard"
+    },
+    {
+      "anchor": 0.0022051361496172226,
+      "aux": 0.022122156457044184,
+      "epoch": 1,
+      "hazard": 0.7149544097483158,
+      "loss": 0.7216285082201163,
+      "phase": "joint_hazard"
+    },
+    {
+      "anchor": 0.007215741235995665,
+      "aux": 0.02216485282406211,
+      "epoch": 2,
+      "hazard": 0.7019454923768839,
+      "loss": 0.7141276883582274,
+      "phase": "joint_hazard"
+    },
+    {
+      "anchor": 0.016429963550763205,
+      "aux": 0.023607015415715676,
+      "epoch": 3,
+      "hazard": 0.6594169822831949,
+      "loss": 0.684336869046092,
+      "phase": "joint_hazard"
+    },
+    {
+      "anchor": 0.02015176385369462,
+      "aux": 0.025875843207662303,
+      "epoch": 4,
+      "hazard": 0.5965577034900585,
+      "loss": 0.6336327791213989,
+      "phase": "joint_hazard"
+    },
+    {
+      "anchor": 0.018695490037013467,
+      "aux": 0.02776003636730214,
+      "epoch": 5,
+      "hazard": 0.5591000777979692,
+      "loss": 0.6004764835039774,
+      "phase": "joint_hazard"
+    },
+    {
+      "anchor": 0.015507708381240567,
+      "aux": 0.02759287766336153,
+      "epoch": 6,
+      "hazard": 0.5502750637630621,
+      "loss": 0.5905948330958685,
+      "phase": "joint_hazard"
+    },
+    {
+      "anchor": 0.018659906837153056,
+      "aux": 0.026836060065155227,
+      "epoch": 7,
+      "hazard": 0.5238389857113361,
+      "loss": 0.5687007401138544,
+      "phase": "joint_hazard"
+    }
+  ],
+  "normality": {
+    "fpr_le_0_40": true,
+    "passed": true,
+    "tpr_ge_0_60": true
+  },
+  "screen_gate": {
+    "fp_rescued_ge_1": false,
+    "fpr_strictly_lower": false,
+    "passed": false,
+    "tn_harmed_le_2": false,
+    "tp_harmed_le_2": true,
+    "tpr_non_degraded": true
+  },
+  "seed": 137,
+  "stage": "EAST_PRIVATE_DYNAMICS_HAZARD_RESIDUAL",
+  "status": "ONLINE_DIAGNOSTIC",
+  "support_counts": {
+    "negative_windows": 3520,
+    "positive_windows": 480,
+    "shots": 110
+  },
+  "threshold": 0.49025946855545044,
+  "threshold_source": "fixed 110-shot support base threshold; not reselected",
+  "transitions": {
+    "FN_rescued": 15,
+    "FP_rescued": 0,
+    "TN_harmed": 5,
+    "TP_harmed": 0
+  }
+}

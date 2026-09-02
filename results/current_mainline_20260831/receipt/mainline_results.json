@@ -1,0 +1,569 @@
+{
+  "claim_boundary": "TEST220 and balanced360 participated in method or parameter development; these results are not independent future-stream confirmation",
+  "claim_status": "DIAGNOSTIC_ONLY / TEST_DRIVEN_EXPLORATION",
+  "east_seed131_component_attribution": {
+    "claim_boundary": "balanced360 participated in method and parameter development; this is a paired causal attribution replay, not independent future confirmation",
+    "decision": {
+      "neural_attribution": "纯神经更新在本 seed 的炮级指标上为零增益；联合臂的变化不能从系统级 V3C 结果单独归因给神经表示",
+      "next_allowed_experiment": "在冻结同一 parent、阈值、报警器和 query manifest 的前提下，对 side-only、neural-only 和 full 进行多 seed 复现；不得先改报警参数或查询清单",
+      "paper_boundary": "所有结果仅可作为 balanced360 方法开发诊断，不能作为独立未来确认",
+      "primary_attribution": "当前可见的 FPR 增益主要由查询后决策/记忆侧路径贡献；当前证据不足以声称 Transformer 主干学到了新的跨装置物理规律"
+    },
+    "fairness_contract": {
+      "outcome_reveal_protocol": "predict -> seal -> query -> reveal -> update",
+      "same_alarm_parameters": true,
+      "same_query_positions": true,
+      "same_query_shots": true,
+      "same_shot_order": true,
+      "same_static_seal_sha256": "f714407eb7cd42a3174fa0c43d831a32806ac256c24ea486ac11ec47e9446b16",
+      "same_threshold": true,
+      "static_phase_completed_before_online_phase": true,
+      "unqueried_outcomes_read_before_final_evaluation": false
+    },
+    "lineage": {
+      "alarm_minimum_lead_ms": 30.0,
+      "compatibility_code_sha256": {
+        "east_private_continual.py": "b7c40309f70ef2337756bc4f082110e7c195e58fb21ea5f590a7968b03e17f59",
+        "run_unified_online_active.py": "b4ffa928ad25545e953a5371e55ec3b4be1f0dfe3673f7eea19289ef76458788",
+        "two_timescale_online_adapter.py": "ac6c68422a33edbe3908945c3b72560bf6447fe14abc6a525df774520ccf8324"
+      },
+      "over_3000ms_counts_as_tpr": true,
+      "private_parent_sha256": "1e81603ec0574697a1ce30eaf9d5221a71dd578e07e581e05beaba08e65c12e4",
+      "query_count": 94,
+      "query_manifest": "fuison_ext4_runs/east_v3c_timescale_ablation_20260831/seed131/fixed_query_manifest.json",
+      "query_manifest_sha256": "89d765f71e7b558f4df318e4a3d9f046752a1cb5243b734c6554f00e360d1a06",
+      "query_rate": 0.2611111111111111,
+      "seed": 131,
+      "shared_parent_sha256": "f2c5292d609cc439d3e9d5ef3f2d69df3f995b6fbd70f58018d207ea37e75465",
+      "source_checkpoint": "fuison_ext4_runs/v3c_adv25_epoch3_20260830/seed131/source/source_checkpoint.pt",
+      "source_checkpoint_sha256": "1ab6b8e3b30992400ea6df8ffe235cb9d0023730f5a0c77d4de0f087ae85912d",
+      "stream": "EAST balanced360 chronological order",
+      "support_parent_base_sha256": "3dd1366ae3dc671d6a693d52c1e8eb0ab2d3a168a6d811ad7679637d79d92bbd"
+    },
+    "runs": [
+      {
+        "artifact": "intra_only_current",
+        "decision_side_updates": false,
+        "delta": {
+          "J": 0.0,
+          "fpr": 0.0,
+          "tpr_at_30ms": 0.0
+        },
+        "interpretation": "炮内 fast-state 反向传播执行，但没有改变炮级报警边界",
+        "intra_attempts": 19177,
+        "intra_nonzero": 12607,
+        "name": "intra_only",
+        "neural_inter": false,
+        "neural_intra": true,
+        "online": {
+          "FN": 10,
+          "FP": 18,
+          "J": 0.6944444444444444,
+          "TN": 162,
+          "TP": 170,
+          "fpr": 0.1,
+          "tpr_at_30ms": 0.7944444444444444
+        },
+        "query_count": 0,
+        "static": {
+          "FN": 10,
+          "FP": 18,
+          "J": 0.6944444444444444,
+          "TN": 162,
+          "TP": 170,
+          "fpr": 0.1,
+          "tpr_at_30ms": 0.7944444444444444
+        }
+      },
+      {
+        "artifact": "inter_only_current",
+        "decision_side_updates": true,
+        "delta": {
+          "J": 0.011111111111111183,
+          "fpr": 0.0,
+          "tpr_at_30ms": 0.011111111111111183
+        },
+        "interpretation": "炮间神经更新与 V3C 侧更新共同运行，恢复一个 timely lead",
+        "name": "inter_only",
+        "neural_inter": true,
+        "neural_intra": false,
+        "online": {
+          "FN": 10,
+          "FP": 18,
+          "J": 0.7055555555555556,
+          "TN": 162,
+          "TP": 170,
+          "fpr": 0.1,
+          "tpr_at_30ms": 0.8055555555555556
+        },
+        "private_inter_accepted": 28,
+        "query_count": 94,
+        "shared_inter_accepted": 28,
+        "static": {
+          "FN": 10,
+          "FP": 18,
+          "J": 0.6944444444444444,
+          "TN": 162,
+          "TP": 170,
+          "fpr": 0.1,
+          "tpr_at_30ms": 0.7944444444444444
+        }
+      },
+      {
+        "artifact": "intra_inter_current",
+        "decision_side_updates": true,
+        "delta": {
+          "J": 0.011111111111111183,
+          "fpr": -0.005555555555555564,
+          "tpr_at_30ms": 0.005555555555555647
+        },
+        "interpretation": "联合更新降低一个 FP，但相对 inter-only 少恢复一个 timely lead，交互项并非单调叠加",
+        "intra_attempts": 19177,
+        "intra_nonzero": 12583,
+        "name": "intra_inter",
+        "neural_inter": true,
+        "neural_intra": true,
+        "online": {
+          "FN": 10,
+          "FP": 17,
+          "J": 0.7055555555555556,
+          "TN": 163,
+          "TP": 170,
+          "fpr": 0.09444444444444444,
+          "tpr_at_30ms": 0.8
+        },
+        "private_inter_accepted": 27,
+        "query_count": 94,
+        "shared_inter_accepted": 27,
+        "static": {
+          "FN": 10,
+          "FP": 18,
+          "J": 0.6944444444444444,
+          "TN": 162,
+          "TP": 170,
+          "fpr": 0.1,
+          "tpr_at_30ms": 0.7944444444444444
+        }
+      },
+      {
+        "artifact": "neural_only_current",
+        "decision_side_updates": false,
+        "delta": {
+          "J": 0.0,
+          "fpr": 0.0,
+          "tpr_at_30ms": 0.0
+        },
+        "fixed_compute": {
+          "current_windows_per_query": 16,
+          "optimizer_steps_per_query": 2,
+          "query_count": 94,
+          "replay_windows_per_query": 16
+        },
+        "interpretation": "固定 16+16 窗口和 2 step 的纯神经炮间更新没有改变报警边界",
+        "name": "neural_only_fixed_compute",
+        "neural_inter": true,
+        "neural_intra": false,
+        "online": {
+          "FN": 10,
+          "FP": 18,
+          "J": 0.6944444444444444,
+          "TN": 162,
+          "TP": 170,
+          "fpr": 0.1,
+          "tpr_at_30ms": 0.7944444444444444
+        },
+        "private_inter_accepted": 48,
+        "private_inter_rollback": 46,
+        "shared_inter_accepted": 94,
+        "static": {
+          "FN": 10,
+          "FP": 18,
+          "J": 0.6944444444444444,
+          "TN": 162,
+          "TP": 170,
+          "fpr": 0.1,
+          "tpr_at_30ms": 0.7944444444444444
+        }
+      },
+      {
+        "artifact": "side_only_current",
+        "decision_side_updates": true,
+        "delta": {
+          "J": 0.005555555555555536,
+          "fpr": -0.005555555555555564,
+          "tpr_at_30ms": 0.0
+        },
+        "interpretation": "保留查询后报警、episode、endpoint-memory 和 query-value 侧更新，屏蔽两套神经 adapter；仍复现 FPR 下降",
+        "name": "side_only_no_neural_inter",
+        "neural_inter": false,
+        "neural_inter_disabled": 94,
+        "neural_intra": false,
+        "online": {
+          "FN": 10,
+          "FP": 17,
+          "J": 0.7,
+          "TN": 163,
+          "TP": 170,
+          "fpr": 0.09444444444444444,
+          "tpr_at_30ms": 0.7944444444444444
+        },
+        "persistent_weights_unchanged": true,
+        "query_count": 94,
+        "static": {
+          "FN": 10,
+          "FP": 18,
+          "J": 0.6944444444444444,
+          "TN": 162,
+          "TP": 170,
+          "fpr": 0.1,
+          "tpr_at_30ms": 0.7944444444444444
+        }
+      }
+    ],
+    "schema_version": "east-v3c-timescale-attribution-v1",
+    "status": "DIAGNOSTIC_ONLY"
+  },
+  "east_v3c_mainline": {
+    "arithmetic_mean": {
+      "delta": {
+        "J": 0.007407407407407418,
+        "fpr": -0.00555555555555555,
+        "median_lead_ms": 4.6666666666666,
+        "tpr": 0.0018518518518518823
+      },
+      "online": {
+        "J": 0.6777777777777778,
+        "fpr": 0.11481481481481481,
+        "median_lead_ms": 144.49999999999994,
+        "tpr": 0.7925925925925926
+      },
+      "static": {
+        "J": 0.6703703703703704,
+        "fpr": 0.12037037037037036,
+        "median_lead_ms": 139.83333333333334,
+        "tpr": 0.7907407407407407
+      }
+    },
+    "metric_contract": {
+      "J": "TPR@30ms - FPR",
+      "fpr": "safe-shot alarm fraction",
+      "tpr": "TPR@30ms; lead >= 30 ms; lead > 3000 ms remains counted and is separately reported"
+    },
+    "per_seed": [
+      {
+        "claim_status": null,
+        "delta": {
+          "J": 0.011111111111111183,
+          "fpr": -0.005555555555555564,
+          "median_lead_ms": 0.0,
+          "tpr": 0.005555555555555647
+        },
+        "online": {
+          "FN": 10,
+          "FP": 17,
+          "J": 0.7055555555555556,
+          "TN": 163,
+          "TP": 170,
+          "auc": null,
+          "early_over_3000_ms_count": 20,
+          "fpr": 0.09444444444444444,
+          "median_lead_ms": 139.0000000000009,
+          "source": "east_v3c_seed131",
+          "stage": "online360",
+          "tpr": 0.8
+        },
+        "query_count": 94,
+        "seed": 131,
+        "source_checkpoint_sha256": "1ab6b8e3b30992400ea6df8ffe235cb9d0023730f5a0c77d4de0f087ae85912d",
+        "static": {
+          "FN": 10,
+          "FP": 18,
+          "J": 0.6944444444444444,
+          "TN": 162,
+          "TP": 170,
+          "auc": null,
+          "early_over_3000_ms_count": 20,
+          "fpr": 0.1,
+          "median_lead_ms": 139.0000000000009,
+          "source": "east_v3c_seed131",
+          "stage": "static360",
+          "tpr": 0.7944444444444444
+        },
+        "support_parent_sha256": "3dd1366ae3dc671d6a693d52c1e8eb0ab2d3a168a6d811ad7679637d79d92bbd"
+      },
+      {
+        "claim_status": null,
+        "delta": {
+          "J": 0.005555555555555536,
+          "fpr": -0.005555555555555564,
+          "median_lead_ms": 1.4999999999991758,
+          "tpr": 0.0
+        },
+        "online": {
+          "FN": 15,
+          "FP": 20,
+          "J": 0.6499999999999999,
+          "TN": 160,
+          "TP": 165,
+          "auc": null,
+          "early_over_3000_ms_count": 20,
+          "fpr": 0.1111111111111111,
+          "median_lead_ms": 135.99999999999923,
+          "source": "east_v3c_seed133",
+          "stage": "online360",
+          "tpr": 0.7611111111111111
+        },
+        "query_count": 99,
+        "seed": 133,
+        "source_checkpoint_sha256": "c8c5945f58a938d9c7d8197650b01b9dacf2be7cf0ae317825f422d1283142da",
+        "static": {
+          "FN": 14,
+          "FP": 21,
+          "J": 0.6444444444444444,
+          "TN": 159,
+          "TP": 166,
+          "auc": null,
+          "early_over_3000_ms_count": 20,
+          "fpr": 0.11666666666666667,
+          "median_lead_ms": 134.50000000000006,
+          "source": "east_v3c_seed133",
+          "stage": "static360",
+          "tpr": 0.7611111111111111
+        },
+        "support_parent_sha256": "396fe442d8f35c7f2b40fb31dbe594ee396a67d226dc56a7eeda2e62c6f9c178"
+      },
+      {
+        "claim_status": null,
+        "delta": {
+          "J": 0.005555555555555536,
+          "fpr": -0.005555555555555536,
+          "median_lead_ms": 12.500000000000625,
+          "tpr": 0.0
+        },
+        "online": {
+          "FN": 14,
+          "FP": 25,
+          "J": 0.6777777777777778,
+          "TN": 155,
+          "TP": 166,
+          "auc": null,
+          "early_over_3000_ms_count": 18,
+          "fpr": 0.1388888888888889,
+          "median_lead_ms": 158.49999999999966,
+          "source": "east_v3c_seed137",
+          "stage": "online360",
+          "tpr": 0.8166666666666667
+        },
+        "query_count": 98,
+        "seed": 137,
+        "source_checkpoint_sha256": "5183dc09239409325dd4f10fde8a6af4b6da4e28accc9ff88b11ff07a4d826cf",
+        "static": {
+          "FN": 14,
+          "FP": 26,
+          "J": 0.6722222222222223,
+          "TN": 154,
+          "TP": 166,
+          "auc": null,
+          "early_over_3000_ms_count": 18,
+          "fpr": 0.14444444444444443,
+          "median_lead_ms": 145.99999999999903,
+          "source": "east_v3c_seed137",
+          "stage": "static360",
+          "tpr": 0.8166666666666667
+        },
+        "support_parent_sha256": "f1726381a730969ca497b2a376bc4dc346759409f16865524112077c3e50cce4"
+      }
+    ]
+  },
+  "input_receipts": {
+    "east_seed131_attribution": {
+      "path": "/media/hetaisheng/044A81D94A81C83E/Fuison/fuison_ext4_runs/east_v3c_timescale_ablation_20260831/seed131/aggregate.json",
+      "sha256": "40b7a05b2d908215a494aa7c47f85fd9a700c3485948b704da74b0c3cc07e06c"
+    },
+    "east_v3c_seed131": {
+      "path": "/media/hetaisheng/044A81D94A81C83E/Fuison/fuison_ext4_runs/adv25_v3c_success_shotfirst_replay_20260831/seed131/final_episode_v3/summary.json",
+      "sha256": "24fb227c5b0f105d3941b07b3a9cca7d36c34094d922a774de53888c7c4dd24c"
+    },
+    "east_v3c_seed133": {
+      "path": "/media/hetaisheng/044A81D94A81C83E/Fuison/fuison_ext4_runs/adv25_v3c_success_shotfirst_replay_20260831/seed133/final_episode_v3/summary.json",
+      "sha256": "c70f7d1a11326a7dc3dae77fb2ef401d44e43428c3d162e4466a881975e15d65"
+    },
+    "east_v3c_seed137": {
+      "path": "/media/hetaisheng/044A81D94A81C83E/Fuison/fuison_ext4_runs/adv25_v3c_success_shotfirst_replay_20260831/seed137/final_episode_v3/summary.json",
+      "sha256": "a8427b3280e0193ec868606c9d8a11896e2491695bc40fde0da2a3b224d82faf"
+    },
+    "jtext_active_budget20": {
+      "path": "/media/hetaisheng/044A81D94A81C83E/Fuison/fuison_ext4_runs/jtext_adv25_active_canonical_replay_20260831/budget20/summary.json",
+      "sha256": "ce4a9edcbe7f1591899b869fd18210620b10a5ce4afb592360dff9faafddc48d"
+    },
+    "jtext_neural_diagnostic": {
+      "path": "/media/hetaisheng/044A81D94A81C83E/Fuison/fuison_ext4_runs/jtext_episodic_online_20260831/seed131_b20_guarded/summary.json",
+      "sha256": "53f0b5807eb200b8f71a7b682b6f47ae592e72d618d39dfe23798e122a9b201a"
+    },
+    "jtext_source_seed131": {
+      "path": "/media/hetaisheng/044A81D94A81C83E/Fuison/fuison_ext4_runs/v3c_adv25_exact_20260830/seed131/source/test220_metrics.json",
+      "sha256": "b20441f575dadbb399a76b57126fb54518812f1f9dbc407815bcf5c8d8a6b4a9"
+    },
+    "jtext_source_seed133": {
+      "path": "/media/hetaisheng/044A81D94A81C83E/Fuison/fuison_ext4_runs/jtext_adv25_sources_20260830/seed133/test220_metrics.json",
+      "sha256": "9347aadce5b7f0ffa517498547ecfb2f303a59b517c4f8b0bfc56cf5284d6d8f"
+    },
+    "jtext_source_seed137": {
+      "path": "/media/hetaisheng/044A81D94A81C83E/Fuison/fuison_ext4_runs/jtext_adv25_sources_20260830/seed137/test220_metrics.json",
+      "sha256": "e4e5c4b6498acb0417100593a72b10e9927c2ed94e7a214de02b7da88920ab31"
+    }
+  },
+  "jtext_online_decision_level": {
+    "budget_percent": 20,
+    "claim_status": "TEST_DRIVEN_EXPLORATION",
+    "delta": {
+      "J": 0.018181818181818188,
+      "auc": 0.0014049586776858636,
+      "fpr": 0.0,
+      "median_lead_ms": 0.0,
+      "tpr": 0.018181818181818188
+    },
+    "minimum_lead_rule": "lead_ms > 10",
+    "n_shots": 220,
+    "online": {
+      "J": 0.7454545454545454,
+      "auc": 0.9756198347107438,
+      "fpr": 0.10909090909090909,
+      "median_lead_ms": 68.46624768371592,
+      "source": "jtext_active_canonical",
+      "stage": "online",
+      "tpr": 0.8545454545454545
+    },
+    "parent": "raw_static_jtext_source_checkpoint_only",
+    "query_count": 44,
+    "representation_updated": false,
+    "static": {
+      "J": 0.7272727272727272,
+      "auc": 0.9742148760330579,
+      "fpr": 0.10909090909090909,
+      "median_lead_ms": 68.46624768371592,
+      "source": "jtext_active_canonical",
+      "stage": "static",
+      "tpr": 0.8363636363636363
+    }
+  },
+  "jtext_online_neural_diagnostic": {
+    "claim_boundary": "TEST220 was used for method development; this is a causal diagnostic, not independent future confirmation. A positive delta cannot by itself prove new physical-law discovery.",
+    "delta": {
+      "J": 0.0,
+      "auc": 0.0,
+      "fpr": 0.0,
+      "median_lead_ms": 0.0,
+      "tpr": 0.0
+    },
+    "online": {
+      "FN": 2,
+      "FP": 17,
+      "J": 0.7454545454545455,
+      "TN": 93,
+      "TP": 108,
+      "auc": 0.9790909090909091,
+      "early_over_3000_ms_count": 0,
+      "fpr": 0.15454545454545454,
+      "median_lead_ms": 68.87455768371592,
+      "source": "jtext_neural_episode",
+      "stage": "online",
+      "tpr": 0.9
+    },
+    "query_count": 44,
+    "representation_path_trainable": true,
+    "seed": 131,
+    "source_parameters_updated": false,
+    "static": {
+      "FN": 2,
+      "FP": 17,
+      "J": 0.7454545454545455,
+      "TN": 93,
+      "TP": 108,
+      "auc": 0.9790909090909091,
+      "early_over_3000_ms_count": 0,
+      "fpr": 0.15454545454545454,
+      "median_lead_ms": 68.87455768371592,
+      "source": "jtext_neural_episode",
+      "stage": "static",
+      "tpr": 0.9
+    }
+  },
+  "jtext_online_optional_budgets": [],
+  "jtext_source_test220": {
+    "arithmetic_mean": {
+      "J": 0.7363636363636363,
+      "auc": 0.9679063360881542,
+      "fpr": 0.1303030303030303,
+      "median_lead_ms": 67.3543926837159,
+      "tpr": 0.8666666666666667
+    },
+    "per_seed": [
+      {
+        "J": 0.7454545454545455,
+        "auc": 0.9790909090909091,
+        "checkpoint_sha256": "85eaa32b912adf83cd5bc794cba55f1271d51728c3f278b114b0f11bbf2bf91e",
+        "fpr": 0.15454545454545454,
+        "label_authority": "HDF5 meta only",
+        "median_lead_ms": 68.87455768371592,
+        "seed": 131,
+        "source": "jtext_source_seed131",
+        "stage": "TEST220_static",
+        "threshold_selection_split": "VAL160",
+        "tpr": 0.9
+      },
+      {
+        "J": 0.7363636363636363,
+        "auc": 0.9617355371900826,
+        "checkpoint_sha256": "9c2b908c2958b17f1b18275fb7aef0923aa129afd90f2e4b4497f81a4fabe783",
+        "fpr": 0.1,
+        "label_authority": "HDF5 meta only",
+        "median_lead_ms": 63.41495268371588,
+        "seed": 133,
+        "source": "jtext_source_seed133",
+        "stage": "TEST220_static",
+        "threshold_selection_split": "VAL160",
+        "tpr": 0.8363636363636363
+      },
+      {
+        "J": 0.7272727272727273,
+        "auc": 0.9628925619834711,
+        "checkpoint_sha256": "c1594751c72209eab1990cba309cdb49a33163e2c0a44f16abe397c3d961cc01",
+        "fpr": 0.13636363636363635,
+        "label_authority": "HDF5 meta only",
+        "median_lead_ms": 69.7736676837159,
+        "seed": 137,
+        "source": "jtext_source_seed137",
+        "stage": "TEST220_static",
+        "threshold_selection_split": "VAL160",
+        "tpr": 0.8636363636363636
+      }
+    ]
+  },
+  "label_contract": {
+    "east_operational_lead": ">= 30 ms",
+    "east_outcome_authority": "HDF5 meta/IsDisrupt and meta/DownTime",
+    "jtext_operational_lead": "> 10 ms",
+    "jtext_outcome_authority": "HDF5 meta/IsDisrupt and meta/DownTime",
+    "jtext_positive_window": "max(25 ms, AdvancedTime_ms); missing AdvancedTime -> 25 ms",
+    "over_3000_ms_rule": "counted as TPR and separately reported"
+  },
+  "lineage_contract": {
+    "east_parent": "raw static J-TEXT checkpoint -> EAST support110 adaptation",
+    "east_source_profile": "east_success (separately registered per seed)",
+    "jtext_online_exported_to_east": false,
+    "jtext_source_checkpoint_sha256": {
+      "131": "85eaa32b912adf83cd5bc794cba55f1271d51728c3f278b114b0f11bbf2bf91e",
+      "133": "9c2b908c2958b17f1b18275fb7aef0923aa129afd90f2e4b4497f81a4fabe783",
+      "137": "c1594751c72209eab1990cba309cdb49a33163e2c0a44f16abe397c3d961cc01"
+    },
+    "source_profile_warning": "jtext_exact and east_success are not silently merged"
+  },
+  "material_passport": {
+    "id": "JTEXT-EAST-MAINLINE-20260831",
+    "scope": "sealed JSON result receipts only; no metric recomputation from raw HDF5",
+    "status": "ANALYZED",
+    "type": "experiment_result_receipt"
+  },
+  "schema_version": "jtext-east-mainline-receipt-v2"
+}

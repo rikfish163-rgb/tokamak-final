@@ -68,324 +68,6 @@ def test_intra_update_changes_fast_path_only_and_future_prediction():
     assert not torch.equal(prediction_before, prediction_after)
 
 
-def test_representation_only_ttt_freezes_auxiliary_and_risk_heads():
-    """SSL error must adapt the representation instead of being absorbed by heads."""
-    module = load_module()
-    from dynamic_hazard_adapter import DynamicHazardAdapter
-
-    torch.manual_seed(701)
-    adapter = DynamicHazardAdapter(
-        feature_dim=12, physics_dim=4, hidden=8,
-        max_logit_residual=1.0, min_physics_families=2,
-    )
-    with torch.no_grad():
-        adapter.residual_head[-1].weight.fill_(0.1)
-    controller = module.TwoTimescaleAdapterController(
-        adapter, guard_batch=make_batch(16), intra_lr=1e-2,
-        inter_lr=1e-2, max_guard_harms=16,
-        intra_parameter_scope="representation_only",
-        intra_physics_weight=0.0, risk_anchor_weight=0.0,
-    )
-    persistent_before = controller.persistent_hash()
-    controller.begin_shot(10)
-    assert controller.fast is not None
-    trainable = {
-        name for name, value in controller.fast.named_parameters()
-        if value.requires_grad
-    }
-    assert trainable
-    assert all(
-        name.startswith("projector.2") or name.startswith("projector.3")
-        for name in trainable
-    )
-    head_before = {
-        name: value.detach().clone()
-        for name, value in controller.fast.state_dict().items()
-        if name.startswith("next_head") or name.startswith("residual_head")
-    }
-    representation_before = {
-        name: value.detach().clone()
-        for name, value in controller.fast.state_dict().items()
-        if name.startswith("projector.2") or name.startswith("projector.3")
-    }
-    probe = {name: value for name, value in make_batch(8).items() if name != "label"}
-    prediction_before = controller.predict(probe)
-
-    source = {
-        name: value for name, value in make_batch(8).items()
-        if name != "label"
-    }
-    source["sealed_pre_adapt_logit"] = controller.predict(source).clone()
-    receipt = controller.intra_update(
-        source_endpoint=100, observed_endpoint=108,
-        batch=source,
-        update_scale=1.0, steps=3,
-    )
-
-    assert controller.fast is not None
-    assert controller.persistent_hash() == persistent_before
-    assert all(
-        torch.equal(value, controller.fast.state_dict()[name])
-        for name, value in head_before.items()
-    )
-    assert any(
-        not torch.equal(value, controller.fast.state_dict()[name])
-        for name, value in representation_before.items()
-    )
-    assert not torch.equal(prediction_before, controller.predict(probe))
-    assert receipt["risk_anchor_source"] == "sealed_pre_adapt_logit"
-
-
-def test_representation_only_ttt_requires_sealed_pre_adapt_output():
-    module = load_module()
-    from dynamic_hazard_adapter import DynamicHazardAdapter
-
-    controller = module.TwoTimescaleAdapterController(
-        DynamicHazardAdapter(feature_dim=12, physics_dim=4, hidden=8),
-        guard_batch=make_batch(16), intra_parameter_scope="representation_only",
-    )
-    controller.begin_shot(10)
-    source = {name: value for name, value in make_batch(8).items() if name != "label"}
-    with pytest.raises(KeyError, match="sealed_pre_adapt_logit"):
-        controller.intra_update(
-            source_endpoint=100, observed_endpoint=108,
-            batch=source, steps=1,
-        )
-
-
-def test_representation_only_ttt_rejects_outcome_fields():
-    module = load_module()
-    from dynamic_hazard_adapter import DynamicHazardAdapter
-
-    controller = module.TwoTimescaleAdapterController(
-        DynamicHazardAdapter(feature_dim=12, physics_dim=4, hidden=8),
-        guard_batch=make_batch(16), intra_parameter_scope="representation_only",
-    )
-    controller.begin_shot(10)
-    with pytest.raises(ValueError, match="outcome field"):
-        controller.intra_update(
-            source_endpoint=100, observed_endpoint=108,
-            batch=make_batch(8), steps=1,
-        )
-
-
-def test_temporal_risk_forecast_uses_later_observed_teacher_to_move_fast_risk():
-    """A sealed later window must provide a direct, non-label risk gradient."""
-    module = load_module()
-    from dynamic_hazard_adapter import DynamicHazardAdapter
-
-    torch.manual_seed(71)
-    source = make_batch(8)
-    observed = make_batch(8)
-    source["base_logit"].fill_(-2.0)
-    observed["base_logit"].fill_(2.0)
-    source["physics"].zero_()
-    source["available"].fill_(True)
-    adapter = DynamicHazardAdapter(
-        feature_dim=12, physics_dim=4, hidden=8,
-        max_logit_residual=1.0, min_physics_families=2,
-    )
-    controller = module.TwoTimescaleAdapterController(
-        adapter, guard_batch=make_batch(16), intra_lr=1e-2,
-        inter_lr=1e-2, risk_anchor_weight=0.0,
-        intra_physics_weight=0.0, max_guard_harms=16,
-        temporal_risk_weight=1.0, temporal_target_max_delta=0.5,
-    )
-    persistent_before = controller.persistent_hash()
-    controller.begin_shot(10)
-    before = controller.predict(source)
-    receipt = controller.intra_update(
-        source_endpoint=100, observed_endpoint=108, batch=source,
-        observed_batch=observed, steps=5,
-    )
-    after = controller.predict(source)
-
-    assert receipt["temporal_risk_loss"] > 0
-    assert receipt["temporal_target_delta"] == pytest.approx(0.5)
-    assert torch.mean(after) > torch.mean(before) + 1e-4
-    assert controller.persistent_hash() == persistent_before
-
-
-def test_temporal_risk_forecast_fails_closed_without_observed_window():
-    module = load_module()
-    controller = make_controller(module)
-    controller.temporal_risk_weight = 1.0
-    controller.begin_shot(10)
-
-    with pytest.raises(ValueError, match="observed_batch"):
-        controller.intra_update(
-            source_endpoint=100, observed_endpoint=108,
-            batch=make_batch(), steps=1,
-        )
-
-
-def test_observed_physics_ttt_uses_sealed_current_window_and_changes_fast_only():
-    """Current real physics may train the fast path only after its prediction."""
-    module = load_module()
-    from dynamic_hazard_adapter import DynamicHazardAdapter
-
-    torch.manual_seed(73)
-    source = make_batch(8)
-    observed = make_batch(8)
-    source["base_logit"].fill_(-2.0)
-    source["physics"].zero_()
-    observed["base_logit"].fill_(-2.0)
-    observed["physics"].fill_(0.9)
-    source["available"].fill_(True)
-    observed["available"].fill_(True)
-    adapter = DynamicHazardAdapter(
-        feature_dim=12, physics_dim=4, hidden=8,
-        max_logit_residual=1.0, min_physics_families=2,
-    )
-    controller = module.TwoTimescaleAdapterController(
-        adapter, guard_batch=make_batch(16), intra_lr=1e-2,
-        inter_lr=1e-2, risk_anchor_weight=0.0,
-        intra_physics_weight=0.0, observed_physics_weight=1.0,
-        max_guard_harms=16, threshold_logit=0.0,
-    )
-    persistent_before = controller.persistent_hash()
-    controller.begin_shot(10)
-    before = controller.predict(observed)
-    receipt = controller.intra_update(
-        source_endpoint=100, observed_endpoint=108, batch=source,
-        observed_batch=observed, steps=5,
-    )
-    after = controller.predict(observed)
-
-    assert receipt["observed_physics_loss"] > 0
-    assert torch.mean(after) > torch.mean(before) + 1e-4
-    assert controller.persistent_hash() == persistent_before
-
-
-def test_observed_physics_ttt_fails_closed_without_current_window():
-    module = load_module()
-    controller = make_controller(module)
-    controller.observed_physics_weight = 1.0
-    controller.begin_shot(10)
-
-    with pytest.raises(ValueError, match="observed_batch"):
-        controller.intra_update(
-            source_endpoint=100, observed_endpoint=108,
-            batch=make_batch(), steps=1,
-        )
-
-
-def test_observed_physics_ttt_is_invariant_to_forbidden_outcome_value():
-    module = load_module()
-    from dynamic_hazard_adapter import DynamicHazardAdapter
-    import copy
-
-    torch.manual_seed(77)
-    parent = DynamicHazardAdapter(
-        feature_dim=12, physics_dim=4, hidden=8,
-        max_logit_residual=1.0, min_physics_families=2,
-    )
-    source = make_batch(8)
-    observed_zero = make_batch(8)
-    observed_zero["base_logit"].fill_(-2.0)
-    observed_zero["physics"].fill_(0.9)
-    observed_zero["available"].fill_(True)
-    observed_zero["label"].zero_()
-    observed_one = {name: value.clone() for name, value in observed_zero.items()}
-    observed_one["label"].fill_(1.0)
-
-    def updated_hash(observed):
-        torch.manual_seed(79)
-        controller = module.TwoTimescaleAdapterController(
-            copy.deepcopy(parent), guard_batch=make_batch(16),
-            intra_lr=1e-2, inter_lr=1e-2, max_guard_harms=16,
-            intra_physics_weight=0.0, observed_physics_weight=1.0,
-            threshold_logit=0.0,
-        )
-        controller.begin_shot(10)
-        controller.intra_update(
-            source_endpoint=100, observed_endpoint=108, batch=source,
-            observed_batch=observed, steps=2,
-        )
-        return controller.fast_hash()
-
-    assert updated_hash(observed_zero) == updated_hash(observed_one)
-
-
-def test_zero_scale_temporal_update_has_complete_receipt_and_no_gradient():
-    module = load_module()
-    controller = make_controller(module)
-    controller.temporal_risk_weight = 1.0
-    controller.begin_shot(10)
-    before = controller.fast_hash()
-    receipt = controller.intra_update(
-        source_endpoint=100, observed_endpoint=108, batch=make_batch(),
-        observed_batch=make_batch(), steps=1, update_scale=0.0,
-    )
-
-    assert receipt["temporal_risk_loss"] == 0.0
-    assert receipt["temporal_target_delta"] == 0.0
-    assert controller.fast_hash() == before
-
-
-def test_temporal_risk_forecast_cannot_read_observed_outcome_label():
-    module = load_module()
-    from dynamic_hazard_adapter import DynamicHazardAdapter
-
-    torch.manual_seed(79)
-    adapter = DynamicHazardAdapter(
-        feature_dim=12, physics_dim=4, hidden=8,
-        max_logit_residual=1.0, min_physics_families=2,
-    )
-    source = make_batch(8)
-    observed_zero = make_batch(8)
-    observed_zero["label"].zero_()
-    observed_one = {name: value.clone() for name, value in observed_zero.items()}
-    observed_one["label"].fill_(1.0)
-
-    def updated_hash(observed):
-        controller = module.TwoTimescaleAdapterController(
-            __import__("copy").deepcopy(adapter), guard_batch=make_batch(16),
-            intra_lr=1e-2, inter_lr=1e-2, max_guard_harms=16,
-            temporal_risk_weight=1.0,
-        )
-        controller.begin_shot(10)
-        controller.intra_update(
-            source_endpoint=100, observed_endpoint=108, batch=source,
-            observed_batch=observed, steps=2,
-        )
-        return controller.fast_hash()
-
-    torch.manual_seed(83)
-    first = updated_hash(observed_zero)
-    torch.manual_seed(83)
-    second = updated_hash(observed_one)
-    assert first == second
-
-
-def test_temporal_risk_velocity_gain_extrapolates_only_the_sealed_delta():
-    module = load_module()
-    from dynamic_hazard_adapter import DynamicHazardAdapter
-
-    torch.manual_seed(89)
-    source = make_batch(4)
-    observed = {name: value.clone() for name, value in source.items()}
-    source["base_logit"].zero_()
-    observed["base_logit"].fill_(0.1)
-    adapter = DynamicHazardAdapter(
-        feature_dim=12, physics_dim=4, hidden=8,
-        max_logit_residual=1.0, min_physics_families=2,
-    )
-    controller = module.TwoTimescaleAdapterController(
-        adapter, guard_batch=make_batch(16), intra_lr=1e-2,
-        inter_lr=1e-2, max_guard_harms=16,
-        temporal_risk_weight=1.0, temporal_target_max_delta=0.5,
-        temporal_target_gain=4.0,
-    )
-    controller.begin_shot(10)
-    receipt = controller.intra_update(
-        source_endpoint=100, observed_endpoint=108, batch=source,
-        observed_batch=observed, steps=1,
-    )
-
-    assert receipt["temporal_target_delta"] == pytest.approx(0.4, abs=1e-5)
-
-
 def test_zero_value_intra_update_is_a_true_noop():
     module = load_module()
     controller = make_controller(module)
@@ -400,6 +82,35 @@ def test_zero_value_intra_update_is_a_true_noop():
     assert receipt["updated"] is False
     assert receipt["update_scale"] == 0.0
     assert controller.fast_hash() == before
+
+
+def test_intra_update_can_anchor_only_a_strictly_earlier_prefix():
+    module = load_module()
+    controller = make_controller(module)
+    current = make_batch(8)
+    prefix = make_batch(3)
+    controller.begin_shot(10)
+    receipt = controller.intra_update(
+        source_endpoint=100, observed_endpoint=108,
+        batch=current, anchor_batch=prefix, anchor_current=False, steps=1,
+    )
+
+    assert receipt["updated"] is True
+    assert receipt["anchor_scope"] == "previous_prefix"
+    assert controller.persistent_hash() == module.module_hash(controller.parent_anchor)
+
+
+def test_intra_update_can_disable_the_current_endpoint_anchor():
+    module = load_module()
+    controller = make_controller(module)
+    controller.begin_shot(10)
+    receipt = controller.intra_update(
+        source_endpoint=100, observed_endpoint=108,
+        batch=make_batch(), anchor_current=False, steps=1,
+    )
+
+    assert receipt["updated"] is True
+    assert receipt["anchor_scope"] == "none"
 
 
 def test_intra_update_rejects_noncausal_target_endpoint():
@@ -446,49 +157,6 @@ def test_inter_update_requires_seal_and_changes_persistent_for_next_shot():
     assert controller.persistent_hash() != before
     controller.begin_shot(20)
     assert controller.fast_hash() == controller.persistent_hash()
-
-
-def test_fixed_compute_shared_update_emits_exact_shape_signature():
-    module = load_module()
-    controller = make_controller(module)
-    current = make_batch(16)
-    current["alarm_boundary"] = torch.zeros(16)
-    replay = make_batch(16)
-    controller.begin_shot(10)
-    controller.seal_shot(10)
-    receipt = controller.reveal_and_inter_update(
-        10, selected=True, current_batch=current, replay_batch=replay,
-        steps=2, update_scale=1.0, fixed_compute_objective=True,
-    )
-
-    assert receipt["objective"] == "fixed_shape_pointwise_alarm_bce"
-    signature = receipt["fixed_compute_signature"]
-    assert {
-        name: signature[name] for name in (
-            "current_windows", "replay_windows", "guard_windows", "steps",
-            "opposite_windows", "objective",
-        )
-    } == {
-        "current_windows": 16, "replay_windows": 16,
-        "guard_windows": 16, "steps": 2, "opposite_windows": 0,
-        "objective": "fixed_shape_pointwise_alarm_bce",
-    }
-    assert signature["optimizer_steps_attempted"] == 2
-    assert signature["trainable_scope"]["parameter_count"] > 0
-
-
-def test_fixed_compute_shared_update_rejects_optional_opposite_branch():
-    module = load_module()
-    controller = make_controller(module)
-    current = make_batch(16)
-    current["alarm_boundary"] = torch.zeros(16)
-    controller.begin_shot(10)
-    controller.seal_shot(10)
-    with pytest.raises(ValueError, match="forbid opposite"):
-        controller.reveal_and_inter_update(
-            10, selected=True, current_batch=current, replay_batch=make_batch(16),
-            opposite_batch=make_batch(16), fixed_compute_objective=True,
-        )
 
 
 def test_inter_update_remains_trainable_at_zero_increment_with_deployment_gate():

@@ -1,0 +1,117 @@
+{
+  "schema_version": "east-v3c-timescale-attribution-v1",
+  "status": "DIAGNOSTIC_ONLY",
+  "claim_boundary": "balanced360 participated in method and parameter development; this is a paired causal attribution replay, not independent future confirmation",
+  "lineage": {
+    "source_checkpoint": "fuison_ext4_runs/v3c_adv25_epoch3_20260830/seed131/source/source_checkpoint.pt",
+    "source_checkpoint_sha256": "1ab6b8e3b30992400ea6df8ffe235cb9d0023730f5a0c77d4de0f087ae85912d",
+    "support_parent_base_sha256": "3dd1366ae3dc671d6a693d52c1e8eb0ab2d3a168a6d811ad7679637d79d92bbd",
+    "shared_parent_sha256": "f2c5292d609cc439d3e9d5ef3f2d69df3f995b6fbd70f58018d207ea37e75465",
+    "private_parent_sha256": "1e81603ec0574697a1ce30eaf9d5221a71dd578e07e581e05beaba08e65c12e4",
+    "compatibility_code_sha256": {
+      "run_unified_online_active.py": "b4ffa928ad25545e953a5371e55ec3b4be1f0dfe3673f7eea19289ef76458788",
+      "two_timescale_online_adapter.py": "ac6c68422a33edbe3908945c3b72560bf6447fe14abc6a525df774520ccf8324",
+      "east_private_continual.py": "b7c40309f70ef2337756bc4f082110e7c195e58fb21ea5f590a7968b03e17f59"
+    },
+    "query_manifest": "fuison_ext4_runs/east_v3c_timescale_ablation_20260831/seed131/fixed_query_manifest.json",
+    "query_manifest_sha256": "89d765f71e7b558f4df318e4a3d9f046752a1cb5243b734c6554f00e360d1a06",
+    "stream": "EAST balanced360 chronological order",
+    "seed": 131,
+    "query_count": 94,
+    "query_rate": 0.2611111111111111,
+    "alarm_minimum_lead_ms": 30.0,
+    "over_3000ms_counts_as_tpr": true
+  },
+  "fairness_contract": {
+    "same_static_seal_sha256": "f714407eb7cd42a3174fa0c43d831a32806ac256c24ea486ac11ec47e9446b16",
+    "same_query_shots": true,
+    "same_query_positions": true,
+    "same_threshold": true,
+    "same_alarm_parameters": true,
+    "same_shot_order": true,
+    "static_phase_completed_before_online_phase": true,
+    "outcome_reveal_protocol": "predict -> seal -> query -> reveal -> update",
+    "unqueried_outcomes_read_before_final_evaluation": false
+  },
+  "runs": [
+    {
+      "name": "intra_only",
+      "artifact": "intra_only_current",
+      "neural_intra": true,
+      "neural_inter": false,
+      "decision_side_updates": false,
+      "static": {"TP": 170, "FP": 18, "FN": 10, "TN": 162, "tpr_at_30ms": 0.7944444444444444, "fpr": 0.1, "J": 0.6944444444444444},
+      "online": {"TP": 170, "FP": 18, "FN": 10, "TN": 162, "tpr_at_30ms": 0.7944444444444444, "fpr": 0.1, "J": 0.6944444444444444},
+      "delta": {"tpr_at_30ms": 0.0, "fpr": 0.0, "J": 0.0},
+      "query_count": 0,
+      "intra_attempts": 19177,
+      "intra_nonzero": 12607,
+      "interpretation": "炮内 fast-state 反向传播执行，但没有改变炮级报警边界"
+    },
+    {
+      "name": "inter_only",
+      "artifact": "inter_only_current",
+      "neural_intra": false,
+      "neural_inter": true,
+      "decision_side_updates": true,
+      "static": {"TP": 170, "FP": 18, "FN": 10, "TN": 162, "tpr_at_30ms": 0.7944444444444444, "fpr": 0.1, "J": 0.6944444444444444},
+      "online": {"TP": 170, "FP": 18, "FN": 10, "TN": 162, "tpr_at_30ms": 0.8055555555555556, "fpr": 0.1, "J": 0.7055555555555556},
+      "delta": {"tpr_at_30ms": 0.011111111111111183, "fpr": 0.0, "J": 0.011111111111111183},
+      "query_count": 94,
+      "shared_inter_accepted": 28,
+      "private_inter_accepted": 28,
+      "interpretation": "炮间神经更新与 V3C 侧更新共同运行，恢复一个 timely lead"
+    },
+    {
+      "name": "intra_inter",
+      "artifact": "intra_inter_current",
+      "neural_intra": true,
+      "neural_inter": true,
+      "decision_side_updates": true,
+      "static": {"TP": 170, "FP": 18, "FN": 10, "TN": 162, "tpr_at_30ms": 0.7944444444444444, "fpr": 0.1, "J": 0.6944444444444444},
+      "online": {"TP": 170, "FP": 17, "FN": 10, "TN": 163, "tpr_at_30ms": 0.8, "fpr": 0.09444444444444444, "J": 0.7055555555555556},
+      "delta": {"tpr_at_30ms": 0.005555555555555647, "fpr": -0.005555555555555564, "J": 0.011111111111111183},
+      "query_count": 94,
+      "intra_attempts": 19177,
+      "intra_nonzero": 12583,
+      "shared_inter_accepted": 27,
+      "private_inter_accepted": 27,
+      "interpretation": "联合更新降低一个 FP，但相对 inter-only 少恢复一个 timely lead，交互项并非单调叠加"
+    },
+    {
+      "name": "neural_only_fixed_compute",
+      "artifact": "neural_only_current",
+      "neural_intra": false,
+      "neural_inter": true,
+      "decision_side_updates": false,
+      "fixed_compute": {"current_windows_per_query": 16, "replay_windows_per_query": 16, "optimizer_steps_per_query": 2, "query_count": 94},
+      "static": {"TP": 170, "FP": 18, "FN": 10, "TN": 162, "tpr_at_30ms": 0.7944444444444444, "fpr": 0.1, "J": 0.6944444444444444},
+      "online": {"TP": 170, "FP": 18, "FN": 10, "TN": 162, "tpr_at_30ms": 0.7944444444444444, "fpr": 0.1, "J": 0.6944444444444444},
+      "delta": {"tpr_at_30ms": 0.0, "fpr": 0.0, "J": 0.0},
+      "shared_inter_accepted": 94,
+      "private_inter_accepted": 48,
+      "private_inter_rollback": 46,
+      "interpretation": "固定 16+16 窗口和 2 step 的纯神经炮间更新没有改变报警边界"
+    },
+    {
+      "name": "side_only_no_neural_inter",
+      "artifact": "side_only_current",
+      "neural_intra": false,
+      "neural_inter": false,
+      "decision_side_updates": true,
+      "static": {"TP": 170, "FP": 18, "FN": 10, "TN": 162, "tpr_at_30ms": 0.7944444444444444, "fpr": 0.1, "J": 0.6944444444444444},
+      "online": {"TP": 170, "FP": 17, "FN": 10, "TN": 163, "tpr_at_30ms": 0.7944444444444444, "fpr": 0.09444444444444444, "J": 0.7},
+      "delta": {"tpr_at_30ms": 0.0, "fpr": -0.005555555555555564, "J": 0.005555555555555536},
+      "query_count": 94,
+      "neural_inter_disabled": 94,
+      "persistent_weights_unchanged": true,
+      "interpretation": "保留查询后报警、episode、endpoint-memory 和 query-value 侧更新，屏蔽两套神经 adapter；仍复现 FPR 下降"
+    }
+  ],
+  "decision": {
+    "primary_attribution": "当前可见的 FPR 增益主要由查询后决策/记忆侧路径贡献；当前证据不足以声称 Transformer 主干学到了新的跨装置物理规律",
+    "neural_attribution": "纯神经更新在本 seed 的炮级指标上为零增益；联合臂的变化不能从系统级 V3C 结果单独归因给神经表示",
+    "next_allowed_experiment": "在冻结同一 parent、阈值、报警器和 query manifest 的前提下，对 side-only、neural-only 和 full 进行多 seed 复现；不得先改报警参数或查询清单",
+    "paper_boundary": "所有结果仅可作为 balanced360 方法开发诊断，不能作为独立未来确认"
+  }
+}

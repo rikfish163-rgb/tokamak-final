@@ -19,6 +19,9 @@
   control. They are evidence-bearing outputs bound by the compact artifact
   manifest, not additional source/target parents.
 - Method documentation needed to interpret the results without treating the 360-shot stream as an untouched final test.
+- The compact 2026-08-31 current-worktree diagnostic receipt under
+  `results/current_mainline_20260831/`, including its source-profile separation,
+  chronological ledgers, attribution summaries and compiled Chinese reports.
 
 ## Excluded
 
@@ -32,6 +35,9 @@
 - Regenerable online-development run directories and optimizer caches; their
   evidence-bearing compact ledgers and parent states are in the paper package.
 - Tar archives and copied workspace backups.
+- Per-shot risk-trace NPZ files and duplicated per-run feature payloads from the
+  local mounted-disk replay directories; the published JSON/JSONL ledgers and
+  manifests are the compact evidence surface.
 
 The raw inputs are supplied through `data/`; the excluded training caches are
 regenerable.  Bundled parent checkpoints are evidence-bearing inputs, not a

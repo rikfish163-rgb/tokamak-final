@@ -34,6 +34,8 @@ import shot_alarm as alarm  # noqa: E402
 MANIFEST = ROOT / "config/splits/east_hdf5_authoritative_balanced360_v1.json"
 REFERENCE_DIR = HERE / "final_delivery_hdf5_deterministic_v2" / "seeds"
 METHOD = "rebuilt17+ea125+adapt_high+per-shot-max"
+REFERENCE_CONTRACT_VERSION = "a1-reference-v2"
+REFERENCE_SAMPLER_MODE = "shot_first"
 
 
 def selection_score(components: dict[str, float], threshold: float, mode: str) -> float:
@@ -153,11 +155,33 @@ def fit_support_physics_scales(shots: list[dict[str, Any]]) -> dict[str, float]:
     return audit.fit_innovation_scales(traces)
 
 
-def reference_contract(seed: int) -> tuple[float, dict[int, float], Path]:
+def reference_contract(
+    seed: int, *, allow_unversioned: bool = False,
+) -> tuple[float, dict[int, float], Path]:
     path = REFERENCE_DIR / f"seed{seed}.json"
     data = json.loads(path.read_text())
     if data["method"] != METHOD:
         raise RuntimeError(f"reference method mismatch: {data['method']}")
+    compatibility = data.get("reproduction_contract")
+    if not isinstance(compatibility, dict):
+        if not allow_unversioned:
+            raise RuntimeError(
+                "historical A1 reference has no reproduction_contract; its "
+                "sampler/code lineage is unknown. Use --derive-support-threshold "
+                "for the current code, or explicitly pass "
+                "--allow-unversioned-reference for legacy diagnostics."
+            )
+    else:
+        if compatibility.get("version") != REFERENCE_CONTRACT_VERSION:
+            raise RuntimeError("A1 reference contract version is not supported")
+        if compatibility.get("sampler_mode") != REFERENCE_SAMPLER_MODE:
+            raise RuntimeError("A1 reference sampler mode differs from current code")
+        manifest_sha = compatibility.get("test_manifest_sha256")
+        if manifest_sha != sha256_file(MANIFEST):
+            raise RuntimeError("A1 reference TEST manifest differs from current code")
+        recorded_source = compatibility.get("source_checkpoint_sha256")
+        if recorded_source != data.get("hashes", {}).get("source_checkpoint"):
+            raise RuntimeError("A1 reference source lineage is internally inconsistent")
     threshold = float(data["support_selected_threshold"]["threshold"])
     scores = {int(row["shot"]): float(row["score"]) for row in data["predictions"]}
     return threshold, scores, path
@@ -171,6 +195,14 @@ def main() -> None:
     parser.add_argument("--query-mode", choices=("balanced", "fp_first"), default="balanced")
     parser.add_argument("--source-checkpoint", type=Path, default=None)
     parser.add_argument("--derive-support-threshold", action="store_true")
+    parser.add_argument(
+        "--allow-unversioned-reference",
+        action="store_true",
+        help=(
+            "legacy diagnostic only: read an old reference without sampler/code "
+            "lineage; it is never valid evidence for the current chain"
+        ),
+    )
     parser.add_argument("--target-tpr", type=float, default=0.80)
     args = parser.parse_args()
     if args.out.exists():
@@ -205,7 +237,9 @@ def main() -> None:
             f"current HDF5 EAST110 support; TPR>={args.target_tpr:.2f}, then minimum FPR"
         )
     else:
-        threshold, reference_scores, reference_path = reference_contract(args.seed)
+        threshold, reference_scores, reference_path = reference_contract(
+            args.seed, allow_unversioned=bool(args.allow_unversioned_reference)
+        )
         if set(reference_scores) != {int(s["shot"]) for s in test}:
             raise RuntimeError("current balanced360 shots differ from the frozen reference")
         threshold_source = "frozen historical EAST110 support reference"

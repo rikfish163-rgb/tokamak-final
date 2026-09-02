@@ -19,8 +19,8 @@ import torch.nn.functional as F
 import h5py
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2]
-DATA = Path(os.environ.get("FUSION_DATA_ROOT", ROOT / "data")).resolve()
+ROOT = Path("/media/hetaisheng/044A81D94A81C83E/Fuison")
+DATA = ROOT / "data"
 OUT = ROOT / "experiments" / "transfer_methods_2026" / "rebuilt_runs"
 sys.path.insert(0, str(ROOT / "experiments/transfer_methods_2026"))
 from common import (  # noqa: E402
@@ -100,8 +100,29 @@ def rebuild_features(arr, device):
     return out, avail
 
 
+def rebuild_features_prefix_causal(arr, device):
+    """Build rebuilt17 availability from the observed prefix only.
+
+    ``rebuild_features`` is retained for the batch training/evaluation path.
+    Online runners must use this variant because an all-shot non-zero check
+    for MHD channels would reveal whether a signal appears later in the shot.
+    The values and feature order stay identical; only the endpoint-local
+    availability mask is tightened.
+    """
+
+    out, avail = rebuild_features(arr, device)
+    for name in ("Mir_avg_fre", "mode_number_n"):
+        column = REBUILD.index(name)
+        raw = np.asarray(arr[name], dtype=np.float32)
+        evidence = np.isfinite(raw) & ~np.isclose(raw, 0.0)
+        seen_nonzero = np.logical_or.accumulate(evidence)
+        avail[:, column] = np.isfinite(raw) & seen_nonzero
+        out[~avail[:, column], column] = 0.0
+    return np.ascontiguousarray(out), np.ascontiguousarray(avail)
+
+
 class Shots:
-    def __init__(self, device, ids, scaler=None):
+    def __init__(self, device, ids, label_map=None, scaler=None):
         self.device = device
         self.shots = []
         self.missing = []
@@ -111,6 +132,10 @@ class Shots:
                                                        / str(sid // 100 * 100) / f"{sid}.hdf5", device)
             except Exception as e:  # noqa: BLE001
                 self.missing.append((int(sid), repr(e)[:120])); continue
+            if label_map is not None and int(sid) in label_map:
+                isd = bool(label_map[int(sid)])
+                if not isd:
+                    down = None
             vals, avail = rebuild_features(arr, device)
             t = start + np.arange(len(vals), dtype=np.float64) / rate
             self.shots.append(dict(shot=int(sid), values=vals, avail=avail, times=t,
@@ -158,22 +183,19 @@ class Sampler:
             else:
                 q = list(range(WINDOW-1, n))
             self.pos.append(p); self.neg.append(q)
-        self.positive_shots = np.flatnonzero([bool(values) for values in self.pos])
-        self.negative_shots = np.flatnonzero([bool(values) for values in self.neg])
 
     def sample(self, pp=0.5):
-        if not len(self.positive_shots) and not len(self.negative_shots):
-            raise RuntimeError("sampler has no eligible causal window")
-        choose_positive = bool(
-            len(self.positive_shots)
-            and (not len(self.negative_shots) or self.rng.random() < float(pp))
-        )
-        eligible = self.positive_shots if choose_positive else self.negative_shots
-        i = int(eligible[int(self.rng.integers(len(eligible)))])
-        endpoints = self.pos[i] if choose_positive else self.neg[i]
-        end = endpoints[int(self.rng.integers(len(endpoints)))]
-        x = self.shots[i]["values"][end-WINDOW+1:end+1]
-        return np.ascontiguousarray(x), np.float32(choose_positive)
+        while True:
+            i = int(self.rng.integers(len(self.shots)))
+            p, q = self.pos[i], self.neg[i]
+            if not p and not q: continue
+            if p and self.rng.random() < pp:
+                end = p[int(self.rng.integers(len(p)))]; y = 1.0
+            else:
+                if not q: continue
+                end = q[int(self.rng.integers(len(q)))]; y = 0.0
+            x = self.shots[i]["values"][end-WINDOW+1:end+1]
+            return np.ascontiguousarray(x), np.float32(y)
 
 
 # ----------------------------------------------------------------------- model
@@ -396,10 +418,13 @@ def main():
     east = DataSpec().east
     tr_ids = sorted(east["transfer"])
     te_ids = sorted(east["test_locked"])
+    tr_map = {int(s): True for s in east["transfer_disrupt"]} | {int(s): False for s in east["transfer_safe"]}
+    te_map = {int(s): True for s in east["test_disrupt"]} | {int(s): False for s in east["test_safe"]}
+
     src = Shots("J-TEXT", jt["train"])
     val = Shots("J-TEXT", jt["val"], scaler=(src.center, src.scale))
-    tr = Shots("EAST", tr_ids, scaler=(src.center, src.scale))
-    te = Shots("EAST", te_ids, scaler=(src.center, src.scale))
+    tr = Shots("EAST", tr_ids, label_map=tr_map, scaler=(src.center, src.scale))
+    te = Shots("EAST", te_ids, label_map=te_map, scaler=(src.center, src.scale))
     print(f"rebuilt K={K} | J-TEXT train={len(src)} val={len(val)} | EAST transfer={len(tr)} test={len(te)} "
           f"(transfer pos={sum(s['is_disrupt'] for s in tr.shots)}, test pos={sum(s['is_disrupt'] for s in te.shots)})")
 

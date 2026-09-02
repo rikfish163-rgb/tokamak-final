@@ -36,6 +36,7 @@ sys.path.insert(0, str(HERE))
 
 import grid_search as GS  # noqa: E402
 import rebuilt_harness as RH  # noqa: E402
+import jtext_label_contract as JTEXT_LABELS  # noqa: E402
 
 
 CANONICAL_INDEX = Path("artifacts/canonical/jtext_source_bundle_p131_v1/index.json")
@@ -43,6 +44,13 @@ EXPECTED_COUNTS = {"train": 1353, "val": 160, "test": 220}
 SOURCE_HORIZON_MS = 125.0
 MINIMUM_LEAD_MS = 10.0
 NEGATIVE_MAX_MS = 60_000.0
+# HDF5 timestamps and the sampled rate are floating point values.  Treat a
+# sub-microsecond-equivalent rounding error as the mathematical boundary so a
+# window at exactly H is not randomly assigned to the other class.
+TTD_BOUNDARY_TOLERANCE_MS = 1e-6
+JTEXT_LABEL_POLICY_FIXED125 = "fixed125"
+JTEXT_LABEL_POLICY_ADVANCED_FLOOR25 = "advanced_floor25"
+JTEXT_ADVANCED_TIME_PATH = ROOT / "shot_list/J-TEXT/AdvancedTime_J-TEXT.json"
 
 
 def sha256_file(path: Path) -> str:
@@ -117,6 +125,8 @@ def load_canonical_jtext_roles(root: Path = ROOT) -> dict[str, list[int]]:
 
 def load_jtext_shots(
     shot_ids: list[int], *, root: Path = ROOT, data_root: Path | None = None,
+    advanced_times_ms: dict[int, float] | None = None,
+    advanced_floor_ms: float = JTEXT_LABELS.DEFAULT_FLOOR_MS,
 ) -> list[dict]:
     shots: list[dict] = []
     missing: list[int] = []
@@ -138,7 +148,7 @@ def load_jtext_shots(
         values, available = RH.rebuild_features(raw, "J-TEXT")
         if is_disrupt and (down is None or not math.isfinite(float(down))):
             raise ValueError(f"disruptive J-TEXT shot {shot_id} has no finite DownTime")
-        shots.append({
+        shot = {
             "shot": int(shot_id),
             "v": values.astype(np.float32),
             "a": available.astype(bool),
@@ -146,7 +156,15 @@ def load_jtext_shots(
             "down": float(down) if is_disrupt else None,
             "start": float(start),
             "rate": float(rate),
-        })
+        }
+        if advanced_times_ms is not None and is_disrupt:
+            horizon, raw_advanced, used_fallback = JTEXT_LABELS.effective_horizon_ms(
+                int(shot_id), advanced_times_ms, floor_ms=advanced_floor_ms
+            )
+            shot["advanced_time_ms"] = raw_advanced
+            shot["positive_horizon_ms"] = horizon
+            shot["advanced_time_fallback"] = used_fallback
+        shots.append(shot)
     if missing:
         raise FileNotFoundError(f"missing J-TEXT HDF5 shots: {missing}")
     return shots
@@ -176,32 +194,68 @@ def causal_window(
 
 
 class BalancedSourceSampler:
-    """Class-balanced, shot-balanced J-TEXT causal window sampler."""
+    """Class-balanced, shot-balanced J-TEXT causal window sampler.
+
+    ``ambiguous_until_ms`` is an explicit diagnostic option.  The main Adv25
+    source contract leaves it unset so the only label change is the
+    per-shot-positive horizon; callers must opt in if they want to exclude a
+    wider transition band.
+    """
 
     def __init__(
         self, shots: list[dict], *, seed: int,
         horizon_ms: float = SOURCE_HORIZON_MS,
+        per_shot_horizon: bool = False,
+        ambiguous_until_ms: float | None = None,
     ) -> None:
         self.shots = shots
         self.rng = np.random.default_rng(int(seed))
         self.positive: dict[int, np.ndarray] = {}
         self.negative: dict[int, np.ndarray] = {}
+        self.ambiguous: dict[int, np.ndarray] = {}
+        self.ambiguous_until_ms = ambiguous_until_ms
+        if ambiguous_until_ms is not None:
+            guard = float(ambiguous_until_ms)
+            if not math.isfinite(guard) or guard < 0.0:
+                raise ValueError(
+                    "ambiguous context boundary must be finite and non-negative"
+                )
         for index, shot in enumerate(shots):
             endpoints = np.arange(len(shot["v"]), dtype=np.int64)
             if shot["is_disrupt"]:
                 times = shot["start"] + endpoints / shot["rate"]
                 ttd_ms = (float(shot["down"]) - times) * 1000.0
-                positive = endpoints[(ttd_ms >= 0.0) & (ttd_ms <= horizon_ms)]
+                shot_horizon = (
+                    float(shot.get("positive_horizon_ms", horizon_ms))
+                    if per_shot_horizon else float(horizon_ms)
+                )
+                if not math.isfinite(shot_horizon) or shot_horizon <= 0.0:
+                    raise ValueError("source shot has an invalid positive horizon")
+                positive = endpoints[
+                    (ttd_ms >= -TTD_BOUNDARY_TOLERANCE_MS)
+                    & (ttd_ms <= shot_horizon + TTD_BOUNDARY_TOLERANCE_MS)
+                ]
+                negative_start = JTEXT_LABELS.negative_start_ms(
+                    shot_horizon, ambiguous_until_ms=ambiguous_until_ms
+                )
+                ambiguous = endpoints[
+                    (ttd_ms > shot_horizon + TTD_BOUNDARY_TOLERANCE_MS)
+                    & (ttd_ms <= negative_start + TTD_BOUNDARY_TOLERANCE_MS)
+                ]
                 negative = endpoints[
-                    (ttd_ms > horizon_ms) & (ttd_ms <= NEGATIVE_MAX_MS)
+                    (ttd_ms > negative_start + TTD_BOUNDARY_TOLERANCE_MS)
+                    & (ttd_ms <= NEGATIVE_MAX_MS + TTD_BOUNDARY_TOLERANCE_MS)
                 ]
             else:
                 positive = np.empty(0, dtype=np.int64)
                 negative = endpoints
+                ambiguous = np.empty(0, dtype=np.int64)
             if len(positive):
                 self.positive[index] = positive
             if len(negative):
                 self.negative[index] = negative
+            if len(ambiguous):
+                self.ambiguous[index] = ambiguous
         if not self.positive or not self.negative:
             raise ValueError("source sampler requires both positive and negative windows")
         self.positive_shots = np.asarray(sorted(self.positive), dtype=np.int64)
@@ -399,7 +453,15 @@ def _checkpoint_payload(
     seed: int,
     epoch: int,
     validation: dict,
+    training_label: dict | None = None,
 ) -> dict:
+    if training_label is None:
+        training_label = {
+            "policy": JTEXT_LABEL_POLICY_FIXED125,
+            "positive_ttd_ms": [0.0, SOURCE_HORIZON_MS],
+            "negative_ttd_ms": [SOURCE_HORIZON_MS, NEGATIVE_MAX_MS],
+            "outcome_authority": "data/J-TEXT/unified_hdf5/*/meta/{IsDisrupt,DownTime}",
+        }
     return {
         "schema_version": GS.SOURCE_CHECKPOINT_SCHEMA,
         "architecture_version": GS.SOURCE_ARCHITECTURE_VERSION,
@@ -414,10 +476,7 @@ def _checkpoint_payload(
         "split_counts": dict(EXPECTED_COUNTS),
         "split_sha256": split_sha256(roles),
         "label_authority": "data/J-TEXT/unified_hdf5/*/meta/{IsDisrupt,DownTime}",
-        "training_label": {
-            "positive_ttd_ms": [0.0, SOURCE_HORIZON_MS],
-            "negative_ttd_ms": [SOURCE_HORIZON_MS, NEGATIVE_MAX_MS],
-        },
+        "training_label": training_label,
         "validation_threshold": float(validation["threshold"]),
         "validation_metrics": validation,
         "test_shards_read": 0,
@@ -437,12 +496,69 @@ def train_source(args: argparse.Namespace) -> tuple[Path, dict]:
     torch.set_float32_matmul_precision("high")
 
     roles = load_canonical_jtext_roles(ROOT)
-    train = load_jtext_shots(roles["train"])
-    validation = load_jtext_shots(roles["val"])
+    label_policy = str(getattr(args, "jtext_label_policy", JTEXT_LABEL_POLICY_FIXED125))
+    if label_policy not in {
+        JTEXT_LABEL_POLICY_FIXED125,
+        JTEXT_LABEL_POLICY_ADVANCED_FLOOR25,
+    }:
+        raise ValueError(f"unknown J-TEXT label policy: {label_policy}")
+    advanced_times_ms = None
+    advanced_metadata = None
+    if label_policy == JTEXT_LABEL_POLICY_ADVANCED_FLOOR25:
+        advanced_times_ms = JTEXT_LABELS.load_advanced_time_ms(JTEXT_ADVANCED_TIME_PATH)
+        train_probe = load_jtext_shots(roles["train"])
+        val_probe = load_jtext_shots(roles["val"])
+        disruptive_ids = [
+            int(shot["shot"])
+            for shot in (*train_probe, *val_probe)
+            if bool(shot["is_disrupt"])
+        ]
+        advanced_metadata = JTEXT_LABELS.contract_metadata(
+            path=JTEXT_ADVANCED_TIME_PATH,
+            used_shot_ids=[*roles["train"], *roles["val"]],
+            disruptive_shot_ids=disruptive_ids,
+            advanced_times_ms=advanced_times_ms,
+            floor_ms=JTEXT_LABELS.DEFAULT_FLOOR_MS,
+            ambiguous_until_ms=None,
+        )
+    train = load_jtext_shots(roles["train"], advanced_times_ms=advanced_times_ms)
+    validation = load_jtext_shots(roles["val"], advanced_times_ms=advanced_times_ms)
     center, scale = GS.fit_scale(train)
     GS.apply_scale(train, center, scale)
     GS.apply_scale(validation, center, scale)
-    sampler = BalancedSourceSampler(train, seed=args.seed)
+    sampler = BalancedSourceSampler(
+        train,
+        seed=args.seed,
+        per_shot_horizon=(label_policy == JTEXT_LABEL_POLICY_ADVANCED_FLOOR25),
+        ambiguous_until_ms=None,
+    )
+
+    training_label = {
+        "policy": label_policy,
+        "outcome_authority": "data/J-TEXT/unified_hdf5/*/meta/{IsDisrupt,DownTime}",
+        "negative_ttd_ms": ["effective_horizon_ms", NEGATIVE_MAX_MS],
+        "positive_ttd_ms": [0.0, "effective_horizon_ms"],
+    }
+    if label_policy == JTEXT_LABEL_POLICY_FIXED125:
+        training_label.update({
+            "positive_ttd_ms": [0.0, SOURCE_HORIZON_MS],
+            "negative_ttd_ms": [SOURCE_HORIZON_MS, NEGATIVE_MAX_MS],
+        })
+    else:
+        training_label.update({
+            "advanced_time_floor_ms": JTEXT_LABELS.DEFAULT_FLOOR_MS,
+            "advanced_time_source": str(JTEXT_ADVANCED_TIME_PATH),
+            "advanced_time_source_sha256": advanced_metadata["source_sha256"],
+            "advanced_time_metadata": advanced_metadata,
+            "ambiguous_context_until_ms": None,
+            "positive_ttd_boundary": "0 <= ttd_ms <= effective_horizon_ms",
+            "ambiguous_ttd_boundary": None,
+            "negative_ttd_ms": ["effective_horizon_ms", NEGATIVE_MAX_MS],
+            "negative_ttd_boundary": (
+                "effective_horizon_ms < ttd_ms <= 60000.0"
+            ),
+            "ambiguous_window_count": 0,
+        })
 
     encoder = GS.Enc(len(RH.REBUILD)).to(device)
     head = GS.Head().to(device)
@@ -514,6 +630,7 @@ def train_source(args: argparse.Namespace) -> tuple[Path, dict]:
                 seed=args.seed,
                 epoch=epoch,
                 validation=val_metrics,
+                training_label=training_label,
             )
             temporary = checkpoint_path.with_suffix(".pt.tmp")
             torch.save(payload, temporary)
@@ -532,6 +649,7 @@ def train_source(args: argparse.Namespace) -> tuple[Path, dict]:
         "split_counts": dict(EXPECTED_COUNTS),
         "split_sha256": split_sha256(roles),
         "label_authority": "HDF5 meta only",
+        "training_label": training_label,
         "feature_names": list(RH.REBUILD),
         "model_config": GS.source_model_config(len(RH.REBUILD)),
         "trainable_parameters": sum(
@@ -617,6 +735,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--batch-size", type=int, default=128)
     parser.add_argument("--learning-rate", type=float, default=3e-4)
     parser.add_argument("--target-tpr", type=float, default=0.90)
+    parser.add_argument(
+        "--jtext-label-policy",
+        choices=(JTEXT_LABEL_POLICY_FIXED125, JTEXT_LABEL_POLICY_ADVANCED_FLOOR25),
+        default=JTEXT_LABEL_POLICY_FIXED125,
+        help="fixed historical 125 ms labels or max(25 ms, AdvancedTime) for J-TEXT",
+    )
     parser.add_argument("--device", choices=("cuda", "cpu"), default="cuda")
     parser.add_argument("--skip-test", action="store_true")
     parser.add_argument("--output", type=Path)

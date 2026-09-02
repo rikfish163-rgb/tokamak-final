@@ -4,6 +4,8 @@
 
 [代码级方法细节](IMPLEMENTATION_DETAILS_CN.md) · [复现与部署](#cn-quickstart) · [论文级实验包](experiments/transfer_methods_2026/paper_grade_package/README.md) · [数据合同](DATA_CONTRACT.md) · [中文技术报告 PDF](experiments/transfer_methods_2026/paper_grade_package/TECHNICAL_REPORT_zh.pdf)
 
+[2026-08-31 当前工作树主线增量与结果索引](docs/research/current_mainline_20260831_cn.md)（与 paper-v3c archived-parent 证据分列）
+
 [![仓库合同](https://github.com/rikfish163-rgb/tokamak-final/actions/workflows/ci.yml/badge.svg)](https://github.com/rikfish163-rgb/tokamak-final/actions/workflows/ci.yml)
 ![证据边界](https://img.shields.io/badge/evidence-development%20only-E69F00?style=flat-square)
 ![前瞻确认](https://img.shields.io/badge/prospective%20confirmation-pending-D55E00?style=flat-square)
