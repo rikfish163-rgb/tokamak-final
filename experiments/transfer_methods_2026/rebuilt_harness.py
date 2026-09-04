@@ -7,8 +7,9 @@ Avoids previously-hit pitfalls explicitly:
     both devices (paper drops it on EAST); qa_proxy/ne_nG replaced by Bt/Ip.
   * Mirnov amplitude (Mir_VV / Mir_avg_amp) dropped (probe-dependent unit, and
     ~74% zeros on EAST); only Mir_avg_fre kept with per-shot availability mask.
-  * Threshold selected ONLY on the 10D+100N transfer set; the 360 test is scored
-    once and never used for tuning.
+  * Threshold selected ONLY on the 110-shot transfer roster; HDF5 metadata is
+    authoritative for its class labels.  The 360 test is scored once and never
+    used for tuning.
 """
 from __future__ import annotations
 import argparse, json, math, os, sys, time
@@ -122,7 +123,7 @@ def rebuild_features_prefix_causal(arr, device):
 
 
 class Shots:
-    def __init__(self, device, ids, label_map=None, scaler=None):
+    def __init__(self, device, ids, scaler=None):
         self.device = device
         self.shots = []
         self.missing = []
@@ -132,10 +133,6 @@ class Shots:
                                                        / str(sid // 100 * 100) / f"{sid}.hdf5", device)
             except Exception as e:  # noqa: BLE001
                 self.missing.append((int(sid), repr(e)[:120])); continue
-            if label_map is not None and int(sid) in label_map:
-                isd = bool(label_map[int(sid)])
-                if not isd:
-                    down = None
             vals, avail = rebuild_features(arr, device)
             t = start + np.arange(len(vals), dtype=np.float64) / rate
             self.shots.append(dict(shot=int(sid), values=vals, avail=avail, times=t,
@@ -418,13 +415,10 @@ def main():
     east = DataSpec().east
     tr_ids = sorted(east["transfer"])
     te_ids = sorted(east["test_locked"])
-    tr_map = {int(s): True for s in east["transfer_disrupt"]} | {int(s): False for s in east["transfer_safe"]}
-    te_map = {int(s): True for s in east["test_disrupt"]} | {int(s): False for s in east["test_safe"]}
-
     src = Shots("J-TEXT", jt["train"])
     val = Shots("J-TEXT", jt["val"], scaler=(src.center, src.scale))
-    tr = Shots("EAST", tr_ids, label_map=tr_map, scaler=(src.center, src.scale))
-    te = Shots("EAST", te_ids, label_map=te_map, scaler=(src.center, src.scale))
+    tr = Shots("EAST", tr_ids, scaler=(src.center, src.scale))
+    te = Shots("EAST", te_ids, scaler=(src.center, src.scale))
     print(f"rebuilt K={K} | J-TEXT train={len(src)} val={len(val)} | EAST transfer={len(tr)} test={len(te)} "
           f"(transfer pos={sum(s['is_disrupt'] for s in tr.shots)}, test pos={sum(s['is_disrupt'] for s in te.shots)})")
 

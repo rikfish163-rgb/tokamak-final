@@ -92,7 +92,7 @@ J-TEXT $\rightarrow$ EAST\\[2mm]
 {\large 标签合同、因果 PatchTST、少样本迁移及炮内/炮间持续适应\par}
 \vspace{17mm}
 \begin{tabularx}{0.91\textwidth}{>{\bfseries}lY}
-报告版本 & 2026-08-31（学术化修订版）\\
+报告版本 & 2026-09-04（代码逐项核对版）\\
 版式 & A4；封面不计入正文页码\\
 证据状态 & \code{DIAGNOSTIC\_ONLY / TEST\_DRIVEN\_EXPLORATION}\\
 运行环境 & \code{rl\_env}；PyTorch 2.11.0+cu128；NVIDIA RTX 5070 Laptop GPU\\
@@ -114,7 +114,7 @@ $\hspace{63mm}$EAST V3C 炮内/炮间在线主动适应
 \end{titlepage}
 
 \begin{abstract}
-本文系统描述 J-TEXT 至 EAST 的跨装置破裂预测研究链路，并给出与现有代码和封存回执一致的数学定义。源域阶段在 J-TEXT 上训练基于时间片段嵌入的因果 Transformer；破裂炮的监督窗口按照 \(H_i=\max(25\,\mathrm{ms},\mathrm{AdvancedTime}_i)\) 确定，而炮级结局始终由 HDF5 中的 \code{IsDisrupt} 与 \code{DownTime} 提供。迁移阶段以 J-TEXT 静态模型检查点（checkpoint）为唯一父模型，冻结源域编码器与源风险头，仅训练 EAST 目标侧适配器、EAST 私有特征残差分支和独立风险头。在线阶段采用严格的 \emph{predict--seal--query--reveal--update} 顺序：炮内更新只能使用当前炮已经观测到的无标签信号，炮间监督更新只能在被查询炮的结局揭示后执行。J-TEXT TEST220 的三 seed 静态平均及时真正率为 0.866667，误报率为 0.130303；EAST V3C balanced360 开发回放的三 seed 平均 TPR@30ms 由 0.790741 增至 0.792593，误报率由 0.120370 降至 0.114815。严格的同父模型消融表明，EAST 增益是包含炮间监督、错误记忆与报警保护在内的系统级效应，当前证据尚不足以将其全部归因于 Transformer 底层表示学习。由于 TEST220 和 balanced360 均参与过方法开发，本文将全部现有结果限定为诊断性证据，并明确独立未来流确认所需的锁定条件。
+本文系统描述 J-TEXT 至 EAST 的跨装置破裂预测研究链路，并给出与当前主线代码和封存回执一致的数学定义。源域阶段在 J-TEXT 上训练基于时间片段嵌入的因果 Transformer；破裂炮的监督窗口按照 \(H_i=\max(25\,\mathrm{ms},\mathrm{AdvancedTime}_i)\) 确定，而炮级结局始终由 HDF5 中的 \code{IsDisrupt} 与 \code{DownTime} 提供。迁移阶段以 J-TEXT 静态 checkpoint 为唯一源域父模型：先在 EAST support110 上执行 \code{adapt\_high}（冻结低层、微调最后一个 Transformer block、最终归一化层和新建 EAST 风险头），再冻结这一 EAST 基模型并训练共享 17 维动态残差与目标私有 raw8 残差。在线阶段采用严格的 \emph{predict--seal--query--reveal--update} 顺序：炮内更新只能使用当前炮已经到达的无标签前缀，炮间监督更新只能在被查询炮的结局揭示后执行。J-TEXT TEST220 的三 seed 静态平均及时真正率为 0.866667，误报率为 0.130303；EAST V3C balanced360 开发回放的三 seed 平均 TPR@30ms 由 0.790741 增至 0.792593，误报率由 0.120370 降至 0.114815。严格的同父模型消融表明，当前 EAST 增益是包含炮间监督、错误记忆与报警保护在内的系统级效应，尚不足以将其全部归因于 Transformer 底层表示学习。由于 TEST220 和 balanced360 均参与过方法开发，本文将全部现有结果限定为诊断性证据，并明确独立未来流确认所需的锁定条件。
 \end{abstract}
 
 \noindent\textbf{关键词：} 核聚变破裂预测；跨装置迁移；PatchTST；在线持续学习；主动查询；因果访问；安全适应
@@ -249,7 +249,7 @@ a_i(\tau)=\inf\{t:s_i(t)\geq\tau\},
 
 \begin{equation}
 \mathbf{1}_{i}(\tau;L)=
-\mathbf{1}\!\left[a_i(\tau)<\infty,\space
+\mathbf{1}\!\left[a_i(\tau)<\infty,\;
 t_i^{\mathrm{down}}-a_i(\tau)\geq L\right].
 \label{eq:timely}
 \end{equation}
@@ -281,7 +281,33 @@ J-TEXT 使用 \(L>10\,\mathrm{ms}\) 的及时口径，EAST 使用 \(L\geq30\,\ma
 
 \subsection{跨装置特征路径}
 
-原始观测包含 23 个通道。经单位、派生量和可用性审计后，跨装置共享路径使用 rebuilt17：
+\subsubsection{“23、17、8、25”分别表示什么}
+
+原始 HDF5 输入有 23 列，并不是 25 个传感器。代码首先把这 23 列分成两部分：15 列进入跨装置共享候选，8 列不做强制共享；随后在共享候选中额外构造 \code{Bt\_over\_Ip} 与 \code{Ip\_diff} 两个派生量。因此
+
+\[
+\underbrace{23}_{\text{原始列}}
+=\underbrace{15}_{\text{共享候选的原始语义}}
++\underbrace{8}_{\text{EAST 目标私有路径}},
+\qquad
+\underbrace{25}_{\text{模型逻辑输入槽}}
+=\underbrace{(15+2)}_{\text{rebuilt17}}
++\underbrace{8}_{\text{raw8}}.
+\]
+
+这里的“25”是两个分支合计的逻辑特征数，不是原论文完整 PGFE25 的等价复现，也不是新增了两路硬件诊断。\code{ip\_A} 是 \code{ip} 的单位统一结果；\code{Z\_proxy} 是用统一后的电流重新计算，二者替换原列而不增加维度。真正新增的两个数学派生量只有
+
+\[
+\mathrm{Bt\_over\_Ip}(t)=\frac{B_t(t)}{I_p(t)},
+\qquad
+\mathrm{Ip\_diff}(t)=I_p(t)-I_p(t-1).
+\]
+
+当 \(|I_p|\leq10^{-9}\) 或输入非有限时，比值不被强行解释为零，而由可用性掩码标记为缺失；J-TEXT 的 \(I_p\) 在计算前恰好进行一次 \(\mathrm{kA}\rightarrow\mathrm{A}\) 换算。在线代码还使用“只看已到达前缀”的可用性判断，避免用整炮后续是否出现非零 MHD 信号泄漏未来。
+
+\subsubsection{为什么选择 rebuilt17 作为共享路径}
+
+跨装置共享路径使用以下 17 个量：
 
 \begin{lstlisting}
 Bt, ip_A, Bt_over_Ip, Ip_diff, v_loop, Z_proxy,
@@ -290,9 +316,34 @@ xuv_kurt, xuv_skew, xuv_var,
 Mir_avg_fre, n=1 amplitude, mode_number_n, dx_a, dy_a
 \end{lstlisting}
 
-rebuilt17 是共享的 17 维特征集合名称；raw8 是保留给 EAST 私有分支的 8 个特征集合名称。它们是代码中的特征组名称，不代表新的标签或新的物理方程。
+选择依据分为三层，不能互相替代：
 
-其中 \(B_t\) 表示环向磁场，\(I_p\) 表示等离子体电流，\(v_{\mathrm{loop}}\) 表示环电压。\(I_p\) 先完成单位换算；随后构造 \(B_t/I_p\)、电流差分和 \(Z_{\mathrm{proxy}}=v_{\mathrm{loop}}/I_p\)。每个特征同时保留可用性掩码。不可用观测不被解释为物理零值，而由掩码显式标记。
+\begin{enumerate}
+\item \textbf{物理与文献动机。}跨装置破裂研究表明，MHD 活动、辐射不对称、密度极限、电流和位移等诊断携带破裂先兆；同时，J-TEXT 与 EAST 在尺寸、位形、运行区间、特征分布、破裂成因和演化时间尺度上明显不同，低层局部特征通常比上层时间模型更适合冻结共享\cite{zheng2023transfer}。PGFE 工作也主张先构造较少依赖装置几何的物理语义特征，再做域适配\cite{xue2023pgfe}。这些工作支持“按物理语义分路”和“保留目标侧时间适配”，但\textbf{不证明本仓这 17 个名字逐维不可删除}。
+\item \textbf{本仓数据审计。}EAST 中 \code{mode\_number\_n}、\code{MNM}、\code{Mir\_avg\_amp} 和 \code{Mir\_avg\_fre} 存在约 74--95\% 的零值/不可用现象；\code{ne\_nG} 在两装置的尺度明显不一致；位移量的归一化语义也未完全统一。因此，共享路径只保留能够完成单位修正、因果重构或缺失掩码处理的量；测量语义不稳的量进入 EAST 私有分支。
+\item \textbf{本仓实验支持。}在同一历史协议下，full23 的 target-only/adapt-high AUC 为 0.862/0.845，control12 为 0.887/0.874，rebuilt17 为 0.866/0.872；rebuilt17 的三 seed adapt-high 平均 AUC 为 0.872。该结果支持“full23 中存在负迁移通道”和“rebuilt17 是当前较稳妥的共享入口”，但 adapt-high 并未稳定超过同特征 EAST-only，因此仍不能声称已经证明正迁移。
+\end{enumerate}
+
+\begin{table}[H]
+\centering
+\caption{rebuilt17 的功能分组、处理方式与证据边界。}
+\small
+\begin{tabularx}{\textwidth}{p{27mm} p{54mm} Y}
+\toprule
+分组 & 变量 & 进入共享路径的理由与限制\\
+\midrule
+平衡与电学 & \code{Bt, ip\_A, Bt\_over\_Ip, Ip\_diff, v\_loop, Z\_proxy} & 单位可审计，并显式描述磁场、电流水平与变化；\(B_t/I_p\) 只是不含几何/形状因子的控制代理，不能写成精确 \(q_{95}\)；\(I_p\) 差分还需排除电流猝灭捷径。\\
+辐射统计 & \code{sxr\_kurt/skew/var, xuv\_kurt/skew/var} & 高阶统计弱化阵列绝对幅值差，但方差仍受诊断几何和增益影响，故仅做装置内标准化。\\
+MHD & \code{Mir\_avg\_fre, n=1 amplitude, mode\_number\_n} & 对应磁岛减速、锁模与模式活动；全零炮按不可用处理，不能把缺测当成“无 MHD”。\\
+位置 & \code{dx\_a, dy\_a} & 表示位移/VDE 相关变化；两装置几何语义并未完全证明同构，因此属于条件共享。\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\paragraph{两个派生量是否“必须”加入？}
+目前不能作此强断言。\code{Bt\_over\_Ip} 提供磁场相对电流的运行点信息，\code{Ip\_diff} 提供电流演化速度，二者都有明确物理动机；但现有结果是\emph{特征组级}对比，没有完成“只去掉 \code{Bt\_over\_Ip}”“只去掉 \code{Ip\_diff}”“同时去掉二者”的同 seed 单因素消融。因此报告只写“当前采用并有动机”，不写“已证明缺一不可”。要证明必要性，必须固定训练炮、support110、父 checkpoint、scaler、epoch、阈值和报警器，运行上述四臂并报告三 seed 配对置信区间，同时检查 \code{Ip\_diff} 是否只识别了终末电流下降。
+
+\subsubsection{为什么其余 8 维进入 EAST 私有路径}
 
 以下 raw8（8 个目标装置专属通道）不施加跨装置共享约束：
 
@@ -302,6 +353,10 @@ ne_nG, qa_proxy, sxr_mean, xuv_ratio
 \end{lstlisting}
 
 raw8 并非没有物理意义；当前证据不足以支持其在 J-TEXT 与 EAST 之间具有相同的测量语义。因此，本文在 EAST 私有旁路中以目标装置数据学习这些通道的局部关系。该设计避免全局对齐将装置差异误判为可迁移结构，也避免直接删除 EAST 独有先兆。
+
+更准确地说，raw8 是“目标私有使用”，不是“废弃”。\code{CIII} 受壁材料和杂质条件影响；\code{MNM/Mir\_VV/Mir\_avg\_amp} 的覆盖率与探针定义不稳；\code{ne\_nG} 与 \code{qa\_proxy} 的两装置量纲/构造尚未完成等价审计；\code{sxr\_mean} 与 \code{xuv\_ratio} 依赖阵列与通道定义。文献只能说明这些物理家族可能有用，不能保证同名聚合列可以直接对齐。本仓旧消融记录显示去掉 \code{CIII} 和受污染的 XUV 组曾改善 AUC，但正式稿仍需用当前 Adv25 父模型重跑固定协议消融。
+
+最后必须区分：Zheng 等人的公开工作使用 47 路异构诊断及专门的 FFE，而本仓当前只拥有聚合后的 raw23，缺少可重构完整文献特征所需的原始 Mirnov、SXR、AXUV 和密度阵列。因此 rebuilt17+raw8 是\textbf{当前数据条件下的工程重构}，不是对公开论文输入的逐列复刻。
 
 \subsection{源域模型前向计算}
 
@@ -388,62 +443,148 @@ EAST 迁移以 J-TEXT 静态 checkpoint 为唯一 parent：
 \label{eq:transfer}
 \end{equation}
 
-J-TEXT 编码器、源风险头及源侧辅助头被冻结。可训练对象为 shared17 目标适配器、EAST 私有 raw8 残差分支和独立 EAST 风险头。部署分数来自 EAST 风险头；J-TEXT 风险分数、J-TEXT 在线专家权重、J-TEXT 查询记录和 J-TEXT 在线记忆均不进入 EAST 父模型。
+这里必须区分\textbf{support110 静态迁移期间}与\textbf{balanced360 在线期间}的冻结范围，否则会误解为“J-TEXT 编码器从头到尾完全冻结”。实际代码先载入 J-TEXT Adv25 静态 encoder/head，然后执行 \code{adapt\_high}：冻结 encoder 的低层，只解冻最后一个 Transformer encoder layer 与最终 LayerNorm，丢弃源风险头并新建 EAST 风险头；这些参数在 support110 上以二元交叉熵训练。support 适配完成后，这个“EAST 基模型”的 encoder/head 被封存并在 balanced360 在线阶段完全冻结。在线阶段能够变化的是共享动态残差、raw8 私有残差及其临时/持久副本，而不是原始 J-TEXT 源风险头。
+
+因此部署基分数不是未经适配的 J-TEXT 分数，而是
+
+\[
+s_b(t)=h_{\mathrm{EAST}}
+\!\left(E_{\mathrm{adapt\_high}}(X_{17}(t))\right),
+\]
+
+其中 \(E_{\mathrm{adapt\_high}}\) 已在 support110 上更新过最后一层和归一化层，\(h_{\mathrm{EAST}}\) 是新建的目标头。J-TEXT 在线分支的参数、查询记录和记忆从不进入这条 EAST 谱系。
 
 \subsection{目标侧适配器}
 
-设冻结源路径输出为 \(s_0\)，目标侧可用物理代理为 \(q\)。EAST 的最终风险分数由源分数加上两个目标侧修正组成：
+\subsubsection{共享 17 维动态修正（delta-s17）}
+
+名称 \(\Delta s_{17}\) 容易引起误解：它不是 17 维向量，也不是把 17 个通道各自产生的概率相加；下标 17 只表示它来自 rebuilt17 路径。对当前端点 \(t\)，冻结 EAST 基 encoder 输出三个 64 维量：当前窗口的 \code{CLS} token \(c_t\)、当前窗口最后一个 token \(l_t\)，以及相隔 8 个采样点的变化 \(l_t-l_{t-8}\)。三者拼接为
+
+\[
+\phi_{17}(t)=[c_t;l_t;l_t-l_{t-8}]\in\mathbb{R}^{192}.
+\]
+
+代码中的四个物理家族值 \(q_t\in\mathbb{R}^{4}\) 与四个可用性位 \(a_t\in\{0,1\}^{4}\) 一并输入，因此 projector 的实际输入维度为 \(192+4+4=200\)，内部维度为 16。共享残差头还读取一个标量基分数 \(s_b\)，输出一个标量：
 
 \begin{align}
-s_E&=s_0+\Delta s_{17}+\Delta s_8,\\
-\Delta s_{17}
-&=R\tanh\left(f_{17}(x_{17},q,s_0)\right)g(q).
+r_{17}(t)&=f_{17}\!\left(\phi_{17}(t),q_t,a_t,s_b(t)\right)\in\mathbb{R},\\
+\Delta s_{17}(t)&=
+1.0\tanh(r_{17}(t))
+\mathbf{1}\!\left[\sum_{j=1}^{4}a_{t,j}\geq2\right],\\
+s_{17}(t)&=s_b(t)+\Delta s_{17}(t).
 \label{eq:shared-adapter}
 \end{align}
 
-\(\Delta s_{17}\) 是共享 17 维路径的修正，\(g(q)\) 是物理代理可用性门，\(R\) 限制修正幅度。修正末层零初始化，使适配初始点接近源域父模型。对 EAST 独有的 8 个通道，先计算因果统计量 \(u_8\)，再使用私有修正：
+最后一层以全零权重和偏置初始化，所以训练前严格有 \(\Delta s_{17}=0\)；\(\tanh\) 将其限制在 \([-1,1]\) logit；至少两个物理家族可用时门才打开。它修正的是\textbf{共享表示在 EAST 上的时序关系}，不是在输入层逐列改写 rebuilt17。
+
+\subsubsection{raw8 私有修正（delta-s8）}
+
+raw8 分支对每个通道只使用当前及过去样本计算六个统计量：末值、均值、标准差、全窗口首尾差、最近半段首尾差和有效样本比例。8 个通道得到
+
+\[
+u_8(t)\in\mathbb{R}^{8\times6}=\mathbb{R}^{48}.
+\]
+
+它与已经修正过的共享标量 \(s_{17}\) 拼接为 49 维输入，经 16 维隐藏层输出标量私有残差：
 
 \begin{equation}
-\Delta s_8=f_8(u_8,s_0).
+\Delta s_8(t)=0.5\tanh f_8\!\left(u_8(t),s_{17}(t)\right),
+\qquad
+s_E(t)=s_{17}(t)+\Delta s_8(t).
 \label{eq:private-adapter}
 \end{equation}
 
-私有分支对每个独有通道计算末值、均值、标准差、全窗口变化、后半段变化和有效比例六类因果统计量。目标侧适配器的作用是修正装置和测量关系，而不是将 J-TEXT 的底层表示无条件重写。
+代码中的张量形状保证 \(s_b,\Delta s_{17},s_{17},\Delta s_8,s_E\) 对一个 batch 均为 \([B]\)，故它们确实能够逐样本相加；单元测试还核验零初始化保持基分数、输出形状和残差上界。三者相加发生在 \textbf{logit 空间}，最终只对 \(s_E\) 做 sigmoid：\(p_E=\sigma(s_E)\)。不能把三个分量分别 sigmoid 后再相加。
+
+这种结构只能保证\textbf{量纲和接口一致}，不能从数学上保证每个残差都代表独立、已校准的“真实破裂概率”。风险语义来自同一 HDF5 结局监督、support 阈值校准与逐炮评价；仍需通过无残差、仅 \(\Delta s_{17}\)、仅 \(\Delta s_8\)、两者同时以及残差打乱等消融排除重复计数。零初始化、有界残差、缺失门、目标侧训练和 guard 回滚共同限制错误修正幅度。
 
 \subsection{support 支持集训练目标}
 
-support（支持集）训练同时约束合法破裂窗口、安全炮和破裂窗口之外的风险：
+“support 训练”在代码中不是一条统一损失，而是依次包含三个对象。将它们混写会导致公式含义错误。
+
+\paragraph{第一步：adapt-high EAST 基模型。}
+最后一个 Transformer layer、最终 LayerNorm 和新建 EAST head 直接在 support110 的平衡窗口上使用二元交叉熵；这一阶段没有 \(\mathcal{L}_{\mathrm{next}}\) 或 \(\mathcal{L}_{\mathrm{residual}}\)。
+
+\paragraph{第二步：共享动态残差。}
+共享 \(\Delta s_{17}\) 先用下一物理状态重建预训练 projector/next head，再联合训练：
+
+\[
+\begin{aligned}
+\mathcal{L}_{17,\mathrm{support}}
+={}&\underbrace{\mathrm{BCEWithLogits}(s_{17},y)}_{\text{窗口风险}}
++0.20\underbrace{\mathcal{L}_{\mathrm{next,phys}}}_{\text{下一物理状态}}\\
+&+1.00\underbrace{\mathcal{L}_{\mathrm{anchor}}}_{\text{保护已正确的 support 边界}}
++0.05\underbrace{\mathbb{E}[\Delta s_{17}^{2}]}_{\text{残差幅度}}.
+\end{aligned}
+\]
+
+锚定项只作用于基模型相对冻结阈值已经分类正确的 support 窗口。若基模型的有符号 margin 为 \(m_b\)，修正后为 \(m_a\)，则代码惩罚 \(\max(m_b-m_a,0)\)：只有新残差把正确 margin 变差时才产生损失。
+
+\paragraph{第三步：raw8 私有分支；对应原报告公式 18。}
+代码中真正出现“1、0.20、0.02”这一组合的是 raw8 私有残差拟合：
 
 \begin{equation}
-\mathcal{L}_{\mathrm{support}}
-=\mathcal{L}_{\mathrm{hazard}}
- +0.20\mathcal{L}_{\mathrm{next}}
- +0.02\mathcal{L}_{\mathrm{residual}}.
+\mathcal{L}_{8,\mathrm{support}}
+=\mathcal{L}_{\mathrm{sealed}}
+ +0.20\mathcal{L}_{\mathrm{next,8}}
+ +0.02\,\mathbb{E}[\Delta s_8^2].
 \label{eq:support-loss}
 \end{equation}
 
-其中，\(\mathcal{L}_{\mathrm{hazard}}\) 采用炮级多实例风险约束。若
-\(\mathcal{A}_i\) 表示破裂炮 \(i\) 的合法预警端点集合，\(\mathcal{O}_i\) 表示
-其余端点，并令 \(\mathcal{O}=\bigcup_i\mathcal{O}_i\)，则其结构如下。这里
-\(\mathcal{A}_i\) 是允许产生及时报警的端点，\(\mathcal{O}_i\) 是该炮的其余端点：
+三项的实现含义如下。
+
+\begin{itemize}
+\item \(\mathcal{L}_{\mathrm{sealed}}\) 让当前私有分数围绕\textbf{训练前已封存的共享分数}作有界纠错。设封存 logit 为 \(s^{\mathrm{seal}}\)、软目标为 \(y\in[0,1]\)，代码先计算
+\[
+e=y-\sigma(s^{\mathrm{seal}}),\qquad
+d=\mathrm{clip}(e,-0.5,0.5),\qquad
+s^{\mathrm{target}}=s^{\mathrm{seal}}+d,
+\]
+再使用
+\[
+\mathcal{L}_{\mathrm{sealed}}
+=\mathrm{SmoothL1}(s_E,s^{\mathrm{target}})
++0.25\,\mathrm{BCEWithLogits}(s_E,y).
+\]
+第一项限制单次目标移动不超过 0.5 logit，第二项保留正确分类方向。
+\item \(\mathcal{L}_{\mathrm{next,8}}\) 用当前 raw8 的 16 维 latent 预测 8 个采样点之后的 48 维 raw8 因果统计，不使用结局标签。它迫使私有 latent 保留短时动力学，而不只记住 support 的 0/1 标签。
+\item \(\mathbb{E}[\Delta s_8^2]\) 是残差幅度正则。系数 0.02 使模型可以纠错，但倾向于用较小改动；它不是新的物理损失。
+\end{itemize}
+
+举例：若某安全窗口封存分数 \(s^{\mathrm{seal}}=2\)，则基概率约为 0.881，\(y=0\)，误差约为 \(-0.881\)，经截断后 \(d=-0.5\)，目标分数为 1.5。优化会把当前分数向下推，但不会一次要求从 2 跳到极低值。若破裂正窗口封存分数为 \(-2\)，则 \(y=1\)、\(d=+0.5\)、目标为 \(-1.5\)，更新方向相反。该设计体现“有界纠错”，并不意味着一次 support 更新即可修正最终报警。
+
+\subsection{原报告公式 19：EAST 时间集合与外窗权重}
+
+\(\lambda_{\mathrm{out}}\) 只出现在共享在线适配器定义的炮级多实例（MIL）后备损失中。它属于 \textbf{EAST}，不是 J-TEXT 的 Adv25 源训练。设破裂时刻为 \(t_d\)，当前选定的 EAST 训练标签窗为 125 ms，则
+
+\[
+\mathcal{A}_i=\{t:0\leq(t_d-t)\times1000\leq125\},
+\qquad
+\mathcal{O}_i=\{t<t_d\}\setminus\mathcal{A}_i.
+\]
+
+\(\mathcal{A}_i\) 是破裂炮中允许作为正例的末端窗口，\(\mathcal{O}_i\) 是同一破裂炮中更早的负上下文。安全炮没有正窗口，所有合法因果窗口都作为负 bag。实际实现使用可微的 smooth-top-k（默认 top-k=4、temperature=0.25），不是不可导的硬最大值：
 
 \begin{equation}
 \begin{aligned}
 \mathcal{L}_{\mathrm{hazard}}
 ={}&\frac{1}{|N|}\sum_{i\in N}
-\mathrm{softplus}\!\left(\max_t s_i(t)-\tau\right)\\
+\mathrm{softplus}\!\left(\mathrm{STopK}_{4}(s_i(t)-\tau)\right)\\
 &+\frac{1}{|D|}\sum_{i\in D}
-\mathrm{softplus}\!\left(\tau-\max_{t\in\mathcal{A}_i}s_i(t)\right)\\
-&+\lambda_{\mathrm{out}}\,
-\frac{1}{|\mathcal{O}|}\sum_{(i,t)\in\mathcal{O}}
-\mathrm{softplus}\!\left(s_i(t)-\tau\right).
+\mathrm{softplus}\!\left(-\mathrm{STopK}_{4,t\in\mathcal{A}_i}(s_i(t)-\tau)\right)\\
+&+\lambda_{\mathrm{out}}\frac{1}{|D|}\sum_{i\in D}
+\mathrm{softplus}\!\left(\mathrm{STopK}_{4,t\in\mathcal{O}_i}(s_i(t)-\tau)\right).
 \end{aligned}
 \label{eq:hazard-mil}
 \end{equation}
 
-该表达式分别抑制安全炮的最高风险、提高破裂炮合法预警区的最高风险，并抑制合法区之外的硬负样本。实际代码还包含相应的 residual 正则和物理下一状态项；本文不将上述概括式误写为独立于实现的全新损失。
+默认 \(\lambda_{\mathrm{out}}=0.25\)，在代码中名为 \code{hard\_negative\_weight}。它的作用不是表示“外部损失”，而是抑制同一破裂炮在合法正窗之前就长期维持高风险。如果没有这一项，MIL 只需在最后 125 ms 找到一个高分点就能满足正 bag，同时可能把数秒前的背景也推高。0.25 是开发期工程权重，不是由物理定律推导的常数；要声称它必要，仍需做 \(0,0.1,0.25,0.5\) 的固定协议灵敏度实验。
 
-该阶段是静态目标适配，不是在线学习；balanced360 不参与 support 参数训练。
+时间例子：某 EAST 破裂炮的 HDF5 \code{DownTime}=5.000 s，则正窗口终点位于 4.875--5.000 s；例如 4.900 s 距破裂 100 ms，属于 \(\mathcal{A}_i\)，4.700 s 距破裂 300 ms，属于 \(\mathcal{O}_i\)。破裂之后的点不进入因果训练。相对地，若某 J-TEXT 炮 \code{DownTime}=0.800 s、AdvancedTime=40 ms，则其源训练正窗是 0.760--0.800 s，因为 \(\max(25,40)=40\) ms；这不是上述 EAST 125 ms 集合。
+
+还需说明当前 V3C 的分支条件：当训练 batch 保存了实际报警状态机的逐点 \code{alarm\_boundary} 时，代码改用 \code{operational\_alarm\_boundary\_loss}，直接优化“分数相对封存报警边界”的 top-k 证据；只有缺少该字段时才回退到式~\eqref{eq:hazard-mil}。因此不能把 \(\lambda_{\mathrm{out}}\) 写成所有 V3C 更新必然生效的主线参数。
+
+support110 只参与静态目标适配；balanced360 不参与上述 support 参数训练。
 
 \section{EAST 炮内无监督适应}
 
@@ -486,9 +627,40 @@ w_p^{(k)}.
 
 因此，下一状态目标不是结局标签，也不能在当前端点访问未来数据。代码层面通过当前端点封存与后续端点到达来保证这一点。
 
+\paragraph{为什么使用 Huber 型 SmoothL1？}
+代码实际调用 PyTorch 的 \code{smooth\_l1\_loss}，未显式传入 \code{beta}，因此使用默认 \(\beta=1\)。对误差较小的端点，二次区间提供连续、精细的回归梯度；对异常大的重建误差，线性区间的梯度幅度不再随误差无限增大。相比均方误差，它可降低缺测边缘、装置尺度残差或瞬时尖峰支配一次小预算在线更新的风险；相比绝对误差，它在零点附近平滑。该稳健思想来自 Huber 损失\cite{huber1964}，实现定义与 PyTorch 文档一致\cite{pytorchsmoothl1}。
+
+其工程意义可用一个简单例子说明：当标准化误差为 0.2 时，损失约为 \(0.5\times0.2^2=0.02\)，模型细调该误差；当误差为 8 时，损失为 \(8-0.5=7.5\)，导数幅度为 1，而均方误差的导数幅度会达到 16。于是单个极端点不会压过其余窗口。\textbf{但当前仓库没有 SmoothL1、MSE 与 L1 的同预算消融，故只能说它是有理论依据的稳健选择，不能说实验已经证明“必须使用”。}
+
 \subsection{物理代理伪监督}
 
-从当前可观测物理代理得到活动支持度 \(q_t\)。为避免与模型风险分数 \(s_t\) 混淆，物理支持度单独使用 \(q_t\)：
+\subsubsection{代码中究竟计算了哪些物理代理}
+
+代码没有求解完整 MHD 方程，也没有使用密度极限公式或 \(q_{95}\) 作为硬标签。它对 rebuilt17 的已观测前缀计算“相隔 8 个采样点的绝对变化”，再按四个物理家族聚合。若采样率为 1 kHz，8 点约为 8 ms；除 \(dI_p/dt\) 外，其余量都是 8 点差分幅值。
+
+\begin{table}[H]
+\centering
+\caption{当前代码的四类因果物理创新量。}
+\small
+\begin{tabularx}{\textwidth}{p{24mm} Y p{42mm}}
+\toprule
+家族 & 实际输入创新量 & 物理解释边界\\
+\midrule
+电学 & \(\Delta\log|I_p|\)、\(\Delta I_p/\Delta t\)、\(\Delta(B_t/I_p)\)、\(\Delta v_{\mathrm{loop}}\)、\(\Delta(v_{\mathrm{loop}}/I_p)\) & 电流与环电压的突变/阻性变化代理；不是精确的电阻率或安全因子。\\
+位置 & \(|\Delta dx_a|,|\Delta dy_a|\) & 等离子体位置快速变化/VDE 相关代理。\\
+辐射 & SXR 与 XUV 的 kurtosis、skewness、variance 各自的绝对变化 & 辐射轮廓不对称或展宽变化代理；不等于辐射功率。\\
+MHD & \code{Mir\_avg\_fre}、\code{n=1 amplitude}、\code{mode\_number\_n} 的绝对变化 & 磁岛/锁模活动代理；在首次因果观测到非零值之前保持不可用。\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+每个创新量的尺度只用预注册 support 炮、且不读标签，拟合其正值的第 90 百分位 \(c_j\)。归一化后
+
+\[
+r_j(t)=\mathrm{clip}\!\left(\frac{|\Delta x_j(t)|}{c_j},0,1\right).
+\]
+
+同一家族内对可用 \(r_j\) 取平均得到家族分数；缺失项不作为零参与平均。随后对当前可用家族计算平均活动强度 \(\mathrm{energy}_t\)，以及分数达到 0.5 的活跃家族比例 \(\mathrm{concurrence}_t\)。至少两族可用时才认为代理已知：
 
 \begin{equation}
 s_t=\text{模型风险分数},\qquad
@@ -498,7 +670,7 @@ m_t=s_t-\tau.
 \label{eq:physics-support}
 \end{equation}
 
-其中 \(\mathrm{energy}_t\) 是归一化活动强度，\(\mathrm{concurrence}_t\) 是多个可用物理代理同时支持当前状态的程度；二者都由当前及过去信号计算，不包含结局标签。
+例如，四族均可用且家族分数为 \((0.8,0.7,0.2,0.1)\) 时，energy 为 0.45，达到 0.5 的家族有两类，concurrence 为 0.5，因此 \(q_t=0.225\)。它表达“变化强度与跨家族同时性”，不是 22.5\% 的破裂概率。
 
 当模型风险与物理支持明显冲突时，使用有界伪监督：
 
@@ -515,6 +687,14 @@ m_t=s_t-\tau.
 \end{equation}
 
 第一种情形表示风险高而物理支持低，属于 FP-like 冲突；第二种情形表示风险低而物理支持高，属于 FN-like 冲突。该约束使用可观测代理，不能被表述为完整磁流体动力学（magnetohydrodynamics, MHD）方程或真实结局标签。
+
+实现还保留一个重要边界：上述无标签伪损失判断 FP-like/FN-like 时，比较的是\textbf{更新前基分数}与冻结阈值，而损失作用于可训练的当前分数。这样可避免适配器先把自己推过阈值、再利用这个结果给自己生成伪标签。高风险且 \(q_t\leq0.10\) 才向下修；低风险且 \(q_t\geq0.65\) 才向上修；中间区域不更新。
+
+\subsubsection{为什么有多项损失；是否冗余}
+
+各项约束的是不同失效模式，而不是都在重复预测标签：风险损失学习结局边界；下一状态损失要求 latent 保留短时演化；物理伪损失只处理强冲突；anchor/replay/guard 防止忘记原本正确的行为；残差平方与 \(\tanh\) 上界限制容量和单次漂移。并且这些项并非每个阶段全部同时开启：adapt-high 只有 BCE，共享 support 有 BCE/next/anchor/residual，raw8 support 有 sealed/next/residual，炮内没有结局 BCE，炮间才允许使用 reveal 后监督。
+
+但“功能不同”不等于“已证明没有冗余”。当前同父模型开发消融中，intra-only 虽执行大量非零梯度更新，却没有改变 seed131 的炮级边界；physics-on/off 也没有形成足够稳定的独立增益。因此现有证据提示炮内 next/anchor/physics 可能在决策层相互抵消，或更新幅度不足。正式论文必须分别运行 \code{next only}、\code{physics only}、\code{next+physics}、\code{+anchor}、\code{+guard}，固定 query manifest、阈值、报警器、优化步数与父模型；否则只能把多项损失称为安全设计，不能称为每项都被实验证明必要。
 
 \subsection{教师锚定与炮内总损失}
 
@@ -646,11 +826,36 @@ V_{\mathrm{update}}
 \label{eq:update-value}
 \end{equation}
 
-随后使用可用性与冗余惩罚缩放，并设置 dead zone 和饱和上限。普通噪声因而不触发有意义的参数更新，极端冲突也不会产生无限大步长。
+实际分数还乘以可用率与新颖性因子：
+\[
+V_{\mathrm{causal}}
+=A\,(1-0.5R)\,V_{\mathrm{update}},
+\]
+其中 \(A\in[0,1]\) 是可用率，\(R\in[0,1]\) 是与已有状态的冗余度。当前 V3C runner 把 \(V_{\mathrm{causal}}\leq0.03\) 设为不更新，达到 0.15 时学习率缩放饱和为 1，中间线性映射为 \((V_{\mathrm{causal}}-0.03)/(0.15-0.03)\)。类本身的通用默认 dead zone 是 0.20，但主线明确覆盖为 0.03/0.15，报告以运行参数为准。普通噪声因而不触发有意义的参数更新，极端冲突也不会产生无限大步长。
 
 \subsection{炮级查询价值}
 
-EAST V3C 的炮级查询函数将错误纠正、信息增益、物理冲突、梯度作用性和覆盖探索组合：
+\subsubsection{当前 V3C 实际运行的两信号查询器}
+
+当前主线实际用于决定是否查询的是 \code{OperationalQueryValueModel}，输入只有两个在 balanced360 开发审计中相对稳定的无标签量：报警边界不确定性 \(U_i\) 与物理冲突 \(C_i\)。第 \(i\) 炮在 reveal 前封存：
+
+\begin{equation}
+Q_i=w_iU_i+(1-w_i)C_i,\qquad w_i\in[0.55,0.75].
+\label{eq:operational-query}
+\end{equation}
+
+当前主线命令将初始 \(w_0\) 设为 0.55（类构造器的通用默认值是 0.65），学习率为 0.05。查询并揭示后，令错误目标 \(z_i=1\) 对应 FP、FN 或 TARDY，\(z_i=0\) 对应 TP 或 TN，则代码执行
+
+\[
+w_{i+1}=\mathrm{clip}_{[0.55,0.75]}
+\left[w_i-0.05\,(Q_i-z_i)(U_i-C_i)\right].
+\]
+
+这就是对二次型误差方向的一步投影更新：如果某次错误炮的“不确定性”比“物理冲突”更显著，\(w\) 会向更重视不确定性的方向移动；反之更重视物理冲突。未查询炮不能执行该更新。
+
+\subsubsection{六信号价值模型是开发/影子模型，不是当前操作公式}
+
+代码中确实还存在一个 \code{OnlineQueryValueModel}，包含不确定性、物理冲突、重建惊讶度、teacher disagreement、private innovation 和 expected-gradient 六项。旧报告将它进一步概括成下面的五类“未来效用”公式：
 
 \begin{equation}
 \begin{aligned}
@@ -662,9 +867,43 @@ V={}&\mathrm{clip}\big(
 \label{eq:query-value}
 \end{equation}
 
-这里 \(E_{\mathrm{error}}\)、\(E_{\mathrm{info}}\)、\(E_{\mathrm{physics}}\)、\(E_{\mathrm{gradient}}\) 和 \(E_{\mathrm{coverage}}\) 分别表示预计错误纠正、信息增益、物理冲突、梯度作用性和轨迹覆盖价值；\(P_{\mathrm{protect}}\) 表示破坏已稳定预测的风险。展开写法使每一项及其权重都能直接读取。保护风险用于避免为了修正少量疑难炮而破坏大量已稳定预测的炮。J-TEXT 基准分支另有不读取结局的错误先验查询模型，其输入为风险轨迹、通道最近统计量和可用性；该分支不使用测试结局作为查询特征。
+这里的 \(E_{\mathrm{error}}\)、\(E_{\mathrm{info}}\)、\(E_{\mathrm{coverage}}\) 和 \(P_{\mathrm{protect}}\) 并没有以该五项名称直接出现在当前 V3C 操作类中。式~\eqref{eq:query-value} 只能作为未来反事实价值模型的\textbf{概念设计}，不能再写成当前已运行算法。早期六信号实现也属于开发/影子谱系；其改变查询后曾伴随 TPR@30 下降，故没有取代式~\eqref{eq:operational-query}。
 
-EAST V3C 的默认预算合同为每 20 炮形成一个查询块、每块查询 4 炮；seed131、133、137 的实际查询数分别为 94、99 和 98。J-TEXT canonical 20\% 预算查询 44/220 炮；10\% 和 30\% 诊断预算分别为 22 和 66 炮。实际预算以封存回执为准，不在结果阶段重新解释为理想化百分比。
+\paragraph{所谓 expected-gradient 实际如何实现？}
+开发代码没有对两种假标签调用 \code{autograd.grad}。它只以炮级峰值概率 \(p_{\max}\) 计算
+
+\[
+E_{\mathrm{gradient}}^{\mathrm{proxy}}
+=\mathrm{clip}\bigl(4p_{\max}(1-p_{\max}),0,1\bigr).
+\]
+
+该量在 \(p_{\max}=0.5\) 时为 1，在接近 0 或 1 时趋近 0，本质是\textbf{决策边界不确定性代理}，不是“拿到标签后参数会移动多远”的真实梯度作用性。若后续实现真正的 expected gradient，应在不更新参数的前提下，对目标侧参数 \(\theta_T\) 计算
+
+\[
+p\left\|\nabla_{\theta_T}\mathcal{L}(x,1)\right\|
++(1-p)\left\|\nabla_{\theta_T}\mathcal{L}(x,0)\right\|,
+\]
+
+并与当前代理做成本相同的消融；这目前是建议，不是现有结果。
+
+\paragraph{当前 V3C 的真实查询预算。}
+封存主线命令采用 \code{block\_size=20}、\code{quota=6}、历史 160 炮、历史分位点 0.70、滚动 token 容量 12，而不是“每 20 炮固定查 4 炮”。在该 rolling selector 中，6/20 只定义每炮补充 0.3 个查询 token，即 360 炮的查询上限为 108；只有 token 至少为 1 且分数超过由过去 160 炮确定的 0.70 分位 cutoff，或到达因果探索时机，才实际查询。低价值炮不会为凑满配额而强制查询，未用 token 最多累计 12 个。因此三 seed 最终查询数分别为 94、99、98，小于 108 是设计行为而不是漏跑。旧文档中的 4/20、共 72 炮属于另一条 locked-v8 预算实验，不能与当前 V3C 结果混用。J-TEXT canonical 20\% 分支为 44/220；两装置查询清单和在线状态互不传递。
+
+\subsection{“gradient protect”在代码中的真实含义}
+
+仓库中没有名为 \code{GradientProtect} 的单独模块或一个 \(P_{\mathrm{protect}}\) 标量。当前所谓“梯度保护”是以下可核对机制的组合：
+
+\begin{enumerate}
+\item \textbf{参数作用域。}support 后的 J-TEXT/EAST 基 encoder/head 在在线期冻结；共享炮间只解冻 residual head。炮内根据配置只解冻 projector 后部/next head/residual head，或更窄的 representation-only 子集。
+\item \textbf{价值缩放。}先将端点价值映射到 \([0,1]\)，当前 runner 中不超过 0.03 的端点不更新，0.15 处饱和；其余值只缩放本次优化器学习率，不直接改标签。
+\item \textbf{梯度裁剪。}共享和私有在线更新把可训练参数的梯度范数裁到 0.5，避免单炮尖峰产生无界步长。
+\item \textbf{函数输出限幅。}共享残差经 \(\tanh\) 限于 \([-1,1]\) logit，私有残差限于 \([-0.5,0.5]\) logit；这比只裁参数梯度更直接地限制预测变化。
+\item \textbf{回放与 guard anchor。}更新同时重放过去已揭示样本，并用 support/TP/TN 保护集的更新前输出作 SmoothL1 锚定。
+\item \textbf{事务式回滚。}炮间反向传播前深拷贝模型参数和 AdamW 优化器状态；更新后重新评估 guard。若输出非有限或受保护样本跨过错误边界的数量超过 \code{max\_guard\_harms}，同时恢复模型与优化器快照。
+\item \textbf{部署门与训练梯度分离。}部署预测使用硬的物理符号门；由于硬门在零初始化时会产生零梯度，监督训练暂经未门控的 raw increment 反传，更新完成后仍必须通过带门部署路径的 guard 检查。
+\end{enumerate}
+
+所以它保护的是“更新不能轻易破坏已有功能”，而不是证明更新方向物理正确。最强证据应来自同 query manifest 的 \code{no-clip}、\code{no-bound}、\code{no-replay}、\code{no-guard} 与完整保护臂；当前报告不把尚未完成的对照写成已验证结论。
 
 \subsection{延迟反馈效用}
 
@@ -697,7 +936,11 @@ E_t&=M_t+w_q q_t+w_gG_t.
 \label{eq:trend}
 \end{align}
 
-其中 \(s_t\) 是模型风险分数，\(q_t\) 是物理支持度；\(M_t\) 衡量风险是否超过基础阈值，\(G_t\) 衡量短期风险是否高于较长时间基线，\(E_t\) 综合风险、物理支持和上升趋势。最终报警指示量为：
+其中 \(s_t\) 是模型输出的风险 \emph{logit}，\(q_t\) 是物理支持度。验证集若先得到概率阈值 \(\tau_p\)，代码在进入状态机前将它换算成同一量纲的 logit 阈值
+\[
+\tau_h=\log\frac{\tau_p}{1-\tau_p}.
+\]
+例如 \(\tau_p=0.80\) 时，\(\tau_h\approx1.386\)；若当前 \(s_t=1.60\)，则 \(M_t=0.214\)。因此 \(M_t\) 不是概率差，而是“当前风险 logit 超过冻结验证阈值多少”。\(G_t\) 衡量短期风险余量是否高于较长时间基线，\(E_t\) 再综合风险余量、物理支持和上升趋势。最终报警指示量为：
 
 \begin{equation}
 \mathrm{alarm}_t=
@@ -727,6 +970,10 @@ E_t&=M_t+w_q q_t+w_gG_t.
 \end{tabular}
 \end{table}
 
+这些数值不是由前面的损失函数推导出来的，也不是公开文献给出的物理常数。其来源是 balanced360 上的\textbf{开发期逆向参数审计}：先固定静态风险轨迹，扫描高风险 margin、物理权重、趋势权重、早期门槛以及快/慢移动平均宽度，再从通过预注册 TPR/FPR 稳定性门的邻域中选注册点。共检查 37 个去重组合，其中 31 个通过开发门；单因素记录为：高风险 margin \((-0.1,0,0.1)\)，物理权重 \((6,8,10)\)，趋势权重 \((9,12,15)\)，早期门槛 \((7.1,7.9,8.7)\)，快窗 \((3,5,8)\)，慢窗 \((80,100,128)\)。注册点为 \((0,8,12,7.9,5,100)\)；其中趋势权重 9 的配置未过门，因此在线投影下界收紧为 12。
+
+若采样率为 1 kHz，快窗 5 和慢窗 100 约对应最近 5 ms 与 100 ms；代码本身存的是\textbf{样本点数}而不是毫秒，所以更换采样率时必须重算，不能原样搬用。参数范围只是开发流上的稳定邻域，并不构成 future stream 上的独立泛化证据。
+
 揭示后的报警参数更新步长为：
 
 \begin{equation}
@@ -736,6 +983,23 @@ E_t&=M_t+w_q q_t+w_gG_t.
 \end{equation}
 
 FP 反馈提高相应门槛并减弱早期物理/趋势推动；FN/TARDY 反馈采取相反方向。更新后将参数投影回合法区间，并由保护集检查是否损害 TP/TN。如果保护条件失败，则拒绝本次报警状态更新。
+
+代码中的逐参数方向为：
+
+\begin{align*}
+\mathrm{FP}:&\quad e\leftarrow e+\delta,\quad
+w_q\leftarrow w_q-\delta,\quad
+w_g\leftarrow w_g-0.5\delta,\quad
+h\leftarrow h+0.25\delta\ \text{（仅 high route）};\\
+\mathrm{FN/TARDY}:&\quad e\leftarrow e-\delta,\quad
+w_q\leftarrow w_q+\delta,\quad
+w_g\leftarrow w_g+0.5\delta,\quad
+h\leftarrow h-0.25\delta,
+\end{align*}
+
+其中 \(\delta=0.02V_{\mathrm{query}}\)。TP/TN 不改变连续参数，而是加入 guard。举例，若一次被查询 FP 的 \(V_{\mathrm{query}}=0.8\)，则 \(\delta=0.016\)：早期门槛从 7.900 增至 7.916，物理权重从 8.000 降至 7.984，趋势权重从 12.000 计算为 11.992 后会被投影回下界 12.000；若该 FP 来自 high route，高风险门槛从 0 增至 0.004。候选参数随后在历史 TP/TN guard 上重放，失败即整次拒绝。
+
+因此状态机“在线可调”不等于任意调参。只有被查询、已封存并揭示的 FP/FN/TARDY 能提出一步有界更新，且只能影响后续炮。balanced360 已用于选取这些初值和边界，故这些结果必须标为 \code{TEST\_DRIVEN\_EXPLORATION}；正式部署前应锁定状态机并在未见未来流一次性确认。
 
 \section{结果与增益归因}
 
@@ -893,7 +1157,7 @@ python experiments/transfer_methods_2026/build_mainline_receipt.py
 EAST shared/private & \shortstack[l]{\code{DynamicHazardAdapter}\\\code{EastPrivateDynamicsResidual}} & 目标侧有界残差和 raw8 私有关系\\
 炮内更新 & \code{intra\_update}、\code{intra\_physics\_update} & 下一状态重建和物理伪监督\\
 炮间更新 & \code{reveal\_and\_inter\_update} & 结局揭示后的监督、历史回放与保护集\\
-查询价值 & \shortstack[l]{\code{CausalDecisionQueryValue}\\\code{CausalUpdateValue}} & reveal 前选炮，更新时缩放步长\\
+查询价值 & \shortstack[l]{\code{OperationalQueryValueModel}\\\code{CausalUpdateValue}} & reveal 前以不确定性/物理冲突选炮，端点价值用于缩放炮内步长\\
 错误记忆 & \code{TypedEndpointResidualMemory} & 分离 FP/FN/TARDY 并施加局部修正\\
 报警控制 & \code{ProjectedAlarmController} & high/early 双路径和合法区间投影\\
 \bottomrule
@@ -910,38 +1174,63 @@ EAST shared/private & \shortstack[l]{\code{DynamicHazardAdapter}\\\code{EastPriv
 \item \pathcode{/media/hetaisheng/044A81D94A81C83E/Fuison/fuison_ext4_runs/mainline_audit_20260831_v2.json}
 \end{itemize}
 
-\section*{附录 A：技术质询备答}
-\addcontentsline{toc}{section}{附录 A：技术质询备答}
+\begin{thebibliography}{9}
+\bibitem{zheng2023transfer}
+W. Zheng, F. Xue, Z. Chen, et al.,
+``Disruption prediction for future tokamaks using parameter-based transfer learning,''
+\emph{Communications Physics}, vol. 6, art. 181, 2023.
+doi: \href{https://doi.org/10.1038/s42005-023-01296-9}{10.1038/s42005-023-01296-9}.
 
-\paragraph{标签从何而来？}
-炮级结局来自 HDF5 的 \code{IsDisrupt} 与 \code{DownTime}。J-TEXT 的 AdvancedTime 只用于确定第 \(i\) 炮的监督时长 \(H_i\)，即 \(\max(25\,\mathrm{ms},\mathrm{AdvancedTime}_i)\)；缺失时采用 25 ms。EAST 的 operational 评价使用 30 ms 提前量门槛。
+\bibitem{xue2023pgfe}
+F. Xue et al.,
+``Cross-tokamak disruption prediction based on physics-guided feature extraction and domain adaptation,''
+arXiv:2309.05361, 2023.
+\url{https://arxiv.org/abs/2309.05361}.
 
-\paragraph{为什么不能把所有 23 维直接对齐？}
-因为跨装置特征的测量语义并不必然同构。当前证据支持 rebuilt17 作为共享路径，而 raw8 保留在 EAST 私有分支中学习目标装置特有关系。这样做不是宣布 raw8 无效，而是避免不受约束的全局对齐。
+\bibitem{huber1964}
+P. J. Huber,
+``Robust estimation of a location parameter,''
+\emph{The Annals of Mathematical Statistics}, vol. 35, no. 1, pp. 73--101, 1964.
+doi: \href{https://doi.org/10.1214/aoms/1177703732}{10.1214/aoms/1177703732}.
 
-\paragraph{迁移时究竟冻结了什么？}
-J-TEXT 编码器、源风险头和源侧辅助头被冻结。EAST 只训练目标侧适配器、EAST 私有 raw8 分支和独立风险头。EAST 部署分数不直接读取 J-TEXT 风险分数。
+\bibitem{pytorchsmoothl1}
+PyTorch Contributors,
+``SmoothL1Loss,'' PyTorch documentation, accessed 2026-09-04.
+\url{https://docs.pytorch.org/docs/stable/generated/torch.nn.SmoothL1Loss.html}.
+\end{thebibliography}
 
-\paragraph{炮内到底有没有反向传播？}
-有。炮内使用后续已经到达的无标签观测计算下一状态重建，并结合物理冲突伪监督和受限教师锚定，对目标侧临时状态执行反向传播；临时状态每炮重置。由于该更新没有结局标签，不能等同于监督重新训练。
+\section*{附录 A：八项技术质询的直接回答}
+\addcontentsline{toc}{section}{附录 A：八项技术质询的直接回答}
 
-\paragraph{炮间如何利用查询结果？}
-当前炮先完成预测和封存，查询策略再决定是否获取 HDF5 结局。揭示后，将结果分成 FP、FN、TARDY、TP 和 TN，使用封存监督、历史回放、错误记忆和保护集更新目标侧持久状态。更新只能影响下一炮。
+\paragraph{问题 1：为什么是 25 维、17+8，又为什么加两个派生量？}
+HDF5 原始输入只有 23 列。rebuilt17 由其中 15 列经单位/语义重构后，再加入 \code{Bt\_over\_Ip} 与 \code{Ip\_diff} 两个派生量；剩余 8 个原始列作为 raw8 进入 EAST 私有分支，所以模型两路合计 25 个逻辑输入槽。两派生量分别补充运行点比例和电流演化信息，但当前只有组级消融，没有逐一删除两维的实验，故不能说“必须”。文献支持相关物理家族和低层共享/高层适配原则，不证明本仓精确 17+8 拆分。正式必要性证据应是四臂配对消融并排除电流猝灭捷径。
 
-\paragraph{查询价值是否使用了真实标签？}
-不使用。查询前只使用风险轨迹、分支差异、物理代理、可用性、新颖性和预计纠错价值。真实结局只在 query 决策完成后揭示。
+\paragraph{问题 2：\(\Delta s_{17}\) 怎样实现，三项能否同维、能否代表破裂风险？}
+当前 \code{CLS}、最后 token、8 点前最后 token 的差分别为 64 维，拼成 192 维；再加 4 个物理值和 4 个可用位形成 200 维，投影至 16 维，和一个基 logit 共同产生单个 \(\Delta s_{17}\)。raw8 的 \(8\times6=48\) 个因果统计与 \(s_{17}\) 形成 49 维输入，再产生单个 \(\Delta s_8\)。因此 \(s_E=s_b+\Delta s_{17}+\Delta s_8\) 中三项都是每窗口一个 logit，形状由代码和单元测试保证。它们不是三个概率，只有最终 \(\sigma(s_E)\) 才是风险概率。结构保证接口，不保证校准；风险含义仍依赖 HDF5 监督、阈值和消融。
 
-\paragraph{为什么正确的炮不会被轻易破坏？}
-因为 TP/TN 保护样本进入保护集，FP 与 FN/TARDY 分型存储，参数更新有残差范围、梯度裁剪、历史回放和回滚。若一次更新损害保护集，系统拒绝该更新。
+\paragraph{问题 3：公式 19 为什么有 \(\lambda_{\mathrm{out}}\)，时间如何划分？}
+它属于 EAST 的 125 ms 炮级 MIL 后备损失。破裂炮在 \([t_d-125\mathrm{ms},t_d]\) 内为合法正端点，更早且仍在破裂前的因果端点为外部硬负集。\(\lambda_{\mathrm{out}}=0.25\) 防止模型为了命中末端正 bag 而把整炮早期都推成高风险。例：\(t_d=5.000\) s 时，4.900 s 是正端点，4.700 s 是外部负端点。J-TEXT 另用 \(\max(25\mathrm{ms},\mathrm{AdvancedTime})\)，不能与该 125 ms 集合混写。当前 batch 若含封存状态机边界，则使用另一条 operational-boundary loss，\(\lambda_{\mathrm{out}}\) 后备式不生效。
 
-\paragraph{当前在线增益属于神经表示学习吗？}
-不能直接这样表述。消融显示炮内单独更新和纯神经固定计算更新没有改变 seed131 的最终边界，而 side-only 可以减少一个 FP。因此当前证据支持系统级收益，不足以单独支持底层表示获得新物理规律。
+\paragraph{问题 4：公式 18 后两项实际做什么？}
+该式只对应 raw8 私有 support 拟合。第一项把当前 logit 向“封存 logit 加最多 0.5 的标签方向修正”移动，并附加 0.25 倍 BCE；第二项用当前 16 维私有 latent 预测 8 点后的 48 维 raw8 因果统计，保持时间信息；第三项惩罚 \(\Delta s_8^2\)，限制旁路过度改写基模型。共享 \(\Delta s_{17}\) 的 loss 另有 1.0 倍正确边界 anchor 和 0.05 倍残差正则，不能共用公式 18。
 
-\paragraph{为什么不是完整强化学习？}
-系统具有主动查询与延迟收益，但当前更新由结局揭示后的监督误差、重建损失、物理约束和保护集驱动，尚未定义完整策略优化过程。更准确的名称是延迟反馈在线持续学习。
+\paragraph{问题 5：Huber 型损失为什么有用？}
+小误差区二次、便于精调；大误差区线性、梯度有界，适合含尖峰、缺测边缘和尺度残差的在线序列。它比 MSE 更不易被单个异常点支配，比 L1 在零附近更平滑。代码使用默认 \(\beta=1\)。当前没有损失函数单因素实验，因此“稳健合理”有依据，“不可替代”尚无实验依据。
 
-\paragraph{正式论文最需要补什么？}
-需要锁定方法与超参数，在完全未参与开发的未来 EAST 时序流上一次性确认；同时完成同父模型的神经/决策/报警正交消融，并报告不确定性、逐炮边界变化和参数哈希。balanced360 的当前结果应继续标记为诊断性结果。
+\paragraph{问题 6：5.3 的物理代理是什么，为什么这么多损失，会不会冗余？}
+代理由电学、位置、辐射和 MHD 四族 8 点因果创新组成，用 support 第 90 百分位归一化；至少两族可用，活动强度与活跃家族比例相乘得到 \(q_t\)。它不是 MHD 方程，也不含结局标签、密度或精确 \(q_{95}\)。不同 loss 分别负责结局、短时动力学、强物理冲突、历史稳定和残差容量，但并非各阶段全开。intra-only 当前没有改变炮级边界，说明冗余或抵消仍可能存在；需要 next/physics/anchor/guard 正交消融。
+
+\paragraph{问题 7：gradient protect 怎样实现？}
+没有一个名为 GradientProtect 的模块。真实保护由参数白名单、价值缩放、0.5 梯度范数裁剪、\(\pm1/\pm0.5\) logit 残差上界、replay、guard anchor 以及模型与优化器联合回滚构成。开发代码的 expected-gradient 仅为 \(4p(1-p)\)，是边界不确定性，不是真实梯度范数；当前操作查询器甚至只使用不确定性和物理冲突。报告不再把该代理写成已实现的期望梯度。
+
+\paragraph{问题 8：状态机参数来自哪里？}
+来自 balanced360 的开发扫描，不来自物理常数。37 个配置中 31 个通过预注册开发门，注册点为 high margin 0、physics weight 8、trend weight 12、early threshold 7.9、快/慢窗 5/100；在线连续参数只在通过区域投影更新。当前 V3C 主线的查询预算是 block20/quota6，最终三 seed 查询 94/99/98；4/20=72 是旧 locked-v8 谱系。由于 balanced360 参与过选择，该稳定性只能作诊断，仍需锁定后在未来流确认。
+
+\paragraph{额外追问：迁移时究竟冻结了什么？}
+support110 的 adapt-high 阶段会更新最后一个 Transformer layer、最终 LayerNorm 和新 EAST head；完成后才将该 EAST 基 encoder/head 完全冻结。balanced360 在线期只更新目标侧临时/持久 residual 路径。J-TEXT 在线分支从不进入 EAST parent。
+
+\paragraph{额外追问：当前在线增益能否称为新物理规律？}
+不能。单 seed 归因显示 intra-only 与固定计算纯神经臂没有改变最终报警边界，而 side-only 能减少一个 FP；三 seed 主线平均增益为系统级小增益。现有证据证明因果执行和受控适应机制存在，不证明 Transformer 已学得新的底层 EAST 物理规律。该主张至少需要固定决策层的纯神经增益、真实物理代理对照、轨迹级表示变化、跨炮可救回案例和独立 future stream。
 
 \section*{附录 B：汇报用结论摘要}
 \addcontentsline{toc}{section}{附录 B：汇报用结论摘要}
@@ -950,7 +1239,7 @@ J-TEXT 编码器、源风险头和源侧辅助头被冻结。EAST 只训练目�
 研究对象 & J-TEXT 静态源模型、J-TEXT 独立在线分支、EAST 静态迁移、EAST V3C 在线主动四者严格分离。\\
 标签 & HDF5 提供硬结局；J-TEXT 监督窗为 \(H=\max(25\,\mathrm{ms},\mathrm{AdvancedTime})\)。\\
 模型 & 实际封存规格为 rebuilt17、128 点窗口、patch 8、stride 8、隐藏维度 64、2 层 4 头。\\
-迁移 & 只使用 J-TEXT 静态父模型；共享 rebuilt17，raw8 进入 EAST 私有分支。\\
+迁移 & 只使用 J-TEXT 静态父模型；support110 上以 adapt-high 微调顶层与新 EAST 头，随后冻结基模型；rebuilt17 走共享动态残差，raw8 走 EAST 私有残差。\\
 炮内 & 无标签下一状态重建与物理代理伪监督；更新临时状态，每炮重置。\\
 炮间 & 按“预测—封存—查询—揭示—更新”执行；结局揭示后使用监督、历史回放、错误记忆和保护集。\\
 报警 & 高风险余量与物理/趋势早期双路径，连续参数采用有界投影。\\

@@ -4,6 +4,12 @@
 
 [代码级方法细节](IMPLEMENTATION_DETAILS_CN.md) · [复现与部署](#cn-quickstart) · [论文级实验包](experiments/transfer_methods_2026/paper_grade_package/README.md) · [数据合同](DATA_CONTRACT.md) · [中文技术报告 PDF](experiments/transfer_methods_2026/paper_grade_package/TECHNICAL_REPORT_zh.pdf)
 
+[2026-08-31 当前工作树主线增量与结果索引](docs/research/current_mainline_20260831_cn.md)（与 paper-v3c archived-parent 证据分列）
+
+[代码核对版中文技术报告 PDF](docs/research/jtext_east_academic_technical_report_cn_code_verified_20260904.pdf) ·
+[LaTeX 源稿](docs/research/jtext_east_academic_technical_report_cn_20260831.tex) ·
+[八项技术问题代码证据索引](docs/research/JTEXT_EAST_CODE_EVIDENCE_MAP_20260904.md)
+
 [![仓库合同](https://github.com/rikfish163-rgb/tokamak-final/actions/workflows/ci.yml/badge.svg)](https://github.com/rikfish163-rgb/tokamak-final/actions/workflows/ci.yml)
 ![证据边界](https://img.shields.io/badge/evidence-development%20only-E69F00?style=flat-square)
 ![前瞻确认](https://img.shields.io/badge/prospective%20confirmation-pending-D55E00?style=flat-square)
@@ -97,6 +103,11 @@ cutoff 如何形成、FP/FN/TARDY 如何改变报警参数，以及哪些代码�
 中权重为零，均在[代码级实现说明](IMPLEMENTATION_DETAILS_CN.md)中逐项展开。主线
 文件清单由 [`config/mainline_code_manifest.json`](config/mainline_code_manifest.json)
 机器校验，避免发布时漏掉间接依赖。
+
+上述实现细节的代码核对版补充报告进一步说明 `17+8` 特征拆分、
+`delta-s17`、support 三套不同训练目标、EAST 125 ms 时间集合、Huber 型损失、
+物理代理、查询/梯度保护和双路径报警状态机。报告将“代码已实现”“开发流观察”
+与“仍需独立消融验证”分开，不把设计动机写成已经证实的物理规律。
 
 <a id="cn-results"></a>
 ## 三阶段结果
