@@ -134,4 +134,4 @@
 - 编译产物：
   `docs/research/jtext_east_academic_technical_report_cn_code_verified_20260904.pdf`。
 - PDF SHA-256：
-  `36049122c12c53e288c1c3686f16ac0f264d1e0b1cefa8660e2702992df2e984`。
+  `98254f523fb004e231dea8cabd23c43369f5cfee5791624708905cfb1eec9a41`。

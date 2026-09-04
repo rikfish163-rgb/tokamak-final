@@ -464,12 +464,12 @@ s_b(t)=h_{\mathrm{EAST}}
 \phi_{17}(t)=[c_t;l_t;l_t-l_{t-8}]\in\mathbb{R}^{192}.
 \]
 
-代码中的四个物理家族值 \(q_t\in\mathbb{R}^{4}\) 与四个可用性位 \(a_t\in\{0,1\}^{4}\) 一并输入，因此 projector 的实际输入维度为 \(192+4+4=200\)，内部维度为 16。共享残差头还读取一个标量基分数 \(s_b\)，输出一个标量：
+代码中的四个物理家族值向量 \(\mathbf q_t\in\mathbb{R}^{4}\) 与四个可用性位向量 \(\mathbf a_t\in\{0,1\}^{4}\) 一并输入，因此 projector 的实际输入维度为 \(192+4+4=200\)，内部维度为 16。共享残差头还读取一个标量基分数 \(s_b\)，输出一个标量。这里的粗体 \(\mathbf q_t\) 是四维家族向量；第~\ref{eq:physics-support} 式中的非粗体 \(q_t\) 才是状态机使用的标量物理支持度：
 
 \begin{align}
-r_{17}(t)&=f_{17}\!\left(\phi_{17}(t),q_t,a_t,s_b(t)\right)\in\mathbb{R},\\
+r_{17}(t)&=f_{17}\!\left(\phi_{17}(t),\mathbf q_t,\mathbf a_t,s_b(t)\right)\in\mathbb{R},\\
 \Delta s_{17}(t)&=
-1.0\tanh(r_{17}(t))
+1.0\tanh(r_{17}(t))\times
 \mathbf{1}\!\left[\sum_{j=1}^{4}a_{t,j}\geq2\right],\\
 s_{17}(t)&=s_b(t)+\Delta s_{17}(t).
 \label{eq:shared-adapter}
