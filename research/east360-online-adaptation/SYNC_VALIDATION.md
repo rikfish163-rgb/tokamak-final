@@ -1,5 +1,12 @@
 # 2026-11-15 同步核对记录
 
+## README 研究介绍整理
+
+- 按 `softaworks/agent-toolkit` 的 `crafting-effective-readmes` 专用技能整理分支首页、中文镜像、英文介绍与研究目录 README。先说明问题与结果，再解释逐步处理、两炮时序、均衡和信息访问；模型内部尺寸放在可展开说明中。
+- 根 README 的旧 support110／V3C 正文逐字保留在折叠区。图片清单只新增已有双炮 PNG，供根 README 的本地图片合同检查使用；没有改变旧路线的模型入口、配置或成绩。
+- 首页沿用封存的 70320／67900 曲线，检查了图片清晰度、发布文件、相对链接与章节锚点，中文镜像一致。主表逐级数字对照既有 CSV；扩展表对照原 2,593 炮结果 JSON。
+- README／图片／代码清单相关的原仓库定向测试：**3 passed，13 deselected**。本次整理不启动 GPU，也未重跑模型或重绘已有科研图。
+
 ## 本次核对
 
 - 原有 `test_commissioning_write_delay_20261112.py` 与 `test_commissioning_group_carry_20261112.py` 在现有 `rl_env`、禁用 GPU 的设置下运行：**4 passed in 4.75s**。

@@ -1,16 +1,125 @@
 # J-TEXT → EAST: causal transfer and chronological online adaptation for tokamak disruption warning
 
-## Current research branch: EAST 360-shot online adaptation
+**Language:** [简体中文（默认）](README.md) · **English**
 
-The latest study, updated through **2026-11-14**, is in [research/east360-online-adaptation](research/east360-online-adaptation/README.md).
+## Giving EAST more time before a disruption
 
-- [Technical proposal (Chinese)](research/east360-online-adaptation/EAST360_TECHNICAL_PROPOSAL_20261114.md)
-- [Presentation script (Chinese)](research/east360-online-adaptation/EAST360_TECHNICAL_TALK_20261114.md)
-- [Experimental details, shot-level results and curves](research/east360-online-adaptation/EAST360_TECHNICAL_EVIDENCE_20261114.md)
+EAST is a fusion experiment that confines hot plasma with magnetic fields. A discharge is called a *shot*. A disruption can impose large heat and mechanical loads on the machine. A warning therefore needs to arrive early enough to be useful, without triggering too often on non-disruptive shots.
 
-The fixed 360-shot study reports **146/180 timely detections and 34/180 false alarms**. On 2,593 additional archived shots, the main-threshold false-positive rate is **27.56%**, above the acceptance limit. This intra-shot study and the support110/V3C historical route below use different splits, processing and thresholds; their results are reported separately. The `main` branch is unchanged.
+We train a base model on J-TEXT, prepare it for EAST, and then adapt within each shot: **predict future diagnostic readings, wait for the measurements, and use the prediction error to improve later risk scores.** The current shot's outcome is not available during this adaptation.
+
+> **360 archived development shots:** **146/180 timely detections (81.11%)** and **34/180 false alarms (18.89%)**. The first four steps add eight timely detections over the prepared static baseline; step 5 adds two more.  
+> **2,593 additional archived shots:** the full method's false-positive rate is **27.56%**, above the 20% acceptance limit.
+
+Research results through **2026-11-14**; README updated **2026-11-15**. [Detailed research directory (Chinese)](research/east360-online-adaptation/README.md)
+
+## How it works
+
+1. **Train on J-TEXT.** A risk model assesses disruption risk; an auxiliary forecaster estimates future diagnostic readings. Forecasts are not measurements and do not directly trigger alarms.
+2. **Prepare on the first 20 EAST shots.** Their predictions are saved first. Once all 20 finish, align the density-ratio input `ne_nG`, fit the EAST scoring formula, and set the later threshold. All 20 shots remain in the full-stream score, with no retrospective re-prediction.
+3. **Replay the remaining 340 shots.** Keep the base network and scoring formula frozen. Use only measurements already available to update temporary within-shot state; clear that state at the end of every shot.
+
+Risk is scored at each 1 ms sample from the latest 128 samples of 23 diagnostic channels. Missing observations are marked, not filled from the future. Every 32 samples, the auxiliary model forecasts the next 25 samples; the corresponding error becomes usable only after all measurements arrive. The main method adds no Fourier transform; some magnetic statistics are already present in the supplied diagnostics.
+
+The first 20 shots use the source threshold **0.7258947**. For each of the 12 non-disruptive preparation shots, fit on the other 19 and collect the held-out shot's maximum score. The subsequent main threshold, **0.5062586**, is just above the second-highest of those maxima. Every main comparison uses the same threshold within each stage. The stricter **0.6766528** is reported separately.
+
+## What each step changes—and contributes
+
+These are cumulatively enabled modules, not five stages that must finish before an alarm can fire.
+
+| Added processing | Timely / 180 | False alarms / 180 | Net change from preceding row: timely / false |
+|---|---:|---:|---:|
+| 0 · Prepared static baseline; no within-shot correction | 136 (75.56%) | 32 (17.78%) | — |
+| 1 · Let the score read recent forecast bias and error trends | 138 (76.67%) | 31 (17.22%) | +2 / −1 |
+| 2 · Add error beyond the same shot's usual, condition-matched error | 141 (78.33%) | 34 (18.89%) | +3 / +3 |
+| 3 · Correct temporal relationships in the observed input copy | 143 (79.44%) | 34 (18.89%) | +2 / 0 |
+| 4 · Subtract persistent offset from valid input values | 144 (80.00%) | 34 (18.89%) | +1 / 0 |
+| **5 · Use latest error to correct internal representations; wait 5 samples** | **146 (81.11%)** | **34 (18.89%)** | **+2 / 0** |
+
+Steps 1–2 change what the scoring formula reads; step 3 changes input shape, and step 4 changes input level. **144 is already an adaptive comparison, not a static baseline.** Together, steps 1–4 add eight timely detections (+4.44 percentage points) and two false alarms (+1.11 points). Step 3's unchanged false-alarm count hides one removed and one newly added false-alarm shot.
+
+Step 5 changes the input to the **first attention layer**, not the original readings or frozen network weights. The two-layer `Simple23` network divides 128 samples into 16 blocks of eight samples, with 64-dimensional internal representations. Fifteen adjacent block pairs × four diagnostic groups give **60 temporary coefficients**. Measured, signed errors across five forecast segments determine a correction direction. Equal-and-opposite changes to adjacent blocks alter their contrast, within an amplitude limit. The fixed downstream score can then rise or fall.
+
+The new correction waits five extra samples and blends in over eight sampling intervals. Scoring continues throughout. Temporary coefficients reset at shot end.
+
+Step 5 turns **70320 and 73405** from late into timely detections (+1.11 points), with the **same 34 false-alarm shots** as steps 1–4. The full method adds ten timely detections over static; only two are the independent increment from step 5.
+
+## Real curves: an earlier warning and an early false alarm
+
+![Real score traces for shots 70320 and 67900](research/east360-online-adaptation/outputs/east360_technical_20261114/two_shot_timelines.png)
+
+Dashed grey: steps 1–4. Blue: add step 5. Horizontal dotted line: the shared alarm threshold. The left vertical line is disruption; the right one is step 5's first actual write.
+
+**70320:** forecast at **3.639 s** for **3.640–3.664 s**; the full error becomes usable at **3.665 s**. After the five-sample wait, handoff starts at **3.670 s**, first mixes in at **3.671 s**, and completes at **3.678 s**. At **3.697 s**, the score changes from **0.47423 to 0.50769**, crossing **0.5062586**. The shot disrupts at **3.922 s**: first alarm moves from **3.910 s (12 ms lead)** to **3.697 s (225 ms lead)**, gaining **213 ms**. An equal-size correction from earlier error instead gives **0.4601** at that point.
+
+The first crossing lasts only one sample. Under two-sample confirmation, this shot is no longer timely. The other newly timely shot, 73405, moves from **29 to 33 ms** lead; the earlier-error control also rescues it.
+
+**67900:** a non-disruptive shot alarms at **3.176 s**, before step 5 first changes the model at **3.287 s**. Its roughly five-second recording is not short; the alarm occurs only 176 ms after recording starts at 3.000 s. The 3.127 s forecast lacks the required older reference. Forecasts at 3.159, 3.191 and 3.223 s accumulate usable history; the 3.255 s forecast first meets the shared latest/earlier-error eligibility conditions. Its measurements finish at 3.280 s, error is released at 3.281 s, and the delayed handoff first changes the model at 3.287 s. Later feedback cannot revoke an earlier alarm. Step 2 first causes a false alarm at 3.281 s; step 3 moves it to 3.176 s.
+
+**Why wait five samples?** 70320 alarms at the same time with or without the wait. Non-disruptive shot 73743 falsely alarms at 4.698 s without waiting, but never alarms with the wait. Across all 360 shots, waiting changes **146 timely / 35 false → 146 / 34**, with identical timely-shot identities.
+
+[Plot data](research/east360-online-adaptation/outputs/east360_technical_20261114/two_shot_curves.csv) · [Python / seaborn script](research/east360-online-adaptation/outputs/east360_technical_20261114/plot_two_shots.py) · [Vector PDF](research/east360-online-adaptation/outputs/east360_technical_20261114/two_shot_timelines.pdf) · [Internal measurements and changes](research/east360-online-adaptation/outputs/east360_row5_70320/70320_mechanism.pdf)
+
+## Scoring, information access and balance
+
+The 360-shot stream contains 180 disruptive and 180 non-disruptive shots. A first alarm is timely only with lead **strictly greater than 30 ms**; a non-disruptive shot with any alarm is a false positive. The acceptance target is at most **36 false alarms (20%)**.
+
+Accuracy counting late alarms as wrong is **78.89% static → 80.56% steps 1–4 → 81.11% full**. The full method also has 22 late and 12 missed disruptive shots. If late alarms count as correct, all three versions have 87.22% accuracy, concealing the timing improvement.
+
+Current predictions use only current and earlier measurements; full forecast targets must arrive before training on their error. Outcomes are revealed only after predictions are sealed and shots end. HDF5 `meta/IsDisrupt` is the sole outcome authority; `meta/DownTime` is a disruption time only for disruptive shots. EAST's 125 ms training-positive window is distinct from the >30 ms scoring criterion.
+
+J-TEXT uses fixed 1,353-shot training, 160-shot validation and 220-shot test splits. Preparation fitting assigns half of point-loss weight to each class and equal weight to participating shots within each class, preventing long shots from dominating. The main method does not refit on later EAST outcomes.
+
+Inter-shot adaptation is a **separate comparison**: after shot-end reveal, use one previously revealed disruptive and one non-disruptive shot, eight equally weighted points each, to update scores for later shots, with 16 reveals in total. Steps 1–4 plus inter-shot updates yield **145/38**, and adding step 5 yields **147/38**; both have 21.11% false positives and exceed the main limit.
+
+The 360 shots have already been used for method selection. Their fixed replay order is not a certified acquisition-date order, and upstream diagnostic availability and field latency remain unverified. Causal access checks do not turn this development cohort into an independent test.
+
+## Larger samples expose a limit
+
+Using the original model and main threshold, without refitting on the 2,593-shot extension:
+
+| Additional archived shots | Timely / 1,018 | False alarms / 1,575 |
+|---|---:|---:|
+| Prepared static | 695 (68.27%) | 367 (23.30%) |
+| Steps 1–4 | 697 (68.47%) | 420 (26.67%) |
+| Full method | 706 (69.35%) | 434 (27.56%) |
+
+Step 5 adds nine timely detections and fourteen false alarms. Even static exceeds 20%, so the problem is not confined to the last step. Balancing to 833 shots per class still gives **230/833 false alarms (27.61%)**.
+
+Back in the 360-shot study, six false alarms occur during preparation, seven before step 5's first write, and 21 after it becomes active; those 21 also alarm with step 5 disabled. Individual alarm times can nevertheless change.
+
+Time-domain features yield **147/42 (23.33% false)**, Fourier bands **149/41 (22.78%)**, Fourier plus current confirmation **146/36 (20.00%)**, and three-diagnostic confirmation **147/39 (21.67%)**. None increases timely detections while retaining the 20% limit, so they are not included in the main method. Stricter-threshold and confirmation checks are kept separately in the [evidence appendix](research/east360-online-adaptation/EAST360_TECHNICAL_EVIDENCE_20261114.md).
+
+Both cohorts are historical. Independent new EAST shots and measured end-to-end latency are still needed. The next validation should freeze the version and compare steps 1–4 with the full method on new shots in recording-only operation, before connecting alarms to machine control.
+
+## Code, evidence and getting started
+
+[Technical proposal (Chinese)](research/east360-online-adaptation/EAST360_TECHNICAL_PROPOSAL_20261114.md) · [Presentation script (Chinese)](research/east360-online-adaptation/EAST360_TECHNICAL_TALK_20261114.md) · [13-row scoring CSV](research/east360-online-adaptation/outputs/east360_row5_70320/EAST360_完整计分.csv) · [False-alarm cases](research/east360-online-adaptation/outputs/east360_row5_70320/EAST360_误报逐炮.csv) · [All 360 shot curves, about 64 MB](research/east360-online-adaptation/outputs/east360_row5_70320/EAST360_逐炮图谱.pdf)
+
+```bash
+git clone --branch research/east360-online-adaptation \
+  https://github.com/rikfish163-rgb/tokamak-final.git
+cd tokamak-final/research/east360-online-adaptation
+# With NumPy, matplotlib and seaborn already available:
+python outputs/east360_technical_20261114/plot_two_shots.py
+```
+
+Reading published results requires no GPU. In the existing project `rl_env`, CPU timing tests can be run with:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 CUDA_VISIBLE_DEVICES='' python -m pytest -q -p no:cacheprovider \
+  tests/test_commissioning_write_delay_20261112.py \
+  tests/test_commissioning_group_carry_20261112.py
+```
+
+A full model replay also needs the original HDF5 data, weights and input caches, which are not uploaded. See [external assets](research/east360-online-adaptation/EXTERNAL_ASSETS.md) and [sync validation](research/east360-online-adaptation/SYNC_VALIDATION.md). Reading saved results is not a new model experiment. [MIT license](LICENSE)
+
+The earlier support110/V3C route uses different splits, processing and thresholds. Its original documentation is retained separately below.
 
 ---
+
+<details>
+<summary>Historical route: original support110 / V3C repository documentation</summary>
 
 ## Historical repository route
 
@@ -304,3 +413,5 @@ tests/                                                 # reproducibility and exp
 ## Citation and license
 
 Use [CITATION.cff](CITATION.cff) for the repository's citation metadata. The checkout currently declares the [MIT license](LICENSE). This README does not assert a DOI, add an author list, or upgrade the evidence to deployment or Nature Portfolio readiness; any final author, affiliation, version, and DOI metadata must come from the maintainers.
+
+</details>
