@@ -123,6 +123,7 @@ def rebuild_features_prefix_causal(arr, device):
 
 class Shots:
     def __init__(self, device, ids, label_map=None, scaler=None):
+        # Retain label_map for existing callers; HDF5 alone determines outcomes.
         self.device = device
         self.shots = []
         self.missing = []
@@ -132,10 +133,6 @@ class Shots:
                                                        / str(sid // 100 * 100) / f"{sid}.hdf5", device)
             except Exception as e:  # noqa: BLE001
                 self.missing.append((int(sid), repr(e)[:120])); continue
-            if label_map is not None and int(sid) in label_map:
-                isd = bool(label_map[int(sid)])
-                if not isd:
-                    down = None
             vals, avail = rebuild_features(arr, device)
             t = start + np.arange(len(vals), dtype=np.float64) / rate
             self.shots.append(dict(shot=int(sid), values=vals, avail=avail, times=t,
