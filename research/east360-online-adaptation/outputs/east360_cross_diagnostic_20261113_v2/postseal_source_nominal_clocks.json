@@ -1,0 +1,142 @@
+{
+  "scope": "raw arithmetic upper bound only; no new eligibility, data mapping, or model",
+  "columns": {
+    "raw_release_ceiling": "observed samples in source positive window and strict >10ms at/after index153; ignores forecast-grid, availability and mechanism",
+    "weak_support_if_require_combined_64_plus_26_count": "positive window at most 10 + (q+90)-(q+39) ms; any q+39 in positive window cannot await separate check before deadline at 1kHz"
+  },
+  "diagnostics": {
+    "train": {
+      "positive_shots": 188,
+      "supported_with_no_extra_wait_before_10ms": 5,
+      "narrow_positive_shots": 158,
+      "weak_support_if_require_combined_64_plus_26_count": 178,
+      "raw_metadata_hard": [
+        {
+          "shot": 1052388,
+          "window_ms": 25.0,
+          "lead_ms": 7.364207684,
+          "record_samples": 208,
+          "positive_strict_points": 15,
+          "raw_release_ceiling": 15,
+          "last_action_after_early": false
+        },
+        {
+          "shot": 1053042,
+          "window_ms": 25.0,
+          "lead_ms": 7.559387684,
+          "record_samples": 256,
+          "positive_strict_points": 15,
+          "raw_release_ceiling": 15,
+          "last_action_after_early": false
+        },
+        {
+          "shot": 1053940,
+          "window_ms": 25.0,
+          "lead_ms": 6.559487684,
+          "record_samples": 255,
+          "positive_strict_points": 15,
+          "raw_release_ceiling": 15,
+          "last_action_after_early": false
+        },
+        {
+          "shot": 1056284,
+          "window_ms": 25.0,
+          "lead_ms": 9.368607684,
+          "record_samples": 164,
+          "positive_strict_points": 15,
+          "raw_release_ceiling": 2,
+          "last_action_after_early": false
+        },
+        {
+          "shot": 1056294,
+          "window_ms": 33.65767768371592,
+          "lead_ms": 5.657677684,
+          "record_samples": 273,
+          "positive_strict_points": 23,
+          "raw_release_ceiling": 23,
+          "last_action_after_early": false
+        },
+        {
+          "shot": 1057866,
+          "window_ms": 25.0,
+          "lead_ms": 4.471197684,
+          "record_samples": 138,
+          "positive_strict_points": 15,
+          "raw_release_ceiling": 0,
+          "last_action_after_early": false
+        }
+      ]
+    },
+    "val": {
+      "positive_shots": 80,
+      "supported_with_no_extra_wait_before_10ms": 5,
+      "narrow_positive_shots": 62,
+      "weak_support_if_require_combined_64_plus_26_count": 69,
+      "raw_metadata_hard": [
+        {
+          "shot": 1051764,
+          "window_ms": 25.0,
+          "lead_ms": null,
+          "record_samples": 192,
+          "positive_strict_points": 15,
+          "raw_release_ceiling": 15,
+          "last_action_after_early": false
+        },
+        {
+          "shot": 1052920,
+          "window_ms": 25.0,
+          "lead_ms": 5.757567684,
+          "record_samples": 274,
+          "positive_strict_points": 15,
+          "raw_release_ceiling": 15,
+          "last_action_after_early": false
+        },
+        {
+          "shot": 1053131,
+          "window_ms": 75.2,
+          "lead_ms": null,
+          "record_samples": 181,
+          "positive_strict_points": 66,
+          "raw_release_ceiling": 19,
+          "last_action_after_early": false
+        },
+        {
+          "shot": 1054229,
+          "window_ms": 53.3,
+          "lead_ms": null,
+          "record_samples": 159,
+          "positive_strict_points": 43,
+          "raw_release_ceiling": 0,
+          "last_action_after_early": false
+        },
+        {
+          "shot": 1054234,
+          "window_ms": 93.3,
+          "lead_ms": null,
+          "record_samples": 200,
+          "positive_strict_points": 84,
+          "raw_release_ceiling": 38,
+          "last_action_after_early": false
+        },
+        {
+          "shot": 1054258,
+          "window_ms": 25.0,
+          "lead_ms": 2.568787684,
+          "record_samples": 162,
+          "positive_strict_points": 15,
+          "raw_release_ceiling": 0,
+          "last_action_after_early": false
+        },
+        {
+          "shot": 1054337,
+          "window_ms": 25.0,
+          "lead_ms": null,
+          "record_samples": 251,
+          "positive_strict_points": 15,
+          "raw_release_ceiling": 15,
+          "last_action_after_early": false
+        }
+      ]
+    }
+  }
+}

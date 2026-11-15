@@ -1,0 +1,93 @@
+{
+  "status": "CAUSAL_HELD_DIAGNOSTIC_GATE_NO_NEW_ALARMS",
+  "timing": "choose per group from two or more earlier released blocks in preceding 8 slots",
+  "criterion": "lower accumulated log1p MSE than chosen bias-only and shifted estimators",
+  "same_selection_for_real_and_shifted": true,
+  "trace_sha256": "6812be29c099aedd775f157138c8d2a00d3592a429517ee6eef6aa1375a1bf74",
+  "executed_sha256": "f886aff27a442e3c9dc02fe02d335e59afd3ef60b4f5eb6d2e9908979da7a88e",
+  "parent_counts": {
+    "positive": 180,
+    "timely": 143,
+    "safe": 180,
+    "fp": 34,
+    "late_with_support": 36,
+    "fp_with_support": 25
+  },
+  "groups": {
+    "suffix": {
+      "shots": 340,
+      "frames": 43372,
+      "enabled_frames": 31549,
+      "enabled_shots": 339,
+      "enabled_groups": 67517,
+      "mse": {
+        "fixed_bias": 2.305552346662341,
+        "causal_bias_only": 2.208674234234139,
+        "qualified_real": 2.178738932466828,
+        "qualified_shifted": 2.349609878308219
+      },
+      "real_beats_bias": 166,
+      "real_beats_shifted": 291
+    },
+    "late": {
+      "shots": 36,
+      "frames": 107,
+      "enabled_frames": 61,
+      "enabled_shots": 26,
+      "enabled_groups": 114,
+      "mse": {
+        "fixed_bias": 7.049016355986371,
+        "causal_bias_only": 7.014396021442668,
+        "qualified_real": 6.954948977539093,
+        "qualified_shifted": 7.554345745754323
+      },
+      "real_beats_bias": 13,
+      "real_beats_shifted": 19
+    },
+    "near": {
+      "shots": 172,
+      "frames": 511,
+      "enabled_frames": 330,
+      "enabled_shots": 133,
+      "enabled_groups": 613,
+      "mse": {
+        "fixed_bias": 14.19237658685654,
+        "causal_bias_only": 14.000934677719208,
+        "qualified_real": 14.798874813460554,
+        "qualified_shifted": 15.682861950361932
+      },
+      "real_beats_bias": 49,
+      "real_beats_shifted": 96
+    },
+    "actual_false_alarm": {
+      "shots": 25,
+      "frames": 1368,
+      "enabled_frames": 979,
+      "enabled_shots": 19,
+      "enabled_groups": 2063,
+      "mse": {
+        "fixed_bias": 2.0041453973666528,
+        "causal_bias_only": 1.9376860951530217,
+        "qualified_real": 1.9758946459702664,
+        "qualified_shifted": 2.055881395472262
+      },
+      "real_beats_bias": 11,
+      "real_beats_shifted": 17
+    },
+    "safe_pre_alarm": {
+      "shots": 165,
+      "frames": 22119,
+      "enabled_frames": 16478,
+      "enabled_shots": 159,
+      "enabled_groups": 35442,
+      "mse": {
+        "fixed_bias": 1.007411629526354,
+        "causal_bias_only": 0.9067896247860922,
+        "qualified_real": 0.882952616077588,
+        "qualified_shifted": 0.9206075523434812
+      },
+      "real_beats_bias": 94,
+      "real_beats_shifted": 143
+    }
+  }
+}

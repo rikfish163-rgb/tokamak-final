@@ -1,0 +1,94 @@
+{
+  "scope": "raw HDF5 attributes and values only; no outcomes or test source shots",
+  "examined": [
+    "Mir_avg_amp",
+    "Mir_avg_fre",
+    "n=1 amplitude",
+    "Mir_VV",
+    "xuv_ratio",
+    "xuv_skew",
+    "xuv_var",
+    "ip"
+  ],
+  "results": {
+    "EAST360": {
+      "shots": 360,
+      "counts": {
+        "exact_grid_shots": 360,
+        "StartTime_meta_present": 360,
+        "StartTime_meta_differs": 325,
+        "length_meta_present": 195,
+        "length_meta_differs": 194,
+        "time_interval_meta_present": 195,
+        "time_interval_meta_differs": 122,
+        "points": 1509354,
+        "paired_finite": 1509354,
+        "paired_joint_zero": 1120185,
+        "xor_zero": 0,
+        "exact_zero_pattern_shots": 360,
+        "all_frequency_zero_shots": 26,
+        "frequency_to_zero": 41862,
+        "frequency_to_zero_amp_also_zero": 41862,
+        "joint_zero_with_n1_finite_nonzero": 1120185
+      },
+      "rate_shots": {
+        "1000.0": 360
+      },
+      "channel_attributes": [
+        "SampleRate",
+        "StartTime"
+      ],
+      "per_shot_joint_zero_median": 0.8162209067061088
+    },
+    "J-TEXT_train": {
+      "shots": 1353,
+      "counts": {
+        "exact_grid_shots": 1353,
+        "StartTime_meta_present": 1353,
+        "StartTime_meta_differs": 0,
+        "points": 476194,
+        "paired_finite": 476194,
+        "paired_joint_zero": 234004,
+        "xor_zero": 0,
+        "exact_zero_pattern_shots": 1353,
+        "all_frequency_zero_shots": 163,
+        "frequency_to_zero": 12350,
+        "frequency_to_zero_amp_also_zero": 12350,
+        "joint_zero_with_n1_finite_nonzero": 234004
+      },
+      "rate_shots": {
+        "1000.0": 1353
+      },
+      "channel_attributes": [
+        "SampleRate",
+        "StartTime"
+      ],
+      "per_shot_joint_zero_median": 0.42105263157894735
+    },
+    "J-TEXT_val": {
+      "shots": 160,
+      "counts": {
+        "exact_grid_shots": 160,
+        "StartTime_meta_present": 160,
+        "StartTime_meta_differs": 0,
+        "points": 48606,
+        "paired_finite": 48606,
+        "paired_joint_zero": 21595,
+        "xor_zero": 0,
+        "exact_zero_pattern_shots": 160,
+        "all_frequency_zero_shots": 10,
+        "frequency_to_zero": 1153,
+        "frequency_to_zero_amp_also_zero": 1153,
+        "joint_zero_with_n1_finite_nonzero": 21595
+      },
+      "rate_shots": {
+        "1000.0": 160
+      },
+      "channel_attributes": [
+        "SampleRate",
+        "StartTime"
+      ],
+      "per_shot_joint_zero_median": 0.2920892975637501
+    }
+  }
+}

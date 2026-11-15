@@ -1,0 +1,160 @@
+{
+  "status": "COLD20_ONLY_ROLLING_SAFETY",
+  "training": [
+    {
+      "shot": 71304,
+      "blocks": 105,
+      "disruptive": true
+    },
+    {
+      "shot": 87494,
+      "blocks": 111,
+      "disruptive": true
+    },
+    {
+      "shot": 69458,
+      "blocks": 37,
+      "disruptive": true
+    },
+    {
+      "shot": 87487,
+      "blocks": 57,
+      "disruptive": true
+    },
+    {
+      "shot": 69854,
+      "blocks": 120,
+      "disruptive": true
+    },
+    {
+      "shot": 70404,
+      "blocks": 112,
+      "disruptive": false
+    },
+    {
+      "shot": 70323,
+      "blocks": 112,
+      "disruptive": false
+    },
+    {
+      "shot": 86167,
+      "blocks": 152,
+      "disruptive": false
+    },
+    {
+      "shot": 54157,
+      "blocks": 112,
+      "disruptive": false
+    },
+    {
+      "shot": 63097,
+      "blocks": 106,
+      "disruptive": false
+    },
+    {
+      "shot": 91054,
+      "blocks": 152,
+      "disruptive": false
+    },
+    {
+      "shot": 91885,
+      "blocks": 91,
+      "disruptive": true
+    },
+    {
+      "shot": 77002,
+      "blocks": 51,
+      "disruptive": true
+    },
+    {
+      "shot": 94428,
+      "blocks": 152,
+      "disruptive": false
+    },
+    {
+      "shot": 61468,
+      "blocks": 152,
+      "disruptive": false
+    },
+    {
+      "shot": 85632,
+      "blocks": 152,
+      "disruptive": false
+    },
+    {
+      "shot": 85320,
+      "blocks": 152,
+      "disruptive": false
+    },
+    {
+      "shot": 85316,
+      "blocks": 152,
+      "disruptive": false
+    },
+    {
+      "shot": 91723,
+      "blocks": 152,
+      "disruptive": false
+    },
+    {
+      "shot": 75657,
+      "blocks": 34,
+      "disruptive": true
+    }
+  ],
+  "train_labels": 20,
+  "new_query_labels": 0,
+  "fit": {
+    "peak1": {
+      "before": 3.62549888863178,
+      "after": 3.604546054228344,
+      "positive": 7.181172839000792,
+      "safe": 0.012652390702158357,
+      "iterations": 8
+    },
+    "peak8": {
+      "before": 3.617825097336315,
+      "after": 3.6002986153389207,
+      "positive": 7.1807494431130605,
+      "safe": 0.005162341076256966,
+      "iterations": 9
+    },
+    "rolling": {
+      "before": 3.6344398406002467,
+      "after": 3.6051108864325467,
+      "positive": 7.179616248403834,
+      "safe": 0.01194896442279296,
+      "iterations": 9
+    },
+    "risk_clock": {
+      "before": 3.6344398406002467,
+      "after": 3.6189338082478715,
+      "positive": 7.178069126733585,
+      "safe": 0.0397928157307716,
+      "iterations": 4
+    }
+  },
+  "threshold": 0.7258946895599365,
+  "source_state": "99affd49f71f41129b87b03624201ef94ef6dc44e652eaef411b2924f8186dc8",
+  "first": 135,
+  "stride": 32,
+  "modes": [
+    "static",
+    "original",
+    "peak1",
+    "peak8",
+    "rolling",
+    "risk_clock",
+    "rolling_lagged",
+    "rolling_scalar"
+  ],
+  "gates": [
+    "peak1",
+    "peak8",
+    "rolling",
+    "risk_clock"
+  ],
+  "temperature": 0.2,
+  "ridge": 0.05,
+  "evaluation_outcomes_during_prediction": 0
+}

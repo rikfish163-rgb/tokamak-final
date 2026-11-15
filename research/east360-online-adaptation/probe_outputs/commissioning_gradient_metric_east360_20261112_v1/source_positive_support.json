@@ -1,0 +1,2476 @@
+{
+  "scope": "STATIC_SOURCE_ONLY_TEACHING_SUPPORT_POSTSEAL",
+  "source_sha256": "c7270c1ea3652db2e30e972d4ca9a4a2d33220a68e4a3765c8b7f5bcceeaeb02",
+  "threshold": 0.7258946895599365,
+  "strict_lead_ms": 10,
+  "arms": [
+    "qualified_native",
+    "no_MNM",
+    "no_MNM_CIII"
+  ],
+  "partition_sizes": {
+    "train": 1353,
+    "val": 160
+  },
+  "summary": {
+    "train": {
+      "positives": 188,
+      "same_clock_support": 59,
+      "not_timely": {
+        "qualified_native": 6,
+        "no_MNM": 10,
+        "no_MNM_CIII": 9
+      },
+      "not_timely_with_support": {
+        "qualified_native": 0,
+        "no_MNM": 0,
+        "no_MNM_CIII": 0
+      },
+      "newly_not_timely_with_support": {
+        "qualified_native": 0,
+        "no_MNM": 0,
+        "no_MNM_CIII": 0
+      }
+    },
+    "val": {
+      "positives": 80,
+      "same_clock_support": 19,
+      "not_timely": {
+        "qualified_native": 7,
+        "no_MNM": 8,
+        "no_MNM_CIII": 7
+      },
+      "not_timely_with_support": {
+        "qualified_native": 0,
+        "no_MNM": 0,
+        "no_MNM_CIII": 1
+      },
+      "newly_not_timely_with_support": {
+        "qualified_native": 0,
+        "no_MNM": 0,
+        "no_MNM_CIII": 1
+      }
+    }
+  },
+  "positives_by_shot": {
+    "train": [
+      {
+        "shot": 1051501,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1051508,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1051627,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1051684,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1051701,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052062,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052267,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052269,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052272,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052388,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": false,
+          "no_MNM": true,
+          "no_MNM_CIII": false
+        }
+      },
+      {
+        "shot": 1052565,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052574,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052575,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052579,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052580,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052583,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052584,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052590,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052626,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052639,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052641,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052903,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052908,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052948,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052950,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052951,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052957,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052959,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052961,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052962,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052967,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053016,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053034,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053036,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053042,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": false,
+          "no_MNM": false,
+          "no_MNM_CIII": false
+        }
+      },
+      {
+        "shot": 1053098,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053119,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053230,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053231,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053412,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053554,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053639,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053785,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053788,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053789,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053824,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053828,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053851,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053927,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053930,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053931,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053932,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053934,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053936,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053940,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": false,
+          "no_MNM": false,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053941,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053972,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1054064,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1054153,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1054154,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1054161,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1054339,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1054837,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055074,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055118,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055220,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055235,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055239,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": false
+        }
+      },
+      {
+        "shot": 1055241,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055242,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055249,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055278,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055282,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055323,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055325,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055332,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055333,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055336,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055340,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055341,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055342,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055344,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055345,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055350,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055351,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055356,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055357,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055362,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055374,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055416,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055476,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055477,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055478,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055492,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055497,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055734,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055735,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055775,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055949,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055965,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055966,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055978,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056015,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056175,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056179,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056183,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056184,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056188,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056189,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056191,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056193,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056194,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056198,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056200,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056202,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056205,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056219,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056221,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056223,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056284,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": false,
+          "no_MNM": false,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056294,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": false,
+          "no_MNM": false,
+          "no_MNM_CIII": false
+        }
+      },
+      {
+        "shot": 1056324,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056381,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": false,
+          "no_MNM_CIII": false
+        }
+      },
+      {
+        "shot": 1056382,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056383,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056386,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": false,
+          "no_MNM_CIII": false
+        }
+      },
+      {
+        "shot": 1056390,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": false,
+          "no_MNM_CIII": false
+        }
+      },
+      {
+        "shot": 1056391,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056680,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056840,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056844,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056847,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056849,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056865,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056919,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056920,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057170,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057172,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057202,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057203,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057205,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057231,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057250,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057280,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057329,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057335,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057336,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057338,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057347,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057472,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057480,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": false,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057504,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057517,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057518,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057521,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057526,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057539,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057567,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057569,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057578,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057588,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057609,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057610,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057611,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057614,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057620,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057636,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057646,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057650,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057652,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057653,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057822,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057831,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057832,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057833,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057835,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057836,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057838,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057866,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": false,
+          "no_MNM": false,
+          "no_MNM_CIII": false
+        }
+      },
+      {
+        "shot": 1057915,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057936,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057940,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1058023,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1058040,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1058042,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1058053,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1058072,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1058098,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": false,
+          "no_MNM_CIII": false
+        }
+      }
+    ],
+    "val": [
+      {
+        "shot": 1051509,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1051525,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1051571,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1051764,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": false,
+          "no_MNM": false,
+          "no_MNM_CIII": false
+        }
+      },
+      {
+        "shot": 1052573,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052582,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052588,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052594,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052920,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": false,
+          "no_MNM": false,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052953,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052955,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052960,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052964,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": false
+        }
+      },
+      {
+        "shot": 1053131,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": false,
+          "no_MNM": false,
+          "no_MNM_CIII": false
+        }
+      },
+      {
+        "shot": 1053826,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053928,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053929,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1054187,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1054188,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1054229,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": false,
+          "no_MNM": false,
+          "no_MNM_CIII": false
+        }
+      },
+      {
+        "shot": 1054234,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": false,
+          "no_MNM": false,
+          "no_MNM_CIII": false
+        }
+      },
+      {
+        "shot": 1054258,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": false,
+          "no_MNM": false,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1054337,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": false,
+          "no_MNM": false,
+          "no_MNM_CIII": false
+        }
+      },
+      {
+        "shot": 1054966,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055068,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055070,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055186,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055238,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055243,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055246,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055248,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055289,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055326,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055329,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055339,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055353,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055371,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055415,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055479,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055599,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055788,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055947,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055956,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055957,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056182,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056187,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056192,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056196,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056203,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056220,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056225,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056287,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056293,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056317,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056830,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056848,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056921,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057200,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057204,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": false,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057254,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057283,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057327,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057445,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057448,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": false
+        }
+      },
+      {
+        "shot": 1057497,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057527,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057530,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057533,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057556,
+        "same_clock_support": true,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057570,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057595,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057607,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057613,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057615,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057685,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057830,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057917,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1058008,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1058010,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1058043,
+        "same_clock_support": false,
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      }
+    ]
+  },
+  "simulated_masks": "native vs remove MNM vs remove MNM and CIII on otherwise the same J-TEXT source input",
+  "holdout": "no TEST data; no EAST predictions or training changes; not source online performance",
+  "seconds": 5.586385428003268
+}

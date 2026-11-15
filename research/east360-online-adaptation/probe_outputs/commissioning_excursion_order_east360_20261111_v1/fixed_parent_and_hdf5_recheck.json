@@ -1,0 +1,157 @@
+{
+  "status": "PASS_EXCURSION_HDF5_AND_MATCH_AUDIT",
+  "checked_windows": 55655,
+  "checked_pair_endpoints": 470,
+  "clock_shots": 1873,
+  "weights": [
+    0.8081235341102984,
+    -2.949207105807196,
+    -0.4452309573775938,
+    0.13705858154233425,
+    0.5663877957611348,
+    0.17096111513542195,
+    0.36234384793633384,
+    -0.014169234765569702
+  ],
+  "scope": "postseal fixed-parent auxiliary ranking; no new alarms; source TRAIN only",
+  "comparisons": {
+    "train_source_10": {
+      "pairs": 47,
+      "wins": {
+        "frozen_parent": {
+          "wins": 33,
+          "ties": 0,
+          "pair_logloss": 0.6468621255384277
+        },
+        "ordered": {
+          "wins": 31,
+          "ties": 0,
+          "pair_logloss": 0.5961123357807495
+        },
+        "swapped": {
+          "wins": 21,
+          "ties": 0,
+          "pair_logloss": 0.7602362439967653
+        }
+      },
+      "median_lead_ms": 19.361407684,
+      "over30": 8,
+      "median_abs_ordered_delta": 0.36142820393998093
+    },
+    "held_source_10": {
+      "pairs": 8,
+      "wins": {
+        "frozen_parent": {
+          "wins": 4,
+          "ties": 0,
+          "pair_logloss": 0.6879886264299454
+        },
+        "ordered": {
+          "wins": 4,
+          "ties": 0,
+          "pair_logloss": 0.6628600465322317
+        },
+        "swapped": {
+          "wins": 2,
+          "ties": 0,
+          "pair_logloss": 0.7828177936388863
+        }
+      },
+      "median_lead_ms": 22.009542684,
+      "over30": 2,
+      "median_abs_ordered_delta": 0.45540183701722814
+    },
+    "held_source_30": {
+      "pairs": 2,
+      "wins": {
+        "frozen_parent": {
+          "wins": 2,
+          "ties": 0,
+          "pair_logloss": 0.6012741010969904
+        },
+        "ordered": {
+          "wins": 2,
+          "ties": 0,
+          "pair_logloss": 0.41994472086763024
+        },
+        "swapped": {
+          "wins": 0,
+          "ties": 0,
+          "pair_logloss": 0.8783578793975451
+        }
+      },
+      "median_lead_ms": 112.906852684,
+      "over30": 2,
+      "median_abs_ordered_delta": 0.5242931180165188
+    },
+    "east_cold": {
+      "pairs": 5,
+      "wins": {
+        "frozen_parent": {
+          "wins": 4,
+          "ties": 0,
+          "pair_logloss": 0.6702727843966358
+        },
+        "ordered": {
+          "wins": 3,
+          "ties": 0,
+          "pair_logloss": 0.6615339054592067
+        },
+        "swapped": {
+          "wins": 3,
+          "ties": 0,
+          "pair_logloss": 0.7243809057187208
+        }
+      },
+      "median_lead_ms": 107.0,
+      "over30": 5,
+      "median_abs_ordered_delta": 0.35504957075836696
+    },
+    "east_suffix": {
+      "pairs": 135,
+      "wins": {
+        "frozen_parent": {
+          "wins": 85,
+          "ties": 0,
+          "pair_logloss": 0.6828381995121388
+        },
+        "ordered": {
+          "wins": 84,
+          "ties": 0,
+          "pair_logloss": 0.665563000264517
+        },
+        "swapped": {
+          "wins": 62,
+          "ties": 0,
+          "pair_logloss": 0.7299454740255307
+        }
+      },
+      "median_lead_ms": 97.207853,
+      "over30": 135,
+      "median_abs_ordered_delta": 0.21648500757787134
+    },
+    "east_legacy_misses": {
+      "pairs": 38,
+      "wins": {
+        "frozen_parent": {
+          "wins": 20,
+          "ties": 0,
+          "pair_logloss": 0.6987476249057265
+        },
+        "ordered": {
+          "wins": 19,
+          "ties": 0,
+          "pair_logloss": 0.7223739340904112
+        },
+        "swapped": {
+          "wins": 18,
+          "ties": 0,
+          "pair_logloss": 0.6954664225839231
+        }
+      },
+      "median_lead_ms": 95.10872950000001,
+      "over30": 38,
+      "median_abs_ordered_delta": 0.14263757336361665
+    }
+  }
+}

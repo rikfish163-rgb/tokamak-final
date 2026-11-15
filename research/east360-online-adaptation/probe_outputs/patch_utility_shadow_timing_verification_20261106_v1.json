@@ -1,0 +1,215 @@
+{
+  "status": "INDEPENDENT_SHADOW_TIMING_AND_COMMIT_GUARD_AUDIT",
+  "input_result_sha256": "e74befea3eccc32e8c61a5444208f017a4fa16a2f8a4276dec5e927d0cc31445",
+  "commit_plan_sha256": "987e802909c540aef9c4d4a3e93cb76f076adff5a3b5ad90dfee280bcca94bc8",
+  "capacity_counts_checked": 28160,
+  "commit_guard_real_only_timely": [
+    1052388,
+    1053042,
+    1053940,
+    1055239,
+    1056284
+  ],
+  "commit_guard_gate": true,
+  "views": {
+    "native": {
+      "guarded_at_8": {
+        "real": {
+          "late_single": [
+            1052388,
+            1056284
+          ],
+          "false_remove_single": [
+            1052899,
+            1053001,
+            1054050,
+            1054241,
+            1054580,
+            1057223,
+            1057945
+          ],
+          "false_add_single": [
+            1052344,
+            1052389,
+            1053386,
+            1055110,
+            1055731,
+            1055955,
+            1055961,
+            1055963,
+            1056375,
+            1056916,
+            1057516,
+            1057581,
+            1057943,
+            1057949,
+            1058009,
+            1058016,
+            1058017,
+            1058019
+          ],
+          "timely_at_risk": []
+        },
+        "scalar": {
+          "late_single": [],
+          "false_remove_single": [
+            1054241
+          ],
+          "false_add_single": [],
+          "timely_at_risk": []
+        }
+      },
+      "action_counts": {
+        "existing": 150840,
+        "has_remaining": 149892,
+        "clear_static": 136572,
+        "protected": 131616
+      }
+    },
+    "no_MNM": {
+      "guarded_at_8": {
+        "real": {
+          "late_single": [
+            1053940
+          ],
+          "false_remove_single": [
+            1055732,
+            1057230,
+            1057266,
+            1057278
+          ],
+          "false_add_single": [
+            1052252,
+            1052899,
+            1052917,
+            1053102,
+            1054050,
+            1054057,
+            1054159,
+            1054260,
+            1055110,
+            1055262,
+            1055270,
+            1055955,
+            1056088,
+            1056375,
+            1056916,
+            1057223,
+            1057282,
+            1057331,
+            1057602,
+            1057619,
+            1057941,
+            1057945,
+            1057972,
+            1058009,
+            1058015,
+            1058017
+          ],
+          "timely_at_risk": [
+            1055239
+          ]
+        },
+        "scalar": {
+          "late_single": [],
+          "false_remove_single": [],
+          "false_add_single": [
+            1057282
+          ],
+          "timely_at_risk": []
+        }
+      },
+      "action_counts": {
+        "existing": 150840,
+        "has_remaining": 149892,
+        "clear_static": 137424,
+        "protected": 131970
+      }
+    },
+    "no_MNM_CIII": {
+      "guarded_at_8": {
+        "real": {
+          "late_single": [
+            1053042,
+            1055239
+          ],
+          "false_remove_single": [
+            1052175,
+            1052344,
+            1052811,
+            1053101,
+            1053817,
+            1054660,
+            1054758,
+            1055961,
+            1057115,
+            1057223,
+            1057576,
+            1057644
+          ],
+          "false_add_single": [
+            1051763,
+            1052164,
+            1052166,
+            1052178,
+            1052252,
+            1052919,
+            1052921,
+            1054057,
+            1054260,
+            1054582,
+            1054607,
+            1054651,
+            1054756,
+            1054849,
+            1054855,
+            1054975,
+            1054977,
+            1054983,
+            1055015,
+            1055372,
+            1055732,
+            1055963,
+            1056088,
+            1056362,
+            1056655,
+            1056916,
+            1057201,
+            1057215,
+            1057242,
+            1057481,
+            1057680,
+            1057946,
+            1057949,
+            1057960,
+            1058013,
+            1058021
+          ],
+          "timely_at_risk": [
+            1056284
+          ]
+        },
+        "scalar": {
+          "late_single": [],
+          "false_remove_single": [
+            1053101
+          ],
+          "false_add_single": [
+            1055372,
+            1057201,
+            1058013
+          ],
+          "timely_at_risk": []
+        }
+      },
+      "action_counts": {
+        "existing": 150840,
+        "has_remaining": 149892,
+        "clear_static": 129420,
+        "protected": 122518
+      }
+    }
+  },
+  "no_policy_fit": true,
+  "new_val_test_east_reads": 0
+}

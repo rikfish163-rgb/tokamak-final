@@ -1,0 +1,1692 @@
+{
+  "scope": "POST_SEAL_DEVELOPMENT_DIAGNOSTIC_NOT_ALARM_SELECTION",
+  "forecast_fit_ids": [
+    71304,
+    87494,
+    69458,
+    87487,
+    69854,
+    70404,
+    70323,
+    86167,
+    54157,
+    63097,
+    91054,
+    91885,
+    77002,
+    94428,
+    61468,
+    85632,
+    85320,
+    85316,
+    91723,
+    75657
+  ],
+  "cold_signal_windows": 2255,
+  "cold_min_observation_count": 2255,
+  "persistence_alpha": 0.0,
+  "compared_suffix_windows": 43372,
+  "paired_forecast_sse": {
+    "source_mean": 43429.40747324104,
+    "cold_mean": 43391.27053058022,
+    "source_ridge": 45744.029371961944,
+    "cold_ridge": 43531.3352662728,
+    "causal_persistence": 43391.27053058022
+  },
+  "ratios_vs_source_mean": {
+    "source_mean": 1.0,
+    "cold_mean": 0.9991218636200756,
+    "source_ridge": 1.0532961887667258,
+    "cold_ridge": 1.0023469763683643,
+    "causal_persistence": 0.9991218636200756
+  },
+  "same_shot_recent_prediction_uses_only_q_or_earlier": true,
+  "causal_matched_pairs": {
+    "all": {
+      "pairs": 172,
+      "comparisons": {
+        "source_shape_error": {
+          "valid_pairs": 172,
+          "disruptive_higher": 66,
+          "median_disruptive": 1.0193993632613,
+          "median_safe": 1.0411901551138953
+        },
+        "cold_shape_error": {
+          "valid_pairs": 172,
+          "disruptive_higher": 77,
+          "median_disruptive": 1.0181550007456028,
+          "median_safe": 1.0161721815222595
+        },
+        "recent_shape_error": {
+          "valid_pairs": 172,
+          "disruptive_higher": 86,
+          "median_disruptive": 0.9991851152405556,
+          "median_safe": 0.9982257726764487
+        },
+        "magnetic": {
+          "valid_pairs": 172,
+          "disruptive_higher": 104,
+          "median_disruptive": 0.0593114087550219,
+          "median_safe": 0.03631154698620487
+        },
+        "position": {
+          "valid_pairs": 172,
+          "disruptive_higher": 122,
+          "median_disruptive": 0.1103705756141109,
+          "median_safe": 0.052211957453595526
+        },
+        "radiation": {
+          "valid_pairs": 172,
+          "disruptive_higher": 102,
+          "median_disruptive": 0.42207420087890146,
+          "median_safe": 0.299376767692596
+        },
+        "loop": {
+          "valid_pairs": 172,
+          "disruptive_higher": 105,
+          "median_disruptive": 0.2721322542443719,
+          "median_safe": 0.2179193241601387
+        }
+      }
+    },
+    "fixed_misses": {
+      "pairs": 43,
+      "comparisons": {
+        "source_shape_error": {
+          "valid_pairs": 43,
+          "disruptive_higher": 14,
+          "median_disruptive": 1.0063009628129294,
+          "median_safe": 1.037375359111138
+        },
+        "cold_shape_error": {
+          "valid_pairs": 43,
+          "disruptive_higher": 19,
+          "median_disruptive": 1.0046022401276673,
+          "median_safe": 0.9991781233811565
+        },
+        "recent_shape_error": {
+          "valid_pairs": 43,
+          "disruptive_higher": 23,
+          "median_disruptive": 1.0014974151629588,
+          "median_safe": 0.9995481083352331
+        },
+        "magnetic": {
+          "valid_pairs": 43,
+          "disruptive_higher": 19,
+          "median_disruptive": 0.020727661092303784,
+          "median_safe": 0.020536569449345725
+        },
+        "position": {
+          "valid_pairs": 43,
+          "disruptive_higher": 24,
+          "median_disruptive": 0.050335650388795464,
+          "median_safe": 0.036242616990865
+        },
+        "radiation": {
+          "valid_pairs": 43,
+          "disruptive_higher": 21,
+          "median_disruptive": 0.2338384581533087,
+          "median_safe": 0.23259267068181072
+        },
+        "loop": {
+          "valid_pairs": 43,
+          "disruptive_higher": 27,
+          "median_disruptive": 0.13029607305718605,
+          "median_safe": 0.10794517878687093
+        }
+      }
+    },
+    "unique_safe_donors": 71,
+    "median_context_rms_distance": 0.2840575566822061,
+    "identities": [
+      {
+        "disruptive": 74087,
+        "safe": 70392,
+        "disruptive_origin": 7743,
+        "safe_origin": 4927,
+        "available_lead_ms": 71.11172,
+        "distance": 0.3203087147359461,
+        "static_timely": true
+      },
+      {
+        "disruptive": 71265,
+        "safe": 70263,
+        "disruptive_origin": 3903,
+        "safe_origin": 3071,
+        "available_lead_ms": 51.1,
+        "distance": 0.8769739529723858,
+        "static_timely": true
+      },
+      {
+        "disruptive": 71370,
+        "safe": 70043,
+        "disruptive_origin": 7903,
+        "safe_origin": 4831,
+        "available_lead_ms": 60.2,
+        "distance": 2.5208265479188623,
+        "static_timely": true
+      },
+      {
+        "disruptive": 71415,
+        "safe": 70043,
+        "disruptive_origin": 1663,
+        "safe_origin": 2047,
+        "available_lead_ms": 73.0,
+        "distance": 0.5174393323596088,
+        "static_timely": true
+      },
+      {
+        "disruptive": 69454,
+        "safe": 70394,
+        "disruptive_origin": 1343,
+        "safe_origin": 159,
+        "available_lead_ms": 61.0,
+        "distance": 0.09426519700748558,
+        "static_timely": true
+      },
+      {
+        "disruptive": 79712,
+        "safe": 87484,
+        "disruptive_origin": 1503,
+        "safe_origin": 735,
+        "available_lead_ms": 63.060344,
+        "distance": 0.17434510410675572,
+        "static_timely": true
+      },
+      {
+        "disruptive": 79604,
+        "safe": 87484,
+        "disruptive_origin": 1663,
+        "safe_origin": 1183,
+        "available_lead_ms": 49.869787,
+        "distance": 0.3174600691505179,
+        "static_timely": true
+      },
+      {
+        "disruptive": 90874,
+        "safe": 87484,
+        "disruptive_origin": 3551,
+        "safe_origin": 1759,
+        "available_lead_ms": 56.19303,
+        "distance": 0.283408052483408,
+        "static_timely": false
+      },
+      {
+        "disruptive": 69765,
+        "safe": 66206,
+        "disruptive_origin": 3807,
+        "safe_origin": 4639,
+        "available_lead_ms": 72.1,
+        "distance": 0.5156374535707496,
+        "static_timely": true
+      },
+      {
+        "disruptive": 78789,
+        "safe": 82834,
+        "disruptive_origin": 3135,
+        "safe_origin": 1759,
+        "available_lead_ms": 65.381684,
+        "distance": 1.4263078056934608,
+        "static_timely": false
+      },
+      {
+        "disruptive": 83346,
+        "safe": 82847,
+        "disruptive_origin": 831,
+        "safe_origin": 1311,
+        "available_lead_ms": 67.898723,
+        "distance": 0.14860047336639584,
+        "static_timely": false
+      },
+      {
+        "disruptive": 89881,
+        "safe": 87484,
+        "disruptive_origin": 3615,
+        "safe_origin": 2431,
+        "available_lead_ms": 54.755956,
+        "distance": 0.6000965113274555,
+        "static_timely": true
+      },
+      {
+        "disruptive": 87508,
+        "safe": 87484,
+        "disruptive_origin": 927,
+        "safe_origin": 799,
+        "available_lead_ms": 53.901388,
+        "distance": 0.22205537585522458,
+        "static_timely": false
+      },
+      {
+        "disruptive": 87537,
+        "safe": 87484,
+        "disruptive_origin": 1631,
+        "safe_origin": 1407,
+        "available_lead_ms": 69.402625,
+        "distance": 0.12508066523447753,
+        "static_timely": false
+      },
+      {
+        "disruptive": 79649,
+        "safe": 62123,
+        "disruptive_origin": 287,
+        "safe_origin": 4095,
+        "available_lead_ms": 62.568816,
+        "distance": 0.39905490272115934,
+        "static_timely": false
+      },
+      {
+        "disruptive": 89441,
+        "safe": 70043,
+        "disruptive_origin": 1951,
+        "safe_origin": 383,
+        "available_lead_ms": 72.0,
+        "distance": 3.814030639242525,
+        "static_timely": true
+      },
+      {
+        "disruptive": 89483,
+        "safe": 82834,
+        "disruptive_origin": 1631,
+        "safe_origin": 1919,
+        "available_lead_ms": 77.0,
+        "distance": 1.867013475208927,
+        "static_timely": true
+      },
+      {
+        "disruptive": 69855,
+        "safe": 70263,
+        "disruptive_origin": 3871,
+        "safe_origin": 2463,
+        "available_lead_ms": 59.8,
+        "distance": 0.6451778946327974,
+        "static_timely": true
+      },
+      {
+        "disruptive": 70861,
+        "safe": 70392,
+        "disruptive_origin": 1567,
+        "safe_origin": 4927,
+        "available_lead_ms": 81.0,
+        "distance": 0.111339818842911,
+        "static_timely": true
+      },
+      {
+        "disruptive": 69859,
+        "safe": 70394,
+        "disruptive_origin": 3871,
+        "safe_origin": 1599,
+        "available_lead_ms": 51.6,
+        "distance": 0.4268016626743936,
+        "static_timely": true
+      },
+      {
+        "disruptive": 69781,
+        "safe": 70263,
+        "disruptive_origin": 927,
+        "safe_origin": 4159,
+        "available_lead_ms": 73.0,
+        "distance": 0.3864352124006173,
+        "static_timely": true
+      },
+      {
+        "disruptive": 69768,
+        "safe": 70394,
+        "disruptive_origin": 3839,
+        "safe_origin": 2015,
+        "available_lead_ms": 61.9,
+        "distance": 0.39786696925176557,
+        "static_timely": true
+      },
+      {
+        "disruptive": 70327,
+        "safe": 70392,
+        "disruptive_origin": 1375,
+        "safe_origin": 4927,
+        "available_lead_ms": 68.0,
+        "distance": 0.17287598460471554,
+        "static_timely": true
+      },
+      {
+        "disruptive": 69791,
+        "safe": 70043,
+        "disruptive_origin": 1567,
+        "safe_origin": 223,
+        "available_lead_ms": 76.0,
+        "distance": 1.1275308100952617,
+        "static_timely": true
+      },
+      {
+        "disruptive": 94901,
+        "safe": 82834,
+        "disruptive_origin": 1311,
+        "safe_origin": 1887,
+        "available_lead_ms": 75.137641,
+        "distance": 3.5111797506035467,
+        "static_timely": false
+      },
+      {
+        "disruptive": 70418,
+        "safe": 70043,
+        "disruptive_origin": 3903,
+        "safe_origin": 351,
+        "available_lead_ms": 58.4,
+        "distance": 1.082806478981531,
+        "static_timely": true
+      },
+      {
+        "disruptive": 70320,
+        "safe": 70043,
+        "disruptive_origin": 831,
+        "safe_origin": 4831,
+        "available_lead_ms": 65.0,
+        "distance": 4.247114768310223,
+        "static_timely": false
+      },
+      {
+        "disruptive": 92394,
+        "safe": 91052,
+        "disruptive_origin": 4799,
+        "safe_origin": 4319,
+        "available_lead_ms": 77.0,
+        "distance": 0.14123895917645207,
+        "static_timely": false
+      },
+      {
+        "disruptive": 74826,
+        "safe": 66404,
+        "disruptive_origin": 2015,
+        "safe_origin": 5247,
+        "available_lead_ms": 67.0,
+        "distance": 0.32972698610411416,
+        "static_timely": true
+      },
+      {
+        "disruptive": 68309,
+        "safe": 70392,
+        "disruptive_origin": 2271,
+        "safe_origin": 4415,
+        "available_lead_ms": 55.0,
+        "distance": 0.12692253543969526,
+        "static_timely": true
+      },
+      {
+        "disruptive": 73547,
+        "safe": 70043,
+        "disruptive_origin": 2015,
+        "safe_origin": 4735,
+        "available_lead_ms": 78.0,
+        "distance": 4.059501843914562,
+        "static_timely": true
+      },
+      {
+        "disruptive": 73541,
+        "safe": 66458,
+        "disruptive_origin": 5599,
+        "safe_origin": 479,
+        "available_lead_ms": 61.148653,
+        "distance": 0.3007935277587778,
+        "static_timely": true
+      },
+      {
+        "disruptive": 73439,
+        "safe": 66206,
+        "disruptive_origin": 1855,
+        "safe_origin": 4639,
+        "available_lead_ms": 63.0,
+        "distance": 0.24101339164527666,
+        "static_timely": true
+      },
+      {
+        "disruptive": 73135,
+        "safe": 66206,
+        "disruptive_origin": 703,
+        "safe_origin": 1119,
+        "available_lead_ms": 77.0,
+        "distance": 0.2203430787920967,
+        "static_timely": true
+      },
+      {
+        "disruptive": 86155,
+        "safe": 62360,
+        "disruptive_origin": 5087,
+        "safe_origin": 2815,
+        "available_lead_ms": 66.198346,
+        "distance": 0.3038743289383945,
+        "static_timely": true
+      },
+      {
+        "disruptive": 87861,
+        "safe": 82833,
+        "disruptive_origin": 5663,
+        "safe_origin": 4479,
+        "available_lead_ms": 57.0,
+        "distance": 0.28470706088100417,
+        "static_timely": true
+      },
+      {
+        "disruptive": 63220,
+        "safe": 62399,
+        "disruptive_origin": 735,
+        "safe_origin": 2463,
+        "available_lead_ms": 63.0,
+        "distance": 0.7513059505819153,
+        "static_timely": true
+      },
+      {
+        "disruptive": 64581,
+        "safe": 91052,
+        "disruptive_origin": 4895,
+        "safe_origin": 4383,
+        "available_lead_ms": 63.217459,
+        "distance": 0.12636564565864794,
+        "static_timely": false
+      },
+      {
+        "disruptive": 91214,
+        "safe": 82834,
+        "disruptive_origin": 1183,
+        "safe_origin": 1631,
+        "available_lead_ms": 80.0,
+        "distance": 0.7106404887669023,
+        "static_timely": true
+      },
+      {
+        "disruptive": 86616,
+        "safe": 87484,
+        "disruptive_origin": 4991,
+        "safe_origin": 1183,
+        "available_lead_ms": 65.207853,
+        "distance": 0.19543735017953123,
+        "static_timely": false
+      },
+      {
+        "disruptive": 80600,
+        "safe": 82834,
+        "disruptive_origin": 1791,
+        "safe_origin": 2847,
+        "available_lead_ms": 80.0,
+        "distance": 0.23280198299463922,
+        "static_timely": false
+      },
+      {
+        "disruptive": 93300,
+        "safe": 82833,
+        "disruptive_origin": 3071,
+        "safe_origin": 863,
+        "available_lead_ms": 80.0,
+        "distance": 2.0483610394875877,
+        "static_timely": true
+      },
+      {
+        "disruptive": 65944,
+        "safe": 66458,
+        "disruptive_origin": 4639,
+        "safe_origin": 5439,
+        "available_lead_ms": 65.366569,
+        "distance": 0.18349456655879137,
+        "static_timely": true
+      },
+      {
+        "disruptive": 64258,
+        "safe": 60916,
+        "disruptive_origin": 1087,
+        "safe_origin": 4799,
+        "available_lead_ms": 72.0,
+        "distance": 0.13429566623938696,
+        "static_timely": true
+      },
+      {
+        "disruptive": 74554,
+        "safe": 70043,
+        "disruptive_origin": 1503,
+        "safe_origin": 4479,
+        "available_lead_ms": 54.0,
+        "distance": 0.39451685259204183,
+        "static_timely": true
+      },
+      {
+        "disruptive": 61475,
+        "safe": 61474,
+        "disruptive_origin": 4671,
+        "safe_origin": 639,
+        "available_lead_ms": 59.0,
+        "distance": 0.13804191347080308,
+        "static_timely": true
+      },
+      {
+        "disruptive": 64266,
+        "safe": 80053,
+        "disruptive_origin": 543,
+        "safe_origin": 927,
+        "available_lead_ms": 60.0,
+        "distance": 0.722390019785123,
+        "static_timely": true
+      },
+      {
+        "disruptive": 83166,
+        "safe": 82833,
+        "disruptive_origin": 1055,
+        "safe_origin": 3327,
+        "available_lead_ms": 70.0,
+        "distance": 0.3089031810063938,
+        "static_timely": true
+      },
+      {
+        "disruptive": 71086,
+        "safe": 75226,
+        "disruptive_origin": 1343,
+        "safe_origin": 3135,
+        "available_lead_ms": 69.0,
+        "distance": 0.06884384579223415,
+        "static_timely": false
+      },
+      {
+        "disruptive": 90232,
+        "safe": 94422,
+        "disruptive_origin": 1183,
+        "safe_origin": 4607,
+        "available_lead_ms": 56.0,
+        "distance": 0.08370830162547621,
+        "static_timely": true
+      },
+      {
+        "disruptive": 83218,
+        "safe": 82847,
+        "disruptive_origin": 1471,
+        "safe_origin": 4927,
+        "available_lead_ms": 64.0,
+        "distance": 0.3998195563612351,
+        "static_timely": true
+      },
+      {
+        "disruptive": 83164,
+        "safe": 54905,
+        "disruptive_origin": 991,
+        "safe_origin": 383,
+        "available_lead_ms": 77.0,
+        "distance": 0.21006061967160963,
+        "static_timely": true
+      },
+      {
+        "disruptive": 91149,
+        "safe": 82833,
+        "disruptive_origin": 5279,
+        "safe_origin": 2111,
+        "available_lead_ms": 68.0,
+        "distance": 0.7253086272083771,
+        "static_timely": true
+      },
+      {
+        "disruptive": 94439,
+        "safe": 80053,
+        "disruptive_origin": 5119,
+        "safe_origin": 2399,
+        "available_lead_ms": 68.9,
+        "distance": 0.16056159042865306,
+        "static_timely": true
+      },
+      {
+        "disruptive": 73278,
+        "safe": 90740,
+        "disruptive_origin": 1055,
+        "safe_origin": 2943,
+        "available_lead_ms": 70.0,
+        "distance": 2.0036766037011997,
+        "static_timely": true
+      },
+      {
+        "disruptive": 66995,
+        "safe": 66404,
+        "disruptive_origin": 1247,
+        "safe_origin": 2719,
+        "available_lead_ms": 74.0,
+        "distance": 0.030536001756212135,
+        "static_timely": true
+      },
+      {
+        "disruptive": 67002,
+        "safe": 70258,
+        "disruptive_origin": 991,
+        "safe_origin": 3679,
+        "available_lead_ms": 60.0,
+        "distance": 0.0505070434997407,
+        "static_timely": true
+      },
+      {
+        "disruptive": 64129,
+        "safe": 62123,
+        "disruptive_origin": 639,
+        "safe_origin": 1439,
+        "available_lead_ms": 79.0,
+        "distance": 0.11525082412565915,
+        "static_timely": true
+      },
+      {
+        "disruptive": 60999,
+        "safe": 64562,
+        "disruptive_origin": 7103,
+        "safe_origin": 4735,
+        "available_lead_ms": 77.16367,
+        "distance": 0.12757271933796474,
+        "static_timely": false
+      },
+      {
+        "disruptive": 75174,
+        "safe": 90740,
+        "disruptive_origin": 479,
+        "safe_origin": 2943,
+        "available_lead_ms": 77.0,
+        "distance": 1.7952121329063495,
+        "static_timely": true
+      },
+      {
+        "disruptive": 79354,
+        "safe": 80053,
+        "disruptive_origin": 4607,
+        "safe_origin": 2399,
+        "available_lead_ms": 65.0,
+        "distance": 0.40489844231154626,
+        "static_timely": true
+      },
+      {
+        "disruptive": 83887,
+        "safe": 54165,
+        "disruptive_origin": 479,
+        "safe_origin": 1343,
+        "available_lead_ms": 54.0,
+        "distance": 0.1343061616398525,
+        "static_timely": false
+      },
+      {
+        "disruptive": 81684,
+        "safe": 80955,
+        "disruptive_origin": 1951,
+        "safe_origin": 959,
+        "available_lead_ms": 61.0,
+        "distance": 0.014668116841706949,
+        "static_timely": false
+      },
+      {
+        "disruptive": 74875,
+        "safe": 72511,
+        "disruptive_origin": 1087,
+        "safe_origin": 2751,
+        "available_lead_ms": 58.0,
+        "distance": 0.21875089647909213,
+        "static_timely": true
+      },
+      {
+        "disruptive": 66116,
+        "safe": 67900,
+        "disruptive_origin": 5663,
+        "safe_origin": 2527,
+        "available_lead_ms": 53.0,
+        "distance": 0.41260508126128365,
+        "static_timely": true
+      },
+      {
+        "disruptive": 73405,
+        "safe": 70258,
+        "disruptive_origin": 18623,
+        "safe_origin": 3807,
+        "available_lead_ms": 80.0,
+        "distance": 0.03162658187745581,
+        "static_timely": false
+      },
+      {
+        "disruptive": 73403,
+        "safe": 72419,
+        "disruptive_origin": 24127,
+        "safe_origin": 3679,
+        "available_lead_ms": 73.0,
+        "distance": 0.02005489023244809,
+        "static_timely": false
+      },
+      {
+        "disruptive": 61629,
+        "safe": 60239,
+        "disruptive_origin": 1311,
+        "safe_origin": 1567,
+        "available_lead_ms": 71.0,
+        "distance": 0.025291665038900076,
+        "static_timely": false
+      },
+      {
+        "disruptive": 73597,
+        "safe": 66458,
+        "disruptive_origin": 2239,
+        "safe_origin": 4063,
+        "available_lead_ms": 64.0,
+        "distance": 0.23228873885834764,
+        "static_timely": true
+      },
+      {
+        "disruptive": 64308,
+        "safe": 80793,
+        "disruptive_origin": 5183,
+        "safe_origin": 767,
+        "available_lead_ms": 51.190407,
+        "distance": 0.2758080499863033,
+        "static_timely": true
+      },
+      {
+        "disruptive": 75656,
+        "safe": 66404,
+        "disruptive_origin": 1439,
+        "safe_origin": 5311,
+        "available_lead_ms": 59.0,
+        "distance": 0.13041634605627783,
+        "static_timely": true
+      },
+      {
+        "disruptive": 95770,
+        "safe": 62250,
+        "disruptive_origin": 4223,
+        "safe_origin": 1183,
+        "available_lead_ms": 78.0,
+        "distance": 0.031464369475401,
+        "static_timely": false
+      },
+      {
+        "disruptive": 83568,
+        "safe": 83231,
+        "disruptive_origin": 3999,
+        "safe_origin": 3967,
+        "available_lead_ms": 54.0,
+        "distance": 0.08638807726509394,
+        "static_timely": true
+      },
+      {
+        "disruptive": 78008,
+        "safe": 82834,
+        "disruptive_origin": 5151,
+        "safe_origin": 1631,
+        "available_lead_ms": 58.0,
+        "distance": 1.2341986412556911,
+        "static_timely": true
+      },
+      {
+        "disruptive": 64143,
+        "safe": 82833,
+        "disruptive_origin": 1727,
+        "safe_origin": 863,
+        "available_lead_ms": 66.0,
+        "distance": 2.247190862594922,
+        "static_timely": true
+      },
+      {
+        "disruptive": 81406,
+        "safe": 81017,
+        "disruptive_origin": 4639,
+        "safe_origin": 3647,
+        "available_lead_ms": 73.0,
+        "distance": 0.01776317368679956,
+        "static_timely": false
+      },
+      {
+        "disruptive": 72523,
+        "safe": 66431,
+        "disruptive_origin": 607,
+        "safe_origin": 9055,
+        "available_lead_ms": 77.0,
+        "distance": 0.06413902296297895,
+        "static_timely": true
+      },
+      {
+        "disruptive": 89899,
+        "safe": 59940,
+        "disruptive_origin": 1087,
+        "safe_origin": 2559,
+        "available_lead_ms": 68.0,
+        "distance": 0.16820394720440549,
+        "static_timely": true
+      },
+      {
+        "disruptive": 62182,
+        "safe": 77859,
+        "disruptive_origin": 5343,
+        "safe_origin": 1055,
+        "available_lead_ms": 51.1,
+        "distance": 1.0761943118688486,
+        "static_timely": true
+      },
+      {
+        "disruptive": 63656,
+        "safe": 86756,
+        "disruptive_origin": 1311,
+        "safe_origin": 1087,
+        "available_lead_ms": 71.0,
+        "distance": 0.10273260987179805,
+        "static_timely": false
+      },
+      {
+        "disruptive": 73089,
+        "safe": 74928,
+        "disruptive_origin": 927,
+        "safe_origin": 3455,
+        "available_lead_ms": 69.0,
+        "distance": 0.46739152424208136,
+        "static_timely": true
+      },
+      {
+        "disruptive": 84841,
+        "safe": 85599,
+        "disruptive_origin": 959,
+        "safe_origin": 159,
+        "available_lead_ms": 53.0,
+        "distance": 1.4157904023041752,
+        "static_timely": true
+      },
+      {
+        "disruptive": 94803,
+        "safe": 94363,
+        "disruptive_origin": 3391,
+        "safe_origin": 3327,
+        "available_lead_ms": 50.0,
+        "distance": 0.025215521259510508,
+        "static_timely": false
+      },
+      {
+        "disruptive": 94515,
+        "safe": 96099,
+        "disruptive_origin": 1887,
+        "safe_origin": 2399,
+        "available_lead_ms": 80.0,
+        "distance": 0.0148944465908151,
+        "static_timely": false
+      },
+      {
+        "disruptive": 62773,
+        "safe": 90166,
+        "disruptive_origin": 3135,
+        "safe_origin": 1119,
+        "available_lead_ms": 50.0,
+        "distance": 0.33123900003335355,
+        "static_timely": true
+      },
+      {
+        "disruptive": 85533,
+        "safe": 94422,
+        "disruptive_origin": 2527,
+        "safe_origin": 4575,
+        "available_lead_ms": 52.0,
+        "distance": 0.2894122652095132,
+        "static_timely": true
+      },
+      {
+        "disruptive": 74407,
+        "safe": 70043,
+        "disruptive_origin": 1023,
+        "safe_origin": 2527,
+        "available_lead_ms": 53.0,
+        "distance": 0.10661764240775103,
+        "static_timely": true
+      },
+      {
+        "disruptive": 62425,
+        "safe": 82833,
+        "disruptive_origin": 639,
+        "safe_origin": 863,
+        "available_lead_ms": 57.0,
+        "distance": 1.0288985960352839,
+        "static_timely": true
+      },
+      {
+        "disruptive": 80012,
+        "safe": 96375,
+        "disruptive_origin": 2495,
+        "safe_origin": 4383,
+        "available_lead_ms": 55.0,
+        "distance": 0.3360674465399415,
+        "static_timely": true
+      },
+      {
+        "disruptive": 71013,
+        "safe": 66185,
+        "disruptive_origin": 4159,
+        "safe_origin": 2655,
+        "available_lead_ms": 71.0,
+        "distance": 0.11947953263861669,
+        "static_timely": false
+      },
+      {
+        "disruptive": 80036,
+        "safe": 87689,
+        "disruptive_origin": 1951,
+        "safe_origin": 2719,
+        "available_lead_ms": 75.0,
+        "distance": 0.20535176698259824,
+        "static_timely": true
+      },
+      {
+        "disruptive": 77782,
+        "safe": 62123,
+        "disruptive_origin": 1919,
+        "safe_origin": 767,
+        "available_lead_ms": 70.0,
+        "distance": 0.036943416284158606,
+        "static_timely": false
+      },
+      {
+        "disruptive": 93224,
+        "safe": 81017,
+        "disruptive_origin": 1247,
+        "safe_origin": 4287,
+        "available_lead_ms": 80.0,
+        "distance": 0.08114731355548835,
+        "static_timely": false
+      },
+      {
+        "disruptive": 93218,
+        "safe": 80053,
+        "disruptive_origin": 1727,
+        "safe_origin": 1631,
+        "available_lead_ms": 69.0,
+        "distance": 0.1622197733339861,
+        "static_timely": false
+      },
+      {
+        "disruptive": 89495,
+        "safe": 82833,
+        "disruptive_origin": 5215,
+        "safe_origin": 863,
+        "available_lead_ms": 52.0,
+        "distance": 1.1517574810943176,
+        "static_timely": true
+      },
+      {
+        "disruptive": 77822,
+        "safe": 90740,
+        "disruptive_origin": 1215,
+        "safe_origin": 2367,
+        "available_lead_ms": 63.0,
+        "distance": 1.5625513681432155,
+        "static_timely": true
+      },
+      {
+        "disruptive": 77783,
+        "safe": 63323,
+        "disruptive_origin": 1407,
+        "safe_origin": 3103,
+        "available_lead_ms": 76.0,
+        "distance": 0.04311978751205632,
+        "static_timely": true
+      },
+      {
+        "disruptive": 72578,
+        "safe": 72419,
+        "disruptive_origin": 2431,
+        "safe_origin": 2271,
+        "available_lead_ms": 76.0,
+        "distance": 0.011516371971993749,
+        "static_timely": true
+      },
+      {
+        "disruptive": 95123,
+        "safe": 94352,
+        "disruptive_origin": 3167,
+        "safe_origin": 735,
+        "available_lead_ms": 55.0,
+        "distance": 0.23180856352536094,
+        "static_timely": true
+      },
+      {
+        "disruptive": 77788,
+        "safe": 62360,
+        "disruptive_origin": 3295,
+        "safe_origin": 1439,
+        "available_lead_ms": 63.0,
+        "distance": 0.07820471917755425,
+        "static_timely": false
+      },
+      {
+        "disruptive": 96332,
+        "safe": 90740,
+        "disruptive_origin": 2463,
+        "safe_origin": 2367,
+        "available_lead_ms": 51.0,
+        "distance": 2.9309770917701825,
+        "static_timely": true
+      },
+      {
+        "disruptive": 76956,
+        "safe": 62765,
+        "disruptive_origin": 2207,
+        "safe_origin": 735,
+        "available_lead_ms": 64.0,
+        "distance": 0.01616433555439908,
+        "static_timely": false
+      },
+      {
+        "disruptive": 95766,
+        "safe": 87689,
+        "disruptive_origin": 703,
+        "safe_origin": 3711,
+        "available_lead_ms": 67.0,
+        "distance": 0.12544998165225674,
+        "static_timely": true
+      },
+      {
+        "disruptive": 96161,
+        "safe": 70043,
+        "disruptive_origin": 3615,
+        "safe_origin": 4735,
+        "available_lead_ms": 59.0,
+        "distance": 2.3037094976985912,
+        "static_timely": true
+      },
+      {
+        "disruptive": 61638,
+        "safe": 90740,
+        "disruptive_origin": 5087,
+        "safe_origin": 2943,
+        "available_lead_ms": 80.196974,
+        "distance": 2.28938637164451,
+        "static_timely": true
+      },
+      {
+        "disruptive": 62592,
+        "safe": 94422,
+        "disruptive_origin": 863,
+        "safe_origin": 287,
+        "available_lead_ms": 54.0,
+        "distance": 0.10679905541998408,
+        "static_timely": true
+      },
+      {
+        "disruptive": 93995,
+        "safe": 94361,
+        "disruptive_origin": 5023,
+        "safe_origin": 1439,
+        "available_lead_ms": 60.614931,
+        "distance": 0.0385480846344406,
+        "static_timely": true
+      },
+      {
+        "disruptive": 93202,
+        "safe": 94395,
+        "disruptive_origin": 1951,
+        "safe_origin": 1631,
+        "available_lead_ms": 52.0,
+        "distance": 0.3492381561981552,
+        "static_timely": true
+      },
+      {
+        "disruptive": 62878,
+        "safe": 96375,
+        "disruptive_origin": 11135,
+        "safe_origin": 1791,
+        "available_lead_ms": 55.0,
+        "distance": 0.4456855350715446,
+        "static_timely": true
+      },
+      {
+        "disruptive": 69593,
+        "safe": 68703,
+        "disruptive_origin": 1535,
+        "safe_origin": 4639,
+        "available_lead_ms": 60.0,
+        "distance": 0.03819598719300882,
+        "static_timely": true
+      },
+      {
+        "disruptive": 93112,
+        "safe": 86930,
+        "disruptive_origin": 5151,
+        "safe_origin": 2879,
+        "available_lead_ms": 74.0,
+        "distance": 0.14261448234268745,
+        "static_timely": true
+      },
+      {
+        "disruptive": 79913,
+        "safe": 82833,
+        "disruptive_origin": 5311,
+        "safe_origin": 4159,
+        "available_lead_ms": 57.0,
+        "distance": 0.3632863805957821,
+        "static_timely": true
+      },
+      {
+        "disruptive": 78668,
+        "safe": 90740,
+        "disruptive_origin": 5119,
+        "safe_origin": 4863,
+        "available_lead_ms": 51.19668,
+        "distance": 0.17482699227043802,
+        "static_timely": true
+      },
+      {
+        "disruptive": 72922,
+        "safe": 90740,
+        "disruptive_origin": 2783,
+        "safe_origin": 4607,
+        "available_lead_ms": 71.0,
+        "distance": 1.6765861920777667,
+        "static_timely": true
+      },
+      {
+        "disruptive": 67601,
+        "safe": 72984,
+        "disruptive_origin": 575,
+        "safe_origin": 2207,
+        "available_lead_ms": 53.0,
+        "distance": 0.484790499141908,
+        "static_timely": true
+      },
+      {
+        "disruptive": 65067,
+        "safe": 90740,
+        "disruptive_origin": 2463,
+        "safe_origin": 2367,
+        "available_lead_ms": 79.0,
+        "distance": 1.9777403861727545,
+        "static_timely": true
+      },
+      {
+        "disruptive": 85692,
+        "safe": 90166,
+        "disruptive_origin": 3615,
+        "safe_origin": 3295,
+        "available_lead_ms": 53.0,
+        "distance": 0.1459520667750262,
+        "static_timely": true
+      },
+      {
+        "disruptive": 74970,
+        "safe": 70043,
+        "disruptive_origin": 2463,
+        "safe_origin": 4735,
+        "available_lead_ms": 77.0,
+        "distance": 2.221518751395908,
+        "static_timely": false
+      },
+      {
+        "disruptive": 67778,
+        "safe": 90740,
+        "disruptive_origin": 3039,
+        "safe_origin": 2367,
+        "available_lead_ms": 52.0,
+        "distance": 2.3113979407111387,
+        "static_timely": true
+      },
+      {
+        "disruptive": 69810,
+        "safe": 78722,
+        "disruptive_origin": 671,
+        "safe_origin": 1535,
+        "available_lead_ms": 59.0,
+        "distance": 1.15174600036757,
+        "static_timely": true
+      },
+      {
+        "disruptive": 73421,
+        "safe": 70043,
+        "disruptive_origin": 25311,
+        "safe_origin": 2207,
+        "available_lead_ms": 76.0,
+        "distance": 0.19094502394639748,
+        "static_timely": true
+      },
+      {
+        "disruptive": 85680,
+        "safe": 96375,
+        "disruptive_origin": 5055,
+        "safe_origin": 1887,
+        "available_lead_ms": 71.0,
+        "distance": 0.46650753700770686,
+        "static_timely": true
+      },
+      {
+        "disruptive": 74990,
+        "safe": 67900,
+        "disruptive_origin": 3743,
+        "safe_origin": 223,
+        "available_lead_ms": 51.0,
+        "distance": 0.7674719066841575,
+        "static_timely": true
+      },
+      {
+        "disruptive": 69082,
+        "safe": 74928,
+        "disruptive_origin": 1439,
+        "safe_origin": 3455,
+        "available_lead_ms": 61.0,
+        "distance": 0.7190605477554932,
+        "static_timely": true
+      },
+      {
+        "disruptive": 85681,
+        "safe": 87689,
+        "disruptive_origin": 5471,
+        "safe_origin": 2271,
+        "available_lead_ms": 76.0,
+        "distance": 0.2739746630649389,
+        "static_timely": true
+      },
+      {
+        "disruptive": 73665,
+        "safe": 73740,
+        "disruptive_origin": 16351,
+        "safe_origin": 1759,
+        "available_lead_ms": 52.0,
+        "distance": 0.03724237875413522,
+        "static_timely": false
+      },
+      {
+        "disruptive": 69813,
+        "safe": 74676,
+        "disruptive_origin": 3935,
+        "safe_origin": 4735,
+        "available_lead_ms": 62.0,
+        "distance": 0.028410948334894413,
+        "static_timely": false
+      },
+      {
+        "disruptive": 85683,
+        "safe": 80053,
+        "disruptive_origin": 4991,
+        "safe_origin": 3391,
+        "available_lead_ms": 64.207951,
+        "distance": 0.16397411584689825,
+        "static_timely": true
+      },
+      {
+        "disruptive": 75603,
+        "safe": 74928,
+        "disruptive_origin": 3583,
+        "safe_origin": 3455,
+        "available_lead_ms": 74.0,
+        "distance": 0.25654253221977436,
+        "static_timely": true
+      },
+      {
+        "disruptive": 85684,
+        "safe": 82847,
+        "disruptive_origin": 4991,
+        "safe_origin": 2527,
+        "available_lead_ms": 68.0,
+        "distance": 1.042145564577833,
+        "static_timely": true
+      },
+      {
+        "disruptive": 75615,
+        "safe": 66458,
+        "disruptive_origin": 2431,
+        "safe_origin": 4063,
+        "available_lead_ms": 69.0,
+        "distance": 0.13600521116533823,
+        "static_timely": true
+      },
+      {
+        "disruptive": 73653,
+        "safe": 67451,
+        "disruptive_origin": 2047,
+        "safe_origin": 2431,
+        "available_lead_ms": 52.0,
+        "distance": 0.7764177026922962,
+        "static_timely": true
+      },
+      {
+        "disruptive": 81368,
+        "safe": 70043,
+        "disruptive_origin": 3199,
+        "safe_origin": 4703,
+        "available_lead_ms": 71.0,
+        "distance": 2.3383503048564647,
+        "static_timely": true
+      },
+      {
+        "disruptive": 73652,
+        "safe": 73323,
+        "disruptive_origin": 3167,
+        "safe_origin": 607,
+        "available_lead_ms": 79.0,
+        "distance": 0.038364859560384254,
+        "static_timely": true
+      },
+      {
+        "disruptive": 73889,
+        "safe": 67900,
+        "disruptive_origin": 1183,
+        "safe_origin": 223,
+        "available_lead_ms": 75.0,
+        "distance": 0.7651870715401559,
+        "static_timely": true
+      },
+      {
+        "disruptive": 73669,
+        "safe": 70258,
+        "disruptive_origin": 24127,
+        "safe_origin": 2687,
+        "available_lead_ms": 52.0,
+        "distance": 0.20092154608732876,
+        "static_timely": true
+      },
+      {
+        "disruptive": 63566,
+        "safe": 59394,
+        "disruptive_origin": 4031,
+        "safe_origin": 2911,
+        "available_lead_ms": 74.0,
+        "distance": 0.04542867401089541,
+        "static_timely": false
+      },
+      {
+        "disruptive": 73912,
+        "safe": 90740,
+        "disruptive_origin": 11007,
+        "safe_origin": 2367,
+        "available_lead_ms": 78.0,
+        "distance": 2.249134846745014,
+        "static_timely": true
+      },
+      {
+        "disruptive": 63545,
+        "safe": 63753,
+        "disruptive_origin": 1087,
+        "safe_origin": 3263,
+        "available_lead_ms": 67.0,
+        "distance": 0.020741503863779837,
+        "static_timely": false
+      },
+      {
+        "disruptive": 64919,
+        "safe": 94402,
+        "disruptive_origin": 1983,
+        "safe_origin": 383,
+        "available_lead_ms": 71.0,
+        "distance": 0.14149651178522535,
+        "static_timely": true
+      },
+      {
+        "disruptive": 77906,
+        "safe": 90166,
+        "disruptive_origin": 3487,
+        "safe_origin": 2175,
+        "available_lead_ms": 54.0,
+        "distance": 0.9396867426548491,
+        "static_timely": true
+      },
+      {
+        "disruptive": 74727,
+        "safe": 67451,
+        "disruptive_origin": 4511,
+        "safe_origin": 2431,
+        "available_lead_ms": 75.0,
+        "distance": 0.36828839093541277,
+        "static_timely": true
+      },
+      {
+        "disruptive": 73907,
+        "safe": 70394,
+        "disruptive_origin": 7999,
+        "safe_origin": 2239,
+        "available_lead_ms": 53.0,
+        "distance": 1.3392787647833608,
+        "static_timely": true
+      },
+      {
+        "disruptive": 79739,
+        "safe": 79734,
+        "disruptive_origin": 3199,
+        "safe_origin": 351,
+        "available_lead_ms": 76.0,
+        "distance": 0.07208404520926878,
+        "static_timely": true
+      },
+      {
+        "disruptive": 91689,
+        "safe": 80053,
+        "disruptive_origin": 1855,
+        "safe_origin": 2911,
+        "available_lead_ms": 57.0,
+        "distance": 0.5535625857870419,
+        "static_timely": true
+      },
+      {
+        "disruptive": 94281,
+        "safe": 62399,
+        "disruptive_origin": 1343,
+        "safe_origin": 671,
+        "available_lead_ms": 80.0,
+        "distance": 0.49446832369029275,
+        "static_timely": true
+      },
+      {
+        "disruptive": 93387,
+        "safe": 89326,
+        "disruptive_origin": 2559,
+        "safe_origin": 1599,
+        "available_lead_ms": 63.0,
+        "distance": 0.732879898568109,
+        "static_timely": true
+      },
+      {
+        "disruptive": 77302,
+        "safe": 90166,
+        "disruptive_origin": 4351,
+        "safe_origin": 2175,
+        "available_lead_ms": 72.0,
+        "distance": 0.63190903441703,
+        "static_timely": false
+      },
+      {
+        "disruptive": 85023,
+        "safe": 90740,
+        "disruptive_origin": 1023,
+        "safe_origin": 2367,
+        "available_lead_ms": 58.0,
+        "distance": 2.3981729641784275,
+        "static_timely": true
+      },
+      {
+        "disruptive": 85032,
+        "safe": 83231,
+        "disruptive_origin": 2143,
+        "safe_origin": 3455,
+        "available_lead_ms": 57.0,
+        "distance": 0.21680760778190347,
+        "static_timely": false
+      },
+      {
+        "disruptive": 90631,
+        "safe": 64990,
+        "disruptive_origin": 5023,
+        "safe_origin": 4671,
+        "available_lead_ms": 58.205403,
+        "distance": 0.15488317597338927,
+        "static_timely": true
+      },
+      {
+        "disruptive": 69324,
+        "safe": 70043,
+        "disruptive_origin": 3647,
+        "safe_origin": 3519,
+        "available_lead_ms": 69.0,
+        "distance": 0.24833955921491724,
+        "static_timely": true
+      },
+      {
+        "disruptive": 68901,
+        "safe": 66458,
+        "disruptive_origin": 4095,
+        "safe_origin": 383,
+        "available_lead_ms": 56.0,
+        "distance": 0.7115274817049454,
+        "static_timely": false
+      },
+      {
+        "disruptive": 94258,
+        "safe": 96375,
+        "disruptive_origin": 5023,
+        "safe_origin": 2015,
+        "available_lead_ms": 70.61199,
+        "distance": 0.3514967255698491,
+        "static_timely": true
+      },
+      {
+        "disruptive": 84711,
+        "safe": 94363,
+        "disruptive_origin": 2271,
+        "safe_origin": 2559,
+        "available_lead_ms": 64.0,
+        "distance": 1.2740609164252557,
+        "static_timely": true
+      },
+      {
+        "disruptive": 64448,
+        "safe": 82833,
+        "disruptive_origin": 3519,
+        "safe_origin": 863,
+        "available_lead_ms": 62.0,
+        "distance": 1.3328599013580962,
+        "static_timely": true
+      },
+      {
+        "disruptive": 64835,
+        "safe": 64869,
+        "disruptive_origin": 1311,
+        "safe_origin": 1343,
+        "available_lead_ms": 76.0,
+        "distance": 0.03203558751133562,
+        "static_timely": true
+      },
+      {
+        "disruptive": 63690,
+        "safe": 62399,
+        "disruptive_origin": 3007,
+        "safe_origin": 415,
+        "available_lead_ms": 59.257249,
+        "distance": 0.15273811348153887,
+        "static_timely": false
+      },
+      {
+        "disruptive": 78617,
+        "safe": 77419,
+        "disruptive_origin": 1247,
+        "safe_origin": 255,
+        "available_lead_ms": 63.0,
+        "distance": 0.03288199531351168,
+        "static_timely": false
+      },
+      {
+        "disruptive": 89044,
+        "safe": 90166,
+        "disruptive_origin": 2239,
+        "safe_origin": 3423,
+        "available_lead_ms": 79.0,
+        "distance": 0.041720105339564176,
+        "static_timely": true
+      },
+      {
+        "disruptive": 90314,
+        "safe": 90166,
+        "disruptive_origin": 1023,
+        "safe_origin": 2303,
+        "available_lead_ms": 80.0,
+        "distance": 1.6320902961367822,
+        "static_timely": true
+      },
+      {
+        "disruptive": 85526,
+        "safe": 78776,
+        "disruptive_origin": 5535,
+        "safe_origin": 1119,
+        "available_lead_ms": 58.0,
+        "distance": 0.2574840937840302,
+        "static_timely": true
+      },
+      {
+        "disruptive": 90321,
+        "safe": 64869,
+        "disruptive_origin": 7839,
+        "safe_origin": 4863,
+        "available_lead_ms": 72.0,
+        "distance": 0.03635403946544987,
+        "static_timely": false
+      },
+      {
+        "disruptive": 85181,
+        "safe": 90166,
+        "disruptive_origin": 5055,
+        "safe_origin": 3199,
+        "available_lead_ms": 65.20158,
+        "distance": 0.0772045073886391,
+        "static_timely": true
+      },
+      {
+        "disruptive": 90675,
+        "safe": 62360,
+        "disruptive_origin": 5407,
+        "safe_origin": 2815,
+        "available_lead_ms": 71.0,
+        "distance": 0.49918301995346825,
+        "static_timely": true
+      },
+      {
+        "disruptive": 94452,
+        "safe": 78722,
+        "disruptive_origin": 927,
+        "safe_origin": 4703,
+        "available_lead_ms": 50.0,
+        "distance": 0.1612159919368584,
+        "static_timely": true
+      },
+      {
+        "disruptive": 65023,
+        "safe": 62394,
+        "disruptive_origin": 2271,
+        "safe_origin": 2399,
+        "available_lead_ms": 62.0,
+        "distance": 0.4048314953777361,
+        "static_timely": true
+      },
+      {
+        "disruptive": 79899,
+        "safe": 94274,
+        "disruptive_origin": 1311,
+        "safe_origin": 383,
+        "available_lead_ms": 67.0,
+        "distance": 0.41413981080805257,
+        "static_timely": false
+      },
+      {
+        "disruptive": 74663,
+        "safe": 74928,
+        "disruptive_origin": 575,
+        "safe_origin": 1503,
+        "available_lead_ms": 53.0,
+        "distance": 0.589922246070757,
+        "static_timely": true
+      },
+      {
+        "disruptive": 89549,
+        "safe": 80546,
+        "disruptive_origin": 3775,
+        "safe_origin": 1023,
+        "available_lead_ms": 68.0,
+        "distance": 0.3892532395303788,
+        "static_timely": true
+      },
+      {
+        "disruptive": 75361,
+        "safe": 70394,
+        "disruptive_origin": 4607,
+        "safe_origin": 2175,
+        "available_lead_ms": 60.0,
+        "distance": 0.7710309568069357,
+        "static_timely": true
+      },
+      {
+        "disruptive": 62540,
+        "safe": 80546,
+        "disruptive_origin": 3871,
+        "safe_origin": 1471,
+        "available_lead_ms": 65.0,
+        "distance": 0.15737798297949496,
+        "static_timely": false
+      }
+    ]
+  }
+}

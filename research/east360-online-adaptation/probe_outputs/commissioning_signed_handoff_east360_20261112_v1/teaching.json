@@ -1,0 +1,2709 @@
+{
+  "scope": "JTEXT_TRAIN_ONLY_SIGNED_FORCE_TEACHER",
+  "source_sha256": "c7270c1ea3652db2e30e972d4ca9a4a2d33220a68e4a3765c8b7f5bcceeaeb02",
+  "history_sha256": "b00cdaa745b97633ad764334a43cecd3d7ea4c85183b0238d69d05e13046c6c1",
+  "fit_code_sha256": "f83fd68d7f44fabc832d25e4ad1d334929d28bf4939a29f4a3cf2093e52cc697",
+  "weights": [
+    [
+      1.1247764825820923,
+      0.549714982509613,
+      1.3333759307861328,
+      1.41176176071167
+    ],
+    [
+      0.6669638156890869,
+      0.5214824080467224,
+      0.6159543991088867,
+      0.9144082069396973
+    ]
+  ],
+  "rows": [
+    "persistent_error",
+    "zero_mean_time_variation"
+  ],
+  "groups": [
+    [
+      "n=1 amplitude"
+    ],
+    [
+      "dx_a",
+      "dy_a"
+    ],
+    [
+      "sxr_var",
+      "xuv_var",
+      "sxr_skew",
+      "xuv_skew"
+    ],
+    [
+      "v_loop"
+    ]
+  ],
+  "fit": {
+    "steps": 160,
+    "lr": 0.05,
+    "slope_scale": 0.1,
+    "penalty": 0.25,
+    "box": 0.75
+  },
+  "evidence": {
+    "train": {
+      "registered_pairs": 71,
+      "comparable_pairs": 48,
+      "pairs": [
+        [
+          {
+            "shot": 1051501,
+            "origin": 159,
+            "action": 209,
+            "positive": true
+          },
+          {
+            "shot": 1057581,
+            "origin": 191,
+            "action": 241,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1052269,
+            "origin": 191,
+            "action": 225,
+            "positive": true
+          },
+          {
+            "shot": 1057331,
+            "origin": 287,
+            "action": 329,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1052388,
+            "origin": 159,
+            "action": 193,
+            "positive": true
+          },
+          {
+            "shot": 1057900,
+            "origin": 159,
+            "action": 209,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1052639,
+            "origin": 319,
+            "action": 353,
+            "positive": true,
+            "exclusion": "action would miss timely region after one patch"
+          },
+          {
+            "shot": 1056841,
+            "origin": 191,
+            "action": 225,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1052641,
+            "origin": 159,
+            "action": 193,
+            "positive": true
+          },
+          {
+            "shot": 1055327,
+            "origin": 351,
+            "action": 385,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1052948,
+            "origin": 223,
+            "action": 257,
+            "positive": true
+          },
+          {
+            "shot": 1051505,
+            "origin": 415,
+            "action": 449,
+            "positive": false,
+            "exclusion": "action would miss timely region after one patch"
+          }
+        ],
+        [
+          {
+            "shot": 1052950,
+            "origin": 287,
+            "action": 337,
+            "positive": true
+          },
+          {
+            "shot": 1055797,
+            "origin": 223,
+            "action": 273,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1052951,
+            "origin": 223,
+            "action": 273,
+            "positive": true
+          },
+          {
+            "shot": 1055798,
+            "origin": 287,
+            "action": 329,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1052957,
+            "origin": 319,
+            "action": 353,
+            "positive": true
+          },
+          {
+            "shot": 1055058,
+            "origin": 319,
+            "action": 353,
+            "positive": false,
+            "exclusion": "action would miss timely region after one patch"
+          }
+        ],
+        [
+          {
+            "shot": 1052959,
+            "origin": 127,
+            "action": 161,
+            "positive": true,
+            "exclusion": "insufficient observed reference"
+          },
+          {
+            "shot": 1052956,
+            "origin": 127,
+            "action": 177,
+            "positive": false,
+            "exclusion": "insufficient observed reference"
+          }
+        ],
+        [
+          {
+            "shot": 1052961,
+            "origin": 319,
+            "action": 353,
+            "positive": true
+          },
+          {
+            "shot": 1058039,
+            "origin": 319,
+            "action": 353,
+            "positive": false,
+            "exclusion": "action would miss timely region after one patch"
+          }
+        ],
+        [
+          {
+            "shot": 1052962,
+            "origin": 159,
+            "action": 193,
+            "positive": true
+          },
+          {
+            "shot": 1055120,
+            "origin": 319,
+            "action": 353,
+            "positive": false,
+            "exclusion": "action would miss timely region after one patch"
+          }
+        ],
+        [
+          {
+            "shot": 1052967,
+            "origin": 255,
+            "action": 297,
+            "positive": true
+          },
+          {
+            "shot": 1055062,
+            "origin": 223,
+            "action": 257,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1053034,
+            "origin": 191,
+            "action": 241,
+            "positive": true
+          },
+          {
+            "shot": 1057268,
+            "origin": 287,
+            "action": 321,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1053036,
+            "origin": 191,
+            "action": 241,
+            "positive": true
+          },
+          {
+            "shot": 1055964,
+            "origin": 447,
+            "action": 489,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1053042,
+            "origin": 191,
+            "action": 233,
+            "positive": true
+          },
+          {
+            "shot": 1056048,
+            "origin": 159,
+            "action": 193,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1053412,
+            "origin": 223,
+            "action": 257,
+            "positive": true,
+            "exclusion": "action would miss timely region after one patch"
+          },
+          {
+            "shot": 1053100,
+            "origin": 255,
+            "action": 297,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1053851,
+            "origin": 191,
+            "action": 233,
+            "positive": true
+          },
+          {
+            "shot": 1053821,
+            "origin": 255,
+            "action": 289,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1053927,
+            "origin": 191,
+            "action": 241,
+            "positive": true
+          },
+          {
+            "shot": 1057273,
+            "origin": 319,
+            "action": 353,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1053930,
+            "origin": 191,
+            "action": 233,
+            "positive": true
+          },
+          {
+            "shot": 1056388,
+            "origin": 159,
+            "action": 193,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1053931,
+            "origin": 191,
+            "action": 241,
+            "positive": true
+          },
+          {
+            "shot": 1057218,
+            "origin": 191,
+            "action": 225,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1053932,
+            "origin": 191,
+            "action": 241,
+            "positive": true
+          },
+          {
+            "shot": 1057839,
+            "origin": 255,
+            "action": 289,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1053936,
+            "origin": 191,
+            "action": 241,
+            "positive": true
+          },
+          {
+            "shot": 1057269,
+            "origin": 159,
+            "action": 193,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1053940,
+            "origin": 191,
+            "action": 241,
+            "positive": true
+          },
+          {
+            "shot": 1057206,
+            "origin": 351,
+            "action": 393,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1053941,
+            "origin": 191,
+            "action": 233,
+            "positive": true
+          },
+          {
+            "shot": 1053451,
+            "origin": 287,
+            "action": 321,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1054064,
+            "origin": 255,
+            "action": 305,
+            "positive": true
+          },
+          {
+            "shot": 1056914,
+            "origin": 319,
+            "action": 353,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1054339,
+            "origin": 255,
+            "action": 305,
+            "positive": true
+          },
+          {
+            "shot": 1055598,
+            "origin": 191,
+            "action": 225,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1055074,
+            "origin": 255,
+            "action": 289,
+            "positive": true
+          },
+          {
+            "shot": 1052593,
+            "origin": 223,
+            "action": 273,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1055242,
+            "origin": 255,
+            "action": 297,
+            "positive": true
+          },
+          {
+            "shot": 1055337,
+            "origin": 255,
+            "action": 289,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1055323,
+            "origin": 351,
+            "action": 393,
+            "positive": true
+          },
+          {
+            "shot": 1055436,
+            "origin": 319,
+            "action": 353,
+            "positive": false,
+            "exclusion": "action would miss timely region after one patch"
+          }
+        ],
+        [
+          {
+            "shot": 1055325,
+            "origin": 319,
+            "action": 353,
+            "positive": true,
+            "exclusion": "action would miss timely region after one patch"
+          },
+          {
+            "shot": 1056842,
+            "origin": 223,
+            "action": 257,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1055332,
+            "origin": 223,
+            "action": 257,
+            "positive": true
+          },
+          {
+            "shot": 1055217,
+            "origin": 191,
+            "action": 225,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1055336,
+            "origin": 415,
+            "action": 449,
+            "positive": true
+          },
+          {
+            "shot": 1055363,
+            "origin": 223,
+            "action": 257,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1055341,
+            "origin": 383,
+            "action": 433,
+            "positive": true
+          },
+          {
+            "shot": 1056177,
+            "origin": 255,
+            "action": 305,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1055344,
+            "origin": 351,
+            "action": 401,
+            "positive": true
+          },
+          {
+            "shot": 1055494,
+            "origin": 255,
+            "action": 305,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1055345,
+            "origin": 351,
+            "action": 393,
+            "positive": true
+          },
+          {
+            "shot": 1055470,
+            "origin": 351,
+            "action": 393,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1055351,
+            "origin": 287,
+            "action": 321,
+            "positive": true
+          },
+          {
+            "shot": 1055499,
+            "origin": 223,
+            "action": 257,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1055416,
+            "origin": 159,
+            "action": 209,
+            "positive": true
+          },
+          {
+            "shot": 1053862,
+            "origin": 319,
+            "action": 361,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1055478,
+            "origin": 287,
+            "action": 337,
+            "positive": true
+          },
+          {
+            "shot": 1056218,
+            "origin": 127,
+            "action": 161,
+            "positive": false,
+            "exclusion": "insufficient observed reference"
+          }
+        ],
+        [
+          {
+            "shot": 1055492,
+            "origin": 127,
+            "action": 161,
+            "positive": true,
+            "exclusion": "insufficient observed reference"
+          },
+          {
+            "shot": 1055438,
+            "origin": 255,
+            "action": 305,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1055965,
+            "origin": 255,
+            "action": 305,
+            "positive": true
+          },
+          {
+            "shot": 1053926,
+            "origin": 159,
+            "action": 193,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1056200,
+            "origin": 319,
+            "action": 353,
+            "positive": true,
+            "exclusion": "action would miss timely region after one patch"
+          },
+          {
+            "shot": 1056178,
+            "origin": 255,
+            "action": 305,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1056221,
+            "origin": 223,
+            "action": 257,
+            "positive": true
+          },
+          {
+            "shot": 1055334,
+            "origin": 415,
+            "action": 449,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1056284,
+            "origin": 127,
+            "action": 161,
+            "positive": true,
+            "exclusion": "action would miss timely region after one patch"
+          },
+          {
+            "shot": 1056917,
+            "origin": 255,
+            "action": 305,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1056294,
+            "origin": 191,
+            "action": 241,
+            "positive": true
+          },
+          {
+            "shot": 1057616,
+            "origin": 223,
+            "action": 257,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1056324,
+            "origin": 127,
+            "action": 161,
+            "positive": true,
+            "exclusion": "insufficient observed reference"
+          },
+          {
+            "shot": 1054788,
+            "origin": 319,
+            "action": 353,
+            "positive": false,
+            "exclusion": "action would miss timely region after one patch"
+          }
+        ],
+        [
+          {
+            "shot": 1056382,
+            "origin": 223,
+            "action": 257,
+            "positive": true,
+            "exclusion": "action would miss timely region after one patch"
+          },
+          {
+            "shot": 1055972,
+            "origin": 319,
+            "action": 369,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1056386,
+            "origin": 191,
+            "action": 241,
+            "positive": true
+          },
+          {
+            "shot": 1055958,
+            "origin": 383,
+            "action": 417,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1056390,
+            "origin": 191,
+            "action": 241,
+            "positive": true
+          },
+          {
+            "shot": 1056806,
+            "origin": 223,
+            "action": 257,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1056391,
+            "origin": 223,
+            "action": 257,
+            "positive": true
+          },
+          {
+            "shot": 1054086,
+            "origin": 223,
+            "action": 257,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1056840,
+            "origin": 223,
+            "action": 257,
+            "positive": true
+          },
+          {
+            "shot": 1052638,
+            "origin": 255,
+            "action": 305,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1056844,
+            "origin": 127,
+            "action": 169,
+            "positive": true,
+            "exclusion": "insufficient observed reference"
+          },
+          {
+            "shot": 1052976,
+            "origin": 223,
+            "action": 257,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1056847,
+            "origin": 255,
+            "action": 297,
+            "positive": true
+          },
+          {
+            "shot": 1057348,
+            "origin": 351,
+            "action": 385,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1056919,
+            "origin": 223,
+            "action": 265,
+            "positive": true
+          },
+          {
+            "shot": 1056915,
+            "origin": 159,
+            "action": 201,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1056920,
+            "origin": 191,
+            "action": 225,
+            "positive": true
+          },
+          {
+            "shot": 1056916,
+            "origin": 319,
+            "action": 361,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1057203,
+            "origin": 287,
+            "action": 321,
+            "positive": true,
+            "exclusion": "action would miss timely region after one patch"
+          },
+          {
+            "shot": 1057228,
+            "origin": 351,
+            "action": 393,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1057205,
+            "origin": 287,
+            "action": 321,
+            "positive": true
+          },
+          {
+            "shot": 1052911,
+            "origin": 319,
+            "action": 369,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1057231,
+            "origin": 223,
+            "action": 265,
+            "positive": true
+          },
+          {
+            "shot": 1052914,
+            "origin": 223,
+            "action": 273,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1057250,
+            "origin": 319,
+            "action": 353,
+            "positive": true,
+            "exclusion": "action would miss timely region after one patch"
+          },
+          {
+            "shot": 1057251,
+            "origin": 287,
+            "action": 321,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1057280,
+            "origin": 255,
+            "action": 297,
+            "positive": true
+          },
+          {
+            "shot": 1054785,
+            "origin": 319,
+            "action": 353,
+            "positive": false,
+            "exclusion": "action would miss timely region after one patch"
+          }
+        ],
+        [
+          {
+            "shot": 1057329,
+            "origin": 255,
+            "action": 305,
+            "positive": true
+          },
+          {
+            "shot": 1052980,
+            "origin": 287,
+            "action": 337,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1057338,
+            "origin": 191,
+            "action": 233,
+            "positive": true
+          },
+          {
+            "shot": 1057349,
+            "origin": 351,
+            "action": 385,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1057347,
+            "origin": 287,
+            "action": 329,
+            "positive": true
+          },
+          {
+            "shot": 1056286,
+            "origin": 255,
+            "action": 305,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1057578,
+            "origin": 191,
+            "action": 241,
+            "positive": true
+          },
+          {
+            "shot": 1057712,
+            "origin": 255,
+            "action": 305,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1057611,
+            "origin": 191,
+            "action": 233,
+            "positive": true
+          },
+          {
+            "shot": 1057576,
+            "origin": 319,
+            "action": 353,
+            "positive": false,
+            "exclusion": "action would miss timely region after one patch"
+          }
+        ],
+        [
+          {
+            "shot": 1057614,
+            "origin": 191,
+            "action": 241,
+            "positive": true
+          },
+          {
+            "shot": 1058034,
+            "origin": 127,
+            "action": 161,
+            "positive": false,
+            "exclusion": "insufficient observed reference"
+          }
+        ],
+        [
+          {
+            "shot": 1057620,
+            "origin": 319,
+            "action": 353,
+            "positive": true
+          },
+          {
+            "shot": 1056877,
+            "origin": 319,
+            "action": 369,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1057636,
+            "origin": 287,
+            "action": 321,
+            "positive": true
+          },
+          {
+            "shot": 1057644,
+            "origin": 287,
+            "action": 329,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1057831,
+            "origin": 127,
+            "action": 161,
+            "positive": true,
+            "exclusion": "insufficient observed reference"
+          },
+          {
+            "shot": 1057941,
+            "origin": 255,
+            "action": 305,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1057836,
+            "origin": 127,
+            "action": 161,
+            "positive": true,
+            "exclusion": "insufficient observed reference"
+          },
+          {
+            "shot": 1053942,
+            "origin": 287,
+            "action": 329,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1057838,
+            "origin": 191,
+            "action": 241,
+            "positive": true
+          },
+          {
+            "shot": 1053953,
+            "origin": 191,
+            "action": 225,
+            "positive": false
+          }
+        ]
+      ],
+      "finite_pairs": 48,
+      "scores": {
+        "radius_matched": {
+          "both_correct": 10,
+          "positive_higher": 18,
+          "positive_mean": -0.02756107248205808,
+          "safe_mean": 0.00789295150510346
+        },
+        "signed_uniform": {
+          "both_correct": 12,
+          "positive_higher": 24,
+          "positive_mean": 0.06536697052282155,
+          "safe_mean": 0.029049236725162093
+        },
+        "signed_reverse": {
+          "both_correct": 10,
+          "positive_higher": 25,
+          "positive_mean": 0.05451463301627276,
+          "safe_mean": 0.00046160036193517345
+        },
+        "signed_taught": {
+          "both_correct": 7,
+          "positive_higher": 24,
+          "positive_mean": 0.052236223506042734,
+          "safe_mean": 0.014761547223315574
+        },
+        "signed_taught_reverse": {
+          "both_correct": 9,
+          "positive_higher": 25,
+          "positive_mean": 0.05101083485836474,
+          "safe_mean": -0.0022713333940676725
+        }
+      },
+      "finite_changes": [
+        [
+          [
+            1.0982356071472168,
+            [
+              0.28743642568588257,
+              0.010642311535775661,
+              0.009586665779352188,
+              -0.056523870676755905,
+              -0.052980802953243256
+            ]
+          ],
+          [
+            1.3943015336990356,
+            [
+              -0.035650718957185745,
+              0.03772518411278725,
+              0.04543941468000412,
+              0.03321467712521553,
+              0.04005173593759537
+            ]
+          ]
+        ],
+        [
+          [
+            1.183763027191162,
+            [
+              -0.11534008383750916,
+              0.12413755804300308,
+              0.12797339260578156,
+              0.11691948771476746,
+              0.11468231678009033
+            ]
+          ],
+          [
+            1.0228685140609741,
+            [
+              0.1476595103740692,
+              0.12090874463319778,
+              0.12557537853717804,
+              0.09537091851234436,
+              0.09711544215679169
+            ]
+          ]
+        ],
+        [
+          [
+            1.0084154605865479,
+            [
+              -0.12500664591789246,
+              0.3210534155368805,
+              0.3373441994190216,
+              0.2985401749610901,
+              0.3063817620277405
+            ]
+          ],
+          [
+            1.0435813665390015,
+            [
+              0.026156844571232796,
+              -0.05270874500274658,
+              -0.0768110603094101,
+              -0.06446069478988647,
+              -0.07418608665466309
+            ]
+          ]
+        ],
+        [
+          [
+            0.8537288904190063,
+            [
+              0.03787298500537872,
+              -0.025814171880483627,
+              -0.03552073612809181,
+              -0.024048838764429092,
+              -0.03161894157528877
+            ]
+          ],
+          [
+            0.9542723894119263,
+            [
+              0.13127750158309937,
+              0.05950292944908142,
+              0.0559028685092926,
+              0.058373935520648956,
+              0.056593868881464005
+            ]
+          ]
+        ],
+        [
+          [
+            1.0831990242004395,
+            [
+              -0.04242821782827377,
+              -0.0318421944975853,
+              -0.024763669818639755,
+              -0.016344111412763596,
+              -0.012668728828430176
+            ]
+          ],
+          [
+            1.019791841506958,
+            [
+              0.023293733596801758,
+              0.05549062788486481,
+              0.05559707432985306,
+              0.055576078593730927,
+              0.055650096386671066
+            ]
+          ]
+        ],
+        [
+          [
+            0.9682729840278625,
+            [
+              0.03201043978333473,
+              -0.01636078953742981,
+              -0.015835218131542206,
+              -0.030076052993535995,
+              -0.030273936688899994
+            ]
+          ],
+          [
+            1.2830233573913574,
+            [
+              0.03479716554284096,
+              0.09288564324378967,
+              0.09205088764429092,
+              0.08561129868030548,
+              0.08482156693935394
+            ]
+          ]
+        ],
+        [
+          [
+            1.074228048324585,
+            [
+              0.05828748643398285,
+              -0.030661042779684067,
+              -0.024779878556728363,
+              -0.024077195674180984,
+              -0.02200230583548546
+            ]
+          ],
+          [
+            0.8443566560745239,
+            [
+              0.14974567294120789,
+              0.04016518592834473,
+              0.016540002077817917,
+              0.05924684554338455,
+              0.04559201002120972
+            ]
+          ]
+        ],
+        [
+          [
+            0.9385630488395691,
+            [
+              -0.007655300199985504,
+              0.02168547734618187,
+              0.02073213830590248,
+              0.023332420736551285,
+              0.023307546973228455
+            ]
+          ],
+          [
+            1.0244340896606445,
+            [
+              0.013130223378539085,
+              0.018084514886140823,
+              0.003573734313249588,
+              0.006043159402906895,
+              -0.00012493296526372433
+            ]
+          ]
+        ],
+        [
+          [
+            1.302046298980713,
+            [
+              -0.03893539309501648,
+              -0.033282361924648285,
+              -0.035677388310432434,
+              -0.03665771707892418,
+              -0.03606565669178963
+            ]
+          ],
+          [
+            1.206007957458496,
+            [
+              -0.042707815766334534,
+              -0.18030314147472382,
+              -0.08474209904670715,
+              -0.18051084876060486,
+              -0.12658481299877167
+            ]
+          ]
+        ],
+        [
+          [
+            0.968914806842804,
+            [
+              -0.01651174947619438,
+              -0.037416864186525345,
+              -0.036994900554418564,
+              -0.03874934837222099,
+              -0.03843022510409355
+            ]
+          ],
+          [
+            1.0458241701126099,
+            [
+              -0.02722861059010029,
+              -0.040156036615371704,
+              -0.05832888185977936,
+              -0.03584284335374832,
+              -0.045569922775030136
+            ]
+          ]
+        ],
+        [
+          [
+            1.1424353122711182,
+            [
+              0.08520524203777313,
+              0.05682874470949173,
+              0.04692031443119049,
+              0.05089329928159714,
+              0.04494205862283707
+            ]
+          ],
+          [
+            1.1685739755630493,
+            [
+              -0.08460089564323425,
+              -0.1457313597202301,
+              -0.05832552909851074,
+              0.007040189113467932,
+              0.06556503474712372
+            ]
+          ]
+        ],
+        [
+          [
+            0.9923240542411804,
+            [
+              -0.013559659942984581,
+              0.0377633236348629,
+              0.03971130773425102,
+              0.0440913662314415,
+              0.04606053605675697
+            ]
+          ],
+          [
+            1.1700375080108643,
+            [
+              -0.05357129126787186,
+              -0.13480953872203827,
+              -0.11671777069568634,
+              -0.13486507534980774,
+              -0.12225720286369324
+            ]
+          ]
+        ],
+        [
+          [
+            0.9560642242431641,
+            [
+              0.02742082253098488,
+              0.02346925064921379,
+              0.03344736248254776,
+              0.03549090772867203,
+              0.04019532352685928
+            ]
+          ],
+          [
+            1.1359268426895142,
+            [
+              -0.03431036323308945,
+              0.03373079374432564,
+              0.03186739981174469,
+              0.0308212973177433,
+              0.030159519985318184
+            ]
+          ]
+        ],
+        [
+          [
+            1.18184232711792,
+            [
+              0.08924083411693573,
+              0.02549261599779129,
+              0.041077081114053726,
+              0.019796743988990784,
+              0.027880024164915085
+            ]
+          ],
+          [
+            1.3144513368606567,
+            [
+              1.0158185958862305,
+              0.8100398778915405,
+              0.1646377295255661,
+              0.5393728017807007,
+              0.09336590766906738
+            ]
+          ]
+        ],
+        [
+          [
+            1.00697660446167,
+            [
+              -0.0987614095211029,
+              0.00550423189997673,
+              0.03907676041126251,
+              0.020002473145723343,
+              0.0459909550845623
+            ]
+          ],
+          [
+            1.09263014793396,
+            [
+              -0.006502864416688681,
+              0.03128058463335037,
+              0.03222585469484329,
+              0.04335101693868637,
+              0.04458502307534218
+            ]
+          ]
+        ],
+        [
+          [
+            1.2909117937088013,
+            [
+              -0.06081518530845642,
+              0.007603323087096214,
+              0.0630422830581665,
+              0.027873417362570763,
+              0.052580825984478
+            ]
+          ],
+          [
+            0.8749374747276306,
+            [
+              0.02455289289355278,
+              0.019943200051784515,
+              0.014756698161363602,
+              0.017459532245993614,
+              0.01578952744603157
+            ]
+          ]
+        ],
+        [
+          [
+            1.2109342813491821,
+            [
+              0.029866114258766174,
+              -0.08621823042631149,
+              -0.10041588544845581,
+              -0.0861542820930481,
+              -0.0931776911020279
+            ]
+          ],
+          [
+            1.2421252727508545,
+            [
+              0.280487596988678,
+              0.26075005531311035,
+              0.25056207180023193,
+              0.2662069797515869,
+              0.26173046231269836
+            ]
+          ]
+        ],
+        [
+          [
+            1.337088942527771,
+            [
+              0.4505169689655304,
+              0.5269200801849365,
+              0.15040414035320282,
+              0.4990958571434021,
+              0.3743443489074707
+            ]
+          ],
+          [
+            1.302954912185669,
+            [
+              -0.30689385533332825,
+              0.44492343068122864,
+              0.2455754280090332,
+              0.3747415542602539,
+              0.28221017122268677
+            ]
+          ]
+        ],
+        [
+          [
+            1.1820255517959595,
+            [
+              -0.0570143386721611,
+              -0.09404827654361725,
+              -0.0852477103471756,
+              -0.1383233666419983,
+              -0.132085382938385
+            ]
+          ],
+          [
+            1.6492661237716675,
+            [
+              -0.01907767727971077,
+              0.1332433819770813,
+              0.3169938921928406,
+              0.06489676237106323,
+              0.15173915028572083
+            ]
+          ]
+        ],
+        [
+          [
+            1.0021576881408691,
+            [
+              -0.06271220743656158,
+              -0.07099193334579468,
+              -0.07153046131134033,
+              -0.07036051899194717,
+              -0.07074527442455292
+            ]
+          ],
+          [
+            1.171741247177124,
+            [
+              -0.06149766594171524,
+              -0.01718258485198021,
+              0.03007335215806961,
+              -0.009687267243862152,
+              0.009734811261296272
+            ]
+          ]
+        ],
+        [
+          [
+            1.3493297100067139,
+            [
+              0.1550811231136322,
+              0.2538530230522156,
+              0.2490370124578476,
+              0.30290114879608154,
+              0.2981017827987671
+            ]
+          ],
+          [
+            1.2709383964538574,
+            [
+              -0.026753131300210953,
+              -0.0469074472784996,
+              0.05352112650871277,
+              -0.04868515953421593,
+              -0.03420007601380348
+            ]
+          ]
+        ],
+        [
+          [
+            1.0800719261169434,
+            [
+              -0.21584314107894897,
+              0.5829716920852661,
+              0.4686819016933441,
+              0.5601825714111328,
+              0.5271484851837158
+            ]
+          ],
+          [
+            1.293548583984375,
+            [
+              -0.25359705090522766,
+              0.0939478650689125,
+              -0.12369996309280396,
+              0.03176704794168472,
+              -0.08215847611427307
+            ]
+          ]
+        ],
+        [
+          [
+            1.054340124130249,
+            [
+              -0.27481886744499207,
+              0.4568098783493042,
+              0.43727853894233704,
+              0.38312068581581116,
+              0.3559603691101074
+            ]
+          ],
+          [
+            0.8757733702659607,
+            [
+              -0.0344860777258873,
+              -0.010053461417555809,
+              -0.028176147490739822,
+              -0.011411430314183235,
+              -0.019500840455293655
+            ]
+          ]
+        ],
+        [
+          [
+            0.9403888583183289,
+            [
+              -0.006685887463390827,
+              -0.04986455291509628,
+              -0.04543290287256241,
+              -0.06441512703895569,
+              -0.06138180196285248
+            ]
+          ],
+          [
+            0.9569714069366455,
+            [
+              0.03978066146373749,
+              -0.05274534970521927,
+              -0.05119555443525314,
+              -0.05041780322790146,
+              -0.04965660348534584
+            ]
+          ]
+        ],
+        [
+          [
+            1.0263937711715698,
+            [
+              -0.032829441130161285,
+              -0.016794143244624138,
+              -0.0366281159222126,
+              -0.0038019255734980106,
+              -0.01909087412059307
+            ]
+          ],
+          [
+            1.1775723695755005,
+            [
+              -0.07410147786140442,
+              -0.028136786073446274,
+              -0.006675761193037033,
+              0.054424673318862915,
+              0.07128749787807465
+            ]
+          ]
+        ],
+        [
+          [
+            1.1081291437149048,
+            [
+              0.04243379458785057,
+              0.028147056698799133,
+              0.0022189244627952576,
+              0.024948999285697937,
+              0.006249554455280304
+            ]
+          ],
+          [
+            0.9795577526092529,
+            [
+              0.04373468458652496,
+              0.05171143263578415,
+              0.04596543684601784,
+              0.05280287563800812,
+              0.05057194083929062
+            ]
+          ]
+        ],
+        [
+          [
+            1.0329183340072632,
+            [
+              0.017460249364376068,
+              0.0001132468314608559,
+              0.0016778246499598026,
+              -0.005229859612882137,
+              -0.004248361103236675
+            ]
+          ],
+          [
+            1.0234203338623047,
+            [
+              -0.009977989830076694,
+              -0.023799113929271698,
+              -0.02328788861632347,
+              -0.011715810745954514,
+              -0.011003786697983742
+            ]
+          ]
+        ],
+        [
+          [
+            1.3553615808486938,
+            [
+              0.02531222626566887,
+              0.11075730621814728,
+              -0.045420534908771515,
+              0.12995652854442596,
+              0.026073003187775612
+            ]
+          ],
+          [
+            0.9294858574867249,
+            [
+              -0.0061328294686973095,
+              -0.02718217298388481,
+              -0.007781385909765959,
+              -0.02741571143269539,
+              -0.017893720418214798
+            ]
+          ]
+        ],
+        [
+          [
+            0.9632097482681274,
+            [
+              -0.06041815131902695,
+              -0.07193301618099213,
+              0.009394438937306404,
+              -0.0691334530711174,
+              -0.046516794711351395
+            ]
+          ],
+          [
+            1.0483556985855103,
+            [
+              0.07182738184928894,
+              0.06709400564432144,
+              0.06711199879646301,
+              0.04779139906167984,
+              0.046894412487745285
+            ]
+          ]
+        ],
+        [
+          [
+            1.3605852127075195,
+            [
+              -0.11544309556484222,
+              0.010258868336677551,
+              -0.02352764829993248,
+              -0.013509892858564854,
+              -0.03268613666296005
+            ]
+          ],
+          [
+            0.8000591993331909,
+            [
+              0.10643082857131958,
+              0.007997231557965279,
+              -0.029609380289912224,
+              0.001887891674414277,
+              -0.016185015439987183
+            ]
+          ]
+        ],
+        [
+          [
+            1.242545485496521,
+            [
+              -0.10276004672050476,
+              0.3097817301750183,
+              0.34477871656417847,
+              0.3247596323490143,
+              0.33871713280677795
+            ]
+          ],
+          [
+            1.0629675388336182,
+            [
+              -0.015269427560269833,
+              -1.102565884590149,
+              -1.0758322477340698,
+              -1.1126445531845093,
+              -1.106986403465271
+            ]
+          ]
+        ],
+        [
+          [
+            1.0599017143249512,
+            [
+              -0.03431003913283348,
+              0.017504282295703888,
+              0.04538676515221596,
+              -0.014891045168042183,
+              -0.005612617824226618
+            ]
+          ],
+          [
+            1.0172902345657349,
+            [
+              -0.006621605716645718,
+              -0.03718935698270798,
+              -0.02513069473206997,
+              -0.04094640910625458,
+              -0.033253900706768036
+            ]
+          ]
+        ],
+        [
+          [
+            1.0421257019042969,
+            [
+              -0.0006814917433075607,
+              -0.018963534384965897,
+              -0.025295022875070572,
+              -0.019099565222859383,
+              -0.02162223309278488
+            ]
+          ],
+          [
+            1.7647219896316528,
+            [
+              -0.3244224190711975,
+              -0.06253179907798767,
+              -0.015738293528556824,
+              -0.026095600798726082,
+              -0.004369841888546944
+            ]
+          ]
+        ],
+        [
+          [
+            1.0395368337631226,
+            [
+              0.07068510353565216,
+              0.0012417889665812254,
+              -0.026008952409029007,
+              -0.01950731873512268,
+              -0.03107181191444397
+            ]
+          ],
+          [
+            1.1440277099609375,
+            [
+              -0.042893778532743454,
+              -0.20095610618591309,
+              -0.1540672481060028,
+              -0.21366141736507416,
+              -0.19693927466869354
+            ]
+          ]
+        ],
+        [
+          [
+            1.106213927268982,
+            [
+              0.07205184549093246,
+              0.10142292827367783,
+              0.0983973890542984,
+              0.06992769986391068,
+              0.06564993411302567
+            ]
+          ],
+          [
+            0.8124876022338867,
+            [
+              -0.056796588003635406,
+              -0.0093349888920784,
+              -0.07046633958816528,
+              -0.0350596159696579,
+              -0.06743234395980835
+            ]
+          ]
+        ],
+        [
+          [
+            1.1777819395065308,
+            [
+              0.22697454690933228,
+              -0.022215737029910088,
+              -0.052292536944150925,
+              -0.07556226849555969,
+              -0.08300524950027466
+            ]
+          ],
+          [
+            1.128096103668213,
+            [
+              -0.03023691661655903,
+              0.028685318306088448,
+              0.009842483326792717,
+              0.0182638056576252,
+              0.011170733720064163
+            ]
+          ]
+        ],
+        [
+          [
+            1.2806880474090576,
+            [
+              -0.0004106073174625635,
+              -0.010788027197122574,
+              -0.005087626166641712,
+              -0.01128973625600338,
+              -0.008571711368858814
+            ]
+          ],
+          [
+            0.9955973625183105,
+            [
+              0.12612107396125793,
+              -0.008844268508255482,
+              2.2020190954208374e-05,
+              -0.02714848518371582,
+              -0.02546476572751999
+            ]
+          ]
+        ],
+        [
+          [
+            1.3088997602462769,
+            [
+              -0.21142035722732544,
+              -0.1909787356853485,
+              -0.04337839409708977,
+              -0.02543593756854534,
+              0.10516318678855896
+            ]
+          ],
+          [
+            0.944058895111084,
+            [
+              0.12842446565628052,
+              0.20601634681224823,
+              0.21632038056850433,
+              0.18172824382781982,
+              0.18849386274814606
+            ]
+          ]
+        ],
+        [
+          [
+            1.185007095336914,
+            [
+              -0.14932478964328766,
+              -0.15248994529247284,
+              -0.04128869250416756,
+              -0.09819954633712769,
+              -0.07064606994390488
+            ]
+          ],
+          [
+            1.3101191520690918,
+            [
+              -0.046147964894771576,
+              0.10628002882003784,
+              0.10251621901988983,
+              0.1033552885055542,
+              0.10030028223991394
+            ]
+          ]
+        ],
+        [
+          [
+            1.1226966381072998,
+            [
+              -0.2382563054561615,
+              -0.14432942867279053,
+              -0.09825462847948074,
+              -0.16041776537895203,
+              -0.1625213623046875
+            ]
+          ],
+          [
+            1.2082250118255615,
+            [
+              -0.22680673003196716,
+              0.45949918031692505,
+              -0.3105289340019226,
+              0.08147943019866943,
+              -0.29448217153549194
+            ]
+          ]
+        ],
+        [
+          [
+            1.443926215171814,
+            [
+              -0.10449600964784622,
+              -0.299003541469574,
+              -0.7443881630897522,
+              -0.3380652964115143,
+              -0.6043651700019836
+            ]
+          ],
+          [
+            1.2407444715499878,
+            [
+              -0.02684064209461212,
+              0.02099549025297165,
+              0.03571121767163277,
+              0.03456081449985504,
+              0.03906810283660889
+            ]
+          ]
+        ],
+        [
+          [
+            1.2678301334381104,
+            [
+              0.18676543235778809,
+              0.2005414366722107,
+              0.21093398332595825,
+              0.18533587455749512,
+              0.18436568975448608
+            ]
+          ],
+          [
+            1.0273717641830444,
+            [
+              0.035986773669719696,
+              -0.008213480934500694,
+              -0.004983145743608475,
+              0.008171549066901207,
+              0.010385697707533836
+            ]
+          ]
+        ],
+        [
+          [
+            1.169143795967102,
+            [
+              -0.41752779483795166,
+              1.1693122386932373,
+              1.198032259941101,
+              0.504370927810669,
+              0.7539371848106384
+            ]
+          ],
+          [
+            1.1327406167984009,
+            [
+              -0.10167858004570007,
+              0.12859442830085754,
+              0.11616118997335434,
+              0.1326720416545868,
+              0.12721949815750122
+            ]
+          ]
+        ],
+        [
+          [
+            0.9572790861129761,
+            [
+              -0.013955555856227875,
+              0.05346452817320824,
+              0.058357931673526764,
+              0.051250506192445755,
+              0.05282168835401535
+            ]
+          ],
+          [
+            1.1691447496414185,
+            [
+              0.005049834959208965,
+              0.09824493527412415,
+              0.10301323235034943,
+              0.09362530708312988,
+              0.09669020771980286
+            ]
+          ]
+        ],
+        [
+          [
+            1.2116973400115967,
+            [
+              0.09492453932762146,
+              0.18591144680976868,
+              0.16919401288032532,
+              0.18638136982917786,
+              0.17536020278930664
+            ]
+          ],
+          [
+            1.7611100673675537,
+            [
+              0.07506218552589417,
+              0.05460633710026741,
+              0.04859074950218201,
+              0.05078423023223877,
+              0.042151033878326416
+            ]
+          ]
+        ],
+        [
+          [
+            1.363001823425293,
+            [
+              -0.5432875156402588,
+              0.05641472339630127,
+              0.17170841991901398,
+              0.24910403788089752,
+              0.31276869773864746
+            ]
+          ],
+          [
+            1.5230910778045654,
+            [
+              -0.07595747709274292,
+              0.09501376748085022,
+              0.08951983600854874,
+              0.09068407118320465,
+              0.09457185119390488
+            ]
+          ]
+        ],
+        [
+          [
+            0.9636049270629883,
+            [
+              -0.04122724384069443,
+              -0.026891909539699554,
+              -0.0253395214676857,
+              -0.025988612323999405,
+              -0.024462047964334488
+            ]
+          ],
+          [
+            1.1810427904129028,
+            [
+              0.03286544233560562,
+              0.003666684962809086,
+              -0.009284102357923985,
+              0.007755624130368233,
+              0.0012850528582930565
+            ]
+          ]
+        ],
+        [
+          [
+            1.450755000114441,
+            [
+              -0.11004112660884857,
+              -0.1311034858226776,
+              -0.11458279192447662,
+              -0.13507474958896637,
+              -0.13431134819984436
+            ]
+          ],
+          [
+            1.1886695623397827,
+            [
+              -0.10257895290851593,
+              0.002687778789550066,
+              -0.016128432005643845,
+              0.010041652247309685,
+              0.00443167332559824
+            ]
+          ]
+        ]
+      ]
+    },
+    "val": {
+      "registered_pairs": 15,
+      "comparable_pairs": 6,
+      "pairs": [
+        [
+          {
+            "shot": 1051764,
+            "origin": 127,
+            "action": 177,
+            "positive": true,
+            "exclusion": "insufficient observed reference"
+          },
+          {
+            "shot": 1051592,
+            "origin": 159,
+            "action": 209,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1052960,
+            "origin": 223,
+            "action": 273,
+            "positive": true
+          },
+          {
+            "shot": 1052966,
+            "origin": 159,
+            "action": 209,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1053131,
+            "origin": 127,
+            "action": 161,
+            "positive": true,
+            "exclusion": "insufficient observed reference"
+          },
+          {
+            "shot": 1057270,
+            "origin": 191,
+            "action": 241,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1054188,
+            "origin": 223,
+            "action": 257,
+            "positive": true,
+            "exclusion": "action would miss timely region after one patch"
+          },
+          {
+            "shot": 1051769,
+            "origin": 287,
+            "action": 321,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1054337,
+            "origin": 191,
+            "action": 233,
+            "positive": true
+          },
+          {
+            "shot": 1054250,
+            "origin": 223,
+            "action": 257,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1055186,
+            "origin": 127,
+            "action": 177,
+            "positive": true,
+            "exclusion": "insufficient observed reference"
+          },
+          {
+            "shot": 1057014,
+            "origin": 127,
+            "action": 161,
+            "positive": false,
+            "exclusion": "insufficient observed reference"
+          }
+        ],
+        [
+          {
+            "shot": 1055339,
+            "origin": 255,
+            "action": 305,
+            "positive": true
+          },
+          {
+            "shot": 1055495,
+            "origin": 127,
+            "action": 161,
+            "positive": false,
+            "exclusion": "insufficient observed reference"
+          }
+        ],
+        [
+          {
+            "shot": 1055947,
+            "origin": 319,
+            "action": 361,
+            "positive": true
+          },
+          {
+            "shot": 1054247,
+            "origin": 191,
+            "action": 233,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1056293,
+            "origin": 127,
+            "action": 177,
+            "positive": true,
+            "exclusion": "insufficient observed reference"
+          },
+          {
+            "shot": 1056233,
+            "origin": 255,
+            "action": 297,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1056921,
+            "origin": 127,
+            "action": 177,
+            "positive": true,
+            "exclusion": "insufficient observed reference"
+          },
+          {
+            "shot": 1057713,
+            "origin": 287,
+            "action": 337,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1057204,
+            "origin": 127,
+            "action": 177,
+            "positive": true,
+            "exclusion": "insufficient observed reference"
+          },
+          {
+            "shot": 1056932,
+            "origin": 255,
+            "action": 305,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1057497,
+            "origin": 255,
+            "action": 305,
+            "positive": true
+          },
+          {
+            "shot": 1054063,
+            "origin": 159,
+            "action": 201,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1057527,
+            "origin": 159,
+            "action": 193,
+            "positive": true
+          },
+          {
+            "shot": 1056288,
+            "origin": 255,
+            "action": 297,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 1057556,
+            "origin": 255,
+            "action": 289,
+            "positive": true
+          },
+          {
+            "shot": 1056967,
+            "origin": 127,
+            "action": 161,
+            "positive": false,
+            "exclusion": "insufficient observed reference"
+          }
+        ],
+        [
+          {
+            "shot": 1057917,
+            "origin": 223,
+            "action": 257,
+            "positive": true
+          },
+          {
+            "shot": 1057248,
+            "origin": 287,
+            "action": 321,
+            "positive": false
+          }
+        ]
+      ],
+      "finite_pairs": 6,
+      "scores": {
+        "radius_matched": {
+          "both_correct": 2,
+          "positive_higher": 2,
+          "positive_mean": 0.06433943860853712,
+          "safe_mean": 0.1384984034424027
+        },
+        "signed_uniform": {
+          "both_correct": 2,
+          "positive_higher": 4,
+          "positive_mean": 0.10686897494209309,
+          "safe_mean": 0.21913804889967045
+        },
+        "signed_reverse": {
+          "both_correct": 2,
+          "positive_higher": 3,
+          "positive_mean": 0.09425061281460027,
+          "safe_mean": 0.099128064699471
+        },
+        "signed_taught": {
+          "both_correct": 2,
+          "positive_higher": 4,
+          "positive_mean": 0.09540825306127469,
+          "safe_mean": 0.15509407439579567
+        },
+        "signed_taught_reverse": {
+          "both_correct": 2,
+          "positive_higher": 4,
+          "positive_mean": 0.09034811868332326,
+          "safe_mean": 0.087009707155327
+        }
+      },
+      "finite_changes": [
+        [
+          [
+            1.2137823104858398,
+            [
+              -0.09984542429447174,
+              -0.09153715521097183,
+              -0.054799120873212814,
+              -0.0795283392071724,
+              -0.06511570513248444
+            ]
+          ],
+          [
+            0.9439356327056885,
+            [
+              -0.05086088180541992,
+              -0.014448083937168121,
+              -0.016549667343497276,
+              -0.018552983179688454,
+              -0.019932029768824577
+            ]
+          ]
+        ],
+        [
+          [
+            1.0988032817840576,
+            [
+              0.0024686846882104874,
+              0.0046721105463802814,
+              0.00471046706661582,
+              0.004613500088453293,
+              0.004557926673442125
+            ]
+          ],
+          [
+            0.9827353358268738,
+            [
+              0.009607704356312752,
+              -0.02305394597351551,
+              -0.023846827447414398,
+              -0.02404620498418808,
+              -0.023830808699131012
+            ]
+          ]
+        ],
+        [
+          [
+            1.1208385229110718,
+            [
+              0.044218502938747406,
+              0.06286294758319855,
+              -0.11290322244167328,
+              0.05682751163840294,
+              -0.035348109900951385
+            ]
+          ],
+          [
+            1.2506062984466553,
+            [
+              -0.06436048448085785,
+              -0.09795956313610077,
+              -0.02769952267408371,
+              -0.08441287279129028,
+              -0.04994754493236542
+            ]
+          ]
+        ],
+        [
+          [
+            1.0157408714294434,
+            [
+              0.4473138451576233,
+              0.4848898947238922,
+              0.49877607822418213,
+              0.4547628164291382,
+              0.4613305926322937
+            ]
+          ],
+          [
+            1.0820579528808594,
+            [
+              -0.03693602979183197,
+              0.018043503165245056,
+              0.014218959957361221,
+              0.0363197959959507,
+              0.0315912663936615
+            ]
+          ]
+        ],
+        [
+          [
+            1.1092209815979004,
+            [
+              0.008934653364121914,
+              0.2161940336227417,
+              0.2587467432022095,
+              0.1621069312095642,
+              0.19773533940315247
+            ]
+          ],
+          [
+            1.3359450101852417,
+            [
+              0.23475520312786102,
+              0.06076758727431297,
+              -0.17317058145999908,
+              0.045633699744939804,
+              -0.08773930370807648
+            ]
+          ]
+        ],
+        [
+          [
+            1.6124110221862793,
+            [
+              -0.01705363020300865,
+              -0.03586798161268234,
+              -0.029027268290519714,
+              -0.026332901790738106,
+              -0.021071331575512886
+            ]
+          ],
+          [
+            1.1802512407302856,
+            [
+              0.738784909248352,
+              1.371478796005249,
+              0.8218160271644592,
+              0.9756230115890503,
+              0.671916663646698
+            ]
+          ]
+        ]
+      ]
+    },
+    "cold": {
+      "registered_pairs": 3,
+      "comparable_pairs": 3,
+      "pairs": [
+        [
+          {
+            "shot": 69854,
+            "origin": 3807,
+            "action": 3841,
+            "positive": true
+          },
+          {
+            "shot": 70323,
+            "origin": 927,
+            "action": 961,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 75657,
+            "origin": 1023,
+            "action": 1073,
+            "positive": true
+          },
+          {
+            "shot": 70404,
+            "origin": 255,
+            "action": 297,
+            "positive": false
+          }
+        ],
+        [
+          {
+            "shot": 87487,
+            "origin": 1791,
+            "action": 1841,
+            "positive": true
+          },
+          {
+            "shot": 86167,
+            "origin": 3359,
+            "action": 3393,
+            "positive": false
+          }
+        ]
+      ],
+      "finite_pairs": 3,
+      "scores": {
+        "radius_matched": {
+          "both_correct": 0,
+          "positive_higher": 1,
+          "positive_mean": 0.02761335321702063,
+          "safe_mean": 0.006674440888067086
+        },
+        "signed_uniform": {
+          "both_correct": 0,
+          "positive_higher": 2,
+          "positive_mean": 0.004442005301825702,
+          "safe_mean": 0.008858344168402255
+        },
+        "signed_reverse": {
+          "both_correct": 0,
+          "positive_higher": 1,
+          "positive_mean": 0.0007910444401204586,
+          "safe_mean": 0.007337049309474726
+        },
+        "signed_taught": {
+          "both_correct": 0,
+          "positive_higher": 0,
+          "positive_mean": -0.0022167833521962166,
+          "safe_mean": 0.008354760240763426
+        },
+        "signed_taught_reverse": {
+          "both_correct": 0,
+          "positive_higher": 1,
+          "positive_mean": -0.0034406570290836194,
+          "safe_mean": 0.007614146374786894
+        }
+      },
+      "finite_changes": [
+        [
+          [
+            1.2434102296829224,
+            [
+              -0.0040790485218167305,
+              0.0012172400020062923,
+              0.0019103579688817263,
+              0.0009621346835047007,
+              0.0016332145314663649
+            ]
+          ],
+          [
+            1.1756718158721924,
+            [
+              -0.0039057135581970215,
+              0.001059471513144672,
+              0.0003061374882236123,
+              0.0011046011932194233,
+              0.0007309161592274904
+            ]
+          ]
+        ],
+        [
+          [
+            1.2474700212478638,
+            [
+              0.08682982623577118,
+              0.011869382113218307,
+              0.0003119918401353061,
+              -0.007752349600195885,
+              -0.011988848447799683
+            ]
+          ],
+          [
+            1.5116263628005981,
+            [
+              0.012589527294039726,
+              0.010598620399832726,
+              0.006802970077842474,
+              0.009297385811805725,
+              0.00745033286511898
+            ]
+          ]
+        ],
+        [
+          [
+            1.094970703125,
+            [
+              8.928193710744381e-05,
+              0.00023939379025250673,
+              0.00015078351134434342,
+              0.0001398648601025343,
+              3.366282908245921e-05
+            ]
+          ],
+          [
+            1.2510085105895996,
+            [
+              0.011339508928358555,
+              0.014916940592229366,
+              0.014902040362358093,
+              0.014662293717265129,
+              0.01466119010001421
+            ]
+          ]
+        ]
+      ]
+    }
+  }
+}

@@ -1,0 +1,195 @@
+{
+  "status": "ORIGINAL_EMBEDDING_HOOK_WITNESSES",
+  "result_sha256": "f1cd5cd2895140bdcd41752b0458e3d358cbdf7ab396c62d0471c4dca86c122c",
+  "records": [
+    {
+      "shot": 1052344,
+      "role": "safe_fp_added",
+      "before": {
+        "first": null,
+        "lead_ms": null,
+        "timely": false,
+        "false_alarm": false
+      },
+      "after": {
+        "first": 312,
+        "lead_ms": null,
+        "timely": false,
+        "false_alarm": true
+      },
+      "checks": [
+        {
+          "anchor": 63,
+          "action": 1,
+          "max_curve_error": 1.6689300537109375e-06,
+          "max_native_error": 2.384185791015625e-06,
+          "reached_guard": 0.011885643005371094
+        },
+        {
+          "anchor": 95,
+          "action": 10,
+          "max_curve_error": 2.6226043701171875e-06,
+          "max_native_error": 3.337860107421875e-06,
+          "reached_guard": 0.06688237190246582
+        },
+        {
+          "anchor": 127,
+          "action": 1,
+          "max_curve_error": 2.86102294921875e-06,
+          "max_native_error": 2.86102294921875e-06,
+          "reached_guard": 0.03071880340576172
+        },
+        {
+          "anchor": 159,
+          "action": 1,
+          "max_curve_error": 2.6226043701171875e-06,
+          "max_native_error": 2.384185791015625e-06,
+          "reached_guard": 0.03928112983703613
+        },
+        {
+          "anchor": 191,
+          "action": 1,
+          "max_curve_error": 1.9073486328125e-06,
+          "max_native_error": 2.384185791015625e-06,
+          "reached_guard": 0.022717952728271484
+        },
+        {
+          "anchor": 223,
+          "action": 10,
+          "max_curve_error": 2.1457672119140625e-06,
+          "max_native_error": 2.1457672119140625e-06,
+          "reached_guard": 0.03214550018310547
+        },
+        {
+          "anchor": 255,
+          "action": 8,
+          "max_curve_error": 1.9073486328125e-06,
+          "max_native_error": 1.9073486328125e-06,
+          "reached_guard": 0.029166221618652344
+        },
+        {
+          "anchor": 287,
+          "action": 1,
+          "max_curve_error": 6.3478946685791016e-06,
+          "max_native_error": 5.4836273193359375e-06,
+          "reached_guard": 0.008516311645507812
+        },
+        {
+          "anchor": 319,
+          "action": 5,
+          "max_curve_error": 4.0531158447265625e-06,
+          "max_native_error": 4.1425228118896484e-06,
+          "reached_guard": 0.019580364227294922
+        }
+      ]
+    },
+    {
+      "shot": 1052388,
+      "role": "timely",
+      "before": {
+        "first": 201,
+        "lead_ms": 7.364207684,
+        "timely": false,
+        "false_alarm": false
+      },
+      "after": {
+        "first": 173,
+        "lead_ms": 35.364207684,
+        "timely": true,
+        "false_alarm": false
+      },
+      "checks": [
+        {
+          "anchor": 159,
+          "action": 1,
+          "max_curve_error": 5.8785080909729e-06,
+          "max_native_error": 6.67572021484375e-06,
+          "reached_guard": 0.0176239013671875
+        }
+      ]
+    },
+    {
+      "shot": 1054159,
+      "role": "requires_multiple_writes",
+      "before": {
+        "first": 178,
+        "lead_ms": null,
+        "timely": false,
+        "false_alarm": true
+      },
+      "after": {
+        "first": null,
+        "lead_ms": null,
+        "timely": false,
+        "false_alarm": false
+      },
+      "checks": [
+        {
+          "anchor": 159,
+          "action": 2,
+          "max_curve_error": 8.225440979003906e-06,
+          "max_native_error": 7.748603820800781e-06,
+          "reached_guard": 0.0328826904296875
+        },
+        {
+          "anchor": 287,
+          "action": 2,
+          "max_curve_error": 9.5367431640625e-06,
+          "max_native_error": 1.055002212524414e-05,
+          "reached_guard": 0.017971307039260864
+        }
+      ]
+    },
+    {
+      "shot": 1054241,
+      "role": "safe_fp_removed",
+      "before": {
+        "first": 267,
+        "lead_ms": null,
+        "timely": false,
+        "false_alarm": true
+      },
+      "after": {
+        "first": null,
+        "lead_ms": null,
+        "timely": false,
+        "false_alarm": false
+      },
+      "checks": [
+        {
+          "anchor": 255,
+          "action": 2,
+          "max_curve_error": 2.9802322387695312e-06,
+          "max_native_error": 2.9802322387695312e-06,
+          "reached_guard": 0.01617676019668579
+        }
+      ]
+    },
+    {
+      "shot": 1056284,
+      "role": "timely",
+      "before": {
+        "first": 155,
+        "lead_ms": 9.368607684,
+        "timely": false,
+        "false_alarm": false
+      },
+      "after": {
+        "first": 154,
+        "lead_ms": 10.368607684,
+        "timely": true,
+        "false_alarm": false
+      },
+      "checks": [
+        {
+          "anchor": 127,
+          "action": 2,
+          "max_curve_error": 1.9073486328125e-06,
+          "max_native_error": 1.9073486328125e-06,
+          "reached_guard": 0.0019873380661010742
+        }
+      ]
+    }
+  ],
+  "new_val_test_east_reads": 0
+}

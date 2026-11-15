@@ -1,0 +1,315 @@
+{
+  "status": "SCORED_POSTHOC_SAME_TRAIN_EXPLORATION",
+  "baseline": {
+    "timely": 182,
+    "fp": 117,
+    "recovered": [],
+    "lost": [],
+    "fp_added": [],
+    "fp_removed": [],
+    "first_changed": 0
+  },
+  "arms": {
+    "ridge_risk_open": {
+      "timely": 182,
+      "fp": 119,
+      "recovered": [],
+      "lost": [],
+      "fp_added": [
+        1055731,
+        1056375
+      ],
+      "fp_removed": [],
+      "first_changed": 25,
+      "writes": 1308
+    },
+    "ridge_risk_guarded": {
+      "timely": 182,
+      "fp": 117,
+      "recovered": [],
+      "lost": [],
+      "fp_added": [],
+      "fp_removed": [],
+      "first_changed": 0,
+      "writes": 0
+    },
+    "events_risk_open": {
+      "timely": 182,
+      "fp": 117,
+      "recovered": [],
+      "lost": [],
+      "fp_added": [],
+      "fp_removed": [],
+      "first_changed": 17,
+      "writes": 1308
+    },
+    "events_risk_guarded": {
+      "timely": 182,
+      "fp": 117,
+      "recovered": [],
+      "lost": [],
+      "fp_added": [],
+      "fp_removed": [],
+      "first_changed": 0,
+      "writes": 0
+    },
+    "ridge_true_open": {
+      "timely": 182,
+      "fp": 119,
+      "recovered": [],
+      "lost": [],
+      "fp_added": [
+        1055731,
+        1056375
+      ],
+      "fp_removed": [],
+      "first_changed": 26,
+      "writes": 1308
+    },
+    "ridge_true_open_scalar": {
+      "timely": 182,
+      "fp": 117,
+      "recovered": [],
+      "lost": [],
+      "fp_added": [],
+      "fp_removed": [],
+      "first_changed": 7,
+      "writes": 1308
+    },
+    "ridge_true_guarded": {
+      "timely": 182,
+      "fp": 117,
+      "recovered": [],
+      "lost": [],
+      "fp_added": [],
+      "fp_removed": [],
+      "first_changed": 0,
+      "writes": 0
+    },
+    "ridge_true_guarded_scalar": {
+      "timely": 182,
+      "fp": 117,
+      "recovered": [],
+      "lost": [],
+      "fp_added": [],
+      "fp_removed": [],
+      "first_changed": 0,
+      "writes": 0
+    },
+    "events_true_open": {
+      "timely": 182,
+      "fp": 117,
+      "recovered": [],
+      "lost": [],
+      "fp_added": [],
+      "fp_removed": [],
+      "first_changed": 17,
+      "writes": 1308
+    },
+    "events_true_open_scalar": {
+      "timely": 182,
+      "fp": 117,
+      "recovered": [],
+      "lost": [],
+      "fp_added": [],
+      "fp_removed": [],
+      "first_changed": 4,
+      "writes": 1308
+    },
+    "events_true_guarded": {
+      "timely": 182,
+      "fp": 118,
+      "recovered": [],
+      "lost": [],
+      "fp_added": [
+        1055961
+      ],
+      "fp_removed": [],
+      "first_changed": 4,
+      "writes": 145
+    },
+    "events_true_guarded_scalar": {
+      "timely": 182,
+      "fp": 117,
+      "recovered": [],
+      "lost": [],
+      "fp_added": [],
+      "fp_removed": [],
+      "first_changed": 1,
+      "writes": 145
+    },
+    "ridge_reverse_open": {
+      "timely": 182,
+      "fp": 119,
+      "recovered": [],
+      "lost": [],
+      "fp_added": [
+        1055731,
+        1056375
+      ],
+      "fp_removed": [],
+      "first_changed": 27,
+      "writes": 1308
+    },
+    "ridge_reverse_guarded": {
+      "timely": 182,
+      "fp": 117,
+      "recovered": [],
+      "lost": [],
+      "fp_added": [],
+      "fp_removed": [],
+      "first_changed": 0,
+      "writes": 0
+    },
+    "events_reverse_open": {
+      "timely": 182,
+      "fp": 117,
+      "recovered": [],
+      "lost": [],
+      "fp_added": [],
+      "fp_removed": [],
+      "first_changed": 16,
+      "writes": 1308
+    },
+    "events_reverse_guarded": {
+      "timely": 182,
+      "fp": 117,
+      "recovered": [],
+      "lost": [],
+      "fp_added": [],
+      "fp_removed": [],
+      "first_changed": 6,
+      "writes": 157
+    }
+  },
+  "top_rank_support": {
+    "ridge_risk": {
+      "oracle_shots": [
+        1052388,
+        1052898,
+        1052899,
+        1053001,
+        1054050,
+        1054241,
+        1054580,
+        1056284,
+        1057223,
+        1057945
+      ],
+      "top_action_shots": [
+        1054241
+      ],
+      "top_action_positive_blocks": 1,
+      "top_action_negative_blocks": 19
+    },
+    "events_risk": {
+      "oracle_shots": [
+        1052388,
+        1052898,
+        1052899,
+        1053001,
+        1054050,
+        1054241,
+        1054580,
+        1056284,
+        1057223,
+        1057945
+      ],
+      "top_action_shots": [
+        1053001
+      ],
+      "top_action_positive_blocks": 1,
+      "top_action_negative_blocks": 6
+    },
+    "ridge_true": {
+      "oracle_shots": [
+        1052388,
+        1052898,
+        1052899,
+        1053001,
+        1054050,
+        1054241,
+        1054580,
+        1056284,
+        1057223,
+        1057945
+      ],
+      "top_action_shots": [
+        1054241
+      ],
+      "top_action_positive_blocks": 1,
+      "top_action_negative_blocks": 13
+    },
+    "events_true": {
+      "oracle_shots": [
+        1052388,
+        1052898,
+        1052899,
+        1053001,
+        1054050,
+        1054241,
+        1054580,
+        1056284,
+        1057223,
+        1057945
+      ],
+      "top_action_shots": [
+        1053001,
+        1054241
+      ],
+      "top_action_positive_blocks": 2,
+      "top_action_negative_blocks": 7
+    },
+    "ridge_reverse": {
+      "oracle_shots": [
+        1052388,
+        1052898,
+        1052899,
+        1053001,
+        1054050,
+        1054241,
+        1054580,
+        1056284,
+        1057223,
+        1057945
+      ],
+      "top_action_shots": [
+        1054241
+      ],
+      "top_action_positive_blocks": 1,
+      "top_action_negative_blocks": 18
+    },
+    "events_reverse": {
+      "oracle_shots": [
+        1052388,
+        1052898,
+        1052899,
+        1053001,
+        1054050,
+        1054241,
+        1054580,
+        1056284,
+        1057223,
+        1057945
+      ],
+      "top_action_shots": [
+        1053001,
+        1054241,
+        1057223
+      ],
+      "top_action_positive_blocks": 3,
+      "top_action_negative_blocks": 7
+    }
+  },
+  "matches_source_gate": false,
+  "distinct": [],
+  "choices_sha256": "64e9841930cce6f41d4f5abec99bd98179da252cf4749c9437302d186f476a1a",
+  "calibration_sha256": "892fda61f50647342817c7cca069044d858a183ba38c1805dff60e1992ccad7e",
+  "parent_sha256": "f1cd5cd2895140bdcd41752b0458e3d358cbdf7ab396c62d0471c4dca86c122c",
+  "bank_seal_sha256": "2a5104bd11e57c92a3706ac5c8a0b060494c8211e03c8ff5d0fd4d780343aded",
+  "code_sha256": "2106b73a27a9d5046d99366a337b0f3450e76c8167712c2730c6436a0752da7b",
+  "protocol_sha256": "057c0c3a8dd03f13c28bbbfebaab37289b7db101de9187e4e5a5b8c33ee85f22",
+  "worktree": "/media/hetaisheng/044A81D94A81C83E/Fuison-intra-trajectory-20261028",
+  "elapsed_seconds": 29.360177947999546,
+  "new_val_test_east_reads": 0
+}

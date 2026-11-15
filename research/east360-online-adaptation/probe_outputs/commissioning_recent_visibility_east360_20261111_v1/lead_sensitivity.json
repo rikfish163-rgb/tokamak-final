@@ -1,0 +1,5332 @@
+{
+  "status": "POSTSEAL_EAST360_SECONDARY_WARNING_DEADLINES_NOT_RECALIBRATED",
+  "input_sha256": {
+    "/media/hetaisheng/044A81D94A81C83E/Fuison-intra-trajectory-20261028/probe_outputs/commissioning_recent_visibility_east360_20261111_v1/per_shot.json": "cd368afdcb057ec4e9c9dd35ae58e6090c2fe11793f822d51540670b415d3d97"
+  },
+  "scorer_sha256": "c971db92dc1c3d550cd77c6ff81ae25e15ec2a0c94fc93154b51cb6c6b9e5dd6",
+  "deadline_rule": "lead in milliseconds strictly greater than the stated deadline",
+  "early_definition": "first alarm strictly more than 3000 ms before disruption",
+  "thresholds_unchanged": true,
+  "missed_shots_excluded_from_mean_but_in_tpr_denominator": true,
+  "metrics": {
+    "0.1": {
+      "fixed": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 20,
+        "fpr": 0.1111111111111111,
+        "misses": 26,
+        "early_over3000": 9,
+        "all_alarmed_disruptions": {
+          "count": 154,
+          "mean_ms": 566.5980831233766,
+          "median_ms": 98.0
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 145,
+          "mean_ms": 332.8668405310345,
+          "median_ms": 82.0
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 131,
+            "tpr": 0.7277777777777777,
+            "tp_at_most_3000ms": 122,
+            "tpr_at_most_3000ms": 0.6777777777777778,
+            "timely_lead_ms": {
+              "count": 131,
+              "mean_ms": 664.7675181908397,
+              "median_ms": 138.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 122,
+              "mean_ms": 394.2141963852459,
+              "median_ms": 128.0
+            }
+          },
+          "20": {
+            "tp": 126,
+            "tpr": 0.7,
+            "tp_at_most_3000ms": 117,
+            "tpr_at_most_3000ms": 0.65,
+            "timely_lead_ms": {
+              "count": 126,
+              "mean_ms": 690.4487689126984,
+              "median_ms": 140.5952035
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 117,
+              "mean_ms": 410.30882016239315,
+              "median_ms": 133.0
+            }
+          },
+          "25": {
+            "tp": 122,
+            "tpr": 0.6777777777777778,
+            "tp_at_most_3000ms": 113,
+            "tpr_at_most_3000ms": 0.6277777777777778,
+            "timely_lead_ms": {
+              "count": 122,
+              "mean_ms": 712.307744942623,
+              "median_ms": 154.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 113,
+              "mean_ms": 423.9923182212389,
+              "median_ms": 138.0
+            }
+          },
+          "30": {
+            "tp": 117,
+            "tpr": 0.65,
+            "tp_at_most_3000ms": 108,
+            "tpr_at_most_3000ms": 0.6,
+            "timely_lead_ms": {
+              "count": 117,
+              "mean_ms": 741.5549568547009,
+              "median_ms": 172.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 108,
+              "mean_ms": 442.32886137037036,
+              "median_ms": 140.5952035
+            }
+          }
+        }
+      },
+      "inherited": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 20,
+        "fpr": 0.1111111111111111,
+        "misses": 26,
+        "early_over3000": 11,
+        "all_alarmed_disruptions": {
+          "count": 154,
+          "mean_ms": 614.526654551948,
+          "median_ms": 98.0
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 143,
+          "mean_ms": 317.84181927972026,
+          "median_ms": 82.0
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 132,
+            "tpr": 0.7333333333333333,
+            "tp_at_most_3000ms": 121,
+            "tpr_at_most_3000ms": 0.6722222222222223,
+            "timely_lead_ms": {
+              "count": 132,
+              "mean_ms": 715.7329157803031,
+              "median_ms": 138.5
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 121,
+              "mean_ms": 374.3059523884298,
+              "median_ms": 114.61199
+            }
+          },
+          "20": {
+            "tp": 127,
+            "tpr": 0.7055555555555556,
+            "tp_at_most_3000ms": 116,
+            "tpr_at_most_3000ms": 0.6444444444444445,
+            "timely_lead_ms": {
+              "count": 127,
+              "mean_ms": 743.2105896299213,
+              "median_ms": 142.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 116,
+              "mean_ms": 389.6725882672414,
+              "median_ms": 129.5
+            }
+          },
+          "25": {
+            "tp": 122,
+            "tpr": 0.6777777777777778,
+            "tp_at_most_3000ms": 111,
+            "tpr_at_most_3000ms": 0.6166666666666667,
+            "timely_lead_ms": {
+              "count": 122,
+              "mean_ms": 772.6813930491803,
+              "median_ms": 156.5
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 111,
+              "mean_ms": 406.13878655855854,
+              "median_ms": 138.0
+            }
+          },
+          "30": {
+            "tp": 117,
+            "tpr": 0.65,
+            "tp_at_most_3000ms": 106,
+            "tpr_at_most_3000ms": 0.5888888888888889,
+            "timely_lead_ms": {
+              "count": 117,
+              "mean_ms": 804.4711961709402,
+              "median_ms": 173.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 106,
+              "mean_ms": 423.9377859245283,
+              "median_ms": 140.5952035
+            }
+          }
+        }
+      },
+      "legacy_current4": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 22,
+        "fpr": 0.12222222222222222,
+        "misses": 27,
+        "early_over3000": 13,
+        "all_alarmed_disruptions": {
+          "count": 153,
+          "mean_ms": 854.8503581764705,
+          "median_ms": 97.0
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 140,
+          "mean_ms": 327.44834405,
+          "median_ms": 82.0
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 131,
+            "tpr": 0.7277777777777777,
+            "tp_at_most_3000ms": 118,
+            "tpr_at_most_3000ms": 0.6555555555555556,
+            "timely_lead_ms": {
+              "count": 131,
+              "mean_ms": 997.1583578854962,
+              "median_ms": 142.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 118,
+              "mean_ms": 387.10515465254235,
+              "median_ms": 117.9
+            }
+          },
+          "20": {
+            "tp": 127,
+            "tpr": 0.7055555555555556,
+            "tp_at_most_3000ms": 114,
+            "tpr_at_most_3000ms": 0.6333333333333333,
+            "timely_lead_ms": {
+              "count": 127,
+              "mean_ms": 1027.9901171889765,
+              "median_ms": 153.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 114,
+              "mean_ms": 400.0474407807018,
+              "median_ms": 131.0
+            }
+          },
+          "25": {
+            "tp": 122,
+            "tpr": 0.6777777777777778,
+            "tp_at_most_3000ms": 109,
+            "tpr_at_most_3000ms": 0.6055555555555555,
+            "timely_lead_ms": {
+              "count": 122,
+              "mean_ms": 1069.156802885246,
+              "median_ms": 159.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 109,
+              "mean_ms": 417.31920475229356,
+              "median_ms": 133.0
+            }
+          },
+          "30": {
+            "tp": 118,
+            "tpr": 0.6555555555555556,
+            "tp_at_most_3000ms": 105,
+            "tpr_at_most_3000ms": 0.5833333333333334,
+            "timely_lead_ms": {
+              "count": 118,
+              "mean_ms": 1104.3994063728815,
+              "median_ms": 174.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 105,
+              "mean_ms": 432.0932696952381,
+              "median_ms": 142.0
+            }
+          }
+        }
+      },
+      "previous_direction_equal_norm": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 21,
+        "fpr": 0.11666666666666667,
+        "misses": 26,
+        "early_over3000": 11,
+        "all_alarmed_disruptions": {
+          "count": 154,
+          "mean_ms": 722.1045766298702,
+          "median_ms": 106.5
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 143,
+          "mean_ms": 338.2683927062937,
+          "median_ms": 86.0
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 130,
+            "tpr": 0.7222222222222222,
+            "tp_at_most_3000ms": 119,
+            "tpr_at_most_3000ms": 0.6611111111111111,
+            "timely_lead_ms": {
+              "count": 130,
+              "mean_ms": 854.1288067923077,
+              "median_ms": 149.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 119,
+              "mean_ms": 405.08420368907565,
+              "median_ms": 133.0
+            }
+          },
+          "20": {
+            "tp": 126,
+            "tpr": 0.7,
+            "tp_at_most_3000ms": 115,
+            "tpr_at_most_3000ms": 0.6388888888888888,
+            "timely_lead_ms": {
+              "count": 126,
+              "mean_ms": 880.6408324047619,
+              "median_ms": 156.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 115,
+              "mean_ms": 418.51321946956523,
+              "median_ms": 135.190407
+            }
+          },
+          "25": {
+            "tp": 121,
+            "tpr": 0.6722222222222223,
+            "tp_at_most_3000ms": 110,
+            "tpr_at_most_3000ms": 0.6111111111111112,
+            "timely_lead_ms": {
+              "count": 121,
+              "mean_ms": 916.0506607603306,
+              "median_ms": 164.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 110,
+              "mean_ms": 436.45823007272725,
+              "median_ms": 143.5
+            }
+          },
+          "30": {
+            "tp": 117,
+            "tpr": 0.65,
+            "tp_at_most_3000ms": 106,
+            "tpr_at_most_3000ms": 0.5888888888888889,
+            "timely_lead_ms": {
+              "count": 117,
+              "mean_ms": 946.4113671111111,
+              "median_ms": 178.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 106,
+              "mean_ms": 451.87174818867925,
+              "median_ms": 153.5
+            }
+          }
+        }
+      },
+      "agreement_direction_equal_norm": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 21,
+        "fpr": 0.11666666666666667,
+        "misses": 26,
+        "early_over3000": 12,
+        "all_alarmed_disruptions": {
+          "count": 154,
+          "mean_ms": 758.0915896168831,
+          "median_ms": 109.5
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 142,
+          "mean_ms": 338.99836737323943,
+          "median_ms": 83.5
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 132,
+            "tpr": 0.7333333333333333,
+            "tp_at_most_3000ms": 120,
+            "tpr_at_most_3000ms": 0.6666666666666666,
+            "timely_lead_ms": {
+              "count": 132,
+              "mean_ms": 883.2868359242424,
+              "median_ms": 143.5
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 120,
+              "mean_ms": 399.8793809,
+              "median_ms": 131.0
+            }
+          },
+          "20": {
+            "tp": 127,
+            "tpr": 0.7055555555555556,
+            "tp_at_most_3000ms": 115,
+            "tpr_at_most_3000ms": 0.6388888888888888,
+            "timely_lead_ms": {
+              "count": 127,
+              "mean_ms": 917.351534511811,
+              "median_ms": 156.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 115,
+              "mean_ms": 416.4809412956522,
+              "median_ms": 135.190407
+            }
+          },
+          "25": {
+            "tp": 121,
+            "tpr": 0.6722222222222223,
+            "tp_at_most_3000ms": 109,
+            "tpr_at_most_3000ms": 0.6055555555555555,
+            "timely_lead_ms": {
+              "count": 121,
+              "mean_ms": 961.6531400991736,
+              "median_ms": 164.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 109,
+              "mean_ms": 438.08892952293576,
+              "median_ms": 142.0
+            }
+          },
+          "30": {
+            "tp": 118,
+            "tpr": 0.6555555555555556,
+            "tp_at_most_3000ms": 106,
+            "tpr_at_most_3000ms": 0.5888888888888889,
+            "timely_lead_ms": {
+              "count": 118,
+              "mean_ms": 985.3561860338983,
+              "median_ms": 177.45
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 106,
+              "mean_ms": 449.65748413207547,
+              "median_ms": 149.0
+            }
+          }
+        }
+      },
+      "visible_latest_equal_norm": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 23,
+        "fpr": 0.12777777777777777,
+        "misses": 25,
+        "early_over3000": 15,
+        "all_alarmed_disruptions": {
+          "count": 155,
+          "mean_ms": 917.9371190580645,
+          "median_ms": 116.8
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 140,
+          "mean_ms": 338.90548690714286,
+          "median_ms": 86.5
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 134,
+            "tpr": 0.7444444444444445,
+            "tp_at_most_3000ms": 119,
+            "tpr_at_most_3000ms": 0.6611111111111111,
+            "timely_lead_ms": {
+              "count": 134,
+              "mean_ms": 1060.6948581716417,
+              "median_ms": 150.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 119,
+              "mean_ms": 397.4758462857143,
+              "median_ms": 122.0
+            }
+          },
+          "20": {
+            "tp": 129,
+            "tpr": 0.7166666666666667,
+            "tp_at_most_3000ms": 114,
+            "tpr_at_most_3000ms": 0.6333333333333333,
+            "timely_lead_ms": {
+              "count": 129,
+              "mean_ms": 1101.1077018294573,
+              "median_ms": 156.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 114,
+              "mean_ms": 414.11761621929827,
+              "median_ms": 132.0
+            }
+          },
+          "25": {
+            "tp": 124,
+            "tpr": 0.6888888888888889,
+            "tp_at_most_3000ms": 109,
+            "tpr_at_most_3000ms": 0.6055555555555555,
+            "timely_lead_ms": {
+              "count": 124,
+              "mean_ms": 1144.5667629435484,
+              "median_ms": 171.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 109,
+              "mean_ms": 432.0439753944954,
+              "median_ms": 142.0
+            }
+          },
+          "30": {
+            "tp": 121,
+            "tpr": 0.6722222222222223,
+            "tp_at_most_3000ms": 106,
+            "tpr_at_most_3000ms": 0.5888888888888889,
+            "timely_lead_ms": {
+              "count": 121,
+              "mean_ms": 1172.2171785537191,
+              "median_ms": 180.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 106,
+              "mean_ms": 443.4414463962264,
+              "median_ms": 147.0
+            }
+          }
+        }
+      },
+      "visible_previous_equal_norm": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 24,
+        "fpr": 0.13333333333333333,
+        "misses": 26,
+        "early_over3000": 11,
+        "all_alarmed_disruptions": {
+          "count": 154,
+          "mean_ms": 831.8513298766234,
+          "median_ms": 121.0952035
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 143,
+          "mean_ms": 367.49295018881116,
+          "median_ms": 97.0
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 133,
+            "tpr": 0.7388888888888889,
+            "tp_at_most_3000ms": 122,
+            "tpr_at_most_3000ms": 0.6777777777777778,
+            "timely_lead_ms": {
+              "count": 133,
+              "mean_ms": 962.0448296390978,
+              "median_ms": 153.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 122,
+              "mean_ms": 429.49466736065574,
+              "median_ms": 136.0
+            }
+          },
+          "20": {
+            "tp": 128,
+            "tpr": 0.7111111111111111,
+            "tp_at_most_3000ms": 117,
+            "tpr_at_most_3000ms": 0.65,
+            "timely_lead_ms": {
+              "count": 128,
+              "mean_ms": 998.8573818984376,
+              "median_ms": 162.5
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 117,
+              "mean_ms": 447.0096748632479,
+              "median_ms": 147.0
+            }
+          },
+          "25": {
+            "tp": 122,
+            "tpr": 0.6777777777777778,
+            "tp_at_most_3000ms": 111,
+            "tpr_at_most_3000ms": 0.6166666666666667,
+            "timely_lead_ms": {
+              "count": 122,
+              "mean_ms": 1046.8371307540983,
+              "median_ms": 181.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 111,
+              "mean_ms": 469.9145678198198,
+              "median_ms": 153.0
+            }
+          },
+          "30": {
+            "tp": 120,
+            "tpr": 0.6666666666666666,
+            "tp_at_most_3000ms": 109,
+            "tpr_at_most_3000ms": 0.6055555555555555,
+            "timely_lead_ms": {
+              "count": 120,
+              "mean_ms": 1063.7927496,
+              "median_ms": 184.5
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 109,
+              "mean_ms": 477.9955690642202,
+              "median_ms": 158.0
+            }
+          }
+        }
+      }
+    },
+    "0.15": {
+      "fixed": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 20,
+        "fpr": 0.1111111111111111,
+        "misses": 26,
+        "early_over3000": 9,
+        "all_alarmed_disruptions": {
+          "count": 154,
+          "mean_ms": 566.5980831233766,
+          "median_ms": 98.0
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 145,
+          "mean_ms": 332.8668405310345,
+          "median_ms": 82.0
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 131,
+            "tpr": 0.7277777777777777,
+            "tp_at_most_3000ms": 122,
+            "tpr_at_most_3000ms": 0.6777777777777778,
+            "timely_lead_ms": {
+              "count": 131,
+              "mean_ms": 664.7675181908397,
+              "median_ms": 138.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 122,
+              "mean_ms": 394.2141963852459,
+              "median_ms": 128.0
+            }
+          },
+          "20": {
+            "tp": 126,
+            "tpr": 0.7,
+            "tp_at_most_3000ms": 117,
+            "tpr_at_most_3000ms": 0.65,
+            "timely_lead_ms": {
+              "count": 126,
+              "mean_ms": 690.4487689126984,
+              "median_ms": 140.5952035
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 117,
+              "mean_ms": 410.30882016239315,
+              "median_ms": 133.0
+            }
+          },
+          "25": {
+            "tp": 122,
+            "tpr": 0.6777777777777778,
+            "tp_at_most_3000ms": 113,
+            "tpr_at_most_3000ms": 0.6277777777777778,
+            "timely_lead_ms": {
+              "count": 122,
+              "mean_ms": 712.307744942623,
+              "median_ms": 154.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 113,
+              "mean_ms": 423.9923182212389,
+              "median_ms": 138.0
+            }
+          },
+          "30": {
+            "tp": 117,
+            "tpr": 0.65,
+            "tp_at_most_3000ms": 108,
+            "tpr_at_most_3000ms": 0.6,
+            "timely_lead_ms": {
+              "count": 117,
+              "mean_ms": 741.5549568547009,
+              "median_ms": 172.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 108,
+              "mean_ms": 442.32886137037036,
+              "median_ms": 140.5952035
+            }
+          }
+        }
+      },
+      "inherited": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 20,
+        "fpr": 0.1111111111111111,
+        "misses": 26,
+        "early_over3000": 11,
+        "all_alarmed_disruptions": {
+          "count": 154,
+          "mean_ms": 614.526654551948,
+          "median_ms": 98.0
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 143,
+          "mean_ms": 317.84181927972026,
+          "median_ms": 82.0
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 132,
+            "tpr": 0.7333333333333333,
+            "tp_at_most_3000ms": 121,
+            "tpr_at_most_3000ms": 0.6722222222222223,
+            "timely_lead_ms": {
+              "count": 132,
+              "mean_ms": 715.7329157803031,
+              "median_ms": 138.5
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 121,
+              "mean_ms": 374.3059523884298,
+              "median_ms": 114.61199
+            }
+          },
+          "20": {
+            "tp": 127,
+            "tpr": 0.7055555555555556,
+            "tp_at_most_3000ms": 116,
+            "tpr_at_most_3000ms": 0.6444444444444445,
+            "timely_lead_ms": {
+              "count": 127,
+              "mean_ms": 743.2105896299213,
+              "median_ms": 142.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 116,
+              "mean_ms": 389.6725882672414,
+              "median_ms": 129.5
+            }
+          },
+          "25": {
+            "tp": 122,
+            "tpr": 0.6777777777777778,
+            "tp_at_most_3000ms": 111,
+            "tpr_at_most_3000ms": 0.6166666666666667,
+            "timely_lead_ms": {
+              "count": 122,
+              "mean_ms": 772.6813930491803,
+              "median_ms": 156.5
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 111,
+              "mean_ms": 406.13878655855854,
+              "median_ms": 138.0
+            }
+          },
+          "30": {
+            "tp": 117,
+            "tpr": 0.65,
+            "tp_at_most_3000ms": 106,
+            "tpr_at_most_3000ms": 0.5888888888888889,
+            "timely_lead_ms": {
+              "count": 117,
+              "mean_ms": 804.4711961709402,
+              "median_ms": 173.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 106,
+              "mean_ms": 423.9377859245283,
+              "median_ms": 140.5952035
+            }
+          }
+        }
+      },
+      "legacy_current4": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 22,
+        "fpr": 0.12222222222222222,
+        "misses": 27,
+        "early_over3000": 13,
+        "all_alarmed_disruptions": {
+          "count": 153,
+          "mean_ms": 854.8503581764705,
+          "median_ms": 97.0
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 140,
+          "mean_ms": 327.44834405,
+          "median_ms": 82.0
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 131,
+            "tpr": 0.7277777777777777,
+            "tp_at_most_3000ms": 118,
+            "tpr_at_most_3000ms": 0.6555555555555556,
+            "timely_lead_ms": {
+              "count": 131,
+              "mean_ms": 997.1583578854962,
+              "median_ms": 142.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 118,
+              "mean_ms": 387.10515465254235,
+              "median_ms": 117.9
+            }
+          },
+          "20": {
+            "tp": 127,
+            "tpr": 0.7055555555555556,
+            "tp_at_most_3000ms": 114,
+            "tpr_at_most_3000ms": 0.6333333333333333,
+            "timely_lead_ms": {
+              "count": 127,
+              "mean_ms": 1027.9901171889765,
+              "median_ms": 153.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 114,
+              "mean_ms": 400.0474407807018,
+              "median_ms": 131.0
+            }
+          },
+          "25": {
+            "tp": 122,
+            "tpr": 0.6777777777777778,
+            "tp_at_most_3000ms": 109,
+            "tpr_at_most_3000ms": 0.6055555555555555,
+            "timely_lead_ms": {
+              "count": 122,
+              "mean_ms": 1069.156802885246,
+              "median_ms": 159.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 109,
+              "mean_ms": 417.31920475229356,
+              "median_ms": 133.0
+            }
+          },
+          "30": {
+            "tp": 118,
+            "tpr": 0.6555555555555556,
+            "tp_at_most_3000ms": 105,
+            "tpr_at_most_3000ms": 0.5833333333333334,
+            "timely_lead_ms": {
+              "count": 118,
+              "mean_ms": 1104.3994063728815,
+              "median_ms": 174.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 105,
+              "mean_ms": 432.0932696952381,
+              "median_ms": 142.0
+            }
+          }
+        }
+      },
+      "previous_direction_equal_norm": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 21,
+        "fpr": 0.11666666666666667,
+        "misses": 26,
+        "early_over3000": 11,
+        "all_alarmed_disruptions": {
+          "count": 154,
+          "mean_ms": 722.1045766298702,
+          "median_ms": 106.5
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 143,
+          "mean_ms": 338.2683927062937,
+          "median_ms": 86.0
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 130,
+            "tpr": 0.7222222222222222,
+            "tp_at_most_3000ms": 119,
+            "tpr_at_most_3000ms": 0.6611111111111111,
+            "timely_lead_ms": {
+              "count": 130,
+              "mean_ms": 854.1288067923077,
+              "median_ms": 149.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 119,
+              "mean_ms": 405.08420368907565,
+              "median_ms": 133.0
+            }
+          },
+          "20": {
+            "tp": 126,
+            "tpr": 0.7,
+            "tp_at_most_3000ms": 115,
+            "tpr_at_most_3000ms": 0.6388888888888888,
+            "timely_lead_ms": {
+              "count": 126,
+              "mean_ms": 880.6408324047619,
+              "median_ms": 156.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 115,
+              "mean_ms": 418.51321946956523,
+              "median_ms": 135.190407
+            }
+          },
+          "25": {
+            "tp": 121,
+            "tpr": 0.6722222222222223,
+            "tp_at_most_3000ms": 110,
+            "tpr_at_most_3000ms": 0.6111111111111112,
+            "timely_lead_ms": {
+              "count": 121,
+              "mean_ms": 916.0506607603306,
+              "median_ms": 164.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 110,
+              "mean_ms": 436.45823007272725,
+              "median_ms": 143.5
+            }
+          },
+          "30": {
+            "tp": 117,
+            "tpr": 0.65,
+            "tp_at_most_3000ms": 106,
+            "tpr_at_most_3000ms": 0.5888888888888889,
+            "timely_lead_ms": {
+              "count": 117,
+              "mean_ms": 946.4113671111111,
+              "median_ms": 178.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 106,
+              "mean_ms": 451.87174818867925,
+              "median_ms": 153.5
+            }
+          }
+        }
+      },
+      "agreement_direction_equal_norm": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 21,
+        "fpr": 0.11666666666666667,
+        "misses": 26,
+        "early_over3000": 12,
+        "all_alarmed_disruptions": {
+          "count": 154,
+          "mean_ms": 758.0915896168831,
+          "median_ms": 109.5
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 142,
+          "mean_ms": 338.99836737323943,
+          "median_ms": 83.5
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 132,
+            "tpr": 0.7333333333333333,
+            "tp_at_most_3000ms": 120,
+            "tpr_at_most_3000ms": 0.6666666666666666,
+            "timely_lead_ms": {
+              "count": 132,
+              "mean_ms": 883.2868359242424,
+              "median_ms": 143.5
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 120,
+              "mean_ms": 399.8793809,
+              "median_ms": 131.0
+            }
+          },
+          "20": {
+            "tp": 127,
+            "tpr": 0.7055555555555556,
+            "tp_at_most_3000ms": 115,
+            "tpr_at_most_3000ms": 0.6388888888888888,
+            "timely_lead_ms": {
+              "count": 127,
+              "mean_ms": 917.351534511811,
+              "median_ms": 156.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 115,
+              "mean_ms": 416.4809412956522,
+              "median_ms": 135.190407
+            }
+          },
+          "25": {
+            "tp": 121,
+            "tpr": 0.6722222222222223,
+            "tp_at_most_3000ms": 109,
+            "tpr_at_most_3000ms": 0.6055555555555555,
+            "timely_lead_ms": {
+              "count": 121,
+              "mean_ms": 961.6531400991736,
+              "median_ms": 164.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 109,
+              "mean_ms": 438.08892952293576,
+              "median_ms": 142.0
+            }
+          },
+          "30": {
+            "tp": 118,
+            "tpr": 0.6555555555555556,
+            "tp_at_most_3000ms": 106,
+            "tpr_at_most_3000ms": 0.5888888888888889,
+            "timely_lead_ms": {
+              "count": 118,
+              "mean_ms": 985.3561860338983,
+              "median_ms": 177.45
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 106,
+              "mean_ms": 449.65748413207547,
+              "median_ms": 149.0
+            }
+          }
+        }
+      },
+      "visible_latest_equal_norm": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 23,
+        "fpr": 0.12777777777777777,
+        "misses": 25,
+        "early_over3000": 15,
+        "all_alarmed_disruptions": {
+          "count": 155,
+          "mean_ms": 917.9371190580645,
+          "median_ms": 116.8
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 140,
+          "mean_ms": 338.90548690714286,
+          "median_ms": 86.5
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 134,
+            "tpr": 0.7444444444444445,
+            "tp_at_most_3000ms": 119,
+            "tpr_at_most_3000ms": 0.6611111111111111,
+            "timely_lead_ms": {
+              "count": 134,
+              "mean_ms": 1060.6948581716417,
+              "median_ms": 150.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 119,
+              "mean_ms": 397.4758462857143,
+              "median_ms": 122.0
+            }
+          },
+          "20": {
+            "tp": 129,
+            "tpr": 0.7166666666666667,
+            "tp_at_most_3000ms": 114,
+            "tpr_at_most_3000ms": 0.6333333333333333,
+            "timely_lead_ms": {
+              "count": 129,
+              "mean_ms": 1101.1077018294573,
+              "median_ms": 156.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 114,
+              "mean_ms": 414.11761621929827,
+              "median_ms": 132.0
+            }
+          },
+          "25": {
+            "tp": 124,
+            "tpr": 0.6888888888888889,
+            "tp_at_most_3000ms": 109,
+            "tpr_at_most_3000ms": 0.6055555555555555,
+            "timely_lead_ms": {
+              "count": 124,
+              "mean_ms": 1144.5667629435484,
+              "median_ms": 171.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 109,
+              "mean_ms": 432.0439753944954,
+              "median_ms": 142.0
+            }
+          },
+          "30": {
+            "tp": 121,
+            "tpr": 0.6722222222222223,
+            "tp_at_most_3000ms": 106,
+            "tpr_at_most_3000ms": 0.5888888888888889,
+            "timely_lead_ms": {
+              "count": 121,
+              "mean_ms": 1172.2171785537191,
+              "median_ms": 180.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 106,
+              "mean_ms": 443.4414463962264,
+              "median_ms": 147.0
+            }
+          }
+        }
+      },
+      "visible_previous_equal_norm": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 24,
+        "fpr": 0.13333333333333333,
+        "misses": 26,
+        "early_over3000": 11,
+        "all_alarmed_disruptions": {
+          "count": 154,
+          "mean_ms": 831.8513298766234,
+          "median_ms": 121.0952035
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 143,
+          "mean_ms": 367.49295018881116,
+          "median_ms": 97.0
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 133,
+            "tpr": 0.7388888888888889,
+            "tp_at_most_3000ms": 122,
+            "tpr_at_most_3000ms": 0.6777777777777778,
+            "timely_lead_ms": {
+              "count": 133,
+              "mean_ms": 962.0448296390978,
+              "median_ms": 153.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 122,
+              "mean_ms": 429.49466736065574,
+              "median_ms": 136.0
+            }
+          },
+          "20": {
+            "tp": 128,
+            "tpr": 0.7111111111111111,
+            "tp_at_most_3000ms": 117,
+            "tpr_at_most_3000ms": 0.65,
+            "timely_lead_ms": {
+              "count": 128,
+              "mean_ms": 998.8573818984376,
+              "median_ms": 162.5
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 117,
+              "mean_ms": 447.0096748632479,
+              "median_ms": 147.0
+            }
+          },
+          "25": {
+            "tp": 122,
+            "tpr": 0.6777777777777778,
+            "tp_at_most_3000ms": 111,
+            "tpr_at_most_3000ms": 0.6166666666666667,
+            "timely_lead_ms": {
+              "count": 122,
+              "mean_ms": 1046.8371307540983,
+              "median_ms": 181.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 111,
+              "mean_ms": 469.9145678198198,
+              "median_ms": 153.0
+            }
+          },
+          "30": {
+            "tp": 120,
+            "tpr": 0.6666666666666666,
+            "tp_at_most_3000ms": 109,
+            "tpr_at_most_3000ms": 0.6055555555555555,
+            "timely_lead_ms": {
+              "count": 120,
+              "mean_ms": 1063.7927496,
+              "median_ms": 184.5
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 109,
+              "mean_ms": 477.9955690642202,
+              "median_ms": 158.0
+            }
+          }
+        }
+      }
+    },
+    "0.2": {
+      "fixed": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 32,
+        "fpr": 0.17777777777777778,
+        "misses": 14,
+        "early_over3000": 19,
+        "all_alarmed_disruptions": {
+          "count": 166,
+          "mean_ms": 1094.6879902650603,
+          "median_ms": 181.5
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 147,
+          "mean_ms": 470.958946537415,
+          "median_ms": 137.0
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 152,
+            "tpr": 0.8444444444444444,
+            "tp_at_most_3000ms": 133,
+            "tpr_at_most_3000ms": 0.7388888888888889,
+            "timely_lead_ms": {
+              "count": 152,
+              "mean_ms": 1194.706330730263,
+              "median_ms": 256.902669
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 133,
+              "mean_ms": 519.6099325413534,
+              "median_ms": 165.0
+            }
+          },
+          "20": {
+            "tp": 144,
+            "tpr": 0.8,
+            "tp_at_most_3000ms": 125,
+            "tpr_at_most_3000ms": 0.6944444444444444,
+            "timely_lead_ms": {
+              "count": 144,
+              "mean_ms": 1260.04961675,
+              "median_ms": 285.5
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 125,
+              "mean_ms": 551.679228552,
+              "median_ms": 187.0
+            }
+          },
+          "25": {
+            "tp": 140,
+            "tpr": 0.7777777777777778,
+            "tp_at_most_3000ms": 121,
+            "tpr_at_most_3000ms": 0.6722222222222223,
+            "timely_lead_ms": {
+              "count": 140,
+              "mean_ms": 1295.372462942857,
+              "median_ms": 310.45
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 121,
+              "mean_ms": 569.1314344545455,
+              "median_ms": 191.0
+            }
+          },
+          "30": {
+            "tp": 136,
+            "tpr": 0.7555555555555555,
+            "tp_at_most_3000ms": 117,
+            "tpr_at_most_3000ms": 0.65,
+            "timely_lead_ms": {
+              "count": 136,
+              "mean_ms": 1332.6628295,
+              "median_ms": 323.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 117,
+              "mean_ms": 587.6487484529914,
+              "median_ms": 219.0
+            }
+          }
+        }
+      },
+      "inherited": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 31,
+        "fpr": 0.17222222222222222,
+        "misses": 15,
+        "early_over3000": 21,
+        "all_alarmed_disruptions": {
+          "count": 165,
+          "mean_ms": 1217.7891296,
+          "median_ms": 188.0
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 144,
+          "mean_ms": 481.1942023680555,
+          "median_ms": 137.0
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 151,
+            "tpr": 0.8388888888888889,
+            "tp_at_most_3000ms": 130,
+            "tpr_at_most_3000ms": 0.7222222222222222,
+            "timely_lead_ms": {
+              "count": 151,
+              "mean_ms": 1329.8964388807947,
+              "median_ms": 275.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 130,
+              "mean_ms": 532.0855463692308,
+              "median_ms": 179.5
+            }
+          },
+          "20": {
+            "tp": 144,
+            "tpr": 0.8,
+            "tp_at_most_3000ms": 123,
+            "tpr_at_most_3000ms": 0.6833333333333333,
+            "timely_lead_ms": {
+              "count": 144,
+              "mean_ms": 1393.6398945277779,
+              "median_ms": 310.45
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 123,
+              "mean_ms": 561.308159097561,
+              "median_ms": 188.0
+            }
+          },
+          "25": {
+            "tp": 140,
+            "tpr": 0.7777777777777778,
+            "tp_at_most_3000ms": 119,
+            "tpr_at_most_3000ms": 0.6611111111111111,
+            "timely_lead_ms": {
+              "count": 140,
+              "mean_ms": 1432.7796058,
+              "median_ms": 323.5
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 119,
+              "mean_ms": 579.3773409159663,
+              "median_ms": 194.190407
+            }
+          },
+          "30": {
+            "tp": 138,
+            "tpr": 0.7666666666666667,
+            "tp_at_most_3000ms": 117,
+            "tpr_at_most_3000ms": 0.65,
+            "timely_lead_ms": {
+              "count": 138,
+              "mean_ms": 1453.138730521739,
+              "median_ms": 331.5
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 117,
+              "mean_ms": 588.8025946068376,
+              "median_ms": 214.0
+            }
+          }
+        }
+      },
+      "legacy_current4": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 34,
+        "fpr": 0.18888888888888888,
+        "misses": 15,
+        "early_over3000": 21,
+        "all_alarmed_disruptions": {
+          "count": 165,
+          "mean_ms": 1322.1951902060607,
+          "median_ms": 243.614931
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 144,
+          "mean_ms": 551.8358690347222,
+          "median_ms": 159.0
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 154,
+            "tpr": 0.8555555555555555,
+            "tp_at_most_3000ms": 133,
+            "tpr_at_most_3000ms": 0.7388888888888889,
+            "timely_lead_ms": {
+              "count": 154,
+              "mean_ms": 1416.015339422078,
+              "median_ms": 297.5
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 133,
+              "mean_ms": 596.7557972030075,
+              "median_ms": 187.0
+            }
+          },
+          "20": {
+            "tp": 151,
+            "tpr": 0.8388888888888889,
+            "tp_at_most_3000ms": 130,
+            "tpr_at_most_3000ms": 0.7222222222222222,
+            "timely_lead_ms": {
+              "count": 151,
+              "mean_ms": 1443.7838560993378,
+              "median_ms": 324.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 130,
+              "mean_ms": 610.1040079076923,
+              "median_ms": 201.0
+            }
+          },
+          "25": {
+            "tp": 142,
+            "tpr": 0.7888888888888889,
+            "tp_at_most_3000ms": 121,
+            "tpr_at_most_3000ms": 0.6722222222222223,
+            "timely_lead_ms": {
+              "count": 142,
+              "mean_ms": 1533.8601747323944,
+              "median_ms": 451.5
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 121,
+              "mean_ms": 653.8041617272727,
+              "median_ms": 247.0
+            }
+          },
+          "30": {
+            "tp": 141,
+            "tpr": 0.7833333333333333,
+            "tp_at_most_3000ms": 120,
+            "tpr_at_most_3000ms": 0.6666666666666666,
+            "timely_lead_ms": {
+              "count": 141,
+              "mean_ms": 1544.5258497304965,
+              "median_ms": 474.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 120,
+              "mean_ms": 659.0025297416666,
+              "median_ms": 253.5
+            }
+          }
+        }
+      },
+      "previous_direction_equal_norm": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 36,
+        "fpr": 0.2,
+        "misses": 17,
+        "early_over3000": 21,
+        "all_alarmed_disruptions": {
+          "count": 163,
+          "mean_ms": 1237.349750981595,
+          "median_ms": 187.0
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 142,
+          "mean_ms": 490.2730152605634,
+          "median_ms": 140.0
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 150,
+            "tpr": 0.8333333333333334,
+            "tp_at_most_3000ms": 129,
+            "tpr_at_most_3000ms": 0.7166666666666667,
+            "timely_lead_ms": {
+              "count": 150,
+              "mean_ms": 1343.8544353133334,
+              "median_ms": 272.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 129,
+              "mean_ms": 538.8288686356589,
+              "median_ms": 170.0
+            }
+          },
+          "20": {
+            "tp": 146,
+            "tpr": 0.8111111111111111,
+            "tp_at_most_3000ms": 125,
+            "tpr_at_most_3000ms": 0.6944444444444444,
+            "timely_lead_ms": {
+              "count": 146,
+              "mean_ms": 1380.1449677876712,
+              "median_ms": 304.45
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 125,
+              "mean_ms": 555.455392432,
+              "median_ms": 180.0
+            }
+          },
+          "25": {
+            "tp": 140,
+            "tpr": 0.7777777777777778,
+            "tp_at_most_3000ms": 119,
+            "tpr_at_most_3000ms": 0.6611111111111111,
+            "timely_lead_ms": {
+              "count": 140,
+              "mean_ms": 1438.328198842857,
+              "median_ms": 325.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 119,
+              "mean_ms": 582.3252655042016,
+              "median_ms": 188.0
+            }
+          },
+          "30": {
+            "tp": 137,
+            "tpr": 0.7611111111111111,
+            "tp_at_most_3000ms": 116,
+            "tpr_at_most_3000ms": 0.6444444444444445,
+            "timely_lead_ms": {
+              "count": 137,
+              "mean_ms": 1469.2258966277373,
+              "median_ms": 326.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 116,
+              "mean_ms": 596.6785051293103,
+              "median_ms": 212.55
+            }
+          }
+        }
+      },
+      "agreement_direction_equal_norm": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 34,
+        "fpr": 0.18888888888888888,
+        "misses": 15,
+        "early_over3000": 22,
+        "all_alarmed_disruptions": {
+          "count": 165,
+          "mean_ms": 1325.6436750545454,
+          "median_ms": 214.0
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 143,
+          "mean_ms": 521.8766793076923,
+          "median_ms": 141.190407
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 153,
+            "tpr": 0.85,
+            "tp_at_most_3000ms": 131,
+            "tpr_at_most_3000ms": 0.7277777777777777,
+            "timely_lead_ms": {
+              "count": 153,
+              "mean_ms": 1428.9749365816992,
+              "median_ms": 275.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 131,
+              "mean_ms": 568.9337714045802,
+              "median_ms": 179.0
+            }
+          },
+          "20": {
+            "tp": 150,
+            "tpr": 0.8333333333333334,
+            "tp_at_most_3000ms": 128,
+            "tpr_at_most_3000ms": 0.7111111111111111,
+            "timely_lead_ms": {
+              "count": 150,
+              "mean_ms": 1457.18110198,
+              "median_ms": 307.5
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 128,
+              "mean_ms": 581.830656671875,
+              "median_ms": 183.0
+            }
+          },
+          "25": {
+            "tp": 142,
+            "tpr": 0.7888888888888889,
+            "tp_at_most_3000ms": 120,
+            "tpr_at_most_3000ms": 0.6666666666666666,
+            "timely_lead_ms": {
+              "count": 142,
+              "mean_ms": 1537.9785059014084,
+              "median_ms": 350.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 120,
+              "mean_ms": 619.084221625,
+              "median_ms": 215.5
+            }
+          },
+          "30": {
+            "tp": 140,
+            "tpr": 0.7777777777777778,
+            "tp_at_most_3000ms": 118,
+            "tpr_at_most_3000ms": 0.6555555555555556,
+            "timely_lead_ms": {
+              "count": 140,
+              "mean_ms": 1559.5496274142856,
+              "median_ms": 422.5
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 118,
+              "mean_ms": 629.1025982627119,
+              "median_ms": 217.55
+            }
+          }
+        }
+      },
+      "visible_latest_equal_norm": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 37,
+        "fpr": 0.20555555555555555,
+        "misses": 14,
+        "early_over3000": 23,
+        "all_alarmed_disruptions": {
+          "count": 166,
+          "mean_ms": 1395.4771468915662,
+          "median_ms": 282.5
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 143,
+          "mean_ms": 572.555000986014,
+          "median_ms": 187.0
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 155,
+            "tpr": 0.8611111111111112,
+            "tp_at_most_3000ms": 132,
+            "tpr_at_most_3000ms": 0.7333333333333333,
+            "timely_lead_ms": {
+              "count": 155,
+              "mean_ms": 1493.8797565870968,
+              "median_ms": 373.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 132,
+              "mean_ms": 619.5266744545454,
+              "median_ms": 226.8574655
+            }
+          },
+          "20": {
+            "tp": 151,
+            "tpr": 0.8388888888888889,
+            "tp_at_most_3000ms": 128,
+            "tpr_at_most_3000ms": 0.7111111111111111,
+            "timely_lead_ms": {
+              "count": 151,
+              "mean_ms": 1532.9560415298013,
+              "median_ms": 425.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 128,
+              "mean_ms": 638.30094553125,
+              "median_ms": 250.0952035
+            }
+          },
+          "25": {
+            "tp": 143,
+            "tpr": 0.7944444444444444,
+            "tp_at_most_3000ms": 120,
+            "tpr_at_most_3000ms": 0.6666666666666666,
+            "timely_lead_ms": {
+              "count": 143,
+              "mean_ms": 1617.413600083916,
+              "median_ms": 525.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 120,
+              "mean_ms": 679.3025297416667,
+              "median_ms": 282.5
+            }
+          },
+          "30": {
+            "tp": 142,
+            "tpr": 0.7888888888888889,
+            "tp_at_most_3000ms": 119,
+            "tpr_at_most_3000ms": 0.6611111111111111,
+            "timely_lead_ms": {
+              "count": 142,
+              "mean_ms": 1628.5925690985916,
+              "median_ms": 566.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 119,
+              "mean_ms": 684.7588535210084,
+              "median_ms": 292.0
+            }
+          }
+        }
+      },
+      "visible_previous_equal_norm": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 39,
+        "fpr": 0.21666666666666667,
+        "misses": 16,
+        "early_over3000": 23,
+        "all_alarmed_disruptions": {
+          "count": 164,
+          "mean_ms": 1310.6475758536585,
+          "median_ms": 199.55
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 141,
+          "mean_ms": 477.90752621985814,
+          "median_ms": 140.0
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 151,
+            "tpr": 0.8388888888888889,
+            "tp_at_most_3000ms": 128,
+            "tpr_at_most_3000ms": 0.7111111111111111,
+            "timely_lead_ms": {
+              "count": 151,
+              "mean_ms": 1422.7825164304636,
+              "median_ms": 279.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 128,
+              "mean_ms": 525.616552640625,
+              "median_ms": 175.0
+            }
+          },
+          "20": {
+            "tp": 148,
+            "tpr": 0.8222222222222222,
+            "tp_at_most_3000ms": 125,
+            "tpr_at_most_3000ms": 0.6944444444444444,
+            "timely_lead_ms": {
+              "count": 148,
+              "mean_ms": 1451.2443241959459,
+              "median_ms": 307.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 125,
+              "mean_ms": 537.783349904,
+              "median_ms": 180.0
+            }
+          },
+          "25": {
+            "tp": 141,
+            "tpr": 0.7833333333333333,
+            "tp_at_most_3000ms": 118,
+            "tpr_at_most_3000ms": 0.6555555555555556,
+            "timely_lead_ms": {
+              "count": 141,
+              "mean_ms": 1522.1201597304964,
+              "median_ms": 347.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 118,
+              "mean_ms": 568.285604059322,
+              "median_ms": 199.55
+            }
+          },
+          "30": {
+            "tp": 138,
+            "tpr": 0.7666666666666667,
+            "tp_at_most_3000ms": 115,
+            "tpr_at_most_3000ms": 0.6388888888888888,
+            "timely_lead_ms": {
+              "count": 138,
+              "mean_ms": 1554.5937863913043,
+              "median_ms": 360.5
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 115,
+              "mean_ms": 582.3713154695653,
+              "median_ms": 213.0
+            }
+          }
+        }
+      }
+    }
+  },
+  "paired": {
+    "0.1": {
+      "fixed": {
+        "inherited": {
+          "lead_gain_common": {
+            "count": 154,
+            "mean_ms": 47.92857142857143,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 143,
+            "mean_ms": -0.43356643356643354,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                71370
+              ],
+              "lost": [],
+              "net": 1
+            },
+            "20": {
+              "gained": [
+                71370
+              ],
+              "lost": [],
+              "net": 1
+            },
+            "25": {
+              "gained": [
+                71370
+              ],
+              "lost": [
+                93995
+              ],
+              "net": 0
+            },
+            "30": {
+              "gained": [
+                71370
+              ],
+              "lost": [
+                62592
+              ],
+              "net": 0
+            }
+          }
+        },
+        "legacy_current4": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": 287.72549019607845,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 140,
+            "mean_ms": 6.828571428571428,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [
+            85526
+          ],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                71370
+              ],
+              "lost": [
+                85526
+              ],
+              "net": 0
+            },
+            "20": {
+              "gained": [
+                71370,
+                80600
+              ],
+              "lost": [
+                85526
+              ],
+              "net": 1
+            },
+            "25": {
+              "gained": [
+                71370,
+                80600
+              ],
+              "lost": [
+                93995,
+                85526
+              ],
+              "net": 0
+            },
+            "30": {
+              "gained": [
+                71370,
+                80600,
+                73665
+              ],
+              "lost": [
+                62592,
+                85526
+              ],
+              "net": 1
+            }
+          }
+        },
+        "previous_direction_equal_norm": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": 158.1764705882353,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 142,
+            "mean_ms": 21.91549295774648,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [
+            91689
+          ],
+          "no_longer_alarmed_disruptions": [
+            85526
+          ],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                71370,
+                91689
+              ],
+              "lost": [
+                71265,
+                69768,
+                85526
+              ],
+              "net": -1
+            },
+            "20": {
+              "gained": [
+                71370,
+                80600,
+                91689
+              ],
+              "lost": [
+                71265,
+                69768,
+                85526
+              ],
+              "net": 0
+            },
+            "25": {
+              "gained": [
+                71370,
+                80600,
+                91689
+              ],
+              "lost": [
+                71265,
+                69768,
+                93995,
+                85526
+              ],
+              "net": -1
+            },
+            "30": {
+              "gained": [
+                71370,
+                80600,
+                91689,
+                64835
+              ],
+              "lost": [
+                71265,
+                69768,
+                95766,
+                85526
+              ],
+              "net": 0
+            }
+          }
+        },
+        "agreement_direction_equal_norm": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": 194.3986928104575,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 141,
+            "mean_ms": 21.21985815602837,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [
+            91689
+          ],
+          "no_longer_alarmed_disruptions": [
+            85526
+          ],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                71370,
+                64581,
+                91689
+              ],
+              "lost": [
+                71265,
+                85526
+              ],
+              "net": 1
+            },
+            "20": {
+              "gained": [
+                71370,
+                80600,
+                91689
+              ],
+              "lost": [
+                71265,
+                85526
+              ],
+              "net": 1
+            },
+            "25": {
+              "gained": [
+                71370,
+                80600,
+                91689
+              ],
+              "lost": [
+                71265,
+                93995,
+                73665,
+                85526
+              ],
+              "net": -1
+            },
+            "30": {
+              "gained": [
+                71370,
+                80600,
+                91689,
+                64835
+              ],
+              "lost": [
+                71265,
+                95766,
+                85526
+              ],
+              "net": 1
+            }
+          }
+        },
+        "visible_latest_equal_norm": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": 328.1437908496732,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 139,
+            "mean_ms": 17.0431654676259,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [
+            73541,
+            91689
+          ],
+          "no_longer_alarmed_disruptions": [
+            85526
+          ],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                71370,
+                69454,
+                70861,
+                73541,
+                64581,
+                91689
+              ],
+              "lost": [
+                71265,
+                69768,
+                85526
+              ],
+              "net": 3
+            },
+            "20": {
+              "gained": [
+                71370,
+                69454,
+                70861,
+                73541,
+                80600,
+                91689
+              ],
+              "lost": [
+                71265,
+                69768,
+                85526
+              ],
+              "net": 3
+            },
+            "25": {
+              "gained": [
+                71370,
+                69454,
+                70861,
+                73541,
+                80600,
+                91689
+              ],
+              "lost": [
+                71265,
+                69768,
+                93995,
+                85526
+              ],
+              "net": 2
+            },
+            "30": {
+              "gained": [
+                71370,
+                69454,
+                70861,
+                73541,
+                80600,
+                73665,
+                91689
+              ],
+              "lost": [
+                71265,
+                69768,
+                85526
+              ],
+              "net": 4
+            }
+          }
+        },
+        "visible_previous_equal_norm": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": 268.6143790849673,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 142,
+            "mean_ms": 32.190140845070424,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [
+            91689
+          ],
+          "no_longer_alarmed_disruptions": [
+            85526
+          ],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                71370,
+                69454,
+                70861,
+                64581,
+                91689
+              ],
+              "lost": [
+                71265,
+                69768,
+                85526
+              ],
+              "net": 2
+            },
+            "20": {
+              "gained": [
+                71370,
+                69454,
+                70861,
+                80600,
+                91689
+              ],
+              "lost": [
+                71265,
+                69768,
+                85526
+              ],
+              "net": 2
+            },
+            "25": {
+              "gained": [
+                71370,
+                69454,
+                70861,
+                80600,
+                91689
+              ],
+              "lost": [
+                71265,
+                69768,
+                95766,
+                93995,
+                85526
+              ],
+              "net": 0
+            },
+            "30": {
+              "gained": [
+                71370,
+                69454,
+                70861,
+                80600,
+                73665,
+                91689,
+                64835
+              ],
+              "lost": [
+                71265,
+                69768,
+                95766,
+                85526
+              ],
+              "net": 3
+            }
+          }
+        }
+      },
+      "previous_direction_equal_norm": {
+        "fixed": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": -158.1764705882353,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 142,
+            "mean_ms": -21.91549295774648,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [
+            85526
+          ],
+          "no_longer_alarmed_disruptions": [
+            91689
+          ],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                71265,
+                69768,
+                85526
+              ],
+              "lost": [
+                71370,
+                91689
+              ],
+              "net": 1
+            },
+            "20": {
+              "gained": [
+                71265,
+                69768,
+                85526
+              ],
+              "lost": [
+                71370,
+                80600,
+                91689
+              ],
+              "net": 0
+            },
+            "25": {
+              "gained": [
+                71265,
+                69768,
+                93995,
+                85526
+              ],
+              "lost": [
+                71370,
+                80600,
+                91689
+              ],
+              "net": 1
+            },
+            "30": {
+              "gained": [
+                71265,
+                69768,
+                95766,
+                85526
+              ],
+              "lost": [
+                71370,
+                80600,
+                91689,
+                64835
+              ],
+              "net": 0
+            }
+          }
+        },
+        "inherited": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": -109.83006535947712,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 142,
+            "mean_ms": -22.239436619718308,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [
+            85526
+          ],
+          "no_longer_alarmed_disruptions": [
+            91689
+          ],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                71265,
+                69768,
+                85526
+              ],
+              "lost": [
+                91689
+              ],
+              "net": 2
+            },
+            "20": {
+              "gained": [
+                71265,
+                69768,
+                85526
+              ],
+              "lost": [
+                80600,
+                91689
+              ],
+              "net": 1
+            },
+            "25": {
+              "gained": [
+                71265,
+                69768,
+                85526
+              ],
+              "lost": [
+                80600,
+                91689
+              ],
+              "net": 1
+            },
+            "30": {
+              "gained": [
+                71265,
+                69768,
+                95766,
+                85526
+              ],
+              "lost": [
+                80600,
+                62592,
+                91689,
+                64835
+              ],
+              "net": 0
+            }
+          }
+        },
+        "legacy_current4": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": 129.54901960784315,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 140,
+            "mean_ms": -13.814285714285715,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [
+            91689
+          ],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                71265,
+                69768
+              ],
+              "lost": [
+                91689
+              ],
+              "net": 1
+            },
+            "20": {
+              "gained": [
+                71265,
+                69768
+              ],
+              "lost": [
+                91689
+              ],
+              "net": 1
+            },
+            "25": {
+              "gained": [
+                71265,
+                69768
+              ],
+              "lost": [
+                91689
+              ],
+              "net": 1
+            },
+            "30": {
+              "gained": [
+                71265,
+                69768,
+                95766,
+                73665
+              ],
+              "lost": [
+                62592,
+                91689,
+                64835
+              ],
+              "net": 1
+            }
+          }
+        },
+        "agreement_direction_equal_norm": {
+          "lead_gain_common": {
+            "count": 154,
+            "mean_ms": 35.98701298701299,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 142,
+            "mean_ms": 0.7183098591549296,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                69768,
+                64581
+              ],
+              "lost": [],
+              "net": 2
+            },
+            "20": {
+              "gained": [
+                69768
+              ],
+              "lost": [],
+              "net": 1
+            },
+            "25": {
+              "gained": [
+                69768
+              ],
+              "lost": [
+                73665
+              ],
+              "net": 0
+            },
+            "30": {
+              "gained": [
+                69768
+              ],
+              "lost": [],
+              "net": 1
+            }
+          }
+        },
+        "visible_latest_equal_norm": {
+          "lead_gain_common": {
+            "count": 154,
+            "mean_ms": 168.8896103896104,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 140,
+            "mean_ms": -3.7,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [
+            73541
+          ],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                69454,
+                70861,
+                73541,
+                64581
+              ],
+              "lost": [],
+              "net": 4
+            },
+            "20": {
+              "gained": [
+                69454,
+                70861,
+                73541
+              ],
+              "lost": [],
+              "net": 3
+            },
+            "25": {
+              "gained": [
+                69454,
+                70861,
+                73541
+              ],
+              "lost": [],
+              "net": 3
+            },
+            "30": {
+              "gained": [
+                69454,
+                70861,
+                73541,
+                95766,
+                73665
+              ],
+              "lost": [
+                64835
+              ],
+              "net": 4
+            }
+          }
+        },
+        "visible_previous_equal_norm": {
+          "lead_gain_common": {
+            "count": 154,
+            "mean_ms": 109.74675324675324,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 142,
+            "mean_ms": 10.246478873239436,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                69454,
+                70861,
+                64581
+              ],
+              "lost": [],
+              "net": 3
+            },
+            "20": {
+              "gained": [
+                69454,
+                70861
+              ],
+              "lost": [],
+              "net": 2
+            },
+            "25": {
+              "gained": [
+                69454,
+                70861
+              ],
+              "lost": [
+                95766
+              ],
+              "net": 1
+            },
+            "30": {
+              "gained": [
+                69454,
+                70861,
+                73665
+              ],
+              "lost": [],
+              "net": 3
+            }
+          }
+        }
+      },
+      "legacy_current4": {
+        "fixed": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": -287.72549019607845,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 140,
+            "mean_ms": -6.828571428571428,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [
+            85526
+          ],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                85526
+              ],
+              "lost": [
+                71370
+              ],
+              "net": 0
+            },
+            "20": {
+              "gained": [
+                85526
+              ],
+              "lost": [
+                71370,
+                80600
+              ],
+              "net": -1
+            },
+            "25": {
+              "gained": [
+                93995,
+                85526
+              ],
+              "lost": [
+                71370,
+                80600
+              ],
+              "net": 0
+            },
+            "30": {
+              "gained": [
+                62592,
+                85526
+              ],
+              "lost": [
+                71370,
+                80600,
+                73665
+              ],
+              "net": -1
+            }
+          }
+        },
+        "inherited": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": -239.37908496732027,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 140,
+            "mean_ms": -7.1571428571428575,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [
+            85526
+          ],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                85526
+              ],
+              "lost": [],
+              "net": 1
+            },
+            "20": {
+              "gained": [
+                85526
+              ],
+              "lost": [
+                80600
+              ],
+              "net": 0
+            },
+            "25": {
+              "gained": [
+                85526
+              ],
+              "lost": [
+                80600
+              ],
+              "net": 0
+            },
+            "30": {
+              "gained": [
+                85526
+              ],
+              "lost": [
+                80600,
+                73665
+              ],
+              "net": -1
+            }
+          }
+        },
+        "previous_direction_equal_norm": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": -129.54901960784315,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 140,
+            "mean_ms": 13.814285714285715,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [
+            91689
+          ],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                91689
+              ],
+              "lost": [
+                71265,
+                69768
+              ],
+              "net": -1
+            },
+            "20": {
+              "gained": [
+                91689
+              ],
+              "lost": [
+                71265,
+                69768
+              ],
+              "net": -1
+            },
+            "25": {
+              "gained": [
+                91689
+              ],
+              "lost": [
+                71265,
+                69768
+              ],
+              "net": -1
+            },
+            "30": {
+              "gained": [
+                62592,
+                91689,
+                64835
+              ],
+              "lost": [
+                71265,
+                69768,
+                95766,
+                73665
+              ],
+              "net": -1
+            }
+          }
+        },
+        "agreement_direction_equal_norm": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": -93.32679738562092,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 140,
+            "mean_ms": 14.557142857142857,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [
+            91689
+          ],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                64581,
+                91689
+              ],
+              "lost": [
+                71265
+              ],
+              "net": 1
+            },
+            "20": {
+              "gained": [
+                91689
+              ],
+              "lost": [
+                71265
+              ],
+              "net": 0
+            },
+            "25": {
+              "gained": [
+                91689
+              ],
+              "lost": [
+                71265,
+                73665
+              ],
+              "net": -1
+            },
+            "30": {
+              "gained": [
+                62592,
+                91689,
+                64835
+              ],
+              "lost": [
+                71265,
+                95766,
+                73665
+              ],
+              "net": 0
+            }
+          }
+        },
+        "visible_latest_equal_norm": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": 40.41830065359477,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 139,
+            "mean_ms": 10.158273381294965,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [
+            73541,
+            91689
+          ],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                69454,
+                70861,
+                73541,
+                64581,
+                91689
+              ],
+              "lost": [
+                71265,
+                69768
+              ],
+              "net": 3
+            },
+            "20": {
+              "gained": [
+                69454,
+                70861,
+                73541,
+                91689
+              ],
+              "lost": [
+                71265,
+                69768
+              ],
+              "net": 2
+            },
+            "25": {
+              "gained": [
+                69454,
+                70861,
+                73541,
+                91689
+              ],
+              "lost": [
+                71265,
+                69768
+              ],
+              "net": 2
+            },
+            "30": {
+              "gained": [
+                69454,
+                70861,
+                73541,
+                62592,
+                91689
+              ],
+              "lost": [
+                71265,
+                69768
+              ],
+              "net": 3
+            }
+          }
+        },
+        "visible_previous_equal_norm": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": -19.11111111111111,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 140,
+            "mean_ms": 24.135714285714286,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [
+            91689
+          ],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                69454,
+                70861,
+                64581,
+                91689
+              ],
+              "lost": [
+                71265,
+                69768
+              ],
+              "net": 2
+            },
+            "20": {
+              "gained": [
+                69454,
+                70861,
+                91689
+              ],
+              "lost": [
+                71265,
+                69768
+              ],
+              "net": 1
+            },
+            "25": {
+              "gained": [
+                69454,
+                70861,
+                91689
+              ],
+              "lost": [
+                71265,
+                69768,
+                95766
+              ],
+              "net": 0
+            },
+            "30": {
+              "gained": [
+                69454,
+                70861,
+                62592,
+                91689,
+                64835
+              ],
+              "lost": [
+                71265,
+                69768,
+                95766
+              ],
+              "net": 2
+            }
+          }
+        }
+      }
+    },
+    "0.15": {
+      "fixed": {
+        "inherited": {
+          "lead_gain_common": {
+            "count": 154,
+            "mean_ms": 47.92857142857143,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 143,
+            "mean_ms": -0.43356643356643354,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                71370
+              ],
+              "lost": [],
+              "net": 1
+            },
+            "20": {
+              "gained": [
+                71370
+              ],
+              "lost": [],
+              "net": 1
+            },
+            "25": {
+              "gained": [
+                71370
+              ],
+              "lost": [
+                93995
+              ],
+              "net": 0
+            },
+            "30": {
+              "gained": [
+                71370
+              ],
+              "lost": [
+                62592
+              ],
+              "net": 0
+            }
+          }
+        },
+        "legacy_current4": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": 287.72549019607845,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 140,
+            "mean_ms": 6.828571428571428,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [
+            85526
+          ],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                71370
+              ],
+              "lost": [
+                85526
+              ],
+              "net": 0
+            },
+            "20": {
+              "gained": [
+                71370,
+                80600
+              ],
+              "lost": [
+                85526
+              ],
+              "net": 1
+            },
+            "25": {
+              "gained": [
+                71370,
+                80600
+              ],
+              "lost": [
+                93995,
+                85526
+              ],
+              "net": 0
+            },
+            "30": {
+              "gained": [
+                71370,
+                80600,
+                73665
+              ],
+              "lost": [
+                62592,
+                85526
+              ],
+              "net": 1
+            }
+          }
+        },
+        "previous_direction_equal_norm": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": 158.1764705882353,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 142,
+            "mean_ms": 21.91549295774648,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [
+            91689
+          ],
+          "no_longer_alarmed_disruptions": [
+            85526
+          ],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                71370,
+                91689
+              ],
+              "lost": [
+                71265,
+                69768,
+                85526
+              ],
+              "net": -1
+            },
+            "20": {
+              "gained": [
+                71370,
+                80600,
+                91689
+              ],
+              "lost": [
+                71265,
+                69768,
+                85526
+              ],
+              "net": 0
+            },
+            "25": {
+              "gained": [
+                71370,
+                80600,
+                91689
+              ],
+              "lost": [
+                71265,
+                69768,
+                93995,
+                85526
+              ],
+              "net": -1
+            },
+            "30": {
+              "gained": [
+                71370,
+                80600,
+                91689,
+                64835
+              ],
+              "lost": [
+                71265,
+                69768,
+                95766,
+                85526
+              ],
+              "net": 0
+            }
+          }
+        },
+        "agreement_direction_equal_norm": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": 194.3986928104575,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 141,
+            "mean_ms": 21.21985815602837,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [
+            91689
+          ],
+          "no_longer_alarmed_disruptions": [
+            85526
+          ],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                71370,
+                64581,
+                91689
+              ],
+              "lost": [
+                71265,
+                85526
+              ],
+              "net": 1
+            },
+            "20": {
+              "gained": [
+                71370,
+                80600,
+                91689
+              ],
+              "lost": [
+                71265,
+                85526
+              ],
+              "net": 1
+            },
+            "25": {
+              "gained": [
+                71370,
+                80600,
+                91689
+              ],
+              "lost": [
+                71265,
+                93995,
+                73665,
+                85526
+              ],
+              "net": -1
+            },
+            "30": {
+              "gained": [
+                71370,
+                80600,
+                91689,
+                64835
+              ],
+              "lost": [
+                71265,
+                95766,
+                85526
+              ],
+              "net": 1
+            }
+          }
+        },
+        "visible_latest_equal_norm": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": 328.1437908496732,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 139,
+            "mean_ms": 17.0431654676259,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [
+            73541,
+            91689
+          ],
+          "no_longer_alarmed_disruptions": [
+            85526
+          ],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                71370,
+                69454,
+                70861,
+                73541,
+                64581,
+                91689
+              ],
+              "lost": [
+                71265,
+                69768,
+                85526
+              ],
+              "net": 3
+            },
+            "20": {
+              "gained": [
+                71370,
+                69454,
+                70861,
+                73541,
+                80600,
+                91689
+              ],
+              "lost": [
+                71265,
+                69768,
+                85526
+              ],
+              "net": 3
+            },
+            "25": {
+              "gained": [
+                71370,
+                69454,
+                70861,
+                73541,
+                80600,
+                91689
+              ],
+              "lost": [
+                71265,
+                69768,
+                93995,
+                85526
+              ],
+              "net": 2
+            },
+            "30": {
+              "gained": [
+                71370,
+                69454,
+                70861,
+                73541,
+                80600,
+                73665,
+                91689
+              ],
+              "lost": [
+                71265,
+                69768,
+                85526
+              ],
+              "net": 4
+            }
+          }
+        },
+        "visible_previous_equal_norm": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": 268.6143790849673,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 142,
+            "mean_ms": 32.190140845070424,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [
+            91689
+          ],
+          "no_longer_alarmed_disruptions": [
+            85526
+          ],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                71370,
+                69454,
+                70861,
+                64581,
+                91689
+              ],
+              "lost": [
+                71265,
+                69768,
+                85526
+              ],
+              "net": 2
+            },
+            "20": {
+              "gained": [
+                71370,
+                69454,
+                70861,
+                80600,
+                91689
+              ],
+              "lost": [
+                71265,
+                69768,
+                85526
+              ],
+              "net": 2
+            },
+            "25": {
+              "gained": [
+                71370,
+                69454,
+                70861,
+                80600,
+                91689
+              ],
+              "lost": [
+                71265,
+                69768,
+                95766,
+                93995,
+                85526
+              ],
+              "net": 0
+            },
+            "30": {
+              "gained": [
+                71370,
+                69454,
+                70861,
+                80600,
+                73665,
+                91689,
+                64835
+              ],
+              "lost": [
+                71265,
+                69768,
+                95766,
+                85526
+              ],
+              "net": 3
+            }
+          }
+        }
+      },
+      "previous_direction_equal_norm": {
+        "fixed": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": -158.1764705882353,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 142,
+            "mean_ms": -21.91549295774648,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [
+            85526
+          ],
+          "no_longer_alarmed_disruptions": [
+            91689
+          ],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                71265,
+                69768,
+                85526
+              ],
+              "lost": [
+                71370,
+                91689
+              ],
+              "net": 1
+            },
+            "20": {
+              "gained": [
+                71265,
+                69768,
+                85526
+              ],
+              "lost": [
+                71370,
+                80600,
+                91689
+              ],
+              "net": 0
+            },
+            "25": {
+              "gained": [
+                71265,
+                69768,
+                93995,
+                85526
+              ],
+              "lost": [
+                71370,
+                80600,
+                91689
+              ],
+              "net": 1
+            },
+            "30": {
+              "gained": [
+                71265,
+                69768,
+                95766,
+                85526
+              ],
+              "lost": [
+                71370,
+                80600,
+                91689,
+                64835
+              ],
+              "net": 0
+            }
+          }
+        },
+        "inherited": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": -109.83006535947712,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 142,
+            "mean_ms": -22.239436619718308,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [
+            85526
+          ],
+          "no_longer_alarmed_disruptions": [
+            91689
+          ],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                71265,
+                69768,
+                85526
+              ],
+              "lost": [
+                91689
+              ],
+              "net": 2
+            },
+            "20": {
+              "gained": [
+                71265,
+                69768,
+                85526
+              ],
+              "lost": [
+                80600,
+                91689
+              ],
+              "net": 1
+            },
+            "25": {
+              "gained": [
+                71265,
+                69768,
+                85526
+              ],
+              "lost": [
+                80600,
+                91689
+              ],
+              "net": 1
+            },
+            "30": {
+              "gained": [
+                71265,
+                69768,
+                95766,
+                85526
+              ],
+              "lost": [
+                80600,
+                62592,
+                91689,
+                64835
+              ],
+              "net": 0
+            }
+          }
+        },
+        "legacy_current4": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": 129.54901960784315,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 140,
+            "mean_ms": -13.814285714285715,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [
+            91689
+          ],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                71265,
+                69768
+              ],
+              "lost": [
+                91689
+              ],
+              "net": 1
+            },
+            "20": {
+              "gained": [
+                71265,
+                69768
+              ],
+              "lost": [
+                91689
+              ],
+              "net": 1
+            },
+            "25": {
+              "gained": [
+                71265,
+                69768
+              ],
+              "lost": [
+                91689
+              ],
+              "net": 1
+            },
+            "30": {
+              "gained": [
+                71265,
+                69768,
+                95766,
+                73665
+              ],
+              "lost": [
+                62592,
+                91689,
+                64835
+              ],
+              "net": 1
+            }
+          }
+        },
+        "agreement_direction_equal_norm": {
+          "lead_gain_common": {
+            "count": 154,
+            "mean_ms": 35.98701298701299,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 142,
+            "mean_ms": 0.7183098591549296,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                69768,
+                64581
+              ],
+              "lost": [],
+              "net": 2
+            },
+            "20": {
+              "gained": [
+                69768
+              ],
+              "lost": [],
+              "net": 1
+            },
+            "25": {
+              "gained": [
+                69768
+              ],
+              "lost": [
+                73665
+              ],
+              "net": 0
+            },
+            "30": {
+              "gained": [
+                69768
+              ],
+              "lost": [],
+              "net": 1
+            }
+          }
+        },
+        "visible_latest_equal_norm": {
+          "lead_gain_common": {
+            "count": 154,
+            "mean_ms": 168.8896103896104,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 140,
+            "mean_ms": -3.7,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [
+            73541
+          ],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                69454,
+                70861,
+                73541,
+                64581
+              ],
+              "lost": [],
+              "net": 4
+            },
+            "20": {
+              "gained": [
+                69454,
+                70861,
+                73541
+              ],
+              "lost": [],
+              "net": 3
+            },
+            "25": {
+              "gained": [
+                69454,
+                70861,
+                73541
+              ],
+              "lost": [],
+              "net": 3
+            },
+            "30": {
+              "gained": [
+                69454,
+                70861,
+                73541,
+                95766,
+                73665
+              ],
+              "lost": [
+                64835
+              ],
+              "net": 4
+            }
+          }
+        },
+        "visible_previous_equal_norm": {
+          "lead_gain_common": {
+            "count": 154,
+            "mean_ms": 109.74675324675324,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 142,
+            "mean_ms": 10.246478873239436,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                69454,
+                70861,
+                64581
+              ],
+              "lost": [],
+              "net": 3
+            },
+            "20": {
+              "gained": [
+                69454,
+                70861
+              ],
+              "lost": [],
+              "net": 2
+            },
+            "25": {
+              "gained": [
+                69454,
+                70861
+              ],
+              "lost": [
+                95766
+              ],
+              "net": 1
+            },
+            "30": {
+              "gained": [
+                69454,
+                70861,
+                73665
+              ],
+              "lost": [],
+              "net": 3
+            }
+          }
+        }
+      },
+      "legacy_current4": {
+        "fixed": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": -287.72549019607845,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 140,
+            "mean_ms": -6.828571428571428,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [
+            85526
+          ],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                85526
+              ],
+              "lost": [
+                71370
+              ],
+              "net": 0
+            },
+            "20": {
+              "gained": [
+                85526
+              ],
+              "lost": [
+                71370,
+                80600
+              ],
+              "net": -1
+            },
+            "25": {
+              "gained": [
+                93995,
+                85526
+              ],
+              "lost": [
+                71370,
+                80600
+              ],
+              "net": 0
+            },
+            "30": {
+              "gained": [
+                62592,
+                85526
+              ],
+              "lost": [
+                71370,
+                80600,
+                73665
+              ],
+              "net": -1
+            }
+          }
+        },
+        "inherited": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": -239.37908496732027,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 140,
+            "mean_ms": -7.1571428571428575,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [
+            85526
+          ],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                85526
+              ],
+              "lost": [],
+              "net": 1
+            },
+            "20": {
+              "gained": [
+                85526
+              ],
+              "lost": [
+                80600
+              ],
+              "net": 0
+            },
+            "25": {
+              "gained": [
+                85526
+              ],
+              "lost": [
+                80600
+              ],
+              "net": 0
+            },
+            "30": {
+              "gained": [
+                85526
+              ],
+              "lost": [
+                80600,
+                73665
+              ],
+              "net": -1
+            }
+          }
+        },
+        "previous_direction_equal_norm": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": -129.54901960784315,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 140,
+            "mean_ms": 13.814285714285715,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [
+            91689
+          ],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                91689
+              ],
+              "lost": [
+                71265,
+                69768
+              ],
+              "net": -1
+            },
+            "20": {
+              "gained": [
+                91689
+              ],
+              "lost": [
+                71265,
+                69768
+              ],
+              "net": -1
+            },
+            "25": {
+              "gained": [
+                91689
+              ],
+              "lost": [
+                71265,
+                69768
+              ],
+              "net": -1
+            },
+            "30": {
+              "gained": [
+                62592,
+                91689,
+                64835
+              ],
+              "lost": [
+                71265,
+                69768,
+                95766,
+                73665
+              ],
+              "net": -1
+            }
+          }
+        },
+        "agreement_direction_equal_norm": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": -93.32679738562092,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 140,
+            "mean_ms": 14.557142857142857,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [
+            91689
+          ],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                64581,
+                91689
+              ],
+              "lost": [
+                71265
+              ],
+              "net": 1
+            },
+            "20": {
+              "gained": [
+                91689
+              ],
+              "lost": [
+                71265
+              ],
+              "net": 0
+            },
+            "25": {
+              "gained": [
+                91689
+              ],
+              "lost": [
+                71265,
+                73665
+              ],
+              "net": -1
+            },
+            "30": {
+              "gained": [
+                62592,
+                91689,
+                64835
+              ],
+              "lost": [
+                71265,
+                95766,
+                73665
+              ],
+              "net": 0
+            }
+          }
+        },
+        "visible_latest_equal_norm": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": 40.41830065359477,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 139,
+            "mean_ms": 10.158273381294965,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [
+            73541,
+            91689
+          ],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                69454,
+                70861,
+                73541,
+                64581,
+                91689
+              ],
+              "lost": [
+                71265,
+                69768
+              ],
+              "net": 3
+            },
+            "20": {
+              "gained": [
+                69454,
+                70861,
+                73541,
+                91689
+              ],
+              "lost": [
+                71265,
+                69768
+              ],
+              "net": 2
+            },
+            "25": {
+              "gained": [
+                69454,
+                70861,
+                73541,
+                91689
+              ],
+              "lost": [
+                71265,
+                69768
+              ],
+              "net": 2
+            },
+            "30": {
+              "gained": [
+                69454,
+                70861,
+                73541,
+                62592,
+                91689
+              ],
+              "lost": [
+                71265,
+                69768
+              ],
+              "net": 3
+            }
+          }
+        },
+        "visible_previous_equal_norm": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": -19.11111111111111,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 140,
+            "mean_ms": 24.135714285714286,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [
+            91689
+          ],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                69454,
+                70861,
+                64581,
+                91689
+              ],
+              "lost": [
+                71265,
+                69768
+              ],
+              "net": 2
+            },
+            "20": {
+              "gained": [
+                69454,
+                70861,
+                91689
+              ],
+              "lost": [
+                71265,
+                69768
+              ],
+              "net": 1
+            },
+            "25": {
+              "gained": [
+                69454,
+                70861,
+                91689
+              ],
+              "lost": [
+                71265,
+                69768,
+                95766
+              ],
+              "net": 0
+            },
+            "30": {
+              "gained": [
+                69454,
+                70861,
+                62592,
+                91689,
+                64835
+              ],
+              "lost": [
+                71265,
+                69768,
+                95766
+              ],
+              "net": 2
+            }
+          }
+        }
+      }
+    },
+    "0.2": {
+      "fixed": {
+        "inherited": {
+          "lead_gain_common": {
+            "count": 165,
+            "mean_ms": 116.60606060606061,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 144,
+            "mean_ms": 1.8194444444444444,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [
+            77302
+          ],
+          "deadline_flips": {
+            "15": {
+              "gained": [],
+              "lost": [
+                77302
+              ],
+              "net": -1
+            },
+            "20": {
+              "gained": [
+                80600
+              ],
+              "lost": [
+                77302
+              ],
+              "net": 0
+            },
+            "25": {
+              "gained": [
+                80600
+              ],
+              "lost": [
+                71013
+              ],
+              "net": 0
+            },
+            "30": {
+              "gained": [
+                80600,
+                73665
+              ],
+              "lost": [],
+              "net": 2
+            }
+          }
+        },
+        "legacy_current4": {
+          "lead_gain_common": {
+            "count": 165,
+            "mean_ms": 221.0121212121212,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 143,
+            "mean_ms": 52.94405594405595,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [
+            77302
+          ],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                71086,
+                73403,
+                95770
+              ],
+              "lost": [
+                77302
+              ],
+              "net": 2
+            },
+            "20": {
+              "gained": [
+                64581,
+                80600,
+                71086,
+                73403,
+                95770,
+                77788,
+                74970,
+                85032
+              ],
+              "lost": [
+                77302
+              ],
+              "net": 7
+            },
+            "25": {
+              "gained": [
+                80600,
+                71086,
+                73403,
+                95770
+              ],
+              "lost": [
+                73405,
+                71013
+              ],
+              "net": 2
+            },
+            "30": {
+              "gained": [
+                80600,
+                71086,
+                73403,
+                95770,
+                73665
+              ],
+              "lost": [],
+              "net": 5
+            }
+          }
+        },
+        "previous_direction_equal_norm": {
+          "lead_gain_common": {
+            "count": 163,
+            "mean_ms": 141.0245398773006,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 141,
+            "mean_ms": 25.418439716312058,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [
+            61638,
+            93112,
+            77302
+          ],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                73403,
+                95770
+              ],
+              "lost": [
+                87861,
+                61638,
+                93112,
+                77302
+              ],
+              "net": -2
+            },
+            "20": {
+              "gained": [
+                64581,
+                80600,
+                73403,
+                95770,
+                77788,
+                85032
+              ],
+              "lost": [
+                87861,
+                61638,
+                93112,
+                77302
+              ],
+              "net": 2
+            },
+            "25": {
+              "gained": [
+                80600,
+                73403,
+                95770
+              ],
+              "lost": [
+                87861,
+                61638,
+                93112
+              ],
+              "net": 0
+            },
+            "30": {
+              "gained": [
+                80600,
+                73403,
+                95770,
+                73665
+              ],
+              "lost": [
+                87861,
+                61638,
+                93112
+              ],
+              "net": 1
+            }
+          }
+        },
+        "agreement_direction_equal_norm": {
+          "lead_gain_common": {
+            "count": 165,
+            "mean_ms": 224.46060606060607,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 142,
+            "mean_ms": 32.316901408450704,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [
+            77302
+          ],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                71086,
+                73403,
+                95770
+              ],
+              "lost": [
+                61638,
+                77302
+              ],
+              "net": 1
+            },
+            "20": {
+              "gained": [
+                64581,
+                80600,
+                71086,
+                73403,
+                95770,
+                77788,
+                74970,
+                85032
+              ],
+              "lost": [
+                61638,
+                77302
+              ],
+              "net": 6
+            },
+            "25": {
+              "gained": [
+                80600,
+                71086,
+                73403,
+                95770
+              ],
+              "lost": [
+                71013,
+                61638
+              ],
+              "net": 2
+            },
+            "30": {
+              "gained": [
+                80600,
+                71086,
+                73403,
+                95770,
+                73665
+              ],
+              "lost": [
+                61638
+              ],
+              "net": 4
+            }
+          }
+        },
+        "visible_latest_equal_norm": {
+          "lead_gain_common": {
+            "count": 165,
+            "mean_ms": 300.44848484848484,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 141,
+            "mean_ms": 82.13475177304964,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [
+            78617
+          ],
+          "no_longer_alarmed_disruptions": [
+            77302
+          ],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                71086,
+                73403,
+                95770,
+                78617
+              ],
+              "lost": [
+                77302
+              ],
+              "net": 3
+            },
+            "20": {
+              "gained": [
+                64581,
+                80600,
+                71086,
+                73403,
+                95770,
+                77788,
+                74970,
+                85032,
+                78617
+              ],
+              "lost": [
+                71013,
+                77302
+              ],
+              "net": 7
+            },
+            "25": {
+              "gained": [
+                80600,
+                71086,
+                73403,
+                95770,
+                78617
+              ],
+              "lost": [
+                73405,
+                71013
+              ],
+              "net": 3
+            },
+            "30": {
+              "gained": [
+                80600,
+                71086,
+                73403,
+                95770,
+                73665,
+                78617
+              ],
+              "lost": [],
+              "net": 6
+            }
+          }
+        },
+        "visible_previous_equal_norm": {
+          "lead_gain_common": {
+            "count": 163,
+            "mean_ms": 222.06748466257667,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 140,
+            "mean_ms": 22.58571428571429,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [
+            90874
+          ],
+          "no_longer_alarmed_disruptions": [
+            61638,
+            93112,
+            77302
+          ],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                90874,
+                73403,
+                95770
+              ],
+              "lost": [
+                86155,
+                61638,
+                93112,
+                77302
+              ],
+              "net": -1
+            },
+            "20": {
+              "gained": [
+                90874,
+                64581,
+                80600,
+                73403,
+                95770,
+                77788,
+                63566,
+                85032
+              ],
+              "lost": [
+                86155,
+                61638,
+                93112,
+                77302
+              ],
+              "net": 4
+            },
+            "25": {
+              "gained": [
+                90874,
+                80600,
+                73403,
+                95770
+              ],
+              "lost": [
+                86155,
+                61638,
+                93112
+              ],
+              "net": 1
+            },
+            "30": {
+              "gained": [
+                90874,
+                80600,
+                73403,
+                95770,
+                73665
+              ],
+              "lost": [
+                86155,
+                61638,
+                93112
+              ],
+              "net": 2
+            }
+          }
+        }
+      },
+      "previous_direction_equal_norm": {
+        "fixed": {
+          "lead_gain_common": {
+            "count": 163,
+            "mean_ms": -141.0245398773006,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 141,
+            "mean_ms": -25.418439716312058,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [
+            61638,
+            93112,
+            77302
+          ],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                87861,
+                61638,
+                93112,
+                77302
+              ],
+              "lost": [
+                73403,
+                95770
+              ],
+              "net": 2
+            },
+            "20": {
+              "gained": [
+                87861,
+                61638,
+                93112,
+                77302
+              ],
+              "lost": [
+                64581,
+                80600,
+                73403,
+                95770,
+                77788,
+                85032
+              ],
+              "net": -2
+            },
+            "25": {
+              "gained": [
+                87861,
+                61638,
+                93112
+              ],
+              "lost": [
+                80600,
+                73403,
+                95770
+              ],
+              "net": 0
+            },
+            "30": {
+              "gained": [
+                87861,
+                61638,
+                93112
+              ],
+              "lost": [
+                80600,
+                73403,
+                95770,
+                73665
+              ],
+              "net": -1
+            }
+          }
+        },
+        "inherited": {
+          "lead_gain_common": {
+            "count": 163,
+            "mean_ms": -22.957055214723926,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 141,
+            "mean_ms": -23.524822695035464,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [
+            61638,
+            93112
+          ],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                87861,
+                61638,
+                93112
+              ],
+              "lost": [
+                73403,
+                95770
+              ],
+              "net": 1
+            },
+            "20": {
+              "gained": [
+                87861,
+                61638,
+                93112
+              ],
+              "lost": [
+                64581,
+                73403,
+                95770,
+                77788,
+                85032
+              ],
+              "net": -2
+            },
+            "25": {
+              "gained": [
+                87861,
+                61638,
+                93112
+              ],
+              "lost": [
+                73403,
+                95770,
+                71013
+              ],
+              "net": 0
+            },
+            "30": {
+              "gained": [
+                87861,
+                61638,
+                93112
+              ],
+              "lost": [
+                73403,
+                95770
+              ],
+              "net": 1
+            }
+          }
+        },
+        "legacy_current4": {
+          "lead_gain_common": {
+            "count": 163,
+            "mean_ms": 82.80981595092024,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 141,
+            "mean_ms": 28.404255319148934,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [
+            61638,
+            93112
+          ],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                87861,
+                71086,
+                61638,
+                93112
+              ],
+              "lost": [],
+              "net": 4
+            },
+            "20": {
+              "gained": [
+                87861,
+                71086,
+                61638,
+                93112,
+                74970
+              ],
+              "lost": [],
+              "net": 5
+            },
+            "25": {
+              "gained": [
+                87861,
+                71086,
+                61638,
+                93112
+              ],
+              "lost": [
+                73405,
+                71013
+              ],
+              "net": 2
+            },
+            "30": {
+              "gained": [
+                87861,
+                71086,
+                61638,
+                93112
+              ],
+              "lost": [],
+              "net": 4
+            }
+          }
+        },
+        "agreement_direction_equal_norm": {
+          "lead_gain_common": {
+            "count": 163,
+            "mean_ms": 103.9079754601227,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 140,
+            "mean_ms": 27.807142857142857,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [
+            61638,
+            93112
+          ],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                87861,
+                71086,
+                93112
+              ],
+              "lost": [],
+              "net": 3
+            },
+            "20": {
+              "gained": [
+                87861,
+                71086,
+                93112,
+                74970
+              ],
+              "lost": [],
+              "net": 4
+            },
+            "25": {
+              "gained": [
+                87861,
+                71086,
+                93112
+              ],
+              "lost": [
+                71013
+              ],
+              "net": 2
+            },
+            "30": {
+              "gained": [
+                87861,
+                71086,
+                93112
+              ],
+              "lost": [],
+              "net": 3
+            }
+          }
+        },
+        "visible_latest_equal_norm": {
+          "lead_gain_common": {
+            "count": 163,
+            "mean_ms": 163.50920245398774,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 139,
+            "mean_ms": 58.0,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [
+            61638,
+            93112,
+            78617
+          ],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                87861,
+                71086,
+                61638,
+                93112,
+                78617
+              ],
+              "lost": [],
+              "net": 5
+            },
+            "20": {
+              "gained": [
+                87861,
+                71086,
+                61638,
+                93112,
+                74970,
+                78617
+              ],
+              "lost": [
+                71013
+              ],
+              "net": 5
+            },
+            "25": {
+              "gained": [
+                87861,
+                71086,
+                61638,
+                93112,
+                78617
+              ],
+              "lost": [
+                73405,
+                71013
+              ],
+              "net": 3
+            },
+            "30": {
+              "gained": [
+                87861,
+                71086,
+                61638,
+                93112,
+                78617
+              ],
+              "lost": [],
+              "net": 5
+            }
+          }
+        },
+        "visible_previous_equal_norm": {
+          "lead_gain_common": {
+            "count": 163,
+            "mean_ms": 81.04294478527608,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 140,
+            "mean_ms": -3.0142857142857142,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [
+            90874
+          ],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                90874,
+                87861
+              ],
+              "lost": [
+                86155
+              ],
+              "net": 1
+            },
+            "20": {
+              "gained": [
+                90874,
+                87861,
+                63566
+              ],
+              "lost": [
+                86155
+              ],
+              "net": 2
+            },
+            "25": {
+              "gained": [
+                90874,
+                87861
+              ],
+              "lost": [
+                86155
+              ],
+              "net": 1
+            },
+            "30": {
+              "gained": [
+                90874,
+                87861
+              ],
+              "lost": [
+                86155
+              ],
+              "net": 1
+            }
+          }
+        }
+      },
+      "legacy_current4": {
+        "fixed": {
+          "lead_gain_common": {
+            "count": 165,
+            "mean_ms": -221.0121212121212,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 143,
+            "mean_ms": -52.94405594405595,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [
+            77302
+          ],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                77302
+              ],
+              "lost": [
+                71086,
+                73403,
+                95770
+              ],
+              "net": -2
+            },
+            "20": {
+              "gained": [
+                77302
+              ],
+              "lost": [
+                64581,
+                80600,
+                71086,
+                73403,
+                95770,
+                77788,
+                74970,
+                85032
+              ],
+              "net": -7
+            },
+            "25": {
+              "gained": [
+                73405,
+                71013
+              ],
+              "lost": [
+                80600,
+                71086,
+                73403,
+                95770
+              ],
+              "net": -2
+            },
+            "30": {
+              "gained": [],
+              "lost": [
+                80600,
+                71086,
+                73403,
+                95770,
+                73665
+              ],
+              "net": -5
+            }
+          }
+        },
+        "inherited": {
+          "lead_gain_common": {
+            "count": 165,
+            "mean_ms": -104.4060606060606,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 143,
+            "mean_ms": -51.11188811188811,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [],
+              "lost": [
+                71086,
+                73403,
+                95770
+              ],
+              "net": -3
+            },
+            "20": {
+              "gained": [],
+              "lost": [
+                64581,
+                71086,
+                73403,
+                95770,
+                77788,
+                74970,
+                85032
+              ],
+              "net": -7
+            },
+            "25": {
+              "gained": [
+                73405
+              ],
+              "lost": [
+                71086,
+                73403,
+                95770
+              ],
+              "net": -2
+            },
+            "30": {
+              "gained": [],
+              "lost": [
+                71086,
+                73403,
+                95770
+              ],
+              "net": -3
+            }
+          }
+        },
+        "previous_direction_equal_norm": {
+          "lead_gain_common": {
+            "count": 163,
+            "mean_ms": -82.80981595092024,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 141,
+            "mean_ms": -28.404255319148934,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [
+            61638,
+            93112
+          ],
+          "deadline_flips": {
+            "15": {
+              "gained": [],
+              "lost": [
+                87861,
+                71086,
+                61638,
+                93112
+              ],
+              "net": -4
+            },
+            "20": {
+              "gained": [],
+              "lost": [
+                87861,
+                71086,
+                61638,
+                93112,
+                74970
+              ],
+              "net": -5
+            },
+            "25": {
+              "gained": [
+                73405,
+                71013
+              ],
+              "lost": [
+                87861,
+                71086,
+                61638,
+                93112
+              ],
+              "net": -2
+            },
+            "30": {
+              "gained": [],
+              "lost": [
+                87861,
+                71086,
+                61638,
+                93112
+              ],
+              "net": -4
+            }
+          }
+        },
+        "agreement_direction_equal_norm": {
+          "lead_gain_common": {
+            "count": 165,
+            "mean_ms": 3.44848484848485,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 143,
+            "mean_ms": -19.629370629370626,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [],
+              "lost": [
+                61638
+              ],
+              "net": -1
+            },
+            "20": {
+              "gained": [],
+              "lost": [
+                61638
+              ],
+              "net": -1
+            },
+            "25": {
+              "gained": [
+                73405
+              ],
+              "lost": [
+                61638
+              ],
+              "net": 0
+            },
+            "30": {
+              "gained": [],
+              "lost": [
+                61638
+              ],
+              "net": -1
+            }
+          }
+        },
+        "visible_latest_equal_norm": {
+          "lead_gain_common": {
+            "count": 165,
+            "mean_ms": 79.43636363636364,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 142,
+            "mean_ms": 29.47887323943662,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [
+            78617
+          ],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                78617
+              ],
+              "lost": [],
+              "net": 1
+            },
+            "20": {
+              "gained": [
+                78617
+              ],
+              "lost": [
+                71013
+              ],
+              "net": 0
+            },
+            "25": {
+              "gained": [
+                78617
+              ],
+              "lost": [],
+              "net": 1
+            },
+            "30": {
+              "gained": [
+                78617
+              ],
+              "lost": [],
+              "net": 1
+            }
+          }
+        },
+        "visible_previous_equal_norm": {
+          "lead_gain_common": {
+            "count": 163,
+            "mean_ms": -1.7668711656441705,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 140,
+            "mean_ms": -30.37142857142857,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [
+            90874
+          ],
+          "no_longer_alarmed_disruptions": [
+            61638,
+            93112
+          ],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                90874
+              ],
+              "lost": [
+                86155,
+                71086,
+                61638,
+                93112
+              ],
+              "net": -3
+            },
+            "20": {
+              "gained": [
+                90874,
+                63566
+              ],
+              "lost": [
+                86155,
+                71086,
+                61638,
+                93112,
+                74970
+              ],
+              "net": -3
+            },
+            "25": {
+              "gained": [
+                90874,
+                73405,
+                71013
+              ],
+              "lost": [
+                86155,
+                71086,
+                61638,
+                93112
+              ],
+              "net": -1
+            },
+            "30": {
+              "gained": [
+                90874
+              ],
+              "lost": [
+                86155,
+                71086,
+                61638,
+                93112
+              ],
+              "net": -3
+            }
+          }
+        }
+      }
+    }
+  }
+}

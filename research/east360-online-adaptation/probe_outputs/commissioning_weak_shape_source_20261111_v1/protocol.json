@@ -1,0 +1,29 @@
+{
+  "scope": "SOURCE_TRAIN1353_CONTEXT_MATCHED_WEAK_SHAPE",
+  "parent_sha256": "c7270c1ea3652db2e30e972d4ca9a4a2d33220a68e4a3765c8b7f5bcceeaeb02",
+  "source_label_sha256": "559da4f719373b0c13b96d34e27a2b46b80eba7f0ef185c3b6ac58b3761e0199",
+  "code_sha256": {
+    "commissioning_weak_shape_source_20261111.py": "c322452117299939e4256dbf37351552340e8e5bb26654c7a068c07f5b077413",
+    "commissioning_weak_shape_data_20261111.py": "d84b873db2eaed122196a6e713e3fa274959576b5e73257636af477de43226e8",
+    "commissioning_lag_state_20261110.py": "fc48abd059ff79a0dfb01f4d1ca89638ae2675a250598835b41b7dff7d1a8fec",
+    "commissioning_transition_data_20261110.py": "1eaaff901f122703d7ae557d448c6091e98cd7278b2b322ae39992ebc2e60b64",
+    "commissioning_transition_net_20261110.py": "3a5b908e30dd4792a46bf12e87826dfd8c81dd4db00475211ad28a3a1ec23546",
+    "commissioning_transition_source_20261110.py": "550b2beabb66f1129ad0ee5e7620f94f1f373ac824b445434c107ff574ab1a4d",
+    "simple_data.py": "0d9b1e5f2caf5dc63cb227f79150ad0743d653d3b6f75546cc4df8277886f046",
+    "io23.py": "5a26ba79e9fbc7bd9480ef03fe914f83878d108b11257a9e88b3ea4f6f8020e8"
+  },
+  "steps": 960,
+  "seed": 131,
+  "batch": 256,
+  "margin": 0.5,
+  "pair_weight": 0.5,
+  "order_weight": 0.35,
+  "weak_weight": 2,
+  "first_effect": 153,
+  "tail_s": 0.125,
+  "source_fit": "TRAIN1353 only",
+  "holdout": "VAL160 diagnostics only; not used to select EAST checkpoint",
+  "ordered_target": "five observed five-point means, centered and normalized; same-window roll-by-two null",
+  "primary": "context_matched",
+  "negative_control": "random_safe_same_stratum"
+}

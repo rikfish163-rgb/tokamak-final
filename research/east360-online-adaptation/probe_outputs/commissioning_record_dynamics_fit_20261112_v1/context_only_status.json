@@ -1,0 +1,80 @@
+{
+  "scope": "same origin list, direct binary head without network features",
+  "fit_sha256": "aa01c643e99afc208c8171fdb67e49e2d91b27f0c4c11f71981e9923e4976844",
+  "seed": 131,
+  "steps": 320,
+  "metrics": {
+    "train": {
+      "windows": 9179,
+      "same_rows_as_fitted_receipt": true,
+      "context_only": {
+        "status_log_loss": {
+          "shots": 1308,
+          "value": 0.23776021631176986
+        },
+        "status_brier": {
+          "shots": 1308,
+          "value": 0.06867130601979676
+        }
+      },
+      "full": {
+        "status_log_loss": {
+          "shots": 1308,
+          "value": 0.22972894759490461
+        },
+        "status_brier": {
+          "shots": 1308,
+          "value": 0.06675903495266332
+        }
+      }
+    },
+    "val": {
+      "windows": 849,
+      "same_rows_as_fitted_receipt": true,
+      "context_only": {
+        "status_log_loss": {
+          "shots": 149,
+          "value": 0.2612014582547386
+        },
+        "status_brier": {
+          "shots": 149,
+          "value": 0.07418272607973929
+        }
+      },
+      "full": {
+        "status_log_loss": {
+          "shots": 149,
+          "value": 0.2637184887987292
+        },
+        "status_brier": {
+          "shots": 149,
+          "value": 0.071670760518553
+        }
+      }
+    },
+    "cold": {
+      "windows": 2255,
+      "same_rows_as_fitted_receipt": true,
+      "context_only": {
+        "status_log_loss": {
+          "shots": 20,
+          "value": 0.29910104350532907
+        },
+        "status_brier": {
+          "shots": 20,
+          "value": 0.08870237246416554
+        }
+      },
+      "full": {
+        "status_log_loss": {
+          "shots": 20,
+          "value": 0.30980998369146845
+        },
+        "status_brier": {
+          "shots": 20,
+          "value": 0.09050889748236986
+        }
+      }
+    }
+  }
+}

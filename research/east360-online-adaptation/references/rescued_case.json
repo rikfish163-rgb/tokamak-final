@@ -1,0 +1,130 @@
+{
+  "scope": "POSTHOC diagnostic, not policy selection or independent confirmation",
+  "shot": 73405,
+  "records": {
+    "static": {
+      "shot": 73405,
+      "is_disrupt": true,
+      "alarm": true,
+      "lead_ms": 27.0,
+      "timely": false
+    },
+    "original4": {
+      "shot": 73405,
+      "is_disrupt": true,
+      "alarm": true,
+      "lead_ms": 22.0,
+      "timely": false
+    },
+    "recent": {
+      "shot": 73405,
+      "is_disrupt": true,
+      "alarm": true,
+      "lead_ms": 22.0,
+      "timely": false
+    },
+    "lag_bias": {
+      "shot": 73405,
+      "is_disrupt": true,
+      "alarm": true,
+      "lead_ms": 31.0,
+      "timely": true
+    }
+  },
+  "threshold": 0.7258946895599365,
+  "first_lag_alarm_index": 18698,
+  "first_lag_alarm_time": 21.698,
+  "down": 21.729,
+  "last_update_first_affected_index": 18688,
+  "last_observation": 18687,
+  "last_feedback_lead_ms": 42.0,
+  "static_probability_at_lag_alarm": 0.6312613487243652,
+  "lag_probability_at_lag_alarm": 0.7270784378051758,
+  "lag_margin_at_alarm": 0.0011837482452392578,
+  "timely_maxima": {
+    "static": 0.6312613487243652,
+    "recent": 0.3615551292896271,
+    "lag_bias": 0.7270784378051758
+  },
+  "internal_state_change_norm": 1.3323453664779663,
+  "fixed_head_logit_change": 0.44221818447113037,
+  "state_projection_on_fixed_head": 0.4422180950641632,
+  "cumulative_temporary_parameter_norm": 0.02878016901366072,
+  "lead_sensitivity_strict_greater": {
+    "30.0": {
+      "static": {
+        "tp": 118,
+        "fp": 27
+      },
+      "original4": {
+        "tp": 117,
+        "fp": 29
+      },
+      "recent": {
+        "tp": 117,
+        "fp": 29
+      },
+      "lag_bias": {
+        "tp": 119,
+        "fp": 27
+      }
+    },
+    "31.0": {
+      "static": {
+        "tp": 118,
+        "fp": 27
+      },
+      "original4": {
+        "tp": 117,
+        "fp": 29
+      },
+      "recent": {
+        "tp": 117,
+        "fp": 29
+      },
+      "lag_bias": {
+        "tp": 118,
+        "fp": 27
+      }
+    },
+    "40.0": {
+      "static": {
+        "tp": 108,
+        "fp": 27
+      },
+      "original4": {
+        "tp": 108,
+        "fp": 29
+      },
+      "recent": {
+        "tp": 108,
+        "fp": 29
+      },
+      "lag_bias": {
+        "tp": 108,
+        "fp": 27
+      }
+    },
+    "50.0": {
+      "static": {
+        "tp": 97,
+        "fp": 27
+      },
+      "original4": {
+        "tp": 100,
+        "fp": 29
+      },
+      "recent": {
+        "tp": 100,
+        "fp": 29
+      },
+      "lag_bias": {
+        "tp": 99,
+        "fp": 27
+      }
+    }
+  },
+  "replayed_full_traces": 3,
+  "max_replay_error": 0.0,
+  "case_audit_sha256": "7b792a0dc89f79f1900e1a82adac85a555bd40000d44300c896afa2b21dbb0a7"
+}

@@ -1,0 +1,803 @@
+{
+  "scope": "FOUR_FOLD_ENDED20_DIAGNOSTIC_NOT_A_FULL_FLOW_SCORE",
+  "fold_training_excludes_held_from_alignment_readout_and_mapper": true,
+  "held_same_original_source_threshold": 0.7258946895599365,
+  "pairs": 24,
+  "wins": {
+    "fixed": 20,
+    "no_background": 20,
+    "intra": 20,
+    "lag": 20
+  },
+  "counts": {
+    "fixed": [
+      5,
+      0
+    ],
+    "no_background": [
+      5,
+      0
+    ],
+    "intra": [
+      5,
+      0
+    ],
+    "lag": [
+      5,
+      1
+    ]
+  },
+  "median_peak_change": {
+    "no_background": {
+      "safe": -0.0015548691153526306,
+      "disruptive": 3.6776065826416016e-05
+    },
+    "intra": {
+      "safe": -0.001589454710483551,
+      "disruptive": 3.6209821701049805e-05
+    },
+    "lag": {
+      "safe": -0.0014384537935256958,
+      "disruptive": 3.090500831604004e-05
+    }
+  },
+  "folds": [
+    {
+      "train": [
+        87494,
+        69458,
+        87487,
+        70323,
+        86167,
+        54157,
+        91054,
+        91885,
+        77002,
+        94428,
+        61468,
+        85320,
+        85316,
+        91723,
+        75657
+      ],
+      "held": [
+        71304,
+        69854,
+        70404,
+        63097,
+        85632
+      ],
+      "mapper_norm": 0.7212517261505127,
+      "rows": [
+        {
+          "shot": 71304,
+          "disruptive": true,
+          "alarm": {
+            "fixed": {
+              "alarm": true,
+              "lead_ms": 3466.0,
+              "timely": true
+            },
+            "no_background": {
+              "alarm": true,
+              "lead_ms": 3466.0,
+              "timely": true
+            },
+            "intra": {
+              "alarm": true,
+              "lead_ms": 3466.0,
+              "timely": true
+            },
+            "lag": {
+              "alarm": true,
+              "lead_ms": 3466.0,
+              "timely": true
+            }
+          },
+          "peak": {
+            "fixed": 0.9898389577865601,
+            "no_background": 0.9898874163627625,
+            "intra": 0.9898861646652222,
+            "lag": 0.9898712038993835
+          }
+        },
+        {
+          "shot": 69854,
+          "disruptive": true,
+          "alarm": {
+            "fixed": {
+              "alarm": true,
+              "lead_ms": 4.6,
+              "timely": false
+            },
+            "no_background": {
+              "alarm": true,
+              "lead_ms": 4.6,
+              "timely": false
+            },
+            "intra": {
+              "alarm": true,
+              "lead_ms": 4.6,
+              "timely": false
+            },
+            "lag": {
+              "alarm": true,
+              "lead_ms": 4.6,
+              "timely": false
+            }
+          },
+          "peak": {
+            "fixed": 0.11426316946744919,
+            "no_background": 0.11591225862503052,
+            "intra": 0.11591753363609314,
+            "lag": 0.1157466396689415
+          }
+        },
+        {
+          "shot": 70404,
+          "disruptive": false,
+          "alarm": {
+            "fixed": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            },
+            "no_background": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            },
+            "intra": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            },
+            "lag": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            }
+          },
+          "peak": {
+            "fixed": 0.20251403748989105,
+            "no_background": 0.2059411257505417,
+            "intra": 0.20587679743766785,
+            "lag": 0.20661483705043793
+          }
+        },
+        {
+          "shot": 63097,
+          "disruptive": false,
+          "alarm": {
+            "fixed": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            },
+            "no_background": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            },
+            "intra": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            },
+            "lag": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            }
+          },
+          "peak": {
+            "fixed": 0.1991225630044937,
+            "no_background": 0.19986742734909058,
+            "intra": 0.19984133541584015,
+            "lag": 0.19933582842350006
+          }
+        },
+        {
+          "shot": 85632,
+          "disruptive": false,
+          "alarm": {
+            "fixed": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            },
+            "no_background": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            },
+            "intra": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            },
+            "lag": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            }
+          },
+          "peak": {
+            "fixed": 0.31215646862983704,
+            "no_background": 0.30943965911865234,
+            "intra": 0.30958670377731323,
+            "lag": 0.30923813581466675
+          }
+        }
+      ]
+    },
+    {
+      "train": [
+        71304,
+        69458,
+        87487,
+        69854,
+        70404,
+        86167,
+        54157,
+        63097,
+        77002,
+        94428,
+        61468,
+        85632,
+        85316,
+        91723,
+        75657
+      ],
+      "held": [
+        87494,
+        91885,
+        70323,
+        91054,
+        85320
+      ],
+      "mapper_norm": 0.798247754573822,
+      "rows": [
+        {
+          "shot": 87494,
+          "disruptive": true,
+          "alarm": {
+            "fixed": {
+              "alarm": true,
+              "lead_ms": 526.107521,
+              "timely": true
+            },
+            "no_background": {
+              "alarm": true,
+              "lead_ms": 525.107521,
+              "timely": true
+            },
+            "intra": {
+              "alarm": true,
+              "lead_ms": 525.107521,
+              "timely": true
+            },
+            "lag": {
+              "alarm": true,
+              "lead_ms": 525.107521,
+              "timely": true
+            }
+          },
+          "peak": {
+            "fixed": 0.8651504516601562,
+            "no_background": 0.867929220199585,
+            "intra": 0.8678856492042542,
+            "lag": 0.8675298690795898
+          }
+        },
+        {
+          "shot": 91885,
+          "disruptive": true,
+          "alarm": {
+            "fixed": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            },
+            "no_background": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            },
+            "intra": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            },
+            "lag": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            }
+          },
+          "peak": {
+            "fixed": 0.7137138843536377,
+            "no_background": 0.7143650054931641,
+            "intra": 0.7143908143043518,
+            "lag": 0.7148390412330627
+          }
+        },
+        {
+          "shot": 70323,
+          "disruptive": false,
+          "alarm": {
+            "fixed": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            },
+            "no_background": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            },
+            "intra": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            },
+            "lag": {
+              "alarm": true,
+              "lead_ms": null,
+              "timely": false
+            }
+          },
+          "peak": {
+            "fixed": 0.7251185774803162,
+            "no_background": 0.7256758213043213,
+            "intra": 0.7256845831871033,
+            "lag": 0.7260015606880188
+          }
+        },
+        {
+          "shot": 91054,
+          "disruptive": false,
+          "alarm": {
+            "fixed": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            },
+            "no_background": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            },
+            "intra": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            },
+            "lag": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            }
+          },
+          "peak": {
+            "fixed": 0.17481598258018494,
+            "no_background": 0.16872262954711914,
+            "intra": 0.16867518424987793,
+            "lag": 0.16837018728256226
+          }
+        },
+        {
+          "shot": 85320,
+          "disruptive": false,
+          "alarm": {
+            "fixed": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            },
+            "no_background": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            },
+            "intra": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            },
+            "lag": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            }
+          },
+          "peak": {
+            "fixed": 0.1858527660369873,
+            "no_background": 0.1849055141210556,
+            "intra": 0.18494640290737152,
+            "lag": 0.18472838401794434
+          }
+        }
+      ]
+    },
+    {
+      "train": [
+        71304,
+        87494,
+        87487,
+        69854,
+        70404,
+        70323,
+        54157,
+        63097,
+        91054,
+        91885,
+        61468,
+        85632,
+        85320,
+        91723,
+        75657
+      ],
+      "held": [
+        69458,
+        77002,
+        86167,
+        94428,
+        85316
+      ],
+      "mapper_norm": 0.8690400123596191,
+      "rows": [
+        {
+          "shot": 69458,
+          "disruptive": true,
+          "alarm": {
+            "fixed": {
+              "alarm": true,
+              "lead_ms": 1170.0,
+              "timely": true
+            },
+            "no_background": {
+              "alarm": true,
+              "lead_ms": 1170.0,
+              "timely": true
+            },
+            "intra": {
+              "alarm": true,
+              "lead_ms": 1170.0,
+              "timely": true
+            },
+            "lag": {
+              "alarm": true,
+              "lead_ms": 1170.0,
+              "timely": true
+            }
+          },
+          "peak": {
+            "fixed": 0.9980104565620422,
+            "no_background": 0.9980042576789856,
+            "intra": 0.9980042576789856,
+            "lag": 0.9979998469352722
+          }
+        },
+        {
+          "shot": 77002,
+          "disruptive": true,
+          "alarm": {
+            "fixed": {
+              "alarm": true,
+              "lead_ms": 94.0,
+              "timely": true
+            },
+            "no_background": {
+              "alarm": true,
+              "lead_ms": 94.0,
+              "timely": true
+            },
+            "intra": {
+              "alarm": true,
+              "lead_ms": 94.0,
+              "timely": true
+            },
+            "lag": {
+              "alarm": true,
+              "lead_ms": 94.0,
+              "timely": true
+            }
+          },
+          "peak": {
+            "fixed": 0.9964937567710876,
+            "no_background": 0.9965188503265381,
+            "intra": 0.9965189695358276,
+            "lag": 0.9965233206748962
+          }
+        },
+        {
+          "shot": 86167,
+          "disruptive": false,
+          "alarm": {
+            "fixed": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            },
+            "no_background": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            },
+            "intra": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            },
+            "lag": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            }
+          },
+          "peak": {
+            "fixed": 0.32630524039268494,
+            "no_background": 0.3241427540779114,
+            "intra": 0.3240326941013336,
+            "lag": 0.3245527148246765
+          }
+        },
+        {
+          "shot": 94428,
+          "disruptive": false,
+          "alarm": {
+            "fixed": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            },
+            "no_background": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            },
+            "intra": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            },
+            "lag": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            }
+          },
+          "peak": {
+            "fixed": 0.26115408539772034,
+            "no_background": 0.2583456337451935,
+            "intra": 0.2583770155906677,
+            "lag": 0.2583696246147156
+          }
+        },
+        {
+          "shot": 85316,
+          "disruptive": false,
+          "alarm": {
+            "fixed": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            },
+            "no_background": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            },
+            "intra": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            },
+            "lag": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            }
+          },
+          "peak": {
+            "fixed": 0.28943753242492676,
+            "no_background": 0.29049140214920044,
+            "intra": 0.29041919112205505,
+            "lag": 0.29033133387565613
+          }
+        }
+      ]
+    },
+    {
+      "train": [
+        71304,
+        87494,
+        69458,
+        69854,
+        70404,
+        70323,
+        86167,
+        63097,
+        91054,
+        91885,
+        77002,
+        94428,
+        85632,
+        85320,
+        85316
+      ],
+      "held": [
+        87487,
+        75657,
+        54157,
+        61468,
+        91723
+      ],
+      "mapper_norm": 0.9599039554595947,
+      "rows": [
+        {
+          "shot": 87487,
+          "disruptive": true,
+          "alarm": {
+            "fixed": {
+              "alarm": true,
+              "lead_ms": 40.0,
+              "timely": true
+            },
+            "no_background": {
+              "alarm": true,
+              "lead_ms": 40.0,
+              "timely": true
+            },
+            "intra": {
+              "alarm": true,
+              "lead_ms": 40.0,
+              "timely": true
+            },
+            "lag": {
+              "alarm": true,
+              "lead_ms": 40.0,
+              "timely": true
+            }
+          },
+          "peak": {
+            "fixed": 0.9962900876998901,
+            "no_background": 0.9960833787918091,
+            "intra": 0.9960810542106628,
+            "lag": 0.9960940480232239
+          }
+        },
+        {
+          "shot": 75657,
+          "disruptive": true,
+          "alarm": {
+            "fixed": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            },
+            "no_background": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            },
+            "intra": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            },
+            "lag": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            }
+          },
+          "peak": {
+            "fixed": 0.6148722171783447,
+            "no_background": 0.6047644019126892,
+            "intra": 0.6046751141548157,
+            "lag": 0.6049743294715881
+          }
+        },
+        {
+          "shot": 54157,
+          "disruptive": false,
+          "alarm": {
+            "fixed": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            },
+            "no_background": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            },
+            "intra": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            },
+            "lag": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            }
+          },
+          "peak": {
+            "fixed": 0.03683425113558769,
+            "no_background": 0.03683425113558769,
+            "intra": 0.03683425113558769,
+            "lag": 0.03683425113558769
+          }
+        },
+        {
+          "shot": 61468,
+          "disruptive": false,
+          "alarm": {
+            "fixed": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            },
+            "no_background": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            },
+            "intra": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            },
+            "lag": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            }
+          },
+          "peak": {
+            "fixed": 0.15099360048770905,
+            "no_background": 0.14480018615722656,
+            "intra": 0.14467266201972961,
+            "lag": 0.144511878490448
+          }
+        },
+        {
+          "shot": 91723,
+          "disruptive": false,
+          "alarm": {
+            "fixed": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            },
+            "no_background": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            },
+            "intra": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            },
+            "lag": {
+              "alarm": false,
+              "lead_ms": null,
+              "timely": false
+            }
+          },
+          "peak": {
+            "fixed": 0.37640121579170227,
+            "no_background": 0.3738279640674591,
+            "intra": 0.3735072910785675,
+            "lag": 0.37333694100379944
+          }
+        }
+      ]
+    }
+  ],
+  "seconds": 26.629717482999695
+}

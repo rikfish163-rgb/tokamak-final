@@ -1,0 +1,881 @@
+{
+  "scope": "ENDED20_DISJOINT_FOLDS_ORIGINAL_CUTOFF_NOT_FUTURE_CONFIRMATION",
+  "folds": [
+    {
+      "fit": [
+        87494,
+        69458,
+        87487,
+        70323,
+        86167,
+        54157,
+        91054,
+        91885,
+        77002,
+        94428,
+        61468,
+        85320,
+        85316,
+        91723,
+        75657
+      ],
+      "held": [
+        71304,
+        69854,
+        70404,
+        63097,
+        85632
+      ],
+      "cutoff": 0.7258946895599365
+    },
+    {
+      "fit": [
+        71304,
+        69458,
+        87487,
+        69854,
+        70404,
+        86167,
+        54157,
+        63097,
+        77002,
+        94428,
+        61468,
+        85632,
+        85316,
+        91723,
+        75657
+      ],
+      "held": [
+        87494,
+        70323,
+        91054,
+        91885,
+        85320
+      ],
+      "cutoff": 0.7258946895599365
+    },
+    {
+      "fit": [
+        71304,
+        87494,
+        87487,
+        69854,
+        70404,
+        70323,
+        54157,
+        63097,
+        91054,
+        91885,
+        61468,
+        85632,
+        85320,
+        91723,
+        75657
+      ],
+      "held": [
+        69458,
+        86167,
+        77002,
+        94428,
+        85316
+      ],
+      "cutoff": 0.7258946895599365
+    },
+    {
+      "fit": [
+        71304,
+        87494,
+        69458,
+        69854,
+        70404,
+        70323,
+        86167,
+        63097,
+        91054,
+        91885,
+        77002,
+        94428,
+        85632,
+        85320,
+        85316
+      ],
+      "held": [
+        87487,
+        54157,
+        61468,
+        91723,
+        75657
+      ],
+      "cutoff": 0.7258946895599365
+    }
+  ],
+  "metrics": {
+    "static": {
+      "shots": 20,
+      "n_disruptive": 8,
+      "n_safe": 12,
+      "tp": 5,
+      "fp": 1,
+      "tardy": 2,
+      "miss": 1,
+      "tpr": 0.625,
+      "fpr": 0.08333333333333333,
+      "J": 0.5416666666666666,
+      "early_over3000": 1,
+      "diagnostic_oracle_advance_ms": {
+        "0": 5,
+        "5": 6,
+        "10": 6,
+        "15": 6,
+        "20": 6,
+        "25": 6,
+        "30": 7,
+        "50": 7
+      },
+      "oracle_is_deployable": false
+    },
+    "learned_real": {
+      "shots": 20,
+      "n_disruptive": 8,
+      "n_safe": 12,
+      "tp": 5,
+      "fp": 1,
+      "tardy": 2,
+      "miss": 1,
+      "tpr": 0.625,
+      "fpr": 0.08333333333333333,
+      "J": 0.5416666666666666,
+      "early_over3000": 1,
+      "diagnostic_oracle_advance_ms": {
+        "0": 5,
+        "5": 6,
+        "10": 6,
+        "15": 6,
+        "20": 6,
+        "25": 6,
+        "30": 7,
+        "50": 7
+      },
+      "oracle_is_deployable": false
+    },
+    "learned_reversed": {
+      "shots": 20,
+      "n_disruptive": 8,
+      "n_safe": 12,
+      "tp": 5,
+      "fp": 1,
+      "tardy": 2,
+      "miss": 1,
+      "tpr": 0.625,
+      "fpr": 0.08333333333333333,
+      "J": 0.5416666666666666,
+      "early_over3000": 1,
+      "diagnostic_oracle_advance_ms": {
+        "0": 5,
+        "5": 6,
+        "10": 6,
+        "15": 6,
+        "20": 6,
+        "25": 6,
+        "30": 7,
+        "50": 7
+      },
+      "oracle_is_deployable": false
+    },
+    "learned_unordered": {
+      "shots": 20,
+      "n_disruptive": 8,
+      "n_safe": 12,
+      "tp": 5,
+      "fp": 1,
+      "tardy": 2,
+      "miss": 1,
+      "tpr": 0.625,
+      "fpr": 0.08333333333333333,
+      "J": 0.5416666666666666,
+      "early_over3000": 1,
+      "diagnostic_oracle_advance_ms": {
+        "0": 5,
+        "5": 6,
+        "10": 6,
+        "15": 6,
+        "20": 6,
+        "25": 6,
+        "30": 7,
+        "50": 7
+      },
+      "oracle_is_deployable": false
+    }
+  },
+  "paired": {
+    "learned_real": {
+      "rescued_D": [],
+      "lost_D": [],
+      "removed_FP": [],
+      "added_FP": []
+    },
+    "learned_reversed": {
+      "rescued_D": [],
+      "lost_D": [],
+      "removed_FP": [],
+      "added_FP": []
+    },
+    "learned_unordered": {
+      "rescued_D": [],
+      "lost_D": [],
+      "removed_FP": [],
+      "added_FP": []
+    }
+  },
+  "rows": {
+    "static": [
+      {
+        "shot": 71304,
+        "disruptive": true,
+        "alarm": true,
+        "lead_ms": 3479.0,
+        "timely": true,
+        "target_peak": 0.9946590065956116
+      },
+      {
+        "shot": 69854,
+        "disruptive": true,
+        "alarm": true,
+        "lead_ms": 4.6,
+        "timely": false,
+        "target_peak": 0.036220207810401917
+      },
+      {
+        "shot": 70404,
+        "disruptive": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.06881294399499893
+      },
+      {
+        "shot": 63097,
+        "disruptive": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.14922261238098145
+      },
+      {
+        "shot": 85632,
+        "disruptive": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.24527978897094727
+      },
+      {
+        "shot": 87494,
+        "disruptive": true,
+        "alarm": true,
+        "lead_ms": 583.107521,
+        "timely": true,
+        "target_peak": 0.860247790813446
+      },
+      {
+        "shot": 70323,
+        "disruptive": false,
+        "alarm": true,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.8637813329696655
+      },
+      {
+        "shot": 91054,
+        "disruptive": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.1985696256160736
+      },
+      {
+        "shot": 91885,
+        "disruptive": true,
+        "alarm": true,
+        "lead_ms": 26.0,
+        "timely": false,
+        "target_peak": 0.6030343174934387
+      },
+      {
+        "shot": 85320,
+        "disruptive": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.17049117386341095
+      },
+      {
+        "shot": 69458,
+        "disruptive": true,
+        "alarm": true,
+        "lead_ms": 1250.0,
+        "timely": true,
+        "target_peak": 0.9924172163009644
+      },
+      {
+        "shot": 86167,
+        "disruptive": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.33219021558761597
+      },
+      {
+        "shot": 77002,
+        "disruptive": true,
+        "alarm": true,
+        "lead_ms": 92.0,
+        "timely": true,
+        "target_peak": 0.9890544414520264
+      },
+      {
+        "shot": 94428,
+        "disruptive": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.394027978181839
+      },
+      {
+        "shot": 85316,
+        "disruptive": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.5173076391220093
+      },
+      {
+        "shot": 87487,
+        "disruptive": true,
+        "alarm": true,
+        "lead_ms": 41.0,
+        "timely": true,
+        "target_peak": 0.993259847164154
+      },
+      {
+        "shot": 54157,
+        "disruptive": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.10924933850765228
+      },
+      {
+        "shot": 61468,
+        "disruptive": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.23100508749485016
+      },
+      {
+        "shot": 91723,
+        "disruptive": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.26390355825424194
+      },
+      {
+        "shot": 75657,
+        "disruptive": true,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.6178608536720276
+      }
+    ],
+    "learned_real": [
+      {
+        "shot": 71304,
+        "disruptive": true,
+        "alarm": true,
+        "lead_ms": 3479.0,
+        "timely": true,
+        "target_peak": 0.9946192502975464
+      },
+      {
+        "shot": 69854,
+        "disruptive": true,
+        "alarm": true,
+        "lead_ms": 4.6,
+        "timely": false,
+        "target_peak": 0.036225125193595886
+      },
+      {
+        "shot": 70404,
+        "disruptive": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.067193903028965
+      },
+      {
+        "shot": 63097,
+        "disruptive": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.14922261238098145
+      },
+      {
+        "shot": 85632,
+        "disruptive": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.24549737572669983
+      },
+      {
+        "shot": 87494,
+        "disruptive": true,
+        "alarm": true,
+        "lead_ms": 583.107521,
+        "timely": true,
+        "target_peak": 0.860869288444519
+      },
+      {
+        "shot": 70323,
+        "disruptive": false,
+        "alarm": true,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.8636971116065979
+      },
+      {
+        "shot": 91054,
+        "disruptive": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.19863130152225494
+      },
+      {
+        "shot": 91885,
+        "disruptive": true,
+        "alarm": true,
+        "lead_ms": 26.0,
+        "timely": false,
+        "target_peak": 0.6048746705055237
+      },
+      {
+        "shot": 85320,
+        "disruptive": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.17048785090446472
+      },
+      {
+        "shot": 69458,
+        "disruptive": true,
+        "alarm": true,
+        "lead_ms": 1250.0,
+        "timely": true,
+        "target_peak": 0.9924471378326416
+      },
+      {
+        "shot": 86167,
+        "disruptive": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.3326823115348816
+      },
+      {
+        "shot": 77002,
+        "disruptive": true,
+        "alarm": true,
+        "lead_ms": 92.0,
+        "timely": true,
+        "target_peak": 0.9898953437805176
+      },
+      {
+        "shot": 94428,
+        "disruptive": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.39432838559150696
+      },
+      {
+        "shot": 85316,
+        "disruptive": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.5173230171203613
+      },
+      {
+        "shot": 87487,
+        "disruptive": true,
+        "alarm": true,
+        "lead_ms": 41.0,
+        "timely": true,
+        "target_peak": 0.9939320087432861
+      },
+      {
+        "shot": 54157,
+        "disruptive": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.1092437133193016
+      },
+      {
+        "shot": 61468,
+        "disruptive": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.23100508749485016
+      },
+      {
+        "shot": 91723,
+        "disruptive": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.263886034488678
+      },
+      {
+        "shot": 75657,
+        "disruptive": true,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.6179137229919434
+      }
+    ],
+    "learned_reversed": [
+      {
+        "shot": 71304,
+        "disruptive": true,
+        "alarm": true,
+        "lead_ms": 3479.0,
+        "timely": true,
+        "target_peak": 0.9947302341461182
+      },
+      {
+        "shot": 69854,
+        "disruptive": true,
+        "alarm": true,
+        "lead_ms": 4.6,
+        "timely": false,
+        "target_peak": 0.03621913492679596
+      },
+      {
+        "shot": 70404,
+        "disruptive": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.06834829598665237
+      },
+      {
+        "shot": 63097,
+        "disruptive": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.14922261238098145
+      },
+      {
+        "shot": 85632,
+        "disruptive": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.24536530673503876
+      },
+      {
+        "shot": 87494,
+        "disruptive": true,
+        "alarm": true,
+        "lead_ms": 583.107521,
+        "timely": true,
+        "target_peak": 0.8606220483779907
+      },
+      {
+        "shot": 70323,
+        "disruptive": false,
+        "alarm": true,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.8639079332351685
+      },
+      {
+        "shot": 91054,
+        "disruptive": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.1986052393913269
+      },
+      {
+        "shot": 91885,
+        "disruptive": true,
+        "alarm": true,
+        "lead_ms": 26.0,
+        "timely": false,
+        "target_peak": 0.6045095920562744
+      },
+      {
+        "shot": 85320,
+        "disruptive": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.17050813138484955
+      },
+      {
+        "shot": 69458,
+        "disruptive": true,
+        "alarm": true,
+        "lead_ms": 1250.0,
+        "timely": true,
+        "target_peak": 0.9924339056015015
+      },
+      {
+        "shot": 86167,
+        "disruptive": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.3315834403038025
+      },
+      {
+        "shot": 77002,
+        "disruptive": true,
+        "alarm": true,
+        "lead_ms": 92.0,
+        "timely": true,
+        "target_peak": 0.988250732421875
+      },
+      {
+        "shot": 94428,
+        "disruptive": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.39384523034095764
+      },
+      {
+        "shot": 85316,
+        "disruptive": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.5172531008720398
+      },
+      {
+        "shot": 87487,
+        "disruptive": true,
+        "alarm": true,
+        "lead_ms": 41.0,
+        "timely": true,
+        "target_peak": 0.9932175278663635
+      },
+      {
+        "shot": 54157,
+        "disruptive": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.10939925909042358
+      },
+      {
+        "shot": 61468,
+        "disruptive": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.23100508749485016
+      },
+      {
+        "shot": 91723,
+        "disruptive": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.26391831040382385
+      },
+      {
+        "shot": 75657,
+        "disruptive": true,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.6184560656547546
+      }
+    ],
+    "learned_unordered": [
+      {
+        "shot": 71304,
+        "disruptive": true,
+        "alarm": true,
+        "lead_ms": 3479.0,
+        "timely": true,
+        "target_peak": 0.9947431087493896
+      },
+      {
+        "shot": 69854,
+        "disruptive": true,
+        "alarm": true,
+        "lead_ms": 4.6,
+        "timely": false,
+        "target_peak": 0.03622208535671234
+      },
+      {
+        "shot": 70404,
+        "disruptive": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.06754167377948761
+      },
+      {
+        "shot": 63097,
+        "disruptive": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.14922261238098145
+      },
+      {
+        "shot": 85632,
+        "disruptive": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.24543094635009766
+      },
+      {
+        "shot": 87494,
+        "disruptive": true,
+        "alarm": true,
+        "lead_ms": 583.107521,
+        "timely": true,
+        "target_peak": 0.8607462048530579
+      },
+      {
+        "shot": 70323,
+        "disruptive": false,
+        "alarm": true,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.8637998104095459
+      },
+      {
+        "shot": 91054,
+        "disruptive": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.1986183524131775
+      },
+      {
+        "shot": 91885,
+        "disruptive": true,
+        "alarm": true,
+        "lead_ms": 26.0,
+        "timely": false,
+        "target_peak": 0.6046947240829468
+      },
+      {
+        "shot": 85320,
+        "disruptive": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.17049792408943176
+      },
+      {
+        "shot": 69458,
+        "disruptive": true,
+        "alarm": true,
+        "lead_ms": 1250.0,
+        "timely": true,
+        "target_peak": 0.9924416542053223
+      },
+      {
+        "shot": 86167,
+        "disruptive": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.33212998509407043
+      },
+      {
+        "shot": 77002,
+        "disruptive": true,
+        "alarm": true,
+        "lead_ms": 92.0,
+        "timely": true,
+        "target_peak": 0.9889039397239685
+      },
+      {
+        "shot": 94428,
+        "disruptive": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.39408665895462036
+      },
+      {
+        "shot": 85316,
+        "disruptive": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.5172880291938782
+      },
+      {
+        "shot": 87487,
+        "disruptive": true,
+        "alarm": true,
+        "lead_ms": 41.0,
+        "timely": true,
+        "target_peak": 0.9939109086990356
+      },
+      {
+        "shot": 54157,
+        "disruptive": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.10933446139097214
+      },
+      {
+        "shot": 61468,
+        "disruptive": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.23100508749485016
+      },
+      {
+        "shot": 91723,
+        "disruptive": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.2639021873474121
+      },
+      {
+        "shot": 75657,
+        "disruptive": true,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false,
+        "target_peak": 0.6181838512420654
+      }
+    ]
+  }
+}

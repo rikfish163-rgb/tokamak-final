@@ -1,0 +1,4098 @@
+{
+  "status": "POSTSEAL_EAST360_SECONDARY_WARNING_DEADLINES_NOT_RECALIBRATED",
+  "input_sha256": {
+    "/media/hetaisheng/044A81D94A81C83E/Fuison-intra-trajectory-20261028/probe_outputs/commissioning_donor_east360_20261111_v1/per_shot.json": "fbee223123650ce82dd96ef8c9732b33571c8f68604e93d984c3cb27b195462d"
+  },
+  "scorer_sha256": "c971db92dc1c3d550cd77c6ff81ae25e15ec2a0c94fc93154b51cb6c6b9e5dd6",
+  "deadline_rule": "lead in milliseconds strictly greater than the stated deadline",
+  "early_definition": "first alarm strictly more than 3000 ms before disruption",
+  "thresholds_unchanged": true,
+  "missed_shots_excluded_from_mean_but_in_tpr_denominator": true,
+  "metrics": {
+    "0.1": {
+      "fixed": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 20,
+        "fpr": 0.1111111111111111,
+        "misses": 26,
+        "early_over3000": 9,
+        "all_alarmed_disruptions": {
+          "count": 154,
+          "mean_ms": 566.5980831233766,
+          "median_ms": 98.0
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 145,
+          "mean_ms": 332.8668405310345,
+          "median_ms": 82.0
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 131,
+            "tpr": 0.7277777777777777,
+            "tp_at_most_3000ms": 122,
+            "tpr_at_most_3000ms": 0.6777777777777778,
+            "timely_lead_ms": {
+              "count": 131,
+              "mean_ms": 664.7675181908397,
+              "median_ms": 138.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 122,
+              "mean_ms": 394.2141963852459,
+              "median_ms": 128.0
+            }
+          },
+          "20": {
+            "tp": 126,
+            "tpr": 0.7,
+            "tp_at_most_3000ms": 117,
+            "tpr_at_most_3000ms": 0.65,
+            "timely_lead_ms": {
+              "count": 126,
+              "mean_ms": 690.4487689126984,
+              "median_ms": 140.5952035
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 117,
+              "mean_ms": 410.30882016239315,
+              "median_ms": 133.0
+            }
+          },
+          "25": {
+            "tp": 122,
+            "tpr": 0.6777777777777778,
+            "tp_at_most_3000ms": 113,
+            "tpr_at_most_3000ms": 0.6277777777777778,
+            "timely_lead_ms": {
+              "count": 122,
+              "mean_ms": 712.307744942623,
+              "median_ms": 154.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 113,
+              "mean_ms": 423.9923182212389,
+              "median_ms": 138.0
+            }
+          },
+          "30": {
+            "tp": 117,
+            "tpr": 0.65,
+            "tp_at_most_3000ms": 108,
+            "tpr_at_most_3000ms": 0.6,
+            "timely_lead_ms": {
+              "count": 117,
+              "mean_ms": 741.5549568547009,
+              "median_ms": 172.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 108,
+              "mean_ms": 442.32886137037036,
+              "median_ms": 140.5952035
+            }
+          }
+        }
+      },
+      "inherited": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 20,
+        "fpr": 0.1111111111111111,
+        "misses": 26,
+        "early_over3000": 11,
+        "all_alarmed_disruptions": {
+          "count": 154,
+          "mean_ms": 614.526654551948,
+          "median_ms": 98.0
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 143,
+          "mean_ms": 317.84181927972026,
+          "median_ms": 82.0
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 132,
+            "tpr": 0.7333333333333333,
+            "tp_at_most_3000ms": 121,
+            "tpr_at_most_3000ms": 0.6722222222222223,
+            "timely_lead_ms": {
+              "count": 132,
+              "mean_ms": 715.7329157803031,
+              "median_ms": 138.5
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 121,
+              "mean_ms": 374.3059523884298,
+              "median_ms": 114.61199
+            }
+          },
+          "20": {
+            "tp": 127,
+            "tpr": 0.7055555555555556,
+            "tp_at_most_3000ms": 116,
+            "tpr_at_most_3000ms": 0.6444444444444445,
+            "timely_lead_ms": {
+              "count": 127,
+              "mean_ms": 743.2105896299213,
+              "median_ms": 142.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 116,
+              "mean_ms": 389.6725882672414,
+              "median_ms": 129.5
+            }
+          },
+          "25": {
+            "tp": 122,
+            "tpr": 0.6777777777777778,
+            "tp_at_most_3000ms": 111,
+            "tpr_at_most_3000ms": 0.6166666666666667,
+            "timely_lead_ms": {
+              "count": 122,
+              "mean_ms": 772.6813930491803,
+              "median_ms": 156.5
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 111,
+              "mean_ms": 406.13878655855854,
+              "median_ms": 138.0
+            }
+          },
+          "30": {
+            "tp": 117,
+            "tpr": 0.65,
+            "tp_at_most_3000ms": 106,
+            "tpr_at_most_3000ms": 0.5888888888888889,
+            "timely_lead_ms": {
+              "count": 117,
+              "mean_ms": 804.4711961709402,
+              "median_ms": 173.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 106,
+              "mean_ms": 423.9377859245283,
+              "median_ms": 140.5952035
+            }
+          }
+        }
+      },
+      "legacy_current4": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 22,
+        "fpr": 0.12222222222222222,
+        "misses": 27,
+        "early_over3000": 13,
+        "all_alarmed_disruptions": {
+          "count": 153,
+          "mean_ms": 854.8503581764705,
+          "median_ms": 97.0
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 140,
+          "mean_ms": 327.44834405,
+          "median_ms": 82.0
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 131,
+            "tpr": 0.7277777777777777,
+            "tp_at_most_3000ms": 118,
+            "tpr_at_most_3000ms": 0.6555555555555556,
+            "timely_lead_ms": {
+              "count": 131,
+              "mean_ms": 997.1583578854962,
+              "median_ms": 142.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 118,
+              "mean_ms": 387.10515465254235,
+              "median_ms": 117.9
+            }
+          },
+          "20": {
+            "tp": 127,
+            "tpr": 0.7055555555555556,
+            "tp_at_most_3000ms": 114,
+            "tpr_at_most_3000ms": 0.6333333333333333,
+            "timely_lead_ms": {
+              "count": 127,
+              "mean_ms": 1027.9901171889765,
+              "median_ms": 153.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 114,
+              "mean_ms": 400.0474407807018,
+              "median_ms": 131.0
+            }
+          },
+          "25": {
+            "tp": 122,
+            "tpr": 0.6777777777777778,
+            "tp_at_most_3000ms": 109,
+            "tpr_at_most_3000ms": 0.6055555555555555,
+            "timely_lead_ms": {
+              "count": 122,
+              "mean_ms": 1069.156802885246,
+              "median_ms": 159.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 109,
+              "mean_ms": 417.31920475229356,
+              "median_ms": 133.0
+            }
+          },
+          "30": {
+            "tp": 118,
+            "tpr": 0.6555555555555556,
+            "tp_at_most_3000ms": 105,
+            "tpr_at_most_3000ms": 0.5833333333333334,
+            "timely_lead_ms": {
+              "count": 118,
+              "mean_ms": 1104.3994063728815,
+              "median_ms": 174.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 105,
+              "mean_ms": 432.0932696952381,
+              "median_ms": 142.0
+            }
+          }
+        }
+      },
+      "ended_donor_same_budget": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 20,
+        "fpr": 0.1111111111111111,
+        "misses": 27,
+        "early_over3000": 11,
+        "all_alarmed_disruptions": {
+          "count": 153,
+          "mean_ms": 733.0529725555556,
+          "median_ms": 119.0
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 142,
+          "mean_ms": 347.34774758450703,
+          "median_ms": 93.9
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 132,
+            "tpr": 0.7333333333333333,
+            "tp_at_most_3000ms": 121,
+            "tpr_at_most_3000ms": 0.6722222222222223,
+            "timely_lead_ms": {
+              "count": 132,
+              "mean_ms": 848.4450369924242,
+              "median_ms": 154.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 121,
+              "mean_ms": 406.2894234628099,
+              "median_ms": 133.0
+            }
+          },
+          "20": {
+            "tp": 127,
+            "tpr": 0.7055555555555556,
+            "tp_at_most_3000ms": 116,
+            "tpr_at_most_3000ms": 0.6444444444444445,
+            "timely_lead_ms": {
+              "count": 127,
+              "mean_ms": 881.1554715196851,
+              "median_ms": 161.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 116,
+              "mean_ms": 423.0432779224138,
+              "median_ms": 137.5952035
+            }
+          },
+          "25": {
+            "tp": 123,
+            "tpr": 0.6833333333333333,
+            "tp_at_most_3000ms": 112,
+            "tpr_at_most_3000ms": 0.6222222222222222,
+            "timely_lead_ms": {
+              "count": 123,
+              "mean_ms": 909.0385762845528,
+              "median_ms": 176.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 112,
+              "mean_ms": 437.3037521339286,
+              "median_ms": 148.0
+            }
+          },
+          "30": {
+            "tp": 118,
+            "tpr": 0.6555555555555556,
+            "tp_at_most_3000ms": 107,
+            "tpr_at_most_3000ms": 0.5944444444444444,
+            "timely_lead_ms": {
+              "count": 118,
+              "mean_ms": 946.3368210423729,
+              "median_ms": 181.45
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 107,
+              "mean_ms": 456.3927125140187,
+              "median_ms": 157.0
+            }
+          }
+        }
+      },
+      "own_on_common_support": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 22,
+        "fpr": 0.12222222222222222,
+        "misses": 27,
+        "early_over3000": 13,
+        "all_alarmed_disruptions": {
+          "count": 153,
+          "mean_ms": 849.0529725555556,
+          "median_ms": 97.0
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 140,
+          "mean_ms": 321.1126297642857,
+          "median_ms": 82.0
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 131,
+            "tpr": 0.7277777777777777,
+            "tp_at_most_3000ms": 118,
+            "tpr_at_most_3000ms": 0.6555555555555556,
+            "timely_lead_ms": {
+              "count": 131,
+              "mean_ms": 990.3949991068703,
+              "median_ms": 142.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 118,
+              "mean_ms": 379.5966800762712,
+              "median_ms": 117.9
+            }
+          },
+          "20": {
+            "tp": 127,
+            "tpr": 0.7055555555555556,
+            "tp_at_most_3000ms": 114,
+            "tpr_at_most_3000ms": 0.6333333333333333,
+            "timely_lead_ms": {
+              "count": 127,
+              "mean_ms": 1021.0294872677165,
+              "median_ms": 153.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 114,
+              "mean_ms": 392.2930548157895,
+              "median_ms": 130.0
+            }
+          },
+          "25": {
+            "tp": 122,
+            "tpr": 0.6777777777777778,
+            "tp_at_most_3000ms": 109,
+            "tpr_at_most_3000ms": 0.6055555555555555,
+            "timely_lead_ms": {
+              "count": 122,
+              "mean_ms": 1061.9027045245903,
+              "median_ms": 159.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 109,
+              "mean_ms": 409.1999386972477,
+              "median_ms": 133.0
+            }
+          },
+          "30": {
+            "tp": 118,
+            "tpr": 0.6555555555555556,
+            "tp_at_most_3000ms": 105,
+            "tpr_at_most_3000ms": 0.5833333333333334,
+            "timely_lead_ms": {
+              "count": 118,
+              "mean_ms": 1096.8994063728815,
+              "median_ms": 174.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 105,
+              "mean_ms": 423.6646982666667,
+              "median_ms": 142.0
+            }
+          }
+        }
+      },
+      "donor_on_common_support": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 20,
+        "fpr": 0.1111111111111111,
+        "misses": 27,
+        "early_over3000": 11,
+        "all_alarmed_disruptions": {
+          "count": 153,
+          "mean_ms": 727.2555869346405,
+          "median_ms": 119.0
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 142,
+          "mean_ms": 341.1012687112676,
+          "median_ms": 94.4
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 132,
+            "tpr": 0.7333333333333333,
+            "tp_at_most_3000ms": 121,
+            "tpr_at_most_3000ms": 0.6722222222222223,
+            "timely_lead_ms": {
+              "count": 132,
+              "mean_ms": 841.7329157803031,
+              "median_ms": 154.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 121,
+              "mean_ms": 398.96710941322317,
+              "median_ms": 133.0
+            }
+          },
+          "20": {
+            "tp": 127,
+            "tpr": 0.7055555555555556,
+            "tp_at_most_3000ms": 116,
+            "tpr_at_most_3000ms": 0.6444444444444445,
+            "timely_lead_ms": {
+              "count": 127,
+              "mean_ms": 874.1948415984252,
+              "median_ms": 161.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 116,
+              "mean_ms": 415.4225882672414,
+              "median_ms": 137.5952035
+            }
+          },
+          "25": {
+            "tp": 123,
+            "tpr": 0.6833333333333333,
+            "tp_at_most_3000ms": 112,
+            "tpr_at_most_3000ms": 0.6222222222222222,
+            "timely_lead_ms": {
+              "count": 123,
+              "mean_ms": 901.8434543333333,
+              "median_ms": 176.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 112,
+              "mean_ms": 429.40196641964286,
+              "median_ms": 148.0
+            }
+          },
+          "30": {
+            "tp": 118,
+            "tpr": 0.6555555555555556,
+            "tp_at_most_3000ms": 107,
+            "tpr_at_most_3000ms": 0.5944444444444444,
+            "timely_lead_ms": {
+              "count": 118,
+              "mean_ms": 938.8368210423729,
+              "median_ms": 181.45
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 107,
+              "mean_ms": 448.1216844766355,
+              "median_ms": 157.0
+            }
+          }
+        }
+      }
+    },
+    "0.15": {
+      "fixed": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 20,
+        "fpr": 0.1111111111111111,
+        "misses": 26,
+        "early_over3000": 9,
+        "all_alarmed_disruptions": {
+          "count": 154,
+          "mean_ms": 566.5980831233766,
+          "median_ms": 98.0
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 145,
+          "mean_ms": 332.8668405310345,
+          "median_ms": 82.0
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 131,
+            "tpr": 0.7277777777777777,
+            "tp_at_most_3000ms": 122,
+            "tpr_at_most_3000ms": 0.6777777777777778,
+            "timely_lead_ms": {
+              "count": 131,
+              "mean_ms": 664.7675181908397,
+              "median_ms": 138.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 122,
+              "mean_ms": 394.2141963852459,
+              "median_ms": 128.0
+            }
+          },
+          "20": {
+            "tp": 126,
+            "tpr": 0.7,
+            "tp_at_most_3000ms": 117,
+            "tpr_at_most_3000ms": 0.65,
+            "timely_lead_ms": {
+              "count": 126,
+              "mean_ms": 690.4487689126984,
+              "median_ms": 140.5952035
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 117,
+              "mean_ms": 410.30882016239315,
+              "median_ms": 133.0
+            }
+          },
+          "25": {
+            "tp": 122,
+            "tpr": 0.6777777777777778,
+            "tp_at_most_3000ms": 113,
+            "tpr_at_most_3000ms": 0.6277777777777778,
+            "timely_lead_ms": {
+              "count": 122,
+              "mean_ms": 712.307744942623,
+              "median_ms": 154.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 113,
+              "mean_ms": 423.9923182212389,
+              "median_ms": 138.0
+            }
+          },
+          "30": {
+            "tp": 117,
+            "tpr": 0.65,
+            "tp_at_most_3000ms": 108,
+            "tpr_at_most_3000ms": 0.6,
+            "timely_lead_ms": {
+              "count": 117,
+              "mean_ms": 741.5549568547009,
+              "median_ms": 172.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 108,
+              "mean_ms": 442.32886137037036,
+              "median_ms": 140.5952035
+            }
+          }
+        }
+      },
+      "inherited": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 20,
+        "fpr": 0.1111111111111111,
+        "misses": 26,
+        "early_over3000": 11,
+        "all_alarmed_disruptions": {
+          "count": 154,
+          "mean_ms": 614.526654551948,
+          "median_ms": 98.0
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 143,
+          "mean_ms": 317.84181927972026,
+          "median_ms": 82.0
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 132,
+            "tpr": 0.7333333333333333,
+            "tp_at_most_3000ms": 121,
+            "tpr_at_most_3000ms": 0.6722222222222223,
+            "timely_lead_ms": {
+              "count": 132,
+              "mean_ms": 715.7329157803031,
+              "median_ms": 138.5
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 121,
+              "mean_ms": 374.3059523884298,
+              "median_ms": 114.61199
+            }
+          },
+          "20": {
+            "tp": 127,
+            "tpr": 0.7055555555555556,
+            "tp_at_most_3000ms": 116,
+            "tpr_at_most_3000ms": 0.6444444444444445,
+            "timely_lead_ms": {
+              "count": 127,
+              "mean_ms": 743.2105896299213,
+              "median_ms": 142.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 116,
+              "mean_ms": 389.6725882672414,
+              "median_ms": 129.5
+            }
+          },
+          "25": {
+            "tp": 122,
+            "tpr": 0.6777777777777778,
+            "tp_at_most_3000ms": 111,
+            "tpr_at_most_3000ms": 0.6166666666666667,
+            "timely_lead_ms": {
+              "count": 122,
+              "mean_ms": 772.6813930491803,
+              "median_ms": 156.5
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 111,
+              "mean_ms": 406.13878655855854,
+              "median_ms": 138.0
+            }
+          },
+          "30": {
+            "tp": 117,
+            "tpr": 0.65,
+            "tp_at_most_3000ms": 106,
+            "tpr_at_most_3000ms": 0.5888888888888889,
+            "timely_lead_ms": {
+              "count": 117,
+              "mean_ms": 804.4711961709402,
+              "median_ms": 173.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 106,
+              "mean_ms": 423.9377859245283,
+              "median_ms": 140.5952035
+            }
+          }
+        }
+      },
+      "legacy_current4": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 22,
+        "fpr": 0.12222222222222222,
+        "misses": 27,
+        "early_over3000": 13,
+        "all_alarmed_disruptions": {
+          "count": 153,
+          "mean_ms": 854.8503581764705,
+          "median_ms": 97.0
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 140,
+          "mean_ms": 327.44834405,
+          "median_ms": 82.0
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 131,
+            "tpr": 0.7277777777777777,
+            "tp_at_most_3000ms": 118,
+            "tpr_at_most_3000ms": 0.6555555555555556,
+            "timely_lead_ms": {
+              "count": 131,
+              "mean_ms": 997.1583578854962,
+              "median_ms": 142.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 118,
+              "mean_ms": 387.10515465254235,
+              "median_ms": 117.9
+            }
+          },
+          "20": {
+            "tp": 127,
+            "tpr": 0.7055555555555556,
+            "tp_at_most_3000ms": 114,
+            "tpr_at_most_3000ms": 0.6333333333333333,
+            "timely_lead_ms": {
+              "count": 127,
+              "mean_ms": 1027.9901171889765,
+              "median_ms": 153.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 114,
+              "mean_ms": 400.0474407807018,
+              "median_ms": 131.0
+            }
+          },
+          "25": {
+            "tp": 122,
+            "tpr": 0.6777777777777778,
+            "tp_at_most_3000ms": 109,
+            "tpr_at_most_3000ms": 0.6055555555555555,
+            "timely_lead_ms": {
+              "count": 122,
+              "mean_ms": 1069.156802885246,
+              "median_ms": 159.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 109,
+              "mean_ms": 417.31920475229356,
+              "median_ms": 133.0
+            }
+          },
+          "30": {
+            "tp": 118,
+            "tpr": 0.6555555555555556,
+            "tp_at_most_3000ms": 105,
+            "tpr_at_most_3000ms": 0.5833333333333334,
+            "timely_lead_ms": {
+              "count": 118,
+              "mean_ms": 1104.3994063728815,
+              "median_ms": 174.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 105,
+              "mean_ms": 432.0932696952381,
+              "median_ms": 142.0
+            }
+          }
+        }
+      },
+      "ended_donor_same_budget": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 20,
+        "fpr": 0.1111111111111111,
+        "misses": 27,
+        "early_over3000": 11,
+        "all_alarmed_disruptions": {
+          "count": 153,
+          "mean_ms": 733.0529725555556,
+          "median_ms": 119.0
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 142,
+          "mean_ms": 347.34774758450703,
+          "median_ms": 93.9
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 132,
+            "tpr": 0.7333333333333333,
+            "tp_at_most_3000ms": 121,
+            "tpr_at_most_3000ms": 0.6722222222222223,
+            "timely_lead_ms": {
+              "count": 132,
+              "mean_ms": 848.4450369924242,
+              "median_ms": 154.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 121,
+              "mean_ms": 406.2894234628099,
+              "median_ms": 133.0
+            }
+          },
+          "20": {
+            "tp": 127,
+            "tpr": 0.7055555555555556,
+            "tp_at_most_3000ms": 116,
+            "tpr_at_most_3000ms": 0.6444444444444445,
+            "timely_lead_ms": {
+              "count": 127,
+              "mean_ms": 881.1554715196851,
+              "median_ms": 161.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 116,
+              "mean_ms": 423.0432779224138,
+              "median_ms": 137.5952035
+            }
+          },
+          "25": {
+            "tp": 123,
+            "tpr": 0.6833333333333333,
+            "tp_at_most_3000ms": 112,
+            "tpr_at_most_3000ms": 0.6222222222222222,
+            "timely_lead_ms": {
+              "count": 123,
+              "mean_ms": 909.0385762845528,
+              "median_ms": 176.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 112,
+              "mean_ms": 437.3037521339286,
+              "median_ms": 148.0
+            }
+          },
+          "30": {
+            "tp": 118,
+            "tpr": 0.6555555555555556,
+            "tp_at_most_3000ms": 107,
+            "tpr_at_most_3000ms": 0.5944444444444444,
+            "timely_lead_ms": {
+              "count": 118,
+              "mean_ms": 946.3368210423729,
+              "median_ms": 181.45
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 107,
+              "mean_ms": 456.3927125140187,
+              "median_ms": 157.0
+            }
+          }
+        }
+      },
+      "own_on_common_support": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 22,
+        "fpr": 0.12222222222222222,
+        "misses": 27,
+        "early_over3000": 13,
+        "all_alarmed_disruptions": {
+          "count": 153,
+          "mean_ms": 849.0529725555556,
+          "median_ms": 97.0
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 140,
+          "mean_ms": 321.1126297642857,
+          "median_ms": 82.0
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 131,
+            "tpr": 0.7277777777777777,
+            "tp_at_most_3000ms": 118,
+            "tpr_at_most_3000ms": 0.6555555555555556,
+            "timely_lead_ms": {
+              "count": 131,
+              "mean_ms": 990.3949991068703,
+              "median_ms": 142.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 118,
+              "mean_ms": 379.5966800762712,
+              "median_ms": 117.9
+            }
+          },
+          "20": {
+            "tp": 127,
+            "tpr": 0.7055555555555556,
+            "tp_at_most_3000ms": 114,
+            "tpr_at_most_3000ms": 0.6333333333333333,
+            "timely_lead_ms": {
+              "count": 127,
+              "mean_ms": 1021.0294872677165,
+              "median_ms": 153.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 114,
+              "mean_ms": 392.2930548157895,
+              "median_ms": 130.0
+            }
+          },
+          "25": {
+            "tp": 122,
+            "tpr": 0.6777777777777778,
+            "tp_at_most_3000ms": 109,
+            "tpr_at_most_3000ms": 0.6055555555555555,
+            "timely_lead_ms": {
+              "count": 122,
+              "mean_ms": 1061.9027045245903,
+              "median_ms": 159.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 109,
+              "mean_ms": 409.1999386972477,
+              "median_ms": 133.0
+            }
+          },
+          "30": {
+            "tp": 118,
+            "tpr": 0.6555555555555556,
+            "tp_at_most_3000ms": 105,
+            "tpr_at_most_3000ms": 0.5833333333333334,
+            "timely_lead_ms": {
+              "count": 118,
+              "mean_ms": 1096.8994063728815,
+              "median_ms": 174.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 105,
+              "mean_ms": 423.6646982666667,
+              "median_ms": 142.0
+            }
+          }
+        }
+      },
+      "donor_on_common_support": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 20,
+        "fpr": 0.1111111111111111,
+        "misses": 27,
+        "early_over3000": 11,
+        "all_alarmed_disruptions": {
+          "count": 153,
+          "mean_ms": 727.2555869346405,
+          "median_ms": 119.0
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 142,
+          "mean_ms": 341.1012687112676,
+          "median_ms": 94.4
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 132,
+            "tpr": 0.7333333333333333,
+            "tp_at_most_3000ms": 121,
+            "tpr_at_most_3000ms": 0.6722222222222223,
+            "timely_lead_ms": {
+              "count": 132,
+              "mean_ms": 841.7329157803031,
+              "median_ms": 154.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 121,
+              "mean_ms": 398.96710941322317,
+              "median_ms": 133.0
+            }
+          },
+          "20": {
+            "tp": 127,
+            "tpr": 0.7055555555555556,
+            "tp_at_most_3000ms": 116,
+            "tpr_at_most_3000ms": 0.6444444444444445,
+            "timely_lead_ms": {
+              "count": 127,
+              "mean_ms": 874.1948415984252,
+              "median_ms": 161.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 116,
+              "mean_ms": 415.4225882672414,
+              "median_ms": 137.5952035
+            }
+          },
+          "25": {
+            "tp": 123,
+            "tpr": 0.6833333333333333,
+            "tp_at_most_3000ms": 112,
+            "tpr_at_most_3000ms": 0.6222222222222222,
+            "timely_lead_ms": {
+              "count": 123,
+              "mean_ms": 901.8434543333333,
+              "median_ms": 176.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 112,
+              "mean_ms": 429.40196641964286,
+              "median_ms": 148.0
+            }
+          },
+          "30": {
+            "tp": 118,
+            "tpr": 0.6555555555555556,
+            "tp_at_most_3000ms": 107,
+            "tpr_at_most_3000ms": 0.5944444444444444,
+            "timely_lead_ms": {
+              "count": 118,
+              "mean_ms": 938.8368210423729,
+              "median_ms": 181.45
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 107,
+              "mean_ms": 448.1216844766355,
+              "median_ms": 157.0
+            }
+          }
+        }
+      }
+    },
+    "0.2": {
+      "fixed": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 32,
+        "fpr": 0.17777777777777778,
+        "misses": 14,
+        "early_over3000": 19,
+        "all_alarmed_disruptions": {
+          "count": 166,
+          "mean_ms": 1094.6879902650603,
+          "median_ms": 181.5
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 147,
+          "mean_ms": 470.958946537415,
+          "median_ms": 137.0
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 152,
+            "tpr": 0.8444444444444444,
+            "tp_at_most_3000ms": 133,
+            "tpr_at_most_3000ms": 0.7388888888888889,
+            "timely_lead_ms": {
+              "count": 152,
+              "mean_ms": 1194.706330730263,
+              "median_ms": 256.902669
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 133,
+              "mean_ms": 519.6099325413534,
+              "median_ms": 165.0
+            }
+          },
+          "20": {
+            "tp": 144,
+            "tpr": 0.8,
+            "tp_at_most_3000ms": 125,
+            "tpr_at_most_3000ms": 0.6944444444444444,
+            "timely_lead_ms": {
+              "count": 144,
+              "mean_ms": 1260.04961675,
+              "median_ms": 285.5
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 125,
+              "mean_ms": 551.679228552,
+              "median_ms": 187.0
+            }
+          },
+          "25": {
+            "tp": 140,
+            "tpr": 0.7777777777777778,
+            "tp_at_most_3000ms": 121,
+            "tpr_at_most_3000ms": 0.6722222222222223,
+            "timely_lead_ms": {
+              "count": 140,
+              "mean_ms": 1295.372462942857,
+              "median_ms": 310.45
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 121,
+              "mean_ms": 569.1314344545455,
+              "median_ms": 191.0
+            }
+          },
+          "30": {
+            "tp": 136,
+            "tpr": 0.7555555555555555,
+            "tp_at_most_3000ms": 117,
+            "tpr_at_most_3000ms": 0.65,
+            "timely_lead_ms": {
+              "count": 136,
+              "mean_ms": 1332.6628295,
+              "median_ms": 323.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 117,
+              "mean_ms": 587.6487484529914,
+              "median_ms": 219.0
+            }
+          }
+        }
+      },
+      "inherited": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 31,
+        "fpr": 0.17222222222222222,
+        "misses": 15,
+        "early_over3000": 21,
+        "all_alarmed_disruptions": {
+          "count": 165,
+          "mean_ms": 1217.7891296,
+          "median_ms": 188.0
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 144,
+          "mean_ms": 481.1942023680555,
+          "median_ms": 137.0
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 151,
+            "tpr": 0.8388888888888889,
+            "tp_at_most_3000ms": 130,
+            "tpr_at_most_3000ms": 0.7222222222222222,
+            "timely_lead_ms": {
+              "count": 151,
+              "mean_ms": 1329.8964388807947,
+              "median_ms": 275.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 130,
+              "mean_ms": 532.0855463692308,
+              "median_ms": 179.5
+            }
+          },
+          "20": {
+            "tp": 144,
+            "tpr": 0.8,
+            "tp_at_most_3000ms": 123,
+            "tpr_at_most_3000ms": 0.6833333333333333,
+            "timely_lead_ms": {
+              "count": 144,
+              "mean_ms": 1393.6398945277779,
+              "median_ms": 310.45
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 123,
+              "mean_ms": 561.308159097561,
+              "median_ms": 188.0
+            }
+          },
+          "25": {
+            "tp": 140,
+            "tpr": 0.7777777777777778,
+            "tp_at_most_3000ms": 119,
+            "tpr_at_most_3000ms": 0.6611111111111111,
+            "timely_lead_ms": {
+              "count": 140,
+              "mean_ms": 1432.7796058,
+              "median_ms": 323.5
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 119,
+              "mean_ms": 579.3773409159663,
+              "median_ms": 194.190407
+            }
+          },
+          "30": {
+            "tp": 138,
+            "tpr": 0.7666666666666667,
+            "tp_at_most_3000ms": 117,
+            "tpr_at_most_3000ms": 0.65,
+            "timely_lead_ms": {
+              "count": 138,
+              "mean_ms": 1453.138730521739,
+              "median_ms": 331.5
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 117,
+              "mean_ms": 588.8025946068376,
+              "median_ms": 214.0
+            }
+          }
+        }
+      },
+      "legacy_current4": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 34,
+        "fpr": 0.18888888888888888,
+        "misses": 15,
+        "early_over3000": 21,
+        "all_alarmed_disruptions": {
+          "count": 165,
+          "mean_ms": 1322.1951902060607,
+          "median_ms": 243.614931
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 144,
+          "mean_ms": 551.8358690347222,
+          "median_ms": 159.0
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 154,
+            "tpr": 0.8555555555555555,
+            "tp_at_most_3000ms": 133,
+            "tpr_at_most_3000ms": 0.7388888888888889,
+            "timely_lead_ms": {
+              "count": 154,
+              "mean_ms": 1416.015339422078,
+              "median_ms": 297.5
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 133,
+              "mean_ms": 596.7557972030075,
+              "median_ms": 187.0
+            }
+          },
+          "20": {
+            "tp": 151,
+            "tpr": 0.8388888888888889,
+            "tp_at_most_3000ms": 130,
+            "tpr_at_most_3000ms": 0.7222222222222222,
+            "timely_lead_ms": {
+              "count": 151,
+              "mean_ms": 1443.7838560993378,
+              "median_ms": 324.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 130,
+              "mean_ms": 610.1040079076923,
+              "median_ms": 201.0
+            }
+          },
+          "25": {
+            "tp": 142,
+            "tpr": 0.7888888888888889,
+            "tp_at_most_3000ms": 121,
+            "tpr_at_most_3000ms": 0.6722222222222223,
+            "timely_lead_ms": {
+              "count": 142,
+              "mean_ms": 1533.8601747323944,
+              "median_ms": 451.5
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 121,
+              "mean_ms": 653.8041617272727,
+              "median_ms": 247.0
+            }
+          },
+          "30": {
+            "tp": 141,
+            "tpr": 0.7833333333333333,
+            "tp_at_most_3000ms": 120,
+            "tpr_at_most_3000ms": 0.6666666666666666,
+            "timely_lead_ms": {
+              "count": 141,
+              "mean_ms": 1544.5258497304965,
+              "median_ms": 474.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 120,
+              "mean_ms": 659.0025297416666,
+              "median_ms": 253.5
+            }
+          }
+        }
+      },
+      "ended_donor_same_budget": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 35,
+        "fpr": 0.19444444444444445,
+        "misses": 15,
+        "early_over3000": 19,
+        "all_alarmed_disruptions": {
+          "count": 165,
+          "mean_ms": 1152.9345841454544,
+          "median_ms": 187.0
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 146,
+          "mean_ms": 487.1161995958904,
+          "median_ms": 138.0
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 149,
+            "tpr": 0.8277777777777777,
+            "tp_at_most_3000ms": 130,
+            "tpr_at_most_3000ms": 0.7222222222222222,
+            "timely_lead_ms": {
+              "count": 149,
+              "mean_ms": 1275.7802836979865,
+              "median_ms": 275.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 130,
+              "mean_ms": 545.969392523077,
+              "median_ms": 180.5
+            }
+          },
+          "20": {
+            "tp": 144,
+            "tpr": 0.8,
+            "tp_at_most_3000ms": 125,
+            "tpr_at_most_3000ms": 0.6944444444444444,
+            "timely_lead_ms": {
+              "count": 144,
+              "mean_ms": 1319.4655889722221,
+              "median_ms": 297.5
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 125,
+              "mean_ms": 567.102428552,
+              "median_ms": 194.0
+            }
+          },
+          "25": {
+            "tp": 139,
+            "tpr": 0.7722222222222223,
+            "tp_at_most_3000ms": 120,
+            "tpr_at_most_3000ms": 0.6666666666666666,
+            "timely_lead_ms": {
+              "count": 139,
+              "mean_ms": 1366.0722648345325,
+              "median_ms": 322.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 120,
+              "mean_ms": 589.7400297416667,
+              "median_ms": 227.0
+            }
+          },
+          "30": {
+            "tp": 135,
+            "tpr": 0.75,
+            "tp_at_most_3000ms": 116,
+            "tpr_at_most_3000ms": 0.6444444444444445,
+            "timely_lead_ms": {
+              "count": 135,
+              "mean_ms": 1405.7114430518518,
+              "median_ms": 367.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 116,
+              "mean_ms": 609.1017549051724,
+              "median_ms": 260.30746550000003
+            }
+          }
+        }
+      },
+      "own_on_common_support": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 34,
+        "fpr": 0.18888888888888888,
+        "misses": 15,
+        "early_over3000": 21,
+        "all_alarmed_disruptions": {
+          "count": 165,
+          "mean_ms": 1318.2254932363637,
+          "median_ms": 243.614931
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 144,
+          "mean_ms": 547.2872579236112,
+          "median_ms": 159.0
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 154,
+            "tpr": 0.8555555555555555,
+            "tp_at_most_3000ms": 133,
+            "tpr_at_most_3000ms": 0.7388888888888889,
+            "timely_lead_ms": {
+              "count": 154,
+              "mean_ms": 1411.7620926688312,
+              "median_ms": 297.5
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 133,
+              "mean_ms": 591.8309851729323,
+              "median_ms": 187.0
+            }
+          },
+          "20": {
+            "tp": 150,
+            "tpr": 0.8333333333333334,
+            "tp_at_most_3000ms": 129,
+            "tpr_at_most_3000ms": 0.7166666666666667,
+            "timely_lead_ms": {
+              "count": 150,
+              "mean_ms": 1448.9090818066666,
+              "median_ms": 325.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 129,
+              "mean_ms": 609.6009382015504,
+              "median_ms": 214.0
+            }
+          },
+          "25": {
+            "tp": 143,
+            "tpr": 0.7944444444444444,
+            "tp_at_most_3000ms": 122,
+            "tpr_at_most_3000ms": 0.6777777777777778,
+            "timely_lead_ms": {
+              "count": 143,
+              "mean_ms": 1518.7422714125873,
+              "median_ms": 429.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 122,
+              "mean_ms": 643.2975702377049,
+              "median_ms": 245.3074655
+            }
+          },
+          "30": {
+            "tp": 141,
+            "tpr": 0.7833333333333333,
+            "tp_at_most_3000ms": 120,
+            "tpr_at_most_3000ms": 0.6666666666666666,
+            "timely_lead_ms": {
+              "count": 141,
+              "mean_ms": 1539.887551858156,
+              "median_ms": 474.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 120,
+              "mean_ms": 653.5525297416667,
+              "median_ms": 253.5
+            }
+          }
+        }
+      },
+      "donor_on_common_support": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 35,
+        "fpr": 0.19444444444444445,
+        "misses": 15,
+        "early_over3000": 19,
+        "all_alarmed_disruptions": {
+          "count": 165,
+          "mean_ms": 1148.9648871757577,
+          "median_ms": 187.0
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 146,
+          "mean_ms": 482.6298982260274,
+          "median_ms": 137.0
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 149,
+            "tpr": 0.8277777777777777,
+            "tp_at_most_3000ms": 130,
+            "tpr_at_most_3000ms": 0.7222222222222222,
+            "timely_lead_ms": {
+              "count": 149,
+              "mean_ms": 1271.3843105436242,
+              "median_ms": 275.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 130,
+              "mean_ms": 540.9309309846154,
+              "median_ms": 180.5
+            }
+          },
+          "20": {
+            "tp": 143,
+            "tpr": 0.7944444444444444,
+            "tp_at_most_3000ms": 124,
+            "tpr_at_most_3000ms": 0.6888888888888889,
+            "timely_lead_ms": {
+              "count": 143,
+              "mean_ms": 1323.9723413426573,
+              "median_ms": 302.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 124,
+              "mean_ms": 566.2322868467742,
+              "median_ms": 204.0
+            }
+          },
+          "25": {
+            "tp": 140,
+            "tpr": 0.7777777777777778,
+            "tp_at_most_3000ms": 121,
+            "tpr_at_most_3000ms": 0.6722222222222223,
+            "timely_lead_ms": {
+              "count": 140,
+              "mean_ms": 1351.8288915142857,
+              "median_ms": 320.45
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 121,
+              "mean_ms": 579.676062553719,
+              "median_ms": 221.0
+            }
+          },
+          "30": {
+            "tp": 135,
+            "tpr": 0.75,
+            "tp_at_most_3000ms": 116,
+            "tpr_at_most_3000ms": 0.6444444444444445,
+            "timely_lead_ms": {
+              "count": 135,
+              "mean_ms": 1400.8669986074074,
+              "median_ms": 367.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 116,
+              "mean_ms": 603.4638238706897,
+              "median_ms": 260.402669
+            }
+          }
+        }
+      }
+    }
+  },
+  "paired": {
+    "0.1": {
+      "fixed": {
+        "inherited": {
+          "lead_gain_common": {
+            "count": 154,
+            "mean_ms": 47.92857142857143,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 143,
+            "mean_ms": -0.43356643356643354,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                71370
+              ],
+              "lost": [],
+              "net": 1
+            },
+            "20": {
+              "gained": [
+                71370
+              ],
+              "lost": [],
+              "net": 1
+            },
+            "25": {
+              "gained": [
+                71370
+              ],
+              "lost": [
+                93995
+              ],
+              "net": 0
+            },
+            "30": {
+              "gained": [
+                71370
+              ],
+              "lost": [
+                62592
+              ],
+              "net": 0
+            }
+          }
+        },
+        "legacy_current4": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": 287.72549019607845,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 140,
+            "mean_ms": 6.828571428571428,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [
+            85526
+          ],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                71370
+              ],
+              "lost": [
+                85526
+              ],
+              "net": 0
+            },
+            "20": {
+              "gained": [
+                71370,
+                80600
+              ],
+              "lost": [
+                85526
+              ],
+              "net": 1
+            },
+            "25": {
+              "gained": [
+                71370,
+                80600
+              ],
+              "lost": [
+                93995,
+                85526
+              ],
+              "net": 0
+            },
+            "30": {
+              "gained": [
+                71370,
+                80600,
+                73665
+              ],
+              "lost": [
+                62592,
+                85526
+              ],
+              "net": 1
+            }
+          }
+        },
+        "ended_donor_same_budget": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": 165.9281045751634,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 142,
+            "mean_ms": 30.253521126760564,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [
+            85526
+          ],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                71370,
+                69454
+              ],
+              "lost": [
+                85526
+              ],
+              "net": 1
+            },
+            "20": {
+              "gained": [
+                71370,
+                69454
+              ],
+              "lost": [
+                85526
+              ],
+              "net": 1
+            },
+            "25": {
+              "gained": [
+                71370,
+                69454
+              ],
+              "lost": [
+                85526
+              ],
+              "net": 1
+            },
+            "30": {
+              "gained": [
+                71370,
+                69454,
+                93995
+              ],
+              "lost": [
+                62592,
+                85526
+              ],
+              "net": 1
+            }
+          }
+        },
+        "own_on_common_support": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": 281.9281045751634,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 140,
+            "mean_ms": 0.4928571428571429,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [
+            85526
+          ],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                71370
+              ],
+              "lost": [
+                85526
+              ],
+              "net": 0
+            },
+            "20": {
+              "gained": [
+                71370,
+                80600
+              ],
+              "lost": [
+                85526
+              ],
+              "net": 1
+            },
+            "25": {
+              "gained": [
+                71370,
+                80600
+              ],
+              "lost": [
+                93995,
+                85526
+              ],
+              "net": 0
+            },
+            "30": {
+              "gained": [
+                71370,
+                80600,
+                73665
+              ],
+              "lost": [
+                62592,
+                85526
+              ],
+              "net": 1
+            }
+          }
+        },
+        "donor_on_common_support": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": 160.13071895424838,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 142,
+            "mean_ms": 24.007042253521128,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [
+            85526
+          ],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                71370,
+                69454
+              ],
+              "lost": [
+                85526
+              ],
+              "net": 1
+            },
+            "20": {
+              "gained": [
+                71370,
+                69454
+              ],
+              "lost": [
+                85526
+              ],
+              "net": 1
+            },
+            "25": {
+              "gained": [
+                71370,
+                69454
+              ],
+              "lost": [
+                85526
+              ],
+              "net": 1
+            },
+            "30": {
+              "gained": [
+                71370,
+                69454,
+                93995
+              ],
+              "lost": [
+                62592,
+                85526
+              ],
+              "net": 1
+            }
+          }
+        }
+      },
+      "ended_donor_same_budget": {
+        "fixed": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": -165.9281045751634,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 142,
+            "mean_ms": -30.253521126760564,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [
+            85526
+          ],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                85526
+              ],
+              "lost": [
+                71370,
+                69454
+              ],
+              "net": -1
+            },
+            "20": {
+              "gained": [
+                85526
+              ],
+              "lost": [
+                71370,
+                69454
+              ],
+              "net": -1
+            },
+            "25": {
+              "gained": [
+                85526
+              ],
+              "lost": [
+                71370,
+                69454
+              ],
+              "net": -1
+            },
+            "30": {
+              "gained": [
+                62592,
+                85526
+              ],
+              "lost": [
+                71370,
+                69454,
+                93995
+              ],
+              "net": -1
+            }
+          }
+        },
+        "inherited": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": -117.58169934640523,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 142,
+            "mean_ms": -30.577464788732396,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [
+            85526
+          ],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                85526
+              ],
+              "lost": [
+                69454
+              ],
+              "net": 0
+            },
+            "20": {
+              "gained": [
+                85526
+              ],
+              "lost": [
+                69454
+              ],
+              "net": 0
+            },
+            "25": {
+              "gained": [
+                85526
+              ],
+              "lost": [
+                69454,
+                93995
+              ],
+              "net": -1
+            },
+            "30": {
+              "gained": [
+                85526
+              ],
+              "lost": [
+                69454,
+                93995
+              ],
+              "net": -1
+            }
+          }
+        },
+        "legacy_current4": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": 121.79738562091504,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 140,
+            "mean_ms": -22.228571428571428,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [],
+              "lost": [
+                69454
+              ],
+              "net": -1
+            },
+            "20": {
+              "gained": [
+                80600
+              ],
+              "lost": [
+                69454
+              ],
+              "net": 0
+            },
+            "25": {
+              "gained": [
+                80600
+              ],
+              "lost": [
+                69454,
+                93995
+              ],
+              "net": -1
+            },
+            "30": {
+              "gained": [
+                80600,
+                73665
+              ],
+              "lost": [
+                69454,
+                93995
+              ],
+              "net": 0
+            }
+          }
+        },
+        "own_on_common_support": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": 116.0,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 140,
+            "mean_ms": -28.564285714285713,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [],
+              "lost": [
+                69454
+              ],
+              "net": -1
+            },
+            "20": {
+              "gained": [
+                80600
+              ],
+              "lost": [
+                69454
+              ],
+              "net": 0
+            },
+            "25": {
+              "gained": [
+                80600
+              ],
+              "lost": [
+                69454,
+                93995
+              ],
+              "net": -1
+            },
+            "30": {
+              "gained": [
+                80600,
+                73665
+              ],
+              "lost": [
+                69454,
+                93995
+              ],
+              "net": 0
+            }
+          }
+        },
+        "donor_on_common_support": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": -5.7973856209150325,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 142,
+            "mean_ms": -6.246478873239437,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [],
+              "lost": [],
+              "net": 0
+            },
+            "20": {
+              "gained": [],
+              "lost": [],
+              "net": 0
+            },
+            "25": {
+              "gained": [],
+              "lost": [],
+              "net": 0
+            },
+            "30": {
+              "gained": [],
+              "lost": [],
+              "net": 0
+            }
+          }
+        }
+      },
+      "donor_on_common_support": {
+        "fixed": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": -160.13071895424838,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 142,
+            "mean_ms": -24.007042253521128,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [
+            85526
+          ],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                85526
+              ],
+              "lost": [
+                71370,
+                69454
+              ],
+              "net": -1
+            },
+            "20": {
+              "gained": [
+                85526
+              ],
+              "lost": [
+                71370,
+                69454
+              ],
+              "net": -1
+            },
+            "25": {
+              "gained": [
+                85526
+              ],
+              "lost": [
+                71370,
+                69454
+              ],
+              "net": -1
+            },
+            "30": {
+              "gained": [
+                62592,
+                85526
+              ],
+              "lost": [
+                71370,
+                69454,
+                93995
+              ],
+              "net": -1
+            }
+          }
+        },
+        "inherited": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": -111.7843137254902,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 142,
+            "mean_ms": -24.330985915492956,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [
+            85526
+          ],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                85526
+              ],
+              "lost": [
+                69454
+              ],
+              "net": 0
+            },
+            "20": {
+              "gained": [
+                85526
+              ],
+              "lost": [
+                69454
+              ],
+              "net": 0
+            },
+            "25": {
+              "gained": [
+                85526
+              ],
+              "lost": [
+                69454,
+                93995
+              ],
+              "net": -1
+            },
+            "30": {
+              "gained": [
+                85526
+              ],
+              "lost": [
+                69454,
+                93995
+              ],
+              "net": -1
+            }
+          }
+        },
+        "legacy_current4": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": 127.59477124183006,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 140,
+            "mean_ms": -15.892857142857142,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [],
+              "lost": [
+                69454
+              ],
+              "net": -1
+            },
+            "20": {
+              "gained": [
+                80600
+              ],
+              "lost": [
+                69454
+              ],
+              "net": 0
+            },
+            "25": {
+              "gained": [
+                80600
+              ],
+              "lost": [
+                69454,
+                93995
+              ],
+              "net": -1
+            },
+            "30": {
+              "gained": [
+                80600,
+                73665
+              ],
+              "lost": [
+                69454,
+                93995
+              ],
+              "net": 0
+            }
+          }
+        },
+        "ended_donor_same_budget": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": 5.7973856209150325,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 142,
+            "mean_ms": 6.246478873239437,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [],
+              "lost": [],
+              "net": 0
+            },
+            "20": {
+              "gained": [],
+              "lost": [],
+              "net": 0
+            },
+            "25": {
+              "gained": [],
+              "lost": [],
+              "net": 0
+            },
+            "30": {
+              "gained": [],
+              "lost": [],
+              "net": 0
+            }
+          }
+        },
+        "own_on_common_support": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": 121.79738562091504,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 140,
+            "mean_ms": -22.228571428571428,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [],
+              "lost": [
+                69454
+              ],
+              "net": -1
+            },
+            "20": {
+              "gained": [
+                80600
+              ],
+              "lost": [
+                69454
+              ],
+              "net": 0
+            },
+            "25": {
+              "gained": [
+                80600
+              ],
+              "lost": [
+                69454,
+                93995
+              ],
+              "net": -1
+            },
+            "30": {
+              "gained": [
+                80600,
+                73665
+              ],
+              "lost": [
+                69454,
+                93995
+              ],
+              "net": 0
+            }
+          }
+        }
+      }
+    },
+    "0.15": {
+      "fixed": {
+        "inherited": {
+          "lead_gain_common": {
+            "count": 154,
+            "mean_ms": 47.92857142857143,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 143,
+            "mean_ms": -0.43356643356643354,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                71370
+              ],
+              "lost": [],
+              "net": 1
+            },
+            "20": {
+              "gained": [
+                71370
+              ],
+              "lost": [],
+              "net": 1
+            },
+            "25": {
+              "gained": [
+                71370
+              ],
+              "lost": [
+                93995
+              ],
+              "net": 0
+            },
+            "30": {
+              "gained": [
+                71370
+              ],
+              "lost": [
+                62592
+              ],
+              "net": 0
+            }
+          }
+        },
+        "legacy_current4": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": 287.72549019607845,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 140,
+            "mean_ms": 6.828571428571428,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [
+            85526
+          ],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                71370
+              ],
+              "lost": [
+                85526
+              ],
+              "net": 0
+            },
+            "20": {
+              "gained": [
+                71370,
+                80600
+              ],
+              "lost": [
+                85526
+              ],
+              "net": 1
+            },
+            "25": {
+              "gained": [
+                71370,
+                80600
+              ],
+              "lost": [
+                93995,
+                85526
+              ],
+              "net": 0
+            },
+            "30": {
+              "gained": [
+                71370,
+                80600,
+                73665
+              ],
+              "lost": [
+                62592,
+                85526
+              ],
+              "net": 1
+            }
+          }
+        },
+        "ended_donor_same_budget": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": 165.9281045751634,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 142,
+            "mean_ms": 30.253521126760564,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [
+            85526
+          ],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                71370,
+                69454
+              ],
+              "lost": [
+                85526
+              ],
+              "net": 1
+            },
+            "20": {
+              "gained": [
+                71370,
+                69454
+              ],
+              "lost": [
+                85526
+              ],
+              "net": 1
+            },
+            "25": {
+              "gained": [
+                71370,
+                69454
+              ],
+              "lost": [
+                85526
+              ],
+              "net": 1
+            },
+            "30": {
+              "gained": [
+                71370,
+                69454,
+                93995
+              ],
+              "lost": [
+                62592,
+                85526
+              ],
+              "net": 1
+            }
+          }
+        },
+        "own_on_common_support": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": 281.9281045751634,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 140,
+            "mean_ms": 0.4928571428571429,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [
+            85526
+          ],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                71370
+              ],
+              "lost": [
+                85526
+              ],
+              "net": 0
+            },
+            "20": {
+              "gained": [
+                71370,
+                80600
+              ],
+              "lost": [
+                85526
+              ],
+              "net": 1
+            },
+            "25": {
+              "gained": [
+                71370,
+                80600
+              ],
+              "lost": [
+                93995,
+                85526
+              ],
+              "net": 0
+            },
+            "30": {
+              "gained": [
+                71370,
+                80600,
+                73665
+              ],
+              "lost": [
+                62592,
+                85526
+              ],
+              "net": 1
+            }
+          }
+        },
+        "donor_on_common_support": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": 160.13071895424838,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 142,
+            "mean_ms": 24.007042253521128,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [
+            85526
+          ],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                71370,
+                69454
+              ],
+              "lost": [
+                85526
+              ],
+              "net": 1
+            },
+            "20": {
+              "gained": [
+                71370,
+                69454
+              ],
+              "lost": [
+                85526
+              ],
+              "net": 1
+            },
+            "25": {
+              "gained": [
+                71370,
+                69454
+              ],
+              "lost": [
+                85526
+              ],
+              "net": 1
+            },
+            "30": {
+              "gained": [
+                71370,
+                69454,
+                93995
+              ],
+              "lost": [
+                62592,
+                85526
+              ],
+              "net": 1
+            }
+          }
+        }
+      },
+      "ended_donor_same_budget": {
+        "fixed": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": -165.9281045751634,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 142,
+            "mean_ms": -30.253521126760564,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [
+            85526
+          ],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                85526
+              ],
+              "lost": [
+                71370,
+                69454
+              ],
+              "net": -1
+            },
+            "20": {
+              "gained": [
+                85526
+              ],
+              "lost": [
+                71370,
+                69454
+              ],
+              "net": -1
+            },
+            "25": {
+              "gained": [
+                85526
+              ],
+              "lost": [
+                71370,
+                69454
+              ],
+              "net": -1
+            },
+            "30": {
+              "gained": [
+                62592,
+                85526
+              ],
+              "lost": [
+                71370,
+                69454,
+                93995
+              ],
+              "net": -1
+            }
+          }
+        },
+        "inherited": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": -117.58169934640523,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 142,
+            "mean_ms": -30.577464788732396,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [
+            85526
+          ],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                85526
+              ],
+              "lost": [
+                69454
+              ],
+              "net": 0
+            },
+            "20": {
+              "gained": [
+                85526
+              ],
+              "lost": [
+                69454
+              ],
+              "net": 0
+            },
+            "25": {
+              "gained": [
+                85526
+              ],
+              "lost": [
+                69454,
+                93995
+              ],
+              "net": -1
+            },
+            "30": {
+              "gained": [
+                85526
+              ],
+              "lost": [
+                69454,
+                93995
+              ],
+              "net": -1
+            }
+          }
+        },
+        "legacy_current4": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": 121.79738562091504,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 140,
+            "mean_ms": -22.228571428571428,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [],
+              "lost": [
+                69454
+              ],
+              "net": -1
+            },
+            "20": {
+              "gained": [
+                80600
+              ],
+              "lost": [
+                69454
+              ],
+              "net": 0
+            },
+            "25": {
+              "gained": [
+                80600
+              ],
+              "lost": [
+                69454,
+                93995
+              ],
+              "net": -1
+            },
+            "30": {
+              "gained": [
+                80600,
+                73665
+              ],
+              "lost": [
+                69454,
+                93995
+              ],
+              "net": 0
+            }
+          }
+        },
+        "own_on_common_support": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": 116.0,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 140,
+            "mean_ms": -28.564285714285713,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [],
+              "lost": [
+                69454
+              ],
+              "net": -1
+            },
+            "20": {
+              "gained": [
+                80600
+              ],
+              "lost": [
+                69454
+              ],
+              "net": 0
+            },
+            "25": {
+              "gained": [
+                80600
+              ],
+              "lost": [
+                69454,
+                93995
+              ],
+              "net": -1
+            },
+            "30": {
+              "gained": [
+                80600,
+                73665
+              ],
+              "lost": [
+                69454,
+                93995
+              ],
+              "net": 0
+            }
+          }
+        },
+        "donor_on_common_support": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": -5.7973856209150325,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 142,
+            "mean_ms": -6.246478873239437,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [],
+              "lost": [],
+              "net": 0
+            },
+            "20": {
+              "gained": [],
+              "lost": [],
+              "net": 0
+            },
+            "25": {
+              "gained": [],
+              "lost": [],
+              "net": 0
+            },
+            "30": {
+              "gained": [],
+              "lost": [],
+              "net": 0
+            }
+          }
+        }
+      },
+      "donor_on_common_support": {
+        "fixed": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": -160.13071895424838,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 142,
+            "mean_ms": -24.007042253521128,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [
+            85526
+          ],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                85526
+              ],
+              "lost": [
+                71370,
+                69454
+              ],
+              "net": -1
+            },
+            "20": {
+              "gained": [
+                85526
+              ],
+              "lost": [
+                71370,
+                69454
+              ],
+              "net": -1
+            },
+            "25": {
+              "gained": [
+                85526
+              ],
+              "lost": [
+                71370,
+                69454
+              ],
+              "net": -1
+            },
+            "30": {
+              "gained": [
+                62592,
+                85526
+              ],
+              "lost": [
+                71370,
+                69454,
+                93995
+              ],
+              "net": -1
+            }
+          }
+        },
+        "inherited": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": -111.7843137254902,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 142,
+            "mean_ms": -24.330985915492956,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [
+            85526
+          ],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                85526
+              ],
+              "lost": [
+                69454
+              ],
+              "net": 0
+            },
+            "20": {
+              "gained": [
+                85526
+              ],
+              "lost": [
+                69454
+              ],
+              "net": 0
+            },
+            "25": {
+              "gained": [
+                85526
+              ],
+              "lost": [
+                69454,
+                93995
+              ],
+              "net": -1
+            },
+            "30": {
+              "gained": [
+                85526
+              ],
+              "lost": [
+                69454,
+                93995
+              ],
+              "net": -1
+            }
+          }
+        },
+        "legacy_current4": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": 127.59477124183006,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 140,
+            "mean_ms": -15.892857142857142,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [],
+              "lost": [
+                69454
+              ],
+              "net": -1
+            },
+            "20": {
+              "gained": [
+                80600
+              ],
+              "lost": [
+                69454
+              ],
+              "net": 0
+            },
+            "25": {
+              "gained": [
+                80600
+              ],
+              "lost": [
+                69454,
+                93995
+              ],
+              "net": -1
+            },
+            "30": {
+              "gained": [
+                80600,
+                73665
+              ],
+              "lost": [
+                69454,
+                93995
+              ],
+              "net": 0
+            }
+          }
+        },
+        "ended_donor_same_budget": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": 5.7973856209150325,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 142,
+            "mean_ms": 6.246478873239437,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [],
+              "lost": [],
+              "net": 0
+            },
+            "20": {
+              "gained": [],
+              "lost": [],
+              "net": 0
+            },
+            "25": {
+              "gained": [],
+              "lost": [],
+              "net": 0
+            },
+            "30": {
+              "gained": [],
+              "lost": [],
+              "net": 0
+            }
+          }
+        },
+        "own_on_common_support": {
+          "lead_gain_common": {
+            "count": 153,
+            "mean_ms": 121.79738562091504,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 140,
+            "mean_ms": -22.228571428571428,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [],
+              "lost": [
+                69454
+              ],
+              "net": -1
+            },
+            "20": {
+              "gained": [
+                80600
+              ],
+              "lost": [
+                69454
+              ],
+              "net": 0
+            },
+            "25": {
+              "gained": [
+                80600
+              ],
+              "lost": [
+                69454,
+                93995
+              ],
+              "net": -1
+            },
+            "30": {
+              "gained": [
+                80600,
+                73665
+              ],
+              "lost": [
+                69454,
+                93995
+              ],
+              "net": 0
+            }
+          }
+        }
+      }
+    },
+    "0.2": {
+      "fixed": {
+        "inherited": {
+          "lead_gain_common": {
+            "count": 165,
+            "mean_ms": 116.60606060606061,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 144,
+            "mean_ms": 1.8194444444444444,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [
+            77302
+          ],
+          "deadline_flips": {
+            "15": {
+              "gained": [],
+              "lost": [
+                77302
+              ],
+              "net": -1
+            },
+            "20": {
+              "gained": [
+                80600
+              ],
+              "lost": [
+                77302
+              ],
+              "net": 0
+            },
+            "25": {
+              "gained": [
+                80600
+              ],
+              "lost": [
+                71013
+              ],
+              "net": 0
+            },
+            "30": {
+              "gained": [
+                80600,
+                73665
+              ],
+              "lost": [],
+              "net": 2
+            }
+          }
+        },
+        "legacy_current4": {
+          "lead_gain_common": {
+            "count": 165,
+            "mean_ms": 221.0121212121212,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 143,
+            "mean_ms": 52.94405594405595,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [
+            77302
+          ],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                71086,
+                73403,
+                95770
+              ],
+              "lost": [
+                77302
+              ],
+              "net": 2
+            },
+            "20": {
+              "gained": [
+                64581,
+                80600,
+                71086,
+                73403,
+                95770,
+                77788,
+                74970,
+                85032
+              ],
+              "lost": [
+                77302
+              ],
+              "net": 7
+            },
+            "25": {
+              "gained": [
+                80600,
+                71086,
+                73403,
+                95770
+              ],
+              "lost": [
+                73405,
+                71013
+              ],
+              "net": 2
+            },
+            "30": {
+              "gained": [
+                80600,
+                71086,
+                73403,
+                95770,
+                73665
+              ],
+              "lost": [],
+              "net": 5
+            }
+          }
+        },
+        "ended_donor_same_budget": {
+          "lead_gain_common": {
+            "count": 165,
+            "mean_ms": 51.75151515151515,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 145,
+            "mean_ms": 14.172413793103448,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [
+            77302
+          ],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                71086
+              ],
+              "lost": [
+                87861,
+                62182,
+                74970,
+                77302
+              ],
+              "net": -3
+            },
+            "20": {
+              "gained": [
+                71086,
+                63656,
+                85032
+              ],
+              "lost": [
+                87861,
+                62182,
+                77302
+              ],
+              "net": 0
+            },
+            "25": {
+              "gained": [
+                71086,
+                63656
+              ],
+              "lost": [
+                87861,
+                73405,
+                62182
+              ],
+              "net": -1
+            },
+            "30": {
+              "gained": [
+                71086
+              ],
+              "lost": [
+                87861,
+                62182
+              ],
+              "net": -1
+            }
+          }
+        },
+        "own_on_common_support": {
+          "lead_gain_common": {
+            "count": 165,
+            "mean_ms": 217.04242424242423,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 143,
+            "mean_ms": 48.36363636363637,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [
+            77302
+          ],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                71086,
+                73403,
+                95770
+              ],
+              "lost": [
+                77302
+              ],
+              "net": 2
+            },
+            "20": {
+              "gained": [
+                64581,
+                80600,
+                71086,
+                73403,
+                95770,
+                77788,
+                74970
+              ],
+              "lost": [
+                77302
+              ],
+              "net": 6
+            },
+            "25": {
+              "gained": [
+                80600,
+                71086,
+                73403,
+                95770
+              ],
+              "lost": [
+                71013
+              ],
+              "net": 3
+            },
+            "30": {
+              "gained": [
+                80600,
+                71086,
+                73403,
+                95770,
+                73665
+              ],
+              "lost": [],
+              "net": 5
+            }
+          }
+        },
+        "donor_on_common_support": {
+          "lead_gain_common": {
+            "count": 165,
+            "mean_ms": 47.78181818181818,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 145,
+            "mean_ms": 9.655172413793103,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [
+            77302
+          ],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                71086
+              ],
+              "lost": [
+                87861,
+                62182,
+                74970,
+                77302
+              ],
+              "net": -3
+            },
+            "20": {
+              "gained": [
+                71086,
+                63656
+              ],
+              "lost": [
+                87861,
+                62182,
+                77302
+              ],
+              "net": -1
+            },
+            "25": {
+              "gained": [
+                71086,
+                63656
+              ],
+              "lost": [
+                87861,
+                62182
+              ],
+              "net": 0
+            },
+            "30": {
+              "gained": [
+                71086
+              ],
+              "lost": [
+                87861,
+                62182
+              ],
+              "net": -1
+            }
+          }
+        }
+      },
+      "ended_donor_same_budget": {
+        "fixed": {
+          "lead_gain_common": {
+            "count": 165,
+            "mean_ms": -51.75151515151515,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 145,
+            "mean_ms": -14.172413793103448,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [
+            77302
+          ],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                87861,
+                62182,
+                74970,
+                77302
+              ],
+              "lost": [
+                71086
+              ],
+              "net": 3
+            },
+            "20": {
+              "gained": [
+                87861,
+                62182,
+                77302
+              ],
+              "lost": [
+                71086,
+                63656,
+                85032
+              ],
+              "net": 0
+            },
+            "25": {
+              "gained": [
+                87861,
+                73405,
+                62182
+              ],
+              "lost": [
+                71086,
+                63656
+              ],
+              "net": 1
+            },
+            "30": {
+              "gained": [
+                87861,
+                62182
+              ],
+              "lost": [
+                71086
+              ],
+              "net": 1
+            }
+          }
+        },
+        "inherited": {
+          "lead_gain_common": {
+            "count": 165,
+            "mean_ms": 64.85454545454546,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 144,
+            "mean_ms": -12.45138888888889,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                87861,
+                62182,
+                74970
+              ],
+              "lost": [
+                71086
+              ],
+              "net": 2
+            },
+            "20": {
+              "gained": [
+                87861,
+                80600,
+                62182
+              ],
+              "lost": [
+                71086,
+                63656,
+                85032
+              ],
+              "net": 0
+            },
+            "25": {
+              "gained": [
+                87861,
+                80600,
+                73405,
+                62182
+              ],
+              "lost": [
+                71086,
+                63656,
+                71013
+              ],
+              "net": 1
+            },
+            "30": {
+              "gained": [
+                87861,
+                80600,
+                62182,
+                73665
+              ],
+              "lost": [
+                71086
+              ],
+              "net": 3
+            }
+          }
+        },
+        "legacy_current4": {
+          "lead_gain_common": {
+            "count": 165,
+            "mean_ms": 169.26060606060605,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 143,
+            "mean_ms": 38.57342657342657,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                87861,
+                73403,
+                95770,
+                62182,
+                74970
+              ],
+              "lost": [],
+              "net": 5
+            },
+            "20": {
+              "gained": [
+                87861,
+                64581,
+                80600,
+                73403,
+                95770,
+                62182,
+                77788,
+                74970
+              ],
+              "lost": [
+                63656
+              ],
+              "net": 7
+            },
+            "25": {
+              "gained": [
+                87861,
+                80600,
+                73403,
+                95770,
+                62182
+              ],
+              "lost": [
+                63656,
+                71013
+              ],
+              "net": 3
+            },
+            "30": {
+              "gained": [
+                87861,
+                80600,
+                73403,
+                95770,
+                62182,
+                73665
+              ],
+              "lost": [],
+              "net": 6
+            }
+          }
+        },
+        "own_on_common_support": {
+          "lead_gain_common": {
+            "count": 165,
+            "mean_ms": 165.29090909090908,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 143,
+            "mean_ms": 33.99300699300699,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                87861,
+                73403,
+                95770,
+                62182,
+                74970
+              ],
+              "lost": [],
+              "net": 5
+            },
+            "20": {
+              "gained": [
+                87861,
+                64581,
+                80600,
+                73403,
+                95770,
+                62182,
+                77788,
+                74970
+              ],
+              "lost": [
+                63656,
+                85032
+              ],
+              "net": 6
+            },
+            "25": {
+              "gained": [
+                87861,
+                80600,
+                73405,
+                73403,
+                95770,
+                62182
+              ],
+              "lost": [
+                63656,
+                71013
+              ],
+              "net": 4
+            },
+            "30": {
+              "gained": [
+                87861,
+                80600,
+                73403,
+                95770,
+                62182,
+                73665
+              ],
+              "lost": [],
+              "net": 6
+            }
+          }
+        },
+        "donor_on_common_support": {
+          "lead_gain_common": {
+            "count": 165,
+            "mean_ms": -3.9696969696969697,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 146,
+            "mean_ms": -4.486301369863014,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [],
+              "lost": [],
+              "net": 0
+            },
+            "20": {
+              "gained": [],
+              "lost": [
+                85032
+              ],
+              "net": -1
+            },
+            "25": {
+              "gained": [
+                73405
+              ],
+              "lost": [],
+              "net": 1
+            },
+            "30": {
+              "gained": [],
+              "lost": [],
+              "net": 0
+            }
+          }
+        }
+      },
+      "donor_on_common_support": {
+        "fixed": {
+          "lead_gain_common": {
+            "count": 165,
+            "mean_ms": -47.78181818181818,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 145,
+            "mean_ms": -9.655172413793103,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [
+            77302
+          ],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                87861,
+                62182,
+                74970,
+                77302
+              ],
+              "lost": [
+                71086
+              ],
+              "net": 3
+            },
+            "20": {
+              "gained": [
+                87861,
+                62182,
+                77302
+              ],
+              "lost": [
+                71086,
+                63656
+              ],
+              "net": 1
+            },
+            "25": {
+              "gained": [
+                87861,
+                62182
+              ],
+              "lost": [
+                71086,
+                63656
+              ],
+              "net": 0
+            },
+            "30": {
+              "gained": [
+                87861,
+                62182
+              ],
+              "lost": [
+                71086
+              ],
+              "net": 1
+            }
+          }
+        },
+        "inherited": {
+          "lead_gain_common": {
+            "count": 165,
+            "mean_ms": 68.82424242424243,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 144,
+            "mean_ms": -7.902777777777778,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                87861,
+                62182,
+                74970
+              ],
+              "lost": [
+                71086
+              ],
+              "net": 2
+            },
+            "20": {
+              "gained": [
+                87861,
+                80600,
+                62182
+              ],
+              "lost": [
+                71086,
+                63656
+              ],
+              "net": 1
+            },
+            "25": {
+              "gained": [
+                87861,
+                80600,
+                62182
+              ],
+              "lost": [
+                71086,
+                63656,
+                71013
+              ],
+              "net": 0
+            },
+            "30": {
+              "gained": [
+                87861,
+                80600,
+                62182,
+                73665
+              ],
+              "lost": [
+                71086
+              ],
+              "net": 3
+            }
+          }
+        },
+        "legacy_current4": {
+          "lead_gain_common": {
+            "count": 165,
+            "mean_ms": 173.23030303030302,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 143,
+            "mean_ms": 43.15384615384615,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                87861,
+                73403,
+                95770,
+                62182,
+                74970
+              ],
+              "lost": [],
+              "net": 5
+            },
+            "20": {
+              "gained": [
+                87861,
+                64581,
+                80600,
+                73403,
+                95770,
+                62182,
+                77788,
+                74970,
+                85032
+              ],
+              "lost": [
+                63656
+              ],
+              "net": 8
+            },
+            "25": {
+              "gained": [
+                87861,
+                80600,
+                73403,
+                95770,
+                62182
+              ],
+              "lost": [
+                73405,
+                63656,
+                71013
+              ],
+              "net": 2
+            },
+            "30": {
+              "gained": [
+                87861,
+                80600,
+                73403,
+                95770,
+                62182,
+                73665
+              ],
+              "lost": [],
+              "net": 6
+            }
+          }
+        },
+        "ended_donor_same_budget": {
+          "lead_gain_common": {
+            "count": 165,
+            "mean_ms": 3.9696969696969697,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 146,
+            "mean_ms": 4.486301369863014,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [],
+              "lost": [],
+              "net": 0
+            },
+            "20": {
+              "gained": [
+                85032
+              ],
+              "lost": [],
+              "net": 1
+            },
+            "25": {
+              "gained": [],
+              "lost": [
+                73405
+              ],
+              "net": -1
+            },
+            "30": {
+              "gained": [],
+              "lost": [],
+              "net": 0
+            }
+          }
+        },
+        "own_on_common_support": {
+          "lead_gain_common": {
+            "count": 165,
+            "mean_ms": 169.26060606060605,
+            "median_ms": 0.0
+          },
+          "lead_gain_common_at_most_3000ms": {
+            "count": 143,
+            "mean_ms": 38.57342657342657,
+            "median_ms": 0.0
+          },
+          "newly_alarmed_disruptions": [],
+          "no_longer_alarmed_disruptions": [],
+          "deadline_flips": {
+            "15": {
+              "gained": [
+                87861,
+                73403,
+                95770,
+                62182,
+                74970
+              ],
+              "lost": [],
+              "net": 5
+            },
+            "20": {
+              "gained": [
+                87861,
+                64581,
+                80600,
+                73403,
+                95770,
+                62182,
+                77788,
+                74970
+              ],
+              "lost": [
+                63656
+              ],
+              "net": 7
+            },
+            "25": {
+              "gained": [
+                87861,
+                80600,
+                73403,
+                95770,
+                62182
+              ],
+              "lost": [
+                63656,
+                71013
+              ],
+              "net": 3
+            },
+            "30": {
+              "gained": [
+                87861,
+                80600,
+                73403,
+                95770,
+                62182,
+                73665
+              ],
+              "lost": [],
+              "net": 6
+            }
+          }
+        }
+      }
+    }
+  }
+}

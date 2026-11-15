@@ -1,0 +1,98 @@
+{
+  "block": 16,
+  "first_next_rank": 321,
+  "commit_sha256": "4fb6de4154c4b627d44b69e778a24d821478d72760ce62640f5ff102948bbde0",
+  "reveal_sha256": "20e3e19e27811b5d555e15dec6bd3a46a30bb6344d758be87f8f507b88cf38a5",
+  "state_before": null,
+  "state_after": null,
+  "updated_ns": 3746167317210,
+  "decision": "rejected_guard",
+  "fit": {
+    "steps": 20,
+    "initial_loss": 1.4578237533569336,
+    "final_loss": 1.146972417831421,
+    "norm": 0.599999725818634,
+    "teaching_shots": 8,
+    "teaching_points": 71
+  },
+  "teaching_indices": [
+    982,
+    995,
+    1008,
+    1022,
+    1035,
+    1049,
+    1062,
+    1076
+  ],
+  "guard_ids": [
+    71304,
+    87494,
+    69458,
+    87487,
+    70404,
+    70323,
+    86167,
+    54157,
+    83376,
+    67900
+  ],
+  "violations": [
+    {
+      "shot": 70323,
+      "arm": "inter",
+      "reason": "new_false_alarm"
+    },
+    {
+      "shot": 67900,
+      "arm": "both",
+      "reason": "new_false_alarm"
+    }
+  ],
+  "diagnostics": {
+    "inter": {
+      "before": {
+        "shot": null,
+        "disruptive": true,
+        "down": 3.108,
+        "status": "tardy",
+        "first_index": 1095,
+        "lead_ms": 12.0
+      },
+      "after": {
+        "shot": null,
+        "disruptive": true,
+        "down": 3.108,
+        "status": "tardy",
+        "first_index": 1095,
+        "lead_ms": 12.0
+      },
+      "peak_gain": 0.029063105583190918,
+      "corrected": false,
+      "guard_violations": []
+    },
+    "both": {
+      "before": {
+        "shot": null,
+        "disruptive": true,
+        "down": 3.108,
+        "status": "tp",
+        "first_index": 1043,
+        "lead_ms": 64.0
+      },
+      "after": {
+        "shot": null,
+        "disruptive": true,
+        "down": 3.108,
+        "status": "tp",
+        "first_index": 1032,
+        "lead_ms": 75.0
+      },
+      "peak_gain": 0.01773858070373535,
+      "corrected": false,
+      "guard_violations": []
+    }
+  },
+  "proposal_sha256": "fbf5713deb21f05668af200959fbfd535aa4b83143ac63f9bad0b9d0a487b253",
+  "witness_sha256": "ca47a258fdf5237fd9695f50d7ede59957a66c0ba518460c6035e44458769b64"
+}
