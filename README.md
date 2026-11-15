@@ -1,4 +1,6 @@
-# 当前研究分支：EAST 360 炮在线适配
+# J-TEXT → EAST：托卡马克破裂预警的因果迁移与时序在线主动适配
+
+## 当前研究分支：EAST 360 炮在线适配
 
 本分支最新研究更新至 **2026-11-14**，集中在 [research/east360-online-adaptation](research/east360-online-adaptation/README.md)。
 
@@ -11,8 +13,6 @@
 ---
 
 ## 原仓库历史路线说明
-
-# J-TEXT → EAST：托卡马克破裂预警的因果迁移与时序在线主动适配
 
 **语言 / Language：** **简体中文（默认）** · [English](README_EN.md)
 
