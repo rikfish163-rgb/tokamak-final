@@ -1,3 +1,17 @@
+# 当前研究分支：EAST 360 炮在线适配
+
+本分支最新研究更新至 **2026-11-14**，集中在 [research/east360-online-adaptation](research/east360-online-adaptation/README.md)。
+
+- [技术方案](research/east360-online-adaptation/EAST360_TECHNICAL_PROPOSAL_20261114.md)
+- [可直接照着讲的汇报稿](research/east360-online-adaptation/EAST360_TECHNICAL_TALK_20261114.md)
+- [实验明细、逐炮结果与曲线入口](research/east360-online-adaptation/EAST360_TECHNICAL_EVIDENCE_20261114.md)
+
+当前主结果为 360 炮 **146／180 及时、34／180 误报**；额外 2,593 炮主阈值误报 **27.56%**，未达标。当前炮内方法和下面保留的 support110／V3C 历史路线使用不同分集、处理与阈值，成绩分别报告。`main` 分支保持原样。
+
+---
+
+## 原仓库历史路线说明
+
 # J-TEXT → EAST：托卡马克破裂预警的因果迁移与时序在线主动适配
 
 **语言 / Language：** **简体中文（默认）** · [English](README_EN.md)
