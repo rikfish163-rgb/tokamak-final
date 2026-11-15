@@ -1,0 +1,94 @@
+{
+  "block": 4,
+  "first_next_rank": 81,
+  "commit_sha256": "ab83e8cb9b9cfff56ebb8b3eb12c9885b27af8f27a2208235e0a97d4dd7a7421",
+  "reveal_sha256": "f736548a8dd721dfec4da522e1197561c11ac4da3ea4d847e6f2c524f5d640c8",
+  "state_before": null,
+  "state_after": null,
+  "updated_ns": 3739747738444,
+  "decision": "rejected_guard",
+  "fit": {
+    "steps": 20,
+    "initial_loss": 2.9137110710144043,
+    "final_loss": 1.9938883781433105,
+    "norm": 0.5999997854232788,
+    "teaching_shots": 3,
+    "teaching_points": 25
+  },
+  "teaching_indices": [
+    734,
+    779,
+    1767,
+    1768,
+    2124,
+    3112,
+    3715,
+    4138,
+    4980
+  ],
+  "guard_ids": [
+    71304,
+    87494,
+    69458,
+    87487,
+    70404,
+    70323,
+    86167,
+    54157,
+    71415,
+    69791
+  ],
+  "violations": [
+    {
+      "shot": 70323,
+      "arm": "inter",
+      "reason": "new_false_alarm"
+    }
+  ],
+  "diagnostics": {
+    "inter": {
+      "before": {
+        "shot": null,
+        "disruptive": false,
+        "down": null,
+        "status": "tn",
+        "first_index": null,
+        "lead_ms": null
+      },
+      "after": {
+        "shot": null,
+        "disruptive": false,
+        "down": null,
+        "status": "tn",
+        "first_index": null,
+        "lead_ms": null
+      },
+      "peak_gain": -0.046393364667892456,
+      "corrected": false,
+      "guard_violations": []
+    },
+    "both": {
+      "before": {
+        "shot": null,
+        "disruptive": false,
+        "down": null,
+        "status": "fp",
+        "first_index": 1767,
+        "lead_ms": null
+      },
+      "after": {
+        "shot": null,
+        "disruptive": false,
+        "down": null,
+        "status": "fp",
+        "first_index": 1724,
+        "lead_ms": null
+      },
+      "peak_gain": -0.022684752941131592,
+      "corrected": false,
+      "guard_violations": []
+    }
+  },
+  "proposal_sha256": "c074d105c357b316d64d2eef23734a202ec8e19a61d4207f74f2f6f72a111e62",
+  "witness_sha256": "1fb6810ce51894a5048e4dcb0711ad41fe9af093c2e753a56546fe833c7e2cbb"
+}

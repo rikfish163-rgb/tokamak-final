@@ -1,0 +1,281 @@
+{
+  "hdf5_scores_checked": 3240,
+  "common_arms_identical": true,
+  "actual_weights_changed": {
+    "embedding_and_head": [
+      "embedding.weight",
+      "embedding.bias",
+      "risk_head.weight",
+      "risk_head.bias"
+    ],
+    "first_block_and_head": [
+      "encoder.layers.0.self_attn.in_proj_weight",
+      "encoder.layers.0.self_attn.in_proj_bias",
+      "encoder.layers.0.self_attn.out_proj.weight",
+      "encoder.layers.0.self_attn.out_proj.bias",
+      "encoder.layers.0.linear1.weight",
+      "encoder.layers.0.linear1.bias",
+      "encoder.layers.0.linear2.weight",
+      "encoder.layers.0.linear2.bias",
+      "encoder.layers.0.norm1.weight",
+      "encoder.layers.0.norm1.bias",
+      "encoder.layers.0.norm2.weight",
+      "encoder.layers.0.norm2.bias",
+      "risk_head.weight",
+      "risk_head.bias"
+    ],
+    "last_block_and_head": [
+      "encoder.layers.1.self_attn.in_proj_weight",
+      "encoder.layers.1.self_attn.in_proj_bias",
+      "encoder.layers.1.self_attn.out_proj.weight",
+      "encoder.layers.1.self_attn.out_proj.bias",
+      "encoder.layers.1.linear1.weight",
+      "encoder.layers.1.linear1.bias",
+      "encoder.layers.1.linear2.weight",
+      "encoder.layers.1.linear2.bias",
+      "encoder.layers.1.norm1.weight",
+      "encoder.layers.1.norm1.bias",
+      "encoder.layers.1.norm2.weight",
+      "encoder.layers.1.norm2.bias",
+      "risk_head.weight",
+      "risk_head.bias"
+    ]
+  },
+  "hard_cases": {
+    "embedding_and_head": {
+      "never": {
+        "n": 12,
+        "timely": [
+          90874,
+          87508,
+          92394,
+          86616
+        ],
+        "near": [
+          90874,
+          92394
+        ]
+      },
+      "late": {
+        "n": 21,
+        "timely": [
+          78789,
+          94901,
+          64581,
+          83887,
+          61629,
+          81406,
+          63656,
+          94803,
+          71013,
+          77782,
+          77788,
+          74970,
+          63566,
+          63545,
+          77302
+        ],
+        "near": [
+          78789,
+          94901,
+          64581,
+          83887,
+          61629,
+          81406,
+          63656,
+          94803,
+          71013,
+          77782,
+          77788,
+          74970,
+          63566,
+          63545,
+          77302
+        ]
+      }
+    },
+    "first_block_and_head": {
+      "never": {
+        "n": 12,
+        "timely": [
+          90874,
+          87508,
+          87537,
+          92394
+        ],
+        "near": [
+          90874,
+          92394
+        ]
+      },
+      "late": {
+        "n": 21,
+        "timely": [
+          78789,
+          94901,
+          61629,
+          63656,
+          77782,
+          77788,
+          74970,
+          63566,
+          63545,
+          77302
+        ],
+        "near": [
+          78789,
+          94901,
+          61629,
+          63656,
+          77782,
+          77788,
+          74970,
+          63566,
+          63545,
+          77302
+        ]
+      }
+    },
+    "last_block_and_head": {
+      "never": {
+        "n": 12,
+        "timely": [
+          90874,
+          87508,
+          87537,
+          92394
+        ],
+        "near": [
+          90874,
+          87537,
+          92394
+        ]
+      },
+      "late": {
+        "n": 21,
+        "timely": [
+          78789,
+          94901,
+          61629,
+          63656,
+          77782,
+          77788,
+          74970,
+          63566,
+          63545,
+          77302
+        ],
+        "near": [
+          78789,
+          94901,
+          61629,
+          63656,
+          77782,
+          77788,
+          74970,
+          63566,
+          63545,
+          77302
+        ]
+      }
+    }
+  },
+  "comparison": {
+    "embedding_and_head": {
+      "epochs": 6,
+      "params": 23681,
+      "timing_auc": 0.9386074197120708,
+      "max36": {
+        "tp": 165,
+        "fp": 36
+      },
+      "tp1590": 137,
+      "early": 19,
+      "lead": {
+        "count": 163,
+        "mean_ms": -409.03067484662574,
+        "median_ms": 11.0
+      },
+      "flips": {
+        "rescued_D": 20,
+        "lost_D": 10,
+        "removed_FP": 17,
+        "added_FP": 7
+      },
+      "hard": {
+        "never": {
+          "timely": 4,
+          "near": 2
+        },
+        "late": {
+          "timely": 15,
+          "near": 15
+        }
+      }
+    },
+    "first_block_and_head": {
+      "epochs": 5,
+      "params": 33537,
+      "timing_auc": 0.8901232004429679,
+      "max36": {
+        "tp": 142,
+        "fp": 35
+      },
+      "tp1590": 126,
+      "early": 13,
+      "lead": {
+        "count": 158,
+        "mean_ms": -655.6582278481013,
+        "median_ms": 1.5000000000000002
+      },
+      "flips": {
+        "rescued_D": 15,
+        "lost_D": 22,
+        "removed_FP": 22,
+        "added_FP": 16
+      },
+      "hard": {
+        "never": {
+          "timely": 4,
+          "near": 2
+        },
+        "late": {
+          "timely": 10,
+          "near": 10
+        }
+      }
+    },
+    "last_block_and_head": {
+      "epochs": 5,
+      "params": 33537,
+      "timing_auc": 0.874204042081949,
+      "max36": {
+        "tp": 138,
+        "fp": 35
+      },
+      "tp1590": 119,
+      "early": 13,
+      "lead": {
+        "count": 154,
+        "mean_ms": -675.6883116883117,
+        "median_ms": -1.0
+      },
+      "flips": {
+        "rescued_D": 15,
+        "lost_D": 29,
+        "removed_FP": 21,
+        "added_FP": 13
+      },
+      "hard": {
+        "never": {
+          "timely": 4,
+          "near": 3
+        },
+        "late": {
+          "timely": 10,
+          "near": 10
+        }
+      }
+    }
+  }
+}

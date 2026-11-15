@@ -1,0 +1,491 @@
+{
+  "status": "SAME_THRESHOLD_POSTSEAL_CONFIRMATION_AND_MARGIN",
+  "order": [
+    15,
+    20,
+    25,
+    30,
+    "false_alarms"
+  ],
+  "counts": {
+    "fixed": {
+      "1": [
+        152,
+        144,
+        140,
+        136,
+        32
+      ],
+      "2": [
+        150,
+        143,
+        137,
+        135,
+        32
+      ],
+      "3": [
+        147,
+        142,
+        136,
+        132,
+        32
+      ],
+      "5": [
+        143,
+        136,
+        132,
+        129,
+        32
+      ]
+    },
+    "legacy_current4": {
+      "1": [
+        154,
+        151,
+        142,
+        141,
+        34
+      ],
+      "2": [
+        154,
+        148,
+        142,
+        141,
+        32
+      ],
+      "3": [
+        150,
+        144,
+        140,
+        137,
+        32
+      ],
+      "5": [
+        147,
+        139,
+        137,
+        135,
+        32
+      ]
+    },
+    "signed_path_true": {
+      "1": [
+        156,
+        153,
+        145,
+        143,
+        34
+      ],
+      "2": [
+        154,
+        148,
+        143,
+        141,
+        33
+      ],
+      "3": [
+        149,
+        143,
+        139,
+        136,
+        33
+      ],
+      "5": [
+        147,
+        138,
+        135,
+        133,
+        33
+      ]
+    },
+    "signed_path_shifted": {
+      "1": [
+        156,
+        152,
+        143,
+        142,
+        34
+      ],
+      "2": [
+        155,
+        149,
+        142,
+        141,
+        33
+      ],
+      "3": [
+        150,
+        145,
+        139,
+        137,
+        33
+      ],
+      "5": [
+        147,
+        138,
+        136,
+        133,
+        32
+      ]
+    },
+    "radius_feedback": {
+      "1": [
+        152,
+        149,
+        144,
+        139,
+        36
+      ],
+      "2": [
+        152,
+        146,
+        142,
+        139,
+        35
+      ],
+      "3": [
+        148,
+        144,
+        140,
+        135,
+        34
+      ],
+      "5": [
+        144,
+        138,
+        134,
+        131,
+        33
+      ]
+    },
+    "misassigned_feedback": {
+      "1": [
+        152,
+        146,
+        140,
+        136,
+        33
+      ],
+      "2": [
+        151,
+        145,
+        139,
+        136,
+        33
+      ],
+      "3": [
+        147,
+        142,
+        136,
+        132,
+        33
+      ],
+      "5": [
+        142,
+        136,
+        132,
+        130,
+        33
+      ]
+    }
+  },
+  "true_vs_wrong": {
+    "1": {
+      "gained": [
+        70320,
+        80600,
+        95770
+      ],
+      "lost": []
+    },
+    "2": {
+      "gained": [
+        70320,
+        80600,
+        95770
+      ],
+      "lost": []
+    },
+    "3": {
+      "gained": [
+        70320,
+        80600,
+        95770
+      ],
+      "lost": []
+    },
+    "5": {
+      "gained": [
+        70320,
+        87861
+      ],
+      "lost": [
+        91689
+      ]
+    }
+  },
+  "true_vs_static": {
+    "1": {
+      "gained": [
+        70320,
+        80600,
+        95770
+      ],
+      "lost": []
+    },
+    "2": {
+      "gained": [
+        70320,
+        80600,
+        95770,
+        75603
+      ],
+      "lost": []
+    },
+    "3": {
+      "gained": [
+        70320,
+        80600,
+        95770
+      ],
+      "lost": []
+    },
+    "5": {
+      "gained": [
+        70320,
+        87861,
+        72578
+      ],
+      "lost": [
+        91689
+      ]
+    }
+  },
+  "new_shots": [
+    {
+      "shot": 70320,
+      "kind": "new_timely",
+      "at_index": 744,
+      "dose": 0.04438590258359909,
+      "fixed_probability": 0.3782499432563782,
+      "true_probability": 0.5284931063652039,
+      "misassigned_probability": 0.3351900279521942,
+      "first_leads": {
+        "fixed": {
+          "1": 12.0,
+          "2": 9.0,
+          "3": null,
+          "5": null
+        },
+        "radius_feedback": {
+          "1": 178.0,
+          "2": 177.0,
+          "3": 176.0,
+          "5": 174.0
+        },
+        "misassigned_feedback": {
+          "1": 18.0,
+          "2": 17.0,
+          "3": 16.0,
+          "5": 14.0
+        }
+      }
+    },
+    {
+      "shot": 80600,
+      "kind": "new_timely",
+      "at_index": 1860,
+      "dose": 0.04438590258359909,
+      "fixed_probability": 0.4070731997489929,
+      "true_probability": 0.5567089319229126,
+      "misassigned_probability": 0.34317976236343384,
+      "first_leads": {
+        "fixed": {
+          "1": 18.0,
+          "2": 17.0,
+          "3": 16.0,
+          "5": 14.0
+        },
+        "radius_feedback": {
+          "1": 37.0,
+          "2": 34.0,
+          "3": 33.0,
+          "5": 17.0
+        },
+        "misassigned_feedback": {
+          "1": 18.0,
+          "2": 17.0,
+          "3": 16.0,
+          "5": 14.0
+        }
+      }
+    },
+    {
+      "shot": 95770,
+      "kind": "new_timely",
+      "at_index": 2262,
+      "dose": 0.021071653813123703,
+      "fixed_probability": 0.48432686924934387,
+      "true_probability": 0.5087582468986511,
+      "misassigned_probability": 0.49268820881843567,
+      "first_leads": {
+        "fixed": {
+          "1": 10.0,
+          "2": 9.0,
+          "3": 8.0,
+          "5": 6.0
+        },
+        "radius_feedback": {
+          "1": 2065.0,
+          "2": 2064.0,
+          "3": 2063.0,
+          "5": 8.0
+        },
+        "misassigned_feedback": {
+          "1": 12.0,
+          "2": 11.0,
+          "3": 10.0,
+          "5": 8.0
+        }
+      }
+    },
+    {
+      "shot": 73790,
+      "kind": "new_fp",
+      "at_index": 4377,
+      "dose": 0.04438590630888939,
+      "fixed_probability": 0.4329741895198822,
+      "true_probability": 0.5080528259277344,
+      "misassigned_probability": 0.49012959003448486,
+      "first_leads": {
+        "fixed": {
+          "1": null,
+          "2": null,
+          "3": null,
+          "5": null
+        },
+        "radius_feedback": {
+          "1": null,
+          "2": null,
+          "3": null,
+          "5": null
+        },
+        "misassigned_feedback": {
+          "1": null,
+          "2": null,
+          "3": null,
+          "5": null
+        }
+      }
+    },
+    {
+      "shot": 67451,
+      "kind": "new_fp",
+      "at_index": 2790,
+      "dose": 0.04002842679619789,
+      "fixed_probability": 0.3612253665924072,
+      "true_probability": 0.5128272175788879,
+      "misassigned_probability": 0.4663231074810028,
+      "first_leads": {
+        "fixed": {
+          "1": null,
+          "2": null,
+          "3": null,
+          "5": null
+        },
+        "radius_feedback": {
+          "1": null,
+          "2": null,
+          "3": null,
+          "5": null
+        },
+        "misassigned_feedback": {
+          "1": null,
+          "2": null,
+          "3": null,
+          "5": null
+        }
+      }
+    },
+    {
+      "shot": 67900,
+      "kind": "new_fp",
+      "at_index": 279,
+      "dose": 0.029362184926867485,
+      "fixed_probability": 0.4768963158130646,
+      "true_probability": 0.513593316078186,
+      "misassigned_probability": 0.4776775538921356,
+      "first_leads": {
+        "fixed": {
+          "1": null,
+          "2": null,
+          "3": null,
+          "5": null
+        },
+        "radius_feedback": {
+          "1": null,
+          "2": null,
+          "3": null,
+          "5": null
+        },
+        "misassigned_feedback": {
+          "1": null,
+          "2": null,
+          "3": null,
+          "5": null
+        }
+      }
+    },
+    {
+      "shot": 85599,
+      "kind": "new_fp",
+      "at_index": 262,
+      "dose": 0.04438590630888939,
+      "fixed_probability": 0.498870313167572,
+      "true_probability": 0.5077605843544006,
+      "misassigned_probability": 0.5175249576568604,
+      "first_leads": {
+        "fixed": {
+          "1": null,
+          "2": null,
+          "3": null,
+          "5": null
+        },
+        "radius_feedback": {
+          "1": null,
+          "2": null,
+          "3": null,
+          "5": null
+        },
+        "misassigned_feedback": {
+          "1": null,
+          "2": null,
+          "3": null,
+          "5": null
+        }
+      }
+    }
+  ],
+  "margin_fields": [
+    "static_gap",
+    "true_max_increase",
+    "wrong_max_increase",
+    "true_at_static_peak",
+    "wrong_at_static_peak"
+  ],
+  "near_window_43_median": [
+    1.5267272807080203,
+    0.03102308378082519,
+    0.031307815964310315,
+    0.0013360656488483613,
+    -0.0005936429602366733
+  ],
+  "pairs_for_margin": 43,
+  "nonzero_input_rms_p50_p95_max": [
+    0.02630726620554924,
+    0.04438590630888939,
+    0.044385917484760284
+  ],
+  "seal_sha256": "a108ac74bcbe64cacdd082819985e5c0081da7f714343eea3563a23692645131",
+  "verified_raw_shots": 360
+}

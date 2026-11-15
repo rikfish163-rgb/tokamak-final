@@ -1,0 +1,91 @@
+{
+  "block": 2,
+  "first_next_rank": 41,
+  "commit_sha256": "4bcd0b4e5b546588b4b8b8fc48c96b5d4a3cdede42a42ec4f9a70dceddf47536",
+  "reveal_sha256": "2384e0173430f4a300dd3938ffd25e7c677f77ef1ade1bd275bded637f2c98c7",
+  "state_before": null,
+  "state_after": null,
+  "updated_ns": 3737906591144,
+  "decision": "rejected_guard",
+  "fit": {
+    "steps": 20,
+    "initial_loss": 5.397541046142578,
+    "final_loss": 3.648627519607544,
+    "norm": 0.5999997854232788,
+    "teaching_shots": 1,
+    "teaching_points": 8
+  },
+  "teaching_indices": [
+    1637,
+    1650,
+    1663,
+    1677,
+    1690,
+    1704,
+    1717,
+    1731
+  ],
+  "guard_ids": [
+    71304,
+    87494,
+    69458,
+    87487,
+    70404,
+    70323,
+    86167,
+    54157
+  ],
+  "violations": [
+    {
+      "shot": 70323,
+      "arm": "inter",
+      "reason": "new_false_alarm"
+    }
+  ],
+  "diagnostics": {
+    "inter": {
+      "before": {
+        "shot": null,
+        "disruptive": true,
+        "down": 2.863,
+        "status": "tardy",
+        "first_index": 1761,
+        "lead_ms": 1.0
+      },
+      "after": {
+        "shot": null,
+        "disruptive": true,
+        "down": 2.863,
+        "status": "tardy",
+        "first_index": 1760,
+        "lead_ms": 2.0
+      },
+      "peak_gain": 0.0028481590561568737,
+      "corrected": false,
+      "guard_violations": []
+    },
+    "both": {
+      "before": {
+        "shot": null,
+        "disruptive": true,
+        "down": 2.863,
+        "status": "tardy",
+        "first_index": 1758,
+        "lead_ms": 4.0
+      },
+      "after": {
+        "shot": null,
+        "disruptive": true,
+        "down": 2.863,
+        "status": "tardy",
+        "first_index": 1746,
+        "lead_ms": 16.0
+      },
+      "peak_gain": 0.6623967289924622,
+      "corrected": false,
+      "guard_violations": []
+    }
+  },
+  "proposal_sha256": "cec4e5c05837c0e9aaa8c068127c66b9da692bc4286368db9d86f36010642236",
+  "witness_sha256": "e49252c769fc35533214262709f309a4f818776f7ce5d380a8069b82693e5ce1"
+}

@@ -1,0 +1,94 @@
+{
+  "block": 6,
+  "first_next_rank": 121,
+  "commit_sha256": "c4b8e18f05313ce5aeda4dca334e101d876a17ac011d651f99c39b4d16f1152e",
+  "reveal_sha256": "4c95007ee0c5d2a840dbc3042a1398f4eded679340e0c742f0b9722c2a4577c8",
+  "state_before": null,
+  "state_after": null,
+  "updated_ns": 3741912169993,
+  "decision": "rejected_guard",
+  "fit": {
+    "steps": 20,
+    "initial_loss": 1.8742891550064087,
+    "final_loss": 1.3434944152832031,
+    "norm": 0.599999725818634,
+    "teaching_shots": 5,
+    "teaching_points": 44
+  },
+  "teaching_indices": [
+    571,
+    1129,
+    1159,
+    1804,
+    2087,
+    3010,
+    3192,
+    4121,
+    4711
+  ],
+  "guard_ids": [
+    71304,
+    87494,
+    69458,
+    87487,
+    70404,
+    70323,
+    86167,
+    54157,
+    82834,
+    91064
+  ],
+  "violations": [
+    {
+      "shot": 70323,
+      "arm": "inter",
+      "reason": "new_false_alarm"
+    }
+  ],
+  "diagnostics": {
+    "inter": {
+      "before": {
+        "shot": null,
+        "disruptive": false,
+        "down": null,
+        "status": "tn",
+        "first_index": null,
+        "lead_ms": null
+      },
+      "after": {
+        "shot": null,
+        "disruptive": false,
+        "down": null,
+        "status": "tn",
+        "first_index": null,
+        "lead_ms": null
+      },
+      "peak_gain": 0.00990307331085205,
+      "corrected": false,
+      "guard_violations": []
+    },
+    "both": {
+      "before": {
+        "shot": null,
+        "disruptive": false,
+        "down": null,
+        "status": "fp",
+        "first_index": 1063,
+        "lead_ms": null
+      },
+      "after": {
+        "shot": null,
+        "disruptive": false,
+        "down": null,
+        "status": "fp",
+        "first_index": 1063,
+        "lead_ms": null
+      },
+      "peak_gain": 0.011945664882659912,
+      "corrected": false,
+      "guard_violations": []
+    }
+  },
+  "proposal_sha256": "04e55792191e6faee1f460f156168ba8cf55038cfba4d64df4c683b318bd4aae",
+  "witness_sha256": "748ccc79d53d031b89754a54875500c2ef60a277e93961617ef86f893de6c447"
+}

@@ -1,0 +1,989 @@
+{
+  "scope": "fixed main threshold, confirmation counted when last confirming point arrives",
+  "arms": [
+    "fixed_separation",
+    "current_feedback",
+    "earlier_feedback"
+  ],
+  "actual_dose": {
+    "count": 1329292,
+    "q10_median_q90": [
+      0.2814269185066223,
+      0.8932237923145294,
+      1.4417461037635804
+    ]
+  },
+  "fraction_of_legacy_dose": {
+    "count": 1329292,
+    "q10_median_q90": [
+      0.9999998807907104,
+      1.0,
+      1.0000001192092896
+    ]
+  },
+  "endpoint_crossing_disagreement": [
+    [
+      0,
+      2486,
+      2450
+    ],
+    [
+      2486,
+      0,
+      2436
+    ],
+    [
+      2450,
+      2436,
+      0
+    ]
+  ],
+  "confirmation": {
+    "bias_only": {
+      "1": {
+        "tp": 144,
+        "fp": 34
+      },
+      "2": {
+        "tp": 142,
+        "fp": 33
+      },
+      "3": {
+        "tp": 138,
+        "fp": 33
+      },
+      "5": {
+        "tp": 134,
+        "fp": 33
+      }
+    },
+    "current_5": {
+      "1": {
+        "tp": 146,
+        "fp": 34
+      },
+      "2": {
+        "tp": 143,
+        "fp": 34
+      },
+      "3": {
+        "tp": 138,
+        "fp": 33
+      },
+      "5": {
+        "tp": 135,
+        "fp": 33
+      }
+    },
+    "fixed_separation": {
+      "1": {
+        "tp": 141,
+        "fp": 33
+      },
+      "2": {
+        "tp": 140,
+        "fp": 33
+      },
+      "3": {
+        "tp": 135,
+        "fp": 32
+      },
+      "5": {
+        "tp": 132,
+        "fp": 32
+      }
+    },
+    "current_feedback": {
+      "1": {
+        "tp": 143,
+        "fp": 35
+      },
+      "2": {
+        "tp": 142,
+        "fp": 33
+      },
+      "3": {
+        "tp": 139,
+        "fp": 33
+      },
+      "5": {
+        "tp": 134,
+        "fp": 33
+      }
+    },
+    "earlier_feedback": {
+      "1": {
+        "tp": 143,
+        "fp": 33
+      },
+      "2": {
+        "tp": 140,
+        "fp": 33
+      },
+      "3": {
+        "tp": 138,
+        "fp": 33
+      },
+      "5": {
+        "tp": 133,
+        "fp": 33
+      }
+    }
+  },
+  "hard_positive": {
+    "supported": 33,
+    "median_gap": {
+      "count": 33,
+      "q10_median_q90": [
+        0.8002656899553565,
+        1.474628921614292,
+        2.6214773379427228
+      ]
+    },
+    "max_gain": {
+      "fixed_separation": {
+        "count": 33,
+        "q10_median_q90": [
+          -0.0387359619140625,
+          0.02934718132019043,
+          0.12278969287872314
+        ]
+      },
+      "current_feedback": {
+        "count": 33,
+        "q10_median_q90": [
+          0.0034923553466796875,
+          0.0354461669921875,
+          0.1000572204589844
+        ]
+      },
+      "earlier_feedback": {
+        "count": 33,
+        "q10_median_q90": [
+          0.0066371142864227305,
+          0.024763107299804688,
+          0.13000431060791018
+        ]
+      }
+    },
+    "crosses": {
+      "fixed_separation": [],
+      "current_feedback": [],
+      "earlier_feedback": []
+    },
+    "by_shot": {
+      "90874": {
+        "points": 95,
+        "gap": 0.29646086321890625,
+        "max_gain": {
+          "fixed_separation": 0.02761673927307129,
+          "current_feedback": 0.03583785891532898,
+          "earlier_feedback": 0.009275048971176147
+        },
+        "crosses": {
+          "fixed_separation": false,
+          "current_feedback": false,
+          "earlier_feedback": false
+        }
+      },
+      "78789": {
+        "points": 95,
+        "gap": 0.8830188475710181,
+        "max_gain": {
+          "fixed_separation": -0.05746603012084961,
+          "current_feedback": 0.10453140735626221,
+          "earlier_feedback": 0.07347989082336426
+        },
+        "crosses": {
+          "fixed_separation": false,
+          "current_feedback": false,
+          "earlier_feedback": false
+        }
+      },
+      "83346": {
+        "points": 95,
+        "gap": 2.2573324404817847,
+        "max_gain": {
+          "fixed_separation": -0.008442401885986328,
+          "current_feedback": 0.012480020523071289,
+          "earlier_feedback": 0.019276142120361328
+        },
+        "crosses": {
+          "fixed_separation": false,
+          "current_feedback": false,
+          "earlier_feedback": false
+        }
+      },
+      "87508": {
+        "points": 95,
+        "gap": 3.2932983599764136,
+        "max_gain": {
+          "fixed_separation": -0.03907346725463867,
+          "current_feedback": 0.0354461669921875,
+          "earlier_feedback": 0.024763107299804688
+        },
+        "crosses": {
+          "fixed_separation": false,
+          "current_feedback": false,
+          "earlier_feedback": false
+        }
+      },
+      "87537": {
+        "points": 95,
+        "gap": 3.9778846465212134,
+        "max_gain": {
+          "fixed_separation": 0.03133201599121094,
+          "current_feedback": 0.004230976104736328,
+          "earlier_feedback": 0.027723312377929688
+        },
+        "crosses": {
+          "fixed_separation": false,
+          "current_feedback": false,
+          "earlier_feedback": false
+        }
+      },
+      "79649": {
+        "points": 59,
+        "gap": 1.228970643149021,
+        "max_gain": {
+          "fixed_separation": -0.00900280475616455,
+          "current_feedback": 0.0033077001571655273,
+          "earlier_feedback": 0.005977630615234375
+        },
+        "crosses": {
+          "fixed_separation": false,
+          "current_feedback": false,
+          "earlier_feedback": false
+        }
+      },
+      "94901": {
+        "points": 95,
+        "gap": 1.96360861884177,
+        "max_gain": {
+          "fixed_separation": 0.12383794784545898,
+          "current_feedback": 0.06896495819091797,
+          "earlier_feedback": 0.0981593132019043
+        },
+        "crosses": {
+          "fixed_separation": false,
+          "current_feedback": false,
+          "earlier_feedback": false
+        }
+      },
+      "92394": {
+        "points": 93,
+        "gap": 2.7125135623079566,
+        "max_gain": {
+          "fixed_separation": 0.04107189178466797,
+          "current_feedback": 0.04107189178466797,
+          "earlier_feedback": 0.02022242546081543
+        },
+        "crosses": {
+          "fixed_separation": false,
+          "current_feedback": false,
+          "earlier_feedback": false
+        }
+      },
+      "64581": {
+        "points": 95,
+        "gap": 1.117667194471958,
+        "max_gain": {
+          "fixed_separation": 0.024584531784057617,
+          "current_feedback": 0.015415191650390625,
+          "earlier_feedback": 0.024584531784057617
+        },
+        "crosses": {
+          "fixed_separation": false,
+          "current_feedback": false,
+          "earlier_feedback": false
+        }
+      },
+      "86616": {
+        "points": 93,
+        "gap": 2.0527917109590796,
+        "max_gain": {
+          "fixed_separation": 0.005211830139160156,
+          "current_feedback": 0.024436235427856445,
+          "earlier_feedback": 0.016506433486938477
+        },
+        "crosses": {
+          "fixed_separation": false,
+          "current_feedback": false,
+          "earlier_feedback": false
+        }
+      },
+      "60999": {
+        "points": 94,
+        "gap": 1.719735261068943,
+        "max_gain": {
+          "fixed_separation": 0.04430866241455078,
+          "current_feedback": 0.016217470169067383,
+          "earlier_feedback": 0.020443439483642578
+        },
+        "crosses": {
+          "fixed_separation": false,
+          "current_feedback": false,
+          "earlier_feedback": false
+        }
+      },
+      "83887": {
+        "points": 95,
+        "gap": 1.8686785660845069,
+        "max_gain": {
+          "fixed_separation": 0.0037097930908203125,
+          "current_feedback": 0.01920604705810547,
+          "earlier_feedback": 0.023494243621826172
+        },
+        "crosses": {
+          "fixed_separation": false,
+          "current_feedback": false,
+          "earlier_feedback": false
+        }
+      },
+      "81684": {
+        "points": 94,
+        "gap": 1.8878422938448218,
+        "max_gain": {
+          "fixed_separation": -0.0005564689636230469,
+          "current_feedback": 0.004980564117431641,
+          "earlier_feedback": 0.005179643630981445
+        },
+        "crosses": {
+          "fixed_separation": false,
+          "current_feedback": false,
+          "earlier_feedback": false
+        }
+      },
+      "61629": {
+        "points": 94,
+        "gap": 1.871307011709812,
+        "max_gain": {
+          "fixed_separation": 0.050719499588012695,
+          "current_feedback": 0.030601978302001953,
+          "earlier_feedback": 0.02111196517944336
+        },
+        "crosses": {
+          "fixed_separation": false,
+          "current_feedback": false,
+          "earlier_feedback": false
+        }
+      },
+      "81406": {
+        "points": 95,
+        "gap": 1.4122693501573829,
+        "max_gain": {
+          "fixed_separation": 0.13286614418029785,
+          "current_feedback": 0.04883420467376709,
+          "earlier_feedback": 0.1343851089477539
+        },
+        "crosses": {
+          "fixed_separation": false,
+          "current_feedback": false,
+          "earlier_feedback": false
+        }
+      },
+      "63656": {
+        "points": 93,
+        "gap": 0.8420929871660499,
+        "max_gain": {
+          "fixed_separation": 0.11859667301177979,
+          "current_feedback": 0.06520915031433105,
+          "earlier_feedback": 0.08550286293029785
+        },
+        "crosses": {
+          "fixed_separation": false,
+          "current_feedback": false,
+          "earlier_feedback": false
+        }
+      },
+      "94803": {
+        "points": 94,
+        "gap": 1.459055658445957,
+        "max_gain": {
+          "fixed_separation": 0.07309627532958984,
+          "current_feedback": 0.04230976104736328,
+          "earlier_feedback": 0.11075282096862793
+        },
+        "crosses": {
+          "fixed_separation": false,
+          "current_feedback": false,
+          "earlier_feedback": false
+        }
+      },
+      "94515": {
+        "points": 95,
+        "gap": 2.7582503520113257,
+        "max_gain": {
+          "fixed_separation": -0.0017855167388916016,
+          "current_feedback": 0.030388593673706055,
+          "earlier_feedback": 0.01640176773071289
+        },
+        "crosses": {
+          "fixed_separation": false,
+          "current_feedback": false,
+          "earlier_feedback": false
+        }
+      },
+      "71013": {
+        "points": 95,
+        "gap": 0.4722927771669653,
+        "max_gain": {
+          "fixed_separation": 0.020734786987304688,
+          "current_feedback": -0.05919337272644043,
+          "earlier_feedback": -0.02561211585998535
+        },
+        "crosses": {
+          "fixed_separation": false,
+          "current_feedback": false,
+          "earlier_feedback": false
+        }
+      },
+      "77782": {
+        "points": 95,
+        "gap": 1.474628921614292,
+        "max_gain": {
+          "fixed_separation": 0.11276078224182129,
+          "current_feedback": 0.11078643798828125,
+          "earlier_feedback": 0.16162848472595215
+        },
+        "crosses": {
+          "fixed_separation": false,
+          "current_feedback": false,
+          "earlier_feedback": false
+        }
+      },
+      "93224": {
+        "points": 95,
+        "gap": 0.6782968603235511,
+        "max_gain": {
+          "fixed_separation": -0.04530167579650879,
+          "current_feedback": -0.020806074142456055,
+          "earlier_feedback": 0.002934694290161133
+        },
+        "crosses": {
+          "fixed_separation": false,
+          "current_feedback": false,
+          "earlier_feedback": false
+        }
+      },
+      "93218": {
+        "points": 95,
+        "gap": 0.7898088656526832,
+        "max_gain": {
+          "fixed_separation": -0.03738594055175781,
+          "current_feedback": 0.04936492443084717,
+          "earlier_feedback": 0.07891488075256348
+        },
+        "crosses": {
+          "fixed_separation": false,
+          "current_feedback": false,
+          "earlier_feedback": false
+        }
+      },
+      "77788": {
+        "points": 95,
+        "gap": 1.6755746565920142,
+        "max_gain": {
+          "fixed_separation": 0.2239929437637329,
+          "current_feedback": 0.18068289756774902,
+          "earlier_feedback": 0.1930227279663086
+        },
+        "crosses": {
+          "fixed_separation": false,
+          "current_feedback": false,
+          "earlier_feedback": false
+        }
+      },
+      "74970": {
+        "points": 95,
+        "gap": 0.966791208849552,
+        "max_gain": {
+          "fixed_separation": -0.2817223072052002,
+          "current_feedback": -0.15071916580200195,
+          "earlier_feedback": 0.22901701927185059
+        },
+        "crosses": {
+          "fixed_separation": false,
+          "current_feedback": false,
+          "earlier_feedback": false
+        }
+      },
+      "69813": {
+        "points": 95,
+        "gap": 0.9386043511492042,
+        "max_gain": {
+          "fixed_separation": 0.08873045444488525,
+          "current_feedback": 0.07439064979553223,
+          "earlier_feedback": 0.021779537200927734
+        },
+        "crosses": {
+          "fixed_separation": false,
+          "current_feedback": false,
+          "earlier_feedback": false
+        }
+      },
+      "63566": {
+        "points": 94,
+        "gap": 1.0799696408373145,
+        "max_gain": {
+          "fixed_separation": 0.17399001121520996,
+          "current_feedback": 0.2087634801864624,
+          "earlier_feedback": 0.11248111724853516
+        },
+        "crosses": {
+          "fixed_separation": false,
+          "current_feedback": false,
+          "earlier_feedback": false
+        }
+      },
+      "63545": {
+        "points": 95,
+        "gap": 2.100883122549656,
+        "max_gain": {
+          "fixed_separation": 0.02934718132019043,
+          "current_feedback": 0.015736103057861328,
+          "earlier_feedback": 0.011808633804321289
+        },
+        "crosses": {
+          "fixed_separation": false,
+          "current_feedback": false,
+          "earlier_feedback": false
+        }
+      },
+      "77302": {
+        "points": 94,
+        "gap": 1.0938559733492164,
+        "max_gain": {
+          "fixed_separation": 0.07204204797744751,
+          "current_feedback": 0.07293915748596191,
+          "earlier_feedback": 0.11136794090270996
+        },
+        "crosses": {
+          "fixed_separation": false,
+          "current_feedback": false,
+          "earlier_feedback": false
+        }
+      },
+      "85032": {
+        "points": 95,
+        "gap": 1.6207331381899146,
+        "max_gain": {
+          "fixed_separation": 0.04018867015838623,
+          "current_feedback": 0.030717849731445312,
+          "earlier_feedback": 0.08099734783172607
+        },
+        "crosses": {
+          "fixed_separation": false,
+          "current_feedback": false,
+          "earlier_feedback": false
+        }
+      },
+      "68901": {
+        "points": 93,
+        "gap": 1.44564306365073,
+        "max_gain": {
+          "fixed_separation": 0.04452097415924072,
+          "current_feedback": 0.04366302490234375,
+          "earlier_feedback": 0.04452097415924072
+        },
+        "crosses": {
+          "fixed_separation": false,
+          "current_feedback": false,
+          "earlier_feedback": false
+        }
+      },
+      "63690": {
+        "points": 95,
+        "gap": 1.4182963334184913,
+        "max_gain": {
+          "fixed_separation": 0.03821992874145508,
+          "current_feedback": 0.023235559463500977,
+          "earlier_feedback": 0.020318150520324707
+        },
+        "crosses": {
+          "fixed_separation": false,
+          "current_feedback": false,
+          "earlier_feedback": false
+        }
+      },
+      "79899": {
+        "points": 94,
+        "gap": 1.902962800131443,
+        "max_gain": {
+          "fixed_separation": -0.019946813583374023,
+          "current_feedback": 0.08216047286987305,
+          "earlier_feedback": 0.04294872283935547
+        },
+        "crosses": {
+          "fixed_separation": false,
+          "current_feedback": false,
+          "earlier_feedback": false
+        }
+      },
+      "62540": {
+        "points": 92,
+        "gap": 1.8805144988161353,
+        "max_gain": {
+          "fixed_separation": 0.0037467479705810547,
+          "current_feedback": 0.0403902530670166,
+          "earlier_feedback": 0.041231632232666016
+        },
+        "crosses": {
+          "fixed_separation": false,
+          "current_feedback": false,
+          "earlier_feedback": false
+        }
+      }
+    }
+  },
+  "individual_first_alarm": {
+    "70320": {
+      "fixed": {
+        "shot": 70320,
+        "disruptive": true,
+        "down_s": 3.9219999999999997,
+        "alarm": true,
+        "lead_ms": 12.0,
+        "timely": false
+      },
+      "bias_only": {
+        "shot": 70320,
+        "disruptive": true,
+        "down_s": 3.9219999999999997,
+        "alarm": true,
+        "lead_ms": 12.0,
+        "timely": false
+      },
+      "current_5": {
+        "shot": 70320,
+        "disruptive": true,
+        "down_s": 3.9219999999999997,
+        "alarm": true,
+        "lead_ms": 225.0,
+        "timely": true
+      },
+      "earlier_5": {
+        "shot": 70320,
+        "disruptive": true,
+        "down_s": 3.9219999999999997,
+        "alarm": true,
+        "lead_ms": 13.0,
+        "timely": false
+      },
+      "fixed_separation": {
+        "shot": 70320,
+        "disruptive": true,
+        "down_s": 3.9219999999999997,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      "current_feedback": {
+        "shot": 70320,
+        "disruptive": true,
+        "down_s": 3.9219999999999997,
+        "alarm": true,
+        "lead_ms": 12.0,
+        "timely": false
+      },
+      "earlier_feedback": {
+        "shot": 70320,
+        "disruptive": true,
+        "down_s": 3.9219999999999997,
+        "alarm": true,
+        "lead_ms": 12.0,
+        "timely": false
+      }
+    },
+    "73405": {
+      "fixed": {
+        "shot": 73405,
+        "disruptive": true,
+        "down_s": 21.729,
+        "alarm": true,
+        "lead_ms": 26.0,
+        "timely": false
+      },
+      "bias_only": {
+        "shot": 73405,
+        "disruptive": true,
+        "down_s": 21.729,
+        "alarm": true,
+        "lead_ms": 29.0,
+        "timely": false
+      },
+      "current_5": {
+        "shot": 73405,
+        "disruptive": true,
+        "down_s": 21.729,
+        "alarm": true,
+        "lead_ms": 33.0,
+        "timely": true
+      },
+      "earlier_5": {
+        "shot": 73405,
+        "disruptive": true,
+        "down_s": 21.729,
+        "alarm": true,
+        "lead_ms": 35.0,
+        "timely": true
+      },
+      "fixed_separation": {
+        "shot": 73405,
+        "disruptive": true,
+        "down_s": 21.729,
+        "alarm": true,
+        "lead_ms": 29.0,
+        "timely": false
+      },
+      "current_feedback": {
+        "shot": 73405,
+        "disruptive": true,
+        "down_s": 21.729,
+        "alarm": true,
+        "lead_ms": 29.0,
+        "timely": false
+      },
+      "earlier_feedback": {
+        "shot": 73405,
+        "disruptive": true,
+        "down_s": 21.729,
+        "alarm": true,
+        "lead_ms": 29.0,
+        "timely": false
+      }
+    },
+    "74970": {
+      "fixed": {
+        "shot": 74970,
+        "disruptive": true,
+        "down_s": 5.566,
+        "alarm": true,
+        "lead_ms": 20.0,
+        "timely": false
+      },
+      "bias_only": {
+        "shot": 74970,
+        "disruptive": true,
+        "down_s": 5.566,
+        "alarm": true,
+        "lead_ms": 20.0,
+        "timely": false
+      },
+      "current_5": {
+        "shot": 74970,
+        "disruptive": true,
+        "down_s": 5.566,
+        "alarm": true,
+        "lead_ms": 21.0,
+        "timely": false
+      },
+      "earlier_5": {
+        "shot": 74970,
+        "disruptive": true,
+        "down_s": 5.566,
+        "alarm": true,
+        "lead_ms": 21.0,
+        "timely": false
+      },
+      "fixed_separation": {
+        "shot": 74970,
+        "disruptive": true,
+        "down_s": 5.566,
+        "alarm": true,
+        "lead_ms": 14.0,
+        "timely": false
+      },
+      "current_feedback": {
+        "shot": 74970,
+        "disruptive": true,
+        "down_s": 5.566,
+        "alarm": true,
+        "lead_ms": 19.0,
+        "timely": false
+      },
+      "earlier_feedback": {
+        "shot": 74970,
+        "disruptive": true,
+        "down_s": 5.566,
+        "alarm": true,
+        "lead_ms": 21.0,
+        "timely": false
+      }
+    },
+    "69813": {
+      "fixed": {
+        "shot": 69813,
+        "disruptive": true,
+        "down_s": 7.023,
+        "alarm": true,
+        "lead_ms": 24.0,
+        "timely": false
+      },
+      "bias_only": {
+        "shot": 69813,
+        "disruptive": true,
+        "down_s": 7.023,
+        "alarm": true,
+        "lead_ms": 25.0,
+        "timely": false
+      },
+      "current_5": {
+        "shot": 69813,
+        "disruptive": true,
+        "down_s": 7.023,
+        "alarm": true,
+        "lead_ms": 26.0,
+        "timely": false
+      },
+      "earlier_5": {
+        "shot": 69813,
+        "disruptive": true,
+        "down_s": 7.023,
+        "alarm": true,
+        "lead_ms": 24.0,
+        "timely": false
+      },
+      "fixed_separation": {
+        "shot": 69813,
+        "disruptive": true,
+        "down_s": 7.023,
+        "alarm": true,
+        "lead_ms": 24.0,
+        "timely": false
+      },
+      "current_feedback": {
+        "shot": 69813,
+        "disruptive": true,
+        "down_s": 7.023,
+        "alarm": true,
+        "lead_ms": 26.0,
+        "timely": false
+      },
+      "earlier_feedback": {
+        "shot": 69813,
+        "disruptive": true,
+        "down_s": 7.023,
+        "alarm": true,
+        "lead_ms": 26.0,
+        "timely": false
+      }
+    },
+    "73790": {
+      "fixed": {
+        "shot": 73790,
+        "disruptive": false,
+        "down_s": null,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      "bias_only": {
+        "shot": 73790,
+        "disruptive": false,
+        "down_s": null,
+        "alarm": true,
+        "lead_ms": null,
+        "timely": false
+      },
+      "current_5": {
+        "shot": 73790,
+        "disruptive": false,
+        "down_s": null,
+        "alarm": true,
+        "lead_ms": null,
+        "timely": false
+      },
+      "earlier_5": {
+        "shot": 73790,
+        "disruptive": false,
+        "down_s": null,
+        "alarm": true,
+        "lead_ms": null,
+        "timely": false
+      },
+      "fixed_separation": {
+        "shot": 73790,
+        "disruptive": false,
+        "down_s": null,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      "current_feedback": {
+        "shot": 73790,
+        "disruptive": false,
+        "down_s": null,
+        "alarm": true,
+        "lead_ms": null,
+        "timely": false
+      },
+      "earlier_feedback": {
+        "shot": 73790,
+        "disruptive": false,
+        "down_s": null,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      }
+    },
+    "85422": {
+      "fixed": {
+        "shot": 85422,
+        "disruptive": false,
+        "down_s": null,
+        "alarm": true,
+        "lead_ms": null,
+        "timely": false
+      },
+      "bias_only": {
+        "shot": 85422,
+        "disruptive": false,
+        "down_s": null,
+        "alarm": true,
+        "lead_ms": null,
+        "timely": false
+      },
+      "current_5": {
+        "shot": 85422,
+        "disruptive": false,
+        "down_s": null,
+        "alarm": true,
+        "lead_ms": null,
+        "timely": false
+      },
+      "earlier_5": {
+        "shot": 85422,
+        "disruptive": false,
+        "down_s": null,
+        "alarm": true,
+        "lead_ms": null,
+        "timely": false
+      },
+      "fixed_separation": {
+        "shot": 85422,
+        "disruptive": false,
+        "down_s": null,
+        "alarm": true,
+        "lead_ms": null,
+        "timely": false
+      },
+      "current_feedback": {
+        "shot": 85422,
+        "disruptive": false,
+        "down_s": null,
+        "alarm": true,
+        "lead_ms": null,
+        "timely": false
+      },
+      "earlier_feedback": {
+        "shot": 85422,
+        "disruptive": false,
+        "down_s": null,
+        "alarm": true,
+        "lead_ms": null,
+        "timely": false
+      }
+    }
+  }
+}

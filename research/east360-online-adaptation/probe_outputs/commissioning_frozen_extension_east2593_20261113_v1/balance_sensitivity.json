@@ -1,0 +1,6256 @@
+{
+  "interpretation": "Quantiles describe variability from balancing this retrospective cohort; they are not independent prospective confidence intervals.",
+  "standardization": "Average within-stratum rate differences with weights proportional to the stratum minority counts, identical for disruptive and safe classes.",
+  "seed": 131,
+  "draws": 1000,
+  "percentiles": [
+    2.5,
+    50,
+    97.5
+  ],
+  "strata": {
+    "old835": {
+      "n_disruptive": 510,
+      "n_safe": 325,
+      "balanced_per_class": 325
+    },
+    "other": {
+      "n_disruptive": 508,
+      "n_safe": 1250,
+      "balanced_per_class": 508
+    }
+  },
+  "fixed_counts": {
+    "0.1": {
+      "fixed": {
+        "tp": 473,
+        "fp": 119,
+        "n_disruptive": 833,
+        "n_safe": 833
+      },
+      "bias_only": {
+        "tp": 488,
+        "fp": 139,
+        "n_disruptive": 833,
+        "n_safe": 833
+      },
+      "current_0": {
+        "tp": 499,
+        "fp": 150,
+        "n_disruptive": 833,
+        "n_safe": 833
+      },
+      "current_2": {
+        "tp": 499,
+        "fp": 147,
+        "n_disruptive": 833,
+        "n_safe": 833
+      },
+      "current_5": {
+        "tp": 495,
+        "fp": 145,
+        "n_disruptive": 833,
+        "n_safe": 833
+      },
+      "earlier_0": {
+        "tp": 496,
+        "fp": 145,
+        "n_disruptive": 833,
+        "n_safe": 833
+      },
+      "earlier_2": {
+        "tp": 496,
+        "fp": 143,
+        "n_disruptive": 833,
+        "n_safe": 833
+      },
+      "earlier_5": {
+        "tp": 497,
+        "fp": 142,
+        "n_disruptive": 833,
+        "n_safe": 833
+      }
+    },
+    "0.15": {
+      "fixed": {
+        "tp": 473,
+        "fp": 119,
+        "n_disruptive": 833,
+        "n_safe": 833
+      },
+      "bias_only": {
+        "tp": 488,
+        "fp": 139,
+        "n_disruptive": 833,
+        "n_safe": 833
+      },
+      "current_0": {
+        "tp": 499,
+        "fp": 150,
+        "n_disruptive": 833,
+        "n_safe": 833
+      },
+      "current_2": {
+        "tp": 499,
+        "fp": 147,
+        "n_disruptive": 833,
+        "n_safe": 833
+      },
+      "current_5": {
+        "tp": 495,
+        "fp": 145,
+        "n_disruptive": 833,
+        "n_safe": 833
+      },
+      "earlier_0": {
+        "tp": 496,
+        "fp": 145,
+        "n_disruptive": 833,
+        "n_safe": 833
+      },
+      "earlier_2": {
+        "tp": 496,
+        "fp": 143,
+        "n_disruptive": 833,
+        "n_safe": 833
+      },
+      "earlier_5": {
+        "tp": 497,
+        "fp": 142,
+        "n_disruptive": 833,
+        "n_safe": 833
+      }
+    },
+    "0.2": {
+      "fixed": {
+        "tp": 573,
+        "fp": 198,
+        "n_disruptive": 833,
+        "n_safe": 833
+      },
+      "bias_only": {
+        "tp": 576,
+        "fp": 220,
+        "n_disruptive": 833,
+        "n_safe": 833
+      },
+      "current_0": {
+        "tp": 584,
+        "fp": 232,
+        "n_disruptive": 833,
+        "n_safe": 833
+      },
+      "current_2": {
+        "tp": 584,
+        "fp": 230,
+        "n_disruptive": 833,
+        "n_safe": 833
+      },
+      "current_5": {
+        "tp": 584,
+        "fp": 230,
+        "n_disruptive": 833,
+        "n_safe": 833
+      },
+      "earlier_0": {
+        "tp": 578,
+        "fp": 232,
+        "n_disruptive": 833,
+        "n_safe": 833
+      },
+      "earlier_2": {
+        "tp": 579,
+        "fp": 231,
+        "n_disruptive": 833,
+        "n_safe": 833
+      },
+      "earlier_5": {
+        "tp": 577,
+        "fp": 231,
+        "n_disruptive": 833,
+        "n_safe": 833
+      }
+    }
+  },
+  "bands": [
+    {
+      "threshold": 0.6766528487205505,
+      "aliases": [
+        "0.1",
+        "0.15"
+      ],
+      "absolute_fpr": {
+        "fixed": {
+          "quantiles_pct": [
+            12.725090036014405,
+            14.285714285714285,
+            15.846338535414164
+          ],
+          "fraction_of_draws_at_or_below": {
+            "0.1": 0.0,
+            "0.15": 0.807,
+            "0.2": 1.0
+          }
+        },
+        "bias_only": {
+          "quantiles_pct": [
+            15.366146458583433,
+            16.926770708283314,
+            18.487394957983195
+          ],
+          "fraction_of_draws_at_or_below": {
+            "0.1": 0.0,
+            "0.15": 0.006,
+            "0.2": 1.0
+          }
+        },
+        "current_0": {
+          "quantiles_pct": [
+            16.80372148859544,
+            18.24729891956783,
+            19.92797118847539
+          ],
+          "fraction_of_draws_at_or_below": {
+            "0.1": 0.0,
+            "0.15": 0.0,
+            "0.2": 0.982
+          }
+        },
+        "current_2": {
+          "quantiles_pct": [
+            16.44657863145258,
+            18.007202881152462,
+            19.687875150060023
+          ],
+          "fraction_of_draws_at_or_below": {
+            "0.1": 0.0,
+            "0.15": 0.0,
+            "0.2": 0.995
+          }
+        },
+        "current_5": {
+          "quantiles_pct": [
+            16.206482593037215,
+            17.767106842737096,
+            19.327731092436977
+          ],
+          "fraction_of_draws_at_or_below": {
+            "0.1": 0.0,
+            "0.15": 0.0,
+            "0.2": 0.998
+          }
+        },
+        "earlier_0": {
+          "quantiles_pct": [
+            16.44657863145258,
+            17.88715486194478,
+            19.56782713085234
+          ],
+          "fraction_of_draws_at_or_below": {
+            "0.1": 0.0,
+            "0.15": 0.0,
+            "0.2": 0.995
+          }
+        },
+        "earlier_2": {
+          "quantiles_pct": [
+            16.086434573829532,
+            17.647058823529413,
+            19.207683073229294
+          ],
+          "fraction_of_draws_at_or_below": {
+            "0.1": 0.0,
+            "0.15": 0.0,
+            "0.2": 0.998
+          }
+        },
+        "earlier_5": {
+          "quantiles_pct": [
+            15.966386554621847,
+            17.52701080432173,
+            19.08763505402161
+          ],
+          "fraction_of_draws_at_or_below": {
+            "0.1": 0.0,
+            "0.15": 0.0,
+            "0.2": 0.999
+          }
+        }
+      },
+      "comparisons": {
+        "current_5_vs_bias_only": {
+          "quantiles_pp": {
+            "delta_tpr_pp": [
+              0.24009603841536614,
+              0.6002400960384153,
+              0.8403361344537815
+            ],
+            "delta_fpr_pp": [
+              0.6002400960384153,
+              0.8403361344537815,
+              1.2004801920768307
+            ]
+          },
+          "standardized_pp": {
+            "delta_tpr_pp": 0.5896476237553845,
+            "delta_fpr_pp": 0.8704921968787516
+          }
+        },
+        "current_0_vs_bias_only": {
+          "quantiles_pp": {
+            "delta_tpr_pp": [
+              0.8403361344537815,
+              1.0804321728691477,
+              1.3205282112845138
+            ],
+            "delta_fpr_pp": [
+              0.9603841536614646,
+              1.440576230492197,
+              1.800720288115246
+            ]
+          },
+          "standardized_pp": {
+            "delta_tpr_pp": 1.1027940587999905,
+            "delta_fpr_pp": 1.403313325330132
+          }
+        },
+        "current_5_vs_earlier_5": {
+          "quantiles_pp": {
+            "delta_tpr_pp": [
+              -0.4801920768307323,
+              -0.24009603841536614,
+              0.12004801920768307
+            ],
+            "delta_fpr_pp": [
+              0.0,
+              0.24009603841536614,
+              0.6002400960384153
+            ]
+          },
+          "standardized_pp": {
+            "delta_tpr_pp": -0.22950356613233527,
+            "delta_fpr_pp": 0.26641056422569026
+          }
+        }
+      }
+    },
+    {
+      "threshold": 0.5062586069107056,
+      "aliases": [
+        "0.2"
+      ],
+      "absolute_fpr": {
+        "fixed": {
+          "quantiles_pct": [
+            21.968787515006003,
+            23.52941176470588,
+            25.33013205282113
+          ],
+          "fraction_of_draws_at_or_below": {
+            "0.1": 0.0,
+            "0.15": 0.0,
+            "0.2": 0.0
+          }
+        },
+        "bias_only": {
+          "quantiles_pct": [
+            24.966986794717887,
+            26.770708283313326,
+            28.691476590636256
+          ],
+          "fraction_of_draws_at_or_below": {
+            "0.1": 0.0,
+            "0.15": 0.0,
+            "0.2": 0.0
+          }
+        },
+        "current_0": {
+          "quantiles_pct": [
+            26.05042016806723,
+            27.85114045618247,
+            29.77490996398559
+          ],
+          "fraction_of_draws_at_or_below": {
+            "0.1": 0.0,
+            "0.15": 0.0,
+            "0.2": 0.0
+          }
+        },
+        "current_2": {
+          "quantiles_pct": [
+            25.810324129651864,
+            27.73109243697479,
+            29.65186074429772
+          ],
+          "fraction_of_draws_at_or_below": {
+            "0.1": 0.0,
+            "0.15": 0.0,
+            "0.2": 0.0
+          }
+        },
+        "current_5": {
+          "quantiles_pct": [
+            25.810324129651864,
+            27.73109243697479,
+            29.65186074429772
+          ],
+          "fraction_of_draws_at_or_below": {
+            "0.1": 0.0,
+            "0.15": 0.0,
+            "0.2": 0.0
+          }
+        },
+        "earlier_0": {
+          "quantiles_pct": [
+            26.04741896758704,
+            27.85114045618247,
+            29.7719087635054
+          ],
+          "fraction_of_draws_at_or_below": {
+            "0.1": 0.0,
+            "0.15": 0.0,
+            "0.2": 0.0
+          }
+        },
+        "earlier_2": {
+          "quantiles_pct": [
+            25.92737094837935,
+            27.73109243697479,
+            29.65186074429772
+          ],
+          "fraction_of_draws_at_or_below": {
+            "0.1": 0.0,
+            "0.15": 0.0,
+            "0.2": 0.0
+          }
+        },
+        "earlier_5": {
+          "quantiles_pct": [
+            25.810324129651864,
+            27.671068427370948,
+            29.65186074429772
+          ],
+          "fraction_of_draws_at_or_below": {
+            "0.1": 0.0,
+            "0.15": 0.0,
+            "0.2": 0.0
+          }
+        }
+      },
+      "comparisons": {
+        "current_5_vs_bias_only": {
+          "quantiles_pp": {
+            "delta_tpr_pp": [
+              0.4801920768307323,
+              0.8403361344537815,
+              1.0804321728691477
+            ],
+            "delta_fpr_pp": [
+              0.6002400960384153,
+              0.9603841536614646,
+              1.3205282112845138
+            ]
+          },
+          "standardized_pp": {
+            "delta_tpr_pp": 0.7756043593908152,
+            "delta_fpr_pp": 0.9680672268907563
+          }
+        },
+        "current_0_vs_bias_only": {
+          "quantiles_pp": {
+            "delta_tpr_pp": [
+              0.6002400960384153,
+              0.8403361344537815,
+              1.0804321728691477
+            ],
+            "delta_fpr_pp": [
+              0.7202881152460985,
+              1.2004801920768307,
+              1.56062424969988
+            ]
+          },
+          "standardized_pp": {
+            "delta_tpr_pp": 0.8521055481015936,
+            "delta_fpr_pp": 1.136902761104442
+          }
+        },
+        "current_5_vs_earlier_5": {
+          "quantiles_pp": {
+            "delta_tpr_pp": [
+              0.4801920768307323,
+              0.7202881152460985,
+              0.9603841536614646
+            ],
+            "delta_fpr_pp": [
+              -0.36014405762304924,
+              0.0,
+              0.36014405762304924
+            ]
+          },
+          "standardized_pp": {
+            "delta_tpr_pp": 0.6991031706800367,
+            "delta_fpr_pp": 0.0
+          }
+        }
+      }
+    }
+  ],
+  "false_alarm_support": {
+    "0.2": [
+      {
+        "shot": 55015,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 56513,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 57127,
+        "old835": false,
+        "parent": false,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 58540,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 58599,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 60091,
+        "old835": false,
+        "parent": false,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 60166,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 60666,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 60750,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 60859,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 61308,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 61327,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 61435,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 61516,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 61517,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 62093,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 62139,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 62583,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 62641,
+        "old835": false,
+        "parent": false,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 63696,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 63845,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 64644,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 65588,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 65596,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 65781,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 65782,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 65929,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 65979,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 65992,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 66015,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 66027,
+        "old835": true,
+        "parent": false,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 66115,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 66322,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 66434,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 66490,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 66513,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 66520,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 66723,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 66726,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 66756,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 66914,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 66930,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 66934,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 66957,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 66993,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 66997,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 67021,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 67041,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 67054,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 67125,
+        "old835": false,
+        "parent": false,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 67157,
+        "old835": false,
+        "parent": false,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 67316,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 67319,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 67329,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 67386,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 67435,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 67499,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 67501,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 67625,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 67633,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 67636,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 67685,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 67698,
+        "old835": false,
+        "parent": false,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 67795,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 67805,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 67807,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 67811,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 67813,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 67816,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 67830,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 68089,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 68204,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 68369,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 68402,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 68736,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 68775,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 68777,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 68778,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 68819,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 68927,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 68953,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 69168,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 69192,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 69204,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 69207,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 69249,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 69252,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 69253,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 69261,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 69291,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 69359,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 69501,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 69515,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 69538,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 69565,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 69720,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 69774,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 69795,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 69831,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 69832,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 69896,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 69897,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 69908,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 70039,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 70042,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 70047,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 70052,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 70226,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 70227,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 70238,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 70257,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 70614,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 70616,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 70624,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 70703,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 70775,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 70891,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 70901,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 70986,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 71042,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 71052,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 71184,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 71203,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 71320,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 71351,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 71427,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 71444,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 71536,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 71594,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 71688,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 71706,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 71712,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 72239,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 72276,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 72369,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 72413,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 72415,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 72418,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 72437,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 72547,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 72567,
+        "old835": false,
+        "parent": true,
+        "candidate": false,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 72601,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 72605,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 72620,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 72631,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 72639,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 72649,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 72696,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 72707,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 72747,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 72770,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 72792,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 72793,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 72811,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 72857,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 72866,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 72916,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 73160,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 73164,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 73191,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 73208,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 73215,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 73382,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 73451,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 73552,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 73561,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 73644,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 73645,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 73680,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 73693,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 73756,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 73776,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 73801,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 73809,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 73828,
+        "old835": true,
+        "parent": false,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 73836,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 73883,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 73903,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 73933,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 74046,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 74050,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 74056,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 74065,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 74067,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 74112,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 74149,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 74174,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 74175,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 74181,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 74191,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 74376,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 74379,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 74538,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 74623,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 74658,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 74660,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 74723,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 74729,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 74770,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 74877,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 75017,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 75036,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 75066,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 75152,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 75154,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 75218,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 75229,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 75277,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 75285,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 75345,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 75346,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 75438,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 75501,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 75505,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 75516,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 75522,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 75523,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 75562,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 75577,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 75610,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 75710,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 76811,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 77021,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 77223,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 77247,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 77468,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 77487,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 77523,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 77596,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 77601,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 77758,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 77905,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 77968,
+        "old835": true,
+        "parent": false,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 78499,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 78576,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 78677,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 78923,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 78933,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 79460,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 79490,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 79501,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 79504,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 79508,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 79512,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 79806,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 79815,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 79864,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 79903,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 80013,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 80086,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 80087,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 80164,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 80274,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 80461,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 80465,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 80491,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 80501,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 80557,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 80686,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 80691,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 80692,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 81140,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 81189,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 81480,
+        "old835": false,
+        "parent": false,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 81672,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 82686,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 83036,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 83383,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 83586,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 83649,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 83947,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 83983,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 84097,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 84856,
+        "old835": false,
+        "parent": false,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 84901,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 84974,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 84990,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 85004,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 85017,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 85096,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 85113,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 85120,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 85133,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 85145,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 85146,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 85192,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 85195,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 85196,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 85199,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 85385,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 85415,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 85441,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 85475,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 85594,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 85596,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 85602,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 85659,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 85666,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 85771,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 85790,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 85805,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 85842,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 85859,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 85880,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 85881,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 85892,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 86488,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 86734,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 86750,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 86766,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 86840,
+        "old835": true,
+        "parent": false,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 86843,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 87171,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 87173,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 87235,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 87448,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 87453,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 87460,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 87547,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 87600,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 87748,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 87749,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 87802,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 87999,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 88002,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 88466,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 88553,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 88555,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 88742,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 88743,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 88783,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 88803,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 88809,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 88956,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 88969,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 88995,
+        "old835": false,
+        "parent": false,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 89078,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 89117,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 89155,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 89166,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 89213,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 89272,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 89348,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 89383,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 89395,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 89509,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 89517,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 89528,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 89529,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 89679,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 89683,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 89773,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 89793,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 89897,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 89962,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 89984,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 90024,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 90235,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 90353,
+        "old835": true,
+        "parent": true,
+        "candidate": false,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 90375,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 90395,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 90413,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 90414,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 90620,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 90623,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 90805,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 90859,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 91273,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 91285,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 91328,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 91348,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 91385,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 91421,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 91426,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 91485,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 91614,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 91688,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 91700,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 91703,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 91708,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 91709,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 91785,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 91786,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 91793,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 91799,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 91804,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 91807,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 91918,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 92012,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 92118,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 92138,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 92312,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 92673,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 93055,
+        "old835": false,
+        "parent": false,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 93478,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 93485,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 93594,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 93771,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 93785,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 93810,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 93811,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 93855,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 93860,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 93876,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 93913,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 93916,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 93969,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 93975,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 93981,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 94031,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 94132,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 94434,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 94771,
+        "old835": true,
+        "parent": false,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 94791,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 94813,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 94849,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 94860,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 94987,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 95201,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 95598,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 95642,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 95698,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 95818,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 95824,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 95863,
+        "old835": false,
+        "parent": false,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 95871,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 96055,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 96094,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 96104,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 96148,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 96216,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 96227,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 96272,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 96349,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 96370,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 96401,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      }
+    ],
+    "0.15": [
+      {
+        "shot": 58540,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 60750,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 60859,
+        "old835": false,
+        "parent": false,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 61435,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 61517,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 62139,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 62583,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 63696,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 63845,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 64644,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 65588,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 65596,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 65781,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 65782,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 65929,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 65979,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 65992,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 66015,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 66027,
+        "old835": true,
+        "parent": false,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 66490,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 66520,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 66723,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 66726,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 66756,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 66914,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 66957,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 66993,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 66997,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 67021,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 67041,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 67054,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 67316,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 67319,
+        "old835": false,
+        "parent": false,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 67329,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 67386,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 67501,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 67625,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 67633,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 67805,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 67807,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 67811,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 68089,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 68204,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 68369,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 68402,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 68736,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 68777,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 68778,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 68927,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 68953,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 69204,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 69252,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 69291,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 69359,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 69501,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 69515,
+        "old835": false,
+        "parent": false,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 69538,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 69565,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 69831,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 69832,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 69897,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 69908,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 70042,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 70047,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 70052,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 70227,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 70257,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 70614,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 70616,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 70775,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 71042,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 71052,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 71320,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 71444,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 71536,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 71594,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 71688,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 71706,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 72239,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 72276,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 72369,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 72413,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 72415,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 72418,
+        "old835": false,
+        "parent": false,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 72437,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 72547,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 72605,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 72620,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 72631,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 72639,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 72649,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 72696,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 72747,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 72770,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 72792,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 72793,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 72811,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 72866,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 72916,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 73208,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 73215,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 73382,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 73451,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 73561,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 73644,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 73645,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 73680,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 73693,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 73776,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 73801,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 73809,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 73836,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 73883,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 74046,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 74050,
+        "old835": true,
+        "parent": false,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 74149,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 74175,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 74181,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 74379,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 74658,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 74660,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 74723,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 74729,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 74877,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 75152,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 75154,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 75218,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 75229,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 75277,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 75285,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 75345,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 75438,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 75501,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 75505,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 75516,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 75522,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 75562,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 75577,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 77021,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 77223,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 77468,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 77487,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 77523,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 77596,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 77905,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 78576,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 78677,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 79504,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 79508,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 79512,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 79864,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 79903,
+        "old835": false,
+        "parent": false,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 80086,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 80274,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 80461,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 80465,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 80491,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 80501,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 80686,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 80691,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 80692,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 81672,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 82686,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 83649,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 83947,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 83983,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 84974,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 85004,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 85133,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 85146,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 85195,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 85199,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 85415,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 85441,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 85475,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 85594,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 85596,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 85602,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 85659,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 85666,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 85771,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 85790,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 85805,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 85842,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 85859,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 85880,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 85881,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 85892,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 86488,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 86734,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 86766,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 87173,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 87235,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 87448,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 87547,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 87748,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 87749,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 87802,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 87999,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 88002,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 88466,
+        "old835": false,
+        "parent": false,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 88553,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 88555,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 88742,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 88743,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 88783,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 88803,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 88809,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 88956,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 88969,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 89078,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 89117,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 89155,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 89166,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 89213,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 89272,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 89348,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 89383,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 89395,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 89509,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 89517,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 89528,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 89529,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 89679,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 89683,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 89773,
+        "old835": false,
+        "parent": false,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 89793,
+        "old835": true,
+        "parent": false,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 89962,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 90024,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 90375,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 90395,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 90413,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 90414,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 90620,
+        "old835": true,
+        "parent": false,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 90623,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 90805,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 90859,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 91273,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 91285,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 91328,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 91348,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 91426,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 91688,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 91700,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 91703,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 91708,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 91709,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 91786,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 91793,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 91799,
+        "old835": false,
+        "parent": false,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 91807,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 91918,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 92118,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 92312,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 92673,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 93485,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 93771,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 93785,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 93811,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 93855,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 93860,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 93913,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 93916,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 93975,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 93981,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 94031,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 94132,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 94791,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": true,
+        "before_first_write": true
+      },
+      {
+        "shot": 94849,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 94987,
+        "old835": true,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 95201,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 95642,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 95698,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 95818,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 96055,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 96094,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 96148,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 96216,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 96227,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 96272,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 96349,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 96370,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      },
+      {
+        "shot": 96401,
+        "old835": false,
+        "parent": true,
+        "candidate": true,
+        "any_immutable": false,
+        "before_first_write": false
+      }
+    ]
+  }
+}

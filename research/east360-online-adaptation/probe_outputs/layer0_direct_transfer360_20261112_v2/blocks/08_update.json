@@ -1,0 +1,94 @@
+{
+  "block": 8,
+  "first_next_rank": 161,
+  "commit_sha256": "dcf086204825cf696c8be90e371c21efef2262c1d969225be7479e25caeda8c5",
+  "reveal_sha256": "0bfb672d32cb57414ab59e2466bb309a781cec99cb7783ca8fa06a3d0d25fa6f",
+  "state_before": null,
+  "state_after": null,
+  "updated_ns": 3743179625077,
+  "decision": "rejected_guard",
+  "fit": {
+    "steps": 20,
+    "initial_loss": 1.632460117340088,
+    "final_loss": 1.189511775970459,
+    "norm": 0.5999997854232788,
+    "teaching_shots": 6,
+    "teaching_points": 53
+  },
+  "teaching_indices": [
+    654,
+    1349,
+    1958,
+    2565,
+    3174,
+    3761,
+    3782,
+    4167,
+    4390
+  ],
+  "guard_ids": [
+    71304,
+    87494,
+    69458,
+    87487,
+    70404,
+    70323,
+    86167,
+    54157,
+    60239,
+    76861
+  ],
+  "violations": [
+    {
+      "shot": 70323,
+      "arm": "inter",
+      "reason": "new_false_alarm"
+    }
+  ],
+  "diagnostics": {
+    "inter": {
+      "before": {
+        "shot": null,
+        "disruptive": false,
+        "down": null,
+        "status": "fp",
+        "first_index": 3934,
+        "lead_ms": null
+      },
+      "after": {
+        "shot": null,
+        "disruptive": false,
+        "down": null,
+        "status": "tn",
+        "first_index": null,
+        "lead_ms": null
+      },
+      "peak_gain": 0.019032657146453857,
+      "corrected": true,
+      "guard_violations": []
+    },
+    "both": {
+      "before": {
+        "shot": null,
+        "disruptive": false,
+        "down": null,
+        "status": "fp",
+        "first_index": 3719,
+        "lead_ms": null
+      },
+      "after": {
+        "shot": null,
+        "disruptive": false,
+        "down": null,
+        "status": "fp",
+        "first_index": 3721,
+        "lead_ms": null
+      },
+      "peak_gain": 0.014495670795440674,
+      "corrected": false,
+      "guard_violations": []
+    }
+  },
+  "proposal_sha256": "581029de051d670e519787b2f9a7aaaeb2616fc07d64a931d204fdedf0920ad4",
+  "witness_sha256": "cd978966fb5a96004206e96083455cfc341a18871ddc506fa8fb25937a3ebeea"
+}

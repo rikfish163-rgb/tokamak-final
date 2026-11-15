@@ -1,0 +1,2781 @@
+{
+  "source": {
+    "positive": 70,
+    "safe": 80,
+    "descriptive_peak_auc": {
+      "raw_level": 0.8314285714285714,
+      "raw_shape": 0.6589285714285714,
+      "aligned_shape": 0.6589285714285714,
+      "aligned_full": 0.835,
+      "only8_patch": 0.8219642857142857,
+      "full_patch_no_intra": 0.8044642857142857,
+      "full_patch_with_intra": 0.8044642857142857
+    }
+  },
+  "comparisons": {
+    "all": {
+      "pairs": 108,
+      "scores": {
+        "operating_only": {
+          "correct": 43,
+          "ties": 0,
+          "median": -0.013652443885803223,
+          "pair_log_loss": 0.7481967210769653
+        },
+        "raw_trajectory": {
+          "correct": 55,
+          "ties": 0,
+          "median": 0.025025933980941772,
+          "pair_log_loss": 1.0797266960144043
+        },
+        "patch_projection": {
+          "correct": 52,
+          "ties": 0,
+          "median": -0.06008613482117653,
+          "pair_log_loss": 0.9449713230133057
+        },
+        "risk_state": {
+          "correct": 64,
+          "ties": 0,
+          "median": 0.3551308512687683,
+          "pair_log_loss": 0.8674834370613098
+        },
+        "risk_state_current": {
+          "correct": 64,
+          "ties": 0,
+          "median": 0.35471290349960327,
+          "pair_log_loss": 0.8636512160301208
+        },
+        "risk_state_earlier": {
+          "correct": 64,
+          "ties": 0,
+          "median": 0.35704314708709717,
+          "pair_log_loss": 0.8671568632125854
+        },
+        "raw_level": {
+          "correct": 52,
+          "ties": 0,
+          "median": -0.03940100967884064,
+          "pair_log_loss": 0.9177910685539246
+        },
+        "raw_shape": {
+          "correct": 54,
+          "ties": 0,
+          "median": 0.0013358406722545624,
+          "pair_log_loss": 1.0100202560424805
+        },
+        "aligned_shape": {
+          "correct": 54,
+          "ties": 0,
+          "median": -0.010872364044189453,
+          "pair_log_loss": 1.0189135074615479
+        },
+        "aligned_full": {
+          "correct": 56,
+          "ties": 0,
+          "median": 0.05675753951072693,
+          "pair_log_loss": 1.091238260269165
+        },
+        "only8_patch": {
+          "correct": 54,
+          "ties": 0,
+          "median": -0.011107400059700012,
+          "pair_log_loss": 0.9799743294715881
+        },
+        "full_patch_no_intra": {
+          "correct": 48,
+          "ties": 0,
+          "median": -0.17722591757774353,
+          "pair_log_loss": 0.8976298570632935
+        },
+        "full_patch_with_intra": {
+          "correct": 50,
+          "ties": 0,
+          "median": -0.08157338947057724,
+          "pair_log_loss": 0.8915507793426514
+        }
+      },
+      "against_initial_raw": {
+        "operating_only": {
+          "fixes": 23,
+          "regresses": 35
+        },
+        "raw_trajectory": {
+          "fixes": 0,
+          "regresses": 0
+        },
+        "patch_projection": {
+          "fixes": 29,
+          "regresses": 32
+        },
+        "risk_state": {
+          "fixes": 36,
+          "regresses": 27
+        },
+        "risk_state_current": {
+          "fixes": 36,
+          "regresses": 27
+        },
+        "risk_state_earlier": {
+          "fixes": 36,
+          "regresses": 27
+        },
+        "raw_level": {
+          "fixes": 10,
+          "regresses": 13
+        },
+        "raw_shape": {
+          "fixes": 13,
+          "regresses": 14
+        },
+        "aligned_shape": {
+          "fixes": 13,
+          "regresses": 14
+        },
+        "aligned_full": {
+          "fixes": 2,
+          "regresses": 1
+        },
+        "only8_patch": {
+          "fixes": 4,
+          "regresses": 5
+        },
+        "full_patch_no_intra": {
+          "fixes": 21,
+          "regresses": 28
+        },
+        "full_patch_with_intra": {
+          "fixes": 22,
+          "regresses": 27
+        }
+      },
+      "same_pairs_plus32_in_time": {
+        "pairs": 80,
+        "before": {
+          "operating_only": {
+            "correct": 30,
+            "ties": 0,
+            "median": -0.022533327341079712,
+            "pair_log_loss": 0.7572529911994934
+          },
+          "raw_trajectory": {
+            "correct": 43,
+            "ties": 0,
+            "median": 0.10770975053310394,
+            "pair_log_loss": 1.1180894374847412
+          },
+          "patch_projection": {
+            "correct": 40,
+            "ties": 0,
+            "median": 0.031461119651794434,
+            "pair_log_loss": 0.8828078508377075
+          },
+          "risk_state": {
+            "correct": 47,
+            "ties": 0,
+            "median": 0.34311729669570923,
+            "pair_log_loss": 0.8068233728408813
+          },
+          "risk_state_current": {
+            "correct": 47,
+            "ties": 0,
+            "median": 0.32704949378967285,
+            "pair_log_loss": 0.8050373196601868
+          },
+          "risk_state_earlier": {
+            "correct": 47,
+            "ties": 0,
+            "median": 0.37466365098953247,
+            "pair_log_loss": 0.8032096028327942
+          },
+          "raw_level": {
+            "correct": 39,
+            "ties": 0,
+            "median": -0.03940100967884064,
+            "pair_log_loss": 0.9403934478759766
+          },
+          "raw_shape": {
+            "correct": 39,
+            "ties": 0,
+            "median": -0.09764349460601807,
+            "pair_log_loss": 1.0578415393829346
+          },
+          "aligned_shape": {
+            "correct": 39,
+            "ties": 0,
+            "median": -0.1334547996520996,
+            "pair_log_loss": 1.0658327341079712
+          },
+          "aligned_full": {
+            "correct": 44,
+            "ties": 0,
+            "median": 0.08342305570840836,
+            "pair_log_loss": 1.124351978302002
+          },
+          "only8_patch": {
+            "correct": 41,
+            "ties": 0,
+            "median": 0.03228314220905304,
+            "pair_log_loss": 1.0067038536071777
+          },
+          "full_patch_no_intra": {
+            "correct": 35,
+            "ties": 0,
+            "median": -0.23151327669620514,
+            "pair_log_loss": 0.8918842077255249
+          },
+          "full_patch_with_intra": {
+            "correct": 37,
+            "ties": 0,
+            "median": -0.13254398107528687,
+            "pair_log_loss": 0.8786634206771851
+          }
+        },
+        "later": {
+          "operating_only": {
+            "correct": 18,
+            "ties": 0,
+            "median": -0.34804558753967285,
+            "pair_log_loss": 0.9206388992832206
+          },
+          "raw_trajectory": {
+            "correct": 38,
+            "ties": 0,
+            "median": -0.04611203074455261,
+            "pair_log_loss": 1.1152658649964047
+          },
+          "patch_projection": {
+            "correct": 45,
+            "ties": 0,
+            "median": 0.4987746626138687,
+            "pair_log_loss": 0.828870812785469
+          },
+          "risk_state": {
+            "correct": 53,
+            "ties": 0,
+            "median": 0.7712903022766113,
+            "pair_log_loss": 0.7086304069499139
+          },
+          "risk_state_current": {
+            "correct": 54,
+            "ties": 0,
+            "median": 0.7732371091842651,
+            "pair_log_loss": 0.7051345635784217
+          },
+          "risk_state_earlier": {
+            "correct": 54,
+            "ties": 0,
+            "median": 0.7692021727561951,
+            "pair_log_loss": 0.7029780936684288
+          },
+          "raw_level": {
+            "correct": 34,
+            "ties": 0,
+            "median": -0.23656243085861206,
+            "pair_log_loss": 1.006668555131693
+          },
+          "raw_shape": {
+            "correct": 38,
+            "ties": 0,
+            "median": -0.17359808087348938,
+            "pair_log_loss": 1.0647683596506223
+          },
+          "aligned_shape": {
+            "correct": 38,
+            "ties": 0,
+            "median": -0.17688950896263123,
+            "pair_log_loss": 1.0801563493830333
+          },
+          "aligned_full": {
+            "correct": 39,
+            "ties": 0,
+            "median": -0.04509710520505905,
+            "pair_log_loss": 1.1357326902307292
+          },
+          "only8_patch": {
+            "correct": 39,
+            "ties": 0,
+            "median": -0.013803133741021156,
+            "pair_log_loss": 1.012538337386198
+          },
+          "full_patch_no_intra": {
+            "correct": 41,
+            "ties": 0,
+            "median": 0.05367854982614517,
+            "pair_log_loss": 0.8460753011680175
+          },
+          "full_patch_with_intra": {
+            "correct": 41,
+            "ties": 0,
+            "median": 0.06357477605342865,
+            "pair_log_loss": 0.8453138677442947
+          }
+        }
+      },
+      "details": {
+        "60999/61065": {
+          "before": {
+            "operating_only": -0.1658726930618286,
+            "raw_trajectory": 0.9629484415054321,
+            "patch_projection": -2.1474156379699707,
+            "risk_state": -1.0046249628067017,
+            "risk_state_current": -0.9989283084869385,
+            "risk_state_earlier": -1.0028916597366333,
+            "raw_level": 1.2678924798965454,
+            "raw_shape": -0.6976795792579651,
+            "aligned_shape": -0.6828157305717468,
+            "aligned_full": 1.0655369758605957,
+            "only8_patch": 1.1455520391464233,
+            "full_patch_no_intra": -0.592155396938324,
+            "full_patch_with_intra": -0.5956811904907227
+          },
+          "later_jointly_in_time": true
+        },
+        "61475/64646": {
+          "before": {
+            "operating_only": 0.3645526170730591,
+            "raw_trajectory": -0.31148770451545715,
+            "patch_projection": -0.5542517304420471,
+            "risk_state": -2.375178813934326,
+            "risk_state_current": -2.35284423828125,
+            "risk_state_earlier": -2.396972417831421,
+            "raw_level": 0.00025997310876846313,
+            "raw_shape": 0.24576687812805176,
+            "aligned_shape": 0.373515248298645,
+            "aligned_full": -0.13407012820243835,
+            "only8_patch": -0.3098318874835968,
+            "full_patch_no_intra": 0.6342119574546814,
+            "full_patch_with_intra": 0.6384906768798828
+          },
+          "later_jointly_in_time": true
+        },
+        "61629/61617": {
+          "before": {
+            "operating_only": -0.023246407508850098,
+            "raw_trajectory": 1.1263457536697388,
+            "patch_projection": -1.2248401641845703,
+            "risk_state": -1.6392912864685059,
+            "risk_state_current": -1.6445814371109009,
+            "risk_state_earlier": -1.644423246383667,
+            "raw_level": 0.6123069524765015,
+            "raw_shape": 0.8174583911895752,
+            "aligned_shape": 0.8359099626541138,
+            "aligned_full": 1.1694676876068115,
+            "only8_patch": 0.8400310277938843,
+            "full_patch_no_intra": -0.2568974494934082,
+            "full_patch_with_intra": -0.247207909822464
+          },
+          "later_jointly_in_time": true
+        },
+        "61638/89101": {
+          "before": {
+            "operating_only": 0.3371540307998657,
+            "raw_trajectory": -2.6390585899353027,
+            "patch_projection": 1.497603178024292,
+            "risk_state": -0.21441441774368286,
+            "risk_state_current": -0.20143598318099976,
+            "risk_state_earlier": -0.04249829053878784,
+            "raw_level": 0.9704545736312866,
+            "raw_shape": -4.079730033874512,
+            "aligned_shape": -3.9569249153137207,
+            "aligned_full": -2.3423471450805664,
+            "only8_patch": -0.5086705088615417,
+            "full_patch_no_intra": 1.5434725284576416,
+            "full_patch_with_intra": 1.5845897197723389
+          },
+          "later_jointly_in_time": true
+        },
+        "62182/94422": {
+          "before": {
+            "operating_only": -0.39494121074676514,
+            "raw_trajectory": -0.31694677472114563,
+            "patch_projection": 0.3862632215023041,
+            "risk_state": -0.7663599252700806,
+            "risk_state_current": -0.8139548897743225,
+            "risk_state_earlier": -0.7018606662750244,
+            "raw_level": 0.9275517463684082,
+            "raw_shape": -1.6614018678665161,
+            "aligned_shape": -1.9040899276733398,
+            "aligned_full": -0.5828393697738647,
+            "only8_patch": 0.05058884620666504,
+            "full_patch_no_intra": -0.14832273125648499,
+            "full_patch_with_intra": -0.06904502213001251
+          },
+          "later_jointly_in_time": true
+        },
+        "62540/89570": {
+          "before": {
+            "operating_only": 0.37914228439331055,
+            "raw_trajectory": 0.4802038371562958,
+            "patch_projection": -1.1376011371612549,
+            "risk_state": -0.4880579710006714,
+            "risk_state_current": -0.5358009338378906,
+            "risk_state_earlier": -0.47711181640625,
+            "raw_level": -0.20231911540031433,
+            "raw_shape": 1.4819104671478271,
+            "aligned_shape": 1.5512837171554565,
+            "aligned_full": 0.5132308602333069,
+            "only8_patch": 0.331529825925827,
+            "full_patch_no_intra": -0.677022397518158,
+            "full_patch_with_intra": -0.7645936012268066
+          },
+          "later_jointly_in_time": true
+        },
+        "62592/62158": {
+          "before": {
+            "operating_only": 0.01556241512298584,
+            "raw_trajectory": -1.7923455238342285,
+            "patch_projection": 0.27070921659469604,
+            "risk_state": -0.10192275047302246,
+            "risk_state_current": -0.1008298397064209,
+            "risk_state_earlier": -0.10155034065246582,
+            "raw_level": -1.3053715229034424,
+            "raw_shape": -0.33768534660339355,
+            "aligned_shape": -0.3754767179489136,
+            "aligned_full": -1.8545998334884644,
+            "only8_patch": -1.7978876829147339,
+            "full_patch_no_intra": -0.0963946282863617,
+            "full_patch_with_intra": -0.09410175681114197
+          },
+          "later_jointly_in_time": true
+        },
+        "62773/87689": {
+          "before": {
+            "operating_only": -0.05029129981994629,
+            "raw_trajectory": 0.8615832328796387,
+            "patch_projection": -1.4256370067596436,
+            "risk_state": -1.6682835817337036,
+            "risk_state_current": -1.6678651571273804,
+            "risk_state_earlier": -1.6706585884094238,
+            "raw_level": -0.7066534757614136,
+            "raw_shape": 1.8265011310577393,
+            "aligned_shape": 1.5548354387283325,
+            "aligned_full": 0.5387872457504272,
+            "only8_patch": -0.6007738709449768,
+            "full_patch_no_intra": -0.48721519112586975,
+            "full_patch_with_intra": -0.5081375241279602
+          },
+          "later_jointly_in_time": true
+        },
+        "63220/77859": {
+          "before": {
+            "operating_only": -0.5040558576583862,
+            "raw_trajectory": 0.010507702827453613,
+            "patch_projection": 0.3888843059539795,
+            "risk_state": 0.8770370483398438,
+            "risk_state_current": 0.9363895654678345,
+            "risk_state_earlier": 0.8827536106109619,
+            "raw_level": 0.4796406030654907,
+            "raw_shape": -1.0125946998596191,
+            "aligned_shape": -0.9561638832092285,
+            "aligned_full": 0.056282758712768555,
+            "only8_patch": 0.232313871383667,
+            "full_patch_no_intra": -2.0292773246765137,
+            "full_patch_with_intra": -1.86288321018219
+          },
+          "later_jointly_in_time": true
+        },
+        "63545/80746": {
+          "before": {
+            "operating_only": 0.04703354835510254,
+            "raw_trajectory": 0.6404709815979004,
+            "patch_projection": -0.6761038303375244,
+            "risk_state": 0.3258340358734131,
+            "risk_state_current": 0.3036153316497803,
+            "risk_state_earlier": 0.29991936683654785,
+            "raw_level": -1.5406277179718018,
+            "raw_shape": 2.8689873218536377,
+            "aligned_shape": 2.7660837173461914,
+            "aligned_full": 0.5151926279067993,
+            "only8_patch": -0.39316970109939575,
+            "full_patch_no_intra": -1.26705002784729,
+            "full_patch_with_intra": -1.293591022491455
+          },
+          "later_jointly_in_time": true
+        },
+        "63566/63510": {
+          "before": {
+            "operating_only": 0.04720425605773926,
+            "raw_trajectory": -0.18216413259506226,
+            "patch_projection": 0.36126312613487244,
+            "risk_state": -1.0509076118469238,
+            "risk_state_current": -1.0524022579193115,
+            "risk_state_earlier": -1.0565638542175293,
+            "raw_level": -0.4603399932384491,
+            "raw_shape": 0.619752824306488,
+            "aligned_shape": 0.6484668850898743,
+            "aligned_full": -0.10664224624633789,
+            "only8_patch": 0.24298113584518433,
+            "full_patch_no_intra": 0.499458372592926,
+            "full_patch_with_intra": 0.5679574608802795
+          },
+          "later_jointly_in_time": true
+        },
+        "63656/81481": {
+          "before": {
+            "operating_only": -0.019763946533203125,
+            "raw_trajectory": -1.3704174757003784,
+            "patch_projection": 1.432104468345642,
+            "risk_state": 0.34870386123657227,
+            "risk_state_current": 0.35048365592956543,
+            "risk_state_earlier": 0.3499246835708618,
+            "raw_level": -0.626663088798523,
+            "raw_shape": -0.8284811973571777,
+            "aligned_shape": -0.795934796333313,
+            "aligned_full": -1.3718050718307495,
+            "only8_patch": -0.8340017199516296,
+            "full_patch_no_intra": 0.4794996976852417,
+            "full_patch_with_intra": 0.5297807455062866
+          },
+          "later_jointly_in_time": true
+        },
+        "63690/62394": {
+          "before": {
+            "operating_only": -0.002285003662109375,
+            "raw_trajectory": 2.5840535163879395,
+            "patch_projection": -0.8122217059135437,
+            "risk_state": -3.039074420928955,
+            "risk_state_current": -3.0455427169799805,
+            "risk_state_earlier": -3.041867256164551,
+            "raw_level": 0.8309099674224854,
+            "raw_shape": 2.1433374881744385,
+            "aligned_shape": 2.1693837642669678,
+            "aligned_full": 2.678649425506592,
+            "only8_patch": 2.044475555419922,
+            "full_patch_no_intra": -0.673517107963562,
+            "full_patch_with_intra": -0.6549050807952881
+          },
+          "later_jointly_in_time": false
+        },
+        "64129/63323": {
+          "before": {
+            "operating_only": 0.00044667720794677734,
+            "raw_trajectory": -2.4732260704040527,
+            "patch_projection": -2.0026302337646484,
+            "risk_state": -1.6191060543060303,
+            "risk_state_current": -1.6186140775680542,
+            "risk_state_earlier": -1.6253960132598877,
+            "raw_level": -1.1003663539886475,
+            "raw_shape": -1.1369829177856445,
+            "aligned_shape": -1.1131221055984497,
+            "aligned_full": -2.5674936771392822,
+            "only8_patch": -1.974907398223877,
+            "full_patch_no_intra": -0.7922136783599854,
+            "full_patch_with_intra": -0.8130708932876587
+          },
+          "later_jointly_in_time": true
+        },
+        "64258/62360": {
+          "before": {
+            "operating_only": -0.3395346999168396,
+            "raw_trajectory": -1.7260065078735352,
+            "patch_projection": -0.8522832989692688,
+            "risk_state": 1.0866780281066895,
+            "risk_state_current": 1.0319323539733887,
+            "risk_state_earlier": 1.0802472829818726,
+            "raw_level": -1.1038880348205566,
+            "raw_shape": -0.7411789298057556,
+            "aligned_shape": -0.39698708057403564,
+            "aligned_full": -1.4449998140335083,
+            "only8_patch": -1.6116361618041992,
+            "full_patch_no_intra": -0.745387613773346,
+            "full_patch_with_intra": -0.7136620283126831
+          },
+          "later_jointly_in_time": true
+        },
+        "64581/63273": {
+          "before": {
+            "operating_only": -0.5863034725189209,
+            "raw_trajectory": -0.9792165160179138,
+            "patch_projection": -0.7861807346343994,
+            "risk_state": -0.29825448989868164,
+            "risk_state_current": -0.2976822853088379,
+            "risk_state_earlier": -0.29794812202453613,
+            "raw_level": -0.5674470663070679,
+            "raw_shape": -1.0408861637115479,
+            "aligned_shape": -1.0418016910552979,
+            "aligned_full": -0.9850927591323853,
+            "only8_patch": -0.9340747594833374,
+            "full_patch_no_intra": -0.6202912330627441,
+            "full_patch_with_intra": -0.575232982635498
+          },
+          "later_jointly_in_time": true
+        },
+        "64835/86930": {
+          "before": {
+            "operating_only": -0.011068105697631836,
+            "raw_trajectory": -0.27867239713668823,
+            "patch_projection": -1.4126081466674805,
+            "risk_state": -1.570177674293518,
+            "risk_state_current": -1.5739433765411377,
+            "risk_state_earlier": -1.570834994316101,
+            "raw_level": 0.11731283366680145,
+            "raw_shape": -0.3913043141365051,
+            "aligned_shape": -0.36931508779525757,
+            "aligned_full": -0.26199063658714294,
+            "only8_patch": -0.047006040811538696,
+            "full_patch_no_intra": -0.3101666569709778,
+            "full_patch_with_intra": -0.33213546872138977
+          },
+          "later_jointly_in_time": true
+        },
+        "64919/81634": {
+          "before": {
+            "operating_only": -0.0417250394821167,
+            "raw_trajectory": 0.7102717757225037,
+            "patch_projection": -0.07752270251512527,
+            "risk_state": -2.1021523475646973,
+            "risk_state_current": -2.0448696613311768,
+            "risk_state_earlier": -2.090353488922119,
+            "raw_level": 0.3071396052837372,
+            "raw_shape": 0.5326914191246033,
+            "aligned_shape": 0.2756844758987427,
+            "aligned_full": 0.4299027919769287,
+            "only8_patch": 0.46497973799705505,
+            "full_patch_no_intra": 1.0168797969818115,
+            "full_patch_with_intra": 0.8790590763092041
+          },
+          "later_jointly_in_time": true
+        },
+        "65023/62399": {
+          "before": {
+            "operating_only": 0.06525862216949463,
+            "raw_trajectory": 1.658339500427246,
+            "patch_projection": 0.5814415216445923,
+            "risk_state": 2.415165662765503,
+            "risk_state_current": 2.390355110168457,
+            "risk_state_earlier": 2.4077112674713135,
+            "raw_level": 0.18540699779987335,
+            "raw_shape": 2.206613302230835,
+            "aligned_shape": 2.7881033420562744,
+            "aligned_full": 2.1301560401916504,
+            "only8_patch": 1.5225270986557007,
+            "full_patch_no_intra": -1.267276644706726,
+            "full_patch_with_intra": -1.3720283508300781
+          },
+          "later_jointly_in_time": true
+        },
+        "65944/73969": {
+          "before": {
+            "operating_only": -0.37636590003967285,
+            "raw_trajectory": -2.5461020469665527,
+            "patch_projection": 2.937042236328125,
+            "risk_state": 2.2808282375335693,
+            "risk_state_current": 2.161314010620117,
+            "risk_state_earlier": 2.326063632965088,
+            "raw_level": -1.1878825426101685,
+            "raw_shape": -2.1170637607574463,
+            "aligned_shape": -2.06213116645813,
+            "aligned_full": -2.5657899379730225,
+            "only8_patch": -1.8233757019042969,
+            "full_patch_no_intra": 1.068359375,
+            "full_patch_with_intra": 1.0460081100463867
+          },
+          "later_jointly_in_time": true
+        },
+        "66995/66404": {
+          "before": {
+            "operating_only": 0.12371945381164551,
+            "raw_trajectory": -1.5611903667449951,
+            "patch_projection": 1.5750706195831299,
+            "risk_state": 6.465185642242432,
+            "risk_state_current": 6.46135139465332,
+            "risk_state_earlier": 6.459901809692383,
+            "raw_level": 1.0359113216400146,
+            "raw_shape": -3.903543710708618,
+            "aligned_shape": -4.026915550231934,
+            "aligned_full": -1.6044960021972656,
+            "only8_patch": -0.6476568579673767,
+            "full_patch_no_intra": 0.28468120098114014,
+            "full_patch_with_intra": 0.29710179567337036
+          },
+          "later_jointly_in_time": true
+        },
+        "67002/74599": {
+          "before": {
+            "operating_only": -0.11072063446044922,
+            "raw_trajectory": -0.6803662776947021,
+            "patch_projection": 0.7052211761474609,
+            "risk_state": 6.2900800704956055,
+            "risk_state_current": 6.3273515701293945,
+            "risk_state_earlier": 6.302974700927734,
+            "raw_level": 0.055990517139434814,
+            "raw_shape": -1.2956894636154175,
+            "aligned_shape": -1.334820032119751,
+            "aligned_full": -0.6881598234176636,
+            "only8_patch": -0.24858605861663818,
+            "full_patch_no_intra": -0.2897961735725403,
+            "full_patch_with_intra": -0.2875444293022156
+          },
+          "later_jointly_in_time": true
+        },
+        "67778/74676": {
+          "before": {
+            "operating_only": 0.06085634231567383,
+            "raw_trajectory": -3.4305567741394043,
+            "patch_projection": 0.07538270950317383,
+            "risk_state": -0.15526390075683594,
+            "risk_state_current": -0.15092730522155762,
+            "risk_state_earlier": -0.15411853790283203,
+            "raw_level": -0.5122188329696655,
+            "raw_shape": -3.543564558029175,
+            "aligned_shape": -3.5288469791412354,
+            "aligned_full": -3.4319164752960205,
+            "only8_patch": -1.941244125366211,
+            "full_patch_no_intra": 0.16917693614959717,
+            "full_patch_with_intra": 0.1578611433506012
+          },
+          "later_jointly_in_time": true
+        },
+        "68901/70470": {
+          "before": {
+            "operating_only": 0.0740358829498291,
+            "raw_trajectory": -2.0420281887054443,
+            "patch_projection": -1.1652133464813232,
+            "risk_state": 0.039330482482910156,
+            "risk_state_current": 0.04047656059265137,
+            "risk_state_earlier": 0.03960537910461426,
+            "raw_level": -0.11814892292022705,
+            "raw_shape": -1.7367637157440186,
+            "aligned_shape": -1.760680913925171,
+            "aligned_full": -1.9591286182403564,
+            "only8_patch": -0.8878349661827087,
+            "full_patch_no_intra": -0.5455090999603271,
+            "full_patch_with_intra": -0.6466213464736938
+          },
+          "later_jointly_in_time": false
+        },
+        "69593/71060": {
+          "before": {
+            "operating_only": -0.0068743228912353516,
+            "raw_trajectory": 0.4135652184486389,
+            "patch_projection": 0.5965595245361328,
+            "risk_state": 0.6467690467834473,
+            "risk_state_current": 0.6561233997344971,
+            "risk_state_earlier": 0.6505045890808105,
+            "raw_level": 0.5543014407157898,
+            "raw_shape": -0.33520936965942383,
+            "aligned_shape": -0.36292147636413574,
+            "aligned_full": 0.46383535861968994,
+            "only8_patch": 0.7316897511482239,
+            "full_patch_no_intra": 0.002171635627746582,
+            "full_patch_with_intra": -0.01572471857070923
+          },
+          "later_jointly_in_time": true
+        },
+        "69781/70392": {
+          "before": {
+            "operating_only": 0.03755080699920654,
+            "raw_trajectory": -3.1009268760681152,
+            "patch_projection": -2.155858278274536,
+            "risk_state": -2.7255048751831055,
+            "risk_state_current": -2.734656810760498,
+            "risk_state_earlier": -2.7384676933288574,
+            "raw_level": -1.0209581851959229,
+            "raw_shape": -1.9186526536941528,
+            "aligned_shape": -2.113879680633545,
+            "aligned_full": -3.3688063621520996,
+            "only8_patch": -2.3555474281311035,
+            "full_patch_no_intra": -1.2699394226074219,
+            "full_patch_with_intra": -1.36746084690094
+          },
+          "later_jointly_in_time": true
+        },
+        "69813/67681": {
+          "before": {
+            "operating_only": 0.01667165756225586,
+            "raw_trajectory": 0.548845112323761,
+            "patch_projection": -0.012460470199584961,
+            "risk_state": 0.00899648666381836,
+            "risk_state_current": 0.006764411926269531,
+            "risk_state_earlier": 0.00820016860961914,
+            "raw_level": 0.667818546295166,
+            "raw_shape": -0.10280382633209229,
+            "aligned_shape": -0.057711124420166016,
+            "aligned_full": 0.6375981569290161,
+            "only8_patch": 0.5334466099739075,
+            "full_patch_no_intra": 0.13485988974571228,
+            "full_patch_with_intra": 0.1366015374660492
+          },
+          "later_jointly_in_time": true
+        },
+        "70861/70394": {
+          "before": {
+            "operating_only": -0.18219637870788574,
+            "raw_trajectory": -1.1466262340545654,
+            "patch_projection": -0.8121664524078369,
+            "risk_state": -4.065248012542725,
+            "risk_state_current": -4.065845489501953,
+            "risk_state_earlier": -4.068592071533203,
+            "raw_level": -0.6397832632064819,
+            "raw_shape": -0.6828639507293701,
+            "aligned_shape": -0.949544370174408,
+            "aligned_full": -1.2988842725753784,
+            "only8_patch": -1.0707733631134033,
+            "full_patch_no_intra": -1.0903503894805908,
+            "full_patch_with_intra": -1.0385099649429321
+          },
+          "later_jointly_in_time": false
+        },
+        "71013/74939": {
+          "before": {
+            "operating_only": -0.026506662368774414,
+            "raw_trajectory": 0.3534480333328247,
+            "patch_projection": -2.0808637142181396,
+            "risk_state": 2.1654624938964844,
+            "risk_state_current": 2.199587106704712,
+            "risk_state_earlier": 2.192882776260376,
+            "raw_level": -1.5500359535217285,
+            "raw_shape": 2.2896242141723633,
+            "aligned_shape": 2.1144297122955322,
+            "aligned_full": 0.07400834560394287,
+            "only8_patch": -0.4771961569786072,
+            "full_patch_no_intra": -2.9141292572021484,
+            "full_patch_with_intra": -2.8467650413513184
+          },
+          "later_jointly_in_time": true
+        },
+        "71086/66431": {
+          "before": {
+            "operating_only": 0.05238199234008789,
+            "raw_trajectory": -0.2512817084789276,
+            "patch_projection": 0.5446019172668457,
+            "risk_state": 0.9731507301330566,
+            "risk_state_current": 0.9758737087249756,
+            "risk_state_earlier": 0.9755921363830566,
+            "raw_level": 0.9201168417930603,
+            "raw_shape": -1.5423483848571777,
+            "aligned_shape": -1.5127325057983398,
+            "aligned_full": -0.2067227065563202,
+            "only8_patch": 0.05908074602484703,
+            "full_patch_no_intra": 0.3193931579589844,
+            "full_patch_with_intra": 0.34059998393058777
+          },
+          "later_jointly_in_time": false
+        },
+        "72578/66160": {
+          "before": {
+            "operating_only": 0.03216361999511719,
+            "raw_trajectory": 0.292157918214798,
+            "patch_projection": 3.854179859161377,
+            "risk_state": 6.772144317626953,
+            "risk_state_current": 6.7772932052612305,
+            "risk_state_earlier": 6.782680511474609,
+            "raw_level": 0.16691094636917114,
+            "raw_shape": 0.040628910064697266,
+            "aligned_shape": 0.04887592792510986,
+            "aligned_full": 0.33260175585746765,
+            "only8_patch": 0.19261349737644196,
+            "full_patch_no_intra": 0.6437283754348755,
+            "full_patch_with_intra": 0.5490321516990662
+          },
+          "later_jointly_in_time": true
+        },
+        "73089/66206": {
+          "before": {
+            "operating_only": -0.05803942680358887,
+            "raw_trajectory": 0.2738625109195709,
+            "patch_projection": 3.1459102630615234,
+            "risk_state": 4.244020462036133,
+            "risk_state_current": 4.277365684509277,
+            "risk_state_earlier": 4.240601539611816,
+            "raw_level": -0.054099470376968384,
+            "raw_shape": 0.24326252937316895,
+            "aligned_shape": 0.23848474025726318,
+            "aligned_full": 0.2167932242155075,
+            "only8_patch": 0.18811672925949097,
+            "full_patch_no_intra": 1.5958020687103271,
+            "full_patch_with_intra": 1.722533106803894
+          },
+          "later_jointly_in_time": true
+        },
+        "73135/74562": {
+          "before": {
+            "operating_only": -0.7219243049621582,
+            "raw_trajectory": -1.4277033805847168,
+            "patch_projection": -4.375876426696777,
+            "risk_state": -5.1400604248046875,
+            "risk_state_current": -5.066192150115967,
+            "risk_state_earlier": -5.178723335266113,
+            "raw_level": -0.25001558661460876,
+            "raw_shape": -1.2755141258239746,
+            "aligned_shape": -1.8513822555541992,
+            "aligned_full": -2.0005154609680176,
+            "only8_patch": -1.9481406211853027,
+            "full_patch_no_intra": -2.4295308589935303,
+            "full_patch_with_intra": -2.6709773540496826
+          },
+          "later_jointly_in_time": false
+        },
+        "73541/66458": {
+          "before": {
+            "operating_only": -0.8333163261413574,
+            "raw_trajectory": -1.6342804431915283,
+            "patch_projection": 0.9014089107513428,
+            "risk_state": 0.7005343437194824,
+            "risk_state_current": 0.6852326393127441,
+            "risk_state_earlier": 0.6836824417114258,
+            "raw_level": -1.3267407417297363,
+            "raw_shape": -1.3918349742889404,
+            "aligned_shape": -0.9691622853279114,
+            "aligned_full": -1.123291015625,
+            "only8_patch": -0.8314969539642334,
+            "full_patch_no_intra": 0.2396867275238037,
+            "full_patch_with_intra": 0.06732815504074097
+          },
+          "later_jointly_in_time": true
+        },
+        "73547/67046": {
+          "before": {
+            "operating_only": -0.7612767219543457,
+            "raw_trajectory": 0.4686501622200012,
+            "patch_projection": 2.3773105144500732,
+            "risk_state": 8.067582130432129,
+            "risk_state_current": 8.089022636413574,
+            "risk_state_earlier": 8.097707748413086,
+            "raw_level": -1.6831029653549194,
+            "raw_shape": 1.877363920211792,
+            "aligned_shape": 1.3314833641052246,
+            "aligned_full": 0.0572323203086853,
+            "only8_patch": 0.01397743821144104,
+            "full_patch_no_intra": 2.0296242237091064,
+            "full_patch_with_intra": 1.9629021883010864
+          },
+          "later_jointly_in_time": true
+        },
+        "73597/70263": {
+          "before": {
+            "operating_only": 0.2706742286682129,
+            "raw_trajectory": -0.10460597276687622,
+            "patch_projection": 3.9258790016174316,
+            "risk_state": 2.0061495304107666,
+            "risk_state_current": 2.010526180267334,
+            "risk_state_earlier": 2.0188217163085938,
+            "raw_level": 0.7090134620666504,
+            "raw_shape": -0.6945888996124268,
+            "aligned_shape": -1.546886682510376,
+            "aligned_full": -0.6311425566673279,
+            "only8_patch": -0.08715760707855225,
+            "full_patch_no_intra": 1.8351714611053467,
+            "full_patch_with_intra": 1.8591257333755493
+          },
+          "later_jointly_in_time": true
+        },
+        "73652/73323": {
+          "before": {
+            "operating_only": 0.011189937591552734,
+            "raw_trajectory": 1.0304820537567139,
+            "patch_projection": -0.6463561058044434,
+            "risk_state": -4.4599289894104,
+            "risk_state_current": -4.481203079223633,
+            "risk_state_earlier": -4.460348606109619,
+            "raw_level": 1.225817084312439,
+            "raw_shape": 0.03096747398376465,
+            "aligned_shape": 0.03437376022338867,
+            "aligned_full": 1.041373372077942,
+            "only8_patch": 1.1394579410552979,
+            "full_patch_no_intra": -0.2727186679840088,
+            "full_patch_with_intra": -0.28943920135498047
+          },
+          "later_jointly_in_time": true
+        },
+        "73889/73740": {
+          "before": {
+            "operating_only": 0.12808561325073242,
+            "raw_trajectory": 1.3801143169403076,
+            "patch_projection": -2.807640790939331,
+            "risk_state": 0.13286447525024414,
+            "risk_state_current": 0.05985713005065918,
+            "risk_state_earlier": 0.15163183212280273,
+            "raw_level": 1.0215816497802734,
+            "raw_shape": 0.649764895439148,
+            "aligned_shape": 1.574089765548706,
+            "aligned_full": 2.2539191246032715,
+            "only8_patch": 1.4708718061447144,
+            "full_patch_no_intra": -1.033879280090332,
+            "full_patch_with_intra": -0.898052453994751
+          },
+          "later_jointly_in_time": false
+        },
+        "74407/74928": {
+          "before": {
+            "operating_only": -0.11828422546386719,
+            "raw_trajectory": -0.006852511316537857,
+            "patch_projection": -0.2732264995574951,
+            "risk_state": 2.899853467941284,
+            "risk_state_current": 2.887937068939209,
+            "risk_state_earlier": 2.8825323581695557,
+            "raw_level": -0.7115949988365173,
+            "raw_shape": 0.5500696897506714,
+            "aligned_shape": 0.5070884227752686,
+            "aligned_full": -0.1393710970878601,
+            "only8_patch": 0.015832707285881042,
+            "full_patch_no_intra": -2.256086826324463,
+            "full_patch_with_intra": -2.3488292694091797
+          },
+          "later_jointly_in_time": false
+        },
+        "74663/73750": {
+          "before": {
+            "operating_only": 0.5248804092407227,
+            "raw_trajectory": 1.7485687732696533,
+            "patch_projection": 0.7135908007621765,
+            "risk_state": 1.0986608266830444,
+            "risk_state_current": 1.0719783306121826,
+            "risk_state_earlier": 1.095914602279663,
+            "raw_level": 1.330176830291748,
+            "raw_shape": 0.9343991279602051,
+            "aligned_shape": 1.1395094394683838,
+            "aligned_full": 2.0545952320098877,
+            "only8_patch": 1.2401562929153442,
+            "full_patch_no_intra": 0.43974924087524414,
+            "full_patch_with_intra": 0.5288163423538208
+          },
+          "later_jointly_in_time": false
+        },
+        "74727/73790": {
+          "before": {
+            "operating_only": 0.013321876525878906,
+            "raw_trajectory": 0.4018844664096832,
+            "patch_projection": -1.5054503679275513,
+            "risk_state": -2.7424380779266357,
+            "risk_state_current": -2.570803165435791,
+            "risk_state_earlier": -2.7856669425964355,
+            "raw_level": 0.09515336155891418,
+            "raw_shape": 0.8495392799377441,
+            "aligned_shape": 1.0460774898529053,
+            "aligned_full": 0.5400724411010742,
+            "only8_patch": 0.7145142555236816,
+            "full_patch_no_intra": -0.06092029809951782,
+            "full_patch_with_intra": -0.05762070417404175
+          },
+          "later_jointly_in_time": false
+        },
+        "74970/67451": {
+          "before": {
+            "operating_only": -0.27931714057922363,
+            "raw_trajectory": 1.9702274799346924,
+            "patch_projection": -1.4380793571472168,
+            "risk_state": -1.639088749885559,
+            "risk_state_current": -1.4822404384613037,
+            "risk_state_earlier": -1.6942558288574219,
+            "raw_level": 1.6861674785614014,
+            "raw_shape": 0.7088623046875,
+            "aligned_shape": 0.6059508323669434,
+            "aligned_full": 1.7741401195526123,
+            "only8_patch": 1.846897006034851,
+            "full_patch_no_intra": 0.42429423332214355,
+            "full_patch_with_intra": 0.40490949153900146
+          },
+          "later_jointly_in_time": false
+        },
+        "75603/71076": {
+          "before": {
+            "operating_only": -0.037529706954956055,
+            "raw_trajectory": 1.255336046218872,
+            "patch_projection": 3.3308968544006348,
+            "risk_state": 4.5602569580078125,
+            "risk_state_current": 4.575178623199463,
+            "risk_state_earlier": 4.581747531890869,
+            "raw_level": 0.08748805522918701,
+            "raw_shape": 1.7899279594421387,
+            "aligned_shape": 1.6573185920715332,
+            "aligned_full": 1.0542575120925903,
+            "only8_patch": 0.8831850290298462,
+            "full_patch_no_intra": 2.083277463912964,
+            "full_patch_with_intra": 2.041903257369995
+          },
+          "later_jointly_in_time": true
+        },
+        "75615/66185": {
+          "before": {
+            "operating_only": 0.6050152778625488,
+            "raw_trajectory": 1.148108720779419,
+            "patch_projection": 5.243237495422363,
+            "risk_state": 6.378434181213379,
+            "risk_state_current": 6.558799743652344,
+            "risk_state_earlier": 6.412742614746094,
+            "raw_level": 1.3680015802383423,
+            "raw_shape": -0.2068500518798828,
+            "aligned_shape": -0.1051180362701416,
+            "aligned_full": 1.2589223384857178,
+            "only8_patch": 1.9405614137649536,
+            "full_patch_no_intra": 2.8591597080230713,
+            "full_patch_with_intra": 2.903003692626953
+          },
+          "later_jointly_in_time": false
+        },
+        "76956/62250": {
+          "before": {
+            "operating_only": -0.0050389766693115234,
+            "raw_trajectory": 1.2343511581420898,
+            "patch_projection": -0.2500847578048706,
+            "risk_state": -0.09817814826965332,
+            "risk_state_current": -0.10228705406188965,
+            "risk_state_earlier": -0.10024166107177734,
+            "raw_level": 0.21003596484661102,
+            "raw_shape": 1.073401927947998,
+            "aligned_shape": 1.021706223487854,
+            "aligned_full": 1.1855137348175049,
+            "only8_patch": 0.6153289079666138,
+            "full_patch_no_intra": -0.03774559497833252,
+            "full_patch_with_intra": -0.037068068981170654
+          },
+          "later_jointly_in_time": false
+        },
+        "77302/86941": {
+          "before": {
+            "operating_only": 0.1609400510787964,
+            "raw_trajectory": 2.84964656829834,
+            "patch_projection": -1.1631656885147095,
+            "risk_state": -0.8100719451904297,
+            "risk_state_current": -0.7693333625793457,
+            "risk_state_earlier": -0.815854549407959,
+            "raw_level": 2.061397075653076,
+            "raw_shape": 1.0616995096206665,
+            "aligned_shape": 1.0897775888442993,
+            "aligned_full": 2.90097713470459,
+            "only8_patch": 2.774146795272827,
+            "full_patch_no_intra": 0.2153836488723755,
+            "full_patch_with_intra": 0.2010326236486435
+          },
+          "later_jointly_in_time": true
+        },
+        "77782/62123": {
+          "before": {
+            "operating_only": -0.03702425956726074,
+            "raw_trajectory": 0.5851622819900513,
+            "patch_projection": -2.2784790992736816,
+            "risk_state": 0.5641593337059021,
+            "risk_state_current": 0.529577910900116,
+            "risk_state_earlier": 0.627478301525116,
+            "raw_level": 0.16798001527786255,
+            "raw_shape": 0.8317338228225708,
+            "aligned_shape": 0.8048157691955566,
+            "aligned_full": 0.43168139457702637,
+            "only8_patch": 0.17588406801223755,
+            "full_patch_no_intra": -0.666972815990448,
+            "full_patch_with_intra": -0.685076117515564
+          },
+          "later_jointly_in_time": true
+        },
+        "77783/61323": {
+          "before": {
+            "operating_only": -0.0013549327850341797,
+            "raw_trajectory": 2.991057872772217,
+            "patch_projection": -1.1593246459960938,
+            "risk_state": -2.1539621353149414,
+            "risk_state_current": -2.1622889041900635,
+            "risk_state_earlier": -2.161691188812256,
+            "raw_level": 2.5049595832824707,
+            "raw_shape": 0.48085296154022217,
+            "aligned_shape": 0.34838902950286865,
+            "aligned_full": 2.8372325897216797,
+            "only8_patch": 2.8379199504852295,
+            "full_patch_no_intra": 0.6708221435546875,
+            "full_patch_with_intra": 0.6848793029785156
+          },
+          "later_jointly_in_time": true
+        },
+        "77788/60916": {
+          "before": {
+            "operating_only": -0.013763904571533203,
+            "raw_trajectory": 0.6607311367988586,
+            "patch_projection": 0.19227224588394165,
+            "risk_state": 0.30787062644958496,
+            "risk_state_current": 0.30204129219055176,
+            "risk_state_earlier": 0.3088195323944092,
+            "raw_level": 0.14317937195301056,
+            "raw_shape": 0.23241686820983887,
+            "aligned_shape": 0.21475976705551147,
+            "aligned_full": 0.619742751121521,
+            "only8_patch": 0.26569294929504395,
+            "full_patch_no_intra": 0.2521228790283203,
+            "full_patch_with_intra": 0.21901965141296387
+          },
+          "later_jointly_in_time": true
+        },
+        "77822/77835": {
+          "before": {
+            "operating_only": -0.25610244274139404,
+            "raw_trajectory": 0.702926516532898,
+            "patch_projection": 0.9553537368774414,
+            "risk_state": -0.9606422185897827,
+            "risk_state_current": -0.8896815180778503,
+            "risk_state_earlier": -0.8799762725830078,
+            "raw_level": 0.5975872278213501,
+            "raw_shape": 0.014313779771327972,
+            "aligned_shape": 0.2607667148113251,
+            "aligned_full": 0.8739198446273804,
+            "only8_patch": 0.9719380140304565,
+            "full_patch_no_intra": 0.0696408748626709,
+            "full_patch_with_intra": 0.1282799243927002
+          },
+          "later_jointly_in_time": true
+        },
+        "78008/80053": {
+          "before": {
+            "operating_only": -0.788002073764801,
+            "raw_trajectory": 0.03954416513442993,
+            "patch_projection": 3.6034512519836426,
+            "risk_state": -0.6272590160369873,
+            "risk_state_current": -0.6540426015853882,
+            "risk_state_earlier": -0.6236923336982727,
+            "raw_level": -1.5293757915496826,
+            "raw_shape": 1.9389442205429077,
+            "aligned_shape": 2.1541404724121094,
+            "aligned_full": 0.19757002592086792,
+            "only8_patch": -0.28829556703567505,
+            "full_patch_no_intra": 1.9839601516723633,
+            "full_patch_with_intra": 1.9388937950134277
+          },
+          "later_jointly_in_time": false
+        },
+        "78617/78776": {
+          "before": {
+            "operating_only": 0.018919944763183594,
+            "raw_trajectory": 2.060076951980591,
+            "patch_projection": -0.6988805532455444,
+            "risk_state": -2.6664960384368896,
+            "risk_state_current": -2.6655850410461426,
+            "risk_state_earlier": -2.6665985584259033,
+            "raw_level": 0.8850511312484741,
+            "raw_shape": 1.726628065109253,
+            "aligned_shape": 1.7606850862503052,
+            "aligned_full": 2.0612802505493164,
+            "only8_patch": 1.5994393825531006,
+            "full_patch_no_intra": 2.1308093070983887,
+            "full_patch_with_intra": 2.085496425628662
+          },
+          "later_jointly_in_time": true
+        },
+        "78668/64562": {
+          "before": {
+            "operating_only": -0.004189252853393555,
+            "raw_trajectory": 0.9688538312911987,
+            "patch_projection": 0.4308246076107025,
+            "risk_state": -2.250527858734131,
+            "risk_state_current": -2.227855682373047,
+            "risk_state_earlier": -2.261747360229492,
+            "raw_level": 0.32213395833969116,
+            "raw_shape": 0.8908559083938599,
+            "aligned_shape": 1.0063657760620117,
+            "aligned_full": 1.128320574760437,
+            "only8_patch": 1.3260122537612915,
+            "full_patch_no_intra": 1.8342231512069702,
+            "full_patch_with_intra": 1.812788486480713
+          },
+          "later_jointly_in_time": false
+        },
+        "79354/94363": {
+          "before": {
+            "operating_only": 0.003328680992126465,
+            "raw_trajectory": 1.478304147720337,
+            "patch_projection": -0.7636037468910217,
+            "risk_state": 0.868276059627533,
+            "risk_state_current": 0.8410629630088806,
+            "risk_state_earlier": 0.8993476629257202,
+            "raw_level": 1.6401886940002441,
+            "raw_shape": -0.36841535568237305,
+            "aligned_shape": -0.5455484986305237,
+            "aligned_full": 1.3343720436096191,
+            "only8_patch": 1.3045477867126465,
+            "full_patch_no_intra": 0.15361440181732178,
+            "full_patch_with_intra": 0.27747657895088196
+          },
+          "later_jointly_in_time": true
+        },
+        "79604/82834": {
+          "before": {
+            "operating_only": -0.31141403317451477,
+            "raw_trajectory": -1.3987257480621338,
+            "patch_projection": 2.6004719734191895,
+            "risk_state": 0.4921649992465973,
+            "risk_state_current": 0.43003571033477783,
+            "risk_state_earlier": 0.23423004150390625,
+            "raw_level": -2.899305820465088,
+            "raw_shape": 1.6209474802017212,
+            "aligned_shape": 1.5617413520812988,
+            "aligned_full": -1.4571866989135742,
+            "only8_patch": -1.5069096088409424,
+            "full_patch_no_intra": 0.6577675342559814,
+            "full_patch_with_intra": 0.7375304698944092
+          },
+          "later_jointly_in_time": false
+        },
+        "79649/91052": {
+          "before": {
+            "operating_only": -0.5779324769973755,
+            "raw_trajectory": -1.5466347932815552,
+            "patch_projection": -1.5191853046417236,
+            "risk_state": -0.7571552395820618,
+            "risk_state_current": -0.7475959062576294,
+            "risk_state_earlier": -0.7490553259849548,
+            "raw_level": -1.062408447265625,
+            "raw_shape": -1.6676418781280518,
+            "aligned_shape": -1.7912952899932861,
+            "aligned_full": -1.525411605834961,
+            "only8_patch": -1.529832124710083,
+            "full_patch_no_intra": -0.48352622985839844,
+            "full_patch_with_intra": -0.5311340093612671
+          },
+          "later_jointly_in_time": false
+        },
+        "79739/64995": {
+          "before": {
+            "operating_only": 0.0314180850982666,
+            "raw_trajectory": 0.4085669219493866,
+            "patch_projection": 0.39117667078971863,
+            "risk_state": 2.2153728008270264,
+            "risk_state_current": 2.2348718643188477,
+            "risk_state_earlier": 2.217798948287964,
+            "raw_level": 0.2645738422870636,
+            "raw_shape": 0.044836997985839844,
+            "aligned_shape": 0.13078075647354126,
+            "aligned_full": 0.4879911541938782,
+            "only8_patch": 0.5707746744155884,
+            "full_patch_no_intra": 0.43867504596710205,
+            "full_patch_with_intra": 0.38332605361938477
+          },
+          "later_jointly_in_time": true
+        },
+        "79899/85599": {
+          "before": {
+            "operating_only": -0.060340166091918945,
+            "raw_trajectory": 1.0763407945632935,
+            "patch_projection": -2.766874074935913,
+            "risk_state": -1.3898651599884033,
+            "risk_state_current": -1.2576804161071777,
+            "risk_state_earlier": -1.3729819059371948,
+            "raw_level": -0.6226887702941895,
+            "raw_shape": 2.2795467376708984,
+            "aligned_shape": 2.6718428134918213,
+            "aligned_full": 1.399789810180664,
+            "only8_patch": 0.5094846487045288,
+            "full_patch_no_intra": -0.7346600294113159,
+            "full_patch_with_intra": -0.7935818433761597
+          },
+          "later_jointly_in_time": true
+        },
+        "80012/90978": {
+          "before": {
+            "operating_only": 0.017636895179748535,
+            "raw_trajectory": -2.9707348346710205,
+            "patch_projection": -1.21917724609375,
+            "risk_state": 0.08947557210922241,
+            "risk_state_current": 0.0752440020442009,
+            "risk_state_earlier": 0.08257187902927399,
+            "raw_level": -2.4040167331695557,
+            "raw_shape": -0.47595345973968506,
+            "aligned_shape": -0.4487053155899048,
+            "aligned_full": -2.921996831893921,
+            "only8_patch": -2.6877694129943848,
+            "full_patch_no_intra": -1.5830566883087158,
+            "full_patch_with_intra": -1.5298030376434326
+          },
+          "later_jointly_in_time": true
+        },
+        "80036/81017": {
+          "before": {
+            "operating_only": 0.016435861587524414,
+            "raw_trajectory": -0.7176097631454468,
+            "patch_projection": 1.1210929155349731,
+            "risk_state": 0.7004920840263367,
+            "risk_state_current": 0.7196186780929565,
+            "risk_state_earlier": 0.7036988139152527,
+            "raw_level": -0.9149379730224609,
+            "raw_shape": -0.09248316287994385,
+            "aligned_shape": -0.23816251754760742,
+            "aligned_full": -0.7785636782646179,
+            "only8_patch": -0.9619975090026855,
+            "full_patch_no_intra": 0.9800504446029663,
+            "full_patch_with_intra": 0.8490409255027771
+          },
+          "later_jointly_in_time": true
+        },
+        "80600/80955": {
+          "before": {
+            "operating_only": -0.7226685881614685,
+            "raw_trajectory": -1.587204098701477,
+            "patch_projection": 1.3165837526321411,
+            "risk_state": 0.7455085515975952,
+            "risk_state_current": 0.8143139481544495,
+            "risk_state_earlier": 0.7880195379257202,
+            "raw_level": -1.709233045578003,
+            "raw_shape": -0.8853741884231567,
+            "aligned_shape": -1.3225480318069458,
+            "aligned_full": -1.9706021547317505,
+            "only8_patch": -2.1589395999908447,
+            "full_patch_no_intra": -0.021387428045272827,
+            "full_patch_with_intra": 0.030291229486465454
+          },
+          "later_jointly_in_time": true
+        },
+        "81406/63960": {
+          "before": {
+            "operating_only": -0.061785221099853516,
+            "raw_trajectory": 0.7298253178596497,
+            "patch_projection": -0.32893097400665283,
+            "risk_state": 1.2053945064544678,
+            "risk_state_current": 1.204651951789856,
+            "risk_state_earlier": 1.213437557220459,
+            "raw_level": 0.4126124083995819,
+            "raw_shape": 0.36308348178863525,
+            "aligned_shape": 0.35882389545440674,
+            "aligned_full": 0.7451762557029724,
+            "only8_patch": 0.5509157776832581,
+            "full_patch_no_intra": -0.31292352080345154,
+            "full_patch_with_intra": -0.33798936009407043
+          },
+          "later_jointly_in_time": true
+        },
+        "81684/80529": {
+          "before": {
+            "operating_only": 0.017094850540161133,
+            "raw_trajectory": 0.29935288429260254,
+            "patch_projection": -0.04264956712722778,
+            "risk_state": 0.9411500692367554,
+            "risk_state_current": 0.9442389011383057,
+            "risk_state_earlier": 0.9406850337982178,
+            "raw_level": 0.042404964566230774,
+            "raw_shape": 0.10440254211425781,
+            "aligned_shape": 0.13330408930778503,
+            "aligned_full": 0.37464773654937744,
+            "only8_patch": 0.16694533824920654,
+            "full_patch_no_intra": -1.2772822380065918,
+            "full_patch_with_intra": -1.2061506509780884
+          },
+          "later_jointly_in_time": true
+        },
+        "83164/79580": {
+          "before": {
+            "operating_only": -0.40453845262527466,
+            "raw_trajectory": -0.5684261322021484,
+            "patch_projection": 3.04180908203125,
+            "risk_state": -0.1305156946182251,
+            "risk_state_current": -0.11713206768035889,
+            "risk_state_earlier": -0.1311054229736328,
+            "raw_level": -1.6631015539169312,
+            "raw_shape": 0.5638831257820129,
+            "aligned_shape": 0.540052592754364,
+            "aligned_full": -0.5586919188499451,
+            "only8_patch": -0.8425459265708923,
+            "full_patch_no_intra": 0.44292914867401123,
+            "full_patch_with_intra": 0.4632330536842346
+          },
+          "later_jointly_in_time": true
+        },
+        "83166/83231": {
+          "before": {
+            "operating_only": -0.051041483879089355,
+            "raw_trajectory": -0.036092646420001984,
+            "patch_projection": 1.890244483947754,
+            "risk_state": 0.12318575382232666,
+            "risk_state_current": 0.07911789417266846,
+            "risk_state_earlier": 0.1472301483154297,
+            "raw_level": -1.2337907552719116,
+            "raw_shape": 1.2225420475006104,
+            "aligned_shape": 1.2250776290893555,
+            "aligned_full": 0.016862213611602783,
+            "only8_patch": -0.4520489275455475,
+            "full_patch_no_intra": 0.980839729309082,
+            "full_patch_with_intra": 1.0277814865112305
+          },
+          "later_jointly_in_time": true
+        },
+        "83218/83438": {
+          "before": {
+            "operating_only": 0.08382093906402588,
+            "raw_trajectory": 0.21113944053649902,
+            "patch_projection": 0.32868409156799316,
+            "risk_state": 1.4476161003112793,
+            "risk_state_current": 1.922907829284668,
+            "risk_state_earlier": 1.5964915752410889,
+            "raw_level": 0.9099888801574707,
+            "raw_shape": -0.9339977502822876,
+            "aligned_shape": -0.7464374303817749,
+            "aligned_full": 0.31767189502716064,
+            "only8_patch": 0.5479158163070679,
+            "full_patch_no_intra": -0.523110032081604,
+            "full_patch_with_intra": -0.49866992235183716
+          },
+          "later_jointly_in_time": true
+        },
+        "83346/82447": {
+          "before": {
+            "operating_only": 0.2556910514831543,
+            "raw_trajectory": -0.8578686714172363,
+            "patch_projection": -3.294276237487793,
+            "risk_state": -0.5459475517272949,
+            "risk_state_current": -0.5374720096588135,
+            "risk_state_earlier": -0.536017894744873,
+            "raw_level": -0.5934034585952759,
+            "raw_shape": 0.2911047637462616,
+            "aligned_shape": 0.4587440490722656,
+            "aligned_full": -0.7803860902786255,
+            "only8_patch": -0.8710734844207764,
+            "full_patch_no_intra": -1.284503698348999,
+            "full_patch_with_intra": -1.2370555400848389
+          },
+          "later_jointly_in_time": false
+        },
+        "83568/83376": {
+          "before": {
+            "operating_only": 0.135694682598114,
+            "raw_trajectory": -1.1853418350219727,
+            "patch_projection": -1.0252755880355835,
+            "risk_state": 2.1162538528442383,
+            "risk_state_current": 2.0970842838287354,
+            "risk_state_earlier": 2.077810049057007,
+            "raw_level": 0.5421593189239502,
+            "raw_shape": -1.8158981800079346,
+            "aligned_shape": -1.648593783378601,
+            "aligned_full": -1.126464605331421,
+            "only8_patch": -1.0456023216247559,
+            "full_patch_no_intra": -0.9970976114273071,
+            "full_patch_with_intra": -1.1891016960144043
+          },
+          "later_jointly_in_time": false
+        },
+        "83887/54165": {
+          "before": {
+            "operating_only": 0.0016589164733886719,
+            "raw_trajectory": -2.4606010913848877,
+            "patch_projection": -1.4698911905288696,
+            "risk_state": 1.8202893733978271,
+            "risk_state_current": 1.8367623090744019,
+            "risk_state_earlier": 1.8258804082870483,
+            "raw_level": -0.15818262100219727,
+            "raw_shape": -2.6535797119140625,
+            "aligned_shape": -2.5439016819000244,
+            "aligned_full": -2.488030195236206,
+            "only8_patch": -1.836078405380249,
+            "full_patch_no_intra": -1.5425832271575928,
+            "full_patch_with_intra": -1.5438700914382935
+          },
+          "later_jointly_in_time": false
+        },
+        "84711/83910": {
+          "before": {
+            "operating_only": -0.021820247173309326,
+            "raw_trajectory": -1.5026417970657349,
+            "patch_projection": 1.99320650100708,
+            "risk_state": 1.0496755838394165,
+            "risk_state_current": 1.0455348491668701,
+            "risk_state_earlier": 1.0430494546890259,
+            "raw_level": -0.8595101237297058,
+            "raw_shape": -0.6145389080047607,
+            "aligned_shape": -0.6226504445075989,
+            "aligned_full": -1.4520223140716553,
+            "only8_patch": -1.0152080059051514,
+            "full_patch_no_intra": 0.2884100675582886,
+            "full_patch_with_intra": 0.4485429525375366
+          },
+          "later_jointly_in_time": true
+        },
+        "85032/54889": {
+          "before": {
+            "operating_only": -0.0789451003074646,
+            "raw_trajectory": -2.5832457542419434,
+            "patch_projection": 0.8530963659286499,
+            "risk_state": 1.7760730981826782,
+            "risk_state_current": 1.771846055984497,
+            "risk_state_earlier": 1.7847390174865723,
+            "raw_level": -1.7129720449447632,
+            "raw_shape": -1.142148494720459,
+            "aligned_shape": -1.4999480247497559,
+            "aligned_full": -2.984983205795288,
+            "only8_patch": -2.5030899047851562,
+            "full_patch_no_intra": -1.093806266784668,
+            "full_patch_with_intra": -1.1014838218688965
+          },
+          "later_jointly_in_time": true
+        },
+        "85181/85123": {
+          "before": {
+            "operating_only": -0.0802164077758789,
+            "raw_trajectory": -0.3992795944213867,
+            "patch_projection": 0.3381124436855316,
+            "risk_state": 1.3871535062789917,
+            "risk_state_current": 1.3804857730865479,
+            "risk_state_earlier": 1.379141926765442,
+            "raw_level": -1.5827839374542236,
+            "raw_shape": 1.4570403099060059,
+            "aligned_shape": 1.4812461137771606,
+            "aligned_full": -0.3138253688812256,
+            "only8_patch": -1.3846262693405151,
+            "full_patch_no_intra": -0.7714051008224487,
+            "full_patch_with_intra": -0.7681032419204712
+          },
+          "later_jointly_in_time": true
+        },
+        "85526/89721": {
+          "before": {
+            "operating_only": -0.013540983200073242,
+            "raw_trajectory": 0.862922191619873,
+            "patch_projection": 0.24293136596679688,
+            "risk_state": -0.37252241373062134,
+            "risk_state_current": -0.41902291774749756,
+            "risk_state_earlier": -0.3954899311065674,
+            "raw_level": 1.4524564743041992,
+            "raw_shape": -0.8258532285690308,
+            "aligned_shape": -0.7463589906692505,
+            "aligned_full": 0.9501033425331116,
+            "only8_patch": 1.1034239530563354,
+            "full_patch_no_intra": 0.22956860065460205,
+            "full_patch_with_intra": 0.2675047516822815
+          },
+          "later_jointly_in_time": false
+        },
+        "85681/90863": {
+          "before": {
+            "operating_only": -0.3299407958984375,
+            "raw_trajectory": 0.10315275192260742,
+            "patch_projection": -1.92641019821167,
+            "risk_state": -0.7932449579238892,
+            "risk_state_current": -0.8020384311676025,
+            "risk_state_earlier": -0.8070487976074219,
+            "raw_level": 0.034314751625061035,
+            "raw_shape": -0.11981737613677979,
+            "aligned_shape": -0.2091984748840332,
+            "aligned_full": -0.003467559814453125,
+            "only8_patch": 0.13550114631652832,
+            "full_patch_no_intra": -1.457627773284912,
+            "full_patch_with_intra": -1.4596165418624878
+          },
+          "later_jointly_in_time": true
+        },
+        "85683/77901": {
+          "before": {
+            "operating_only": 0.029520273208618164,
+            "raw_trajectory": 0.1041688323020935,
+            "patch_projection": 0.7975054979324341,
+            "risk_state": 1.4279975891113281,
+            "risk_state_current": 1.3762822151184082,
+            "risk_state_earlier": 1.4189850091934204,
+            "raw_level": -0.9678958058357239,
+            "raw_shape": 1.6631959676742554,
+            "aligned_shape": 1.895805835723877,
+            "aligned_full": 0.3957948684692383,
+            "only8_patch": 0.14020395278930664,
+            "full_patch_no_intra": -1.133400321006775,
+            "full_patch_with_intra": -1.1288468837738037
+          },
+          "later_jointly_in_time": true
+        },
+        "85692/63753": {
+          "before": {
+            "operating_only": -0.10587823390960693,
+            "raw_trajectory": -2.014820098876953,
+            "patch_projection": 1.5405712127685547,
+            "risk_state": 3.749483823776245,
+            "risk_state_current": 3.7491402626037598,
+            "risk_state_earlier": 3.7491912841796875,
+            "raw_level": -0.9500517249107361,
+            "raw_shape": -1.0417149066925049,
+            "aligned_shape": -1.02113676071167,
+            "aligned_full": -1.9952291250228882,
+            "only8_patch": -1.665583610534668,
+            "full_patch_no_intra": -1.000291347503662,
+            "full_patch_with_intra": -0.9913932085037231
+          },
+          "later_jointly_in_time": true
+        },
+        "86155/85261": {
+          "before": {
+            "operating_only": -0.6690069437026978,
+            "raw_trajectory": 4.489151954650879,
+            "patch_projection": -1.3536421060562134,
+            "risk_state": -0.6101476550102234,
+            "risk_state_current": -0.5233830809593201,
+            "risk_state_earlier": -0.6367709636688232,
+            "raw_level": 2.3725953102111816,
+            "raw_shape": 1.7040250301361084,
+            "aligned_shape": 1.6370792388916016,
+            "aligned_full": 4.354163646697998,
+            "only8_patch": 3.5608792304992676,
+            "full_patch_no_intra": -0.32846546173095703,
+            "full_patch_with_intra": -0.26347100734710693
+          },
+          "later_jointly_in_time": true
+        },
+        "86616/94352": {
+          "before": {
+            "operating_only": -0.593323826789856,
+            "raw_trajectory": 1.4441817998886108,
+            "patch_projection": -1.3275078535079956,
+            "risk_state": -1.1881282329559326,
+            "risk_state_current": -1.190354585647583,
+            "risk_state_earlier": -1.190870761871338,
+            "raw_level": -0.02470254898071289,
+            "raw_shape": 1.3806966543197632,
+            "aligned_shape": 1.40175461769104,
+            "aligned_full": 1.4473024606704712,
+            "only8_patch": 0.5616217255592346,
+            "full_patch_no_intra": -0.4659876525402069,
+            "full_patch_with_intra": -0.3517037332057953
+          },
+          "later_jointly_in_time": true
+        },
+        "87508/82847": {
+          "before": {
+            "operating_only": -0.01038343831896782,
+            "raw_trajectory": -3.0320887565612793,
+            "patch_projection": -1.9910026788711548,
+            "risk_state": 0.9676487445831299,
+            "risk_state_current": 0.969059944152832,
+            "risk_state_earlier": 0.9721523523330688,
+            "raw_level": -0.6490609645843506,
+            "raw_shape": -2.961822032928467,
+            "aligned_shape": -2.7023568153381348,
+            "aligned_full": -2.631375312805176,
+            "only8_patch": -1.4821481704711914,
+            "full_patch_no_intra": -0.46424099802970886,
+            "full_patch_with_intra": -0.19016842544078827
+          },
+          "later_jointly_in_time": true
+        },
+        "87537/54160": {
+          "before": {
+            "operating_only": 0.10876001417636871,
+            "raw_trajectory": -0.7415612936019897,
+            "patch_projection": -1.7931898832321167,
+            "risk_state": 1.045771837234497,
+            "risk_state_current": 1.0489366054534912,
+            "risk_state_earlier": 1.046377182006836,
+            "raw_level": -0.379352331161499,
+            "raw_shape": -0.609023928642273,
+            "aligned_shape": -0.5603695511817932,
+            "aligned_full": -0.7971131801605225,
+            "only8_patch": -0.19927814602851868,
+            "full_patch_no_intra": -0.6143903732299805,
+            "full_patch_with_intra": -0.6776220798492432
+          },
+          "later_jointly_in_time": false
+        },
+        "87861/91055": {
+          "before": {
+            "operating_only": -0.62432461977005,
+            "raw_trajectory": 0.6919536590576172,
+            "patch_projection": -0.35319027304649353,
+            "risk_state": -1.1495683193206787,
+            "risk_state_current": -1.1502307653427124,
+            "risk_state_earlier": -1.14910089969635,
+            "raw_level": 0.17512643337249756,
+            "raw_shape": 1.113290786743164,
+            "aligned_shape": 0.9715801477432251,
+            "aligned_full": 0.7146503925323486,
+            "only8_patch": 0.4802759885787964,
+            "full_patch_no_intra": 0.0002964586019515991,
+            "full_patch_with_intra": 0.00929078459739685
+          },
+          "later_jointly_in_time": true
+        },
+        "89044/80801": {
+          "before": {
+            "operating_only": -0.182525634765625,
+            "raw_trajectory": -0.6206150054931641,
+            "patch_projection": 0.19706833362579346,
+            "risk_state": 0.7951219081878662,
+            "risk_state_current": 0.7674256563186646,
+            "risk_state_earlier": 0.7429764270782471,
+            "raw_level": -0.7849472761154175,
+            "raw_shape": 0.3902750015258789,
+            "aligned_shape": 0.24896669387817383,
+            "aligned_full": -0.7360659241676331,
+            "only8_patch": -0.7538214921951294,
+            "full_patch_no_intra": -0.4957917332649231,
+            "full_patch_with_intra": -0.43779945373535156
+          },
+          "later_jointly_in_time": false
+        },
+        "89483/87484": {
+          "before": {
+            "operating_only": 0.16758349537849426,
+            "raw_trajectory": -3.8896470069885254,
+            "patch_projection": -0.14532479643821716,
+            "risk_state": 1.298433780670166,
+            "risk_state_current": 1.301430583000183,
+            "risk_state_earlier": 1.307239294052124,
+            "raw_level": -0.963420033454895,
+            "raw_shape": -3.524256467819214,
+            "aligned_shape": -3.5195655822753906,
+            "aligned_full": -3.8255410194396973,
+            "only8_patch": -2.471719264984131,
+            "full_patch_no_intra": 0.46333956718444824,
+            "full_patch_with_intra": 0.370222806930542
+          },
+          "later_jointly_in_time": true
+        },
+        "89549/62573": {
+          "before": {
+            "operating_only": 0.24401628971099854,
+            "raw_trajectory": 0.8569343686103821,
+            "patch_projection": 0.9190925359725952,
+            "risk_state": 2.9523305892944336,
+            "risk_state_current": 2.93544340133667,
+            "risk_state_earlier": 2.940385580062866,
+            "raw_level": 0.8386675119400024,
+            "raw_shape": -0.6513136625289917,
+            "aligned_shape": -0.5587623119354248,
+            "aligned_full": 1.005039095878601,
+            "only8_patch": 1.2277426719665527,
+            "full_patch_no_intra": 0.3985997438430786,
+            "full_patch_with_intra": 0.5119290351867676
+          },
+          "later_jointly_in_time": true
+        },
+        "89881/82833": {
+          "before": {
+            "operating_only": -0.41638612747192383,
+            "raw_trajectory": -3.796159029006958,
+            "patch_projection": -3.0363354682922363,
+            "risk_state": -1.1685779094696045,
+            "risk_state_current": -1.169144868850708,
+            "risk_state_earlier": -1.1714630126953125,
+            "raw_level": -3.0216004848480225,
+            "raw_shape": -1.3019685745239258,
+            "aligned_shape": -1.3943657875061035,
+            "aligned_full": -3.824054002761841,
+            "only8_patch": -3.281827926635742,
+            "full_patch_no_intra": -1.8611761331558228,
+            "full_patch_with_intra": -1.931970238685608
+          },
+          "later_jointly_in_time": true
+        },
+        "90232/60239": {
+          "before": {
+            "operating_only": -0.20242881774902344,
+            "raw_trajectory": 1.931532382965088,
+            "patch_projection": -0.7192522287368774,
+            "risk_state": -0.9048585295677185,
+            "risk_state_current": -0.8574772477149963,
+            "risk_state_earlier": -0.7580569386482239,
+            "raw_level": 2.324265480041504,
+            "raw_shape": -1.9417625665664673,
+            "aligned_shape": -1.8921781778335571,
+            "aligned_full": 2.0066885948181152,
+            "only8_patch": 2.472412586212158,
+            "full_patch_no_intra": 0.8440749049186707,
+            "full_patch_with_intra": 0.9089966416358948
+          },
+          "later_jointly_in_time": true
+        },
+        "90321/59394": {
+          "before": {
+            "operating_only": -0.10343992710113525,
+            "raw_trajectory": -2.450335741043091,
+            "patch_projection": -0.3896307945251465,
+            "risk_state": 0.44888806343078613,
+            "risk_state_current": 0.44557085633277893,
+            "risk_state_earlier": 0.4490654766559601,
+            "raw_level": -2.0978574752807617,
+            "raw_shape": -0.41214829683303833,
+            "aligned_shape": -0.48246318101882935,
+            "aligned_full": -2.6205735206604004,
+            "only8_patch": -2.3335494995117188,
+            "full_patch_no_intra": -1.3324061632156372,
+            "full_patch_with_intra": -1.3886324167251587
+          },
+          "later_jointly_in_time": false
+        },
+        "90631/93306": {
+          "before": {
+            "operating_only": 0.4839671850204468,
+            "raw_trajectory": -1.12948477268219,
+            "patch_projection": 0.7989020347595215,
+            "risk_state": 1.8845511674880981,
+            "risk_state_current": 1.9515300989151,
+            "risk_state_earlier": 1.9466960430145264,
+            "raw_level": -0.7474336624145508,
+            "raw_shape": 0.22452497482299805,
+            "aligned_shape": 0.14829373359680176,
+            "aligned_full": -1.2641355991363525,
+            "only8_patch": -1.0104830265045166,
+            "full_patch_no_intra": -1.2892897129058838,
+            "full_patch_with_intra": -1.1599165201187134
+          },
+          "later_jointly_in_time": true
+        },
+        "90675/60917": {
+          "before": {
+            "operating_only": 0.029219985008239746,
+            "raw_trajectory": -0.30209702253341675,
+            "patch_projection": 2.213376522064209,
+            "risk_state": 3.4024763107299805,
+            "risk_state_current": 3.331757068634033,
+            "risk_state_earlier": 3.4066238403320312,
+            "raw_level": -2.063628911972046,
+            "raw_shape": 2.3587143421173096,
+            "aligned_shape": 2.1715455055236816,
+            "aligned_full": -0.5608209371566772,
+            "only8_patch": -1.0970510244369507,
+            "full_patch_no_intra": 0.3707611560821533,
+            "full_patch_with_intra": 0.42758333683013916
+          },
+          "later_jointly_in_time": true
+        },
+        "91214/89326": {
+          "before": {
+            "operating_only": -0.7231205701828003,
+            "raw_trajectory": -3.1964967250823975,
+            "patch_projection": -0.5906857252120972,
+            "risk_state": 0.3375307619571686,
+            "risk_state_current": 0.18356361985206604,
+            "risk_state_earlier": 0.3994026482105255,
+            "raw_level": -0.536274254322052,
+            "raw_shape": -3.6870343685150146,
+            "aligned_shape": -4.368188381195068,
+            "aligned_full": -3.783691167831421,
+            "only8_patch": -2.818678617477417,
+            "full_patch_no_intra": -1.540663719177246,
+            "full_patch_with_intra": -1.4429806470870972
+          },
+          "later_jointly_in_time": true
+        },
+        "91689/77419": {
+          "before": {
+            "operating_only": 0.2808161973953247,
+            "raw_trajectory": -4.362610816955566,
+            "patch_projection": -0.8990293741226196,
+            "risk_state": 3.005676746368408,
+            "risk_state_current": 2.986945152282715,
+            "risk_state_earlier": 3.0194902420043945,
+            "raw_level": 0.6412832736968994,
+            "raw_shape": -5.507294178009033,
+            "aligned_shape": -4.973012447357178,
+            "aligned_full": -4.119514465332031,
+            "only8_patch": -3.203853130340576,
+            "full_patch_no_intra": -1.5954331159591675,
+            "full_patch_with_intra": -1.4218754768371582
+          },
+          "later_jointly_in_time": true
+        },
+        "92394/94365": {
+          "before": {
+            "operating_only": -0.6489673256874084,
+            "raw_trajectory": 1.5698529481887817,
+            "patch_projection": -1.3531219959259033,
+            "risk_state": -1.4170054197311401,
+            "risk_state_current": -1.4177614450454712,
+            "risk_state_earlier": -1.4237576723098755,
+            "raw_level": 1.0097236633300781,
+            "raw_shape": 0.2713059186935425,
+            "aligned_shape": 0.2899623215198517,
+            "aligned_full": 1.5265541076660156,
+            "only8_patch": 1.1559468507766724,
+            "full_patch_no_intra": -0.7412823438644409,
+            "full_patch_with_intra": -0.7622912526130676
+          },
+          "later_jointly_in_time": true
+        },
+        "93112/94274": {
+          "before": {
+            "operating_only": 0.032771944999694824,
+            "raw_trajectory": 0.7700977325439453,
+            "patch_projection": 0.15508675575256348,
+            "risk_state": 1.4018495082855225,
+            "risk_state_current": 1.425621747970581,
+            "risk_state_earlier": 1.4200563430786133,
+            "raw_level": 0.7403913140296936,
+            "raw_shape": 0.1014699935913086,
+            "aligned_shape": 0.05736649036407471,
+            "aligned_full": 0.6599398255348206,
+            "only8_patch": 0.4245680272579193,
+            "full_patch_no_intra": 0.49726027250289917,
+            "full_patch_with_intra": 0.37654590606689453
+          },
+          "later_jointly_in_time": false
+        },
+        "93202/94395": {
+          "before": {
+            "operating_only": -0.11512315273284912,
+            "raw_trajectory": 1.0444080829620361,
+            "patch_projection": 1.7783323526382446,
+            "risk_state": -1.9276304244995117,
+            "risk_state_current": -1.9033496379852295,
+            "risk_state_earlier": -1.9545739889144897,
+            "raw_level": 1.5310580730438232,
+            "raw_shape": -1.1895627975463867,
+            "aligned_shape": -0.9744399189949036,
+            "aligned_full": 1.4285850524902344,
+            "only8_patch": 1.5790798664093018,
+            "full_patch_no_intra": 1.6845011711120605,
+            "full_patch_with_intra": 1.7254782915115356
+          },
+          "later_jointly_in_time": true
+        },
+        "93218/62765": {
+          "before": {
+            "operating_only": -0.04768168926239014,
+            "raw_trajectory": -0.6158332228660583,
+            "patch_projection": 2.1428420543670654,
+            "risk_state": 2.005751609802246,
+            "risk_state_current": 2.003929853439331,
+            "risk_state_earlier": 2.012695550918579,
+            "raw_level": -0.17099317908287048,
+            "raw_shape": -1.3504260778427124,
+            "aligned_shape": -1.3434505462646484,
+            "aligned_full": -0.5823737382888794,
+            "only8_patch": -0.05867034196853638,
+            "full_patch_no_intra": 0.385851114988327,
+            "full_patch_with_intra": 0.3570912480354309
+          },
+          "later_jointly_in_time": true
+        },
+        "93224/94364": {
+          "before": {
+            "operating_only": -0.004535794258117676,
+            "raw_trajectory": -0.661552369594574,
+            "patch_projection": 1.2080265283584595,
+            "risk_state": 1.354496955871582,
+            "risk_state_current": 1.3570773601531982,
+            "risk_state_earlier": 1.3562275171279907,
+            "raw_level": -0.01929771900177002,
+            "raw_shape": -0.8163697719573975,
+            "aligned_shape": -0.9952067732810974,
+            "aligned_full": -0.7881563305854797,
+            "only8_patch": -0.37446528673171997,
+            "full_patch_no_intra": 0.2513463497161865,
+            "full_patch_with_intra": 0.3158114552497864
+          },
+          "later_jointly_in_time": false
+        },
+        "93387/87847": {
+          "before": {
+            "operating_only": -0.0033516883850097656,
+            "raw_trajectory": 2.3278589248657227,
+            "patch_projection": 1.8799195289611816,
+            "risk_state": -1.712782621383667,
+            "risk_state_current": -1.707385778427124,
+            "risk_state_earlier": -1.7990237474441528,
+            "raw_level": -0.9680962562561035,
+            "raw_shape": 3.324723243713379,
+            "aligned_shape": 3.2835845947265625,
+            "aligned_full": 2.3024985790252686,
+            "only8_patch": 1.6121954917907715,
+            "full_patch_no_intra": 1.3112578392028809,
+            "full_patch_with_intra": 1.3551673889160156
+          },
+          "later_jointly_in_time": true
+        },
+        "93995/95930": {
+          "before": {
+            "operating_only": -0.01169276237487793,
+            "raw_trajectory": -2.237338066101074,
+            "patch_projection": 0.3337722420692444,
+            "risk_state": 1.5803463459014893,
+            "risk_state_current": 1.589962363243103,
+            "risk_state_earlier": 1.6067464351654053,
+            "raw_level": -0.5555521249771118,
+            "raw_shape": -1.8260794878005981,
+            "aligned_shape": -1.7240090370178223,
+            "aligned_full": -2.2041563987731934,
+            "only8_patch": -1.8199623823165894,
+            "full_patch_no_intra": -0.20612910389900208,
+            "full_patch_with_intra": -0.17098622024059296
+          },
+          "later_jointly_in_time": true
+        },
+        "94258/88135": {
+          "before": {
+            "operating_only": -0.032753586769104004,
+            "raw_trajectory": 0.5866971015930176,
+            "patch_projection": -0.755562424659729,
+            "risk_state": 1.337508201599121,
+            "risk_state_current": 1.3281137943267822,
+            "risk_state_earlier": 1.3388984203338623,
+            "raw_level": 1.1998071670532227,
+            "raw_shape": -0.4436514973640442,
+            "aligned_shape": -0.3857952356338501,
+            "aligned_full": 0.6101696491241455,
+            "only8_patch": 0.9045484662055969,
+            "full_patch_no_intra": -1.030814290046692,
+            "full_patch_with_intra": -1.07438063621521
+          },
+          "later_jointly_in_time": true
+        },
+        "94281/62383": {
+          "before": {
+            "operating_only": 0.3653017282485962,
+            "raw_trajectory": -0.8259658813476562,
+            "patch_projection": 3.0199503898620605,
+            "risk_state": 5.1471662521362305,
+            "risk_state_current": 5.15466833114624,
+            "risk_state_earlier": 5.161365032196045,
+            "raw_level": -0.9133214950561523,
+            "raw_shape": 0.5484473705291748,
+            "aligned_shape": 0.4025050401687622,
+            "aligned_full": -1.0029734373092651,
+            "only8_patch": -0.3419027030467987,
+            "full_patch_no_intra": 0.7924060821533203,
+            "full_patch_with_intra": 0.682267427444458
+          },
+          "later_jointly_in_time": false
+        },
+        "94439/89074": {
+          "before": {
+            "operating_only": -0.25625669956207275,
+            "raw_trajectory": 0.5342440605163574,
+            "patch_projection": 0.40461766719818115,
+            "risk_state": 0.6502646207809448,
+            "risk_state_current": 0.6697170734405518,
+            "risk_state_earlier": 0.7185482382774353,
+            "raw_level": -0.9261370301246643,
+            "raw_shape": 1.6061437129974365,
+            "aligned_shape": 1.7690167427062988,
+            "aligned_full": 0.8164870738983154,
+            "only8_patch": 0.17858755588531494,
+            "full_patch_no_intra": -0.5832943916320801,
+            "full_patch_with_intra": -0.6244926452636719
+          },
+          "later_jointly_in_time": true
+        },
+        "94515/96099": {
+          "before": {
+            "operating_only": -0.027660131454467773,
+            "raw_trajectory": 0.17182034254074097,
+            "patch_projection": -0.8659402132034302,
+            "risk_state": 0.48814859986305237,
+            "risk_state_current": 0.4858698546886444,
+            "risk_state_earlier": 0.48954740166664124,
+            "raw_level": 0.0589221715927124,
+            "raw_shape": 0.27456915378570557,
+            "aligned_shape": 0.23244202136993408,
+            "aligned_full": 0.11369115114212036,
+            "only8_patch": -0.036192238330841064,
+            "full_patch_no_intra": -0.6958318948745728,
+            "full_patch_with_intra": -0.7107819318771362
+          },
+          "later_jointly_in_time": true
+        },
+        "94803/93641": {
+          "before": {
+            "operating_only": -0.01612567901611328,
+            "raw_trajectory": 0.4160286784172058,
+            "patch_projection": -0.08762621879577637,
+            "risk_state": 0.36155784130096436,
+            "risk_state_current": 0.3589421510696411,
+            "risk_state_earlier": 0.3641616404056549,
+            "raw_level": 0.24735772609710693,
+            "raw_shape": 0.10953187942504883,
+            "aligned_shape": 0.09019875526428223,
+            "aligned_full": 0.3692009747028351,
+            "only8_patch": 0.23083972930908203,
+            "full_patch_no_intra": 0.04279494285583496,
+            "full_patch_with_intra": 0.027372121810913086
+          },
+          "later_jointly_in_time": false
+        },
+        "94901/86921": {
+          "before": {
+            "operating_only": -0.7713968753814697,
+            "raw_trajectory": 0.11125066876411438,
+            "patch_projection": 1.1689434051513672,
+            "risk_state": 0.12323081493377686,
+            "risk_state_current": 0.18470168113708496,
+            "risk_state_earlier": 0.14828217029571533,
+            "raw_level": -0.6751005053520203,
+            "raw_shape": 0.25490736961364746,
+            "aligned_shape": 0.21810710430145264,
+            "aligned_full": 0.12709149718284607,
+            "only8_patch": 0.463787704706192,
+            "full_patch_no_intra": -0.30139094591140747,
+            "full_patch_with_intra": 0.14008605480194092
+          },
+          "later_jointly_in_time": true
+        },
+        "95123/80793": {
+          "before": {
+            "operating_only": -0.14672327041625977,
+            "raw_trajectory": -3.0030009746551514,
+            "patch_projection": -0.09042894840240479,
+            "risk_state": 3.503413677215576,
+            "risk_state_current": 3.544361114501953,
+            "risk_state_earlier": 3.5223989486694336,
+            "raw_level": -2.530776262283325,
+            "raw_shape": -0.2655179500579834,
+            "aligned_shape": -0.2765684127807617,
+            "aligned_full": -3.0397391319274902,
+            "only8_patch": -2.5537109375,
+            "full_patch_no_intra": -2.0339136123657227,
+            "full_patch_with_intra": -2.0746660232543945
+          },
+          "later_jointly_in_time": true
+        },
+        "95766/59940": {
+          "before": {
+            "operating_only": 0.013451099395751953,
+            "raw_trajectory": 0.18788695335388184,
+            "patch_projection": -0.18891870975494385,
+            "risk_state": -0.524981677532196,
+            "risk_state_current": -0.5306158661842346,
+            "risk_state_earlier": -0.5424026250839233,
+            "raw_level": 0.14852404594421387,
+            "raw_shape": -0.7910345196723938,
+            "aligned_shape": -0.7269691228866577,
+            "aligned_full": 0.19861531257629395,
+            "only8_patch": 0.1723499298095703,
+            "full_patch_no_intra": -0.005800724029541016,
+            "full_patch_with_intra": 0.03549870848655701
+          },
+          "later_jointly_in_time": true
+        },
+        "95770/62931": {
+          "before": {
+            "operating_only": 0.029124975204467773,
+            "raw_trajectory": -0.5385060906410217,
+            "patch_projection": 1.8596363067626953,
+            "risk_state": 1.7663424015045166,
+            "risk_state_current": 1.7586283683776855,
+            "risk_state_earlier": 1.772742509841919,
+            "raw_level": -0.5476860404014587,
+            "raw_shape": -0.011642098426818848,
+            "aligned_shape": -0.05611848831176758,
+            "aligned_full": -0.5803630352020264,
+            "only8_patch": -0.5366274118423462,
+            "full_patch_no_intra": 0.777592658996582,
+            "full_patch_with_intra": 0.7778668999671936
+          },
+          "later_jointly_in_time": false
+        },
+        "96332/76861": {
+          "before": {
+            "operating_only": -0.016312837600708008,
+            "raw_trajectory": -0.07582057267427444,
+            "patch_projection": -2.121614456176758,
+            "risk_state": -0.28393903374671936,
+            "risk_state_current": -0.49343156814575195,
+            "risk_state_earlier": -0.2563059329986572,
+            "raw_level": -1.674673080444336,
+            "raw_shape": 2.082594871520996,
+            "aligned_shape": 2.2272374629974365,
+            "aligned_full": 0.09283776581287384,
+            "only8_patch": -1.1634851694107056,
+            "full_patch_no_intra": -1.2846602201461792,
+            "full_patch_with_intra": -0.9639155268669128
+          },
+          "later_jointly_in_time": true
+        }
+      }
+    },
+    "difficult": {
+      "pairs": 12,
+      "scores": {
+        "operating_only": {
+          "correct": 6,
+          "ties": 0,
+          "median": 2.8848648071289062e-05,
+          "pair_log_loss": 0.7117226719856262
+        },
+        "raw_trajectory": {
+          "correct": 8,
+          "ties": 0,
+          "median": 0.3557213544845581,
+          "pair_log_loss": 1.0693777799606323
+        },
+        "patch_projection": {
+          "correct": 2,
+          "ties": 0,
+          "median": -0.616392970085144,
+          "pair_log_loss": 1.4524685144424438
+        },
+        "risk_state": {
+          "correct": 2,
+          "ties": 0,
+          "median": -1.5573673248291016,
+          "pair_log_loss": 2.075570821762085
+        },
+        "risk_state_current": {
+          "correct": 2,
+          "ties": 0,
+          "median": -1.4789464473724365,
+          "pair_log_loss": 2.057002544403076
+        },
+        "risk_state_earlier": {
+          "correct": 2,
+          "ties": 0,
+          "median": -1.5966854095458984,
+          "pair_log_loss": 2.0833003520965576
+        },
+        "raw_level": {
+          "correct": 6,
+          "ties": 0,
+          "median": 0.03787021338939667,
+          "pair_log_loss": 0.8981855511665344
+        },
+        "raw_shape": {
+          "correct": 6,
+          "ties": 0,
+          "median": 0.09361253678798676,
+          "pair_log_loss": 0.8062148690223694
+        },
+        "aligned_shape": {
+          "correct": 5,
+          "ties": 0,
+          "median": -0.09708496928215027,
+          "pair_log_loss": 0.8039156794548035
+        },
+        "aligned_full": {
+          "correct": 7,
+          "ties": 0,
+          "median": 0.33292534947395325,
+          "pair_log_loss": 1.068524718284607
+        },
+        "only8_patch": {
+          "correct": 6,
+          "ties": 0,
+          "median": -0.07532568275928497,
+          "pair_log_loss": 1.0330711603164673
+        },
+        "full_patch_no_intra": {
+          "correct": 5,
+          "ties": 0,
+          "median": -0.1648525893688202,
+          "pair_log_loss": 0.8761773109436035
+        },
+        "full_patch_with_intra": {
+          "correct": 5,
+          "ties": 0,
+          "median": -0.14667344093322754,
+          "pair_log_loss": 0.908191442489624
+        }
+      },
+      "against_initial_raw": {
+        "operating_only": {
+          "fixes": 3,
+          "regresses": 5
+        },
+        "raw_trajectory": {
+          "fixes": 0,
+          "regresses": 0
+        },
+        "patch_projection": {
+          "fixes": 1,
+          "regresses": 7
+        },
+        "risk_state": {
+          "fixes": 2,
+          "regresses": 8
+        },
+        "risk_state_current": {
+          "fixes": 2,
+          "regresses": 8
+        },
+        "risk_state_earlier": {
+          "fixes": 2,
+          "regresses": 8
+        },
+        "raw_level": {
+          "fixes": 0,
+          "regresses": 2
+        },
+        "raw_shape": {
+          "fixes": 1,
+          "regresses": 3
+        },
+        "aligned_shape": {
+          "fixes": 1,
+          "regresses": 4
+        },
+        "aligned_full": {
+          "fixes": 0,
+          "regresses": 1
+        },
+        "only8_patch": {
+          "fixes": 0,
+          "regresses": 2
+        },
+        "full_patch_no_intra": {
+          "fixes": 1,
+          "regresses": 4
+        },
+        "full_patch_with_intra": {
+          "fixes": 1,
+          "regresses": 4
+        }
+      },
+      "same_pairs_plus32_in_time": {
+        "pairs": 4,
+        "before": {
+          "operating_only": {
+            "correct": 2,
+            "ties": 0,
+            "median": 0.007857322692871094,
+            "pair_log_loss": 0.7358794212341309
+          },
+          "raw_trajectory": {
+            "correct": 3,
+            "ties": 0,
+            "median": 0.38930243253707886,
+            "pair_log_loss": 1.3016005754470825
+          },
+          "patch_projection": {
+            "correct": 1,
+            "ties": 0,
+            "median": -0.38222455978393555,
+            "pair_log_loss": 1.2376222610473633
+          },
+          "risk_state": {
+            "correct": 0,
+            "ties": 0,
+            "median": -1.8619900941848755,
+            "pair_log_loss": 2.109245777130127
+          },
+          "risk_state_current": {
+            "correct": 0,
+            "ties": 0,
+            "median": -1.86789071559906,
+            "pair_log_loss": 2.112431764602661
+          },
+          "risk_state_earlier": {
+            "correct": 0,
+            "ties": 0,
+            "median": -1.9171202182769775,
+            "pair_log_loss": 2.133803129196167
+          },
+          "raw_level": {
+            "correct": 1,
+            "ties": 0,
+            "median": -0.5888471603393555,
+            "pair_log_loss": 1.1115469932556152
+          },
+          "raw_shape": {
+            "correct": 2,
+            "ties": 0,
+            "median": 0.11307024955749512,
+            "pair_log_loss": 1.0700531005859375
+          },
+          "aligned_shape": {
+            "correct": 2,
+            "ties": 0,
+            "median": 0.20849913358688354,
+            "pair_log_loss": 1.042117714881897
+          },
+          "aligned_full": {
+            "correct": 3,
+            "ties": 0,
+            "median": 0.5308976173400879,
+            "pair_log_loss": 1.280320405960083
+          },
+          "only8_patch": {
+            "correct": 2,
+            "ties": 0,
+            "median": -0.07532568275928497,
+            "pair_log_loss": 1.265234351158142
+          },
+          "full_patch_no_intra": {
+            "correct": 2,
+            "ties": 0,
+            "median": -0.032061368227005005,
+            "pair_log_loss": 0.6227560639381409
+          },
+          "full_patch_with_intra": {
+            "correct": 2,
+            "ties": 0,
+            "median": -0.007671654224395752,
+            "pair_log_loss": 0.6180997490882874
+          }
+        },
+        "later": {
+          "operating_only": {
+            "correct": 2,
+            "ties": 0,
+            "median": 0.0428776741027832,
+            "pair_log_loss": 0.6628172799560398
+          },
+          "raw_trajectory": {
+            "correct": 1,
+            "ties": 0,
+            "median": -1.4153375625610352,
+            "pair_log_loss": 1.3563780507215872
+          },
+          "patch_projection": {
+            "correct": 1,
+            "ties": 0,
+            "median": -1.3294048607349396,
+            "pair_log_loss": 1.4217058968685832
+          },
+          "risk_state": {
+            "correct": 0,
+            "ties": 0,
+            "median": -1.9761705100536346,
+            "pair_log_loss": 2.2829551562901576
+          },
+          "risk_state_current": {
+            "correct": 0,
+            "ties": 0,
+            "median": -1.9630592465400696,
+            "pair_log_loss": 2.294436150356525
+          },
+          "risk_state_earlier": {
+            "correct": 0,
+            "ties": 0,
+            "median": -1.9691725373268127,
+            "pair_log_loss": 2.408503048728571
+          },
+          "raw_level": {
+            "correct": 1,
+            "ties": 0,
+            "median": -0.5516733825206757,
+            "pair_log_loss": 1.0273194367118825
+          },
+          "raw_shape": {
+            "correct": 1,
+            "ties": 0,
+            "median": -0.41153915226459503,
+            "pair_log_loss": 1.006673465224225
+          },
+          "aligned_shape": {
+            "correct": 1,
+            "ties": 0,
+            "median": -0.6620332598686218,
+            "pair_log_loss": 1.0731289929927559
+          },
+          "aligned_full": {
+            "correct": 1,
+            "ties": 0,
+            "median": -1.37023264169693,
+            "pair_log_loss": 1.3849994218061965
+          },
+          "only8_patch": {
+            "correct": 1,
+            "ties": 0,
+            "median": -0.7231229841709137,
+            "pair_log_loss": 1.0717262398394278
+          },
+          "full_patch_no_intra": {
+            "correct": 1,
+            "ties": 0,
+            "median": -0.08554935455322266,
+            "pair_log_loss": 0.6204555618764551
+          },
+          "full_patch_with_intra": {
+            "correct": 2,
+            "ties": 0,
+            "median": -0.04090149700641632,
+            "pair_log_loss": 0.5980695252022927
+          }
+        }
+      },
+      "details": {
+        "63545/80546": {
+          "before": {
+            "operating_only": -0.39621615409851074,
+            "raw_trajectory": -3.6985082626342773,
+            "patch_projection": -0.452865332365036,
+            "risk_state": -0.8459696769714355,
+            "risk_state_current": -0.8589251041412354,
+            "risk_state_earlier": -0.8822671175003052,
+            "raw_level": -1.8855500221252441,
+            "raw_shape": -2.6474623680114746,
+            "aligned_shape": -2.661496162414551,
+            "aligned_full": -3.7590415477752686,
+            "only8_patch": -3.149527072906494,
+            "full_patch_no_intra": -0.18342697620391846,
+            "full_patch_with_intra": -0.1479317545890808
+          },
+          "later_jointly_in_time": true
+        },
+        "63566/80053": {
+          "before": {
+            "operating_only": 0.0793924331665039,
+            "raw_trajectory": 0.30577850341796875,
+            "patch_projection": 0.047541916370391846,
+            "risk_state": -2.8780105113983154,
+            "risk_state_current": -2.8768563270568848,
+            "risk_state_earlier": -2.9519734382629395,
+            "raw_level": -0.9198570251464844,
+            "raw_shape": 1.2539976835250854,
+            "aligned_shape": 1.3745793104171753,
+            "aligned_full": 0.5742807388305664,
+            "only8_patch": -0.2727886438369751,
+            "full_patch_no_intra": 1.1293227672576904,
+            "full_patch_with_intra": 1.0355184078216553
+          },
+          "later_jointly_in_time": true
+        },
+        "63690/62399": {
+          "before": {
+            "operating_only": 0.00950634479522705,
+            "raw_trajectory": 0.40566420555114746,
+            "patch_projection": -4.713588714599609,
+            "risk_state": -3.1785311698913574,
+            "risk_state_current": -3.2206900119781494,
+            "risk_state_earlier": -3.5201375484466553,
+            "raw_level": 0.6026443839073181,
+            "raw_shape": 0.45990464091300964,
+            "aligned_shape": -0.08202415704727173,
+            "aligned_full": -0.11929869651794434,
+            "only8_patch": -0.4452369213104248,
+            "full_patch_no_intra": -1.9682319164276123,
+            "full_patch_with_intra": -2.158872127532959
+          },
+          "later_jointly_in_time": false
+        },
+        "68901/70043": {
+          "before": {
+            "operating_only": -0.19028854370117188,
+            "raw_trajectory": 0.46142974495887756,
+            "patch_projection": -0.3654336929321289,
+            "risk_state": -1.4756460189819336,
+            "risk_state_current": -1.4756524562835693,
+            "risk_state_earlier": -1.499114990234375,
+            "raw_level": 0.5703884959220886,
+            "raw_shape": -0.47979724407196045,
+            "aligned_shape": -0.4696618318557739,
+            "aligned_full": 0.4922882914543152,
+            "only8_patch": 0.6565013527870178,
+            "full_patch_no_intra": -0.8112333416938782,
+            "full_patch_with_intra": -1.083749532699585
+          },
+          "later_jointly_in_time": false
+        },
+        "69813/73790": {
+          "before": {
+            "operating_only": -0.04198265075683594,
+            "raw_trajectory": 1.9913685321807861,
+            "patch_projection": -0.8711007833480835,
+            "risk_state": -4.375323295593262,
+            "risk_state_current": -4.387545585632324,
+            "risk_state_earlier": -4.072596549987793,
+            "raw_level": 0.3335777819156647,
+            "raw_shape": 2.335341453552246,
+            "aligned_shape": 2.3369011878967285,
+            "aligned_full": 2.0211234092712402,
+            "only8_patch": 1.1820539236068726,
+            "full_patch_no_intra": -0.19797176122665405,
+            "full_patch_with_intra": -0.4304834008216858
+          },
+          "later_jointly_in_time": false
+        },
+        "71013/69657": {
+          "before": {
+            "operating_only": 0.07964849472045898,
+            "raw_trajectory": -0.9147637486457825,
+            "patch_projection": -0.7799205780029297,
+            "risk_state": 0.027003765106201172,
+            "risk_state_current": 0.29265308380126953,
+            "risk_state_earlier": 0.28962254524230957,
+            "raw_level": -1.0207171440124512,
+            "raw_shape": 0.6556335687637329,
+            "aligned_shape": 0.5564990043640137,
+            "aligned_full": -1.1101768016815186,
+            "only8_patch": -1.1956188678741455,
+            "full_patch_no_intra": -0.908246636390686,
+            "full_patch_with_intra": -0.8793439865112305
+          },
+          "later_jointly_in_time": false
+        },
+        "74970/67451": {
+          "before": {
+            "operating_only": -0.27931714057922363,
+            "raw_trajectory": 1.9702274799346924,
+            "patch_projection": -1.4380793571472168,
+            "risk_state": -1.639088749885559,
+            "risk_state_current": -1.4822404384613037,
+            "risk_state_earlier": -1.6942558288574219,
+            "raw_level": 1.6861674785614014,
+            "raw_shape": 0.7088623046875,
+            "aligned_shape": 0.6059508323669434,
+            "aligned_full": 1.7741401195526123,
+            "only8_patch": 1.846897006034851,
+            "full_patch_no_intra": 0.42429423332214355,
+            "full_patch_with_intra": 0.40490949153900146
+          },
+          "later_jointly_in_time": false
+        },
+        "77788/85422": {
+          "before": {
+            "operating_only": 0.02516329288482666,
+            "raw_trajectory": 0.573075532913208,
+            "patch_projection": -2.3868699073791504,
+            "risk_state": -3.224026679992676,
+            "risk_state_current": -3.2247769832611084,
+            "risk_state_earlier": -3.225003480911255,
+            "raw_level": 0.9260463714599609,
+            "raw_shape": -0.27267956733703613,
+            "aligned_shape": -0.11214578151702881,
+            "aligned_full": 0.668598473072052,
+            "only8_patch": 0.7197520732879639,
+            "full_patch_no_intra": -0.14627820253372192,
+            "full_patch_with_intra": -0.14541512727737427
+          },
+          "later_jointly_in_time": true
+        },
+        "81684/80801": {
+          "before": {
+            "operating_only": -0.1881413459777832,
+            "raw_trajectory": 0.17645573616027832,
+            "patch_projection": -1.2016048431396484,
+            "risk_state": -3.196361541748047,
+            "risk_state_current": -3.1818337440490723,
+            "risk_state_earlier": -3.194840431213379,
+            "raw_level": 0.5177538990974426,
+            "raw_shape": -0.38320446014404297,
+            "aligned_shape": -0.40987062454223633,
+            "aligned_full": 0.1783362627029419,
+            "only8_patch": 0.2433755099773407,
+            "full_patch_no_intra": 0.3253478407859802,
+            "full_patch_with_intra": 0.3412436246871948
+          },
+          "later_jointly_in_time": false
+        },
+        "93218/82834": {
+          "before": {
+            "operating_only": 0.5958044528961182,
+            "raw_trajectory": -2.936981678009033,
+            "patch_projection": 0.5716214179992676,
+            "risk_state": 0.12748825550079346,
+            "risk_state_current": 0.17554855346679688,
+            "risk_state_earlier": 0.11248010396957397,
+            "raw_level": -1.646856665611267,
+            "raw_shape": -0.49636220932006836,
+            "aligned_shape": -0.13848614692687988,
+            "aligned_full": -2.62687611579895,
+            "only8_patch": -2.0250020027160645,
+            "full_patch_no_intra": 0.06244891881942749,
+            "full_patch_with_intra": 0.251433789730072
+          },
+          "later_jointly_in_time": false
+        },
+        "94515/91064": {
+          "before": {
+            "operating_only": 0.038004517555236816,
+            "raw_trajectory": -1.2718554735183716,
+            "patch_projection": -0.4165167808532715,
+            "risk_state": -0.23404499888420105,
+            "risk_state_current": -0.23382261395454407,
+            "risk_state_earlier": -0.25670334696769714,
+            "raw_level": -0.7226377725601196,
+            "raw_shape": -0.7807347774505615,
+            "aligned_shape": -0.7306225299835205,
+            "aligned_full": -1.2329610586166382,
+            "only8_patch": -1.0849637985229492,
+            "full_patch_no_intra": -0.5283176898956299,
+            "full_patch_with_intra": -0.543436586856842
+          },
+          "later_jointly_in_time": false
+        },
+        "94803/94361": {
+          "before": {
+            "operating_only": -0.009448647499084473,
+            "raw_trajectory": 0.4728263318538666,
+            "patch_projection": -0.3115837574005127,
+            "risk_state": -0.6010368466377258,
+            "risk_state_current": -0.6072744131088257,
+            "risk_state_earlier": -0.6035062074661255,
+            "raw_level": -0.25783735513687134,
+            "raw_shape": 0.49882006645202637,
+            "aligned_shape": 0.5291440486907959,
+            "aligned_full": 0.4875144362449646,
+            "only8_patch": 0.12213727831840515,
+            "full_patch_no_intra": 0.08215546607971191,
+            "full_patch_with_intra": 0.13007181882858276
+          },
+          "later_jointly_in_time": true
+        }
+      }
+    }
+  }
+}

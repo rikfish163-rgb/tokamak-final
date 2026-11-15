@@ -1,0 +1,142 @@
+{
+  "scope": "CPU-only saved-record audit; no model forward, fit, GPU, or full-TEST ablation",
+  "population": {
+    "rows": 9460,
+    "episodes_per_arm_per_view": 946,
+    "arms": ["true_order", "shuffled_order", "matched_other_order", "random", "reverse_update"],
+    "views": ["native", "no_MNM_CIII"],
+    "exact_same_ordered_episode_keys_all_subsets": true,
+    "same_fixed_metadata_all_subsets": true,
+    "same_within_view_baseline_all_arms": true,
+    "archived_val_records_exact_match": true,
+    "locked_val_shots": 160,
+    "represented_val_shots": 145,
+    "fresh_hdf_outcomes_all_val": {"safe": 80, "disruptive": 80, "errors": 0},
+    "represented_outcomes": {"safe": 80, "disruptive": 65},
+    "groups": {
+      "safe": {"episodes": 638, "shots": 80},
+      "danger": {"episodes": 117, "shots": 64},
+      "early": {"episodes": 191, "shots": 51},
+      "disruptive": {"episodes": 308, "shots": 65}
+    },
+    "note": "danger and early shot sets overlap; disruptive macro pools each shot's episodes"
+  },
+  "hdf_reconciliation": {
+    "only_locked_val_hdf_opened": true,
+    "fields": ["meta/IsDisrupt", "meta/DownTime", "data/ip StartTime attribute", "data/ip SampleRate attribute", "data/ip shape"],
+    "waveform_samples_read": false,
+    "screen_episodes_checked": 946,
+    "outcome_group_point_label_lead_disagreements": 0,
+    "min_disruptive_query_lead_ms": 10.04,
+    "max_abs_recorded_lead_error_ms": 0.0,
+    "source_positive_window": "max(25ms, AdvancedTime); missing uses 25ms; boundary tolerance +1e-6 ms",
+    "missing_advanced_time_represented_shots": 81,
+    "missing_advanced_time_episodes": 642,
+    "val_matched_pair_rows": 102,
+    "val_anchor_and_other_queries_checked": 204,
+    "val_pair_errors": 0,
+    "min_disruptive_pair_query_lead_ms": 10.865057684
+  },
+  "arithmetic": {
+    "threshold_probability": 0.7258946895599365,
+    "threshold_logit": 0.9738925713822922,
+    "margin_definition": "softplus((1-2*HDF_IsDisrupt)*(logit-threshold_logit)); updated minus baseline",
+    "point_definition": "softplus(logit)-source_window_label*logit; updated minus baseline",
+    "negative_delta_means_lower_loss": true,
+    "row_margin_delta_max_abs_error": 5.447031714567174e-16,
+    "row_point_delta_max_abs_error": 0.0,
+    "row_logit_delta_max_abs_error": 0.0,
+    "shot_macro_margin_max_abs_error_vs_saved_summary": 2.1250362580715887e-17,
+    "shot_macro_point_max_abs_error_vs_saved_summary": 0.0,
+    "balanced_max_abs_error_vs_saved_summary": 6.179952383167375e-18,
+    "saved_improved_worsened_count_mismatches": 0,
+    "nonfinite_json_numeric_values": 0,
+    "metric_order": ["safe", "danger", "early", "disruptive"],
+    "aggregation": "mean episodes within shot, then mean shots within group",
+    "balanced": "(safe shot macro + disruptive shot macro) / 2",
+    "shot_macro_results": {
+      "native": {
+        "true_order": {"margin": [-0.000013142221, 0.001865001175, -0.000075751383, 0.001177659498], "point": [0.000013546964, 0.001218803082, -0.000295664626, 0.000761907243], "balanced_margin": 0.000582258639},
+        "shuffled_order": {"margin": [-0.000129972401, -0.000362451222, -0.000381247574, -0.000321716677], "point": [-0.000204706453, -0.000323113020, -0.000503827221, -0.000518794143], "balanced_margin": -0.000225844539},
+        "matched_other_order": {"margin": [0.000058849431, 0.002001122473, 0.000769439016, 0.001480789971], "point": [0.000119415230, 0.001388029765, -0.000401462767, 0.000860182661], "balanced_margin": 0.000769819701},
+        "random": {"margin": [0.000088564502, 0.000458512420, 0.000417381522, 0.000229046348], "point": [0.000130854988, 0.000420238351, 0.000492391790, 0.000577492535], "balanced_margin": 0.000158805425},
+        "reverse_update": {"margin": [0.000051329409, -0.001848766373, 0.000076309744, -0.001173533259], "point": [0.000046749135, -0.001192729972, 0.000379793986, -0.000696448409], "balanced_margin": -0.000561101925}
+      },
+      "no_MNM_CIII": {
+        "true_order": {"margin": [0.000104830619, 0.001946922885, -0.000347818359, 0.000880667655], "point": [0.000291806523, 0.001606486842, -0.001090094335, 0.000436237976], "balanced_margin": 0.000492749137},
+        "shuffled_order": {"margin": [-0.000046027519, -0.000178380423, 0.000604437635, 0.000139507492], "point": [-0.000053493774, -0.000135697344, -0.000817088320, -0.000705973560], "balanced_margin": 0.000046739986},
+        "matched_other_order": {"margin": [0.000107890450, 0.001859404281, 0.000294048601, 0.001003280670], "point": [0.000251088604, 0.001507567876, -0.000796477626, 0.000614323986], "balanced_margin": 0.000555585560},
+        "random": {"margin": [0.000003026936, 0.000296151367, -0.000518409350, -0.000199684935], "point": [-0.000019076372, 0.000197643716, 0.000876073538, 0.000777793568], "balanced_margin": -0.000098328999},
+        "reverse_update": {"margin": [-0.000056820281, -0.001932225770, 0.000310654292, -0.000890474316], "point": [-0.000221753510, -0.001583841258, 0.001124150344, -0.000405078713], "balanced_margin": -0.000473647299}
+      }
+    }
+  },
+  "gate": {
+    "native": {"safe_improved": true, "danger_improved": false, "early_protected": true, "beats_shuffled": false, "beats_matched_other": true, "beats_random": false, "beats_reverse": false},
+    "no_MNM_CIII": {"safe_improved": false, "danger_improved": false, "early_protected": true, "beats_shuffled": false, "beats_matched_other": true, "beats_random": false, "beats_reverse": false},
+    "passed": false,
+    "all_saved_gate_booleans_match": true
+  },
+  "temporary_states": {
+    "device_used_for_audit": "cpu",
+    "per_view_arm_shape": [946, 4, 64],
+    "dtype": "float32",
+    "tensors": 10,
+    "state_rows": 9460,
+    "nonfinite_values": 0,
+    "eligible_rows": 9460,
+    "zero_gradient_rows": 0,
+    "nonzero_state_rows": 9460,
+    "ineligible_or_zero_cases_observed": false,
+    "max_abs_frobenius_norm_error_from_0_1": 1.7130014767774426e-9,
+    "max_abs_frobenius_norm_error_vs_saved_record": 5.551115123125783e-17,
+    "min_saved_positive_gradient_norm": 0.004113683628205722,
+    "reverse_plus_true_max_frobenius_norm_native": 1.3152611463150217e-6,
+    "reverse_plus_true_max_frobenius_norm_masked": 9.258073243345615e-7,
+    "reverse_true_largest_cosine_native": -0.9999999999135047,
+    "reverse_true_largest_cosine_masked": -0.9999999999571442
+  },
+  "teacher_receipt_review": {
+    "independent_teacher_refit": false,
+    "train_pairs": 376,
+    "train_excluded": 0,
+    "train_events": 158,
+    "train_shots": 149,
+    "saved_budget_steps": 512,
+    "saved_batch_size": 64,
+    "saved_device": "cpu",
+    "common_seed": 131,
+    "schedule_reconstructed_exactly": true,
+    "event_shuffle_signs_reconstructed_exactly": true,
+    "event_signs": {"negative": 78, "positive": 80},
+    "row_signs": {"negative": 190, "positive": 186},
+    "forced_positive_singleton": {"shot": 1054064, "event_id": 126},
+    "actual_ffn_parity_is_saved_receipt_not_rerun": true,
+    "saved_parity_scope_per_arm_view_episodes": 64
+  },
+  "integrity": {
+    "screen_manifest_files_matched": 8,
+    "screen_manifest_missing_or_unexpected": 0,
+    "bound_code_files_matched": 133,
+    "source_checkpoint_matches_protocol": true,
+    "pair_manifest_files_matched": 5,
+    "raw_hdf_full_file_hashes_recomputed": false,
+    "screen_sha256": {
+      "actual_ffn_parity.json": "c4a88b435d8cbafefa285e5844951336c4c7b8d0dabaddafc5c7c4aa6cb7e500",
+      "completed.json": "d4609b0d8f53dd6651061436490275896bfc97bd4b7a488566c6a085f3eaa34d",
+      "order_diagnostic.json": "4329dad61a66a7e4e13f84fc3035d230b4f9d8802a2a357bc7091d5887b6b590",
+      "protocol.json": "2c531fd42c7bd9095c0d11daa317245e5f085bd2e70ac0cff9b3eec9dcca3dfa",
+      "records.json": "44ca07e3a23fb03f60cc419c287ea0307ffd5331387694f3707cd505fe8075ba",
+      "summary.json": "af6dff4dc84059ced75546a0f413a0cccb5e2a076aebe55771af83a1c87fbf14",
+      "teachers.json": "e04330e19537041f6168a3f104df0d960a7e5aae82282b8a53a37adba5e4a3a8",
+      "temporary_states.pt": "239bfa357413b1c4b83e8225910fa98af636635141963efd228e9a18bb70c163",
+      "training.json": "0ecfad0e7acef629ce8367324ee04e5d10eee12664b0941df8c33171e092b28b"
+    },
+    "completed_json_digest_has_no_self_manifest": true
+  },
+  "limitations": [
+    "Retrospectively selected source VAL queries are not independent live-stream evidence.",
+    "No teacher fit, model forward, waveform rehash, GPU job, or full-TEST ablation was performed.",
+    "An initial git status --short was run read-only in error despite the no-git instruction; no git write operation was run."
+  ]
+}

@@ -1,0 +1,457 @@
+{
+  "status": "INDEPENDENT_TRAIN_PATCH_SELECTION_RECOUNT",
+  "result_sha256": "f1cd5cd2895140bdcd41752b0458e3d358cbdf7ab396c62d0471c4dca86c122c",
+  "bank_seal_sha256": "2a5104bd11e57c92a3706ac5c8a0b060494c8211e03c8ff5d0fd4d780343aded",
+  "choices_sha256": "a57f157e7f7f808d52073913ce20ecf3771db97a1bf5f6823dad8e625d709dc1",
+  "fit_sha256": "e64181148124463d1f26785fe5bd8cf7bf0acd08cc23cce75fe56ba924081be5",
+  "verifier_sha256": "c1f13da6393a5561639a6dff97b7835a80ebd5cf363d31ac05182611a7a2cc04",
+  "recorded_input_hashes_checked": 1409,
+  "truth": "producer loader: HDF5 IsDisrupt/DownTime",
+  "threshold_float64": 0.9738925713822922,
+  "replay": {
+    "baseline": {
+      "timely": 182,
+      "fp": 117,
+      "recovered": [],
+      "lost": [],
+      "fp_added": [],
+      "fp_removed": [],
+      "first_changed": 0
+    },
+    "arms": {
+      "risk_open": {
+        "timely": 182,
+        "fp": 132,
+        "recovered": [],
+        "lost": [],
+        "fp_added": [
+          1052344,
+          1052647,
+          1053386,
+          1054169,
+          1055110,
+          1055731,
+          1055955,
+          1056375,
+          1056916,
+          1056917,
+          1057226,
+          1057581,
+          1057943,
+          1057947,
+          1057949,
+          1058019
+        ],
+        "fp_removed": [
+          1054241
+        ],
+        "first_changed": 137,
+        "writes": 12391,
+        "per_shot_tuples_checked": 1353,
+        "selected_positive_hard_shots": [
+          1054241
+        ],
+        "selected_negative_hard_shots": [
+          1052344,
+          1052647,
+          1053386,
+          1054169,
+          1055110,
+          1055731,
+          1055955,
+          1056375,
+          1056916,
+          1056917,
+          1057226,
+          1057581,
+          1057943,
+          1057947,
+          1057949,
+          1058019
+        ]
+      },
+      "risk_guarded": {
+        "timely": 182,
+        "fp": 117,
+        "recovered": [],
+        "lost": [],
+        "fp_added": [],
+        "fp_removed": [],
+        "first_changed": 0,
+        "writes": 0,
+        "per_shot_tuples_checked": 1353,
+        "selected_positive_hard_shots": [],
+        "selected_negative_hard_shots": []
+      },
+      "true_open": {
+        "timely": 182,
+        "fp": 129,
+        "recovered": [],
+        "lost": [],
+        "fp_added": [
+          1052344,
+          1052647,
+          1055731,
+          1055955,
+          1055963,
+          1056375,
+          1056916,
+          1056917,
+          1057581,
+          1057947,
+          1057949,
+          1058009,
+          1058019
+        ],
+        "fp_removed": [
+          1054241
+        ],
+        "first_changed": 131,
+        "writes": 12231,
+        "per_shot_tuples_checked": 1353,
+        "selected_positive_hard_shots": [
+          1054241
+        ],
+        "selected_negative_hard_shots": [
+          1052344,
+          1052647,
+          1055731,
+          1055955,
+          1055963,
+          1056375,
+          1056916,
+          1056917,
+          1057581,
+          1057947,
+          1057949,
+          1058009,
+          1058019
+        ]
+      },
+      "true_guarded": {
+        "timely": 182,
+        "fp": 117,
+        "recovered": [],
+        "lost": [],
+        "fp_added": [],
+        "fp_removed": [],
+        "first_changed": 0,
+        "writes": 0,
+        "per_shot_tuples_checked": 1353,
+        "selected_positive_hard_shots": [],
+        "selected_negative_hard_shots": []
+      },
+      "reverse_open": {
+        "timely": 182,
+        "fp": 132,
+        "recovered": [],
+        "lost": [],
+        "fp_added": [
+          1052344,
+          1052647,
+          1053386,
+          1054169,
+          1055110,
+          1055731,
+          1055955,
+          1055963,
+          1056375,
+          1056916,
+          1056917,
+          1057226,
+          1057581,
+          1057943,
+          1057947,
+          1057949
+        ],
+        "fp_removed": [
+          1054241
+        ],
+        "first_changed": 131,
+        "writes": 12285,
+        "per_shot_tuples_checked": 1353,
+        "selected_positive_hard_shots": [
+          1054241
+        ],
+        "selected_negative_hard_shots": [
+          1052344,
+          1052647,
+          1053386,
+          1054169,
+          1055110,
+          1055731,
+          1055955,
+          1055963,
+          1056375,
+          1056916,
+          1056917,
+          1057226,
+          1057581,
+          1057943,
+          1057947,
+          1057949
+        ]
+      },
+      "reverse_guarded": {
+        "timely": 182,
+        "fp": 117,
+        "recovered": [],
+        "lost": [],
+        "fp_added": [],
+        "fp_removed": [],
+        "first_changed": 0,
+        "writes": 0,
+        "per_shot_tuples_checked": 1353,
+        "selected_positive_hard_shots": [],
+        "selected_negative_hard_shots": []
+      },
+      "true_open_scalar": {
+        "timely": 182,
+        "fp": 117,
+        "recovered": [],
+        "lost": [],
+        "fp_added": [
+          1053386
+        ],
+        "fp_removed": [
+          1054241
+        ],
+        "first_changed": 26,
+        "writes": 12231,
+        "per_shot_tuples_checked": 1353
+      },
+      "true_guarded_scalar": {
+        "timely": 182,
+        "fp": 117,
+        "recovered": [],
+        "lost": [],
+        "fp_added": [],
+        "fp_removed": [],
+        "first_changed": 0,
+        "writes": 0,
+        "per_shot_tuples_checked": 1353
+      }
+    },
+    "capacity": {
+      "available_actions": 150840,
+      "positive_actions": 30,
+      "negative_actions": 92,
+      "single_edit_timely": [
+        1052388,
+        1056284
+      ],
+      "single_edit_fp_removed": [
+        1052898,
+        1052899,
+        1053001,
+        1054050,
+        1054241,
+        1054580,
+        1057223,
+        1057945
+      ],
+      "oracle_timely": [
+        1052388,
+        1056284
+      ],
+      "oracle_fp_removed": [
+        1052898,
+        1052899,
+        1053001,
+        1054050,
+        1054159,
+        1054241,
+        1054580,
+        1057223,
+        1057899,
+        1057941,
+        1057945
+      ]
+    },
+    "hard_support_by_fold": {
+      "0": {
+        "positive_shots": [
+          1052388,
+          1053001,
+          1054241,
+          1054580,
+          1056284
+        ],
+        "negative_shots": [
+          1053386,
+          1055110,
+          1055955,
+          1055963,
+          1056375,
+          1057943,
+          1058009,
+          1058016
+        ],
+        "single_edit_timely": [
+          1052388,
+          1056284
+        ],
+        "single_edit_fp_removed": [
+          1053001,
+          1054241,
+          1054580
+        ],
+        "multiwrite_only_timely": [],
+        "multiwrite_only_fp_removed": [
+          1054159
+        ],
+        "distinct_true_benefit": [],
+        "shot_count": 271,
+        "disruptive_count": 38,
+        "counts": {
+          "positive_shots": 5,
+          "negative_shots": 8,
+          "single_edit_timely": 2,
+          "single_edit_fp_removed": 3,
+          "multiwrite_only_timely": 0,
+          "multiwrite_only_fp_removed": 1,
+          "distinct_true_benefit": 0
+        }
+      },
+      "1": {
+        "positive_shots": [
+          1052898,
+          1057223,
+          1057945
+        ],
+        "negative_shots": [
+          1054169,
+          1055731,
+          1056806,
+          1057259,
+          1058017
+        ],
+        "single_edit_timely": [],
+        "single_edit_fp_removed": [
+          1052898,
+          1057223,
+          1057945
+        ],
+        "multiwrite_only_timely": [],
+        "multiwrite_only_fp_removed": [
+          1057899
+        ],
+        "distinct_true_benefit": [],
+        "shot_count": 271,
+        "disruptive_count": 38,
+        "counts": {
+          "positive_shots": 3,
+          "negative_shots": 5,
+          "single_edit_timely": 0,
+          "single_edit_fp_removed": 3,
+          "multiwrite_only_timely": 0,
+          "multiwrite_only_fp_removed": 1,
+          "distinct_true_benefit": 0
+        }
+      },
+      "2": {
+        "positive_shots": [],
+        "negative_shots": [
+          1052344,
+          1052389,
+          1056917,
+          1057110
+        ],
+        "single_edit_timely": [],
+        "single_edit_fp_removed": [],
+        "multiwrite_only_timely": [],
+        "multiwrite_only_fp_removed": [],
+        "distinct_true_benefit": [],
+        "shot_count": 271,
+        "disruptive_count": 40,
+        "counts": {
+          "positive_shots": 0,
+          "negative_shots": 4,
+          "single_edit_timely": 0,
+          "single_edit_fp_removed": 0,
+          "multiwrite_only_timely": 0,
+          "multiwrite_only_fp_removed": 0,
+          "distinct_true_benefit": 0
+        }
+      },
+      "3": {
+        "positive_shots": [
+          1054050
+        ],
+        "negative_shots": [
+          1052647,
+          1054782,
+          1057581,
+          1058019
+        ],
+        "single_edit_timely": [],
+        "single_edit_fp_removed": [
+          1054050
+        ],
+        "multiwrite_only_timely": [],
+        "multiwrite_only_fp_removed": [],
+        "distinct_true_benefit": [],
+        "shot_count": 270,
+        "disruptive_count": 37,
+        "counts": {
+          "positive_shots": 1,
+          "negative_shots": 4,
+          "single_edit_timely": 0,
+          "single_edit_fp_removed": 1,
+          "multiwrite_only_timely": 0,
+          "multiwrite_only_fp_removed": 0,
+          "distinct_true_benefit": 0
+        }
+      },
+      "4": {
+        "positive_shots": [
+          1052899
+        ],
+        "negative_shots": [
+          1055961,
+          1056916,
+          1057206,
+          1057226,
+          1057516,
+          1057947,
+          1057949
+        ],
+        "single_edit_timely": [],
+        "single_edit_fp_removed": [
+          1052899
+        ],
+        "multiwrite_only_timely": [],
+        "multiwrite_only_fp_removed": [
+          1057941
+        ],
+        "distinct_true_benefit": [],
+        "shot_count": 270,
+        "disruptive_count": 35,
+        "counts": {
+          "positive_shots": 1,
+          "negative_shots": 7,
+          "single_edit_timely": 0,
+          "single_edit_fp_removed": 1,
+          "multiwrite_only_timely": 0,
+          "multiwrite_only_fp_removed": 1,
+          "distinct_true_benefit": 0
+        }
+      }
+    },
+    "distinct_true_benefit": [],
+    "promoted": false,
+    "all_single_edit_labels_checked": 163410,
+    "reachable_first_lists_checked": 1353
+  },
+  "fits": {
+    "held_choices_checked": 75420,
+    "calibration_rules_checked": 120,
+    "max_recorded_float32_utility_error": 1.7577135857926862e-09,
+    "utility_comparison": "rtol=1e-6, atol=2e-7 against float64 reconstruction"
+  },
+  "limitations": [
+    "No raw neural-forward witness or coefficient refit",
+    "Soft targets checked against loader, not independently recomputed",
+    "TRAIN diagnostic, not held-out or online performance"
+  ]
+}

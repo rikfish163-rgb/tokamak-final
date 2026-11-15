@@ -1,0 +1,255 @@
+{
+  "scope": "raw stored values; no outcomes or fitting; not coordinate calibration",
+  "columns": [
+    "negative_fraction",
+    "positive_fraction",
+    "zero_fraction",
+    "median",
+    "median_absolute_value"
+  ],
+  "aggregate": "median of the within-shot statistic; each available shot once",
+  "stats": {
+    "source_train": {
+      "shots": 1353,
+      "channels": {
+        "dx_a": {
+          "valid_shots": 1353,
+          "values": [
+            0.29411764705882354,
+            0.7058823529411765,
+            0.0,
+            0.32830255622438537,
+            0.7771057705596096
+          ],
+          "both_signs": 1172
+        },
+        "dy_a": {
+          "valid_shots": 1353,
+          "values": [
+            0.001949317738791423,
+            0.9980506822612085,
+            0.0,
+            0.4456708949635112,
+            0.4600129055509163
+          ],
+          "both_signs": 663
+        },
+        "sxr_skew": {
+          "valid_shots": 1353,
+          "values": [
+            0.0,
+            1.0,
+            0.0,
+            0.4562193214402822,
+            0.4562193214402822
+          ],
+          "both_signs": 195
+        },
+        "xuv_skew": {
+          "valid_shots": 1353,
+          "values": [
+            0.8777292576419214,
+            0.1222707423580786,
+            0.0,
+            -0.12279203796831296,
+            0.28625641246452904
+          ],
+          "both_signs": 714
+        },
+        "Z_proxy": {
+          "valid_shots": 1353,
+          "values": [
+            0.0,
+            1.0,
+            0.0,
+            1.0307362374067556e-05,
+            1.0307362374067556e-05
+          ],
+          "both_signs": 163
+        },
+        "n=1 amplitude": {
+          "valid_shots": 1353,
+          "values": [
+            0.0,
+            1.0,
+            0.0,
+            3.6059407366937632,
+            3.6059407366937632
+          ],
+          "both_signs": 0
+        }
+      }
+    },
+    "east_cold20": {
+      "shots": 20,
+      "channels": {
+        "dx_a": {
+          "valid_shots": 20,
+          "values": [
+            0.0,
+            1.0,
+            0.0,
+            14.431811679722019,
+            14.431811679722019
+          ],
+          "both_signs": 4
+        },
+        "dy_a": {
+          "valid_shots": 20,
+          "values": [
+            0.0,
+            1.0,
+            0.0,
+            5.664444660768046,
+            5.664444660768046
+          ],
+          "both_signs": 7
+        },
+        "sxr_skew": {
+          "valid_shots": 20,
+          "values": [
+            0.02534787628611216,
+            0.9746521237138879,
+            0.0,
+            0.3854003651542429,
+            0.4621072278701929
+          ],
+          "both_signs": 17
+        },
+        "xuv_skew": {
+          "valid_shots": 20,
+          "values": [
+            0.3740318503468477,
+            0.6259681496531523,
+            0.0,
+            0.17383288383885975,
+            0.9273773720875922
+          ],
+          "both_signs": 14
+        },
+        "Z_proxy": {
+          "valid_shots": 20,
+          "values": [
+            0.0011147302510910125,
+            0.998885269748909,
+            0.0,
+            1.599825368606937e-06,
+            1.6002251362118773e-06
+          ],
+          "both_signs": 12
+        },
+        "n=1 amplitude": {
+          "valid_shots": 20,
+          "values": [
+            0.0,
+            1.0,
+            0.0,
+            727.6603114051148,
+            727.6603114051148
+          ],
+          "both_signs": 0
+        }
+      }
+    },
+    "east_scored340": {
+      "shots": 340,
+      "channels": {
+        "dx_a": {
+          "valid_shots": 340,
+          "values": [
+            0.0,
+            1.0,
+            0.0,
+            19.263138525189575,
+            19.263138525189575
+          ],
+          "both_signs": 44
+        },
+        "dy_a": {
+          "valid_shots": 340,
+          "values": [
+            0.0,
+            1.0,
+            0.0,
+            6.991158949492043,
+            7.418289776938486
+          ],
+          "both_signs": 62
+        },
+        "sxr_skew": {
+          "valid_shots": 340,
+          "values": [
+            0.026677490718552847,
+            0.9733225092814471,
+            0.0,
+            0.3366640445081023,
+            0.3835681397740286
+          ],
+          "both_signs": 286
+        },
+        "xuv_skew": {
+          "valid_shots": 340,
+          "values": [
+            0.1528207266999591,
+            0.847179273300041,
+            0.0,
+            1.1215093907200304,
+            1.5768464882509914
+          ],
+          "both_signs": 249
+        },
+        "Z_proxy": {
+          "valid_shots": 340,
+          "values": [
+            0.018331620580787057,
+            0.9816683794192129,
+            0.0,
+            6.552761528059036e-07,
+            6.948294672116159e-07
+          ],
+          "both_signs": 238
+        },
+        "n=1 amplitude": {
+          "valid_shots": 340,
+          "values": [
+            0.0,
+            1.0,
+            0.0,
+            797.3790288466915,
+            797.3790288466915
+          ],
+          "both_signs": 0
+        }
+      }
+    }
+  },
+  "existing_cold_map": {
+    "policy": "density_gain",
+    "coefficients": {
+      "dx_a": {
+        "gain": 1.0,
+        "offset": 0.0
+      },
+      "dy_a": {
+        "gain": 1.0,
+        "offset": 0.0
+      },
+      "sxr_skew": {
+        "gain": 1.0,
+        "offset": 0.0
+      },
+      "xuv_skew": {
+        "gain": 1.0,
+        "offset": 0.0
+      },
+      "Z_proxy": {
+        "gain": 1.0,
+        "offset": 0.0
+      },
+      "n=1 amplitude": {
+        "gain": 1.0,
+        "offset": 0.0
+      }
+    }
+  }
+}

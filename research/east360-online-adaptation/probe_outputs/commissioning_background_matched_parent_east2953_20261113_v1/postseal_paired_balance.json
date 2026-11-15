@@ -1,0 +1,167 @@
+{
+  "scope": "PAIRED_HISTORICAL_COMPOSITION_SENSITIVITY",
+  "n_each": 816,
+  "n_draws": 1000,
+  "bands": {
+    "0.2": {
+      "level": {
+        "current_vs_parent": {
+          "delta_tpr_pp": [
+            0.0,
+            0.24509803921568626,
+            0.49019607843137253
+          ],
+          "delta_fpr_pp": [
+            0.24509803921568626,
+            0.49019607843137253,
+            0.7352941176470588
+          ],
+          "fraction_more_timely": 0.923,
+          "fraction_within_cap_and_more_timely": {
+            "0.1": 0.0,
+            "0.15": 0.921,
+            "0.2": 0.923
+          }
+        },
+        "current_vs_earlier": {
+          "delta_tpr_pp": [
+            -0.857843137254902,
+            -0.49019607843137253,
+            -0.12254901960784313
+          ],
+          "delta_fpr_pp": [
+            -0.24509803921568626,
+            0.12254901960784313,
+            0.3676470588235294
+          ],
+          "fraction_more_timely": 0.0,
+          "fraction_within_cap_and_more_timely": {
+            "0.1": 0.0,
+            "0.15": 0.0,
+            "0.2": 0.0
+          }
+        }
+      },
+      "drift": {
+        "current_vs_parent": {
+          "delta_tpr_pp": [
+            0.49019607843137253,
+            0.7352941176470588,
+            1.1029411764705883
+          ],
+          "delta_fpr_pp": [
+            0.3676470588235294,
+            0.7352941176470588,
+            1.1029411764705883
+          ],
+          "fraction_more_timely": 1.0,
+          "fraction_within_cap_and_more_timely": {
+            "0.1": 0.0,
+            "0.15": 0.001,
+            "0.2": 0.997
+          }
+        },
+        "current_vs_earlier": {
+          "delta_tpr_pp": [
+            -0.3676470588235294,
+            -0.12254901960784313,
+            0.24509803921568626
+          ],
+          "delta_fpr_pp": [
+            -0.3676470588235294,
+            0.0,
+            0.24509803921568626
+          ],
+          "fraction_more_timely": 0.205,
+          "fraction_within_cap_and_more_timely": {
+            "0.1": 0.0,
+            "0.15": 0.0,
+            "0.2": 0.204
+          }
+        }
+      }
+    },
+    "0.15": {
+      "level": {
+        "current_vs_parent": {
+          "delta_tpr_pp": [
+            -0.24509803921568626,
+            0.0,
+            0.24509803921568626
+          ],
+          "delta_fpr_pp": [
+            0.0,
+            0.24509803921568626,
+            0.49019607843137253
+          ],
+          "fraction_more_timely": 0.34,
+          "fraction_within_cap_and_more_timely": {
+            "0.1": 0.333,
+            "0.15": 0.34,
+            "0.2": 0.34
+          }
+        },
+        "current_vs_earlier": {
+          "delta_tpr_pp": [
+            -1.2254901960784315,
+            -0.857843137254902,
+            -0.6127450980392157
+          ],
+          "delta_fpr_pp": [
+            -0.7352941176470588,
+            -0.49019607843137253,
+            -0.24509803921568626
+          ],
+          "fraction_more_timely": 0.0,
+          "fraction_within_cap_and_more_timely": {
+            "0.1": 0.0,
+            "0.15": 0.0,
+            "0.2": 0.0
+          }
+        }
+      },
+      "drift": {
+        "current_vs_parent": {
+          "delta_tpr_pp": [
+            0.3676470588235294,
+            0.49019607843137253,
+            0.7352941176470588
+          ],
+          "delta_fpr_pp": [
+            0.12254901960784313,
+            0.24509803921568626,
+            0.49019607843137253
+          ],
+          "fraction_more_timely": 1.0,
+          "fraction_within_cap_and_more_timely": {
+            "0.1": 0.072,
+            "0.15": 1.0,
+            "0.2": 1.0
+          }
+        },
+        "current_vs_earlier": {
+          "delta_tpr_pp": [
+            0.0,
+            0.3676470588235294,
+            0.7352941176470588
+          ],
+          "delta_fpr_pp": [
+            -0.24509803921568626,
+            -0.24509803921568626,
+            0.0
+          ],
+          "fraction_more_timely": 0.965,
+          "fraction_within_cap_and_more_timely": {
+            "0.1": 0.068,
+            "0.15": 0.965,
+            "0.2": 0.965
+          }
+        }
+      }
+    }
+  },
+  "input_seals": {
+    "parent": "5e78884bbb903bbca24b4bc8d7e36dfb7e34e587b5985227e63cbcb80d8f7add",
+    "background": "d1ab8ecd41e47b3719600d11b8ba5222108f92f108c940100d2da02d9ac79368"
+  }
+}

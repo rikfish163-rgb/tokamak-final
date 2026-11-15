@@ -1,0 +1,261 @@
+{
+  "scope": "POSTSEAL MATCH SUPPORT ONLY",
+  "features": [
+    "risk",
+    "current_level",
+    "field_level",
+    "current_change"
+  ],
+  "calipers": [
+    0.5,
+    0.35,
+    0.35,
+    0.5
+  ],
+  "analysis": {
+    "train_native": {
+      "scanned_eligible_endpoints": 3049,
+      "full": {
+        "positive_shots": 36,
+        "negative_shots": 1075,
+        "positives_with_any_safe": 0,
+        "safes_with_any_positive": 0,
+        "disjoint_pairs": 0
+      },
+      "former_anchor_subset": {
+        "positive_shots": 36,
+        "negative_shots": 1075,
+        "positives_with_any_safe": 0,
+        "safes_with_any_positive": 0,
+        "disjoint_pairs": 0
+      },
+      "removing_dimension_diagnostic": {
+        "only_risk": {
+          "positive_shots": 36,
+          "negative_shots": 1075,
+          "positives_with_any_safe": 1,
+          "safes_with_any_positive": 9,
+          "disjoint_pairs": 1
+        },
+        "only_context": {
+          "positive_shots": 36,
+          "negative_shots": 1075,
+          "positives_with_any_safe": 36,
+          "safes_with_any_positive": 879,
+          "disjoint_pairs": 36
+        },
+        "without_risk": {
+          "positive_shots": 36,
+          "negative_shots": 1075,
+          "positives_with_any_safe": 36,
+          "safes_with_any_positive": 879,
+          "disjoint_pairs": 36
+        },
+        "without_current_level": {
+          "positive_shots": 36,
+          "negative_shots": 1075,
+          "positives_with_any_safe": 1,
+          "safes_with_any_positive": 3,
+          "disjoint_pairs": 1
+        },
+        "without_field_level": {
+          "positive_shots": 36,
+          "negative_shots": 1075,
+          "positives_with_any_safe": 0,
+          "safes_with_any_positive": 0,
+          "disjoint_pairs": 0
+        },
+        "without_current_change": {
+          "positive_shots": 36,
+          "negative_shots": 1075,
+          "positives_with_any_safe": 0,
+          "safes_with_any_positive": 0,
+          "disjoint_pairs": 0
+        }
+      }
+    },
+    "val_native": {
+      "scanned_eligible_endpoints": 225,
+      "full": {
+        "positive_shots": 13,
+        "negative_shots": 74,
+        "positives_with_any_safe": 2,
+        "safes_with_any_positive": 2,
+        "disjoint_pairs": 2
+      },
+      "former_anchor_subset": {
+        "positive_shots": 13,
+        "negative_shots": 74,
+        "positives_with_any_safe": 2,
+        "safes_with_any_positive": 2,
+        "disjoint_pairs": 2
+      },
+      "removing_dimension_diagnostic": {
+        "only_risk": {
+          "positive_shots": 13,
+          "negative_shots": 74,
+          "positives_with_any_safe": 4,
+          "safes_with_any_positive": 9,
+          "disjoint_pairs": 4
+        },
+        "only_context": {
+          "positive_shots": 13,
+          "negative_shots": 74,
+          "positives_with_any_safe": 13,
+          "safes_with_any_positive": 17,
+          "disjoint_pairs": 13
+        },
+        "without_risk": {
+          "positive_shots": 13,
+          "negative_shots": 74,
+          "positives_with_any_safe": 13,
+          "safes_with_any_positive": 17,
+          "disjoint_pairs": 13
+        },
+        "without_current_level": {
+          "positive_shots": 13,
+          "negative_shots": 74,
+          "positives_with_any_safe": 2,
+          "safes_with_any_positive": 3,
+          "disjoint_pairs": 2
+        },
+        "without_field_level": {
+          "positive_shots": 13,
+          "negative_shots": 74,
+          "positives_with_any_safe": 3,
+          "safes_with_any_positive": 5,
+          "disjoint_pairs": 3
+        },
+        "without_current_change": {
+          "positive_shots": 13,
+          "negative_shots": 74,
+          "positives_with_any_safe": 2,
+          "safes_with_any_positive": 2,
+          "disjoint_pairs": 2
+        }
+      }
+    },
+    "east_cold": {
+      "scanned_eligible_endpoints": 955,
+      "full": {
+        "positive_shots": 8,
+        "negative_shots": 8,
+        "positives_with_any_safe": 2,
+        "safes_with_any_positive": 2,
+        "disjoint_pairs": 2
+      },
+      "former_anchor_subset": {
+        "positive_shots": 8,
+        "negative_shots": 8,
+        "positives_with_any_safe": 2,
+        "safes_with_any_positive": 2,
+        "disjoint_pairs": 2
+      },
+      "removing_dimension_diagnostic": {
+        "only_risk": {
+          "positive_shots": 8,
+          "negative_shots": 8,
+          "positives_with_any_safe": 2,
+          "safes_with_any_positive": 6,
+          "disjoint_pairs": 2
+        },
+        "only_context": {
+          "positive_shots": 8,
+          "negative_shots": 8,
+          "positives_with_any_safe": 8,
+          "safes_with_any_positive": 7,
+          "disjoint_pairs": 7
+        },
+        "without_risk": {
+          "positive_shots": 8,
+          "negative_shots": 8,
+          "positives_with_any_safe": 8,
+          "safes_with_any_positive": 7,
+          "disjoint_pairs": 7
+        },
+        "without_current_level": {
+          "positive_shots": 8,
+          "negative_shots": 8,
+          "positives_with_any_safe": 2,
+          "safes_with_any_positive": 2,
+          "disjoint_pairs": 2
+        },
+        "without_field_level": {
+          "positive_shots": 8,
+          "negative_shots": 8,
+          "positives_with_any_safe": 2,
+          "safes_with_any_positive": 6,
+          "disjoint_pairs": 2
+        },
+        "without_current_change": {
+          "positive_shots": 8,
+          "negative_shots": 8,
+          "positives_with_any_safe": 2,
+          "safes_with_any_positive": 2,
+          "disjoint_pairs": 2
+        }
+      }
+    },
+    "east_post": {
+      "scanned_eligible_endpoints": 21925,
+      "full": {
+        "positive_shots": 172,
+        "negative_shots": 161,
+        "positives_with_any_safe": 130,
+        "safes_with_any_positive": 161,
+        "disjoint_pairs": 127
+      },
+      "former_anchor_subset": {
+        "positive_shots": 172,
+        "negative_shots": 161,
+        "positives_with_any_safe": 129,
+        "safes_with_any_positive": 161,
+        "disjoint_pairs": 127
+      },
+      "removing_dimension_diagnostic": {
+        "only_risk": {
+          "positive_shots": 172,
+          "negative_shots": 161,
+          "positives_with_any_safe": 130,
+          "safes_with_any_positive": 161,
+          "disjoint_pairs": 130
+        },
+        "only_context": {
+          "positive_shots": 172,
+          "negative_shots": 161,
+          "positives_with_any_safe": 172,
+          "safes_with_any_positive": 161,
+          "disjoint_pairs": 147
+        },
+        "without_risk": {
+          "positive_shots": 172,
+          "negative_shots": 161,
+          "positives_with_any_safe": 172,
+          "safes_with_any_positive": 161,
+          "disjoint_pairs": 147
+        },
+        "without_current_level": {
+          "positive_shots": 172,
+          "negative_shots": 161,
+          "positives_with_any_safe": 130,
+          "safes_with_any_positive": 161,
+          "disjoint_pairs": 127
+        },
+        "without_field_level": {
+          "positive_shots": 172,
+          "negative_shots": 161,
+          "positives_with_any_safe": 130,
+          "safes_with_any_positive": 161,
+          "disjoint_pairs": 130
+        },
+        "without_current_change": {
+          "positive_shots": 172,
+          "negative_shots": 161,
+          "positives_with_any_safe": 130,
+          "safes_with_any_positive": 161,
+          "disjoint_pairs": 127
+        }
+      }
+    }
+  }
+}

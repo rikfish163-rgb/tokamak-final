@@ -1,0 +1,3842 @@
+{
+  "scope": "CLOCK_FEASIBILITY_ONLY_NOT_A_MODEL_COMPARISON",
+  "audited_static_support_sha256": "80907a4df552ccd871373575b70c820994cb132d45f39bc7e2be072bb8a578d9",
+  "clocks": [
+    "current",
+    "single_complete25_with_reference",
+    "single_complete25",
+    "single_observed8"
+  ],
+  "patch": 8,
+  "summary": {
+    "train": {
+      "current": {
+        "positive_support": 59,
+        "supported_misses": {
+          "qualified_native": 0,
+          "no_MNM": 0,
+          "no_MNM_CIII": 0
+        }
+      },
+      "single_complete25_with_reference": {
+        "positive_support": 122,
+        "supported_misses": {
+          "qualified_native": 4,
+          "no_MNM": 6,
+          "no_MNM_CIII": 6
+        }
+      },
+      "single_complete25": {
+        "positive_support": 138,
+        "supported_misses": {
+          "qualified_native": 4,
+          "no_MNM": 6,
+          "no_MNM_CIII": 6
+        }
+      },
+      "single_observed8": {
+        "positive_support": 145,
+        "supported_misses": {
+          "qualified_native": 5,
+          "no_MNM": 7,
+          "no_MNM_CIII": 7
+        }
+      }
+    },
+    "val": {
+      "current": {
+        "positive_support": 19,
+        "supported_misses": {
+          "qualified_native": 0,
+          "no_MNM": 0,
+          "no_MNM_CIII": 1
+        }
+      },
+      "single_complete25_with_reference": {
+        "positive_support": 50,
+        "supported_misses": {
+          "qualified_native": 2,
+          "no_MNM": 3,
+          "no_MNM_CIII": 3
+        }
+      },
+      "single_complete25": {
+        "positive_support": 63,
+        "supported_misses": {
+          "qualified_native": 5,
+          "no_MNM": 6,
+          "no_MNM_CIII": 6
+        }
+      },
+      "single_observed8": {
+        "positive_support": 69,
+        "supported_misses": {
+          "qualified_native": 7,
+          "no_MNM": 8,
+          "no_MNM_CIII": 7
+        }
+      }
+    }
+  },
+  "shorter_clock": "illustrative earlier mature observation of the first eight points, no performance tested",
+  "last": true,
+  "seconds": 2.42474826900434,
+  "positive_shots": {
+    "train": [
+      {
+        "shot": 1051501,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1051508,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1051627,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1051684,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1051701,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052062,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052267,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052269,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052272,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052388,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": false,
+          "no_MNM": true,
+          "no_MNM_CIII": false
+        }
+      },
+      {
+        "shot": 1052565,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052574,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052575,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052579,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052580,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052583,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052584,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052590,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052626,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052639,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052641,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052903,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052908,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052948,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052950,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052951,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052957,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052959,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052961,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052962,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052967,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053016,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053034,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053036,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053042,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": false,
+          "no_MNM": false,
+          "no_MNM_CIII": false
+        }
+      },
+      {
+        "shot": 1053098,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053119,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053230,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053231,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053412,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053554,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053639,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053785,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053788,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053789,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053824,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053828,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053851,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053927,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053930,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053931,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053932,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053934,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053936,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053940,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": false,
+          "no_MNM": false,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053941,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053972,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1054064,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1054153,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1054154,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1054161,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1054339,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1054837,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055074,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055118,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055220,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055235,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055239,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": false
+        }
+      },
+      {
+        "shot": 1055241,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055242,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055249,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055278,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055282,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055323,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055325,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055332,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055333,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055336,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055340,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055341,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055342,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055344,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055345,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055350,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055351,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055356,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055357,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055362,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055374,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055416,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055476,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055477,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055478,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055492,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055497,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055734,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055735,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055775,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055949,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055965,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055966,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055978,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056015,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056175,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056179,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056183,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056184,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056188,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056189,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056191,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056193,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056194,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056198,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056200,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056202,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056205,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056219,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056221,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056223,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056284,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": false,
+          "no_MNM": false,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056294,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": false,
+          "no_MNM": false,
+          "no_MNM_CIII": false
+        }
+      },
+      {
+        "shot": 1056324,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056381,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": false,
+          "no_MNM_CIII": false
+        }
+      },
+      {
+        "shot": 1056382,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056383,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056386,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": false,
+          "no_MNM_CIII": false
+        }
+      },
+      {
+        "shot": 1056390,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": false,
+          "no_MNM_CIII": false
+        }
+      },
+      {
+        "shot": 1056391,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056680,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056840,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056844,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056847,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056849,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056865,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056919,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056920,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057170,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057172,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057202,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057203,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057205,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057231,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057250,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057280,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057329,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057335,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057336,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057338,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057347,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057472,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057480,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": false,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057504,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057517,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057518,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057521,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057526,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057539,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057567,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057569,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057578,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057588,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057609,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057610,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057611,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057614,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057620,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057636,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057646,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057650,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057652,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057653,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057822,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057831,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057832,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057833,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057835,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057836,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057838,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057866,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": false,
+          "no_MNM": false,
+          "no_MNM_CIII": false
+        }
+      },
+      {
+        "shot": 1057915,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057936,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057940,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1058023,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1058040,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1058042,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1058053,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1058072,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1058098,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": false,
+          "no_MNM_CIII": false
+        }
+      }
+    ],
+    "val": [
+      {
+        "shot": 1051509,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1051525,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1051571,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1051764,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": false,
+          "no_MNM": false,
+          "no_MNM_CIII": false
+        }
+      },
+      {
+        "shot": 1052573,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052582,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052588,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052594,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052920,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": false,
+          "no_MNM": false,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052953,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052955,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052960,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1052964,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": false
+        }
+      },
+      {
+        "shot": 1053131,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": false,
+          "no_MNM": false,
+          "no_MNM_CIII": false
+        }
+      },
+      {
+        "shot": 1053826,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053928,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1053929,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1054187,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1054188,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1054229,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": false,
+          "no_MNM": false,
+          "no_MNM_CIII": false
+        }
+      },
+      {
+        "shot": 1054234,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": false,
+          "no_MNM": false,
+          "no_MNM_CIII": false
+        }
+      },
+      {
+        "shot": 1054258,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": false,
+          "no_MNM": false,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1054337,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": false,
+          "no_MNM": false,
+          "no_MNM_CIII": false
+        }
+      },
+      {
+        "shot": 1054966,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055068,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055070,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055186,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055238,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055243,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055246,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055248,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055289,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055326,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055329,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055339,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055353,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055371,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055415,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055479,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055599,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055788,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055947,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055956,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1055957,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056182,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056187,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056192,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056196,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056203,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056220,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056225,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056287,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056293,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056317,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056830,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056848,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1056921,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057200,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057204,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": false,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057254,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057283,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057327,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057445,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057448,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": false
+        }
+      },
+      {
+        "shot": 1057497,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057527,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057530,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057533,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057556,
+        "clock": {
+          "current": true,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057570,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057595,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057607,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057613,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057615,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057685,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057830,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1057917,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1058008,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": true,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1058010,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": true,
+          "single_observed8": true
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      },
+      {
+        "shot": 1058043,
+        "clock": {
+          "current": false,
+          "single_complete25_with_reference": false,
+          "single_complete25": false,
+          "single_observed8": false
+        },
+        "timely": {
+          "qualified_native": true,
+          "no_MNM": true,
+          "no_MNM_CIII": true
+        }
+      }
+    ]
+  }
+}

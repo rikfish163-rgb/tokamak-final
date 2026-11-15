@@ -1,5 +1,19 @@
 # J-TEXT → EAST: causal transfer and chronological online adaptation for tokamak disruption warning
 
+## Current research branch: EAST 360-shot online adaptation
+
+The latest study, updated through **2026-11-14**, is in [research/east360-online-adaptation](research/east360-online-adaptation/README.md).
+
+- [Technical proposal (Chinese)](research/east360-online-adaptation/EAST360_TECHNICAL_PROPOSAL_20261114.md)
+- [Presentation script (Chinese)](research/east360-online-adaptation/EAST360_TECHNICAL_TALK_20261114.md)
+- [Experimental details, shot-level results and curves](research/east360-online-adaptation/EAST360_TECHNICAL_EVIDENCE_20261114.md)
+
+The fixed 360-shot study reports **146/180 timely detections and 34/180 false alarms**. On 2,593 additional archived shots, the main-threshold false-positive rate is **27.56%**, above the acceptance limit. This intra-shot study and the support110/V3C historical route below use different splits, processing and thresholds; their results are reported separately. The `main` branch is unchanged.
+
+---
+
+## Historical repository route
+
 **Language:** [简体中文（默认）](README.md) · **English**
 
 [Code-level method details (Chinese)](IMPLEMENTATION_DETAILS_CN.md) · [Reproduction and deployment](#quickstart) · [Paper-grade package](experiments/transfer_methods_2026/paper_grade_package/README.md) · [Data contract](DATA_CONTRACT.md) · [Chinese technical report PDF](experiments/transfer_methods_2026/paper_grade_package/TECHNICAL_REPORT_zh.pdf)

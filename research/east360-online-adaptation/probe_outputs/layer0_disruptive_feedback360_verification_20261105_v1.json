@@ -1,0 +1,3603 @@
+{
+  "status": "PASS_LAYER0_FACTORIAL_HDF5_RECOUNT",
+  "n_shots": 360,
+  "n_curves": 1440,
+  "n_visible_outcomes": 36,
+  "memory_variant": "disruptive_feedback_only",
+  "online_queries": [
+    71415,
+    69791,
+    82834,
+    91064,
+    60239,
+    76861,
+    94361,
+    74562,
+    80053,
+    78668,
+    73323,
+    64562,
+    83376,
+    67900,
+    85023,
+    85123
+  ],
+  "n_accepted": 2,
+  "first_effective_rank": 41,
+  "events": [
+    {
+      "block": 1,
+      "label": null,
+      "decision": "cold_release",
+      "size": 0
+    },
+    {
+      "block": 2,
+      "label": {
+        "shot": 71415,
+        "disruptive": true,
+        "down": 2.863
+      },
+      "decision": "accepted",
+      "size": 1
+    },
+    {
+      "block": 3,
+      "label": {
+        "shot": 69791,
+        "disruptive": true,
+        "down": 2.77
+      },
+      "decision": "rejected_guard",
+      "size": 1
+    },
+    {
+      "block": 4,
+      "label": {
+        "shot": 82834,
+        "disruptive": false,
+        "down": null
+      },
+      "decision": "guard_only_safe_outcome",
+      "size": 1
+    },
+    {
+      "block": 5,
+      "label": {
+        "shot": 91064,
+        "disruptive": false,
+        "down": null
+      },
+      "decision": "guard_only_safe_outcome",
+      "size": 1
+    },
+    {
+      "block": 6,
+      "label": {
+        "shot": 60239,
+        "disruptive": false,
+        "down": null
+      },
+      "decision": "guard_only_safe_outcome",
+      "size": 1
+    },
+    {
+      "block": 7,
+      "label": {
+        "shot": 76861,
+        "disruptive": false,
+        "down": null
+      },
+      "decision": "guard_only_safe_outcome",
+      "size": 1
+    },
+    {
+      "block": 8,
+      "label": {
+        "shot": 94361,
+        "disruptive": false,
+        "down": null
+      },
+      "decision": "guard_only_safe_outcome",
+      "size": 1
+    },
+    {
+      "block": 9,
+      "label": {
+        "shot": 74562,
+        "disruptive": false,
+        "down": null
+      },
+      "decision": "guard_only_safe_outcome",
+      "size": 1
+    },
+    {
+      "block": 10,
+      "label": {
+        "shot": 80053,
+        "disruptive": false,
+        "down": null
+      },
+      "decision": "guard_only_safe_outcome",
+      "size": 1
+    },
+    {
+      "block": 11,
+      "label": {
+        "shot": 78668,
+        "disruptive": true,
+        "down": 8.19619668
+      },
+      "decision": "already_correct",
+      "size": 1
+    },
+    {
+      "block": 12,
+      "label": {
+        "shot": 73323,
+        "disruptive": false,
+        "down": null
+      },
+      "decision": "guard_only_safe_outcome",
+      "size": 1
+    },
+    {
+      "block": 13,
+      "label": {
+        "shot": 64562,
+        "disruptive": false,
+        "down": null
+      },
+      "decision": "guard_only_safe_outcome",
+      "size": 1
+    },
+    {
+      "block": 14,
+      "label": {
+        "shot": 83376,
+        "disruptive": false,
+        "down": null
+      },
+      "decision": "guard_only_safe_outcome",
+      "size": 1
+    },
+    {
+      "block": 15,
+      "label": {
+        "shot": 67900,
+        "disruptive": false,
+        "down": null
+      },
+      "decision": "guard_only_safe_outcome",
+      "size": 1
+    },
+    {
+      "block": 16,
+      "label": {
+        "shot": 85023,
+        "disruptive": true,
+        "down": 3.108
+      },
+      "decision": "accepted",
+      "size": 2
+    },
+    {
+      "block": 17,
+      "label": {
+        "shot": 85123,
+        "disruptive": false,
+        "down": null
+      },
+      "decision": "guard_only_safe_outcome",
+      "size": 2
+    },
+    {
+      "block": 18,
+      "label": null,
+      "decision": "terminal_no_query",
+      "size": 2
+    }
+  ],
+  "memory_exposure_shots": {
+    "inter": 304,
+    "both": 304
+  },
+  "reference_parity_max": {
+    "static": 0.0,
+    "intra": 0.0
+  },
+  "producer_sha256": "29e050bf03265a0248816f334f702de8aa8136fa88c9ecba4cbad9d389a98d53",
+  "verifier_sha256": "9d999830a34bd9e7c82b95f5b50b030bbd3b891d410c5b3a7a8e0ef3fb2e2543",
+  "sections": {
+    "full360": {
+      "metrics": {
+        "static": {
+          "n_disruptive": 180,
+          "n_safe": 180,
+          "tp": 116,
+          "fp": 29,
+          "tpr": 0.6444444444444445,
+          "fpr": 0.16111111111111112,
+          "j": 0.4833333333333334,
+          "early_over3000": 16,
+          "tp_30_to_3000": 100
+        },
+        "intra": {
+          "n_disruptive": 180,
+          "n_safe": 180,
+          "tp": 120,
+          "fp": 33,
+          "tpr": 0.6666666666666666,
+          "fpr": 0.18333333333333332,
+          "j": 0.4833333333333333,
+          "early_over3000": 15,
+          "tp_30_to_3000": 105
+        },
+        "inter": {
+          "n_disruptive": 180,
+          "n_safe": 180,
+          "tp": 116,
+          "fp": 29,
+          "tpr": 0.6444444444444445,
+          "fpr": 0.16111111111111112,
+          "j": 0.4833333333333334,
+          "early_over3000": 16,
+          "tp_30_to_3000": 100
+        },
+        "both": {
+          "n_disruptive": 180,
+          "n_safe": 180,
+          "tp": 122,
+          "fp": 34,
+          "tpr": 0.6777777777777778,
+          "fpr": 0.18888888888888888,
+          "j": 0.48888888888888893,
+          "early_over3000": 17,
+          "tp_30_to_3000": 105
+        }
+      },
+      "strict_pairs": {
+        "intra_vs_static": {
+          "tp_gained": [
+            79712,
+            69791,
+            73135,
+            93995,
+            75603,
+            85023
+          ],
+          "tp_lost": [
+            64258,
+            62592
+          ],
+          "fp_added": [
+            70392,
+            82834,
+            60239,
+            64562,
+            89570
+          ],
+          "fp_removed": [
+            67900
+          ]
+        },
+        "inter_vs_static": {
+          "tp_gained": [],
+          "tp_lost": [],
+          "fp_added": [],
+          "fp_removed": []
+        },
+        "both_vs_static": {
+          "tp_gained": [
+            79712,
+            70861,
+            69791,
+            73541,
+            73135,
+            93995,
+            75603,
+            85023
+          ],
+          "tp_lost": [
+            64258,
+            62592
+          ],
+          "fp_added": [
+            70392,
+            82834,
+            60239,
+            64562,
+            85123,
+            89570
+          ],
+          "fp_removed": [
+            67900
+          ]
+        },
+        "both_vs_intra": {
+          "tp_gained": [
+            70861,
+            73541
+          ],
+          "tp_lost": [],
+          "fp_added": [
+            85123
+          ],
+          "fp_removed": []
+        },
+        "both_vs_inter": {
+          "tp_gained": [
+            79712,
+            70861,
+            69791,
+            73541,
+            73135,
+            93995,
+            75603,
+            85023
+          ],
+          "tp_lost": [
+            64258,
+            62592
+          ],
+          "fp_added": [
+            70392,
+            82834,
+            60239,
+            64562,
+            85123,
+            89570
+          ],
+          "fp_removed": [
+            67900
+          ]
+        }
+      },
+      "capped_pairs": {
+        "intra_vs_static": {
+          "tp_gained": [
+            79712,
+            69791,
+            73135,
+            93995,
+            73421,
+            75603,
+            73669,
+            85023,
+            89549
+          ],
+          "tp_lost": [
+            64258,
+            89495,
+            62592,
+            85526
+          ],
+          "fp_added": [
+            70392,
+            82834,
+            60239,
+            64562,
+            89570
+          ],
+          "fp_removed": [
+            67900
+          ]
+        },
+        "inter_vs_static": {
+          "tp_gained": [],
+          "tp_lost": [],
+          "fp_added": [],
+          "fp_removed": []
+        },
+        "both_vs_static": {
+          "tp_gained": [
+            79712,
+            70861,
+            69791,
+            73135,
+            93995,
+            73421,
+            75603,
+            73669,
+            85023
+          ],
+          "tp_lost": [
+            64258,
+            89495,
+            62592,
+            85526
+          ],
+          "fp_added": [
+            70392,
+            82834,
+            60239,
+            64562,
+            85123,
+            89570
+          ],
+          "fp_removed": [
+            67900
+          ]
+        },
+        "both_vs_intra": {
+          "tp_gained": [
+            70861
+          ],
+          "tp_lost": [
+            89549
+          ],
+          "fp_added": [
+            85123
+          ],
+          "fp_removed": []
+        },
+        "both_vs_inter": {
+          "tp_gained": [
+            79712,
+            70861,
+            69791,
+            73135,
+            93995,
+            73421,
+            75603,
+            73669,
+            85023
+          ],
+          "tp_lost": [
+            64258,
+            89495,
+            62592,
+            85526
+          ],
+          "fp_added": [
+            70392,
+            82834,
+            60239,
+            64562,
+            85123,
+            89570
+          ],
+          "fp_removed": [
+            67900
+          ]
+        }
+      }
+    },
+    "after20": {
+      "metrics": {
+        "static": {
+          "n_disruptive": 172,
+          "n_safe": 168,
+          "tp": 109,
+          "fp": 23,
+          "tpr": 0.6337209302325582,
+          "fpr": 0.13690476190476192,
+          "j": 0.49681616832779624,
+          "early_over3000": 14,
+          "tp_30_to_3000": 95
+        },
+        "intra": {
+          "n_disruptive": 172,
+          "n_safe": 168,
+          "tp": 113,
+          "fp": 27,
+          "tpr": 0.6569767441860465,
+          "fpr": 0.16071428571428573,
+          "j": 0.49626245847176076,
+          "early_over3000": 13,
+          "tp_30_to_3000": 100
+        },
+        "inter": {
+          "n_disruptive": 172,
+          "n_safe": 168,
+          "tp": 109,
+          "fp": 23,
+          "tpr": 0.6337209302325582,
+          "fpr": 0.13690476190476192,
+          "j": 0.49681616832779624,
+          "early_over3000": 14,
+          "tp_30_to_3000": 95
+        },
+        "both": {
+          "n_disruptive": 172,
+          "n_safe": 168,
+          "tp": 115,
+          "fp": 28,
+          "tpr": 0.6686046511627907,
+          "fpr": 0.16666666666666666,
+          "j": 0.501937984496124,
+          "early_over3000": 15,
+          "tp_30_to_3000": 100
+        }
+      },
+      "strict_pairs": {
+        "intra_vs_static": {
+          "tp_gained": [
+            79712,
+            69791,
+            73135,
+            93995,
+            75603,
+            85023
+          ],
+          "tp_lost": [
+            64258,
+            62592
+          ],
+          "fp_added": [
+            70392,
+            82834,
+            60239,
+            64562,
+            89570
+          ],
+          "fp_removed": [
+            67900
+          ]
+        },
+        "inter_vs_static": {
+          "tp_gained": [],
+          "tp_lost": [],
+          "fp_added": [],
+          "fp_removed": []
+        },
+        "both_vs_static": {
+          "tp_gained": [
+            79712,
+            70861,
+            69791,
+            73541,
+            73135,
+            93995,
+            75603,
+            85023
+          ],
+          "tp_lost": [
+            64258,
+            62592
+          ],
+          "fp_added": [
+            70392,
+            82834,
+            60239,
+            64562,
+            85123,
+            89570
+          ],
+          "fp_removed": [
+            67900
+          ]
+        },
+        "both_vs_intra": {
+          "tp_gained": [
+            70861,
+            73541
+          ],
+          "tp_lost": [],
+          "fp_added": [
+            85123
+          ],
+          "fp_removed": []
+        },
+        "both_vs_inter": {
+          "tp_gained": [
+            79712,
+            70861,
+            69791,
+            73541,
+            73135,
+            93995,
+            75603,
+            85023
+          ],
+          "tp_lost": [
+            64258,
+            62592
+          ],
+          "fp_added": [
+            70392,
+            82834,
+            60239,
+            64562,
+            85123,
+            89570
+          ],
+          "fp_removed": [
+            67900
+          ]
+        }
+      },
+      "capped_pairs": {
+        "intra_vs_static": {
+          "tp_gained": [
+            79712,
+            69791,
+            73135,
+            93995,
+            73421,
+            75603,
+            73669,
+            85023,
+            89549
+          ],
+          "tp_lost": [
+            64258,
+            89495,
+            62592,
+            85526
+          ],
+          "fp_added": [
+            70392,
+            82834,
+            60239,
+            64562,
+            89570
+          ],
+          "fp_removed": [
+            67900
+          ]
+        },
+        "inter_vs_static": {
+          "tp_gained": [],
+          "tp_lost": [],
+          "fp_added": [],
+          "fp_removed": []
+        },
+        "both_vs_static": {
+          "tp_gained": [
+            79712,
+            70861,
+            69791,
+            73135,
+            93995,
+            73421,
+            75603,
+            73669,
+            85023
+          ],
+          "tp_lost": [
+            64258,
+            89495,
+            62592,
+            85526
+          ],
+          "fp_added": [
+            70392,
+            82834,
+            60239,
+            64562,
+            85123,
+            89570
+          ],
+          "fp_removed": [
+            67900
+          ]
+        },
+        "both_vs_intra": {
+          "tp_gained": [
+            70861
+          ],
+          "tp_lost": [
+            89549
+          ],
+          "fp_added": [
+            85123
+          ],
+          "fp_removed": []
+        },
+        "both_vs_inter": {
+          "tp_gained": [
+            79712,
+            70861,
+            69791,
+            73135,
+            93995,
+            73421,
+            75603,
+            73669,
+            85023
+          ],
+          "tp_lost": [
+            64258,
+            89495,
+            62592,
+            85526
+          ],
+          "fp_added": [
+            70392,
+            82834,
+            60239,
+            64562,
+            85123,
+            89570
+          ],
+          "fp_removed": [
+            67900
+          ]
+        }
+      }
+    },
+    "unqueried_after20": {
+      "metrics": {
+        "static": {
+          "n_disruptive": 168,
+          "n_safe": 156,
+          "tp": 108,
+          "fp": 19,
+          "tpr": 0.6428571428571429,
+          "fpr": 0.12179487179487179,
+          "j": 0.5210622710622711,
+          "early_over3000": 14,
+          "tp_30_to_3000": 94
+        },
+        "intra": {
+          "n_disruptive": 168,
+          "n_safe": 156,
+          "tp": 110,
+          "fp": 21,
+          "tpr": 0.6547619047619048,
+          "fpr": 0.1346153846153846,
+          "j": 0.5201465201465202,
+          "early_over3000": 13,
+          "tp_30_to_3000": 97
+        },
+        "inter": {
+          "n_disruptive": 168,
+          "n_safe": 156,
+          "tp": 108,
+          "fp": 19,
+          "tpr": 0.6428571428571429,
+          "fpr": 0.12179487179487179,
+          "j": 0.5210622710622711,
+          "early_over3000": 14,
+          "tp_30_to_3000": 94
+        },
+        "both": {
+          "n_disruptive": 168,
+          "n_safe": 156,
+          "tp": 112,
+          "fp": 21,
+          "tpr": 0.6666666666666666,
+          "fpr": 0.1346153846153846,
+          "j": 0.532051282051282,
+          "early_over3000": 15,
+          "tp_30_to_3000": 97
+        }
+      },
+      "strict_pairs": {
+        "intra_vs_static": {
+          "tp_gained": [
+            79712,
+            73135,
+            93995,
+            75603
+          ],
+          "tp_lost": [
+            64258,
+            62592
+          ],
+          "fp_added": [
+            70392,
+            89570
+          ],
+          "fp_removed": []
+        },
+        "inter_vs_static": {
+          "tp_gained": [],
+          "tp_lost": [],
+          "fp_added": [],
+          "fp_removed": []
+        },
+        "both_vs_static": {
+          "tp_gained": [
+            79712,
+            70861,
+            73541,
+            73135,
+            93995,
+            75603
+          ],
+          "tp_lost": [
+            64258,
+            62592
+          ],
+          "fp_added": [
+            70392,
+            89570
+          ],
+          "fp_removed": []
+        },
+        "both_vs_intra": {
+          "tp_gained": [
+            70861,
+            73541
+          ],
+          "tp_lost": [],
+          "fp_added": [],
+          "fp_removed": []
+        },
+        "both_vs_inter": {
+          "tp_gained": [
+            79712,
+            70861,
+            73541,
+            73135,
+            93995,
+            75603
+          ],
+          "tp_lost": [
+            64258,
+            62592
+          ],
+          "fp_added": [
+            70392,
+            89570
+          ],
+          "fp_removed": []
+        }
+      },
+      "capped_pairs": {
+        "intra_vs_static": {
+          "tp_gained": [
+            79712,
+            73135,
+            93995,
+            73421,
+            75603,
+            73669,
+            89549
+          ],
+          "tp_lost": [
+            64258,
+            89495,
+            62592,
+            85526
+          ],
+          "fp_added": [
+            70392,
+            89570
+          ],
+          "fp_removed": []
+        },
+        "inter_vs_static": {
+          "tp_gained": [],
+          "tp_lost": [],
+          "fp_added": [],
+          "fp_removed": []
+        },
+        "both_vs_static": {
+          "tp_gained": [
+            79712,
+            70861,
+            73135,
+            93995,
+            73421,
+            75603,
+            73669
+          ],
+          "tp_lost": [
+            64258,
+            89495,
+            62592,
+            85526
+          ],
+          "fp_added": [
+            70392,
+            89570
+          ],
+          "fp_removed": []
+        },
+        "both_vs_intra": {
+          "tp_gained": [
+            70861
+          ],
+          "tp_lost": [
+            89549
+          ],
+          "fp_added": [],
+          "fp_removed": []
+        },
+        "both_vs_inter": {
+          "tp_gained": [
+            79712,
+            70861,
+            73135,
+            93995,
+            73421,
+            75603,
+            73669
+          ],
+          "tp_lost": [
+            64258,
+            89495,
+            62592,
+            85526
+          ],
+          "fp_added": [
+            70392,
+            89570
+          ],
+          "fp_removed": []
+        }
+      }
+    },
+    "last180": {
+      "metrics": {
+        "static": {
+          "n_disruptive": 84,
+          "n_safe": 96,
+          "tp": 63,
+          "fp": 14,
+          "tpr": 0.75,
+          "fpr": 0.14583333333333334,
+          "j": 0.6041666666666666,
+          "early_over3000": 12,
+          "tp_30_to_3000": 51
+        },
+        "intra": {
+          "n_disruptive": 84,
+          "n_safe": 96,
+          "tp": 65,
+          "fp": 15,
+          "tpr": 0.7738095238095238,
+          "fpr": 0.15625,
+          "j": 0.6175595238095238,
+          "early_over3000": 11,
+          "tp_30_to_3000": 54
+        },
+        "inter": {
+          "n_disruptive": 84,
+          "n_safe": 96,
+          "tp": 63,
+          "fp": 14,
+          "tpr": 0.75,
+          "fpr": 0.14583333333333334,
+          "j": 0.6041666666666666,
+          "early_over3000": 12,
+          "tp_30_to_3000": 51
+        },
+        "both": {
+          "n_disruptive": 84,
+          "n_safe": 96,
+          "tp": 65,
+          "fp": 16,
+          "tpr": 0.7738095238095238,
+          "fpr": 0.16666666666666666,
+          "j": 0.6071428571428572,
+          "early_over3000": 12,
+          "tp_30_to_3000": 53
+        }
+      },
+      "strict_pairs": {
+        "intra_vs_static": {
+          "tp_gained": [
+            93995,
+            75603,
+            85023
+          ],
+          "tp_lost": [
+            62592
+          ],
+          "fp_added": [
+            64562,
+            89570
+          ],
+          "fp_removed": [
+            67900
+          ]
+        },
+        "inter_vs_static": {
+          "tp_gained": [],
+          "tp_lost": [],
+          "fp_added": [],
+          "fp_removed": []
+        },
+        "both_vs_static": {
+          "tp_gained": [
+            93995,
+            75603,
+            85023
+          ],
+          "tp_lost": [
+            62592
+          ],
+          "fp_added": [
+            64562,
+            85123,
+            89570
+          ],
+          "fp_removed": [
+            67900
+          ]
+        },
+        "both_vs_intra": {
+          "tp_gained": [],
+          "tp_lost": [],
+          "fp_added": [
+            85123
+          ],
+          "fp_removed": []
+        },
+        "both_vs_inter": {
+          "tp_gained": [
+            93995,
+            75603,
+            85023
+          ],
+          "tp_lost": [
+            62592
+          ],
+          "fp_added": [
+            64562,
+            85123,
+            89570
+          ],
+          "fp_removed": [
+            67900
+          ]
+        }
+      },
+      "capped_pairs": {
+        "intra_vs_static": {
+          "tp_gained": [
+            93995,
+            73421,
+            75603,
+            73669,
+            85023,
+            89549
+          ],
+          "tp_lost": [
+            89495,
+            62592,
+            85526
+          ],
+          "fp_added": [
+            64562,
+            89570
+          ],
+          "fp_removed": [
+            67900
+          ]
+        },
+        "inter_vs_static": {
+          "tp_gained": [],
+          "tp_lost": [],
+          "fp_added": [],
+          "fp_removed": []
+        },
+        "both_vs_static": {
+          "tp_gained": [
+            93995,
+            73421,
+            75603,
+            73669,
+            85023
+          ],
+          "tp_lost": [
+            89495,
+            62592,
+            85526
+          ],
+          "fp_added": [
+            64562,
+            85123,
+            89570
+          ],
+          "fp_removed": [
+            67900
+          ]
+        },
+        "both_vs_intra": {
+          "tp_gained": [],
+          "tp_lost": [
+            89549
+          ],
+          "fp_added": [
+            85123
+          ],
+          "fp_removed": []
+        },
+        "both_vs_inter": {
+          "tp_gained": [
+            93995,
+            73421,
+            75603,
+            73669,
+            85023
+          ],
+          "tp_lost": [
+            89495,
+            62592,
+            85526
+          ],
+          "fp_added": [
+            64562,
+            85123,
+            89570
+          ],
+          "fp_removed": [
+            67900
+          ]
+        }
+      }
+    },
+    "blocks": [
+      {
+        "metrics": {
+          "static": {
+            "n_disruptive": 8,
+            "n_safe": 12,
+            "tp": 7,
+            "fp": 6,
+            "tpr": 0.875,
+            "fpr": 0.5,
+            "j": 0.375,
+            "early_over3000": 2,
+            "tp_30_to_3000": 5
+          },
+          "intra": {
+            "n_disruptive": 8,
+            "n_safe": 12,
+            "tp": 7,
+            "fp": 6,
+            "tpr": 0.875,
+            "fpr": 0.5,
+            "j": 0.375,
+            "early_over3000": 2,
+            "tp_30_to_3000": 5
+          },
+          "inter": {
+            "n_disruptive": 8,
+            "n_safe": 12,
+            "tp": 7,
+            "fp": 6,
+            "tpr": 0.875,
+            "fpr": 0.5,
+            "j": 0.375,
+            "early_over3000": 2,
+            "tp_30_to_3000": 5
+          },
+          "both": {
+            "n_disruptive": 8,
+            "n_safe": 12,
+            "tp": 7,
+            "fp": 6,
+            "tpr": 0.875,
+            "fpr": 0.5,
+            "j": 0.375,
+            "early_over3000": 2,
+            "tp_30_to_3000": 5
+          }
+        },
+        "strict_pairs": {
+          "intra_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "inter_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_intra": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_inter": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          }
+        },
+        "capped_pairs": {
+          "intra_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "inter_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_intra": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_inter": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          }
+        }
+      },
+      {
+        "metrics": {
+          "static": {
+            "n_disruptive": 18,
+            "n_safe": 2,
+            "tp": 4,
+            "fp": 0,
+            "tpr": 0.2222222222222222,
+            "fpr": 0.0,
+            "j": 0.2222222222222222,
+            "early_over3000": 1,
+            "tp_30_to_3000": 3
+          },
+          "intra": {
+            "n_disruptive": 18,
+            "n_safe": 2,
+            "tp": 5,
+            "fp": 0,
+            "tpr": 0.2777777777777778,
+            "fpr": 0.0,
+            "j": 0.2777777777777778,
+            "early_over3000": 1,
+            "tp_30_to_3000": 4
+          },
+          "inter": {
+            "n_disruptive": 18,
+            "n_safe": 2,
+            "tp": 4,
+            "fp": 0,
+            "tpr": 0.2222222222222222,
+            "fpr": 0.0,
+            "j": 0.2222222222222222,
+            "early_over3000": 1,
+            "tp_30_to_3000": 3
+          },
+          "both": {
+            "n_disruptive": 18,
+            "n_safe": 2,
+            "tp": 5,
+            "fp": 0,
+            "tpr": 0.2777777777777778,
+            "fpr": 0.0,
+            "j": 0.2777777777777778,
+            "early_over3000": 1,
+            "tp_30_to_3000": 4
+          }
+        },
+        "strict_pairs": {
+          "intra_vs_static": {
+            "tp_gained": [
+              79712
+            ],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "inter_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_static": {
+            "tp_gained": [
+              79712
+            ],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_intra": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_inter": {
+            "tp_gained": [
+              79712
+            ],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          }
+        },
+        "capped_pairs": {
+          "intra_vs_static": {
+            "tp_gained": [
+              79712
+            ],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "inter_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_static": {
+            "tp_gained": [
+              79712
+            ],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_intra": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_inter": {
+            "tp_gained": [
+              79712
+            ],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          }
+        }
+      },
+      {
+        "metrics": {
+          "static": {
+            "n_disruptive": 16,
+            "n_safe": 4,
+            "tp": 5,
+            "fp": 1,
+            "tpr": 0.3125,
+            "fpr": 0.25,
+            "j": 0.0625,
+            "early_over3000": 0,
+            "tp_30_to_3000": 5
+          },
+          "intra": {
+            "n_disruptive": 16,
+            "n_safe": 4,
+            "tp": 7,
+            "fp": 2,
+            "tpr": 0.4375,
+            "fpr": 0.5,
+            "j": -0.0625,
+            "early_over3000": 0,
+            "tp_30_to_3000": 7
+          },
+          "inter": {
+            "n_disruptive": 16,
+            "n_safe": 4,
+            "tp": 5,
+            "fp": 1,
+            "tpr": 0.3125,
+            "fpr": 0.25,
+            "j": 0.0625,
+            "early_over3000": 0,
+            "tp_30_to_3000": 5
+          },
+          "both": {
+            "n_disruptive": 16,
+            "n_safe": 4,
+            "tp": 9,
+            "fp": 2,
+            "tpr": 0.5625,
+            "fpr": 0.5,
+            "j": 0.0625,
+            "early_over3000": 1,
+            "tp_30_to_3000": 8
+          }
+        },
+        "strict_pairs": {
+          "intra_vs_static": {
+            "tp_gained": [
+              69791,
+              73135
+            ],
+            "tp_lost": [],
+            "fp_added": [
+              70392
+            ],
+            "fp_removed": []
+          },
+          "inter_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_static": {
+            "tp_gained": [
+              70861,
+              69791,
+              73541,
+              73135
+            ],
+            "tp_lost": [],
+            "fp_added": [
+              70392
+            ],
+            "fp_removed": []
+          },
+          "both_vs_intra": {
+            "tp_gained": [
+              70861,
+              73541
+            ],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_inter": {
+            "tp_gained": [
+              70861,
+              69791,
+              73541,
+              73135
+            ],
+            "tp_lost": [],
+            "fp_added": [
+              70392
+            ],
+            "fp_removed": []
+          }
+        },
+        "capped_pairs": {
+          "intra_vs_static": {
+            "tp_gained": [
+              69791,
+              73135
+            ],
+            "tp_lost": [],
+            "fp_added": [
+              70392
+            ],
+            "fp_removed": []
+          },
+          "inter_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_static": {
+            "tp_gained": [
+              70861,
+              69791,
+              73135
+            ],
+            "tp_lost": [],
+            "fp_added": [
+              70392
+            ],
+            "fp_removed": []
+          },
+          "both_vs_intra": {
+            "tp_gained": [
+              70861
+            ],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_inter": {
+            "tp_gained": [
+              70861,
+              69791,
+              73135
+            ],
+            "tp_lost": [],
+            "fp_added": [
+              70392
+            ],
+            "fp_removed": []
+          }
+        }
+      },
+      {
+        "metrics": {
+          "static": {
+            "n_disruptive": 14,
+            "n_safe": 6,
+            "tp": 9,
+            "fp": 0,
+            "tpr": 0.6428571428571429,
+            "fpr": 0.0,
+            "j": 0.6428571428571429,
+            "early_over3000": 1,
+            "tp_30_to_3000": 8
+          },
+          "intra": {
+            "n_disruptive": 14,
+            "n_safe": 6,
+            "tp": 8,
+            "fp": 1,
+            "tpr": 0.5714285714285714,
+            "fpr": 0.16666666666666666,
+            "j": 0.40476190476190477,
+            "early_over3000": 1,
+            "tp_30_to_3000": 7
+          },
+          "inter": {
+            "n_disruptive": 14,
+            "n_safe": 6,
+            "tp": 9,
+            "fp": 0,
+            "tpr": 0.6428571428571429,
+            "fpr": 0.0,
+            "j": 0.6428571428571429,
+            "early_over3000": 1,
+            "tp_30_to_3000": 8
+          },
+          "both": {
+            "n_disruptive": 14,
+            "n_safe": 6,
+            "tp": 8,
+            "fp": 1,
+            "tpr": 0.5714285714285714,
+            "fpr": 0.16666666666666666,
+            "j": 0.40476190476190477,
+            "early_over3000": 1,
+            "tp_30_to_3000": 7
+          }
+        },
+        "strict_pairs": {
+          "intra_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [
+              64258
+            ],
+            "fp_added": [
+              82834
+            ],
+            "fp_removed": []
+          },
+          "inter_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [
+              64258
+            ],
+            "fp_added": [
+              82834
+            ],
+            "fp_removed": []
+          },
+          "both_vs_intra": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_inter": {
+            "tp_gained": [],
+            "tp_lost": [
+              64258
+            ],
+            "fp_added": [
+              82834
+            ],
+            "fp_removed": []
+          }
+        },
+        "capped_pairs": {
+          "intra_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [
+              64258
+            ],
+            "fp_added": [
+              82834
+            ],
+            "fp_removed": []
+          },
+          "inter_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [
+              64258
+            ],
+            "fp_added": [
+              82834
+            ],
+            "fp_removed": []
+          },
+          "both_vs_intra": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_inter": {
+            "tp_gained": [],
+            "tp_lost": [
+              64258
+            ],
+            "fp_added": [
+              82834
+            ],
+            "fp_removed": []
+          }
+        }
+      },
+      {
+        "metrics": {
+          "static": {
+            "n_disruptive": 11,
+            "n_safe": 9,
+            "tp": 9,
+            "fp": 2,
+            "tpr": 0.8181818181818182,
+            "fpr": 0.2222222222222222,
+            "j": 0.595959595959596,
+            "early_over3000": 0,
+            "tp_30_to_3000": 9
+          },
+          "intra": {
+            "n_disruptive": 11,
+            "n_safe": 9,
+            "tp": 9,
+            "fp": 2,
+            "tpr": 0.8181818181818182,
+            "fpr": 0.2222222222222222,
+            "j": 0.595959595959596,
+            "early_over3000": 0,
+            "tp_30_to_3000": 9
+          },
+          "inter": {
+            "n_disruptive": 11,
+            "n_safe": 9,
+            "tp": 9,
+            "fp": 2,
+            "tpr": 0.8181818181818182,
+            "fpr": 0.2222222222222222,
+            "j": 0.595959595959596,
+            "early_over3000": 0,
+            "tp_30_to_3000": 9
+          },
+          "both": {
+            "n_disruptive": 11,
+            "n_safe": 9,
+            "tp": 9,
+            "fp": 2,
+            "tpr": 0.8181818181818182,
+            "fpr": 0.2222222222222222,
+            "j": 0.595959595959596,
+            "early_over3000": 0,
+            "tp_30_to_3000": 9
+          }
+        },
+        "strict_pairs": {
+          "intra_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "inter_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_intra": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_inter": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          }
+        },
+        "capped_pairs": {
+          "intra_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "inter_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_intra": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_inter": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          }
+        }
+      },
+      {
+        "metrics": {
+          "static": {
+            "n_disruptive": 9,
+            "n_safe": 11,
+            "tp": 4,
+            "fp": 2,
+            "tpr": 0.4444444444444444,
+            "fpr": 0.18181818181818182,
+            "j": 0.2626262626262626,
+            "early_over3000": 0,
+            "tp_30_to_3000": 4
+          },
+          "intra": {
+            "n_disruptive": 9,
+            "n_safe": 11,
+            "tp": 4,
+            "fp": 3,
+            "tpr": 0.4444444444444444,
+            "fpr": 0.2727272727272727,
+            "j": 0.1717171717171717,
+            "early_over3000": 0,
+            "tp_30_to_3000": 4
+          },
+          "inter": {
+            "n_disruptive": 9,
+            "n_safe": 11,
+            "tp": 4,
+            "fp": 2,
+            "tpr": 0.4444444444444444,
+            "fpr": 0.18181818181818182,
+            "j": 0.2626262626262626,
+            "early_over3000": 0,
+            "tp_30_to_3000": 4
+          },
+          "both": {
+            "n_disruptive": 9,
+            "n_safe": 11,
+            "tp": 4,
+            "fp": 3,
+            "tpr": 0.4444444444444444,
+            "fpr": 0.2727272727272727,
+            "j": 0.1717171717171717,
+            "early_over3000": 0,
+            "tp_30_to_3000": 4
+          }
+        },
+        "strict_pairs": {
+          "intra_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [
+              60239
+            ],
+            "fp_removed": []
+          },
+          "inter_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [
+              60239
+            ],
+            "fp_removed": []
+          },
+          "both_vs_intra": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_inter": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [
+              60239
+            ],
+            "fp_removed": []
+          }
+        },
+        "capped_pairs": {
+          "intra_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [
+              60239
+            ],
+            "fp_removed": []
+          },
+          "inter_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [
+              60239
+            ],
+            "fp_removed": []
+          },
+          "both_vs_intra": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_inter": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [
+              60239
+            ],
+            "fp_removed": []
+          }
+        }
+      },
+      {
+        "metrics": {
+          "static": {
+            "n_disruptive": 7,
+            "n_safe": 13,
+            "tp": 7,
+            "fp": 2,
+            "tpr": 1.0,
+            "fpr": 0.15384615384615385,
+            "j": 0.8461538461538461,
+            "early_over3000": 0,
+            "tp_30_to_3000": 7
+          },
+          "intra": {
+            "n_disruptive": 7,
+            "n_safe": 13,
+            "tp": 7,
+            "fp": 2,
+            "tpr": 1.0,
+            "fpr": 0.15384615384615385,
+            "j": 0.8461538461538461,
+            "early_over3000": 0,
+            "tp_30_to_3000": 7
+          },
+          "inter": {
+            "n_disruptive": 7,
+            "n_safe": 13,
+            "tp": 7,
+            "fp": 2,
+            "tpr": 1.0,
+            "fpr": 0.15384615384615385,
+            "j": 0.8461538461538461,
+            "early_over3000": 0,
+            "tp_30_to_3000": 7
+          },
+          "both": {
+            "n_disruptive": 7,
+            "n_safe": 13,
+            "tp": 7,
+            "fp": 2,
+            "tpr": 1.0,
+            "fpr": 0.15384615384615385,
+            "j": 0.8461538461538461,
+            "early_over3000": 0,
+            "tp_30_to_3000": 7
+          }
+        },
+        "strict_pairs": {
+          "intra_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "inter_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_intra": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_inter": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          }
+        },
+        "capped_pairs": {
+          "intra_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "inter_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_intra": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_inter": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          }
+        }
+      },
+      {
+        "metrics": {
+          "static": {
+            "n_disruptive": 7,
+            "n_safe": 13,
+            "tp": 4,
+            "fp": 1,
+            "tpr": 0.5714285714285714,
+            "fpr": 0.07692307692307693,
+            "j": 0.49450549450549447,
+            "early_over3000": 0,
+            "tp_30_to_3000": 4
+          },
+          "intra": {
+            "n_disruptive": 7,
+            "n_safe": 13,
+            "tp": 4,
+            "fp": 1,
+            "tpr": 0.5714285714285714,
+            "fpr": 0.07692307692307693,
+            "j": 0.49450549450549447,
+            "early_over3000": 0,
+            "tp_30_to_3000": 4
+          },
+          "inter": {
+            "n_disruptive": 7,
+            "n_safe": 13,
+            "tp": 4,
+            "fp": 1,
+            "tpr": 0.5714285714285714,
+            "fpr": 0.07692307692307693,
+            "j": 0.49450549450549447,
+            "early_over3000": 0,
+            "tp_30_to_3000": 4
+          },
+          "both": {
+            "n_disruptive": 7,
+            "n_safe": 13,
+            "tp": 4,
+            "fp": 1,
+            "tpr": 0.5714285714285714,
+            "fpr": 0.07692307692307693,
+            "j": 0.49450549450549447,
+            "early_over3000": 0,
+            "tp_30_to_3000": 4
+          }
+        },
+        "strict_pairs": {
+          "intra_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "inter_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_intra": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_inter": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          }
+        },
+        "capped_pairs": {
+          "intra_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "inter_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_intra": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_inter": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          }
+        }
+      },
+      {
+        "metrics": {
+          "static": {
+            "n_disruptive": 6,
+            "n_safe": 14,
+            "tp": 4,
+            "fp": 1,
+            "tpr": 0.6666666666666666,
+            "fpr": 0.07142857142857142,
+            "j": 0.5952380952380952,
+            "early_over3000": 0,
+            "tp_30_to_3000": 4
+          },
+          "intra": {
+            "n_disruptive": 6,
+            "n_safe": 14,
+            "tp": 4,
+            "fp": 1,
+            "tpr": 0.6666666666666666,
+            "fpr": 0.07142857142857142,
+            "j": 0.5952380952380952,
+            "early_over3000": 0,
+            "tp_30_to_3000": 4
+          },
+          "inter": {
+            "n_disruptive": 6,
+            "n_safe": 14,
+            "tp": 4,
+            "fp": 1,
+            "tpr": 0.6666666666666666,
+            "fpr": 0.07142857142857142,
+            "j": 0.5952380952380952,
+            "early_over3000": 0,
+            "tp_30_to_3000": 4
+          },
+          "both": {
+            "n_disruptive": 6,
+            "n_safe": 14,
+            "tp": 4,
+            "fp": 1,
+            "tpr": 0.6666666666666666,
+            "fpr": 0.07142857142857142,
+            "j": 0.5952380952380952,
+            "early_over3000": 0,
+            "tp_30_to_3000": 4
+          }
+        },
+        "strict_pairs": {
+          "intra_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "inter_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_intra": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_inter": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          }
+        },
+        "capped_pairs": {
+          "intra_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "inter_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_intra": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_inter": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          }
+        }
+      },
+      {
+        "metrics": {
+          "static": {
+            "n_disruptive": 11,
+            "n_safe": 9,
+            "tp": 7,
+            "fp": 1,
+            "tpr": 0.6363636363636364,
+            "fpr": 0.1111111111111111,
+            "j": 0.5252525252525253,
+            "early_over3000": 0,
+            "tp_30_to_3000": 7
+          },
+          "intra": {
+            "n_disruptive": 11,
+            "n_safe": 9,
+            "tp": 7,
+            "fp": 1,
+            "tpr": 0.6363636363636364,
+            "fpr": 0.1111111111111111,
+            "j": 0.5252525252525253,
+            "early_over3000": 1,
+            "tp_30_to_3000": 6
+          },
+          "inter": {
+            "n_disruptive": 11,
+            "n_safe": 9,
+            "tp": 7,
+            "fp": 1,
+            "tpr": 0.6363636363636364,
+            "fpr": 0.1111111111111111,
+            "j": 0.5252525252525253,
+            "early_over3000": 0,
+            "tp_30_to_3000": 7
+          },
+          "both": {
+            "n_disruptive": 11,
+            "n_safe": 9,
+            "tp": 7,
+            "fp": 1,
+            "tpr": 0.6363636363636364,
+            "fpr": 0.1111111111111111,
+            "j": 0.5252525252525253,
+            "early_over3000": 1,
+            "tp_30_to_3000": 6
+          }
+        },
+        "strict_pairs": {
+          "intra_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "inter_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_intra": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_inter": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          }
+        },
+        "capped_pairs": {
+          "intra_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [
+              89495
+            ],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "inter_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [
+              89495
+            ],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_intra": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_inter": {
+            "tp_gained": [],
+            "tp_lost": [
+              89495
+            ],
+            "fp_added": [],
+            "fp_removed": []
+          }
+        }
+      },
+      {
+        "metrics": {
+          "static": {
+            "n_disruptive": 15,
+            "n_safe": 5,
+            "tp": 12,
+            "fp": 2,
+            "tpr": 0.8,
+            "fpr": 0.4,
+            "j": 0.4,
+            "early_over3000": 0,
+            "tp_30_to_3000": 12
+          },
+          "intra": {
+            "n_disruptive": 15,
+            "n_safe": 5,
+            "tp": 12,
+            "fp": 2,
+            "tpr": 0.8,
+            "fpr": 0.4,
+            "j": 0.4,
+            "early_over3000": 0,
+            "tp_30_to_3000": 12
+          },
+          "inter": {
+            "n_disruptive": 15,
+            "n_safe": 5,
+            "tp": 12,
+            "fp": 2,
+            "tpr": 0.8,
+            "fpr": 0.4,
+            "j": 0.4,
+            "early_over3000": 0,
+            "tp_30_to_3000": 12
+          },
+          "both": {
+            "n_disruptive": 15,
+            "n_safe": 5,
+            "tp": 12,
+            "fp": 2,
+            "tpr": 0.8,
+            "fpr": 0.4,
+            "j": 0.4,
+            "early_over3000": 0,
+            "tp_30_to_3000": 12
+          }
+        },
+        "strict_pairs": {
+          "intra_vs_static": {
+            "tp_gained": [
+              93995
+            ],
+            "tp_lost": [
+              62592
+            ],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "inter_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_static": {
+            "tp_gained": [
+              93995
+            ],
+            "tp_lost": [
+              62592
+            ],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_intra": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_inter": {
+            "tp_gained": [
+              93995
+            ],
+            "tp_lost": [
+              62592
+            ],
+            "fp_added": [],
+            "fp_removed": []
+          }
+        },
+        "capped_pairs": {
+          "intra_vs_static": {
+            "tp_gained": [
+              93995
+            ],
+            "tp_lost": [
+              62592
+            ],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "inter_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_static": {
+            "tp_gained": [
+              93995
+            ],
+            "tp_lost": [
+              62592
+            ],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_intra": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_inter": {
+            "tp_gained": [
+              93995
+            ],
+            "tp_lost": [
+              62592
+            ],
+            "fp_added": [],
+            "fp_removed": []
+          }
+        }
+      },
+      {
+        "metrics": {
+          "static": {
+            "n_disruptive": 13,
+            "n_safe": 7,
+            "tp": 11,
+            "fp": 0,
+            "tpr": 0.8461538461538461,
+            "fpr": 0.0,
+            "j": 0.8461538461538461,
+            "early_over3000": 3,
+            "tp_30_to_3000": 8
+          },
+          "intra": {
+            "n_disruptive": 13,
+            "n_safe": 7,
+            "tp": 11,
+            "fp": 0,
+            "tpr": 0.8461538461538461,
+            "fpr": 0.0,
+            "j": 0.8461538461538461,
+            "early_over3000": 2,
+            "tp_30_to_3000": 9
+          },
+          "inter": {
+            "n_disruptive": 13,
+            "n_safe": 7,
+            "tp": 11,
+            "fp": 0,
+            "tpr": 0.8461538461538461,
+            "fpr": 0.0,
+            "j": 0.8461538461538461,
+            "early_over3000": 3,
+            "tp_30_to_3000": 8
+          },
+          "both": {
+            "n_disruptive": 13,
+            "n_safe": 7,
+            "tp": 11,
+            "fp": 0,
+            "tpr": 0.8461538461538461,
+            "fpr": 0.0,
+            "j": 0.8461538461538461,
+            "early_over3000": 2,
+            "tp_30_to_3000": 9
+          }
+        },
+        "strict_pairs": {
+          "intra_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "inter_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_intra": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_inter": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          }
+        },
+        "capped_pairs": {
+          "intra_vs_static": {
+            "tp_gained": [
+              73421
+            ],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "inter_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_static": {
+            "tp_gained": [
+              73421
+            ],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_intra": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_inter": {
+            "tp_gained": [
+              73421
+            ],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          }
+        }
+      },
+      {
+        "metrics": {
+          "static": {
+            "n_disruptive": 10,
+            "n_safe": 10,
+            "tp": 8,
+            "fp": 3,
+            "tpr": 0.8,
+            "fpr": 0.3,
+            "j": 0.5,
+            "early_over3000": 1,
+            "tp_30_to_3000": 7
+          },
+          "intra": {
+            "n_disruptive": 10,
+            "n_safe": 10,
+            "tp": 9,
+            "fp": 4,
+            "tpr": 0.9,
+            "fpr": 0.4,
+            "j": 0.5,
+            "early_over3000": 0,
+            "tp_30_to_3000": 9
+          },
+          "inter": {
+            "n_disruptive": 10,
+            "n_safe": 10,
+            "tp": 8,
+            "fp": 3,
+            "tpr": 0.8,
+            "fpr": 0.3,
+            "j": 0.5,
+            "early_over3000": 1,
+            "tp_30_to_3000": 7
+          },
+          "both": {
+            "n_disruptive": 10,
+            "n_safe": 10,
+            "tp": 9,
+            "fp": 4,
+            "tpr": 0.9,
+            "fpr": 0.4,
+            "j": 0.5,
+            "early_over3000": 0,
+            "tp_30_to_3000": 9
+          }
+        },
+        "strict_pairs": {
+          "intra_vs_static": {
+            "tp_gained": [
+              75603
+            ],
+            "tp_lost": [],
+            "fp_added": [
+              64562
+            ],
+            "fp_removed": []
+          },
+          "inter_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_static": {
+            "tp_gained": [
+              75603
+            ],
+            "tp_lost": [],
+            "fp_added": [
+              64562
+            ],
+            "fp_removed": []
+          },
+          "both_vs_intra": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_inter": {
+            "tp_gained": [
+              75603
+            ],
+            "tp_lost": [],
+            "fp_added": [
+              64562
+            ],
+            "fp_removed": []
+          }
+        },
+        "capped_pairs": {
+          "intra_vs_static": {
+            "tp_gained": [
+              75603,
+              73669
+            ],
+            "tp_lost": [],
+            "fp_added": [
+              64562
+            ],
+            "fp_removed": []
+          },
+          "inter_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_static": {
+            "tp_gained": [
+              75603,
+              73669
+            ],
+            "tp_lost": [],
+            "fp_added": [
+              64562
+            ],
+            "fp_removed": []
+          },
+          "both_vs_intra": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_inter": {
+            "tp_gained": [
+              75603,
+              73669
+            ],
+            "tp_lost": [],
+            "fp_added": [
+              64562
+            ],
+            "fp_removed": []
+          }
+        }
+      },
+      {
+        "metrics": {
+          "static": {
+            "n_disruptive": 3,
+            "n_safe": 17,
+            "tp": 2,
+            "fp": 0,
+            "tpr": 0.6666666666666666,
+            "fpr": 0.0,
+            "j": 0.6666666666666666,
+            "early_over3000": 1,
+            "tp_30_to_3000": 1
+          },
+          "intra": {
+            "n_disruptive": 3,
+            "n_safe": 17,
+            "tp": 2,
+            "fp": 0,
+            "tpr": 0.6666666666666666,
+            "fpr": 0.0,
+            "j": 0.6666666666666666,
+            "early_over3000": 1,
+            "tp_30_to_3000": 1
+          },
+          "inter": {
+            "n_disruptive": 3,
+            "n_safe": 17,
+            "tp": 2,
+            "fp": 0,
+            "tpr": 0.6666666666666666,
+            "fpr": 0.0,
+            "j": 0.6666666666666666,
+            "early_over3000": 1,
+            "tp_30_to_3000": 1
+          },
+          "both": {
+            "n_disruptive": 3,
+            "n_safe": 17,
+            "tp": 2,
+            "fp": 0,
+            "tpr": 0.6666666666666666,
+            "fpr": 0.0,
+            "j": 0.6666666666666666,
+            "early_over3000": 1,
+            "tp_30_to_3000": 1
+          }
+        },
+        "strict_pairs": {
+          "intra_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "inter_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_intra": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_inter": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          }
+        },
+        "capped_pairs": {
+          "intra_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "inter_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_intra": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_inter": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          }
+        }
+      },
+      {
+        "metrics": {
+          "static": {
+            "n_disruptive": 7,
+            "n_safe": 13,
+            "tp": 7,
+            "fp": 3,
+            "tpr": 1.0,
+            "fpr": 0.23076923076923078,
+            "j": 0.7692307692307692,
+            "early_over3000": 2,
+            "tp_30_to_3000": 5
+          },
+          "intra": {
+            "n_disruptive": 7,
+            "n_safe": 13,
+            "tp": 7,
+            "fp": 2,
+            "tpr": 1.0,
+            "fpr": 0.15384615384615385,
+            "j": 0.8461538461538461,
+            "early_over3000": 2,
+            "tp_30_to_3000": 5
+          },
+          "inter": {
+            "n_disruptive": 7,
+            "n_safe": 13,
+            "tp": 7,
+            "fp": 3,
+            "tpr": 1.0,
+            "fpr": 0.23076923076923078,
+            "j": 0.7692307692307692,
+            "early_over3000": 2,
+            "tp_30_to_3000": 5
+          },
+          "both": {
+            "n_disruptive": 7,
+            "n_safe": 13,
+            "tp": 7,
+            "fp": 2,
+            "tpr": 1.0,
+            "fpr": 0.15384615384615385,
+            "j": 0.8461538461538461,
+            "early_over3000": 2,
+            "tp_30_to_3000": 5
+          }
+        },
+        "strict_pairs": {
+          "intra_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": [
+              67900
+            ]
+          },
+          "inter_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": [
+              67900
+            ]
+          },
+          "both_vs_intra": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_inter": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": [
+              67900
+            ]
+          }
+        },
+        "capped_pairs": {
+          "intra_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": [
+              67900
+            ]
+          },
+          "inter_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": [
+              67900
+            ]
+          },
+          "both_vs_intra": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_inter": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": [
+              67900
+            ]
+          }
+        }
+      },
+      {
+        "metrics": {
+          "static": {
+            "n_disruptive": 7,
+            "n_safe": 13,
+            "tp": 3,
+            "fp": 4,
+            "tpr": 0.42857142857142855,
+            "fpr": 0.3076923076923077,
+            "j": 0.12087912087912084,
+            "early_over3000": 3,
+            "tp_30_to_3000": 0
+          },
+          "intra": {
+            "n_disruptive": 7,
+            "n_safe": 13,
+            "tp": 4,
+            "fp": 4,
+            "tpr": 0.5714285714285714,
+            "fpr": 0.3076923076923077,
+            "j": 0.2637362637362637,
+            "early_over3000": 3,
+            "tp_30_to_3000": 1
+          },
+          "inter": {
+            "n_disruptive": 7,
+            "n_safe": 13,
+            "tp": 3,
+            "fp": 4,
+            "tpr": 0.42857142857142855,
+            "fpr": 0.3076923076923077,
+            "j": 0.12087912087912084,
+            "early_over3000": 3,
+            "tp_30_to_3000": 0
+          },
+          "both": {
+            "n_disruptive": 7,
+            "n_safe": 13,
+            "tp": 4,
+            "fp": 4,
+            "tpr": 0.5714285714285714,
+            "fpr": 0.3076923076923077,
+            "j": 0.2637362637362637,
+            "early_over3000": 3,
+            "tp_30_to_3000": 1
+          }
+        },
+        "strict_pairs": {
+          "intra_vs_static": {
+            "tp_gained": [
+              85023
+            ],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "inter_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_static": {
+            "tp_gained": [
+              85023
+            ],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_intra": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_inter": {
+            "tp_gained": [
+              85023
+            ],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          }
+        },
+        "capped_pairs": {
+          "intra_vs_static": {
+            "tp_gained": [
+              85023
+            ],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "inter_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_static": {
+            "tp_gained": [
+              85023
+            ],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_intra": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_inter": {
+            "tp_gained": [
+              85023
+            ],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          }
+        }
+      },
+      {
+        "metrics": {
+          "static": {
+            "n_disruptive": 7,
+            "n_safe": 13,
+            "tp": 4,
+            "fp": 0,
+            "tpr": 0.5714285714285714,
+            "fpr": 0.0,
+            "j": 0.5714285714285714,
+            "early_over3000": 0,
+            "tp_30_to_3000": 4
+          },
+          "intra": {
+            "n_disruptive": 7,
+            "n_safe": 13,
+            "tp": 4,
+            "fp": 0,
+            "tpr": 0.5714285714285714,
+            "fpr": 0.0,
+            "j": 0.5714285714285714,
+            "early_over3000": 0,
+            "tp_30_to_3000": 4
+          },
+          "inter": {
+            "n_disruptive": 7,
+            "n_safe": 13,
+            "tp": 4,
+            "fp": 0,
+            "tpr": 0.5714285714285714,
+            "fpr": 0.0,
+            "j": 0.5714285714285714,
+            "early_over3000": 0,
+            "tp_30_to_3000": 4
+          },
+          "both": {
+            "n_disruptive": 7,
+            "n_safe": 13,
+            "tp": 4,
+            "fp": 1,
+            "tpr": 0.5714285714285714,
+            "fpr": 0.07692307692307693,
+            "j": 0.49450549450549447,
+            "early_over3000": 0,
+            "tp_30_to_3000": 4
+          }
+        },
+        "strict_pairs": {
+          "intra_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "inter_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [
+              85123
+            ],
+            "fp_removed": []
+          },
+          "both_vs_intra": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [
+              85123
+            ],
+            "fp_removed": []
+          },
+          "both_vs_inter": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [
+              85123
+            ],
+            "fp_removed": []
+          }
+        },
+        "capped_pairs": {
+          "intra_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "inter_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [
+              85123
+            ],
+            "fp_removed": []
+          },
+          "both_vs_intra": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [
+              85123
+            ],
+            "fp_removed": []
+          },
+          "both_vs_inter": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [
+              85123
+            ],
+            "fp_removed": []
+          }
+        }
+      },
+      {
+        "metrics": {
+          "static": {
+            "n_disruptive": 11,
+            "n_safe": 9,
+            "tp": 9,
+            "fp": 1,
+            "tpr": 0.8181818181818182,
+            "fpr": 0.1111111111111111,
+            "j": 0.7070707070707072,
+            "early_over3000": 2,
+            "tp_30_to_3000": 7
+          },
+          "intra": {
+            "n_disruptive": 11,
+            "n_safe": 9,
+            "tp": 9,
+            "fp": 2,
+            "tpr": 0.8181818181818182,
+            "fpr": 0.2222222222222222,
+            "j": 0.595959595959596,
+            "early_over3000": 2,
+            "tp_30_to_3000": 7
+          },
+          "inter": {
+            "n_disruptive": 11,
+            "n_safe": 9,
+            "tp": 9,
+            "fp": 1,
+            "tpr": 0.8181818181818182,
+            "fpr": 0.1111111111111111,
+            "j": 0.7070707070707072,
+            "early_over3000": 2,
+            "tp_30_to_3000": 7
+          },
+          "both": {
+            "n_disruptive": 11,
+            "n_safe": 9,
+            "tp": 9,
+            "fp": 2,
+            "tpr": 0.8181818181818182,
+            "fpr": 0.2222222222222222,
+            "j": 0.595959595959596,
+            "early_over3000": 3,
+            "tp_30_to_3000": 6
+          }
+        },
+        "strict_pairs": {
+          "intra_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [
+              89570
+            ],
+            "fp_removed": []
+          },
+          "inter_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [
+              89570
+            ],
+            "fp_removed": []
+          },
+          "both_vs_intra": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_inter": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [
+              89570
+            ],
+            "fp_removed": []
+          }
+        },
+        "capped_pairs": {
+          "intra_vs_static": {
+            "tp_gained": [
+              89549
+            ],
+            "tp_lost": [
+              85526
+            ],
+            "fp_added": [
+              89570
+            ],
+            "fp_removed": []
+          },
+          "inter_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_static": {
+            "tp_gained": [],
+            "tp_lost": [
+              85526
+            ],
+            "fp_added": [
+              89570
+            ],
+            "fp_removed": []
+          },
+          "both_vs_intra": {
+            "tp_gained": [],
+            "tp_lost": [
+              89549
+            ],
+            "fp_added": [],
+            "fp_removed": []
+          },
+          "both_vs_inter": {
+            "tp_gained": [],
+            "tp_lost": [
+              85526
+            ],
+            "fp_added": [
+              89570
+            ],
+            "fp_removed": []
+          }
+        }
+      }
+    ],
+    "after_first_write": {
+      "metrics": {
+        "static": {
+          "n_disruptive": 154,
+          "n_safe": 166,
+          "tp": 105,
+          "fp": 23,
+          "tpr": 0.6818181818181818,
+          "fpr": 0.13855421686746988,
+          "j": 0.5432639649507118,
+          "early_over3000": 13,
+          "tp_30_to_3000": 92
+        },
+        "intra": {
+          "n_disruptive": 154,
+          "n_safe": 166,
+          "tp": 108,
+          "fp": 27,
+          "tpr": 0.7012987012987013,
+          "fpr": 0.16265060240963855,
+          "j": 0.5386480988890627,
+          "early_over3000": 12,
+          "tp_30_to_3000": 96
+        },
+        "inter": {
+          "n_disruptive": 154,
+          "n_safe": 166,
+          "tp": 105,
+          "fp": 23,
+          "tpr": 0.6818181818181818,
+          "fpr": 0.13855421686746988,
+          "j": 0.5432639649507118,
+          "early_over3000": 13,
+          "tp_30_to_3000": 92
+        },
+        "both": {
+          "n_disruptive": 154,
+          "n_safe": 166,
+          "tp": 110,
+          "fp": 28,
+          "tpr": 0.7142857142857143,
+          "fpr": 0.1686746987951807,
+          "j": 0.5456110154905336,
+          "early_over3000": 14,
+          "tp_30_to_3000": 96
+        }
+      },
+      "strict_pairs": {
+        "intra_vs_static": {
+          "tp_gained": [
+            69791,
+            73135,
+            93995,
+            75603,
+            85023
+          ],
+          "tp_lost": [
+            64258,
+            62592
+          ],
+          "fp_added": [
+            70392,
+            82834,
+            60239,
+            64562,
+            89570
+          ],
+          "fp_removed": [
+            67900
+          ]
+        },
+        "inter_vs_static": {
+          "tp_gained": [],
+          "tp_lost": [],
+          "fp_added": [],
+          "fp_removed": []
+        },
+        "both_vs_static": {
+          "tp_gained": [
+            70861,
+            69791,
+            73541,
+            73135,
+            93995,
+            75603,
+            85023
+          ],
+          "tp_lost": [
+            64258,
+            62592
+          ],
+          "fp_added": [
+            70392,
+            82834,
+            60239,
+            64562,
+            85123,
+            89570
+          ],
+          "fp_removed": [
+            67900
+          ]
+        },
+        "both_vs_intra": {
+          "tp_gained": [
+            70861,
+            73541
+          ],
+          "tp_lost": [],
+          "fp_added": [
+            85123
+          ],
+          "fp_removed": []
+        },
+        "both_vs_inter": {
+          "tp_gained": [
+            70861,
+            69791,
+            73541,
+            73135,
+            93995,
+            75603,
+            85023
+          ],
+          "tp_lost": [
+            64258,
+            62592
+          ],
+          "fp_added": [
+            70392,
+            82834,
+            60239,
+            64562,
+            85123,
+            89570
+          ],
+          "fp_removed": [
+            67900
+          ]
+        }
+      },
+      "capped_pairs": {
+        "intra_vs_static": {
+          "tp_gained": [
+            69791,
+            73135,
+            93995,
+            73421,
+            75603,
+            73669,
+            85023,
+            89549
+          ],
+          "tp_lost": [
+            64258,
+            89495,
+            62592,
+            85526
+          ],
+          "fp_added": [
+            70392,
+            82834,
+            60239,
+            64562,
+            89570
+          ],
+          "fp_removed": [
+            67900
+          ]
+        },
+        "inter_vs_static": {
+          "tp_gained": [],
+          "tp_lost": [],
+          "fp_added": [],
+          "fp_removed": []
+        },
+        "both_vs_static": {
+          "tp_gained": [
+            70861,
+            69791,
+            73135,
+            93995,
+            73421,
+            75603,
+            73669,
+            85023
+          ],
+          "tp_lost": [
+            64258,
+            89495,
+            62592,
+            85526
+          ],
+          "fp_added": [
+            70392,
+            82834,
+            60239,
+            64562,
+            85123,
+            89570
+          ],
+          "fp_removed": [
+            67900
+          ]
+        },
+        "both_vs_intra": {
+          "tp_gained": [
+            70861
+          ],
+          "tp_lost": [
+            89549
+          ],
+          "fp_added": [
+            85123
+          ],
+          "fp_removed": []
+        },
+        "both_vs_inter": {
+          "tp_gained": [
+            70861,
+            69791,
+            73135,
+            93995,
+            73421,
+            75603,
+            73669,
+            85023
+          ],
+          "tp_lost": [
+            64258,
+            89495,
+            62592,
+            85526
+          ],
+          "fp_added": [
+            70392,
+            82834,
+            60239,
+            64562,
+            85123,
+            89570
+          ],
+          "fp_removed": [
+            67900
+          ]
+        }
+      }
+    }
+  },
+  "scope": "Fixed development replay; independent raw HDF5 outcome/clock recount and committed selection/guard replay, not a retrain or independent future test."
+}

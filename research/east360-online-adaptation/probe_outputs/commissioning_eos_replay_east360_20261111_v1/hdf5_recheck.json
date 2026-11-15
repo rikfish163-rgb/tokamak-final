@@ -1,0 +1,204 @@
+{
+  "status": "PASS",
+  "scope": "independent postseal raw HDF5 first-alarm and previous-rank audit",
+  "shots": 360,
+  "curve_scores": 7560,
+  "thresholds": {
+    "0.1": 0.6766528487205505,
+    "0.15": 0.6766528487205505,
+    "0.2": 0.5062586069107056
+  },
+  "metrics": {
+    "0.1": {
+      "fixed": {
+        "tp": 117,
+        "fp": 20
+      },
+      "inter_recent": {
+        "tp": 117,
+        "fp": 20
+      },
+      "inter_matched": {
+        "tp": 118,
+        "fp": 20
+      },
+      "intra_true": {
+        "tp": 117,
+        "fp": 21
+      },
+      "intra_shifted": {
+        "tp": 116,
+        "fp": 20
+      },
+      "joint_true": {
+        "tp": 118,
+        "fp": 20
+      },
+      "joint_shifted": {
+        "tp": 118,
+        "fp": 21
+      }
+    },
+    "0.15": {
+      "fixed": {
+        "tp": 117,
+        "fp": 20
+      },
+      "inter_recent": {
+        "tp": 117,
+        "fp": 20
+      },
+      "inter_matched": {
+        "tp": 118,
+        "fp": 20
+      },
+      "intra_true": {
+        "tp": 117,
+        "fp": 21
+      },
+      "intra_shifted": {
+        "tp": 116,
+        "fp": 20
+      },
+      "joint_true": {
+        "tp": 118,
+        "fp": 20
+      },
+      "joint_shifted": {
+        "tp": 118,
+        "fp": 21
+      }
+    },
+    "0.2": {
+      "fixed": {
+        "tp": 136,
+        "fp": 32
+      },
+      "inter_recent": {
+        "tp": 137,
+        "fp": 34
+      },
+      "inter_matched": {
+        "tp": 137,
+        "fp": 34
+      },
+      "intra_true": {
+        "tp": 138,
+        "fp": 33
+      },
+      "intra_shifted": {
+        "tp": 137,
+        "fp": 33
+      },
+      "joint_true": {
+        "tp": 139,
+        "fp": 34
+      },
+      "joint_shifted": {
+        "tp": 138,
+        "fp": 34
+      }
+    }
+  },
+  "raw_truth_counts": {
+    "disruptive": 180,
+    "safe": 180
+  },
+  "prefix_witnesses": {
+    "74087": 254,
+    "61629": 254,
+    "62573": 254
+  },
+  "release_counts": {
+    "intra_true": 43372,
+    "joint_true": 43372,
+    "eligible": 43372
+  },
+  "applied_points": {
+    "intra_true": 1382405,
+    "joint_true": 1382405
+  },
+  "step_or_max_dose": {
+    "intra_true": 0.04438591003417969,
+    "joint_true": 0.054153747856616974,
+    "inter_recent": 0.10000000149011612,
+    "inter_matched": 0.09476685151457787
+  },
+  "gradient_medians": {
+    "inter_recent": 0.022406098432838917,
+    "inter_matched": 0.12558749690651894
+  },
+  "median_match_distance": {
+    "inter_recent": 5.9196101117142845,
+    "inter_matched": 0.28705284190664004
+  },
+  "fraction_distance_at_most_one": {
+    "inter_recent": 0.09264705882352942,
+    "inter_matched": 0.763235294117647
+  },
+  "history_guard": {
+    "inter_recent": {
+      "safe_up": 122,
+      "new_cross": 0
+    },
+    "inter_matched": {
+      "safe_up": 185,
+      "new_cross": 0
+    }
+  },
+  "early_safe": [
+    {
+      "shot": 75226,
+      "rank": 110,
+      "first_release": 153,
+      "first_alarm": {
+        "fixed": 127,
+        "inter_recent": 127,
+        "inter_matched": 127,
+        "intra_true": 127,
+        "intra_shifted": 127,
+        "joint_true": 127,
+        "joint_shifted": 127
+      }
+    },
+    {
+      "shot": 90740,
+      "rank": 217,
+      "first_release": 153,
+      "first_alarm": {
+        "fixed": 127,
+        "inter_recent": 127,
+        "inter_matched": 127,
+        "intra_true": 127,
+        "intra_shifted": 127,
+        "joint_true": 127,
+        "joint_shifted": 127
+      }
+    },
+    {
+      "shot": 93983,
+      "rank": 295,
+      "first_release": 153,
+      "first_alarm": {
+        "fixed": 127,
+        "inter_recent": 127,
+        "inter_matched": 127,
+        "intra_true": 127,
+        "intra_shifted": 127,
+        "joint_true": 127,
+        "joint_shifted": 127
+      }
+    }
+  ],
+  "near_miss_n": 43,
+  "near_miss_original_gap_median": 1.5267272807080203,
+  "near_miss_max_up_median": {
+    "fixed": 0.0,
+    "inter_recent": 0.01637547460146116,
+    "inter_matched": 0.023894548312060726,
+    "intra_true": 0.023154297775981103,
+    "intra_shifted": 0.02927957601912201,
+    "joint_true": 0.032374354567425545,
+    "joint_shifted": 0.04041109084933758
+  }
+}

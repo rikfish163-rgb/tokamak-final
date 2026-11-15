@@ -1,0 +1,92 @@
+{
+  "block": 3,
+  "first_next_rank": 61,
+  "commit_sha256": "c0851938fc539146556bb6097865b08568ff174549baaa817ded69c054d03b05",
+  "reveal_sha256": "f9fad5d46a10003ed9d950df5ae9fcb8ef9452671e737fcf81985ec24ae5ed70",
+  "state_before": null,
+  "state_after": null,
+  "updated_ns": 3738766654117,
+  "decision": "rejected_guard",
+  "fit": {
+    "steps": 20,
+    "initial_loss": 4.285551071166992,
+    "final_loss": 2.8768203258514404,
+    "norm": 0.5999996662139893,
+    "teaching_shots": 2,
+    "teaching_points": 16
+  },
+  "teaching_indices": [
+    1544,
+    1557,
+    1570,
+    1584,
+    1597,
+    1611,
+    1624,
+    1638
+  ],
+  "guard_ids": [
+    71304,
+    87494,
+    69458,
+    87487,
+    70404,
+    70323,
+    86167,
+    54157,
+    71415
+  ],
+  "violations": [
+    {
+      "shot": 70323,
+      "arm": "inter",
+      "reason": "new_false_alarm"
+    }
+  ],
+  "diagnostics": {
+    "inter": {
+      "before": {
+        "shot": null,
+        "disruptive": true,
+        "down": 2.77,
+        "status": "miss",
+        "first_index": null,
+        "lead_ms": null
+      },
+      "after": {
+        "shot": null,
+        "disruptive": true,
+        "down": 2.77,
+        "status": "tp",
+        "first_index": 1294,
+        "lead_ms": 375.0
+      },
+      "peak_gain": 0.24686038494110107,
+      "corrected": true,
+      "guard_violations": []
+    },
+    "both": {
+      "before": {
+        "shot": null,
+        "disruptive": true,
+        "down": 2.77,
+        "status": "tp",
+        "first_index": 972,
+        "lead_ms": 697.0
+      },
+      "after": {
+        "shot": null,
+        "disruptive": true,
+        "down": 2.77,
+        "status": "tp",
+        "first_index": 455,
+        "lead_ms": 1214.0
+      },
+      "peak_gain": 0.20947551727294922,
+      "corrected": false,
+      "guard_violations": []
+    }
+  },
+  "proposal_sha256": "73dfd5d932a6bf469241c191ceae0673b649fb7ac9675308bf5955a7da323b97",
+  "witness_sha256": "53d3b6d70acf8389d54672387122a0fbfd702b62e87d7731df2f93ef2780e0a0"
+}

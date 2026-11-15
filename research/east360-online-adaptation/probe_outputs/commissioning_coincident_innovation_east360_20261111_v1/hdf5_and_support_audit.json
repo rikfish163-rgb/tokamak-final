@@ -1,0 +1,275 @@
+{
+  "status": "PASS",
+  "scope": "raw HDF5 first-alarm audit and postseal support sensitivity; supervised fits use only earlier blocks, unchanged test pairs, not alarm outputs",
+  "shots": 360,
+  "observed_releases": 43372,
+  "verified_learned_scores": 105960,
+  "hard_test_pairs": 13,
+  "fixed_clock": {
+    "static_timely": 136,
+    "static_fp": 32,
+    "fp_cold": [
+      70323,
+      94428,
+      85632,
+      85320,
+      85316,
+      91723
+    ],
+    "fp_before_first_feedback": [
+      75226,
+      90740,
+      93983
+    ],
+    "fp_with_feedback": [
+      70394,
+      82834,
+      91064,
+      61474,
+      72984,
+      74928,
+      70258,
+      72511,
+      72419,
+      94361,
+      74562,
+      69657,
+      80053,
+      78722,
+      70043,
+      70217,
+      73740,
+      83376,
+      85422,
+      80546,
+      96375,
+      62399,
+      80801
+    ],
+    "late_suffix": 43,
+    "late_suffix_with_timely_support": 43
+  },
+  "blocks": [
+    {
+      "first_rank": 106,
+      "last_rank": 190,
+      "hard_test_pairs": 4,
+      "regimes": {
+        "hard_only": {
+          "train_pairs": 3,
+          "ordering": {
+            "marginal": {
+              "correct": 1,
+              "ties": 0,
+              "median": -0.37862472301476635
+            },
+            "aligned": {
+              "correct": 1,
+              "ties": 0,
+              "median": -0.8449589673966248
+            },
+            "shifted": {
+              "correct": 2,
+              "ties": 0,
+              "median": 0.06473327951485469
+            }
+          }
+        },
+        "broad_equal": {
+          "train_pairs": 3,
+          "ordering": {
+            "marginal": {
+              "correct": 3,
+              "ties": 0,
+              "median": 2.546415207772659
+            },
+            "aligned": {
+              "correct": 4,
+              "ties": 0,
+              "median": 1.7585550606614735
+            },
+            "shifted": {
+              "correct": 3,
+              "ties": 0,
+              "median": 1.887668775149368
+            }
+          }
+        },
+        "broad_full": {
+          "train_pairs": 23,
+          "ordering": {
+            "marginal": {
+              "correct": 3,
+              "ties": 0,
+              "median": 0.4213764535719784
+            },
+            "aligned": {
+              "correct": 3,
+              "ties": 0,
+              "median": 1.4167480440357167
+            },
+            "shifted": {
+              "correct": 3,
+              "ties": 0,
+              "median": 0.3943376854585607
+            }
+          }
+        }
+      }
+    },
+    {
+      "first_rank": 191,
+      "last_rank": 275,
+      "hard_test_pairs": 5,
+      "regimes": {
+        "hard_only": {
+          "train_pairs": 7,
+          "ordering": {
+            "marginal": {
+              "correct": 2,
+              "ties": 0,
+              "median": -0.27680174989486406
+            },
+            "aligned": {
+              "correct": 1,
+              "ties": 0,
+              "median": -0.6368740952412473
+            },
+            "shifted": {
+              "correct": 3,
+              "ties": 0,
+              "median": 0.07473456808564481
+            }
+          }
+        },
+        "broad_equal": {
+          "train_pairs": 7,
+          "ordering": {
+            "marginal": {
+              "correct": 1,
+              "ties": 0,
+              "median": -0.11232946984031156
+            },
+            "aligned": {
+              "correct": 1,
+              "ties": 0,
+              "median": -1.4092730854887054
+            },
+            "shifted": {
+              "correct": 3,
+              "ties": 0,
+              "median": 0.20999360929817212
+            }
+          }
+        },
+        "broad_full": {
+          "train_pairs": 57,
+          "ordering": {
+            "marginal": {
+              "correct": 2,
+              "ties": 0,
+              "median": -0.16795232550670935
+            },
+            "aligned": {
+              "correct": 2,
+              "ties": 0,
+              "median": -0.2542420475357726
+            },
+            "shifted": {
+              "correct": 3,
+              "ties": 0,
+              "median": 0.19351491455627748
+            }
+          }
+        }
+      }
+    },
+    {
+      "first_rank": 276,
+      "last_rank": 360,
+      "hard_test_pairs": 4,
+      "regimes": {
+        "hard_only": {
+          "train_pairs": 13,
+          "ordering": {
+            "marginal": {
+              "correct": 3,
+              "ties": 0,
+              "median": 1.73904606401645
+            },
+            "aligned": {
+              "correct": 3,
+              "ties": 0,
+              "median": 1.7873739828247346
+            },
+            "shifted": {
+              "correct": 3,
+              "ties": 0,
+              "median": 2.2047161051501347
+            }
+          }
+        },
+        "broad_equal": {
+          "train_pairs": 13,
+          "ordering": {
+            "marginal": {
+              "correct": 3,
+              "ties": 0,
+              "median": 0.24168746188232593
+            },
+            "aligned": {
+              "correct": 3,
+              "ties": 0,
+              "median": 1.01732466541951
+            },
+            "shifted": {
+              "correct": 1,
+              "ties": 0,
+              "median": -0.8215985820858502
+            }
+          }
+        },
+        "broad_full": {
+          "train_pairs": 90,
+          "ordering": {
+            "marginal": {
+              "correct": 2,
+              "ties": 0,
+              "median": -0.009950343729683883
+            },
+            "aligned": {
+              "correct": 2,
+              "ties": 0,
+              "median": -0.28003131886869576
+            },
+            "shifted": {
+              "correct": 1,
+              "ties": 0,
+              "median": -0.8497220945282785
+            }
+          }
+        }
+      }
+    }
+  ],
+  "correct": {
+    "hard_only": {
+      "marginal": 6,
+      "aligned": 5,
+      "shifted": 8
+    },
+    "broad_equal": {
+      "marginal": 7,
+      "aligned": 8,
+      "shifted": 7
+    },
+    "broad_full": {
+      "marginal": 7,
+      "aligned": 7,
+      "shifted": 7
+    }
+  },
+  "observation_sha256": "a0b098aba530257a9bdd46656abc7dd2eeb1094be8203237fb59ea643b5062d3",
+  "result_sha256": "fc8de5d0686f21b5ebb06db889e914e89daa06427ba1baec122410a855eebfd0",
+  "audit_code_sha256": "3cdf38368eeb6467cd8b7580a8ed974ac0ec761c563535cf1b8f5e50e614ed2b"
+}

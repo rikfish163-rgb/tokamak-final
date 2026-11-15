@@ -1,0 +1,19 @@
+# Fixed-source latent temporal completion, 2026-10-28
+
+Status: preregistered engineering experiment on development-used data. Not a MAPU/CATI reproduction or a claim of identified physics.
+
+Hypothesis: signal-level forecasting and risk classification have conflicting gradients. Learning to complete the qualified source's internal temporal features, with its original risk readout preserved, may provide a more relevant within-shot loss.
+
+Literature read: MAPU/E-MAPU arXiv:2406.02635v2 §III-B2 and III-C1 (equations 5,14, algorithm 1). Source imputer is learned without updating the source encoder; target encoder adapts to frozen imputation consistency. CATI doi:10.1016/j.ipm.2026.104658 abstract/introduction only, publisher full text unavailable. Its task-relevant imputation motivates a comparator, not a reproduced gradient weighting algorithm.
+
+Source: immutable qualified checkpoint c7270c1ea3652db2e30e972d4ca9a4a2d33220a68e4a3765c8b7f5bcceeaeb02. Same TRAIN1353 and descriptive VAL160; TEST220 untouched. Two imputers start identically and receive identical windows/order for two fixed epochs. Four sampled causal endpoints per TRAIN shot, two complementary alternating 8-point block masks. Frozen first Transformer block supplies 17x64 targets. Direct residual MLP 1105->128->1088, no recursive predictions. Plain objective is valid-token MSE; task-preserving objective adds Bernoulli KL between the frozen original risk readout on completed versus original features, coefficient 1. No label is invented for early disruptive windows. Source labels are used only for existing endpoint sampling and shot-class balance. Imputer Adam 0.001, 8 shots/batch, gradient norm clip1, seed131. Source classifier never trained. No checkpoint selection on EAST or VAL.
+
+EAST: exact original complete360 order, all180 disruptive/180 safe, including original first20 cold-start predictions. Same first20 density map and same archived first20-trained cold internal linear operator. These are reused parent components, not zero-label claims. No external EAST110 and no later labels in intra learning. Reference raw inputs/order/map/cold hashes recorded. Original frozen source readout, threshold0.7258946895599365, strict lead>30ms, same first-crossing alarm.
+
+Arms: cold/no intra; plain latent completion; task-preserving completion; task-preserving with reversed masked-token input (all data already observed). All temporary states reset per shot. No inter update in this first attribution experiment. No final risk-score or alarm correction.
+
+Temporary state: 128 embedding gain/bias coordinates of the existing source model, zero initially; same bounded 0.1*tanh form. Every128 arrived samples, seal predictions through that endpoint, then one normalized gradient step0.05 on two masked views, projected to Euclidean radius1. Only following points use the update. Full and masked latent paths both differentiate w.r.t. the temporary state, as in MAPU's consistency objective; original classifier and imputer are frozen. Direct joint completion of the observed window is neither a future forecast nor autoregressive generation. Source training teaches the imputer; the adaptation objective is only latent MSE for both variants. Reversal control changes only ordering of masked past tokens and their validity.
+
+Report full360, first20, suffix340, individual flips, early>3000ms, learning counts and state norms. Any source/auxiliary improvement is not acceptance. Necessary intra criterion: J improves over same cold parent, FPR<=0.20, and actual-feedback gain exceeds reversed control. Then independent replay/attribution and intra+inter comparison are still required. Failure retains every arm; no retrospective threshold/rate selection.
+
+Storage: reuse existing signals and caches; new compact checkpoints/curves only, target <100MB. No deletes, commits, pushes or source overwrite.

@@ -1,0 +1,816 @@
+{
+  "status": "INDEPENDENT_EAST_HDF5_CLOCK_MASK_SAME_DOSE_AND_FIRST_ALARM_PASS",
+  "checked_records": 9720,
+  "counts": {
+    "complete": 43372,
+    "changed": 43372,
+    "covered_shots": 340,
+    "affected_endpoints": 1382405,
+    "changed_true_vs_shift": 1381750
+  },
+  "match_audit": {
+    "train": {
+      "pairs": 71,
+      "positive_below_original_cutoff": 15,
+      "median_gap": [
+        0.09131664037704468,
+        0.048048779954468324,
+        0.021212207576067565,
+        0.038845344889580045
+      ]
+    },
+    "cold": {
+      "pairs": 3,
+      "positive_below_original_cutoff": 3,
+      "median_gap": [
+        0.17448316514492035,
+        0.049674467649796106,
+        1.1894913640175808e-05,
+        0.006220409910904345
+      ]
+    },
+    "val": {
+      "pairs": 15,
+      "positive_below_original_cutoff": 10,
+      "median_gap": [
+        0.15232059359550476,
+        0.06962530186119971,
+        0.009527895767021972,
+        0.03744964790333543
+      ]
+    }
+  },
+  "next_phase_by_origin": {
+    "safe": {
+      "windows": 24947,
+      "mean": [
+        0.049094528536827726,
+        0.04910023704045148,
+        0.049100901237894845,
+        0.04910686438789051
+      ]
+    },
+    "disruptive_origin_gt125": {
+      "windows": 17898,
+      "mean": [
+        0.05983088070026975,
+        0.05982115876409565,
+        0.05982136672429498,
+        0.059826957948355186
+      ]
+    },
+    "disruptive_origin_30_to125": {
+      "windows": 510,
+      "mean": [
+        0.08722296180386169,
+        0.0871456137036576,
+        0.08717036225339946,
+        0.08722949182870342
+      ]
+    },
+    "disruptive_origin_le30": {
+      "windows": 17,
+      "mean": [
+        0.09484953849631197,
+        0.09477390436565175,
+        0.09486991758732234,
+        0.09491307419889114
+      ]
+    }
+  },
+  "phase_error_cols": [
+    "zero",
+    "taught_true",
+    "taught_phase_shifted",
+    "taught_hold_previous"
+  ],
+  "deadlines": {
+    "0.1": {
+      "fixed": {
+        "15": 131,
+        "20": 126,
+        "25": 122,
+        "30": 117,
+        "30_bounded": 108,
+        "FP": 20
+      },
+      "inherited": {
+        "15": 132,
+        "20": 127,
+        "25": 122,
+        "30": 117,
+        "30_bounded": 106,
+        "FP": 20
+      },
+      "legacy_current4": {
+        "15": 131,
+        "20": 127,
+        "25": 122,
+        "30": 118,
+        "30_bounded": 105,
+        "FP": 22
+      },
+      "lag_true": {
+        "15": 132,
+        "20": 127,
+        "25": 120,
+        "30": 118,
+        "30_bounded": 104,
+        "FP": 23
+      },
+      "lag_phase_shifted": {
+        "15": 133,
+        "20": 126,
+        "25": 121,
+        "30": 117,
+        "30_bounded": 104,
+        "FP": 22
+      },
+      "lag_hold_previous": {
+        "15": 134,
+        "20": 127,
+        "25": 123,
+        "30": 118,
+        "30_bounded": 104,
+        "FP": 23
+      },
+      "taught_true": {
+        "15": 132,
+        "20": 127,
+        "25": 120,
+        "30": 118,
+        "30_bounded": 104,
+        "FP": 23
+      },
+      "taught_phase_shifted": {
+        "15": 133,
+        "20": 126,
+        "25": 121,
+        "30": 118,
+        "30_bounded": 104,
+        "FP": 21
+      },
+      "taught_hold_previous": {
+        "15": 134,
+        "20": 127,
+        "25": 123,
+        "30": 118,
+        "30_bounded": 104,
+        "FP": 23
+      }
+    },
+    "0.15": {
+      "fixed": {
+        "15": 131,
+        "20": 126,
+        "25": 122,
+        "30": 117,
+        "30_bounded": 108,
+        "FP": 20
+      },
+      "inherited": {
+        "15": 132,
+        "20": 127,
+        "25": 122,
+        "30": 117,
+        "30_bounded": 106,
+        "FP": 20
+      },
+      "legacy_current4": {
+        "15": 131,
+        "20": 127,
+        "25": 122,
+        "30": 118,
+        "30_bounded": 105,
+        "FP": 22
+      },
+      "lag_true": {
+        "15": 132,
+        "20": 127,
+        "25": 120,
+        "30": 118,
+        "30_bounded": 104,
+        "FP": 23
+      },
+      "lag_phase_shifted": {
+        "15": 133,
+        "20": 126,
+        "25": 121,
+        "30": 117,
+        "30_bounded": 104,
+        "FP": 22
+      },
+      "lag_hold_previous": {
+        "15": 134,
+        "20": 127,
+        "25": 123,
+        "30": 118,
+        "30_bounded": 104,
+        "FP": 23
+      },
+      "taught_true": {
+        "15": 132,
+        "20": 127,
+        "25": 120,
+        "30": 118,
+        "30_bounded": 104,
+        "FP": 23
+      },
+      "taught_phase_shifted": {
+        "15": 133,
+        "20": 126,
+        "25": 121,
+        "30": 118,
+        "30_bounded": 104,
+        "FP": 21
+      },
+      "taught_hold_previous": {
+        "15": 134,
+        "20": 127,
+        "25": 123,
+        "30": 118,
+        "30_bounded": 104,
+        "FP": 23
+      }
+    },
+    "0.2": {
+      "fixed": {
+        "15": 152,
+        "20": 144,
+        "25": 140,
+        "30": 136,
+        "30_bounded": 117,
+        "FP": 32
+      },
+      "inherited": {
+        "15": 151,
+        "20": 144,
+        "25": 140,
+        "30": 138,
+        "30_bounded": 117,
+        "FP": 31
+      },
+      "legacy_current4": {
+        "15": 154,
+        "20": 151,
+        "25": 142,
+        "30": 141,
+        "30_bounded": 120,
+        "FP": 34
+      },
+      "lag_true": {
+        "15": 155,
+        "20": 152,
+        "25": 145,
+        "30": 142,
+        "30_bounded": 121,
+        "FP": 33
+      },
+      "lag_phase_shifted": {
+        "15": 155,
+        "20": 152,
+        "25": 145,
+        "30": 142,
+        "30_bounded": 121,
+        "FP": 32
+      },
+      "lag_hold_previous": {
+        "15": 154,
+        "20": 151,
+        "25": 144,
+        "30": 142,
+        "30_bounded": 121,
+        "FP": 34
+      },
+      "taught_true": {
+        "15": 154,
+        "20": 150,
+        "25": 144,
+        "30": 141,
+        "30_bounded": 120,
+        "FP": 33
+      },
+      "taught_phase_shifted": {
+        "15": 155,
+        "20": 150,
+        "25": 143,
+        "30": 142,
+        "30_bounded": 120,
+        "FP": 33
+      },
+      "taught_hold_previous": {
+        "15": 154,
+        "20": 152,
+        "25": 143,
+        "30": 142,
+        "30_bounded": 120,
+        "FP": 34
+      }
+    }
+  },
+  "untimely_suffix_near": {
+    "shots": 38,
+    "had_action": 38,
+    "median_parent_margin": -1.5444994267698928,
+    "median_best_real_uplift": 0.02408917598414051,
+    "real_peak_improved": 17
+  },
+  "same_fp_retrospective_ranking_only": {
+    "18": {
+      "fixed": {
+        "fp": 18,
+        "tp": 116
+      },
+      "inherited": {
+        "fp": 18,
+        "tp": 114
+      },
+      "legacy_current4": {
+        "fp": 18,
+        "tp": 113
+      },
+      "lag_true": {
+        "fp": 18,
+        "tp": 115
+      },
+      "lag_phase_shifted": {
+        "fp": 18,
+        "tp": 114
+      },
+      "lag_hold_previous": {
+        "fp": 18,
+        "tp": 115
+      },
+      "taught_true": {
+        "fp": 18,
+        "tp": 115
+      },
+      "taught_phase_shifted": {
+        "fp": 18,
+        "tp": 114
+      },
+      "taught_hold_previous": {
+        "fp": 18,
+        "tp": 115
+      }
+    },
+    "27": {
+      "fixed": {
+        "fp": 27,
+        "tp": 126
+      },
+      "inherited": {
+        "fp": 27,
+        "tp": 124
+      },
+      "legacy_current4": {
+        "fp": 27,
+        "tp": 125
+      },
+      "lag_true": {
+        "fp": 27,
+        "tp": 125
+      },
+      "lag_phase_shifted": {
+        "fp": 27,
+        "tp": 125
+      },
+      "lag_hold_previous": {
+        "fp": 27,
+        "tp": 127
+      },
+      "taught_true": {
+        "fp": 27,
+        "tp": 125
+      },
+      "taught_phase_shifted": {
+        "fp": 27,
+        "tp": 124
+      },
+      "taught_hold_previous": {
+        "fp": 27,
+        "tp": 125
+      }
+    },
+    "34": {
+      "fixed": {
+        "fp": 34,
+        "tp": 138
+      },
+      "inherited": {
+        "fp": 34,
+        "tp": 138
+      },
+      "legacy_current4": {
+        "fp": 34,
+        "tp": 141
+      },
+      "lag_true": {
+        "fp": 34,
+        "tp": 142
+      },
+      "lag_phase_shifted": {
+        "fp": 34,
+        "tp": 142
+      },
+      "lag_hold_previous": {
+        "fp": 34,
+        "tp": 144
+      },
+      "taught_true": {
+        "fp": 34,
+        "tp": 141
+      },
+      "taught_phase_shifted": {
+        "fp": 34,
+        "tp": 142
+      },
+      "taught_hold_previous": {
+        "fp": 34,
+        "tp": 143
+      }
+    },
+    "36": {
+      "fixed": {
+        "fp": 36,
+        "tp": 141
+      },
+      "inherited": {
+        "fp": 36,
+        "tp": 142
+      },
+      "legacy_current4": {
+        "fp": 36,
+        "tp": 141
+      },
+      "lag_true": {
+        "fp": 36,
+        "tp": 143
+      },
+      "lag_phase_shifted": {
+        "fp": 36,
+        "tp": 143
+      },
+      "lag_hold_previous": {
+        "fp": 36,
+        "tp": 145
+      },
+      "taught_true": {
+        "fp": 36,
+        "tp": 141
+      },
+      "taught_phase_shifted": {
+        "fp": 36,
+        "tp": 142
+      },
+      "taught_hold_previous": {
+        "fp": 36,
+        "tp": 144
+      }
+    }
+  },
+  "near_miss_details": [
+    {
+      "shot": 90874,
+      "had_action": true,
+      "margin_parent": -0.25571084277488537,
+      "maximum_real_uplift": 0.011830135168656053,
+      "true_peak_change": -0.002942756291760412,
+      "phase_peak_change": -0.001339315764809168,
+      "hold_peak_change": -0.012455911333019792
+    },
+    {
+      "shot": 78789,
+      "had_action": true,
+      "margin_parent": -1.0444462953460179,
+      "maximum_real_uplift": 0.1414436650216755,
+      "true_peak_change": 0.13819718506103362,
+      "phase_peak_change": 0.11395557058628025,
+      "hold_peak_change": -0.08040260613930728
+    },
+    {
+      "shot": 83346,
+      "had_action": true,
+      "margin_parent": -2.272929495591599,
+      "maximum_real_uplift": 0.009190530304525435,
+      "true_peak_change": -0.0001942018611429397,
+      "phase_peak_change": 0.00012985331774029163,
+      "hold_peak_change": -0.00044872837971920987
+    },
+    {
+      "shot": 87508,
+      "had_action": true,
+      "margin_parent": -3.341692134542383,
+      "maximum_real_uplift": 0.02771622004428842,
+      "true_peak_change": 0.00906020925271589,
+      "phase_peak_change": 0.008114599283144841,
+      "hold_peak_change": 0.0031244509046275404
+    },
+    {
+      "shot": 87537,
+      "had_action": true,
+      "margin_parent": -3.943402907013341,
+      "maximum_real_uplift": 0.005049644512759244,
+      "true_peak_change": -0.0003624233649408559,
+      "phase_peak_change": -0.0006995114023258253,
+      "hold_peak_change": -0.0008778532921742688
+    },
+    {
+      "shot": 79649,
+      "had_action": true,
+      "margin_parent": -1.1775127634314595,
+      "maximum_real_uplift": 0.046468789321402415,
+      "true_peak_change": 0.029462850376337446,
+      "phase_peak_change": 0.035951646687707006,
+      "hold_peak_change": 0.002571320192438442
+    },
+    {
+      "shot": 94901,
+      "had_action": true,
+      "margin_parent": -2.1309658320989353,
+      "maximum_real_uplift": 0.7052272986456161,
+      "true_peak_change": 0.3326023596315957,
+      "phase_peak_change": 0.3555377783176541,
+      "hold_peak_change": 0.37850149224881346
+    },
+    {
+      "shot": 70320,
+      "had_action": true,
+      "margin_parent": -0.8604953458497816,
+      "maximum_real_uplift": -0.012161542178791507,
+      "true_peak_change": -0.37733804141159666,
+      "phase_peak_change": -0.0583442767206831,
+      "hold_peak_change": -0.16427705668467152
+    },
+    {
+      "shot": 92394,
+      "had_action": true,
+      "margin_parent": -2.715509157358397,
+      "maximum_real_uplift": 0.007420574481951991,
+      "true_peak_change": -0.0033887791770950138,
+      "phase_peak_change": -0.0018362931822322182,
+      "hold_peak_change": 0.003493390331273716
+    },
+    {
+      "shot": 64581,
+      "had_action": true,
+      "margin_parent": -1.1899760361333822,
+      "maximum_real_uplift": 0.005128409375097398,
+      "true_peak_change": -0.0033362716913380996,
+      "phase_peak_change": -0.0027923359831578676,
+      "hold_peak_change": -0.02299376164976219
+    },
+    {
+      "shot": 86616,
+      "had_action": true,
+      "margin_parent": -2.0676962911798222,
+      "maximum_real_uplift": 0.000553421975134416,
+      "true_peak_change": -0.00017927863535849298,
+      "phase_peak_change": -0.001565876342335848,
+      "hold_peak_change": -0.00041571499096315634
+    },
+    {
+      "shot": 60999,
+      "had_action": true,
+      "margin_parent": -1.721695018934203,
+      "maximum_real_uplift": 0.003349239840803264,
+      "true_peak_change": -0.0004323899428337885,
+      "phase_peak_change": -0.0006249463208298778,
+      "hold_peak_change": -0.0021999501288161305
+    },
+    {
+      "shot": 83887,
+      "had_action": true,
+      "margin_parent": -1.8904862797169273,
+      "maximum_real_uplift": 0.029666634691444926,
+      "true_peak_change": -0.0021158800853717796,
+      "phase_peak_change": -0.004823569444556419,
+      "hold_peak_change": -0.015302999994075472
+    },
+    {
+      "shot": 81684,
+      "had_action": true,
+      "margin_parent": -1.9086018993370955,
+      "maximum_real_uplift": 0.006083002978684249,
+      "true_peak_change": 0.0005304589215573419,
+      "phase_peak_change": 0.00046557692643500737,
+      "hold_peak_change": -0.0014480794190367963
+    },
+    {
+      "shot": 73405,
+      "had_action": true,
+      "margin_parent": -0.8990400925587029,
+      "maximum_real_uplift": 0.6854037953348764,
+      "true_peak_change": 0.6568617004178199,
+      "phase_peak_change": 0.03917859538935908,
+      "hold_peak_change": 1.0323117265744568
+    },
+    {
+      "shot": 61629,
+      "had_action": true,
+      "margin_parent": -2.016433127088585,
+      "maximum_real_uplift": 0.011698295345894838,
+      "true_peak_change": 0.008706810884136162,
+      "phase_peak_change": 0.025711969551991176,
+      "hold_peak_change": 0.009527087324859407
+    },
+    {
+      "shot": 81406,
+      "had_action": true,
+      "margin_parent": -2.217117814659961,
+      "maximum_real_uplift": 0.5172727996755739,
+      "true_peak_change": 0.5172727996755739,
+      "phase_peak_change": 0.42790562753597183,
+      "hold_peak_change": 0.7454013156199679
+    },
+    {
+      "shot": 63656,
+      "had_action": true,
+      "margin_parent": -0.7439097511282735,
+      "maximum_real_uplift": 0.38845405791798393,
+      "true_peak_change": 0.38845405791798393,
+      "phase_peak_change": 0.20874540376825368,
+      "hold_peak_change": -0.5963622803293229
+    },
+    {
+      "shot": 94803,
+      "had_action": true,
+      "margin_parent": -1.4638402538487514,
+      "maximum_real_uplift": 0.004808512719508773,
+      "true_peak_change": -0.0006837112051070182,
+      "phase_peak_change": -0.0006717829798978947,
+      "hold_peak_change": 0.004110520306683796
+    },
+    {
+      "shot": 94515,
+      "had_action": true,
+      "margin_parent": -2.725340297324998,
+      "maximum_real_uplift": 0.0037840163431064333,
+      "true_peak_change": 0.00018059208455589726,
+      "phase_peak_change": 0.0008776879181637831,
+      "hold_peak_change": 0.0022800603399919517
+    },
+    {
+      "shot": 71013,
+      "had_action": true,
+      "margin_parent": -0.651162116453063,
+      "maximum_real_uplift": 0.2784787238405161,
+      "true_peak_change": 0.029868860671708353,
+      "phase_peak_change": 0.07368309856224786,
+      "hold_peak_change": 0.22254494709219763
+    },
+    {
+      "shot": 77782,
+      "had_action": true,
+      "margin_parent": -1.6972016277596758,
+      "maximum_real_uplift": 0.06999762932764297,
+      "true_peak_change": 0.06999762932764297,
+      "phase_peak_change": 0.02926487069000494,
+      "hold_peak_change": 0.1921008322588471
+    },
+    {
+      "shot": 93224,
+      "had_action": true,
+      "margin_parent": -0.7007911203664119,
+      "maximum_real_uplift": 0.03127836395787198,
+      "true_peak_change": 0.005383463616579154,
+      "phase_peak_change": 0.005438438199912299,
+      "hold_peak_change": 0.011275904763019762
+    },
+    {
+      "shot": 93218,
+      "had_action": true,
+      "margin_parent": -0.848851450058483,
+      "maximum_real_uplift": 0.03426342812381411,
+      "true_peak_change": -0.012151597622078958,
+      "phase_peak_change": -0.0095107957078574,
+      "hold_peak_change": -0.008556931252594713
+    },
+    {
+      "shot": 77788,
+      "had_action": true,
+      "margin_parent": -1.7958803040016753,
+      "maximum_real_uplift": 0.14644960258242912,
+      "true_peak_change": 0.14644960258242912,
+      "phase_peak_change": 0.17358858537252408,
+      "hold_peak_change": -0.13363343343176215
+    },
+    {
+      "shot": 76956,
+      "had_action": true,
+      "margin_parent": -2.2501466915064197,
+      "maximum_real_uplift": 0.0008194859169745605,
+      "true_peak_change": -0.0015795314450723907,
+      "phase_peak_change": -0.0018292755215214562,
+      "hold_peak_change": -0.0014720535271099955
+    },
+    {
+      "shot": 74970,
+      "had_action": true,
+      "margin_parent": -0.7903786426166945,
+      "maximum_real_uplift": 1.4741241115087944,
+      "true_peak_change": -0.14668155564570506,
+      "phase_peak_change": -0.14259640184183076,
+      "hold_peak_change": -0.03442139703032587
+    },
+    {
+      "shot": 69813,
+      "had_action": true,
+      "margin_parent": -0.8619377736655373,
+      "maximum_real_uplift": 0.3072976558384666,
+      "true_peak_change": 0.3072976558384666,
+      "phase_peak_change": 0.31653968837716795,
+      "hold_peak_change": 0.27729144886713597
+    },
+    {
+      "shot": 63566,
+      "had_action": true,
+      "margin_parent": -1.1434517627160128,
+      "maximum_real_uplift": 0.0008947060585602351,
+      "true_peak_change": -0.23215790119147184,
+      "phase_peak_change": -0.2313559221734307,
+      "hold_peak_change": -0.1120130797579435
+    },
+    {
+      "shot": 63545,
+      "had_action": true,
+      "margin_parent": -2.095501530339088,
+      "maximum_real_uplift": 0.11309823260536689,
+      "true_peak_change": -0.045644991128424905,
+      "phase_peak_change": 0.025822117765409214,
+      "hold_peak_change": 0.11934200949296625
+    },
+    {
+      "shot": 77302,
+      "had_action": true,
+      "margin_parent": -1.1462940715483636,
+      "maximum_real_uplift": -0.01493934280532816,
+      "true_peak_change": -0.2554507429276023,
+      "phase_peak_change": -0.2539304853162103,
+      "hold_peak_change": -0.22991317510140186
+    },
+    {
+      "shot": 85032,
+      "had_action": true,
+      "margin_parent": -1.625158599691034,
+      "maximum_real_uplift": 0.007808419289100588,
+      "true_peak_change": -0.022439660521674787,
+      "phase_peak_change": -0.021921202444860954,
+      "hold_peak_change": 0.013811653082809627
+    },
+    {
+      "shot": 68901,
+      "had_action": true,
+      "margin_parent": -1.4368174178632118,
+      "maximum_real_uplift": 0.004705207795047794,
+      "true_peak_change": 0.004223689226721561,
+      "phase_peak_change": 0.004351696664157689,
+      "hold_peak_change": -8.559459133294922e-05
+    },
+    {
+      "shot": 63690,
+      "had_action": true,
+      "margin_parent": -1.4082849204544643,
+      "maximum_real_uplift": -0.0006935342956935209,
+      "true_peak_change": -0.0008192926451753291,
+      "phase_peak_change": -0.0008667274163856042,
+      "hold_peak_change": -0.0016205632144263848
+    },
+    {
+      "shot": 78617,
+      "had_action": true,
+      "margin_parent": -1.1759399637346433,
+      "maximum_real_uplift": 0.021465700490854944,
+      "true_peak_change": 0.017412845074840533,
+      "phase_peak_change": 0.013813667583112865,
+      "hold_peak_change": 0.010218613763898876
+    },
+    {
+      "shot": 90321,
+      "had_action": true,
+      "margin_parent": -0.1921720095670299,
+      "maximum_real_uplift": 0.7041773763036487,
+      "true_peak_change": -0.030538789002546418,
+      "phase_peak_change": -0.0029309880809403333,
+      "hold_peak_change": 0.08649758950480722
+    },
+    {
+      "shot": 79899,
+      "had_action": true,
+      "margin_parent": -1.9968179955072585,
+      "maximum_real_uplift": 0.026712651477426075,
+      "true_peak_change": -0.010552940328659055,
+      "phase_peak_change": -0.048459278461937316,
+      "hold_peak_change": -0.04143042447465772
+    },
+    {
+      "shot": 62540,
+      "had_action": true,
+      "margin_parent": -1.9191557448772034,
+      "maximum_real_uplift": 0.060353872697890054,
+      "true_peak_change": -0.01089731548038042,
+      "phase_peak_change": -0.011067797973555837,
+      "hold_peak_change": -0.01390360749615227
+    }
+  ]
+}

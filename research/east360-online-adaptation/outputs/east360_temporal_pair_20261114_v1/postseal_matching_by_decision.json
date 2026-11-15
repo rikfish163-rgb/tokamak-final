@@ -1,0 +1,125 @@
+{
+  "scope": "same fixed stream; retrospective grouping only; all deltas at q+39 after complete handoff; one vote per shot; timeout based on actual HDF5 clock",
+  "groups": {
+    "all": {
+      "shots": 340,
+      "packets": 41889,
+      "nll_top1": {
+        "pair_only": [
+          1.1600043773651123,
+          0.34053707122802734
+        ],
+        "taught": [
+          1.1279284954071045,
+          0.3363618850708008
+        ],
+        "one_side_shift": [
+          1.1378971338272095,
+          0.3276873528957367
+        ],
+        "joint_reverse": [
+          1.1285271644592285,
+          0.3360942304134369
+        ]
+      },
+      "cos_to_taught": {
+        "pair_only_current": 0.43040135502815247,
+        "risk_taught_current": 1.0,
+        "risk_taught_earlier": 0.02549491822719574,
+        "risk_taught_relative_shift": -0.45491331815719604,
+        "risk_taught_joint_reverse": 0.5620906352996826,
+        "risk_taught_opposite": -1.0
+      }
+    },
+    "miss": {
+      "shots": 12,
+      "packets": 36,
+      "nll_top1": {
+        "pair_only": [
+          1.3459292650222778,
+          0.277777761220932
+        ],
+        "taught": [
+          1.2374438047409058,
+          0.30092594027519226
+        ],
+        "one_side_shift": [
+          1.1442135572433472,
+          0.3657407760620117
+        ],
+        "joint_reverse": [
+          1.226592779159546,
+          0.37037038803100586
+        ]
+      },
+      "cos_to_taught": {
+        "pair_only_current": 0.46889373660087585,
+        "risk_taught_current": 1.0,
+        "risk_taught_earlier": 0.08390206098556519,
+        "risk_taught_relative_shift": -0.30793818831443787,
+        "risk_taught_joint_reverse": 0.45749935507774353,
+        "risk_taught_opposite": -1.0
+      }
+    },
+    "late": {
+      "shots": 21,
+      "packets": 62,
+      "nll_top1": {
+        "pair_only": [
+          1.1482025384902954,
+          0.33862432837486267
+        ],
+        "taught": [
+          1.1474031209945679,
+          0.3452380895614624
+        ],
+        "one_side_shift": [
+          1.1584802865982056,
+          0.3187830448150635
+        ],
+        "joint_reverse": [
+          1.1310399770736694,
+          0.36243388056755066
+        ]
+      },
+      "cos_to_taught": {
+        "pair_only_current": 0.43854010105133057,
+        "risk_taught_current": 1.0,
+        "risk_taught_earlier": 0.08332459628582001,
+        "risk_taught_relative_shift": -0.40312495827674866,
+        "risk_taught_joint_reverse": 0.4579152464866638,
+        "risk_taught_opposite": -1.0
+      }
+    },
+    "parent_safe_95ms": {
+      "shots": 21,
+      "packets": 61,
+      "nll_top1": {
+        "pair_only": [
+          1.1385908126831055,
+          0.28306880593299866
+        ],
+        "taught": [
+          1.123926043510437,
+          0.26455026865005493
+        ],
+        "one_side_shift": [
+          1.111393928527832,
+          0.3835979104042053
+        ],
+        "joint_reverse": [
+          1.103624939918518,
+          0.3201058506965637
+        ]
+      },
+      "cos_to_taught": {
+        "pair_only_current": 0.46735331416130066,
+        "risk_taught_current": 1.0,
+        "risk_taught_earlier": -0.03402097523212433,
+        "risk_taught_relative_shift": -0.39000019431114197,
+        "risk_taught_joint_reverse": 0.4650040566921234,
+        "risk_taught_opposite": -1.0
+      }
+    }
+  }
+}

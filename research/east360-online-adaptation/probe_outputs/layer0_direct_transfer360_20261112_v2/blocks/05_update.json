@@ -1,0 +1,95 @@
+{
+  "block": 5,
+  "first_next_rank": 101,
+  "commit_sha256": "38a781621703c0ea182b6474497ccf8cbfc02b820698acdde71233d63be46cdb",
+  "reveal_sha256": "60f0ead30b4acd10d7d2c0ec3fed0bf5e2d07cfd8b55a8f0791204eae657d4b2",
+  "state_before": null,
+  "state_after": null,
+  "updated_ns": 3740780752706,
+  "decision": "rejected_guard",
+  "fit": {
+    "steps": 20,
+    "initial_loss": 2.267192840576172,
+    "final_loss": 1.594632863998413,
+    "norm": 0.599999725818634,
+    "teaching_shots": 4,
+    "teaching_points": 35
+  },
+  "teaching_indices": [
+    377,
+    1245,
+    1557,
+    2351,
+    2392,
+    2424,
+    2569,
+    3257,
+    3783,
+    4542
+  ],
+  "guard_ids": [
+    71304,
+    87494,
+    69458,
+    87487,
+    70404,
+    70323,
+    86167,
+    54157,
+    69791,
+    82834
+  ],
+  "violations": [
+    {
+      "shot": 70323,
+      "arm": "inter",
+      "reason": "new_false_alarm"
+    }
+  ],
+  "diagnostics": {
+    "inter": {
+      "before": {
+        "shot": null,
+        "disruptive": false,
+        "down": null,
+        "status": "fp",
+        "first_index": 2384,
+        "lead_ms": null
+      },
+      "after": {
+        "shot": null,
+        "disruptive": false,
+        "down": null,
+        "status": "fp",
+        "first_index": 2391,
+        "lead_ms": null
+      },
+      "peak_gain": 0.006024956703186035,
+      "corrected": false,
+      "guard_violations": []
+    },
+    "both": {
+      "before": {
+        "shot": null,
+        "disruptive": false,
+        "down": null,
+        "status": "fp",
+        "first_index": 2343,
+        "lead_ms": null
+      },
+      "after": {
+        "shot": null,
+        "disruptive": false,
+        "down": null,
+        "status": "fp",
+        "first_index": 2343,
+        "lead_ms": null
+      },
+      "peak_gain": -0.007125735282897949,
+      "corrected": false,
+      "guard_violations": []
+    }
+  },
+  "proposal_sha256": "9049e773de8531d030eb016b58c9499325c9c9aef8ec0cf7e9ada8ca39ad0411",
+  "witness_sha256": "08d5b86cc525e75bff2c717e0afb05867e5d54e90b2f0024fbde62d6940ebf81"
+}

@@ -1,0 +1,1417 @@
+{
+  "metrics": {
+    "0.1": {
+      "head_only": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 45,
+        "fpr": 0.25,
+        "misses": 32,
+        "early_over3000": 17,
+        "all_alarmed_disruptions": {
+          "count": 148,
+          "mean_ms": 874.0212851283784,
+          "median_ms": 151.0
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 131,
+          "mean_ms": 432.20431248091603,
+          "median_ms": 111.0
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 126,
+            "tpr": 0.7,
+            "tp_at_most_3000ms": 109,
+            "tpr_at_most_3000ms": 0.6055555555555555,
+            "timely_lead_ms": {
+              "count": 126,
+              "mean_ms": 1025.3310994603175,
+              "median_ms": 252.5
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 109,
+              "mean_ms": 517.9388373211009,
+              "median_ms": 169.0
+            }
+          },
+          "20": {
+            "tp": 121,
+            "tpr": 0.6722222222222223,
+            "tp_at_most_3000ms": 104,
+            "tpr_at_most_3000ms": 0.5777777777777777,
+            "timely_lead_ms": {
+              "count": 121,
+              "mean_ms": 1066.9480870413224,
+              "median_ms": 301.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 104,
+              "mean_ms": 541.9647429615385,
+              "median_ms": 180.0
+            }
+          },
+          "25": {
+            "tp": 115,
+            "tpr": 0.6388888888888888,
+            "tp_at_most_3000ms": 98,
+            "tpr_at_most_3000ms": 0.5444444444444444,
+            "timely_lead_ms": {
+              "count": 115,
+              "mean_ms": 1121.3897263652175,
+              "median_ms": 306.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 98,
+              "mean_ms": 573.7085027346939,
+              "median_ms": 210.0
+            }
+          },
+          "30": {
+            "tp": 111,
+            "tpr": 0.6166666666666667,
+            "tp_at_most_3000ms": 94,
+            "tpr_at_most_3000ms": 0.5222222222222223,
+            "timely_lead_ms": {
+              "count": 111,
+              "mean_ms": 1160.7371038918918,
+              "median_ms": 438.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 94,
+              "mean_ms": 596.8663113617022,
+              "median_ms": 237.5
+            }
+          }
+        }
+      },
+      "measured": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 10,
+        "fpr": 0.05555555555555555,
+        "misses": 35,
+        "early_over3000": 8,
+        "all_alarmed_disruptions": {
+          "count": 145,
+          "mean_ms": 430.79161435172415,
+          "median_ms": 80.0
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 137,
+          "mean_ms": 194.21763799270073,
+          "median_ms": 63.61199
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 128,
+            "tpr": 0.7111111111111111,
+            "tp_at_most_3000ms": 120,
+            "tpr_at_most_3000ms": 0.6666666666666666,
+            "timely_lead_ms": {
+              "count": 128,
+              "mean_ms": 487.121859203125,
+              "median_ms": 99.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 120,
+              "mean_ms": 220.78858585,
+              "median_ms": 88.5
+            }
+          },
+          "20": {
+            "tp": 123,
+            "tpr": 0.6833333333333333,
+            "tp_at_most_3000ms": 115,
+            "tpr_at_most_3000ms": 0.6388888888888888,
+            "timely_lead_ms": {
+              "count": 123,
+              "mean_ms": 506.1999835609756,
+              "median_ms": 101.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 115,
+              "mean_ms": 229.61417653913043,
+              "median_ms": 92.0
+            }
+          },
+          "25": {
+            "tp": 113,
+            "tpr": 0.6277777777777778,
+            "tp_at_most_3000ms": 105,
+            "tpr_at_most_3000ms": 0.5833333333333334,
+            "timely_lead_ms": {
+              "count": 113,
+              "mean_ms": 548.9802264424778,
+              "median_ms": 117.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 105,
+              "mean_ms": 249.31236106666665,
+              "median_ms": 102.0
+            }
+          },
+          "30": {
+            "tp": 109,
+            "tpr": 0.6055555555555555,
+            "tp_at_most_3000ms": 101,
+            "tpr_at_most_3000ms": 0.5611111111111111,
+            "timely_lead_ms": {
+              "count": 109,
+              "mean_ms": 568.1060333669725,
+              "median_ms": 120.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 101,
+              "mean_ms": 258.08504911881187,
+              "median_ms": 109.0
+            }
+          }
+        }
+      },
+      "mask_and_bias": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 145,
+        "fpr": 0.8055555555555556,
+        "misses": 12,
+        "early_over3000": 63,
+        "all_alarmed_disruptions": {
+          "count": 168,
+          "mean_ms": 2948.5853885833335,
+          "median_ms": 1956.5
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 105,
+          "mean_ms": 1089.0183132095237,
+          "median_ms": 1054.0
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 162,
+            "tpr": 0.9,
+            "tp_at_most_3000ms": 99,
+            "tpr_at_most_3000ms": 0.55,
+            "timely_lead_ms": {
+              "count": 162,
+              "mean_ms": 3057.616336783951,
+              "median_ms": 2029.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 99,
+              "mean_ms": 1154.7315572121213,
+              "median_ms": 1121.0
+            }
+          },
+          "20": {
+            "tp": 160,
+            "tpr": 0.8888888888888888,
+            "tp_at_most_3000ms": 97,
+            "tpr_at_most_3000ms": 0.5388888888888889,
+            "timely_lead_ms": {
+              "count": 160,
+              "mean_ms": 3095.62029635,
+              "median_ms": 2072.5
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 97,
+              "mean_ms": 1178.1837631030928,
+              "median_ms": 1129.0
+            }
+          },
+          "25": {
+            "tp": 160,
+            "tpr": 0.8888888888888888,
+            "tp_at_most_3000ms": 97,
+            "tpr_at_most_3000ms": 0.5388888888888889,
+            "timely_lead_ms": {
+              "count": 160,
+              "mean_ms": 3095.62029635,
+              "median_ms": 2072.5
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 97,
+              "mean_ms": 1178.1837631030928,
+              "median_ms": 1129.0
+            }
+          },
+          "30": {
+            "tp": 159,
+            "tpr": 0.8833333333333333,
+            "tp_at_most_3000ms": 96,
+            "tpr_at_most_3000ms": 0.5333333333333333,
+            "timely_lead_ms": {
+              "count": 159,
+              "mean_ms": 3114.900927144654,
+              "median_ms": 2100.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 96,
+              "mean_ms": 1190.1440106354166,
+              "median_ms": 1136.0
+            }
+          }
+        }
+      },
+      "full": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 12,
+        "fpr": 0.06666666666666667,
+        "misses": 20,
+        "early_over3000": 7,
+        "all_alarmed_disruptions": {
+          "count": 160,
+          "mean_ms": 508.1387670875,
+          "median_ms": 109.0
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 153,
+          "mean_ms": 312.5967438496732,
+          "median_ms": 98.0
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 147,
+            "tpr": 0.8166666666666667,
+            "tp_at_most_3000ms": 140,
+            "tpr_at_most_3000ms": 0.7777777777777778,
+            "timely_lead_ms": {
+              "count": 147,
+              "mean_ms": 552.4910538503401,
+              "median_ms": 121.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 140,
+              "mean_ms": 341.0091713642857,
+              "median_ms": 120.0
+            }
+          },
+          "20": {
+            "tp": 147,
+            "tpr": 0.8166666666666667,
+            "tp_at_most_3000ms": 140,
+            "tpr_at_most_3000ms": 0.7777777777777778,
+            "timely_lead_ms": {
+              "count": 147,
+              "mean_ms": 552.4910538503401,
+              "median_ms": 121.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 140,
+              "mean_ms": 341.0091713642857,
+              "median_ms": 120.0
+            }
+          },
+          "25": {
+            "tp": 141,
+            "tpr": 0.7833333333333333,
+            "tp_at_most_3000ms": 134,
+            "tpr_at_most_3000ms": 0.7444444444444445,
+            "timely_lead_ms": {
+              "count": 141,
+              "mean_ms": 575.0443441560284,
+              "median_ms": 128.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 134,
+              "mean_ms": 355.2712806044776,
+              "median_ms": 121.0
+            }
+          },
+          "30": {
+            "tp": 137,
+            "tpr": 0.7611111111111111,
+            "tp_at_most_3000ms": 130,
+            "tpr_at_most_3000ms": 0.7222222222222222,
+            "timely_lead_ms": {
+              "count": 137,
+              "mean_ms": 591.0237410656935,
+              "median_ms": 131.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 130,
+              "mean_ms": 365.3488584692308,
+              "median_ms": 127.5
+            }
+          }
+        }
+      }
+    },
+    "0.15": {
+      "head_only": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 73,
+        "fpr": 0.40555555555555556,
+        "misses": 25,
+        "early_over3000": 25,
+        "all_alarmed_disruptions": {
+          "count": 155,
+          "mean_ms": 1278.7106357741936,
+          "median_ms": 428.0
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 130,
+          "mean_ms": 650.0876670153846,
+          "median_ms": 214.0
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 137,
+            "tpr": 0.7611111111111111,
+            "tp_at_most_3000ms": 112,
+            "tpr_at_most_3000ms": 0.6222222222222222,
+            "timely_lead_ms": {
+              "count": 137,
+              "mean_ms": 1445.9243197737226,
+              "median_ms": 638.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 112,
+              "mean_ms": 753.5971426428572,
+              "median_ms": 330.0
+            }
+          },
+          "20": {
+            "tp": 135,
+            "tpr": 0.75,
+            "tp_at_most_3000ms": 110,
+            "tpr_at_most_3000ms": 0.6111111111111112,
+            "timely_lead_ms": {
+              "count": 135,
+              "mean_ms": 1467.0713467333333,
+              "median_ms": 694.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 110,
+              "mean_ms": 766.9625452363637,
+              "median_ms": 333.5
+            }
+          },
+          "25": {
+            "tp": 132,
+            "tpr": 0.7333333333333333,
+            "tp_at_most_3000ms": 107,
+            "tpr_at_most_3000ms": 0.5944444444444444,
+            "timely_lead_ms": {
+              "count": 132,
+              "mean_ms": 1499.9063015833333,
+              "median_ms": 862.5
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 107,
+              "mean_ms": 787.8399997757009,
+              "median_ms": 358.0
+            }
+          },
+          "30": {
+            "tp": 129,
+            "tpr": 0.7166666666666667,
+            "tp_at_most_3000ms": 104,
+            "tpr_at_most_3000ms": 0.5777777777777777,
+            "timely_lead_ms": {
+              "count": 129,
+              "mean_ms": 1534.113424875969,
+              "median_ms": 907.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 104,
+              "mean_ms": 809.7296151538461,
+              "median_ms": 436.0
+            }
+          }
+        }
+      },
+      "measured": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 16,
+        "fpr": 0.08888888888888889,
+        "misses": 28,
+        "early_over3000": 13,
+        "all_alarmed_disruptions": {
+          "count": 152,
+          "mean_ms": 574.9696294736842,
+          "median_ms": 97.0
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 139,
+          "mean_ms": 229.5944875467626,
+          "median_ms": 77.0
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 135,
+            "tpr": 0.75,
+            "tp_at_most_3000ms": 122,
+            "tpr_at_most_3000ms": 0.6777777777777778,
+            "timely_lead_ms": {
+              "count": 135,
+              "mean_ms": 646.4888933555555,
+              "median_ms": 113.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 122,
+              "mean_ms": 260.6086122295082,
+              "median_ms": 99.5
+            }
+          },
+          "20": {
+            "tp": 131,
+            "tpr": 0.7277777777777777,
+            "tp_at_most_3000ms": 118,
+            "tpr_at_most_3000ms": 0.6555555555555556,
+            "timely_lead_ms": {
+              "count": 131,
+              "mean_ms": 665.6793939160306,
+              "median_ms": 119.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 118,
+              "mean_ms": 268.83263298305087,
+              "median_ms": 101.0
+            }
+          },
+          "25": {
+            "tp": 122,
+            "tpr": 0.6777777777777778,
+            "tp_at_most_3000ms": 109,
+            "tpr_at_most_3000ms": 0.6055555555555555,
+            "timely_lead_ms": {
+              "count": 122,
+              "mean_ms": 713.1161328934426,
+              "median_ms": 130.5
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 109,
+              "mean_ms": 289.1598009357798,
+              "median_ms": 113.0
+            }
+          },
+          "30": {
+            "tp": 118,
+            "tpr": 0.6555555555555556,
+            "tp_at_most_3000ms": 105,
+            "tpr_at_most_3000ms": 0.5833333333333334,
+            "timely_lead_ms": {
+              "count": 118,
+              "mean_ms": 736.3471208644067,
+              "median_ms": 138.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 105,
+              "mean_ms": 299.11628905714286,
+              "median_ms": 119.0
+            }
+          }
+        }
+      },
+      "mask_and_bias": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 163,
+        "fpr": 0.9055555555555556,
+        "misses": 6,
+        "early_over3000": 70,
+        "all_alarmed_disruptions": {
+          "count": 174,
+          "mean_ms": 3093.8242871494253,
+          "median_ms": 2084.5
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 104,
+          "mean_ms": 1182.8888314134615,
+          "median_ms": 1146.7013124999999
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 168,
+            "tpr": 0.9333333333333333,
+            "tp_at_most_3000ms": 98,
+            "tpr_at_most_3000ms": 0.5444444444444444,
+            "timely_lead_ms": {
+              "count": 168,
+              "mean_ms": 3204.0676096726193,
+              "median_ms": 2238.190842
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 98,
+              "mean_ms": 1254.881336,
+              "median_ms": 1175.5
+            }
+          },
+          "20": {
+            "tp": 167,
+            "tpr": 0.9277777777777778,
+            "tp_at_most_3000ms": 97,
+            "tpr_at_most_3000ms": 0.5388888888888889,
+            "timely_lead_ms": {
+              "count": 167,
+              "mean_ms": 3223.1458588323353,
+              "median_ms": 2258.381684
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 97,
+              "mean_ms": 1267.6326899793814,
+              "median_ms": 1188.0
+            }
+          },
+          "25": {
+            "tp": 166,
+            "tpr": 0.9222222222222223,
+            "tp_at_most_3000ms": 96,
+            "tpr_at_most_3000ms": 0.5333333333333333,
+            "timely_lead_ms": {
+              "count": 166,
+              "mean_ms": 3242.4165118433734,
+              "median_ms": 2269.690842
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 96,
+              "mean_ms": 1280.58493196875,
+              "median_ms": 1190.0
+            }
+          },
+          "30": {
+            "tp": 166,
+            "tpr": 0.9222222222222223,
+            "tp_at_most_3000ms": 96,
+            "tpr_at_most_3000ms": 0.5333333333333333,
+            "timely_lead_ms": {
+              "count": 166,
+              "mean_ms": 3242.4165118433734,
+              "median_ms": 2269.690842
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 96,
+              "mean_ms": 1280.58493196875,
+              "median_ms": 1190.0
+            }
+          }
+        }
+      },
+      "full": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 16,
+        "fpr": 0.08888888888888889,
+        "misses": 16,
+        "early_over3000": 10,
+        "all_alarmed_disruptions": {
+          "count": 164,
+          "mean_ms": 615.3512638231707,
+          "median_ms": 128.0
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 154,
+          "mean_ms": 356.4646128961039,
+          "median_ms": 120.5
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 153,
+            "tpr": 0.85,
+            "tp_at_most_3000ms": 143,
+            "tpr_at_most_3000ms": 0.7944444444444444,
+            "timely_lead_ms": {
+              "count": 153,
+              "mean_ms": 658.938396248366,
+              "median_ms": 136.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 143,
+              "mean_ms": 383.1854387762238,
+              "median_ms": 128.0
+            }
+          },
+          "20": {
+            "tp": 152,
+            "tpr": 0.8444444444444444,
+            "tp_at_most_3000ms": 142,
+            "tpr_at_most_3000ms": 0.7888888888888889,
+            "timely_lead_ms": {
+              "count": 152,
+              "mean_ms": 663.1550962236842,
+              "median_ms": 136.8
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 142,
+              "mean_ms": 385.75716721830986,
+              "median_ms": 128.5
+            }
+          },
+          "25": {
+            "tp": 145,
+            "tpr": 0.8055555555555556,
+            "tp_at_most_3000ms": 135,
+            "tpr_at_most_3000ms": 0.75,
+            "timely_lead_ms": {
+              "count": 145,
+              "mean_ms": 694.0664981793103,
+              "median_ms": 165.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 135,
+              "mean_ms": 404.5747063333333,
+              "median_ms": 135.0
+            }
+          },
+          "30": {
+            "tp": 142,
+            "tpr": 0.7888888888888889,
+            "tp_at_most_3000ms": 132,
+            "tpr_at_most_3000ms": 0.7333333333333333,
+            "timely_lead_ms": {
+              "count": 142,
+              "mean_ms": 708.1383256056338,
+              "median_ms": 172.5
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 132,
+              "mean_ms": 413.1332223863636,
+              "median_ms": 136.8
+            }
+          }
+        }
+      }
+    },
+    "0.2": {
+      "head_only": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 111,
+        "fpr": 0.6166666666666667,
+        "misses": 15,
+        "early_over3000": 40,
+        "all_alarmed_disruptions": {
+          "count": 165,
+          "mean_ms": 2023.0081532242425,
+          "median_ms": 1105.0
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 125,
+          "mean_ms": 893.93293252,
+          "median_ms": 694.0
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 154,
+            "tpr": 0.8555555555555555,
+            "tp_at_most_3000ms": 114,
+            "tpr_at_most_3000ms": 0.6333333333333333,
+            "timely_lead_ms": {
+              "count": 154,
+              "mean_ms": 2167.1119962077923,
+              "median_ms": 1265.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 114,
+              "mean_ms": 979.6536727982456,
+              "median_ms": 764.6341474999999
+            }
+          },
+          "20": {
+            "tp": 153,
+            "tpr": 0.85,
+            "tp_at_most_3000ms": 113,
+            "tpr_at_most_3000ms": 0.6277777777777778,
+            "timely_lead_ms": {
+              "count": 153,
+              "mean_ms": 2181.1519438954247,
+              "median_ms": 1289.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 113,
+              "mean_ms": 988.1550327345133,
+              "median_ms": 768.060344
+            }
+          },
+          "25": {
+            "tp": 151,
+            "tpr": 0.8388888888888889,
+            "tp_at_most_3000ms": 111,
+            "tpr_at_most_3000ms": 0.6166666666666667,
+            "timely_lead_ms": {
+              "count": 151,
+              "mean_ms": 2209.723492821192,
+              "median_ms": 1320.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 111,
+              "mean_ms": 1005.5271954864864,
+              "median_ms": 861.0
+            }
+          },
+          "30": {
+            "tp": 148,
+            "tpr": 0.8222222222222222,
+            "tp_at_most_3000ms": 108,
+            "tpr_at_most_3000ms": 0.6,
+            "timely_lead_ms": {
+              "count": 148,
+              "mean_ms": 2253.9273474054053,
+              "median_ms": 1351.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 108,
+              "mean_ms": 1032.6529509166667,
+              "median_ms": 892.5
+            }
+          }
+        }
+      },
+      "measured": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 33,
+        "fpr": 0.18333333333333332,
+        "misses": 24,
+        "early_over3000": 18,
+        "all_alarmed_disruptions": {
+          "count": 156,
+          "mean_ms": 786.7154189679487,
+          "median_ms": 127.5
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 138,
+          "mean_ms": 308.1913655724638,
+          "median_ms": 100.0
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 145,
+            "tpr": 0.8055555555555556,
+            "tp_at_most_3000ms": 127,
+            "tpr_at_most_3000ms": 0.7055555555555556,
+            "timely_lead_ms": {
+              "count": 145,
+              "mean_ms": 845.7212661862069,
+              "median_ms": 143.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 127,
+              "mean_ms": 334.11328100000003,
+              "median_ms": 120.0
+            }
+          },
+          "20": {
+            "tp": 143,
+            "tpr": 0.7944444444444444,
+            "tp_at_most_3000ms": 125,
+            "tpr_at_most_3000ms": 0.6944444444444444,
+            "timely_lead_ms": {
+              "count": 143,
+              "mean_ms": 857.2977873916084,
+              "median_ms": 148.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 125,
+              "mean_ms": 339.171093496,
+              "median_ms": 121.0
+            }
+          },
+          "25": {
+            "tp": 134,
+            "tpr": 0.7444444444444445,
+            "tp_at_most_3000ms": 116,
+            "tpr_at_most_3000ms": 0.6444444444444445,
+            "timely_lead_ms": {
+              "count": 134,
+              "mean_ms": 913.3638149776119,
+              "median_ms": 183.5
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 116,
+              "mean_ms": 363.73753704310343,
+              "median_ms": 130.5
+            }
+          },
+          "30": {
+            "tp": 131,
+            "tpr": 0.7277777777777777,
+            "tp_at_most_3000ms": 113,
+            "tpr_at_most_3000ms": 0.6277777777777778,
+            "timely_lead_ms": {
+              "count": 131,
+              "mean_ms": 933.6606355419848,
+              "median_ms": 193.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 113,
+              "mean_ms": 372.675631380531,
+              "median_ms": 134.0
+            }
+          }
+        }
+      },
+      "mask_and_bias": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 176,
+        "fpr": 0.9777777777777777,
+        "misses": 4,
+        "early_over3000": 75,
+        "all_alarmed_disruptions": {
+          "count": 176,
+          "mean_ms": 3281.9126079204543,
+          "median_ms": 2312.5
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 101,
+          "mean_ms": 1323.5549486435643,
+          "median_ms": 1312.0
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 171,
+            "tpr": 0.95,
+            "tp_at_most_3000ms": 96,
+            "tpr_at_most_3000ms": 0.5333333333333333,
+            "timely_lead_ms": {
+              "count": 171,
+              "mean_ms": 3377.760385754386,
+              "median_ms": 2344.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 96,
+              "mean_ms": 1392.28600815625,
+              "median_ms": 1326.0
+            }
+          },
+          "20": {
+            "tp": 170,
+            "tpr": 0.9444444444444444,
+            "tp_at_most_3000ms": 95,
+            "tpr_at_most_3000ms": 0.5277777777777778,
+            "timely_lead_ms": {
+              "count": 170,
+              "mean_ms": 3397.5236821411763,
+              "median_ms": 2408.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 95,
+              "mean_ms": 1406.7521766631578,
+              "median_ms": 1328.0
+            }
+          },
+          "25": {
+            "tp": 170,
+            "tpr": 0.9444444444444444,
+            "tp_at_most_3000ms": 95,
+            "tpr_at_most_3000ms": 0.5277777777777778,
+            "timely_lead_ms": {
+              "count": 170,
+              "mean_ms": 3397.5236821411763,
+              "median_ms": 2408.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 95,
+              "mean_ms": 1406.7521766631578,
+              "median_ms": 1328.0
+            }
+          },
+          "30": {
+            "tp": 170,
+            "tpr": 0.9444444444444444,
+            "tp_at_most_3000ms": 95,
+            "tpr_at_most_3000ms": 0.5277777777777778,
+            "timely_lead_ms": {
+              "count": 170,
+              "mean_ms": 3397.5236821411763,
+              "median_ms": 2408.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 95,
+              "mean_ms": 1406.7521766631578,
+              "median_ms": 1328.0
+            }
+          }
+        }
+      },
+      "full": {
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "fp": 24,
+        "fpr": 0.13333333333333333,
+        "misses": 11,
+        "early_over3000": 19,
+        "all_alarmed_disruptions": {
+          "count": 169,
+          "mean_ms": 935.636145887574,
+          "median_ms": 194.0
+        },
+        "alarmed_disruptions_at_most_3000ms": {
+          "count": 150,
+          "mean_ms": 451.7629809466667,
+          "median_ms": 136.5
+        },
+        "by_deadline": {
+          "15": {
+            "tp": 162,
+            "tpr": 0.9,
+            "tp_at_most_3000ms": 143,
+            "tpr_at_most_3000ms": 0.7944444444444444,
+            "timely_lead_ms": {
+              "count": 162,
+              "mean_ms": 975.6529868333333,
+              "median_ms": 220.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 143,
+              "mean_ms": 473.41064583216786,
+              "median_ms": 160.0
+            }
+          },
+          "20": {
+            "tp": 160,
+            "tpr": 0.8888888888888888,
+            "tp_at_most_3000ms": 141,
+            "tpr_at_most_3000ms": 0.7833333333333333,
+            "timely_lead_ms": {
+              "count": 160,
+              "mean_ms": 987.64239916875,
+              "median_ms": 222.0
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 141,
+              "mean_ms": 479.89164790070924,
+              "median_ms": 166.0
+            }
+          },
+          "25": {
+            "tp": 158,
+            "tpr": 0.8777777777777778,
+            "tp_at_most_3000ms": 139,
+            "tpr_at_most_3000ms": 0.7722222222222223,
+            "timely_lead_ms": {
+              "count": 158,
+              "mean_ms": 999.8657206772152,
+              "median_ms": 225.5
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 139,
+              "mean_ms": 486.4800169352518,
+              "median_ms": 167.0
+            }
+          },
+          "30": {
+            "tp": 156,
+            "tpr": 0.8666666666666667,
+            "tp_at_most_3000ms": 137,
+            "tpr_at_most_3000ms": 0.7611111111111111,
+            "timely_lead_ms": {
+              "count": 156,
+              "mean_ms": 1012.328006,
+              "median_ms": 236.5
+            },
+            "timely_lead_at_most_3000ms": {
+              "count": 137,
+              "mean_ms": 493.17596659124087,
+              "median_ms": 167.0
+            }
+          }
+        }
+      }
+    }
+  },
+  "change_from_head_only": {
+    "measured": {
+      "rescued_D": [
+        69854,
+        71265,
+        71370,
+        71415,
+        69454,
+        90874,
+        78789,
+        89881,
+        87537,
+        89483,
+        69855,
+        70861,
+        69859,
+        70320,
+        92394,
+        87861,
+        83887,
+        61629,
+        63566,
+        63545,
+        64835
+      ],
+      "lost_D": [
+        75657,
+        61475,
+        60999,
+        73597,
+        95770,
+        81406,
+        62182,
+        94803,
+        94515,
+        71013,
+        77782,
+        93224,
+        93218,
+        72578,
+        76956,
+        61638,
+        93995,
+        69593,
+        93112,
+        78668,
+        85692,
+        73421,
+        73665,
+        69813,
+        85683,
+        75603,
+        75615,
+        91689,
+        94281,
+        77302,
+        85032,
+        63690,
+        78617,
+        85526,
+        90675,
+        65023,
+        79899,
+        62540
+      ],
+      "removed_FP": [
+        94428,
+        85632,
+        85320,
+        85316,
+        91723,
+        82447,
+        87689,
+        94422,
+        95930,
+        90863,
+        91064,
+        61474,
+        74928,
+        60239,
+        74939,
+        59935,
+        80793,
+        61323,
+        72511,
+        72419,
+        83231,
+        94361,
+        59940,
+        88135,
+        81017,
+        77859,
+        79580,
+        96099,
+        94363,
+        93641,
+        66404,
+        89074,
+        80053,
+        89101,
+        67046,
+        66458,
+        78722,
+        80746,
+        73790,
+        93602,
+        86756,
+        94395,
+        73740,
+        64646,
+        67681,
+        83438,
+        83376,
+        73743,
+        79734,
+        94402,
+        63510,
+        67451,
+        67900,
+        64995,
+        77835,
+        87363,
+        54905,
+        93983,
+        62394,
+        94248,
+        85422,
+        96375,
+        93306,
+        77295,
+        77565,
+        77628,
+        62399,
+        94274,
+        86499,
+        94323,
+        78776,
+        89485,
+        87009,
+        77419,
+        62383,
+        86941,
+        85123,
+        86930,
+        89721,
+        90166,
+        80801,
+        89570
+      ],
+      "added_FP": [
+        70404,
+        83646,
+        87484,
+        80955
+      ]
+    },
+    "mask_and_bias": {
+      "rescued_D": [
+        71370,
+        69454,
+        78789,
+        83346,
+        87508,
+        87537,
+        79649,
+        89483,
+        70320,
+        92394,
+        87861,
+        64581,
+        86616,
+        83887,
+        81684,
+        73405,
+        73403,
+        61629,
+        77788,
+        63566,
+        63545,
+        64835
+      ],
+      "lost_D": [],
+      "removed_FP": [],
+      "added_FP": [
+        70404,
+        54157,
+        91054,
+        61468,
+        83646,
+        70392,
+        82847,
+        54160,
+        91055,
+        91052,
+        54178,
+        86921,
+        54170,
+        60916,
+        54165,
+        59886,
+        62250,
+        80529,
+        94365,
+        73969,
+        63323,
+        81481,
+        66206,
+        62765,
+        62360,
+        68552,
+        63960,
+        66160,
+        85261,
+        66185,
+        80955,
+        62158,
+        60917,
+        62931,
+        94364,
+        62123,
+        70263,
+        66431,
+        61617,
+        61065,
+        73323,
+        83910,
+        66595,
+        59394,
+        63764,
+        63423,
+        73750,
+        63753,
+        63544,
+        68703,
+        64494,
+        64697,
+        64236,
+        63772,
+        64990,
+        81634,
+        66497,
+        54889,
+        69840,
+        69672,
+        69671,
+        62473,
+        87847,
+        62565,
+        62573
+      ]
+    },
+    "full": {
+      "rescued_D": [
+        69854,
+        71265,
+        71370,
+        71415,
+        69454,
+        90874,
+        78789,
+        89881,
+        87508,
+        89483,
+        69855,
+        70861,
+        69859,
+        69781,
+        70320,
+        92394,
+        87861,
+        64581,
+        86616,
+        83887,
+        73405,
+        61629,
+        77788,
+        63566,
+        63545,
+        64835
+      ],
+      "lost_D": [
+        75657,
+        61475,
+        71086,
+        60999,
+        94515,
+        93224,
+        93218,
+        72578,
+        93995,
+        69593,
+        69813,
+        85032,
+        68901,
+        63690,
+        78617,
+        85526,
+        79899,
+        62540
+      ],
+      "removed_FP": [
+        63097,
+        94428,
+        85632,
+        85320,
+        85316,
+        91723,
+        82447,
+        87689,
+        94422,
+        95930,
+        90863,
+        86984,
+        91064,
+        60239,
+        75226,
+        74939,
+        59935,
+        76861,
+        80793,
+        61323,
+        72419,
+        83231,
+        59940,
+        90978,
+        94352,
+        88135,
+        81017,
+        77859,
+        79580,
+        74562,
+        89326,
+        96099,
+        93641,
+        66404,
+        89074,
+        69657,
+        89101,
+        67046,
+        71076,
+        80746,
+        73790,
+        93602,
+        86756,
+        64646,
+        64562,
+        67681,
+        74676,
+        74599,
+        83438,
+        83376,
+        73743,
+        79734,
+        94402,
+        63510,
+        71060,
+        67451,
+        67900,
+        64995,
+        77901,
+        77835,
+        87363,
+        54905,
+        93983,
+        62394,
+        94248,
+        85422,
+        93306,
+        77295,
+        85599,
+        77565,
+        77628,
+        62399,
+        94274,
+        86499,
+        94323,
+        78776,
+        70470,
+        89485,
+        87009,
+        77419,
+        62383,
+        86941,
+        85123,
+        86930,
+        89721,
+        90166,
+        80801,
+        89570,
+        75135
+      ],
+      "added_FP": [
+        70404,
+        83646
+      ]
+    }
+  },
+  "distinct_frozen_thresholds": false,
+  "true_intra_updates": false
+}

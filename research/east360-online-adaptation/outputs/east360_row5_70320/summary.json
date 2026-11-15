@@ -1,0 +1,171 @@
+{
+  "scope": "POSTSEAL_EXPLANATION_OF_FIXED_EAST360",
+  "threshold": 0.5062586069107056,
+  "cases": {
+    "70320": {
+      "rank": 52,
+      "disruptive": true,
+      "down_s": 3.9219999999999997,
+      "scores": {
+        "bias_only": {
+          "alarm": true,
+          "lead_ms": 12.0,
+          "timely": false,
+          "first_index": 910,
+          "first_s": 3.91,
+          "first_score": 0.5226244926452637,
+          "max_score": 0.5226244926452637,
+          "first_two_point_confirmation": null
+        },
+        "earlier_5": {
+          "alarm": true,
+          "lead_ms": 13.0,
+          "timely": false,
+          "first_index": 909,
+          "first_s": 3.909,
+          "first_score": 0.55964195728302,
+          "max_score": 0.6055530905723572,
+          "first_two_point_confirmation": 910
+        },
+        "current_0": {
+          "alarm": true,
+          "lead_ms": 225.0,
+          "timely": true,
+          "first_index": 697,
+          "first_s": 3.697,
+          "first_score": 0.5076879262924194,
+          "max_score": 0.5446553826332092,
+          "first_two_point_confirmation": 700
+        },
+        "current_5": {
+          "alarm": true,
+          "lead_ms": 225.0,
+          "timely": true,
+          "first_index": 697,
+          "first_s": 3.697,
+          "first_score": 0.5076879262924194,
+          "max_score": 0.5446553826332092,
+          "first_two_point_confirmation": null
+        }
+      }
+    },
+    "73743": {
+      "rank": 270,
+      "disruptive": false,
+      "down_s": null,
+      "scores": {
+        "bias_only": {
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false,
+          "first_index": null,
+          "first_s": null,
+          "first_score": null,
+          "max_score": 0.3129391372203827,
+          "first_two_point_confirmation": null
+        },
+        "earlier_5": {
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false,
+          "first_index": null,
+          "first_s": null,
+          "first_score": null,
+          "max_score": 0.44864946603775024,
+          "first_two_point_confirmation": null
+        },
+        "current_0": {
+          "alarm": true,
+          "lead_ms": null,
+          "timely": false,
+          "first_index": 1698,
+          "first_s": 4.698,
+          "first_score": 0.532910168170929,
+          "max_score": 0.5929213762283325,
+          "first_two_point_confirmation": 1699
+        },
+        "current_5": {
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false,
+          "first_index": null,
+          "first_s": null,
+          "first_score": null,
+          "max_score": 0.427147775888443,
+          "first_two_point_confirmation": null
+        }
+      }
+    }
+  },
+  "trace": {
+    "issue_index": 639,
+    "release_index": 665,
+    "previous_issue_index": 607,
+    "wait_samples": 5,
+    "patch_width": 8,
+    "feature_window": 128,
+    "history_issue_indices": [
+      383,
+      415,
+      447,
+      479,
+      511,
+      543,
+      575,
+      607
+    ],
+    "prefix_points": 698,
+    "newest_slot_if_no_wait": 671,
+    "fraction": 1.0,
+    "max_prefix_score_difference": 2.980232238769531e-07,
+    "max_equal_dose_difference": 4.76837158203125e-07,
+    "token_l2": [
+      1.8908493518829346,
+      1.8908493518829346
+    ],
+    "largest_abs_token_sum": 4.76837158203125e-07,
+    "logit_increments": [
+      0.13390693068504333,
+      -0.0565972626209259
+    ]
+  },
+  "timely_strictly_over_ms": 30,
+  "n_disruptive": 180,
+  "n_safe": 180,
+  "counts": {
+    "bias_only": [
+      144,
+      34
+    ],
+    "earlier_5": [
+      145,
+      35
+    ],
+    "current_0": [
+      146,
+      35
+    ],
+    "current_5": [
+      146,
+      34
+    ]
+  },
+  "two_point_counts": {
+    "bias_only": [
+      142,
+      33
+    ],
+    "earlier_5": [
+      143,
+      35
+    ],
+    "current_0": [
+      145,
+      35
+    ],
+    "current_5": [
+      143,
+      34
+    ]
+  }
+}
