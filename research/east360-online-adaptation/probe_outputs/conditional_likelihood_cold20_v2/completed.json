@@ -1,0 +1,258 @@
+{
+  "posterior": {
+    "groups": {
+      "identical": {
+        "danger_late": {
+          "shots": 17,
+          "windows": 22,
+          "mean_delta_bce": 0.0,
+          "median_delta_bce": 0.0,
+          "improved": 0,
+          "worsened": 0,
+          "unchanged": 17
+        },
+        "danger_timely": {
+          "shots": 17,
+          "windows": 46,
+          "mean_delta_bce": 0.0,
+          "median_delta_bce": 0.0,
+          "improved": 0,
+          "worsened": 0,
+          "unchanged": 17
+        },
+        "early_normal": {
+          "shots": 17,
+          "windows": 2129,
+          "mean_delta_bce": 0.0,
+          "median_delta_bce": 0.0,
+          "improved": 0,
+          "worsened": 0,
+          "unchanged": 17
+        },
+        "safe": {
+          "shots": 3,
+          "windows": 530,
+          "mean_delta_bce": 0.0,
+          "median_delta_bce": 0.0,
+          "improved": 0,
+          "worsened": 0,
+          "unchanged": 3
+        }
+      },
+      "misplaced": {
+        "danger_late": {
+          "shots": 17,
+          "windows": 22,
+          "mean_delta_bce": 77.3770483526173,
+          "median_delta_bce": 38.371261968354574,
+          "improved": 5,
+          "worsened": 12,
+          "unchanged": 0
+        },
+        "danger_timely": {
+          "shots": 17,
+          "windows": 46,
+          "mean_delta_bce": 63.323092867458506,
+          "median_delta_bce": -2.3215499576665097,
+          "improved": 10,
+          "worsened": 7,
+          "unchanged": 0
+        },
+        "early_normal": {
+          "shots": 17,
+          "windows": 2129,
+          "mean_delta_bce": 85.0691918614223,
+          "median_delta_bce": 100.24675567086413,
+          "improved": 2,
+          "worsened": 15,
+          "unchanged": 0
+        },
+        "safe": {
+          "shots": 3,
+          "windows": 530,
+          "mean_delta_bce": 14.07911491839772,
+          "median_delta_bce": -0.38638384296413736,
+          "improved": 2,
+          "worsened": 1,
+          "unchanged": 0
+        }
+      },
+      "real": {
+        "danger_late": {
+          "shots": 17,
+          "windows": 22,
+          "mean_delta_bce": 248.30270551410766,
+          "median_delta_bce": 166.54796313963158,
+          "improved": 0,
+          "worsened": 17,
+          "unchanged": 0
+        },
+        "danger_timely": {
+          "shots": 17,
+          "windows": 46,
+          "mean_delta_bce": 318.3734969278607,
+          "median_delta_bce": 340.90037576141077,
+          "improved": 0,
+          "worsened": 17,
+          "unchanged": 0
+        },
+        "early_normal": {
+          "shots": 17,
+          "windows": 2129,
+          "mean_delta_bce": -0.20388601384099156,
+          "median_delta_bce": -0.13726965489721,
+          "improved": 17,
+          "worsened": 0,
+          "unchanged": 0
+        },
+        "safe": {
+          "shots": 3,
+          "windows": 530,
+          "mean_delta_bce": -0.27741895695282764,
+          "median_delta_bce": -0.38638384296413736,
+          "improved": 3,
+          "worsened": 0,
+          "unchanged": 0
+        }
+      }
+    },
+    "posterior_direction_screen": false,
+    "reasons": [
+      "danger_timely did not pass paired direction screen"
+    ],
+    "warning": "Posterior direction diagnostic only; not updated risk or TPR/FPR."
+  },
+  "neural": {
+    "groups": {
+      "identical": {
+        "danger_late": {
+          "shots": 17,
+          "windows": 22,
+          "mean_delta_bce": 0.0,
+          "median_delta_bce": 0.0,
+          "improved": 0,
+          "worsened": 0,
+          "unchanged": 17
+        },
+        "danger_timely": {
+          "shots": 17,
+          "windows": 80,
+          "mean_delta_bce": 0.0,
+          "median_delta_bce": 0.0,
+          "improved": 0,
+          "worsened": 0,
+          "unchanged": 17
+        },
+        "early_normal": {
+          "shots": 17,
+          "windows": 2112,
+          "mean_delta_bce": 0.0,
+          "median_delta_bce": 0.0,
+          "improved": 0,
+          "worsened": 0,
+          "unchanged": 17
+        },
+        "safe": {
+          "shots": 3,
+          "windows": 527,
+          "mean_delta_bce": 0.0,
+          "median_delta_bce": 0.0,
+          "improved": 0,
+          "worsened": 0,
+          "unchanged": 3
+        }
+      },
+      "misplaced": {
+        "danger_late": {
+          "shots": 17,
+          "windows": 22,
+          "mean_delta_bce": -0.17599480918266253,
+          "median_delta_bce": -0.24300299938149134,
+          "improved": 10,
+          "worsened": 7,
+          "unchanged": 0
+        },
+        "danger_timely": {
+          "shots": 17,
+          "windows": 80,
+          "mean_delta_bce": -0.15731325165834462,
+          "median_delta_bce": -0.22957881511723327,
+          "improved": 11,
+          "worsened": 6,
+          "unchanged": 0
+        },
+        "early_normal": {
+          "shots": 17,
+          "windows": 2112,
+          "mean_delta_bce": -0.0005990326316857022,
+          "median_delta_bce": 0.002360216905065476,
+          "improved": 5,
+          "worsened": 12,
+          "unchanged": 0
+        },
+        "safe": {
+          "shots": 3,
+          "windows": 527,
+          "mean_delta_bce": -0.03168387522850369,
+          "median_delta_bce": -0.035227903679225854,
+          "improved": 2,
+          "worsened": 1,
+          "unchanged": 0
+        }
+      },
+      "real": {
+        "danger_late": {
+          "shots": 17,
+          "windows": 22,
+          "mean_delta_bce": 0.0475488611669677,
+          "median_delta_bce": 0.005612380503170329,
+          "improved": 0,
+          "worsened": 17,
+          "unchanged": 0
+        },
+        "danger_timely": {
+          "shots": 17,
+          "windows": 80,
+          "mean_delta_bce": 0.04758696792417115,
+          "median_delta_bce": 0.006554646154845536,
+          "improved": 0,
+          "worsened": 17,
+          "unchanged": 0
+        },
+        "early_normal": {
+          "shots": 17,
+          "windows": 2112,
+          "mean_delta_bce": -0.021309601160193776,
+          "median_delta_bce": -0.00820655423149935,
+          "improved": 17,
+          "worsened": 0,
+          "unchanged": 0
+        },
+        "safe": {
+          "shots": 3,
+          "windows": 527,
+          "mean_delta_bce": -0.03644510721200444,
+          "median_delta_bce": -0.035227903679225854,
+          "improved": 3,
+          "worsened": 0,
+          "unchanged": 0
+        }
+      }
+    },
+    "eligible_for_full_stream": false,
+    "reasons": [
+      "danger_timely did not pass paired direction screen"
+    ],
+    "actual_nonzero_episode_updates": {
+      "real": 2707,
+      "misplaced": 2707,
+      "identical": 0
+    },
+    "warning": "Independent one-step prefix episodes, not a continuous stream or alarm TPR/FPR."
+  },
+  "seconds": 20.53182326299975,
+  "source_unchanged": true,
+  "source_parameter_updates": 0,
+  "full_stream_run": false,
+  "raw_input_hashes_unchanged": true
+}

@@ -1,0 +1,70 @@
+{
+  "status": "VERIFIED_COUNTS_CALIBRATION_AND_CHANGED_SHOT_REPLAY",
+  "completed_sha256": "db0d680546ba185af26decd27e0180dfb2c46bb56c5816d2105f639999e4c231",
+  "audit_sha256": "5e8ee6a8c9aa579c9bb7faa356d546f779dbb86539f4aa07df65e4bebb49b31c",
+  "shot_arm_checks": 6480,
+  "flips": {
+    "mapped_fixed": [
+      {
+        "shot": 62765,
+        "beneficial": true,
+        "before": {
+          "shot": 62765,
+          "is_disrupt": false,
+          "alarm": true,
+          "lead_ms": null,
+          "timely": false
+        },
+        "after": {
+          "shot": 62765,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 87537,
+        "beneficial": true,
+        "before": {
+          "shot": 87537,
+          "is_disrupt": true,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        "after": {
+          "shot": 87537,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 123.402625,
+          "timely": true
+        }
+      }
+    ],
+    "mapped_head": []
+  },
+  "replays": [
+    {
+      "scope": "calibration_all_four_models",
+      "shot": 89272
+    },
+    {
+      "scope": "calibration_all_four_models",
+      "shot": 89584
+    },
+    {
+      "scope": "posthoc_changed_shot_complete_static_and_intra",
+      "model": "mapped_fixed",
+      "shot": 62765
+    },
+    {
+      "scope": "posthoc_changed_shot_complete_static_and_intra",
+      "model": "mapped_fixed",
+      "shot": 87537
+    }
+  ],
+  "source_reproduction": true,
+  "source_archive_sha256": "cf4716e86a1ff93923309613315ffc81893a81a39e54cdfe2c1ecf15ca16c07c",
+  "note": "Audit script added after run snapshot. Changed-shot replays selected post hoc; not independent validation."
+}

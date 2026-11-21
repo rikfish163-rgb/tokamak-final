@@ -1,0 +1,33 @@
+{
+  "checkpoint": "experiments/risk_aligned_online/runs/source_meta_asinh_20260928/source.pt",
+  "checkpoint_sha256": "21b88d5373f28e5b07a41409972946dcd8ac2d41158446b176c0a525d4010a21",
+  "arms": [
+    "static",
+    "intra",
+    "inter",
+    "both"
+  ],
+  "domain": "EAST",
+  "threshold": 0.43707117438316345,
+  "source_mode": "meta",
+  "control": "learned",
+  "control_explicit": false,
+  "fast_lr": 0.2,
+  "inter_lr": 0.001,
+  "inter_steps": 1,
+  "limit": 20,
+  "source_evidence": "DEVELOPMENT_ONLY",
+  "evidence": "DIAGNOSTIC_PREFIX",
+  "code_sha256": {
+    "online.py": "1ceb5812da6fce342279f51b913d56bc9f20afe1445020aedcab9b439c702e61",
+    "data.py": "69eb850f03b5a21fa9b20a899259a3bc98391f6608c8cddd323cbc8ecf17264a",
+    "model.py": "d91c4c185abd18328f4dfa6585f3e555fe13fc19105b06262b7497e07bc3c0f7",
+    "learning.py": "5fab089c0312d8627b95eaf2b1d48d1c4ec14ea9616574fc13ca404e846bc68e"
+  },
+  "outcomes": "automatic after sealing; no budget",
+  "replay": "last 8 revealed shots, raw windows and episodes",
+  "hard_realtime_guarantee": false,
+  "timestamps": "original acquisition times; no compute-latency adjustment",
+  "target_scaler": false,
+  "target_calibration": false
+}

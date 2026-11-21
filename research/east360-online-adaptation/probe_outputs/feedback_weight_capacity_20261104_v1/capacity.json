@@ -1,0 +1,1486 @@
+{
+  "scope": "POSTHOC_LINEARIZED_UPPER_CAPACITY_AND_OFFLINE_LOSO_NOT_NEURAL_GAIN",
+  "trace_completion_sha256": "72bd8d7737c96e7ff26d0b3329d6007d62b5c2ebe94febd9230c87077c63bf45",
+  "code_sha256": "93863748d736fb85fb212fdf5b257b906dca52811673bbb185d27f22c5a394f6",
+  "grouping": "HDF safe / disruptive /30-125ms, shot-macro means",
+  "limits": "0<=w<=2; observed-channel mean1; no weight returned for unobserved targets",
+  "hypothesis_chosen_after_trace": true,
+  "operational_gain_measured": false,
+  "chronological_validation": false,
+  "source_updates": 0,
+  "raw_signal_reads": 0,
+  "caution": "weights use past-shot labels only if later integrated; current LOSO train includes later20 shots; no deployable causality claim; changed metric normalization and nonlinear effects need actual neural replay",
+  "all20_fit": {
+    "active_channels": 21,
+    "uniform_group_estimates": [
+      -0.0006148020395939365,
+      0.00801690933746944,
+      0.004617617766949745
+    ],
+    "weighted_group_estimates": [
+      -0.0010211940113833537,
+      -0.0010211940113833535,
+      -0.003670126432028995
+    ],
+    "worst_group_estimate": -0.0010211940113833535,
+    "scope": "linearized HDF-signed capacity only, not an online policy"
+  },
+  "folds": [
+    {
+      "held_shot": 54157,
+      "training_ids": [
+        61468,
+        63097,
+        69458,
+        69854,
+        70323,
+        70404,
+        71304,
+        75657,
+        77002,
+        85316,
+        85320,
+        85632,
+        86167,
+        87487,
+        87494,
+        91054,
+        91723,
+        91885,
+        94428
+      ],
+      "active_channels": 21,
+      "uniform_group_estimates": [
+        -0.0006678928256384435,
+        0.00801690933746944,
+        0.004617617766949745
+      ],
+      "weighted_group_estimates": [
+        -0.0010992068723939272,
+        -0.0010992068723939272,
+        -0.0037036803195498328
+      ],
+      "worst_group_estimate": -0.0010992068723939272,
+      "scope": "linearized HDF-signed capacity only, not an online policy"
+    },
+    {
+      "held_shot": 61468,
+      "training_ids": [
+        54157,
+        63097,
+        69458,
+        69854,
+        70323,
+        70404,
+        71304,
+        75657,
+        77002,
+        85316,
+        85320,
+        85632,
+        86167,
+        87487,
+        87494,
+        91054,
+        91723,
+        91885,
+        94428
+      ],
+      "active_channels": 21,
+      "uniform_group_estimates": [
+        -0.0005761697413790931,
+        0.00801690933746944,
+        0.004617617766949745
+      ],
+      "weighted_group_estimates": [
+        -0.0009621936942341714,
+        -0.000962193694234172,
+        -0.0036447499751259584
+      ],
+      "worst_group_estimate": -0.0009621936942341714,
+      "scope": "linearized HDF-signed capacity only, not an online policy"
+    },
+    {
+      "held_shot": 63097,
+      "training_ids": [
+        54157,
+        61468,
+        69458,
+        69854,
+        70323,
+        70404,
+        71304,
+        75657,
+        77002,
+        85316,
+        85320,
+        85632,
+        86167,
+        87487,
+        87494,
+        91054,
+        91723,
+        91885,
+        94428
+      ],
+      "active_channels": 21,
+      "uniform_group_estimates": [
+        -0.0006157726026007316,
+        0.00801690933746944,
+        0.004617617766949745
+      ],
+      "weighted_group_estimates": [
+        -0.0010374107296245295,
+        -0.0010374107296245295,
+        -0.0036771013581216013
+      ],
+      "worst_group_estimate": -0.0010374107296245295,
+      "scope": "linearized HDF-signed capacity only, not an online policy"
+    },
+    {
+      "held_shot": 69458,
+      "training_ids": [
+        54157,
+        61468,
+        63097,
+        69854,
+        70323,
+        70404,
+        71304,
+        75657,
+        77002,
+        85316,
+        85320,
+        85632,
+        86167,
+        87487,
+        87494,
+        91054,
+        91723,
+        91885,
+        94428
+      ],
+      "active_channels": 21,
+      "uniform_group_estimates": [
+        -0.0006148020395939365,
+        0.007919604893904307,
+        0.006948635293978985
+      ],
+      "weighted_group_estimates": [
+        -0.0008817174200435222,
+        -0.0008817174200435223,
+        -0.0019088882128408297
+      ],
+      "worst_group_estimate": -0.0008817174200435222,
+      "scope": "linearized HDF-signed capacity only, not an online policy"
+    },
+    {
+      "held_shot": 69854,
+      "training_ids": [
+        54157,
+        61468,
+        63097,
+        69458,
+        70323,
+        70404,
+        71304,
+        75657,
+        77002,
+        85316,
+        85320,
+        85632,
+        86167,
+        87487,
+        87494,
+        91054,
+        91723,
+        91885,
+        94428
+      ],
+      "active_channels": 21,
+      "uniform_group_estimates": [
+        -0.0006148020395939365,
+        0.00813207353366851,
+        0.004133289637418739
+      ],
+      "weighted_group_estimates": [
+        -0.0010862674326002635,
+        -0.0010862674326002626,
+        -0.0044160098192375236
+      ],
+      "worst_group_estimate": -0.0010862674326002626,
+      "scope": "linearized HDF-signed capacity only, not an online policy"
+    },
+    {
+      "held_shot": 70323,
+      "training_ids": [
+        54157,
+        61468,
+        63097,
+        69458,
+        69854,
+        70404,
+        71304,
+        75657,
+        77002,
+        85316,
+        85320,
+        85632,
+        86167,
+        87487,
+        87494,
+        91054,
+        91723,
+        91885,
+        94428
+      ],
+      "active_channels": 21,
+      "uniform_group_estimates": [
+        -0.0005102466154491164,
+        0.00801690933746944,
+        0.004617617766949745
+      ],
+      "weighted_group_estimates": [
+        -0.000959667575775713,
+        -0.0009596675757757131,
+        -0.002700789097255638
+      ],
+      "worst_group_estimate": -0.000959667575775713,
+      "scope": "linearized HDF-signed capacity only, not an online policy"
+    },
+    {
+      "held_shot": 70404,
+      "training_ids": [
+        54157,
+        61468,
+        63097,
+        69458,
+        69854,
+        70323,
+        71304,
+        75657,
+        77002,
+        85316,
+        85320,
+        85632,
+        86167,
+        87487,
+        87494,
+        91054,
+        91723,
+        91885,
+        94428
+      ],
+      "active_channels": 21,
+      "uniform_group_estimates": [
+        -0.0006596252286900071,
+        0.00801690933746944,
+        0.004617617766949745
+      ],
+      "weighted_group_estimates": [
+        -0.0010935915969375546,
+        -0.0010935915969375546,
+        -0.003701265149555796
+      ],
+      "worst_group_estimate": -0.0010935915969375546,
+      "scope": "linearized HDF-signed capacity only, not an online policy"
+    },
+    {
+      "held_shot": 71304,
+      "training_ids": [
+        54157,
+        61468,
+        63097,
+        69458,
+        69854,
+        70323,
+        70404,
+        75657,
+        77002,
+        85316,
+        85320,
+        85632,
+        86167,
+        87487,
+        87494,
+        91054,
+        91723,
+        91885,
+        94428
+      ],
+      "active_channels": 21,
+      "uniform_group_estimates": [
+        -0.0006148020395939365,
+        0.004058286317644615,
+        0.0006182696574927962
+      ],
+      "weighted_group_estimates": [
+        -0.0005510864264330975,
+        -0.0005510864264330976,
+        -0.0033873230697688416
+      ],
+      "worst_group_estimate": -0.0005510864264330975,
+      "scope": "linearized HDF-signed capacity only, not an online policy"
+    },
+    {
+      "held_shot": 75657,
+      "training_ids": [
+        54157,
+        61468,
+        63097,
+        69458,
+        69854,
+        70323,
+        70404,
+        71304,
+        77002,
+        85316,
+        85320,
+        85632,
+        86167,
+        87487,
+        87494,
+        91054,
+        91723,
+        91885,
+        94428
+      ],
+      "active_channels": 21,
+      "uniform_group_estimates": [
+        -0.0006148020395939365,
+        0.009086442949790028,
+        0.005263798450928109
+      ],
+      "weighted_group_estimates": [
+        -0.0010541265264474198,
+        -0.0010541265264474204,
+        -0.004102409142415295
+      ],
+      "worst_group_estimate": -0.0010541265264474198,
+      "scope": "linearized HDF-signed capacity only, not an online policy"
+    },
+    {
+      "held_shot": 77002,
+      "training_ids": [
+        54157,
+        61468,
+        63097,
+        69458,
+        69854,
+        70323,
+        70404,
+        71304,
+        75657,
+        85316,
+        85320,
+        85632,
+        86167,
+        87487,
+        87494,
+        91054,
+        91723,
+        91885,
+        94428
+      ],
+      "active_channels": 21,
+      "uniform_group_estimates": [
+        -0.0006148020395939365,
+        0.008283036310848969,
+        0.0050363630488982
+      ],
+      "weighted_group_estimates": [
+        -0.0012349549083069792,
+        -0.001234954908306979,
+        -0.0033851025549811913
+      ],
+      "worst_group_estimate": -0.001234954908306979,
+      "scope": "linearized HDF-signed capacity only, not an online policy"
+    },
+    {
+      "held_shot": 85316,
+      "training_ids": [
+        54157,
+        61468,
+        63097,
+        69458,
+        69854,
+        70323,
+        70404,
+        71304,
+        75657,
+        77002,
+        85320,
+        85632,
+        86167,
+        87487,
+        87494,
+        91054,
+        91723,
+        91885,
+        94428
+      ],
+      "active_channels": 21,
+      "uniform_group_estimates": [
+        -0.0006430400384211718,
+        0.00801690933746944,
+        0.004617617766949745
+      ],
+      "weighted_group_estimates": [
+        -0.0010366233168512757,
+        -0.0010366233168512759,
+        -0.0037505041476546177
+      ],
+      "worst_group_estimate": -0.0010366233168512757,
+      "scope": "linearized HDF-signed capacity only, not an online policy"
+    },
+    {
+      "held_shot": 85320,
+      "training_ids": [
+        54157,
+        61468,
+        63097,
+        69458,
+        69854,
+        70323,
+        70404,
+        71304,
+        75657,
+        77002,
+        85316,
+        85632,
+        86167,
+        87487,
+        87494,
+        91054,
+        91723,
+        91885,
+        94428
+      ],
+      "active_channels": 21,
+      "uniform_group_estimates": [
+        -0.0005634342300840716,
+        0.00801690933746944,
+        0.004617617766949745
+      ],
+      "weighted_group_estimates": [
+        -0.0009363255982749544,
+        -0.0009363255982749545,
+        -0.0037221366489975723
+      ],
+      "worst_group_estimate": -0.0009363255982749544,
+      "scope": "linearized HDF-signed capacity only, not an online policy"
+    },
+    {
+      "held_shot": 85632,
+      "training_ids": [
+        54157,
+        61468,
+        63097,
+        69458,
+        69854,
+        70323,
+        70404,
+        71304,
+        75657,
+        77002,
+        85316,
+        85320,
+        86167,
+        87487,
+        87494,
+        91054,
+        91723,
+        91885,
+        94428
+      ],
+      "active_channels": 21,
+      "uniform_group_estimates": [
+        -0.0006609763248998587,
+        0.00801690933746944,
+        0.004617617766949745
+      ],
+      "weighted_group_estimates": [
+        -0.0010870557506601605,
+        -0.0010870557506601607,
+        -0.003698454035490701
+      ],
+      "worst_group_estimate": -0.0010870557506601605,
+      "scope": "linearized HDF-signed capacity only, not an online policy"
+    },
+    {
+      "held_shot": 86167,
+      "training_ids": [
+        54157,
+        61468,
+        63097,
+        69458,
+        69854,
+        70323,
+        70404,
+        71304,
+        75657,
+        77002,
+        85316,
+        85320,
+        85632,
+        87487,
+        87494,
+        91054,
+        91723,
+        91885,
+        94428
+      ],
+      "active_channels": 21,
+      "uniform_group_estimates": [
+        -0.0006514135347106686,
+        0.00801690933746944,
+        0.004617617766949745
+      ],
+      "weighted_group_estimates": [
+        -0.0010777352386344907,
+        -0.0010777352386344909,
+        -0.0036944452168408692
+      ],
+      "worst_group_estimate": -0.0010777352386344907,
+      "scope": "linearized HDF-signed capacity only, not an online policy"
+    },
+    {
+      "held_shot": 87487,
+      "training_ids": [
+        54157,
+        61468,
+        63097,
+        69458,
+        69854,
+        70323,
+        70404,
+        71304,
+        75657,
+        77002,
+        85316,
+        85320,
+        85632,
+        86167,
+        87494,
+        91054,
+        91723,
+        91885,
+        94428
+      ],
+      "active_channels": 21,
+      "uniform_group_estimates": [
+        -0.0006148020395939365,
+        0.008777128457731867,
+        0.005095589028432079
+      ],
+      "weighted_group_estimates": [
+        -0.0010971166182155985,
+        -0.001097116618215598,
+        -0.004502625593956618
+      ],
+      "worst_group_estimate": -0.001097116618215598,
+      "scope": "linearized HDF-signed capacity only, not an online policy"
+    },
+    {
+      "held_shot": 87494,
+      "training_ids": [
+        54157,
+        61468,
+        63097,
+        69458,
+        69854,
+        70323,
+        70404,
+        71304,
+        75657,
+        77002,
+        85316,
+        85320,
+        85632,
+        86167,
+        87487,
+        91054,
+        91723,
+        91885,
+        94428
+      ],
+      "active_channels": 21,
+      "uniform_group_estimates": [
+        -0.0006148020395939365,
+        0.008321214040852365,
+        0.004275744747904759
+      ],
+      "weighted_group_estimates": [
+        -0.0011670571936353428,
+        -0.0011670571936353421,
+        -0.004904746862129136
+      ],
+      "worst_group_estimate": -0.0011670571936353421,
+      "scope": "linearized HDF-signed capacity only, not an online policy"
+    },
+    {
+      "held_shot": 91054,
+      "training_ids": [
+        54157,
+        61468,
+        63097,
+        69458,
+        69854,
+        70323,
+        70404,
+        71304,
+        75657,
+        77002,
+        85316,
+        85320,
+        85632,
+        86167,
+        87487,
+        87494,
+        91723,
+        91885,
+        94428
+      ],
+      "active_channels": 21,
+      "uniform_group_estimates": [
+        -0.0006460998082415719,
+        0.00801690933746944,
+        0.004617617766949745
+      ],
+      "weighted_group_estimates": [
+        -0.001073330613130931,
+        -0.0010733306131309307,
+        -0.0037608861801943162
+      ],
+      "worst_group_estimate": -0.0010733306131309307,
+      "scope": "linearized HDF-signed capacity only, not an online policy"
+    },
+    {
+      "held_shot": 91723,
+      "training_ids": [
+        54157,
+        61468,
+        63097,
+        69458,
+        69854,
+        70323,
+        70404,
+        71304,
+        75657,
+        77002,
+        85316,
+        85320,
+        85632,
+        86167,
+        87487,
+        87494,
+        91054,
+        91885,
+        94428
+      ],
+      "active_channels": 21,
+      "uniform_group_estimates": [
+        -0.0005519743518075998,
+        0.00801690933746944,
+        0.004617617766949745
+      ],
+      "weighted_group_estimates": [
+        -0.0009328137545457393,
+        -0.0009328137545457393,
+        -0.0041738001087733055
+      ],
+      "worst_group_estimate": -0.0009328137545457393,
+      "scope": "linearized HDF-signed capacity only, not an online policy"
+    },
+    {
+      "held_shot": 91885,
+      "training_ids": [
+        54157,
+        61468,
+        63097,
+        69458,
+        69854,
+        70323,
+        70404,
+        71304,
+        75657,
+        77002,
+        85316,
+        85320,
+        85632,
+        86167,
+        87487,
+        87494,
+        91054,
+        91723,
+        94428
+      ],
+      "active_channels": 21,
+      "uniform_group_estimates": [
+        -0.0006148020395939365,
+        0.009557488195314889,
+        0.005569252270544298
+      ],
+      "weighted_group_estimates": [
+        -0.0010066274735734398,
+        -0.001006627473573439,
+        -0.004020061147363325
+      ],
+      "worst_group_estimate": -0.001006627473573439,
+      "scope": "linearized HDF-signed capacity only, not an online policy"
+    },
+    {
+      "held_shot": 94428,
+      "training_ids": [
+        54157,
+        61468,
+        63097,
+        69458,
+        69854,
+        70323,
+        70404,
+        71304,
+        75657,
+        77002,
+        85316,
+        85320,
+        85632,
+        86167,
+        87487,
+        87494,
+        91054,
+        91723,
+        91885
+      ],
+      "active_channels": 21,
+      "uniform_group_estimates": [
+        -0.0006309791732049025,
+        0.00801690933746944,
+        0.004617617766949745
+      ],
+      "weighted_group_estimates": [
+        -0.0010265575172193316,
+        -0.0010265575172193316,
+        -0.0036724333141149286
+      ],
+      "worst_group_estimate": -0.0010265575172193316,
+      "scope": "linearized HDF-signed capacity only, not an online policy"
+    }
+  ],
+  "held_rows": [
+    {
+      "shot": 54157,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -1.5080534573532261e-06,
+      "weighted": -1.1196087952362551e-06
+    },
+    {
+      "shot": 54157,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -1.7875558030007434e-06,
+      "weighted": -5.7695721728507566e-06
+    },
+    {
+      "shot": 54157,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -1.753389595031017e-05,
+      "weighted": -2.6379317111010342e-05
+    },
+    {
+      "shot": 54157,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -1.4020197179340145e-05,
+      "weighted": -2.8146859078515015e-05
+    },
+    {
+      "shot": 54157,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.00011916726313178042,
+      "weighted": -0.00011556053666463626
+    },
+    {
+      "shot": 61468,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.0012852450059562869,
+      "weighted": -0.002505777290845444
+    },
+    {
+      "shot": 61468,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.0013091372739950633,
+      "weighted": -0.0020241235073584734
+    },
+    {
+      "shot": 61468,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.0010521140305263645,
+      "weighted": -0.0018816886357003126
+    },
+    {
+      "shot": 61468,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.0009854571781626005,
+      "weighted": -0.0016308700823335874
+    },
+    {
+      "shot": 61468,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.0005668331111457492,
+      "weighted": -0.0007912576721375475
+    },
+    {
+      "shot": 63097,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.00027973562609596693,
+      "weighted": -0.00046691044086859094
+    },
+    {
+      "shot": 63097,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.0006474821394616831,
+      "weighted": -0.00100318499733697
+    },
+    {
+      "shot": 63097,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.0004980352635692208,
+      "weighted": -0.0007789029389857133
+    },
+    {
+      "shot": 63097,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.0005309319457859851,
+      "weighted": -0.0006714186876976766
+    },
+    {
+      "shot": 63097,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.0010644442576830963,
+      "weighted": -0.0011609512978985573
+    },
+    {
+      "shot": 69458,
+      "disruptive": true,
+      "lead_ms": 250.0,
+      "uniform": 0.08298253985200295,
+      "weighted": 0.025628336667740826
+    },
+    {
+      "shot": 69458,
+      "disruptive": true,
+      "lead_ms": 150.0,
+      "uniform": -0.004393822873111133,
+      "weighted": -0.00688767593256759
+    },
+    {
+      "shot": 69458,
+      "disruptive": true,
+      "lead_ms": 100.0,
+      "uniform": -0.016847773168454122,
+      "weighted": -0.021944933977940347
+    },
+    {
+      "shot": 69458,
+      "disruptive": true,
+      "lead_ms": 60.0,
+      "uniform": -0.010918600255033413,
+      "weighted": -0.01584939471082982
+    },
+    {
+      "shot": 69458,
+      "disruptive": true,
+      "lead_ms": 35.0,
+      "uniform": -0.0073321413432772525,
+      "weighted": -0.007446318825198155
+    },
+    {
+      "shot": 69854,
+      "disruptive": true,
+      "lead_ms": 249.6,
+      "uniform": 0.007662451380319185,
+      "weighted": 0.004017504977912947
+    },
+    {
+      "shot": 69854,
+      "disruptive": true,
+      "lead_ms": 149.6,
+      "uniform": 0.004367604419060337,
+      "weighted": 0.002663148255337513
+    },
+    {
+      "shot": 69854,
+      "disruptive": true,
+      "lead_ms": 99.6,
+      "uniform": 0.006443578719558311,
+      "weighted": 0.001734698421443961
+    },
+    {
+      "shot": 69854,
+      "disruptive": true,
+      "lead_ms": 59.6,
+      "uniform": 0.010880604964717816,
+      "weighted": 0.004948441786866043
+    },
+    {
+      "shot": 69854,
+      "disruptive": true,
+      "lead_ms": 34.6,
+      "uniform": 0.006699560336724234,
+      "weighted": 0.002896016892206392
+    },
+    {
+      "shot": 70323,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.0006692888002480795,
+      "weighted": 0.0001329888659206193
+    },
+    {
+      "shot": 70323,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.0001731368860870612,
+      "weighted": -5.931654270252831e-05
+    },
+    {
+      "shot": 70323,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.00013931953761518533,
+      "weighted": 3.2731130841334575e-05
+    },
+    {
+      "shot": 70323,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.005955520583860242,
+      "weighted": 0.005566679044094028
+    },
+    {
+      "shot": 70323,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.0018872927181242166,
+      "weighted": 0.00047799808245987117
+    },
+    {
+      "shot": 70404,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.00028865400796041944,
+      "weighted": -0.00024610376830507745
+    },
+    {
+      "shot": 70404,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -5.296637846812267e-05,
+      "weighted": -3.999636600996917e-05
+    },
+    {
+      "shot": 70404,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -1.3281707380044142e-05,
+      "weighted": -1.83837073448557e-05
+    },
+    {
+      "shot": 70404,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.00021572636384307198,
+      "weighted": -0.0001884392929751533
+    },
+    {
+      "shot": 70404,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -3.8106340034142124e-05,
+      "weighted": -3.8836055045022135e-05
+    },
+    {
+      "shot": 71304,
+      "disruptive": true,
+      "lead_ms": 250.0,
+      "uniform": 0.05057380565531815,
+      "weighted": 0.039222010819481734
+    },
+    {
+      "shot": 71304,
+      "disruptive": true,
+      "lead_ms": 150.0,
+      "uniform": 0.03022338312645291,
+      "weighted": -0.04917905396817991
+    },
+    {
+      "shot": 71304,
+      "disruptive": true,
+      "lead_ms": 100.0,
+      "uniform": 0.08282051605911099,
+      "weighted": 0.018541115305361563
+    },
+    {
+      "shot": 71304,
+      "disruptive": true,
+      "lead_ms": 60.0,
+      "uniform": 0.07401345180449297,
+      "weighted": 0.04623042130121864
+    },
+    {
+      "shot": 71304,
+      "disruptive": true,
+      "lead_ms": 35.0,
+      "uniform": -0.058994804264158804,
+      "weighted": -0.011603624492067288
+    },
+    {
+      "shot": 75657,
+      "disruptive": true,
+      "lead_ms": 250.0,
+      "uniform": 0.0025193891805298753,
+      "weighted": 0.0035569652889213483
+    },
+    {
+      "shot": 75657,
+      "disruptive": true,
+      "lead_ms": 150.0,
+      "uniform": -0.00015157786170675718,
+      "weighted": 0.001589398479286474
+    },
+    {
+      "shot": 75657,
+      "disruptive": true,
+      "lead_ms": 100.0,
+      "uniform": -5.0442283657702994e-05,
+      "weighted": 0.00013275304187966607
+    },
+    {
+      "shot": 75657,
+      "disruptive": true,
+      "lead_ms": 60.0,
+      "uniform": 9.135589544776765e-05,
+      "weighted": 9.45365531511016e-05
+    },
+    {
+      "shot": 75657,
+      "disruptive": true,
+      "lead_ms": 35.0,
+      "uniform": 0.00024214532551353806,
+      "weighted": 0.0003332226145767829
+    },
+    {
+      "shot": 77002,
+      "disruptive": true,
+      "lead_ms": 250.0,
+      "uniform": 0.018123197093125775,
+      "weighted": 0.03283982515018843
+    },
+    {
+      "shot": 77002,
+      "disruptive": true,
+      "lead_ms": 150.0,
+      "uniform": 0.007587703146006414,
+      "weighted": 0.02597559576440301
+    },
+    {
+      "shot": 77002,
+      "disruptive": true,
+      "lead_ms": 100.0,
+      "uniform": 0.0060894446033275176,
+      "weighted": 0.01198291378491943
+    },
+    {
+      "shot": 77002,
+      "disruptive": true,
+      "lead_ms": 60.0,
+      "uniform": 6.446685272110152e-05,
+      "weighted": 0.0004714242142767578
+    },
+    {
+      "shot": 77002,
+      "disruptive": true,
+      "lead_ms": 35.0,
+      "uniform": -0.0010947090761169271,
+      "weighted": 0.0003953118903999803
+    },
+    {
+      "shot": 85316,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.00024796648994635613,
+      "weighted": -0.0007217171794034878
+    },
+    {
+      "shot": 85316,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.0002555290001761644,
+      "weighted": -0.0006767002104239926
+    },
+    {
+      "shot": 85316,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.0003421856424797771,
+      "weighted": -0.0009534749738397319
+    },
+    {
+      "shot": 85316,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.0003107133934964519,
+      "weighted": -0.0007947268481050599
+    },
+    {
+      "shot": 85316,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.00036452573637298005,
+      "weighted": -0.000940302294684824
+    },
+    {
+      "shot": 85320,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.0005774506831037597,
+      "weighted": -0.0010016447249357786
+    },
+    {
+      "shot": 85320,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.0021995073607483646,
+      "weighted": -0.00361238401540083
+    },
+    {
+      "shot": 85320,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.0005917946748388281,
+      "weighted": -0.0011274216661378029
+    },
+    {
+      "shot": 85320,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.0019487836469301834,
+      "weighted": -0.00373623228166251
+    },
+    {
+      "shot": 85320,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.0005817033553911027,
+      "weighted": -0.0009373775590009806
+    },
+    {
+      "shot": 85632,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.00015641844751718872,
+      "weighted": -0.00034849823586898237
+    },
+    {
+      "shot": 85632,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -5.2486507255883536e-05,
+      "weighted": -8.012721942437403e-05
+    },
+    {
+      "shot": 85632,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.00024384036807627827,
+      "weighted": -0.0003625637342255577
+    },
+    {
+      "shot": 85632,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.00013862832127942428,
+      "weighted": -0.00020476568734910792
+    },
+    {
+      "shot": 85632,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": 5.694913798482226e-05,
+      "weighted": 5.124905589093899e-05
+    },
+    {
+      "shot": 86167,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -2.6669507808627164e-07,
+      "weighted": -0.00018744174766744412
+    },
+    {
+      "shot": 86167,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.00033771750151218786,
+      "weighted": -0.0003933594509054453
+    },
+    {
+      "shot": 86167,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -9.455016909471137e-05,
+      "weighted": -0.00020486470036942779
+    },
+    {
+      "shot": 86167,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.00018318163275523553,
+      "weighted": -0.0002381051338197526
+    },
+    {
+      "shot": 86167,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.0004446619681091858,
+      "weighted": -0.0005098216560527616
+    },
+    {
+      "shot": 87487,
+      "disruptive": true,
+      "lead_ms": 250.0,
+      "uniform": 0.0055174668369855455,
+      "weighted": 0.00583144171204863
+    },
+    {
+      "shot": 87487,
+      "disruptive": true,
+      "lead_ms": 150.0,
+      "uniform": 0.0041439538314566315,
+      "weighted": 0.00595204481771521
+    },
+    {
+      "shot": 87487,
+      "disruptive": true,
+      "lead_ms": 100.0,
+      "uniform": 0.001963156129536874,
+      "weighted": 0.0052293687681323605
+    },
+    {
+      "shot": 87487,
+      "disruptive": true,
+      "lead_ms": 60.0,
+      "uniform": 0.002027870068357877,
+      "weighted": 0.0034051349535047593
+    },
+    {
+      "shot": 87487,
+      "disruptive": true,
+      "lead_ms": 35.0,
+      "uniform": -0.00017556938817450864,
+      "weighted": -0.0001279819734322386
+    },
+    {
+      "shot": 87494,
+      "disruptive": true,
+      "lead_ms": 250.107521,
+      "uniform": 0.0027482016473296105,
+      "weighted": 0.007700813799071985
+    },
+    {
+      "shot": 87494,
+      "disruptive": true,
+      "lead_ms": 150.107521,
+      "uniform": 0.005653493720821449,
+      "weighted": 0.009126647250941766
+    },
+    {
+      "shot": 87494,
+      "disruptive": true,
+      "lead_ms": 100.107521,
+      "uniform": 0.0012615035469699483,
+      "weighted": 0.0020281859562137974
+    },
+    {
+      "shot": 87494,
+      "disruptive": true,
+      "lead_ms": 60.107521,
+      "uniform": 0.015207460743503261,
+      "weighted": 0.01757301535917196
+    },
+    {
+      "shot": 87494,
+      "disruptive": true,
+      "lead_ms": 35.107521,
+      "uniform": 0.004563222410320753,
+      "weighted": 0.006357128311979033
+    },
+    {
+      "shot": 91054,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.0005995875186554477,
+      "weighted": -0.0005887782372403955
+    },
+    {
+      "shot": 91054,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.00010972619094407233,
+      "weighted": -0.0001432587101234616
+    },
+    {
+      "shot": 91054,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.0002414153082364182,
+      "weighted": -0.00033231094043329926
+    },
+    {
+      "shot": 91054,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.00011666556916229189,
+      "weighted": -0.0002927162305545062
+    },
+    {
+      "shot": 91054,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.00028523833535149977,
+      "weighted": -0.00041386389443312825
+    },
+    {
+      "shot": 91723,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.0028229410593314276,
+      "weighted": -0.004672661454796446
+    },
+    {
+      "shot": 91723,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.002286033252976524,
+      "weighted": -0.003432857551567882
+    },
+    {
+      "shot": 91723,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.0003018372223567429,
+      "weighted": -0.0005165375396962977
+    },
+    {
+      "shot": 91723,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.00044579212710851043,
+      "weighted": -0.0007381979359264103
+    },
+    {
+      "shot": 91723,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.0006729293644449923,
+      "weighted": -0.0007338826672256146
+    },
+    {
+      "shot": 91885,
+      "disruptive": true,
+      "lead_ms": 250.0,
+      "uniform": -0.004019722610256924,
+      "weighted": -0.0020554068418349404
+    },
+    {
+      "shot": 91885,
+      "disruptive": true,
+      "lead_ms": 150.0,
+      "uniform": -0.0036845194523501337,
+      "weighted": -0.0030688238088017058
+    },
+    {
+      "shot": 91885,
+      "disruptive": true,
+      "lead_ms": 100.0,
+      "uniform": -0.001411361810327744,
+      "weighted": -0.0010589941400429082
+    },
+    {
+      "shot": 91885,
+      "disruptive": true,
+      "lead_ms": 60.0,
+      "uniform": -0.0017630103553443375,
+      "weighted": -0.0010867334605163112
+    },
+    {
+      "shot": 91885,
+      "disruptive": true,
+      "lead_ms": 35.0,
+      "uniform": -0.0029570991089642785,
+      "weighted": -0.0026186933073096604
+    },
+    {
+      "shot": 94428,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.00032897117153075694,
+      "weighted": -0.0006505509632858067
+    },
+    {
+      "shot": 94428,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.0013581008511430888,
+      "weighted": -0.002433346911507839
+    },
+    {
+      "shot": 94428,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.00023923292565977493,
+      "weighted": -0.0004937829198460904
+    },
+    {
+      "shot": 94428,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -0.0002126314391183045,
+      "weighted": -0.0004722375572357526
+    },
+    {
+      "shot": 94428,
+      "disruptive": false,
+      "lead_ms": null,
+      "uniform": -4.533146191461793e-05,
+      "weighted": -0.0007171756707976982
+    }
+  ],
+  "held_summary": {
+    "safe": {
+      "uniform": -0.0006148020395939363,
+      "weighted": -0.0006847529917018237
+    },
+    "disruptive": {
+      "uniform": 0.008016909337469444,
+      "weighted": 0.004088244667490781
+    },
+    "danger_window": {
+      "uniform": 0.004617617766949744,
+      "weighted": 0.0025257089278318957
+    }
+  }
+}

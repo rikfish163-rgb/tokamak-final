@@ -1,0 +1,2829 @@
+{
+  "protocol": {
+    "parent_sha256": "c7270c1ea3652db2e30e972d4ca9a4a2d33220a68e4a3765c8b7f5bcceeaeb02",
+    "direction_sha256": "5fe39f2afd8fdd853003eb69e292db06451213ed4be2236e7222a119a6d87886",
+    "threshold": 0.7258946895599365,
+    "history_ids": [
+      53825,
+      54003,
+      54006,
+      54014,
+      54017,
+      54068,
+      54078,
+      54094,
+      54098,
+      54099,
+      54105,
+      54157,
+      54160,
+      54165,
+      54170,
+      54178,
+      54227,
+      54237,
+      54243,
+      54244,
+      54252,
+      54272,
+      54276,
+      54313,
+      54314,
+      54328,
+      54338,
+      54340,
+      54344,
+      54347,
+      54351,
+      54396
+    ],
+    "future_ids": [
+      54404,
+      54405,
+      54411,
+      54421,
+      54426,
+      54466,
+      54666,
+      54686,
+      54752,
+      54775,
+      54785,
+      54792,
+      54793,
+      54818,
+      54828,
+      54829,
+      54846,
+      54860,
+      54865,
+      54883,
+      54889,
+      54890,
+      54904,
+      54905,
+      54918,
+      54924,
+      54927,
+      54928,
+      54938,
+      54941,
+      54958,
+      54977
+    ],
+    "decision_valid_events": [
+      1,
+      21
+    ],
+    "events_per_macro": 20,
+    "max_events": 40,
+    "actions": [
+      0,
+      -1,
+      1
+    ],
+    "steps": [
+      0.02,
+      0.08
+    ],
+    "q_bounds": [
+      -1.0,
+      1.0
+    ],
+    "ridge": 0.001,
+    "fit_iterations": 3,
+    "history_old_audit_is_now_training": true,
+    "historical_guard": true,
+    "guard_contract": "both class errors nonincreasing, one strictly lower; stop on first rejection",
+    "guard_is_posthoc_development_variant": true,
+    "future_access": "only after historical capacity and common-student gates",
+    "hypothesis": "historical full costs can teach early signal-conditional internal actions",
+    "label_access": "natural postshot reveal, no query budget",
+    "scope": "DEVELOPMENT inter-trained intra, NOT pure source-only intra or new physics",
+    "source_and_alarm_frozen": true,
+    "target_statistics_fitted": false,
+    "input_contract": "nominal EAST + unavailable MNM + pointwise CIII sentinel mask",
+    "max_teacher_replays": 567,
+    "max_active_future_replays": 96,
+    "code_sha256": {
+      "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/signed_intra_20261005/context.py": "e7ec42b711766eacc075b6a49c64382be11ffbadf1c9eb76182144c2240f998f",
+      "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/signed_intra_20261005/credit_span.py": "be2ebacace1679ed4830d7d576f6fe0fd2bedf5ae92da80ac3a754217642c1ed",
+      "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/signed_intra_20261005/direction.py": "da30a607291a3aa5ec5f0a93f67a6218050a9344199dca4a0c26101403c9a75c",
+      "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/signed_intra_20261005/finite_probe.py": "bdf0c98d677e4a0da8bbcd582fe55214e59ca29585f45aa097dd03c04fad1eaf",
+      "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/signed_intra_20261005/macro_credit.py": "f6bbfc65f69df1597b51a280a602878d6318e2f8b27d8e0408fdcf1930ec9acc",
+      "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/signed_intra_20261005/macro_experiment.py": "9c7ea5df6bd41ee94e631a95217b25761e466e69ae8cb5b74e9468d8a1c32cce",
+      "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/signed_intra_20261005/policy.py": "9a3b9498d1ab93d4ef972f1148729a1e665180cdcde000299c91129cd22296ee",
+      "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/signed_intra_20261005/trajectory_credit.py": "3cc15eb365462a0c94e8fe0fea8b7e1b94ea25bc4aa4edb65b0ef270c499fcd0",
+      "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/simple23.py": "2234ab9c872baf1f5c6667225094d482b8c44ad83c091bb56bb7d8224e1a7b22",
+      "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/simple_data.py": "0d9b1e5f2caf5dc63cb227f79150ad0743d653d3b6f75546cc4df8277886f046",
+      "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/io23.py": "714b0339e3119cb39f02234ea9e2df7643a90cc303c127d70b110fa74170f72c",
+      "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/causal_input.py": "e7291090c5da98a4a4a890dca87eba4fc768b10dbb0a9e0228bc2a1a217fd111",
+      "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/simple_online.py": "34f97c09bacdb755db3ea426cb52ab6f5e47b2446eb064181dc7bd5074122c6d",
+      "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/simple_train.py": "5716a805eed13578ae7dfc0fda5970178dfb579e87a9d51338a3b83f4c9d6ab9",
+      "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/ffn_intra_20261005/model.py": "c177187d0605f5e4907fd3f8312ec79d6a0a8ee4ae0d111519f8d477e7d95559",
+      "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/redesign_20261004/prepare_prior.py": "469c568e685ebf6d9451eb5ccdeddcca98eb8195897934814d7eb8b13952a49f",
+      "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/redesign_20261004/intra.py": "313707485f3c0a730ae98ac8d86f0ae0aa748c04b23a0ad0a3019dd118db0b27"
+    },
+    "gpu": "NVIDIA GeForce RTX 5070 Laptop GPU"
+  },
+  "cold_start": {
+    "n_disrupt": 5,
+    "n_safe": 27,
+    "tp": 1,
+    "fp": 1,
+    "tpr": 0.2,
+    "fpr": 0.037037037037037035
+  },
+  "capacity": {
+    "passed": true,
+    "rescued": {
+      "0": [
+        54244
+      ],
+      "1": [
+        54272
+      ]
+    }
+  },
+  "student_admitted": true,
+  "future_run": true,
+  "historical_student": {
+    "metrics": {
+      "n_disrupt": 5,
+      "n_safe": 27,
+      "tp": 2,
+      "fp": 0,
+      "tpr": 0.4,
+      "fpr": 0.0
+    },
+    "rows": [
+      {
+        "shot": 53825,
+        "disruptive": false,
+        "pair": [
+          1,
+          1
+        ],
+        "prediction": {
+          "shot": 53825,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54003,
+        "disruptive": false,
+        "pair": [
+          1,
+          1
+        ],
+        "prediction": {
+          "shot": 54003,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54006,
+        "disruptive": true,
+        "pair": [
+          0,
+          0
+        ],
+        "prediction": {
+          "shot": 54006,
+          "is_disrupt": true,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54014,
+        "disruptive": false,
+        "pair": [
+          0,
+          1
+        ],
+        "prediction": {
+          "shot": 54014,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54017,
+        "disruptive": true,
+        "pair": [
+          0,
+          1
+        ],
+        "prediction": {
+          "shot": 54017,
+          "is_disrupt": true,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54068,
+        "disruptive": false,
+        "pair": [
+          2,
+          1
+        ],
+        "prediction": {
+          "shot": 54068,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54078,
+        "disruptive": false,
+        "pair": [
+          0,
+          2
+        ],
+        "prediction": {
+          "shot": 54078,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54094,
+        "disruptive": true,
+        "pair": [
+          1,
+          2
+        ],
+        "prediction": {
+          "shot": 54094,
+          "is_disrupt": true,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54098,
+        "disruptive": true,
+        "pair": [
+          1,
+          0
+        ],
+        "prediction": {
+          "shot": 54098,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 92.0,
+          "timely": true
+        }
+      },
+      {
+        "shot": 54099,
+        "disruptive": false,
+        "pair": [
+          1,
+          2
+        ],
+        "prediction": {
+          "shot": 54099,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54105,
+        "disruptive": false,
+        "pair": [
+          2,
+          2
+        ],
+        "prediction": {
+          "shot": 54105,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54157,
+        "disruptive": false,
+        "pair": [
+          2,
+          1
+        ],
+        "prediction": {
+          "shot": 54157,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54160,
+        "disruptive": false,
+        "pair": [
+          0,
+          1
+        ],
+        "prediction": {
+          "shot": 54160,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54165,
+        "disruptive": false,
+        "pair": [
+          2,
+          2
+        ],
+        "prediction": {
+          "shot": 54165,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54170,
+        "disruptive": false,
+        "pair": [
+          0,
+          0
+        ],
+        "prediction": {
+          "shot": 54170,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54178,
+        "disruptive": false,
+        "pair": [
+          1,
+          0
+        ],
+        "prediction": {
+          "shot": 54178,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54227,
+        "disruptive": false,
+        "pair": [
+          0,
+          1
+        ],
+        "prediction": {
+          "shot": 54227,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54237,
+        "disruptive": false,
+        "pair": [
+          1,
+          1
+        ],
+        "prediction": {
+          "shot": 54237,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54243,
+        "disruptive": false,
+        "pair": [
+          2,
+          2
+        ],
+        "prediction": {
+          "shot": 54243,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54244,
+        "disruptive": false,
+        "pair": [
+          2,
+          2
+        ],
+        "prediction": {
+          "shot": 54244,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54252,
+        "disruptive": false,
+        "pair": [
+          2,
+          2
+        ],
+        "prediction": {
+          "shot": 54252,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54272,
+        "disruptive": true,
+        "pair": [
+          1,
+          1
+        ],
+        "prediction": {
+          "shot": 54272,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 155.0,
+          "timely": true
+        }
+      },
+      {
+        "shot": 54276,
+        "disruptive": false,
+        "pair": [
+          2,
+          2
+        ],
+        "prediction": {
+          "shot": 54276,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54313,
+        "disruptive": false,
+        "pair": [
+          2,
+          0
+        ],
+        "prediction": {
+          "shot": 54313,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54314,
+        "disruptive": false,
+        "pair": [
+          2,
+          1
+        ],
+        "prediction": {
+          "shot": 54314,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54328,
+        "disruptive": false,
+        "pair": [
+          0,
+          1
+        ],
+        "prediction": {
+          "shot": 54328,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54338,
+        "disruptive": false,
+        "pair": [
+          1,
+          1
+        ],
+        "prediction": {
+          "shot": 54338,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54340,
+        "disruptive": false,
+        "pair": [
+          0,
+          2
+        ],
+        "prediction": {
+          "shot": 54340,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54344,
+        "disruptive": false,
+        "pair": [
+          0,
+          2
+        ],
+        "prediction": {
+          "shot": 54344,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54347,
+        "disruptive": false,
+        "pair": [
+          2,
+          0
+        ],
+        "prediction": {
+          "shot": 54347,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54351,
+        "disruptive": false,
+        "pair": [
+          0,
+          2
+        ],
+        "prediction": {
+          "shot": 54351,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54396,
+        "disruptive": false,
+        "pair": [
+          0,
+          1
+        ],
+        "prediction": {
+          "shot": 54396,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      }
+    ]
+  },
+  "fit_log": [
+    {
+      "iteration": 1,
+      "examples": 64,
+      "non_tied_examples": 16,
+      "weighted_squared_error": 0.009873257877909634,
+      "rule_norm": 1.493631137740167,
+      "current_class_errors": [
+        1,
+        4
+      ],
+      "proposal_class_errors": [
+        0,
+        3
+      ],
+      "accepted": true
+    },
+    {
+      "iteration": 2,
+      "examples": 64,
+      "non_tied_examples": 7,
+      "weighted_squared_error": 0.003615329696377201,
+      "rule_norm": 0.9542875536509122,
+      "current_class_errors": [
+        0,
+        3
+      ],
+      "proposal_class_errors": [
+        1,
+        3
+      ],
+      "accepted": false
+    }
+  ],
+  "student_rescues": {
+    "passed": true,
+    "rescued": {
+      "0": [
+        54244
+      ],
+      "1": [
+        54272
+      ]
+    }
+  },
+  "future": {
+    "S": {
+      "n_disrupt": 7,
+      "n_safe": 25,
+      "tp": 3,
+      "fp": 4,
+      "tpr": 0.42857142857142855,
+      "fpr": 0.16
+    },
+    "H": {
+      "n_disrupt": 7,
+      "n_safe": 25,
+      "tp": 2,
+      "fp": 4,
+      "tpr": 0.2857142857142857,
+      "fpr": 0.16
+    },
+    "P": {
+      "n_disrupt": 7,
+      "n_safe": 25,
+      "tp": 3,
+      "fp": 3,
+      "tpr": 0.42857142857142855,
+      "fpr": 0.12
+    },
+    "G": {
+      "n_disrupt": 7,
+      "n_safe": 25,
+      "tp": 4,
+      "fp": 5,
+      "tpr": 0.5714285714285714,
+      "fpr": 0.2
+    }
+  },
+  "future_records": {
+    "S": [
+      {
+        "shot": 54404,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54404,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54405,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54405,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54411,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54411,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54421,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54421,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54426,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54426,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54466,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54466,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54666,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54666,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54686,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54686,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54752,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54752,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54775,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54775,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54785,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54785,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54792,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54792,
+          "is_disrupt": false,
+          "alarm": true,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54793,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54793,
+          "is_disrupt": false,
+          "alarm": true,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54818,
+        "disruptive": true,
+        "prediction": {
+          "shot": 54818,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 15.26176,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54828,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54828,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54829,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54829,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54846,
+        "disruptive": true,
+        "prediction": {
+          "shot": 54846,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 1605.0,
+          "timely": true
+        }
+      },
+      {
+        "shot": 54860,
+        "disruptive": true,
+        "prediction": {
+          "shot": 54860,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 2022.0,
+          "timely": true
+        }
+      },
+      {
+        "shot": 54865,
+        "disruptive": true,
+        "prediction": {
+          "shot": 54865,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 189.0,
+          "timely": true
+        }
+      },
+      {
+        "shot": 54883,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54883,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54889,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54889,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54890,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54890,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54904,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54904,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54905,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54905,
+          "is_disrupt": false,
+          "alarm": true,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54918,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54918,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54924,
+        "disruptive": true,
+        "prediction": {
+          "shot": 54924,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 26.0,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54927,
+        "disruptive": true,
+        "prediction": {
+          "shot": 54927,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 1.0,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54928,
+        "disruptive": true,
+        "prediction": {
+          "shot": 54928,
+          "is_disrupt": true,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54938,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54938,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54941,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54941,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54958,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54958,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54977,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54977,
+          "is_disrupt": false,
+          "alarm": true,
+          "lead_ms": null,
+          "timely": false
+        }
+      }
+    ],
+    "H": [
+      {
+        "shot": 54404,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54404,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54405,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54405,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54411,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54411,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54421,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54421,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54426,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54426,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54466,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54466,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54666,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54666,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54686,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54686,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54752,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54752,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54775,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54775,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54785,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54785,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54792,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54792,
+          "is_disrupt": false,
+          "alarm": true,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54793,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54793,
+          "is_disrupt": false,
+          "alarm": true,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54818,
+        "disruptive": true,
+        "prediction": {
+          "shot": 54818,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 5.26176,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54828,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54828,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54829,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54829,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54846,
+        "disruptive": true,
+        "prediction": {
+          "shot": 54846,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 2604.0,
+          "timely": true
+        }
+      },
+      {
+        "shot": 54860,
+        "disruptive": true,
+        "prediction": {
+          "shot": 54860,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 1852.0,
+          "timely": true
+        }
+      },
+      {
+        "shot": 54865,
+        "disruptive": true,
+        "prediction": {
+          "shot": 54865,
+          "is_disrupt": true,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54883,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54883,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54889,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54889,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54890,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54890,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54904,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54904,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54905,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54905,
+          "is_disrupt": false,
+          "alarm": true,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54918,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54918,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54924,
+        "disruptive": true,
+        "prediction": {
+          "shot": 54924,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 24.0,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54927,
+        "disruptive": true,
+        "prediction": {
+          "shot": 54927,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 1.0,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54928,
+        "disruptive": true,
+        "prediction": {
+          "shot": 54928,
+          "is_disrupt": true,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54938,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54938,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54941,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54941,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54958,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54958,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54977,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54977,
+          "is_disrupt": false,
+          "alarm": true,
+          "lead_ms": null,
+          "timely": false
+        }
+      }
+    ],
+    "P": [
+      {
+        "shot": 54404,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54404,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54405,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54405,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54411,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54411,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54421,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54421,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54426,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54426,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54466,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54466,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54666,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54666,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54686,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54686,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54752,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54752,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54775,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54775,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54785,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54785,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54792,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54792,
+          "is_disrupt": false,
+          "alarm": true,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54793,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54793,
+          "is_disrupt": false,
+          "alarm": true,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54818,
+        "disruptive": true,
+        "prediction": {
+          "shot": 54818,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 5.26176,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54828,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54828,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54829,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54829,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54846,
+        "disruptive": true,
+        "prediction": {
+          "shot": 54846,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 2604.0,
+          "timely": true
+        }
+      },
+      {
+        "shot": 54860,
+        "disruptive": true,
+        "prediction": {
+          "shot": 54860,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 1852.0,
+          "timely": true
+        }
+      },
+      {
+        "shot": 54865,
+        "disruptive": true,
+        "prediction": {
+          "shot": 54865,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 189.0,
+          "timely": true
+        }
+      },
+      {
+        "shot": 54883,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54883,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54889,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54889,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54890,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54890,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54904,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54904,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54905,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54905,
+          "is_disrupt": false,
+          "alarm": true,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54918,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54918,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54924,
+        "disruptive": true,
+        "prediction": {
+          "shot": 54924,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 24.0,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54927,
+        "disruptive": true,
+        "prediction": {
+          "shot": 54927,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 1.0,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54928,
+        "disruptive": true,
+        "prediction": {
+          "shot": 54928,
+          "is_disrupt": true,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54938,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54938,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54941,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54941,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54958,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54958,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54977,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54977,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      }
+    ],
+    "G": [
+      {
+        "shot": 54404,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54404,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54405,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54405,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54411,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54411,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54421,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54421,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54426,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54426,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54466,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54466,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54666,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54666,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54686,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54686,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54752,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54752,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54775,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54775,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54785,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54785,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54792,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54792,
+          "is_disrupt": false,
+          "alarm": true,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54793,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54793,
+          "is_disrupt": false,
+          "alarm": true,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54818,
+        "disruptive": true,
+        "prediction": {
+          "shot": 54818,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 5.26176,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54828,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54828,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54829,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54829,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54846,
+        "disruptive": true,
+        "prediction": {
+          "shot": 54846,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 1610.0,
+          "timely": true
+        }
+      },
+      {
+        "shot": 54860,
+        "disruptive": true,
+        "prediction": {
+          "shot": 54860,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 2189.0,
+          "timely": true
+        }
+      },
+      {
+        "shot": 54865,
+        "disruptive": true,
+        "prediction": {
+          "shot": 54865,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 202.0,
+          "timely": true
+        }
+      },
+      {
+        "shot": 54883,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54883,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54889,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54889,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54890,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54890,
+          "is_disrupt": false,
+          "alarm": true,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54904,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54904,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54905,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54905,
+          "is_disrupt": false,
+          "alarm": true,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54918,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54918,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54924,
+        "disruptive": true,
+        "prediction": {
+          "shot": 54924,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 35.0,
+          "timely": true
+        }
+      },
+      {
+        "shot": 54927,
+        "disruptive": true,
+        "prediction": {
+          "shot": 54927,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 1.0,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54928,
+        "disruptive": true,
+        "prediction": {
+          "shot": 54928,
+          "is_disrupt": true,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54938,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54938,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54941,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54941,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54958,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54958,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 54977,
+        "disruptive": false,
+        "prediction": {
+          "shot": 54977,
+          "is_disrupt": false,
+          "alarm": true,
+          "lead_ms": null,
+          "timely": false
+        }
+      }
+    ]
+  },
+  "updates": [
+    {
+      "index": 33,
+      "fit_log": [
+        {
+          "iteration": 1,
+          "examples": 66,
+          "non_tied_examples": 7,
+          "weighted_squared_error": 0.0038052911935160345,
+          "rule_norm": 0.9137730715633468,
+          "current_class_errors": [
+            0,
+            3
+          ],
+          "proposal_class_errors": [
+            1,
+            3
+          ],
+          "accepted": false
+        }
+      ]
+    },
+    {
+      "index": 34,
+      "fit_log": [
+        {
+          "iteration": 1,
+          "examples": 68,
+          "non_tied_examples": 7,
+          "weighted_squared_error": 0.003954109029405429,
+          "rule_norm": 0.8902698205838124,
+          "current_class_errors": [
+            0,
+            3
+          ],
+          "proposal_class_errors": [
+            1,
+            3
+          ],
+          "accepted": false
+        }
+      ]
+    },
+    {
+      "index": 35,
+      "fit_log": [
+        {
+          "iteration": 1,
+          "examples": 70,
+          "non_tied_examples": 7,
+          "weighted_squared_error": 0.004120827645456763,
+          "rule_norm": 0.8604346439044258,
+          "current_class_errors": [
+            0,
+            3
+          ],
+          "proposal_class_errors": [
+            1,
+            3
+          ],
+          "accepted": false
+        }
+      ]
+    },
+    {
+      "index": 36,
+      "fit_log": [
+        {
+          "iteration": 1,
+          "examples": 72,
+          "non_tied_examples": 7,
+          "weighted_squared_error": 0.004092844621928203,
+          "rule_norm": 0.8465398390568417,
+          "current_class_errors": [
+            0,
+            3
+          ],
+          "proposal_class_errors": [
+            1,
+            3
+          ],
+          "accepted": false
+        }
+      ]
+    },
+    {
+      "index": 37,
+      "fit_log": [
+        {
+          "iteration": 1,
+          "examples": 74,
+          "non_tied_examples": 7,
+          "weighted_squared_error": 0.004056943406928366,
+          "rule_norm": 0.828052547317534,
+          "current_class_errors": [
+            0,
+            3
+          ],
+          "proposal_class_errors": [
+            1,
+            3
+          ],
+          "accepted": false
+        }
+      ]
+    },
+    {
+      "index": 38,
+      "fit_log": [
+        {
+          "iteration": 1,
+          "examples": 76,
+          "non_tied_examples": 8,
+          "weighted_squared_error": 0.004297535154534233,
+          "rule_norm": 0.9224119587045378,
+          "current_class_errors": [
+            0,
+            3
+          ],
+          "proposal_class_errors": [
+            1,
+            3
+          ],
+          "accepted": false
+        }
+      ]
+    },
+    {
+      "index": 39,
+      "fit_log": [
+        {
+          "iteration": 1,
+          "examples": 78,
+          "non_tied_examples": 8,
+          "weighted_squared_error": 0.0045142125426896745,
+          "rule_norm": 0.8768867028822567,
+          "current_class_errors": [
+            0,
+            3
+          ],
+          "proposal_class_errors": [
+            1,
+            3
+          ],
+          "accepted": false
+        }
+      ]
+    },
+    {
+      "index": 40,
+      "fit_log": [
+        {
+          "iteration": 1,
+          "examples": 80,
+          "non_tied_examples": 8,
+          "weighted_squared_error": 0.004494350495340468,
+          "rule_norm": 0.8697104089960238,
+          "current_class_errors": [
+            0,
+            3
+          ],
+          "proposal_class_errors": [
+            1,
+            3
+          ],
+          "accepted": false
+        }
+      ]
+    },
+    {
+      "index": 41,
+      "fit_log": [
+        {
+          "iteration": 1,
+          "examples": 82,
+          "non_tied_examples": 8,
+          "weighted_squared_error": 0.004509102665726573,
+          "rule_norm": 0.8413987868921846,
+          "current_class_errors": [
+            0,
+            3
+          ],
+          "proposal_class_errors": [
+            1,
+            3
+          ],
+          "accepted": false
+        }
+      ]
+    },
+    {
+      "index": 42,
+      "fit_log": [
+        {
+          "iteration": 1,
+          "examples": 84,
+          "non_tied_examples": 8,
+          "weighted_squared_error": 0.004453540759381429,
+          "rule_norm": 0.8513453442495637,
+          "current_class_errors": [
+            0,
+            3
+          ],
+          "proposal_class_errors": [
+            2,
+            3
+          ],
+          "accepted": false
+        }
+      ]
+    },
+    {
+      "index": 43,
+      "fit_log": [
+        {
+          "iteration": 1,
+          "examples": 86,
+          "non_tied_examples": 8,
+          "weighted_squared_error": 0.004381775601357461,
+          "rule_norm": 0.8550073698424344,
+          "current_class_errors": [
+            0,
+            3
+          ],
+          "proposal_class_errors": [
+            2,
+            3
+          ],
+          "accepted": false
+        }
+      ]
+    },
+    {
+      "index": 44,
+      "fit_log": [
+        {
+          "iteration": 1,
+          "examples": 88,
+          "non_tied_examples": 8,
+          "weighted_squared_error": 0.004301305861225037,
+          "rule_norm": 0.8487074769370627,
+          "current_class_errors": [
+            1,
+            3
+          ],
+          "proposal_class_errors": [
+            3,
+            3
+          ],
+          "accepted": false
+        }
+      ]
+    },
+    {
+      "index": 45,
+      "fit_log": [
+        {
+          "iteration": 1,
+          "examples": 90,
+          "non_tied_examples": 8,
+          "weighted_squared_error": 0.00425083930837741,
+          "rule_norm": 0.8423147488029604,
+          "current_class_errors": [
+            2,
+            3
+          ],
+          "proposal_class_errors": [
+            4,
+            3
+          ],
+          "accepted": false
+        }
+      ]
+    },
+    {
+      "index": 46,
+      "fit_log": [
+        {
+          "iteration": 1,
+          "examples": 92,
+          "non_tied_examples": 8,
+          "weighted_squared_error": 0.004291732894036448,
+          "rule_norm": 0.8689012519660142,
+          "current_class_errors": [
+            2,
+            4
+          ],
+          "proposal_class_errors": [
+            4,
+            4
+          ],
+          "accepted": false
+        }
+      ]
+    },
+    {
+      "index": 47,
+      "fit_log": [
+        {
+          "iteration": 1,
+          "examples": 94,
+          "non_tied_examples": 8,
+          "weighted_squared_error": 0.004263933489398678,
+          "rule_norm": 0.8796470650708513,
+          "current_class_errors": [
+            2,
+            4
+          ],
+          "proposal_class_errors": [
+            4,
+            4
+          ],
+          "accepted": false
+        }
+      ]
+    },
+    {
+      "index": 48,
+      "fit_log": [
+        {
+          "iteration": 1,
+          "examples": 96,
+          "non_tied_examples": 8,
+          "weighted_squared_error": 0.0043111249822127785,
+          "rule_norm": 0.864392892564643,
+          "current_class_errors": [
+            2,
+            4
+          ],
+          "proposal_class_errors": [
+            4,
+            4
+          ],
+          "accepted": false
+        }
+      ]
+    },
+    {
+      "index": 49,
+      "fit_log": [
+        {
+          "iteration": 1,
+          "examples": 98,
+          "non_tied_examples": 9,
+          "weighted_squared_error": 0.004815331310152762,
+          "rule_norm": 1.0034899806499404,
+          "current_class_errors": [
+            2,
+            4
+          ],
+          "proposal_class_errors": [
+            4,
+            4
+          ],
+          "accepted": false
+        }
+      ]
+    },
+    {
+      "index": 50,
+      "fit_log": [
+        {
+          "iteration": 1,
+          "examples": 100,
+          "non_tied_examples": 9,
+          "weighted_squared_error": 0.004795555282528179,
+          "rule_norm": 0.9907112263485098,
+          "current_class_errors": [
+            2,
+            4
+          ],
+          "proposal_class_errors": [
+            4,
+            4
+          ],
+          "accepted": false
+        }
+      ]
+    },
+    {
+      "index": 51,
+      "fit_log": [
+        {
+          "iteration": 1,
+          "examples": 102,
+          "non_tied_examples": 11,
+          "weighted_squared_error": 0.011418372032277118,
+          "rule_norm": 1.1666455137329181,
+          "current_class_errors": [
+            2,
+            5
+          ],
+          "proposal_class_errors": [
+            4,
+            4
+          ],
+          "accepted": false
+        }
+      ]
+    },
+    {
+      "index": 52,
+      "fit_log": [
+        {
+          "iteration": 1,
+          "examples": 104,
+          "non_tied_examples": 11,
+          "weighted_squared_error": 0.011375824182227306,
+          "rule_norm": 1.1541405640782274,
+          "current_class_errors": [
+            2,
+            5
+          ],
+          "proposal_class_errors": [
+            4,
+            4
+          ],
+          "accepted": false
+        }
+      ]
+    },
+    {
+      "index": 53,
+      "fit_log": [
+        {
+          "iteration": 1,
+          "examples": 106,
+          "non_tied_examples": 11,
+          "weighted_squared_error": 0.011350142864580463,
+          "rule_norm": 1.1428956247226814,
+          "current_class_errors": [
+            2,
+            5
+          ],
+          "proposal_class_errors": [
+            4,
+            4
+          ],
+          "accepted": false
+        }
+      ]
+    },
+    {
+      "index": 54,
+      "fit_log": [
+        {
+          "iteration": 1,
+          "examples": 108,
+          "non_tied_examples": 11,
+          "weighted_squared_error": 0.011263821451666524,
+          "rule_norm": 1.137043072699573,
+          "current_class_errors": [
+            2,
+            5
+          ],
+          "proposal_class_errors": [
+            5,
+            4
+          ],
+          "accepted": false
+        }
+      ]
+    },
+    {
+      "index": 55,
+      "fit_log": [
+        {
+          "iteration": 1,
+          "examples": 110,
+          "non_tied_examples": 11,
+          "weighted_squared_error": 0.01116125772093793,
+          "rule_norm": 1.1343767048272455,
+          "current_class_errors": [
+            2,
+            5
+          ],
+          "proposal_class_errors": [
+            5,
+            4
+          ],
+          "accepted": false
+        }
+      ]
+    },
+    {
+      "index": 56,
+      "fit_log": [
+        {
+          "iteration": 1,
+          "examples": 112,
+          "non_tied_examples": 12,
+          "weighted_squared_error": 0.012614158571157035,
+          "rule_norm": 1.0809469879700389,
+          "current_class_errors": [
+            3,
+            5
+          ],
+          "proposal_class_errors": [
+            5,
+            4
+          ],
+          "accepted": false
+        }
+      ]
+    },
+    {
+      "index": 57,
+      "fit_log": [
+        {
+          "iteration": 1,
+          "examples": 114,
+          "non_tied_examples": 12,
+          "weighted_squared_error": 0.012473716547322527,
+          "rule_norm": 1.0777467431206864,
+          "current_class_errors": [
+            3,
+            5
+          ],
+          "proposal_class_errors": [
+            5,
+            4
+          ],
+          "accepted": false
+        }
+      ]
+    },
+    {
+      "index": 58,
+      "fit_log": [
+        {
+          "iteration": 1,
+          "examples": 116,
+          "non_tied_examples": 12,
+          "weighted_squared_error": 0.012105417279358516,
+          "rule_norm": 1.040150619034418,
+          "current_class_errors": [
+            3,
+            6
+          ],
+          "proposal_class_errors": [
+            5,
+            5
+          ],
+          "accepted": false
+        }
+      ]
+    },
+    {
+      "index": 59,
+      "fit_log": [
+        {
+          "iteration": 1,
+          "examples": 118,
+          "non_tied_examples": 12,
+          "weighted_squared_error": 0.011852339129787623,
+          "rule_norm": 0.9949890027144271,
+          "current_class_errors": [
+            3,
+            7
+          ],
+          "proposal_class_errors": [
+            5,
+            6
+          ],
+          "accepted": false
+        }
+      ]
+    },
+    {
+      "index": 60,
+      "fit_log": [
+        {
+          "iteration": 1,
+          "examples": 120,
+          "non_tied_examples": 12,
+          "weighted_squared_error": 0.011952924775142398,
+          "rule_norm": 0.9858422758425406,
+          "current_class_errors": [
+            3,
+            8
+          ],
+          "proposal_class_errors": [
+            6,
+            7
+          ],
+          "accepted": false
+        }
+      ]
+    },
+    {
+      "index": 61,
+      "fit_log": [
+        {
+          "iteration": 1,
+          "examples": 122,
+          "non_tied_examples": 12,
+          "weighted_squared_error": 0.011867889195639723,
+          "rule_norm": 0.9767262184797256,
+          "current_class_errors": [
+            3,
+            8
+          ],
+          "proposal_class_errors": [
+            6,
+            7
+          ],
+          "accepted": false
+        }
+      ]
+    },
+    {
+      "index": 62,
+      "fit_log": [
+        {
+          "iteration": 1,
+          "examples": 124,
+          "non_tied_examples": 12,
+          "weighted_squared_error": 0.011773912679433111,
+          "rule_norm": 0.9752769040306661,
+          "current_class_errors": [
+            3,
+            8
+          ],
+          "proposal_class_errors": [
+            6,
+            7
+          ],
+          "accepted": false
+        }
+      ]
+    },
+    {
+      "index": 63,
+      "fit_log": [
+        {
+          "iteration": 1,
+          "examples": 126,
+          "non_tied_examples": 12,
+          "weighted_squared_error": 0.011652809312662674,
+          "rule_norm": 0.9736405440298396,
+          "current_class_errors": [
+            3,
+            8
+          ],
+          "proposal_class_errors": [
+            6,
+            7
+          ],
+          "accepted": false
+        }
+      ]
+    }
+  ],
+  "information_gate": false,
+  "cold_plus_future": {
+    "S": {
+      "n_disrupt": 12,
+      "n_safe": 52,
+      "tp": 4,
+      "fp": 5,
+      "tpr": 0.3333333333333333,
+      "fpr": 0.09615384615384616
+    },
+    "H": {
+      "n_disrupt": 12,
+      "n_safe": 52,
+      "tp": 3,
+      "fp": 5,
+      "tpr": 0.25,
+      "fpr": 0.09615384615384616
+    },
+    "P": {
+      "n_disrupt": 12,
+      "n_safe": 52,
+      "tp": 4,
+      "fp": 4,
+      "tpr": 0.3333333333333333,
+      "fpr": 0.07692307692307693
+    },
+    "G": {
+      "n_disrupt": 12,
+      "n_safe": 52,
+      "tp": 5,
+      "fp": 6,
+      "tpr": 0.4166666666666667,
+      "fpr": 0.11538461538461539
+    }
+  },
+  "source_unchanged": true,
+  "elapsed_seconds": 94.10802484399755
+}

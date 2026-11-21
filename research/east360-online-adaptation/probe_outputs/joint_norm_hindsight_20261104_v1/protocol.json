@@ -1,0 +1,202 @@
+{
+  "scope": "MATCHED_SIX_SHOT_NORM_HINDSIGHT_NOT_ONLINE",
+  "selected_shots": [
+    {
+      "index": 21,
+      "shot": 74087,
+      "kind": "deep",
+      "margin": 0.720060370862484,
+      "source_first_index": null,
+      "source_curve_sha256": "bb0f5e637c27d1412d7be350004f02f3df601375e4f40531cc101c7952d556aa",
+      "support_indices": [
+        1651,
+        3167,
+        4683,
+        6199,
+        7735,
+        7754,
+        7773,
+        7792
+      ],
+      "support_labels": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ],
+      "down_s": 10.84011172,
+      "disruptive": true
+    },
+    {
+      "index": 28,
+      "shot": 90874,
+      "kind": "deep",
+      "margin": 0.6897432655096054,
+      "source_first_index": null,
+      "source_curve_sha256": "615f0f969d5e10fce610f0543c87c96de318d94aab13ac2108ab9ae70e2f6db7",
+      "support_indices": [
+        809,
+        1484,
+        2159,
+        2834,
+        3528,
+        3547,
+        3566,
+        3585
+      ],
+      "support_labels": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ],
+      "down_s": 6.63319303,
+      "disruptive": true
+    },
+    {
+      "index": 46,
+      "shot": 70394,
+      "kind": "safe",
+      "margin": null,
+      "source_first_index": 2154,
+      "source_curve_sha256": "143debf5ddbcbe47f20e8a7e2790571f0ccb0cd29910c15da0af40c754074972",
+      "support_indices": [
+        538,
+        942,
+        1346,
+        1750,
+        2154,
+        2170,
+        2186,
+        2202
+      ],
+      "support_labels": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "down_s": null,
+      "disruptive": false
+    },
+    {
+      "index": 74,
+      "shot": 65944,
+      "kind": "close",
+      "margin": 0.0014019012451171875,
+      "source_first_index": null,
+      "source_curve_sha256": "b35c1586dea217528bb12a2dab2f9912bfe05a88b1052175bd48911b1f7cef0b",
+      "support_indices": [
+        1029,
+        1923,
+        2817,
+        3711,
+        4625,
+        4644,
+        4663,
+        4682
+      ],
+      "support_labels": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ],
+      "down_s": 7.730366569,
+      "disruptive": true
+    },
+    {
+      "index": 98,
+      "shot": 91064,
+      "kind": "safe",
+      "margin": null,
+      "source_first_index": 2384,
+      "source_curve_sha256": "c04db2b917626c5b108648b985257d65db38520449432b445bf7e4ae23f4e1fc",
+      "support_indices": [
+        584,
+        1034,
+        1484,
+        1934,
+        2384,
+        2400,
+        2416,
+        2432
+      ],
+      "support_labels": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "down_s": null,
+      "disruptive": false
+    },
+    {
+      "index": 245,
+      "shot": 75603,
+      "kind": "close",
+      "margin": 0.0635380744934082,
+      "source_first_index": null,
+      "source_curve_sha256": "b72ef5a041993baa9187b8155ab9bc1c9621849e245634c1baa7e77908c2a29f",
+      "support_indices": [
+        819,
+        1504,
+        2188,
+        2873,
+        3577,
+        3596,
+        3615,
+        3634
+      ],
+      "support_labels": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ],
+      "down_s": 6.683,
+      "disruptive": true
+    }
+  ],
+  "trainable_scope": "last-layer norm1/norm2 affine",
+  "parameters": 256,
+  "comparison_parameters": 512,
+  "steps": 60,
+  "lr": 0.01,
+  "clip": 1.0,
+  "radius": 0.5,
+  "input_sha256": {
+    "/media/hetaisheng/044A81D94A81C83E/Fuison-intra-trajectory-20261028/joint_norm_hindsight_20261104.py": "64486b89336e8d1e44c5de91d91666b468f239d3ff195cf553347288800dcbc0",
+    "/media/hetaisheng/044A81D94A81C83E/Fuison-intra-trajectory-20261028/joint_lora_hindsight_capacity_20261104.py": "0fba7baa7149bdbbe87ef4ac1d36c82ff4a17bc997638c208fd0b1d5e3954b7e",
+    "/media/hetaisheng/044A81D94A81C83E/Fuison-intra-trajectory-20261028/JOINT_NORM_HINDSIGHT_PLAN_20261104.md": "6e685387f53ad353c32ca20435c1f8e0bdb107f1fb16d1237f14529dfed01d92",
+    "/media/hetaisheng/044A81D94A81C83E/Fuison-intra-trajectory-20261028/probe_outputs/joint_lora_hindsight_capacity_20261104_v1/precommit.json": "f906fa9212450dae80d79eb3acbc3740211db0cbe556636ead9282fdfffd15f8",
+    "/media/hetaisheng/044A81D94A81C83E/Fuison-intra-trajectory-20261028/probe_outputs/joint_lora_hindsight_capacity_20261104_v1/completed.json": "f74a00ae9ada0922dec87df9c3c8ce946fc2ceb9d8d820e8a9bf70b98a52ef96",
+    "/media/hetaisheng/044A81D94A81C83E/Fuison-intra-trajectory-20261028/experiments/risk_aligned_online/runs/gradient_aligned512_20260929/source.pt": "c7270c1ea3652db2e30e972d4ca9a4a2d33220a68e4a3765c8b7f5bcceeaeb02"
+  },
+  "parent_frozen": true,
+  "support_labels_are_hindsight": true
+}

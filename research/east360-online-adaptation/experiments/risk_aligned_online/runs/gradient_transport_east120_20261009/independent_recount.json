@@ -1,0 +1,272 @@
+{
+  "directory": "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/runs/gradient_transport_east120_20261009",
+  "arms": {
+    "mask_static": {
+      "tp": 24,
+      "fp": 15,
+      "n_disrupt": 39,
+      "n_safe": 81,
+      "tpr": 0.6153846153846154,
+      "fpr": 0.18518518518518517,
+      "early_over_3s": 8,
+      "seals": 120,
+      "attempted": 0,
+      "accepted_intra": 0,
+      "accepted_inter": 0,
+      "startup_30": {
+        "tp": 1,
+        "fp": 1,
+        "n_disrupt": 5,
+        "n_safe": 25,
+        "tpr": 0.2,
+        "fpr": 0.04,
+        "early_over_3s": 0
+      },
+      "after_startup": {
+        "tp": 23,
+        "fp": 14,
+        "n_disrupt": 34,
+        "n_safe": 56,
+        "tpr": 0.6764705882352942,
+        "fpr": 0.25,
+        "early_over_3s": 8
+      },
+      "final_memory_l2": 0.0,
+      "source_guard_at_end": {
+        "passed": true,
+        "protected_tp": 56,
+        "protected_tn": 63,
+        "lost_tp": 0,
+        "lost_tn": 0,
+        "violating_indices": [],
+        "checked_points": 128,
+        "threshold": 0.7258946895599365,
+        "reason": "retained_original_correct_points",
+        "bank_sha256": "864de394ce6bd4cfedf9946444a21413c4ecfc6deee92d38458bd3167d4d4e4b",
+        "temporary_fast": "zero"
+      }
+    },
+    "static": {
+      "tp": 19,
+      "fp": 6,
+      "n_disrupt": 39,
+      "n_safe": 81,
+      "tpr": 0.48717948717948717,
+      "fpr": 0.07407407407407407,
+      "early_over_3s": 4,
+      "seals": 120,
+      "attempted": 0,
+      "accepted_intra": 0,
+      "accepted_inter": 0,
+      "startup_30": {
+        "tp": 1,
+        "fp": 1,
+        "n_disrupt": 5,
+        "n_safe": 25,
+        "tpr": 0.2,
+        "fpr": 0.04,
+        "early_over_3s": 0
+      },
+      "after_startup": {
+        "tp": 18,
+        "fp": 5,
+        "n_disrupt": 34,
+        "n_safe": 56,
+        "tpr": 0.5294117647058824,
+        "fpr": 0.08928571428571429,
+        "early_over_3s": 4
+      },
+      "final_memory_l2": 0.0,
+      "source_guard_at_end": {
+        "passed": true,
+        "protected_tp": 56,
+        "protected_tn": 63,
+        "lost_tp": 0,
+        "lost_tn": 0,
+        "violating_indices": [],
+        "checked_points": 128,
+        "threshold": 0.7258946895599365,
+        "reason": "retained_original_correct_points",
+        "bank_sha256": "864de394ce6bd4cfedf9946444a21413c4ecfc6deee92d38458bd3167d4d4e4b",
+        "temporary_fast": "zero"
+      }
+    },
+    "intra": {
+      "tp": 19,
+      "fp": 5,
+      "n_disrupt": 39,
+      "n_safe": 81,
+      "tpr": 0.48717948717948717,
+      "fpr": 0.06172839506172839,
+      "early_over_3s": 4,
+      "seals": 120,
+      "attempted": 4514,
+      "accepted_intra": 3023,
+      "accepted_inter": 0,
+      "startup_30": {
+        "tp": 1,
+        "fp": 2,
+        "n_disrupt": 5,
+        "n_safe": 25,
+        "tpr": 0.2,
+        "fpr": 0.08,
+        "early_over_3s": 0
+      },
+      "after_startup": {
+        "tp": 18,
+        "fp": 3,
+        "n_disrupt": 34,
+        "n_safe": 56,
+        "tpr": 0.5294117647058824,
+        "fpr": 0.05357142857142857,
+        "early_over_3s": 4
+      },
+      "final_memory_l2": 0.0,
+      "source_guard_at_end": {
+        "passed": true,
+        "protected_tp": 56,
+        "protected_tn": 63,
+        "lost_tp": 0,
+        "lost_tn": 0,
+        "violating_indices": [],
+        "checked_points": 128,
+        "threshold": 0.7258946895599365,
+        "reason": "retained_original_correct_points",
+        "bank_sha256": "864de394ce6bd4cfedf9946444a21413c4ecfc6deee92d38458bd3167d4d4e4b",
+        "temporary_fast": "zero"
+      },
+      "paired_vs_static": {
+        "tp_rescued": [],
+        "tp_lost": [],
+        "fp_removed": [
+          54244,
+          58442,
+          58471
+        ],
+        "fp_added": [
+          54165,
+          54344
+        ]
+      }
+    },
+    "inter": {
+      "tp": 21,
+      "fp": 10,
+      "n_disrupt": 39,
+      "n_safe": 81,
+      "tpr": 0.5384615384615384,
+      "fpr": 0.12345679012345678,
+      "early_over_3s": 5,
+      "seals": 120,
+      "attempted": 0,
+      "accepted_intra": 0,
+      "accepted_inter": 12,
+      "startup_30": {
+        "tp": 1,
+        "fp": 4,
+        "n_disrupt": 5,
+        "n_safe": 25,
+        "tpr": 0.2,
+        "fpr": 0.16,
+        "early_over_3s": 0
+      },
+      "after_startup": {
+        "tp": 20,
+        "fp": 6,
+        "n_disrupt": 34,
+        "n_safe": 56,
+        "tpr": 0.5882352941176471,
+        "fpr": 0.10714285714285714,
+        "early_over_3s": 5
+      },
+      "final_memory_l2": 0.2270341527913386,
+      "source_guard_at_end": {
+        "passed": true,
+        "protected_tp": 56,
+        "protected_tn": 63,
+        "lost_tp": 0,
+        "lost_tn": 0,
+        "violating_indices": [],
+        "checked_points": 128,
+        "threshold": 0.7258946895599365,
+        "reason": "retained_original_correct_points",
+        "bank_sha256": "864de394ce6bd4cfedf9946444a21413c4ecfc6deee92d38458bd3167d4d4e4b",
+        "temporary_fast": "zero"
+      },
+      "paired_vs_static": {
+        "tp_rescued": [
+          55854,
+          56606
+        ],
+        "tp_lost": [],
+        "fp_removed": [],
+        "fp_added": [
+          54099,
+          54105,
+          54243,
+          56012
+        ]
+      }
+    },
+    "both": {
+      "tp": 19,
+      "fp": 7,
+      "n_disrupt": 39,
+      "n_safe": 81,
+      "tpr": 0.48717948717948717,
+      "fpr": 0.08641975308641975,
+      "early_over_3s": 4,
+      "seals": 120,
+      "attempted": 4514,
+      "accepted_intra": 3108,
+      "accepted_inter": 20,
+      "startup_30": {
+        "tp": 1,
+        "fp": 3,
+        "n_disrupt": 5,
+        "n_safe": 25,
+        "tpr": 0.2,
+        "fpr": 0.12,
+        "early_over_3s": 0
+      },
+      "after_startup": {
+        "tp": 18,
+        "fp": 4,
+        "n_disrupt": 34,
+        "n_safe": 56,
+        "tpr": 0.5294117647058824,
+        "fpr": 0.07142857142857142,
+        "early_over_3s": 4
+      },
+      "final_memory_l2": 0.34020392845134384,
+      "source_guard_at_end": {
+        "passed": true,
+        "protected_tp": 56,
+        "protected_tn": 63,
+        "lost_tp": 0,
+        "lost_tn": 0,
+        "violating_indices": [],
+        "checked_points": 128,
+        "threshold": 0.7258946895599365,
+        "reason": "retained_original_correct_points",
+        "bank_sha256": "864de394ce6bd4cfedf9946444a21413c4ecfc6deee92d38458bd3167d4d4e4b",
+        "temporary_fast": "zero"
+      },
+      "paired_vs_static": {
+        "tp_rescued": [],
+        "tp_lost": [],
+        "fp_removed": [
+          58442,
+          58471
+        ],
+        "fp_added": [
+          54165,
+          54344,
+          55041
+        ]
+      }
+    }
+  },
+  "source_sha256": "c7270c1ea3652db2e30e972d4ca9a4a2d33220a68e4a3765c8b7f5bcceeaeb02",
+  "evidence": "DEVELOPMENT PREFIX; verified recount/timing, not independent confirmation"
+}

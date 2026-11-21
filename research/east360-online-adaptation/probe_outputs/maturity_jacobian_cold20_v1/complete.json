@@ -1,0 +1,708 @@
+{
+  "complete": true,
+  "full_stream": false,
+  "source_unchanged": true,
+  "elapsed_seconds": 21.510842069001228,
+  "opportunities": 2707,
+  "primary": "mature_teacher_mature_step",
+  "summaries": {
+    "origin_teacher_mature_step": {
+      "groups": {
+        "real": {
+          "safe": {
+            "shots": 3,
+            "supported_shots": 3,
+            "mean_delta_bce": -0.08657481671611938,
+            "min_delta_bce": -0.20964904452790517,
+            "max_delta_bce": 0.08294275735743432,
+            "improved": 2,
+            "worsened": 1
+          },
+          "danger": {
+            "shots": 17,
+            "supported_shots": 17,
+            "mean_delta_bce": -0.2540850756801464,
+            "min_delta_bce": -0.809869432966249,
+            "max_delta_bce": 1.4822858802316745,
+            "improved": 14,
+            "worsened": 3
+          },
+          "early": {
+            "shots": 17,
+            "supported_shots": 17,
+            "mean_delta_bce": 0.029206157439414803,
+            "min_delta_bce": -0.24702508149519484,
+            "max_delta_bce": 0.3672487920900092,
+            "improved": 2,
+            "worsened": 15
+          },
+          "late": {
+            "shots": 17,
+            "supported_shots": 17,
+            "mean_delta_bce": -0.15633773203101872,
+            "min_delta_bce": -2.0091193281858675,
+            "max_delta_bce": 1.886093828130774,
+            "improved": 14,
+            "worsened": 3
+          }
+        },
+        "reverse": {
+          "safe": {
+            "shots": 3,
+            "supported_shots": 3,
+            "mean_delta_bce": -0.09124787923764188,
+            "min_delta_bce": -0.20986757801290729,
+            "max_delta_bce": 0.08501439141777836,
+            "improved": 2,
+            "worsened": 1
+          },
+          "danger": {
+            "shots": 17,
+            "supported_shots": 17,
+            "mean_delta_bce": -0.1885906559913303,
+            "min_delta_bce": -0.7840512467840284,
+            "max_delta_bce": 1.4999323861638327,
+            "improved": 13,
+            "worsened": 4
+          },
+          "early": {
+            "shots": 17,
+            "supported_shots": 17,
+            "mean_delta_bce": 0.03118574017134282,
+            "min_delta_bce": -0.2409976576036329,
+            "max_delta_bce": 0.393155692761485,
+            "improved": 3,
+            "worsened": 14
+          },
+          "late": {
+            "shots": 17,
+            "supported_shots": 17,
+            "mean_delta_bce": -0.19554667324031488,
+            "min_delta_bce": -2.704932760688232,
+            "max_delta_bce": 2.244478684613437,
+            "improved": 14,
+            "worsened": 3
+          }
+        },
+        "mean_feedback": {
+          "safe": {
+            "shots": 3,
+            "supported_shots": 3,
+            "mean_delta_bce": 0.0,
+            "min_delta_bce": 0.0,
+            "max_delta_bce": 0.0,
+            "improved": 0,
+            "worsened": 0
+          },
+          "danger": {
+            "shots": 17,
+            "supported_shots": 17,
+            "mean_delta_bce": 0.0,
+            "min_delta_bce": 0.0,
+            "max_delta_bce": 0.0,
+            "improved": 0,
+            "worsened": 0
+          },
+          "early": {
+            "shots": 17,
+            "supported_shots": 17,
+            "mean_delta_bce": 0.0,
+            "min_delta_bce": 0.0,
+            "max_delta_bce": 0.0,
+            "improved": 0,
+            "worsened": 0
+          },
+          "late": {
+            "shots": 17,
+            "supported_shots": 17,
+            "mean_delta_bce": 0.0,
+            "min_delta_bce": 0.0,
+            "max_delta_bce": 0.0,
+            "improved": 0,
+            "worsened": 0
+          }
+        },
+        "donor": {
+          "safe": {
+            "shots": 3,
+            "supported_shots": 3,
+            "mean_delta_bce": -0.09615676586168231,
+            "min_delta_bce": -0.21235572881277318,
+            "max_delta_bce": 0.08471871902308423,
+            "improved": 2,
+            "worsened": 1
+          },
+          "danger": {
+            "shots": 17,
+            "supported_shots": 17,
+            "mean_delta_bce": -0.09176940651451414,
+            "min_delta_bce": -0.7843505673972166,
+            "max_delta_bce": 1.480906827230691,
+            "improved": 12,
+            "worsened": 5
+          },
+          "early": {
+            "shots": 17,
+            "supported_shots": 17,
+            "mean_delta_bce": 0.0253355495142001,
+            "min_delta_bce": -0.23206896413555422,
+            "max_delta_bce": 0.2050747597066427,
+            "improved": 2,
+            "worsened": 15
+          },
+          "late": {
+            "shots": 17,
+            "supported_shots": 17,
+            "mean_delta_bce": 0.053295813590305385,
+            "min_delta_bce": -0.8323353712662906,
+            "max_delta_bce": 2.5399017410276477,
+            "improved": 12,
+            "worsened": 5
+          }
+        }
+      },
+      "gate": {
+        "passed": false,
+        "reasons": [
+          "safe: no advantage over reverse",
+          "safe: no advantage over donor",
+          "danger: not better than origin-teacher/origin-step"
+        ],
+        "real_reverse_median_cosine": 0.9653456211090088,
+        "different_later_fraction": 0.9970446989287034,
+        "mean_feedback_not_used_as_utility_gate": true
+      },
+      "primary": false
+    },
+    "mature_teacher_origin_step": {
+      "groups": {
+        "real": {
+          "safe": {
+            "shots": 3,
+            "supported_shots": 3,
+            "mean_delta_bce": -0.08892245458232938,
+            "min_delta_bce": -0.2099471071210895,
+            "max_delta_bce": 0.07858330903142606,
+            "improved": 2,
+            "worsened": 1
+          },
+          "danger": {
+            "shots": 17,
+            "supported_shots": 17,
+            "mean_delta_bce": -0.26733460349670296,
+            "min_delta_bce": -0.8883715518732532,
+            "max_delta_bce": 1.4973241541275821,
+            "improved": 15,
+            "worsened": 2
+          },
+          "early": {
+            "shots": 17,
+            "supported_shots": 17,
+            "mean_delta_bce": 0.03511184962196067,
+            "min_delta_bce": -0.24360177754523157,
+            "max_delta_bce": 0.44488551929973436,
+            "improved": 2,
+            "worsened": 15
+          },
+          "late": {
+            "shots": 17,
+            "supported_shots": 17,
+            "mean_delta_bce": -0.1517020334532568,
+            "min_delta_bce": -1.9530020943078128,
+            "max_delta_bce": 1.5551444501537985,
+            "improved": 13,
+            "worsened": 4
+          }
+        },
+        "reverse": {
+          "safe": {
+            "shots": 3,
+            "supported_shots": 3,
+            "mean_delta_bce": -0.09357398023225859,
+            "min_delta_bce": -0.20906931681039825,
+            "max_delta_bce": 0.07657584571806864,
+            "improved": 2,
+            "worsened": 1
+          },
+          "danger": {
+            "shots": 17,
+            "supported_shots": 17,
+            "mean_delta_bce": -0.20823251683905064,
+            "min_delta_bce": -0.8800244828983597,
+            "max_delta_bce": 1.5040389995900927,
+            "improved": 14,
+            "worsened": 3
+          },
+          "early": {
+            "shots": 17,
+            "supported_shots": 17,
+            "mean_delta_bce": 0.038525622079067366,
+            "min_delta_bce": -0.23126262533376948,
+            "max_delta_bce": 0.502268040827353,
+            "improved": 3,
+            "worsened": 14
+          },
+          "late": {
+            "shots": 17,
+            "supported_shots": 17,
+            "mean_delta_bce": -0.16221724260446055,
+            "min_delta_bce": -2.2219489783445505,
+            "max_delta_bce": 2.05194224378226,
+            "improved": 13,
+            "worsened": 4
+          }
+        },
+        "mean_feedback": {
+          "safe": {
+            "shots": 3,
+            "supported_shots": 3,
+            "mean_delta_bce": 0.0,
+            "min_delta_bce": 0.0,
+            "max_delta_bce": 0.0,
+            "improved": 0,
+            "worsened": 0
+          },
+          "danger": {
+            "shots": 17,
+            "supported_shots": 17,
+            "mean_delta_bce": 0.0,
+            "min_delta_bce": 0.0,
+            "max_delta_bce": 0.0,
+            "improved": 0,
+            "worsened": 0
+          },
+          "early": {
+            "shots": 17,
+            "supported_shots": 17,
+            "mean_delta_bce": 0.0,
+            "min_delta_bce": 0.0,
+            "max_delta_bce": 0.0,
+            "improved": 0,
+            "worsened": 0
+          },
+          "late": {
+            "shots": 17,
+            "supported_shots": 17,
+            "mean_delta_bce": 0.0,
+            "min_delta_bce": 0.0,
+            "max_delta_bce": 0.0,
+            "improved": 0,
+            "worsened": 0
+          }
+        },
+        "donor": {
+          "safe": {
+            "shots": 3,
+            "supported_shots": 3,
+            "mean_delta_bce": -0.0985159109795255,
+            "min_delta_bce": -0.21594897955310577,
+            "max_delta_bce": 0.07935584845744326,
+            "improved": 2,
+            "worsened": 1
+          },
+          "danger": {
+            "shots": 17,
+            "supported_shots": 17,
+            "mean_delta_bce": -0.12391265248350332,
+            "min_delta_bce": -0.8753854072221269,
+            "max_delta_bce": 1.4811213962753325,
+            "improved": 12,
+            "worsened": 5
+          },
+          "early": {
+            "shots": 17,
+            "supported_shots": 17,
+            "mean_delta_bce": 0.0334634497482966,
+            "min_delta_bce": -0.2168492693377572,
+            "max_delta_bce": 0.29371268763053787,
+            "improved": 2,
+            "worsened": 15
+          },
+          "late": {
+            "shots": 17,
+            "supported_shots": 17,
+            "mean_delta_bce": 0.056201758470841516,
+            "min_delta_bce": -0.8158435071593153,
+            "max_delta_bce": 2.5285724881452873,
+            "improved": 12,
+            "worsened": 5
+          }
+        }
+      },
+      "gate": {
+        "passed": false,
+        "reasons": [
+          "safe: no advantage over reverse",
+          "safe: no advantage over donor"
+        ],
+        "real_reverse_median_cosine": 0.9682386517524719,
+        "different_later_fraction": 0.9974141115626154,
+        "mean_feedback_not_used_as_utility_gate": true
+      },
+      "primary": false
+    },
+    "mature_teacher_mature_step": {
+      "groups": {
+        "real": {
+          "safe": {
+            "shots": 3,
+            "supported_shots": 3,
+            "mean_delta_bce": -0.08982069326542369,
+            "min_delta_bce": -0.2106418562910849,
+            "max_delta_bce": 0.07796615970649894,
+            "improved": 2,
+            "worsened": 1
+          },
+          "danger": {
+            "shots": 17,
+            "supported_shots": 17,
+            "mean_delta_bce": -0.26601068617994766,
+            "min_delta_bce": -0.8857244165434957,
+            "max_delta_bce": 1.4979345617459776,
+            "improved": 15,
+            "worsened": 2
+          },
+          "early": {
+            "shots": 17,
+            "supported_shots": 17,
+            "mean_delta_bce": 0.03585490571266299,
+            "min_delta_bce": -0.24249666341320916,
+            "max_delta_bce": 0.44801985581492487,
+            "improved": 2,
+            "worsened": 15
+          },
+          "late": {
+            "shots": 17,
+            "supported_shots": 17,
+            "mean_delta_bce": -0.13793523986233083,
+            "min_delta_bce": -1.977576747316978,
+            "max_delta_bce": 1.6523887018643935,
+            "improved": 13,
+            "worsened": 4
+          }
+        },
+        "reverse": {
+          "safe": {
+            "shots": 3,
+            "supported_shots": 3,
+            "mean_delta_bce": -0.0939641713854265,
+            "min_delta_bce": -0.20987522460805072,
+            "max_delta_bce": 0.07691979453178657,
+            "improved": 2,
+            "worsened": 1
+          },
+          "danger": {
+            "shots": 17,
+            "supported_shots": 17,
+            "mean_delta_bce": -0.20618259720469773,
+            "min_delta_bce": -0.8773330031966114,
+            "max_delta_bce": 1.504936868845468,
+            "improved": 14,
+            "worsened": 3
+          },
+          "early": {
+            "shots": 17,
+            "supported_shots": 17,
+            "mean_delta_bce": 0.03935255567908548,
+            "min_delta_bce": -0.2307445043191323,
+            "max_delta_bce": 0.5058166153496649,
+            "improved": 3,
+            "worsened": 14
+          },
+          "late": {
+            "shots": 17,
+            "supported_shots": 17,
+            "mean_delta_bce": -0.16047782717722048,
+            "min_delta_bce": -2.5743180063408113,
+            "max_delta_bce": 2.1140560952630425,
+            "improved": 13,
+            "worsened": 4
+          }
+        },
+        "mean_feedback": {
+          "safe": {
+            "shots": 3,
+            "supported_shots": 3,
+            "mean_delta_bce": 0.0,
+            "min_delta_bce": 0.0,
+            "max_delta_bce": 0.0,
+            "improved": 0,
+            "worsened": 0
+          },
+          "danger": {
+            "shots": 17,
+            "supported_shots": 17,
+            "mean_delta_bce": 0.0,
+            "min_delta_bce": 0.0,
+            "max_delta_bce": 0.0,
+            "improved": 0,
+            "worsened": 0
+          },
+          "early": {
+            "shots": 17,
+            "supported_shots": 17,
+            "mean_delta_bce": 0.0,
+            "min_delta_bce": 0.0,
+            "max_delta_bce": 0.0,
+            "improved": 0,
+            "worsened": 0
+          },
+          "late": {
+            "shots": 17,
+            "supported_shots": 17,
+            "mean_delta_bce": 0.0,
+            "min_delta_bce": 0.0,
+            "max_delta_bce": 0.0,
+            "improved": 0,
+            "worsened": 0
+          }
+        },
+        "donor": {
+          "safe": {
+            "shots": 3,
+            "supported_shots": 3,
+            "mean_delta_bce": -0.09927567983224639,
+            "min_delta_bce": -0.21662374774542056,
+            "max_delta_bce": 0.07922781037633686,
+            "improved": 2,
+            "worsened": 1
+          },
+          "danger": {
+            "shots": 17,
+            "supported_shots": 17,
+            "mean_delta_bce": -0.12213264262180878,
+            "min_delta_bce": -0.8723513714640394,
+            "max_delta_bce": 1.481942461410858,
+            "improved": 13,
+            "worsened": 4
+          },
+          "early": {
+            "shots": 17,
+            "supported_shots": 17,
+            "mean_delta_bce": 0.03408687033455576,
+            "min_delta_bce": -0.21965385834872153,
+            "max_delta_bce": 0.2972660602040685,
+            "improved": 2,
+            "worsened": 15
+          },
+          "late": {
+            "shots": 17,
+            "supported_shots": 17,
+            "mean_delta_bce": 0.0631115457364329,
+            "min_delta_bce": -0.815425425461596,
+            "max_delta_bce": 2.5296742550641578,
+            "improved": 12,
+            "worsened": 5
+          }
+        }
+      },
+      "gate": {
+        "passed": false,
+        "reasons": [
+          "safe: no advantage over reverse",
+          "safe: no advantage over donor"
+        ],
+        "real_reverse_median_cosine": 0.9685903191566467,
+        "different_later_fraction": 0.9970446989287034,
+        "mean_feedback_not_used_as_utility_gate": true
+      },
+      "primary": true
+    }
+  },
+  "artifacts": {
+    "anchored_fold0_training.json": "4c5ba24d999154676de7536440418bd09ea83061ee08954a9cd9c58dd2de03ba",
+    "anchored_fold1_training.json": "b316b97ef346cc131d4f81deffd34d69401005422c962ee01e6ae3855b8b930b",
+    "anchored_fold2_training.json": "a32cbb1b84ebb81d8098f54dfa21aab85653678140c14e6615cdf8290535e3f2",
+    "code_snapshot.zip": "9023eba7cb7345f028c7ee7128bd071dd8c760cbf26c4e8537e21bd97eb6cdee",
+    "fit_groups.json": "204fd9406c8de5141741afbfb56106cf7d50b308965459f1b170cf3936119117",
+    "folds.json": "113b8e84808b2e4beb859bbb5065ebed841e7b45ff1a62b724f86bb830e4cb9e",
+    "mature_fold0.pt": "e4c045e4d3d105fe7ce23d27a8529e4926bbc9fe5f505f4d204fde593d3e5e18",
+    "mature_fold1.pt": "d86d0faf88c11c6e588196e661321dfcabde1d9017ec7effbe2509abc2abc003",
+    "mature_fold2.pt": "e04a77065ffb2832cdbaec174f999cbb73bdc8dd550fa2ce862e5035d35ba445",
+    "mature_teacher_mature_step_fold0_69454.npz": "0d0579e1692eb2ac056589cc096ec0aead1470b31f7c36e2701afd922e46606e",
+    "mature_teacher_mature_step_fold0_69458.npz": "f24054fca96b5bc34cf416ea64f1f0942f33aea49d5f159a2f7b8dcb7cb91405",
+    "mature_teacher_mature_step_fold0_69765.npz": "9cbbd5ca7866ff27b18058d1a37c24315852de0c407988c8bb747024272e0d1f",
+    "mature_teacher_mature_step_fold0_69768.npz": "cc107e8999e7fd7ecda826718a38af1594f00ade6ff969d058138a24c6a3ff87",
+    "mature_teacher_mature_step_fold0_69781.npz": "baa56a19538ce4828b7ca706cb92518ba48bf0c4506d6505668522f8c107457b",
+    "mature_teacher_mature_step_fold0_69791.npz": "63a64eedcaccb9b7fbe94e98a0e2816c4380d59ff7c078a70178b835f9fc056b",
+    "mature_teacher_mature_step_fold0_69854.npz": "29a8c75f610330834d96badbd15dc2e26f7267c0a98fe0053a2e9b3a7be28b30",
+    "mature_teacher_mature_step_fold0_69855.npz": "8637ff07d8271bf73ab3461ac8137f522c1c2a387e3c23c175868b2e9266fdec",
+    "mature_teacher_mature_step_fold0_69859.npz": "d4a64a403330c217d7c3365b5e83e4d232053a393de91b6c8e7b9dafe6342a28",
+    "mature_teacher_mature_step_fold0_70327.npz": "a06799892b49b931d4a5e9b2b1ccc1c40f1f4fc128788eea6699c4fa9badd7d8",
+    "mature_teacher_mature_step_fold0_70392.npz": "47378de301e21e5939baf39ab72b819cc657d08321ba97518837f23d7586d255",
+    "mature_teacher_mature_step_fold0_70394.npz": "6abac6db99a7d22d677fc30e6f7cb5074d5de5a9ce29fb1dc333b960438e0ed0",
+    "mature_teacher_mature_step_fold0_70404.npz": "27b652b2cc04f1b965e4a0089563093338a7219cfb386be3775fad5f2ad9c0a3",
+    "mature_teacher_mature_step_fold0_70418.npz": "1cc6698b7ec885c5775c040fc33b8445a7c3e2c10fafcca076b9deaee710399f",
+    "mature_teacher_mature_step_fold0_70861.npz": "b4828ef2fd7dd7a755f5481224a79c6822caea902855a6de593655ed69d14569",
+    "mature_teacher_mature_step_fold0_71265.npz": "2d9fa8d3d1f2f8982978b5a6e98a93c8be00f5bbea0cabb56eff8067646e16b3",
+    "mature_teacher_mature_step_fold0_71304.npz": "db337c6adef165f713f5b4f1af5cd4e97d25970413ecf7225d68f23921ba4714",
+    "mature_teacher_mature_step_fold0_71370.npz": "49a0c9127826cb5ace58b17d6bee87d5ae747a5842bdbef2242dc934aeb8d093",
+    "mature_teacher_mature_step_fold0_71415.npz": "307fdf4612e09139790aabba0f7f3c7b3e47172450cdc02c9b764ad281feef25",
+    "mature_teacher_mature_step_fold0_74087.npz": "9a96d276a7bdfe185e5687e68a628e53b66d926d0bec3fa45be6f03c4fd95428",
+    "mature_teacher_mature_step_fold1_69454.npz": "eebe383f6fcad48f6c8707868d5980b184db1adc45f497361155301ff81c803d",
+    "mature_teacher_mature_step_fold1_69458.npz": "8117364ab0e27a0f62d5a74e8f846dc75cdd13fc72cd3aa163943584c347e71b",
+    "mature_teacher_mature_step_fold1_69765.npz": "39e705d0acf4695a7af7ffc7222d278bb037539541971710b4b9b0b3db0ed65b",
+    "mature_teacher_mature_step_fold1_69768.npz": "afd0b2c54c33a5c6e1e1bda8c63c59395f1e0e05afcd0dabb8a1f7bec733a6bf",
+    "mature_teacher_mature_step_fold1_69781.npz": "b62ab06f89b4a29bb9a1023f495ede4a019dbeb26e9f573d2aca0ade25aa83fe",
+    "mature_teacher_mature_step_fold1_69791.npz": "836228ddffe91758cdfc41aad592988ef8a15505d5f38d7fc4712fc423d4044d",
+    "mature_teacher_mature_step_fold1_69854.npz": "6b877d33fb65cbddad184752fb66b47f41551f00541249af21c9a0c18ec3f41b",
+    "mature_teacher_mature_step_fold1_69855.npz": "197c4f20192dedf461ed91413bc24dd7586a05b90d7e65edcde12db18e8a921c",
+    "mature_teacher_mature_step_fold1_69859.npz": "32be383a24b6aabfd5883fe72f0c5b20b7d1ac0ebafac90d13edfc8a84b52e34",
+    "mature_teacher_mature_step_fold1_70327.npz": "2da2e6904deba85c1162a2e8dd590cb34df4f7b2c58d104fd04dba1678fde7aa",
+    "mature_teacher_mature_step_fold1_70392.npz": "19171d6281a9bcbed9b7c2d58a676254d32af71bcc947aff45cb2ee852a90d41",
+    "mature_teacher_mature_step_fold1_70394.npz": "845c6c54816ad513d27163f3965e7bc1045ad46c5346abe3700213befb5fec79",
+    "mature_teacher_mature_step_fold1_70404.npz": "f5396273ecb1f9de9c651d75eb61001e9c534ee10824ec751f809a366458738c",
+    "mature_teacher_mature_step_fold1_70418.npz": "7487017adec4cec6cb28f9f19b45a10d09df65b7118952bb8fd51f116b7944e6",
+    "mature_teacher_mature_step_fold1_70861.npz": "3d8731583f8d53521936273508c74fb2c738b34bb0644c5be6c953d728f00a7c",
+    "mature_teacher_mature_step_fold1_71265.npz": "9a7d61c6c95513250fca13c0f723ebc88fea5b806b318f77117f082995689859",
+    "mature_teacher_mature_step_fold1_71304.npz": "04e197900753dff94890112af6d26f5619869b4f090b3b0bd76140b9094d417b",
+    "mature_teacher_mature_step_fold1_71370.npz": "6097e330586ebb6b22e867cfedaa7bff99d87dd756b1d5e9c40670755c05954c",
+    "mature_teacher_mature_step_fold1_71415.npz": "e8525a1b96a10b66ec6a8a5a48df25754afbb8e1f5355f20fa28279fca407b86",
+    "mature_teacher_mature_step_fold1_74087.npz": "8c04de33a39420eb34a0f1243a839d1f4c0da6c9e6b9cf10a50d9003ddea997f",
+    "mature_teacher_mature_step_fold2_69454.npz": "9170c25bd8368dd1b784e253a5cffcca24e2e8eea8f4555d985e4107125a4c02",
+    "mature_teacher_mature_step_fold2_69458.npz": "b563dd8780bdaf29193637e1d0cb135eec830de808dfbb6a4b4f588c7ff3b9e3",
+    "mature_teacher_mature_step_fold2_69765.npz": "fcb26ca6c6764cb14dbb597ad06d341eed3f4a5cb461e9f2a4b57e5dbb1184b6",
+    "mature_teacher_mature_step_fold2_69768.npz": "3803500437eea2a0e9a25226628b88f89e5ab044933b9687cfec689b167ff77f",
+    "mature_teacher_mature_step_fold2_69781.npz": "a0fedf3c359a1fb25462568703e430d439832b106fd181484de1b55110f5f3ce",
+    "mature_teacher_mature_step_fold2_69791.npz": "06887c5017a96d994b3eafa5a6860c818937e281272af686e3916e94fb609a88",
+    "mature_teacher_mature_step_fold2_69854.npz": "23df6b4167a5f98f6dae593e1328f4fd1e00a7437dee9b0a9652b848e954831d",
+    "mature_teacher_mature_step_fold2_69855.npz": "d064c7d3d9764a09d61388b9fd4491191ee34cc47332bc1d522df3d66b7a11c5",
+    "mature_teacher_mature_step_fold2_69859.npz": "6d5fc700a1bc9fc5ab87af02ad00096a5f040d4afccd457cb4a16f621f0eb914",
+    "mature_teacher_mature_step_fold2_70327.npz": "f69130484ac9edd850b9e27baa7f5aa8db6190363a5f16433a53575686237db8",
+    "mature_teacher_mature_step_fold2_70392.npz": "ea762a1a2ba38ca7721b7445f95405067e6a02e84d0f108f62d6200445721ea8",
+    "mature_teacher_mature_step_fold2_70394.npz": "2dcc968739dc47dc2624de58a0cb4bf48c1c11d813bd400cfa29e9ab9df70356",
+    "mature_teacher_mature_step_fold2_70404.npz": "10832a354177cbbb55df5b5df2a4fdcf25fe5121511cbf6fa60aa856c885853e",
+    "mature_teacher_mature_step_fold2_70418.npz": "e7be2e19111ce3aa7a372f7f6cb6f28988d43f898d272df4efdeabc205715911",
+    "mature_teacher_mature_step_fold2_70861.npz": "ad8c0a510f70eb70139e28de5acf4afbda1671c3ad7c2dafbea3b568e4f092ca",
+    "mature_teacher_mature_step_fold2_71265.npz": "19413eab573578fd2e2319ec3529218e708c2aac7c57af7a37619c49e2a1d6f1",
+    "mature_teacher_mature_step_fold2_71304.npz": "b63121f8dc43c826411bebf42a8cd79cfdef711b91b28b3ed2ea2020d928ddd4",
+    "mature_teacher_mature_step_fold2_71370.npz": "800ef0722a8edc3d3e09dda37826c9a2593df29b39c318c020b35296f1bd7b29",
+    "mature_teacher_mature_step_fold2_71415.npz": "a078dbbcbf0ca41bdb9779043ce871d6d2dbec5b205de14004fda85be3688d42",
+    "mature_teacher_mature_step_fold2_74087.npz": "65cd1b8a7acbfa101f83041f145ddbae7882b9926680bb8b7c957d6625b86254",
+    "mature_teacher_mature_step_held_per_shot.json": "1005e6d8e5d22187bead7f4718c7342ffb77d8dae4b7d920a40abbd5fd805314",
+    "mature_teacher_origin_step_fold0_69454.npz": "fc6ee2035b31985294332ceea40d479377a9abb00c1ad7ebf3aeed25268fccf1",
+    "mature_teacher_origin_step_fold0_69458.npz": "d5090b8d17955da4ebff0eac24cf2f79b9e0ad503b797798458cffc7f5f8bc09",
+    "mature_teacher_origin_step_fold0_69765.npz": "69cb90a2f07ef1292e4d03bdb5517d43038b0f83b50775fd407377e0bfdf2b54",
+    "mature_teacher_origin_step_fold0_69768.npz": "6a6fca6433215681c0fd3dc5066ad025a88ed4cfc94dbb4625b51aff6baf6019",
+    "mature_teacher_origin_step_fold0_69781.npz": "3b5b3dc79a3b2e3db287459fc47a9a278a501717482b361d0f2fa3d89fa12e9b",
+    "mature_teacher_origin_step_fold0_69791.npz": "ce7e97e09208db9c08d67e22a0e09f1f07eca3786eea2ec09b6d9484ff2ab9e7",
+    "mature_teacher_origin_step_fold0_69854.npz": "4eac24d8977146edf5eb8bab0277dfc3df4575223d64df8dae6a8ae186fc8078",
+    "mature_teacher_origin_step_fold0_69855.npz": "99ab98ca42e35b0aef9b176ea8e774faae26e7fab1d50596adb8334fabd390f4",
+    "mature_teacher_origin_step_fold0_69859.npz": "e7ba242f8ad99350247116202446ee65b62afccb5799cff845109a100b7c2c17",
+    "mature_teacher_origin_step_fold0_70327.npz": "875947aec4f0462ee972e337433171186f289fb6cccf06e524fe07083733ed23",
+    "mature_teacher_origin_step_fold0_70392.npz": "e0eebf0de4f0fdfcf1b869a72dcb0604554fc4f6619cf4e285d138795135a2cc",
+    "mature_teacher_origin_step_fold0_70394.npz": "f210e1204a973035d72f86a32b5edb8517260204cdedd132a1b4056349fb13b9",
+    "mature_teacher_origin_step_fold0_70404.npz": "182fdec3d2b758c837028a344628a0a1e229de575b3c6eeab52599ce1613acbd",
+    "mature_teacher_origin_step_fold0_70418.npz": "86131aa002c4da5471a37d853fd106a1645825651c21c32d8b154e7b66fb040d",
+    "mature_teacher_origin_step_fold0_70861.npz": "407436b8e4e016b9f4e33d9e7e81c1fef2d3a9b4cc23bcf6bbe4e80c9b8dfeac",
+    "mature_teacher_origin_step_fold0_71265.npz": "37358d8974bdde1659671503eeed1fb10c5490b3d95ce319c1739a8382acdcc4",
+    "mature_teacher_origin_step_fold0_71304.npz": "da569080b581f7cc2869132f884eca86b3e429f01b48f8e0c6207547edfc207c",
+    "mature_teacher_origin_step_fold0_71370.npz": "b007ca60820b6141d967aba57bae6d9d803531a4b32c693d2bd567c74d66dca4",
+    "mature_teacher_origin_step_fold0_71415.npz": "fa95891c11ad572eeba6dfab4df3714b7460bba0df8b2a5d981c6cf030e43b94",
+    "mature_teacher_origin_step_fold0_74087.npz": "504cfc3d8dc6f65e0a684ce98aed8a7733023963b643570c9788d96bf7fbf9c4",
+    "mature_teacher_origin_step_fold1_69454.npz": "56b87c0f6e03e2c14400f918738439572569ef099ebe92f0de71cae2ca035755",
+    "mature_teacher_origin_step_fold1_69458.npz": "3195fdb68ebf97c9b3546c2e7b0cb2e333f1931bfe5458681793901078cef1df",
+    "mature_teacher_origin_step_fold1_69765.npz": "93db011e64e22ff41fff8f8564f3554f4cf0b10b9597f6b13a92a2953fef454b",
+    "mature_teacher_origin_step_fold1_69768.npz": "035d3e08dfec50f32d4c2244d1cd0a7fc4b299a49c287402df44bccfd192a51b",
+    "mature_teacher_origin_step_fold1_69781.npz": "922d5dc845c5a48c9471062a5f51a6a1763b95d2caef08fbbf9c171d019d4aa9",
+    "mature_teacher_origin_step_fold1_69791.npz": "c0e7f04be3d06e5c56391a418444a18b59fa85b368dc00a76355aa7c6f4e23db",
+    "mature_teacher_origin_step_fold1_69854.npz": "f85f2db892dc5c78c6e6e7bd055b8f6fa3b3b79acf3d936524d7eabc2bd475e1",
+    "mature_teacher_origin_step_fold1_69855.npz": "ca44407119f6583dec07674db6924a9a43d4cfece7c78aebe0eea26d0d0059f1",
+    "mature_teacher_origin_step_fold1_69859.npz": "95f4bf34898b323a894182ec97a40948153b3720e575e713568e97b9743286b8",
+    "mature_teacher_origin_step_fold1_70327.npz": "4c4206e8a0a5156524c90011400b8187cecf54e923ef1f2d17c62b0385bcfa52",
+    "mature_teacher_origin_step_fold1_70392.npz": "0465d3cf52a49e9a4a1d83b7d0e5c598756ed71d63bfddc3bc5b90584d876f04",
+    "mature_teacher_origin_step_fold1_70394.npz": "eea6eb860f7b1901f8d5faec80557b848ed95714e0689481edb67ea807f9f1fd",
+    "mature_teacher_origin_step_fold1_70404.npz": "9c39c82634198600a68ed2e67b8e68b389c5382e1f48bdfc841ec1cad0fce255",
+    "mature_teacher_origin_step_fold1_70418.npz": "bae5445a41aafb858a2da44be0de5a32944fe8ba34c79acbcf02c0d4edf50466",
+    "mature_teacher_origin_step_fold1_70861.npz": "afc8c71542ce4a391048256db42834cd52617830546104ba8e195c18eb4a6044",
+    "mature_teacher_origin_step_fold1_71265.npz": "dbbcee104eb43e75c374f2c7886fe071b02bdaf6b13d3cdd55832feaf6d034db",
+    "mature_teacher_origin_step_fold1_71304.npz": "636b58d35640a2a7e5151c009bd2c80ec736966ea76c0c2f523b21bd472d5738",
+    "mature_teacher_origin_step_fold1_71370.npz": "dfc2eb627c1d87a4a3c95f856965ac53561bc82a6b67e9fd0b97734e31a242a5",
+    "mature_teacher_origin_step_fold1_71415.npz": "eb2c199b7329e7a0287132cb6f87f59d2f29e4dfc7b2b730a199945b8be62906",
+    "mature_teacher_origin_step_fold1_74087.npz": "0acabfe6f372110f23bb5dc3c627f3acd32235ae8ff4721f099523c19c4acbe6",
+    "mature_teacher_origin_step_fold2_69454.npz": "ffb7a2afae504b27e67c660fca804aa27074a483508a02d6d8f7532c070dc688",
+    "mature_teacher_origin_step_fold2_69458.npz": "2ca6f58e6cf81d28aa1ff7d3c1cf5ea78ee996d460fb14a2941c5249cbcc5817",
+    "mature_teacher_origin_step_fold2_69765.npz": "9a2c51dcfb747bbae0fb4da9b355b6bef829f123d78dfc4762a32cd6228574de",
+    "mature_teacher_origin_step_fold2_69768.npz": "8ac6edd01cc54796998d33b9e72750601f16cfb60d34d4e29db100b09678f9c4",
+    "mature_teacher_origin_step_fold2_69781.npz": "47061cb884c2cd1bdfb3703d932b03b5fe74d55463a1d85a7dc8d87030a57139",
+    "mature_teacher_origin_step_fold2_69791.npz": "d38f999f5b5227c8ac8c63f28a769878522fcbba398d27c5e9fc0810e7f99ee1",
+    "mature_teacher_origin_step_fold2_69854.npz": "05a1384dfacab7aafe5caf7d91fe171e1d8f5afbb4ef82686fc2e91fa6da2826",
+    "mature_teacher_origin_step_fold2_69855.npz": "07d6aa328a2cfdc242129d48f8fd485bf775ad6206950bfdf50da9713d7c6d94",
+    "mature_teacher_origin_step_fold2_69859.npz": "c33a2963587b0ba47b35b988ae594211b2adc83c87675641424e439551ed19f3",
+    "mature_teacher_origin_step_fold2_70327.npz": "8ec04364c434731c2841e4da1eb2667852c137f88bc14fb0f57020908487ae84",
+    "mature_teacher_origin_step_fold2_70392.npz": "c7a8e26e92abe5d135c0997089a9b95797798e2561dc6ac5e5df6612f3497bf0",
+    "mature_teacher_origin_step_fold2_70394.npz": "894ab81aab1725d4617a9d516802b29506474b51eedf174cc3508348a9e8fafc",
+    "mature_teacher_origin_step_fold2_70404.npz": "c47cc32214e02582c949d97b1b2187128f6f146a6b044f0867b67c575ecc2ddc",
+    "mature_teacher_origin_step_fold2_70418.npz": "4fbdeaaf3c7a533bf91ebe661cae574d0c610cc9ea504bc9e25e2647aae3e726",
+    "mature_teacher_origin_step_fold2_70861.npz": "50e17c970f379e4850ea081d6061df24747ffe01508d46a1549b8a5292278310",
+    "mature_teacher_origin_step_fold2_71265.npz": "d0e53db7cc7ff3dd09c3d6f7c31115a2336e25e744038105a6a554be51fecf2b",
+    "mature_teacher_origin_step_fold2_71304.npz": "7f1a15fedcabb7c71685fb956138003580476bab6ec04183ed1ba40acbd617d1",
+    "mature_teacher_origin_step_fold2_71370.npz": "452af82064cdab1c003647ecafdc3ccf18bd822e65c81df3ea58d562269f7afb",
+    "mature_teacher_origin_step_fold2_71415.npz": "99e42f9f0aa584ae0cc6366e96e2c8815d54830047380c263e706b27f8a932fd",
+    "mature_teacher_origin_step_fold2_74087.npz": "56a46c72ca1597471eb943e08f583c0831702383328eafa02c18e41d9d7927e5",
+    "mature_teacher_origin_step_held_per_shot.json": "4cb1c084c7884fffda62564ed8584a9ee67cd69664b1c8fb8cf691bf99049f0c",
+    "origin_teacher_mature_step_fold0_69454.npz": "0a39310709f3fdfe53d749766e53fad4b881062f4ce814378844c8ac8f46d21a",
+    "origin_teacher_mature_step_fold0_69458.npz": "c2f63c4edf9bc911bf267a89e32fc5cbcbfc79656615365f7a57feb5962d4f8b",
+    "origin_teacher_mature_step_fold0_69765.npz": "02ecba56931d7b86a0fcfdc1e4841ff7221ce91de30ef13672b0a82cfd0013e6",
+    "origin_teacher_mature_step_fold0_69768.npz": "df10cf83f894fe715c5b0c6e8840151e0e6bf02c6d8b578e3f4d3d17a0c30647",
+    "origin_teacher_mature_step_fold0_69781.npz": "8b794789ee721daa4dcbb9f15652e5b15c823d20d831456012098628fe65cda1",
+    "origin_teacher_mature_step_fold0_69791.npz": "a5fcb161435c406d767d0bb91906f15b871524e15c4a2bbc296594d0efd8569d",
+    "origin_teacher_mature_step_fold0_69854.npz": "59cc6bdb0f4da072d7c2448f847680ab0c3b4f5351396dc7b56bdccb4e10d10d",
+    "origin_teacher_mature_step_fold0_69855.npz": "468a1a090948f3f863df179dabbdd18c03530c772021f71605520a96d7b12fbb",
+    "origin_teacher_mature_step_fold0_69859.npz": "d3355a63609cfa998a9fa75be7358c7a14fcc69f1a94d9670463941c4cdf7b74",
+    "origin_teacher_mature_step_fold0_70327.npz": "a3fc57b572aaec16d0805961ae261f50817d7131bd469a8ce0975bbf3de914dd",
+    "origin_teacher_mature_step_fold0_70392.npz": "82f36c83d2013f6c8fe72b5697194ad7bd2268ddb2b64fc2a3c0950945a4de9e",
+    "origin_teacher_mature_step_fold0_70394.npz": "3eed420ba40595a33cd36ac6e02fdc9619d99ec2da4a96a4ba5c09a640c61588",
+    "origin_teacher_mature_step_fold0_70404.npz": "2e1be9104d5a786dc1c09aed1728907846c930ca3e21e9754ba2320c3f7f2493",
+    "origin_teacher_mature_step_fold0_70418.npz": "ed6191cdb48f8385211434c3abc9874ecfcde97fbe5e3ab8d606b1c645aa9f99",
+    "origin_teacher_mature_step_fold0_70861.npz": "c3bfec314fdf62d84d0f9e79efdb6fbe9c8ee6f25520b39f8c06f5bcfc64a1ee",
+    "origin_teacher_mature_step_fold0_71265.npz": "d07120b43b7b387b7a2e1fdb66c6bc9373852ff7d8c4d5b8d5982d57e9446aa7",
+    "origin_teacher_mature_step_fold0_71304.npz": "5f008f95aae0a09ba29050abb13515bb0a787c9c5a796ed07606dc3cd94f3ed9",
+    "origin_teacher_mature_step_fold0_71370.npz": "77caa13d0da651b84ef0635764a1cddc0705f33bda14fb1abc3294bc9ae153dd",
+    "origin_teacher_mature_step_fold0_71415.npz": "8820a03e6a169879037c90889dee14349e155f02b13a487b3ccc4cc6ba2b8df3",
+    "origin_teacher_mature_step_fold0_74087.npz": "5b96e72adae4a470a266a8ec35909ba32fefb777eb06d70716c6ae331bffb256",
+    "origin_teacher_mature_step_fold1_69454.npz": "d38e33876e5fae6289261b7472c73f2a7be60633e7f88501728a567a87eb86ec",
+    "origin_teacher_mature_step_fold1_69458.npz": "64369697bb54783f0ec60a593f35a89219b2672ed88d3368cfd6d75431ab5e0c",
+    "origin_teacher_mature_step_fold1_69765.npz": "7846dba033a722cd94b85dbd088f40255d3957b9222e5e3be16ff99897ce035a",
+    "origin_teacher_mature_step_fold1_69768.npz": "35eb900f863be4fdb81892200f0bbbaee61ae621b0711499a15b125d16ab5426",
+    "origin_teacher_mature_step_fold1_69781.npz": "4e65b0be1208df10845f9bf85ed5c5e817affa9084fd2de0ce302b7bd76341fa",
+    "origin_teacher_mature_step_fold1_69791.npz": "e846a4456496b051ecd7ede6b628d2cdb10d7b9d16d3d0f9464634cb316224df",
+    "origin_teacher_mature_step_fold1_69854.npz": "032fe0d69078c61471064efb9b4f5a4167937dff5b655a70f4afeb54537f34f9",
+    "origin_teacher_mature_step_fold1_69855.npz": "1ea907268674851f6609f56e13583eec98496fa03aaebc11d228b08bb0d4f9bb",
+    "origin_teacher_mature_step_fold1_69859.npz": "2c70e5894529a0b97a249a921b3057a6b5d99bc423bac98e56eb952edb653b08",
+    "origin_teacher_mature_step_fold1_70327.npz": "cc25fa1375feccfd3b09f254b026b1124488c591a764881472dca1140615ed77",
+    "origin_teacher_mature_step_fold1_70392.npz": "cd088393913c5e5dfabe267a82e139fbe66bdb8b006a7015c97b8e94a39f29f4",
+    "origin_teacher_mature_step_fold1_70394.npz": "a694f678735465d8cc58782ba8cf76a4bbc15e46f1eae13de9f083199b6af65f",
+    "origin_teacher_mature_step_fold1_70404.npz": "a4876fb97fe98c72cbc411192755570c2dbc0cc74bf558eed33b79792d558e6c",
+    "origin_teacher_mature_step_fold1_70418.npz": "e5fa4acd0ac11e397ebed45d4dd6532dc776df50cab57c0243f042eceb278305",
+    "origin_teacher_mature_step_fold1_70861.npz": "27398f58f50427228bba31b6adf2ac477a16ed289e7a8a9cf2171b6d80733346",
+    "origin_teacher_mature_step_fold1_71265.npz": "9f7dbc66c12c6033974da60c1756d2e1d94f71f1fa312a51a4db146ba772bc58",
+    "origin_teacher_mature_step_fold1_71304.npz": "18e86a0ec14bf4689d59222e744fe7e5ac29095bca713e52780ad2ef296a15be",
+    "origin_teacher_mature_step_fold1_71370.npz": "1cd0865d70e6e12b56bf996fdf084ca7322465a81b9837c38031e0e7d69aaaf7",
+    "origin_teacher_mature_step_fold1_71415.npz": "6f2f4aafb25dd70a6343130396be8dbd0ddf4c346397fbdc32f26189dde1684b",
+    "origin_teacher_mature_step_fold1_74087.npz": "4bea8a49d51b4b66d25d5d7b2e334c159717b90cf09d488abda4fbc3efd7bff5",
+    "origin_teacher_mature_step_fold2_69454.npz": "a4511e03c7de6958f28f71c5797080ddfafda3cb8f988d8012c8804237ea9ef3",
+    "origin_teacher_mature_step_fold2_69458.npz": "055fd6b19dccb9ad677fc620bc68edf4f64413238bd2854c5678b4d86b409d4d",
+    "origin_teacher_mature_step_fold2_69765.npz": "7671288dff3a555d57d57a37bb5961b30acb7ae47298ed89e2ffd6a69eb12150",
+    "origin_teacher_mature_step_fold2_69768.npz": "bee247d88ea1a86afe8766679a7b10d3625c3f2fa30e27278373b8b164470754",
+    "origin_teacher_mature_step_fold2_69781.npz": "3ff92599e5ec4f7a589e32cb1324b4b10e19114e7b52eaf940e52e2219b5a7c5",
+    "origin_teacher_mature_step_fold2_69791.npz": "e6d8df9dcbd565ffeddde21d2e726a649f6ddfff5c47169378ad4066db85a96d",
+    "origin_teacher_mature_step_fold2_69854.npz": "7eb2cf26180a7c4e6d921839c5500a5d722ae5195f135d869ddc8b93bd283091",
+    "origin_teacher_mature_step_fold2_69855.npz": "d055fab1b1e3bfafbe0f3d12abd63b3c46617453e2809305c675ab491c955a9d",
+    "origin_teacher_mature_step_fold2_69859.npz": "355d26332f13c455ca9da23d9c3b77d680eaa478d96db158b8a1f84918945324",
+    "origin_teacher_mature_step_fold2_70327.npz": "f9e22bb82af9897178997a4396c8dd51fe00a1ae08d48b7db25817a1675f8491",
+    "origin_teacher_mature_step_fold2_70392.npz": "5a0651b93c2d47f1e8a8030aa0d78d486269f944312ccbfbc23b8392aaa0c1c4",
+    "origin_teacher_mature_step_fold2_70394.npz": "95a493b15d305731f2293b0f86b6b095b94c5837c738aed4a39e1ee182901d7d",
+    "origin_teacher_mature_step_fold2_70404.npz": "3810a3fc83825f08d526f0edf2a7e8d3941c371cb375dcf5960c24166fc037da",
+    "origin_teacher_mature_step_fold2_70418.npz": "c899d13e0e86890faf1c3faa158cd17867d75f0e3a906ffeb5b2c3f461081604",
+    "origin_teacher_mature_step_fold2_70861.npz": "abc4bf2bdeb3a0d156fca5487458dfcfd3e680099bc4ae7e0e08a590edabf6ec",
+    "origin_teacher_mature_step_fold2_71265.npz": "58a64337b4eaa6a80ba6d43ed86ceb40221b8439e1a9f88c8d4141acf426ecff",
+    "origin_teacher_mature_step_fold2_71304.npz": "ffd10aea6163b601e09de6244947f575f0ff92139dd97fc63735f58a6b743756",
+    "origin_teacher_mature_step_fold2_71370.npz": "bb2a72aa821bdd5082aec4447196828cafbdec644fa8f7699874eba9737880c1",
+    "origin_teacher_mature_step_fold2_71415.npz": "3206026c6e6ab988ce2402c60864f5e1e14b16c22f50d8bb87221685b7bc3733",
+    "origin_teacher_mature_step_fold2_74087.npz": "002e1d8f12b07ccf7a68b7b40305586f07654b2bcdca13726886f80396fcff70",
+    "origin_teacher_mature_step_held_per_shot.json": "d58a2818b970dfb6bdfe70778bf6b24fcb3c3fa8a8016547dca34581d348d114",
+    "protocol.json": "9a039fce56a77b773be3f997b76cbdb830d2fd20dd75ee876c2cff7cb0b952a4",
+    "records.json": "9dcab9569db22ae6c9d5c8a5b620f1e2b8b7c310517f78942fb377955d52c27a"
+  }
+}

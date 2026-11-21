@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-22",
+  "scope": "Targeted checks for the sixth-round diagnostic; not a claim of 100 full-text readings.",
+  "records": [
+    {
+      "title": "Learning to (Learn at Test Time)",
+      "url": "https://arxiv.org/html/2310.13807v2",
+      "read_scope": "Abstract, introduction, sections 2/2.1 and the opening outer-loop formulation in section 3.",
+      "use": "A learned auxiliary objective must be judged by the main task after internal adaptation.",
+      "limit": "General TTT architecture and ImageNet experiments, not a tokamak physical-law argument. The current implementation is not a reproduction of MTTT layers."
+    },
+    {
+      "title": "RG-TTA: Regime-Guided Meta-Control for Test-Time Adaptation in Streaming Time Series",
+      "url": "https://arxiv.org/html/2603.27814v1",
+      "read_scope": "Abstract/introduction, related-work implementation caveats, section VIII-C and limitations IX.",
+      "use": "Adaptation conditions matter; short streams, non-recurrent regimes, frozen attention and surrogate performance can limit gains.",
+      "limit": "Forecasting preprint; its reported MSE reductions do not establish disruption-warning gains. Checkpoint memory and output calibration are not adopted here."
+    },
+    {
+      "title": "FusionMAE, a self-supervised pretrained model to optimize and simplify diagnostic and control of fusion plasma",
+      "doi": "10.1038/s42005-026-02626-3",
+      "url": "https://www.nature.com/articles/s42005-026-02626-3",
+      "read_scope": "Publisher-indexed abstract, representation/downstream-task descriptions, dataset preprocessing, architecture and training-loss Methods. Direct page open redirected and failed; not claimed as a full supplementary-material review.",
+      "use": "Signal reconstruction can prepare a diagnostic representation; unavailable targets must not be treated as observed truth.",
+      "limit": "88 diagnostic channels on HL-3 and separately trained downstream tasks. This does not establish label-free J-TEXT-to-EAST in-shot improvement from the current 23 processed features."
+    },
+    {
+      "title": "Predicting disruption in future tokamaks with fewer data by more physics-guided",
+      "url": "https://conferences.iaea.org/event/335/contributions/28976/attachments/15708/26572/IAEA-poster_Chengshuo_Shen.pdf",
+      "read_scope": "Primary conference-poster indexed text: PGFE-U, data quality, estimated normalized parameters and comparison table. Direct PDF open returned403.",
+      "use": "Distinguish zero target classifier-training samples from absence of any target normalization information; geometry and feature construction are distinct from the classifier.",
+      "limit": "Poster evidence, not a new exact reproduction or a justification for fitting on the whole EAST test stream."
+    }
+  ],
+  "unverified_leads": [
+    {
+      "title": "The role of data quality and alignment in cross-tokamak disruption prediction",
+      "reported_doi": "10.1088/1361-6587/ae9985",
+      "status": "Secondary discovery only in this round; IOP DOI page and Crossref retrieval unavailable through web tool. No primary performance numbers adopted in conclusions.",
+      "followup": "Obtain primary article before relying on its EFD numerical comparisons. Do not call the paper fully read."
+    },
+    {
+      "title": "Autonomous Discovery of Disruption Precursor Event Chains in Tokamak Plasmas via Progressive Multiple-Instance Learning",
+      "url": "https://conferences.iaea.org/event/454/contributions/43124/",
+      "status": "Previously cached conference abstract; fresh retrieval403. No new full-text claim."
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "source": "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/runs/masked_state_none_20261022/source.pt",
+  "source_sha256": "639aefd5a20bab40c74582b07da5b93eddc3a1ebf50794b818b17777db61a195",
+  "source_qualified": false,
+  "split": "JTEXT VAL160 only",
+  "learning_rates": [
+    0.001,
+    0.01,
+    0.1
+  ],
+  "steps": 4,
+  "windows": 128,
+  "sequence_sha256": "55bd694dcad0981397a5193b9cf8851bdc62f74cb2bef4ff0325967c80299db7",
+  "label_usage": "score after signal-only updates, no label in update",
+  "synthetic": "fixed per-window asinh gain exp(U[-.35,.35]) and bias U[-1,1]; not physical mechanism",
+  "qualification": "failure analysis only if source gate failed; never bypass source gate",
+  "east_accessed": false,
+  "independent_confirmation": false,
+  "code_sha256": {
+    "model.py": "bb4c01f34971abf3fb2f4d4150979131300b327e72298957a7cd0435563d7d8b",
+    "probe.py": "9b0a975160264e209cd20ee1bd28b8ac53bcf35e60ed02f0c08b46418ac6e883",
+    "train.py": "2650fb903eb68dfc54fab50b634d311559d3572d076e6677df04d07b3b68f7a2",
+    "__init__.py": "ed647f9f21688bdf0df5453b23f9c41919ec5b551cd48eadee1e90858f388cb2"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "status": "COMPLETED",
+  "selected_epoch": 0,
+  "metrics": {
+    "tp": 100,
+    "fp": 14,
+    "n_disrupt": 110,
+    "n_safe": 110,
+    "tpr": 0.9090909090909091,
+    "fpr": 0.12727272727272726,
+    "J": 0.7818181818181817,
+    "threshold": 0.6599833369255066,
+    "median_lead_ms": 66.966247684
+  },
+  "qualified": true,
+  "probe_gate": false,
+  "allow_east_candidate": false,
+  "checkpoint_sha256": "ef482f83af37f03e2095db3ecf572994047992602655883d2b61d781a60c1d01",
+  "reporting_summary": {
+    "clean": {
+      "n": 128,
+      "before_bce": 0.3601035450167017,
+      "after_bce": 0.40588883992409086,
+      "risk_improved": 42,
+      "reconstruction_improved": 128,
+      "reconstruction_better_risk_worse": 86,
+      "before_clean_logit_mse": 0.0,
+      "after_clean_logit_mse": 0.6601448773459331,
+      "classes": {
+        "0": {
+          "n": 64,
+          "before_bce": 0.22018782994786884,
+          "after_bce": 0.3203470982224397
+        },
+        "1": {
+          "n": 64,
+          "before_bce": 0.5000192600855345,
+          "after_bce": 0.4914305816257418
+        }
+      },
+      "before_representation": 0.0,
+      "after_representation": 0.010730763096489682,
+      "representation_improved": 0
+    },
+    "shift": {
+      "n": 128,
+      "before_bce": 0.7844069009250574,
+      "after_bce": 0.715737379488281,
+      "risk_improved": 60,
+      "reconstruction_improved": 128,
+      "reconstruction_better_risk_worse": 68,
+      "before_clean_logit_mse": 8.505907911562968,
+      "after_clean_logit_mse": 7.67509627256042,
+      "classes": {
+        "0": {
+          "n": 64,
+          "before_bce": 0.5248733845833238,
+          "after_bce": 0.5450468332946092
+        },
+        "1": {
+          "n": 64,
+          "before_bce": 1.0439404172667912,
+          "after_bce": 0.8864279256819528
+        }
+      },
+      "before_representation": 0.12974305826355703,
+      "after_representation": 0.12936981351231225,
+      "representation_improved": 74
+    }
+  },
+  "elapsed_seconds": 83.39041479500156,
+  "east_accessed": false,
+  "independent_confirmation": false
+}

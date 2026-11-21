@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-22",
+  "scope": "Targeted method-section reading; not a full systematic review or claim of 100 full texts",
+  "sources": [
+    {
+      "title": "Test-Time Training with Masked Autoencoders",
+      "venue": "NeurIPS 2022",
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2022/file/bcdec1c2d60f94a93b6e36f937aa0530-Paper-Conference.pdf",
+      "read_scope": "sections",
+      "locators": ["Section 2.2-2.3", "Section 3", "Section 4.1"],
+      "primary_verified": true,
+      "method_used": "Prepare reconstruction encoder before main-task readout; reset test-specific parameters",
+      "difference": "23 processed diagnostic features, not image patches; fixed decoder and whole-channel masking; not a replication",
+      "cannot_claim": "Masked reconstruction necessarily improves tokamak warnings"
+    },
+    {
+      "title": "Robust Time Series Recovery and Classification Using Test-time Noise Simulator Networks",
+      "venue": "ICASSP 2023",
+      "url": "https://merl.com/publications/docs/TR2023-021.pdf",
+      "read_scope": "sections",
+      "locators": ["Abstract", "Sections 1-3", "Section 4 experimental setup"],
+      "primary_verified": true,
+      "method_used": "Distinguish observation corruption from underlying trajectory; motivates paired synthetic diagnostics only",
+      "difference": "Published setup uses 512 target sequences for noise-model estimation; current-shot-only setting cannot assume that access",
+      "cannot_claim": "A one-shot zero-target-label solution or a known physical calibration in these data"
+    },
+    {
+      "title": "Self-supervised contrastive learning performs non-linear system identification",
+      "venue": "ICLR 2025",
+      "url": "https://arxiv.org/html/2410.14673v2",
+      "read_scope": "sections",
+      "locators": ["Abstract", "Section 2", "Section 3", "Section 4 opening"],
+      "primary_verified": true,
+      "method_used": "Separate latent dynamics and observation mapping; examine identifiability assumptions",
+      "difference": "No verification that processed23 meets injective observation, bijective dynamics, noise and infinite-data assumptions",
+      "cannot_claim": "Identification of new plasma laws from our reconstruction loss"
+    },
+    {
+      "title": "The role of data quality and alignment in cross-tokamak disruption prediction",
+      "doi": "10.1088/1361-6587/ae9985",
+      "url": "https://iopscience.iop.org/article/10.1088/1361-6587/ae9985",
+      "read_scope": "secondary discovery only",
+      "primary_verified": false,
+      "status": "Publisher text not accessible in this round; not used for quantitative or technical claims"
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "complete": true,
+  "source_unchanged": true,
+  "source_train": 1353,
+  "source_val": 160,
+  "input_and_cache_hashes_verified": 1513,
+  "gradients": {
+    "complete_epochs": 2,
+    "rule_gradient_steps": {
+      "key.weight": 339,
+      "prior": 339,
+      "rate": 339,
+      "output.weight": 340
+    },
+    "fixed_rule_gradients_absent": true
+  },
+  "changes": {
+    "fixed": {
+      "prior": 0.0,
+      "rate": 0.0,
+      "key.weight": 0.0,
+      "key.bias": 0.0,
+      "output.weight": 2.3480348587036133
+    },
+    "learned": {
+      "prior": 0.497234582901001,
+      "rate": 0.03717803955078125,
+      "key.weight": 0.5712411403656006,
+      "key.bias": 0.035155653953552246,
+      "output.weight": 1.7189794778823853
+    }
+  },
+  "validation": {
+    "0": {
+      "learned": {
+        "disrupt_loss": 0.36658269478939476,
+        "safe_loss": 0.23925801636796679,
+        "balanced_loss": 0.3029203555786808
+      },
+      "fixed": {
+        "disrupt_loss": 0.36658269478939476,
+        "safe_loss": 0.23925801636796679,
+        "balanced_loss": 0.3029203555786808
+      }
+    },
+    "1": {
+      "learned": {
+        "disrupt_loss": 0.38606473796535284,
+        "safe_loss": 0.23039478723076173,
+        "balanced_loss": 0.3082297625980573
+      },
+      "fixed": {
+        "disrupt_loss": 0.3641939787426963,
+        "safe_loss": 0.23657650126697263,
+        "balanced_loss": 0.30038524000483446
+      }
+    },
+    "2": {
+      "learned": {
+        "disrupt_loss": 0.36572574242018163,
+        "safe_loss": 0.23984947643184568,
+        "balanced_loss": 0.3027876094260137
+      },
+      "fixed": {
+        "disrupt_loss": 0.3625349632464349,
+        "safe_loss": 0.23574960726691643,
+        "balanced_loss": 0.2991422852566757
+      }
+    }
+  },
+  "total_seconds": 145.30879670600007,
+  "scope": "SOURCE_SAMPLED_OBJECTIVE_NOT_EAST_EFFECTIVENESS"
+}

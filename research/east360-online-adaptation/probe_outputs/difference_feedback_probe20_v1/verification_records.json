@@ -1,0 +1,111 @@
+{
+  "status": "PASS",
+  "n_shots": 20,
+  "n_samples": 100,
+  "summary_recomputed": {
+    "arms": {
+      "centered_real": {
+        "class0": {
+          "n_points": 76,
+          "n_shots": 20,
+          "mean_delta_bce": 0.000853040527384221
+        },
+        "class1": {
+          "n_points": 24,
+          "n_shots": 8,
+          "mean_delta_bce": 0.0003612507072861743
+        },
+        "safe": {
+          "n_points": 60,
+          "n_shots": 12,
+          "mean_delta_bce": 0.00012957140355133244
+        },
+        "balanced_delta_bce": 0.0006071456173351976
+      },
+      "difference_real": {
+        "class0": {
+          "n_points": 76,
+          "n_shots": 20,
+          "mean_delta_bce": 0.00022689383763103873
+        },
+        "class1": {
+          "n_points": 24,
+          "n_shots": 8,
+          "mean_delta_bce": -0.00021325186756063175
+        },
+        "safe": {
+          "n_points": 60,
+          "n_shots": 12,
+          "mean_delta_bce": -0.0001697835834732547
+        },
+        "balanced_delta_bce": 6.820985035203489e-06
+      },
+      "difference_reverse": {
+        "class0": {
+          "n_points": 76,
+          "n_shots": 20,
+          "mean_delta_bce": -0.00014627224884425602
+        },
+        "class1": {
+          "n_points": 24,
+          "n_shots": 8,
+          "mean_delta_bce": 1.4164051150470173e-05
+        },
+        "safe": {
+          "n_points": 60,
+          "n_shots": 12,
+          "mean_delta_bce": -0.0001375506823750772
+        },
+        "balanced_delta_bce": -6.605409884689293e-05
+      },
+      "difference_hold": {
+        "class0": {
+          "n_points": 76,
+          "n_shots": 20,
+          "mean_delta_bce": 0.0
+        },
+        "class1": {
+          "n_points": 24,
+          "n_shots": 8,
+          "mean_delta_bce": 0.0
+        },
+        "safe": {
+          "n_points": 60,
+          "n_shots": 12,
+          "mean_delta_bce": 0.0
+        },
+        "balanced_delta_bce": 0.0
+      }
+    },
+    "coverage": {
+      "positive_disruptive_n_shots": 8,
+      "negative_safe_n_shots": 12,
+      "positive_disruptive": true,
+      "negative_safe": true,
+      "passed": true
+    },
+    "gates": {
+      "coverage": true,
+      "hold_zero": true,
+      "class1": true,
+      "class0": false,
+      "safe": true,
+      "balanced": false,
+      "vs_centered_real": true,
+      "vs_difference_reverse": false,
+      "passed": false
+    },
+    "decision": "screen_failed"
+  },
+  "protocol_sha256": "6b13f55a0180ef9744362fe5cafe599be10939796e872da7404788eeeb71c917",
+  "completed_sha256": "2af94de43602e66cf7936b2fd9ccf7943759c42d31fb09a109941ad29d79fe5d",
+  "samples_sha256": "e09990e0b831e5475194045d9384ca99fb2126169fe6592818526c7a3f9e71b3",
+  "sampling_sha256": "77ed5178bb6e4debe52cad3f3b76133e5dad715827d4b8f3d2cb7e6f3b65e728",
+  "code_snapshot_sha256": "c942a475f433bddafa90b5cf009c3890fe51955962308affe7dba5fd55b9d3af",
+  "source_sha256": "c7270c1ea3652db2e30e972d4ca9a4a2d33220a68e4a3765c8b7f5bcceeaeb02",
+  "cold_state_sha256": "a06377a218a0f06def1eb3652cc091b5c514653681bffcf5dbfda7906f9db344",
+  "input_map_sha256": "43c37ad981261e059ac8bf8d11d89324bad375dd7405decc194c51e53614aff2",
+  "basis_sha256": "8cf66a9cb7aa6db208b27a170c6fbdcbf8ab4d4219f948631b1c01dd2129d113",
+  "raw_files_checked": 20,
+  "limitations": "Recorded RMS and gradients were checked without neural or signal replay. Protocol digest is reported, not externally authenticated. This is not future validation or online performance."
+}

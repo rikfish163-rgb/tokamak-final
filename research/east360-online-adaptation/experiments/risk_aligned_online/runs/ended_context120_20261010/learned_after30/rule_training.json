@@ -1,0 +1,328 @@
+{
+  "fit_ids": [
+    88197,
+    71301,
+    70869,
+    83354,
+    56606,
+    72721,
+    69923,
+    56591,
+    83320,
+    92933,
+    69291,
+    86435,
+    58597,
+    71310,
+    92920,
+    87496,
+    69807,
+    70327,
+    70404,
+    66930,
+    94151,
+    70276,
+    96506,
+    73540,
+    74749,
+    68111,
+    73495,
+    54014,
+    63197,
+    75238
+  ],
+  "n_disrupt": 23,
+  "n_safe": 7,
+  "fixed_peaks": [
+    {
+      "shot": 88197,
+      "label": 0,
+      "query": 4838
+    },
+    {
+      "shot": 71301,
+      "label": 1,
+      "query": 240
+    },
+    {
+      "shot": 70869,
+      "label": 1,
+      "query": 3959
+    },
+    {
+      "shot": 83354,
+      "label": 1,
+      "query": 316
+    },
+    {
+      "shot": 56606,
+      "label": 1,
+      "query": 11474
+    },
+    {
+      "shot": 72721,
+      "label": 1,
+      "query": 489
+    },
+    {
+      "shot": 69923,
+      "label": 1,
+      "query": 2137
+    },
+    {
+      "shot": 56591,
+      "label": 0,
+      "query": 325
+    },
+    {
+      "shot": 83320,
+      "label": 1,
+      "query": 2969
+    },
+    {
+      "shot": 92933,
+      "label": 1,
+      "query": 3240
+    },
+    {
+      "shot": 69291,
+      "label": 0,
+      "query": 5438
+    },
+    {
+      "shot": 86435,
+      "label": 1,
+      "query": 1109
+    },
+    {
+      "shot": 58597,
+      "label": 0,
+      "query": 3001
+    },
+    {
+      "shot": 71310,
+      "label": 1,
+      "query": 2125
+    },
+    {
+      "shot": 92920,
+      "label": 1,
+      "query": 2427
+    },
+    {
+      "shot": 87496,
+      "label": 1,
+      "query": 3601
+    },
+    {
+      "shot": 69807,
+      "label": 1,
+      "query": 1018
+    },
+    {
+      "shot": 70327,
+      "label": 1,
+      "query": 912
+    },
+    {
+      "shot": 70404,
+      "label": 0,
+      "query": 2945
+    },
+    {
+      "shot": 66930,
+      "label": 0,
+      "query": 368
+    },
+    {
+      "shot": 94151,
+      "label": 1,
+      "query": 4662
+    },
+    {
+      "shot": 70276,
+      "label": 1,
+      "query": 903
+    },
+    {
+      "shot": 96506,
+      "label": 1,
+      "query": 3669
+    },
+    {
+      "shot": 73540,
+      "label": 1,
+      "query": 1113
+    },
+    {
+      "shot": 74749,
+      "label": 1,
+      "query": 2665
+    },
+    {
+      "shot": 68111,
+      "label": 1,
+      "query": 2525
+    },
+    {
+      "shot": 73495,
+      "label": 1,
+      "query": 220
+    },
+    {
+      "shot": 54014,
+      "label": 0,
+      "query": 5566
+    },
+    {
+      "shot": 63197,
+      "label": 1,
+      "query": 141
+    },
+    {
+      "shot": 75238,
+      "label": 1,
+      "query": 1107
+    }
+  ],
+  "outer": "adapted-risk softplus about frozen boundary, at fixed training causal peak",
+  "peak_selection": "first30 only; D all lead>30, S all valid; not125ms point labels",
+  "changing_peak_limitation": true,
+  "second_order_unroll_depth": 4,
+  "actual_burn_in": true,
+  "learning_rate": 0.003,
+  "steps": 4,
+  "seed": 131,
+  "records": [
+    {
+      "iteration": 1,
+      "records": [
+        {
+          "mature_events": 30,
+          "burn_in_events": 26,
+          "accepted_updates": 30,
+          "differentiated_updates": 4,
+          "fast_norm": 1.00000005517157,
+          "shot": 58597,
+          "label": 0,
+          "query": 3001,
+          "probability": 0.052425701171159744,
+          "adapted_risk_loss": 0.0206765066832304
+        },
+        {
+          "mature_events": 47,
+          "burn_in_events": 43,
+          "accepted_updates": 43,
+          "differentiated_updates": 4,
+          "fast_norm": 0.9924030165482087,
+          "shot": 94151,
+          "label": 1,
+          "query": 4662,
+          "probability": 0.8460670709609985,
+          "adapted_risk_loss": 0.39326968789100647
+        }
+      ],
+      "gradient_norm": 0.005825007800012827,
+      "rule_delta_norm": 0.08073689979465136,
+      "objective": 0.20697309728711843
+    },
+    {
+      "iteration": 2,
+      "records": [
+        {
+          "mature_events": 55,
+          "burn_in_events": 51,
+          "accepted_updates": 55,
+          "differentiated_updates": 4,
+          "fast_norm": 1.0000000069456558,
+          "shot": 69291,
+          "label": 0,
+          "query": 5438,
+          "probability": 0.9393371939659119,
+          "adapted_risk_loss": 1.9238296747207642
+        },
+        {
+          "mature_events": 9,
+          "burn_in_events": 5,
+          "accepted_updates": 9,
+          "differentiated_updates": 4,
+          "fast_norm": 0.38529045418178354,
+          "shot": 70327,
+          "label": 1,
+          "query": 912,
+          "probability": 0.22606250643730164,
+          "adapted_risk_loss": 2.3092002868652344
+        }
+      ],
+      "gradient_norm": 0.026009714230895042,
+      "rule_delta_norm": 0.12653582411129988,
+      "objective": 2.1165149807929993
+    },
+    {
+      "iteration": 3,
+      "records": [
+        {
+          "mature_events": 30,
+          "burn_in_events": 26,
+          "accepted_updates": 30,
+          "differentiated_updates": 4,
+          "fast_norm": 0.9161571708679364,
+          "shot": 70404,
+          "label": 0,
+          "query": 2945,
+          "probability": 0.07082747668027878,
+          "adapted_risk_loss": 0.028377406299114227
+        },
+        {
+          "mature_events": 10,
+          "burn_in_events": 6,
+          "accepted_updates": 10,
+          "differentiated_updates": 4,
+          "fast_norm": 0.393888568813774,
+          "shot": 69807,
+          "label": 1,
+          "query": 1018,
+          "probability": 0.09435908496379852,
+          "adapted_risk_loss": 3.274017095565796
+        }
+      ],
+      "gradient_norm": 0.02734515257179737,
+      "rule_delta_norm": 0.12235243795898422,
+      "objective": 1.651197250932455
+    },
+    {
+      "iteration": 4,
+      "records": [
+        {
+          "mature_events": 56,
+          "burn_in_events": 52,
+          "accepted_updates": 54,
+          "differentiated_updates": 4,
+          "fast_norm": 0.9999999960055546,
+          "shot": 54014,
+          "label": 0,
+          "query": 5566,
+          "probability": 0.10653788596391678,
+          "adapted_risk_loss": 0.04404260218143463
+        },
+        {
+          "mature_events": 115,
+          "burn_in_events": 111,
+          "accepted_updates": 115,
+          "differentiated_updates": 4,
+          "fast_norm": 0.9999999757640737,
+          "shot": 56606,
+          "label": 1,
+          "query": 11474,
+          "probability": 0.4910789132118225,
+          "adapted_risk_loss": 1.320274829864502
+        }
+      ],
+      "gradient_norm": 0.02845410443842411,
+      "rule_delta_norm": 0.08571085852253177,
+      "objective": 0.6821587160229683
+    }
+  ],
+  "elapsed_seconds": 20.675000536999505,
+  "artifact_sha256": "9b458eedf367aeb8f595a273661230c0fa688d6307dfa018f9fdb54e10cf335e"
+}

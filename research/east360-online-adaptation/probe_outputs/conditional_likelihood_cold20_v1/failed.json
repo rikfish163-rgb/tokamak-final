@@ -1,0 +1,9 @@
+{
+  "status": "evaluation_failed_after_all_five_neural_seals",
+  "error": "ValueError: operands could not be broadcast together with shapes (141,) (141,25)",
+  "cause": "io23.labels_at safe-shot branch returns a length-N array; evaluation supplied N-by-25 times",
+  "scope": "evaluation shape interface, not model training or signal feedback",
+  "remedy": "flatten evaluation times then reshape labels/mask locally; regression test and fresh v2 full rerun",
+  "original_prediction_files_preserved": true,
+  "successful_completed_result": false
+}

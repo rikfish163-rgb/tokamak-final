@@ -1,0 +1,616 @@
+{
+  "complete": true,
+  "complete_sha256": "2fc47e93c302fa22193bc52a8d58e06fe5efbe6c77d704fd9be8deaffb3409ba",
+  "audit_code_sha256": "11f76d823cec785a9cb8e1b80781e3bf160ee475dea7125752367549eb4df9ac",
+  "arms": 16,
+  "paired_endpoints": 521,
+  "exact_validation_replay": true,
+  "description": {
+    "blocked_mean_true": {
+      "safe": {
+        "shots": 80,
+        "mean": -0.034589963406324385,
+        "sd_between_shots": 0.12197042979670092,
+        "median": -0.0005549788475036621,
+        "improved": 79,
+        "worsened": 1,
+        "probability_mean_change": -0.01721955489629181,
+        "probability_up": 1,
+        "probability_down": 79
+      },
+      "early": {
+        "shots": 19,
+        "mean": -0.4161865185750158,
+        "sd_between_shots": 0.27770796209601833,
+        "median": -0.4271664023399353,
+        "improved": 19,
+        "worsened": 0,
+        "probability_mean_change": -0.11220907060870607,
+        "probability_up": 0,
+        "probability_down": 19
+      },
+      "danger": {
+        "shots": 32,
+        "mean": 0.10359064017757191,
+        "sd_between_shots": 0.14869381365158738,
+        "median": 0.028254625853151083,
+        "improved": 2,
+        "worsened": 30,
+        "probability_mean_change": -0.05255159233638551,
+        "probability_up": 2,
+        "probability_down": 30
+      },
+      "macro": -0.11572861393458943
+    },
+    "blocked_mean_reverse": {
+      "safe": {
+        "shots": 80,
+        "mean": -0.034458773024380204,
+        "sd_between_shots": 0.12187080682040938,
+        "median": -0.0005823969841003418,
+        "improved": 79,
+        "worsened": 1,
+        "probability_mean_change": -0.017158363460475813,
+        "probability_up": 1,
+        "probability_down": 79
+      },
+      "early": {
+        "shots": 19,
+        "mean": -0.4139837846159935,
+        "sd_between_shots": 0.27816960252812506,
+        "median": -0.4182446300983429,
+        "improved": 19,
+        "worsened": 0,
+        "probability_mean_change": -0.11108733582506447,
+        "probability_up": 0,
+        "probability_down": 19
+      },
+      "danger": {
+        "shots": 32,
+        "mean": 0.09522864130121889,
+        "sd_between_shots": 0.12717793512809586,
+        "median": 0.028596498537808657,
+        "improved": 1,
+        "worsened": 31,
+        "probability_mean_change": -0.05078128332388587,
+        "probability_up": 1,
+        "probability_down": 31
+      },
+      "macro": -0.1177379721130516
+    },
+    "blocked_mean_hold": {
+      "safe": {
+        "shots": 80,
+        "mean": -0.03322696406394243,
+        "sd_between_shots": 0.1212712056052922,
+        "median": -0.0005379915237426758,
+        "improved": 77,
+        "worsened": 3,
+        "probability_mean_change": -0.01683512513845926,
+        "probability_up": 3,
+        "probability_down": 77
+      },
+      "early": {
+        "shots": 19,
+        "mean": -0.3931860645350657,
+        "sd_between_shots": 0.28430371832256285,
+        "median": -0.3745642602443695,
+        "improved": 19,
+        "worsened": 0,
+        "probability_mean_change": -0.10887452924477034,
+        "probability_up": 0,
+        "probability_down": 19
+      },
+      "danger": {
+        "shots": 32,
+        "mean": 0.11738903542573098,
+        "sd_between_shots": 0.20760986283613483,
+        "median": 0.028430815204046667,
+        "improved": 2,
+        "worsened": 30,
+        "probability_mean_change": -0.05324965420732042,
+        "probability_up": 2,
+        "probability_down": 30
+      },
+      "macro": -0.10300799772442572
+    },
+    "blocked_worst_true": {
+      "safe": {
+        "shots": 80,
+        "mean": 0.013591152615845203,
+        "sd_between_shots": 0.20435531061131434,
+        "median": -0.00020074844360351562,
+        "improved": 66,
+        "worsened": 14,
+        "probability_mean_change": 0.0003365275799296796,
+        "probability_up": 14,
+        "probability_down": 66
+      },
+      "early": {
+        "shots": 19,
+        "mean": -0.06750365464310897,
+        "sd_between_shots": 0.24483984268558487,
+        "median": -0.048915520310401917,
+        "improved": 11,
+        "worsened": 8,
+        "probability_mean_change": -0.02910797819985371,
+        "probability_up": 8,
+        "probability_down": 11
+      },
+      "danger": {
+        "shots": 32,
+        "mean": 0.014572682292055106,
+        "sd_between_shots": 0.09646713561177414,
+        "median": 0.00041108671575784683,
+        "improved": 12,
+        "worsened": 20,
+        "probability_mean_change": -0.00828166093560867,
+        "probability_up": 12,
+        "probability_down": 20
+      },
+      "macro": -0.013113273245069551
+    },
+    "blocked_worst_reverse": {
+      "safe": {
+        "shots": 80,
+        "mean": 0.013984470069408417,
+        "sd_between_shots": 0.20955896302614657,
+        "median": -0.00020563602447509766,
+        "improved": 67,
+        "worsened": 13,
+        "probability_mean_change": 0.0003355673456098884,
+        "probability_up": 14,
+        "probability_down": 66
+      },
+      "early": {
+        "shots": 19,
+        "mean": -0.06438106063165162,
+        "sd_between_shots": 0.24382572408524725,
+        "median": -0.03753632307052612,
+        "improved": 12,
+        "worsened": 7,
+        "probability_mean_change": -0.027924774487282297,
+        "probability_up": 7,
+        "probability_down": 12
+      },
+      "danger": {
+        "shots": 32,
+        "mean": 0.012191988298582146,
+        "sd_between_shots": 0.0946600044180888,
+        "median": 0.00041658186819404364,
+        "improved": 10,
+        "worsened": 22,
+        "probability_mean_change": -0.007541893290181179,
+        "probability_up": 10,
+        "probability_down": 22
+      },
+      "macro": -0.012734867421220354
+    },
+    "blocked_worst_hold": {
+      "safe": {
+        "shots": 80,
+        "mean": 0.016804384998977184,
+        "sd_between_shots": 0.21247247126066,
+        "median": -0.0001678466796875,
+        "improved": 65,
+        "worsened": 14,
+        "probability_mean_change": 0.0010218172967142892,
+        "probability_up": 14,
+        "probability_down": 65
+      },
+      "early": {
+        "shots": 19,
+        "mean": -0.06290824711322784,
+        "sd_between_shots": 0.255552817188876,
+        "median": -0.09617525339126587,
+        "improved": 12,
+        "worsened": 7,
+        "probability_mean_change": -0.028669075075365407,
+        "probability_up": 7,
+        "probability_down": 12
+      },
+      "danger": {
+        "shots": 32,
+        "mean": 0.014985600551881362,
+        "sd_between_shots": 0.09593554989502562,
+        "median": 0.0005681533366441727,
+        "improved": 10,
+        "worsened": 22,
+        "probability_mean_change": -0.008937485865317285,
+        "probability_up": 10,
+        "probability_down": 22
+      },
+      "macro": -0.010372753854123099
+    },
+    "fresh_mean_true": {
+      "safe": {
+        "shots": 80,
+        "mean": -0.03576467428356409,
+        "sd_between_shots": 0.12407566527327815,
+        "median": -0.000545203685760498,
+        "improved": 80,
+        "worsened": 0,
+        "probability_mean_change": -0.017937421792885287,
+        "probability_up": 0,
+        "probability_down": 80
+      },
+      "early": {
+        "shots": 19,
+        "mean": -0.4481514970722951,
+        "sd_between_shots": 0.2948114372399744,
+        "median": -0.5206591188907623,
+        "improved": 19,
+        "worsened": 0,
+        "probability_mean_change": -0.12455910611223724,
+        "probability_up": 0,
+        "probability_down": 19
+      },
+      "danger": {
+        "shots": 32,
+        "mean": 0.15077237015066203,
+        "sd_between_shots": 0.2797550398680976,
+        "median": 0.034023067681118846,
+        "improved": 2,
+        "worsened": 30,
+        "probability_mean_change": -0.06697729797451757,
+        "probability_up": 2,
+        "probability_down": 30
+      },
+      "macro": -0.11104793373506573
+    },
+    "fresh_mean_reverse": {
+      "safe": {
+        "shots": 80,
+        "mean": -0.035916366055607794,
+        "sd_between_shots": 0.12400907240636987,
+        "median": -0.0005608797073364258,
+        "improved": 80,
+        "worsened": 0,
+        "probability_mean_change": -0.01791501309198793,
+        "probability_up": 0,
+        "probability_down": 80
+      },
+      "early": {
+        "shots": 19,
+        "mean": -0.4484521032948243,
+        "sd_between_shots": 0.29469694309303873,
+        "median": -0.5228889882564545,
+        "improved": 19,
+        "worsened": 0,
+        "probability_mean_change": -0.12468983346939479,
+        "probability_up": 0,
+        "probability_down": 19
+      },
+      "danger": {
+        "shots": 32,
+        "mean": 0.15096413105129614,
+        "sd_between_shots": 0.27886853110455107,
+        "median": 0.03329692978877574,
+        "improved": 2,
+        "worsened": 30,
+        "probability_mean_change": -0.0671655465484946,
+        "probability_up": 2,
+        "probability_down": 30
+      },
+      "macro": -0.11113477943304532
+    },
+    "fresh_mean_hold": {
+      "safe": {
+        "shots": 80,
+        "mean": -0.03522959351539612,
+        "sd_between_shots": 0.12378170941866497,
+        "median": -0.0005053877830505371,
+        "improved": 79,
+        "worsened": 1,
+        "probability_mean_change": -0.017762910770397867,
+        "probability_up": 1,
+        "probability_down": 79
+      },
+      "early": {
+        "shots": 19,
+        "mean": -0.4417759074192298,
+        "sd_between_shots": 0.2927917532262192,
+        "median": -0.5225929915904999,
+        "improved": 19,
+        "worsened": 0,
+        "probability_mean_change": -0.1223593840749297,
+        "probability_up": 0,
+        "probability_down": 19
+      },
+      "danger": {
+        "shots": 32,
+        "mean": 0.1442696976737352,
+        "sd_between_shots": 0.2794908393902602,
+        "median": 0.029768786975182593,
+        "improved": 3,
+        "worsened": 29,
+        "probability_mean_change": -0.06310348824626999,
+        "probability_up": 3,
+        "probability_down": 29
+      },
+      "macro": -0.1109119344202969
+    },
+    "fresh_worst_true": {
+      "safe": {
+        "shots": 80,
+        "mean": 0.013633441273123026,
+        "sd_between_shots": 0.19957752806751022,
+        "median": -0.0002447366714477539,
+        "improved": 69,
+        "worsened": 11,
+        "probability_mean_change": -0.002328742775716819,
+        "probability_up": 10,
+        "probability_down": 70
+      },
+      "early": {
+        "shots": 19,
+        "mean": -0.14081835511483645,
+        "sd_between_shots": 0.2108197240587706,
+        "median": -0.058283060789108276,
+        "improved": 15,
+        "worsened": 4,
+        "probability_mean_change": -0.04534347592485383,
+        "probability_up": 4,
+        "probability_down": 15
+      },
+      "danger": {
+        "shots": 32,
+        "mean": 0.052494413052045275,
+        "sd_between_shots": 0.2112856369246226,
+        "median": 0.0017918654484674335,
+        "improved": 11,
+        "worsened": 21,
+        "probability_mean_change": -0.014195653042406775,
+        "probability_up": 12,
+        "probability_down": 20
+      },
+      "macro": -0.02489683359655605
+    },
+    "fresh_worst_reverse": {
+      "safe": {
+        "shots": 80,
+        "mean": 0.01304456703364849,
+        "sd_between_shots": 0.19475938672180484,
+        "median": -0.00025075674057006836,
+        "improved": 69,
+        "worsened": 11,
+        "probability_mean_change": -0.002333715512941126,
+        "probability_up": 10,
+        "probability_down": 70
+      },
+      "early": {
+        "shots": 19,
+        "mean": -0.14031822744168734,
+        "sd_between_shots": 0.21214991299456787,
+        "median": -0.05791574716567993,
+        "improved": 15,
+        "worsened": 4,
+        "probability_mean_change": -0.04571015597321093,
+        "probability_up": 4,
+        "probability_down": 15
+      },
+      "danger": {
+        "shots": 32,
+        "mean": 0.05262229965228471,
+        "sd_between_shots": 0.20975320930791325,
+        "median": 0.0018276047194376588,
+        "improved": 11,
+        "worsened": 21,
+        "probability_mean_change": -0.014441986342717428,
+        "probability_up": 12,
+        "probability_down": 20
+      },
+      "macro": -0.024883786918584717
+    },
+    "fresh_worst_hold": {
+      "safe": {
+        "shots": 80,
+        "mean": 0.0067308606579899784,
+        "sd_between_shots": 0.1398174397760544,
+        "median": -0.00022459030151367188,
+        "improved": 69,
+        "worsened": 11,
+        "probability_mean_change": -0.0043917816772591324,
+        "probability_up": 10,
+        "probability_down": 70
+      },
+      "early": {
+        "shots": 19,
+        "mean": -0.14680622518062592,
+        "sd_between_shots": 0.21355953865284966,
+        "median": -0.11986631155014038,
+        "improved": 15,
+        "worsened": 4,
+        "probability_mean_change": -0.04704648628218198,
+        "probability_up": 4,
+        "probability_down": 15
+      },
+      "danger": {
+        "shots": 32,
+        "mean": 0.05357511652618996,
+        "sd_between_shots": 0.20953446008419327,
+        "median": 0.0014640414156019688,
+        "improved": 10,
+        "worsened": 22,
+        "probability_mean_change": -0.015455713008122984,
+        "probability_up": 10,
+        "probability_down": 22
+      },
+      "macro": -0.028833415998815327
+    },
+    "original_blocked": {
+      "safe": {
+        "shots": 80,
+        "mean": 0.030989177711308002,
+        "sd_between_shots": 0.22236717837978728,
+        "median": -0.00012224912643432617,
+        "improved": 56,
+        "worsened": 23,
+        "probability_mean_change": 0.00346517616417259,
+        "probability_up": 22,
+        "probability_down": 57
+      },
+      "early": {
+        "shots": 19,
+        "mean": 0.14351593193254972,
+        "sd_between_shots": 0.2748100951304135,
+        "median": 0.24014560878276825,
+        "improved": 8,
+        "worsened": 11,
+        "probability_mean_change": 0.01097713266866968,
+        "probability_up": 11,
+        "probability_down": 8
+      },
+      "danger": {
+        "shots": 32,
+        "mean": -0.0031532784742012154,
+        "sd_between_shots": 0.08861699647265742,
+        "median": 5.198526196181774e-05,
+        "improved": 15,
+        "worsened": 17,
+        "probability_mean_change": 0.005518887766811531,
+        "probability_up": 15,
+        "probability_down": 17
+      },
+      "macro": 0.05711727705655217
+    },
+    "original_fresh": {
+      "safe": {
+        "shots": 80,
+        "mean": 0.03474251125007868,
+        "sd_between_shots": 0.22250058984219465,
+        "median": -9.506940841674805e-05,
+        "improved": 53,
+        "worsened": 26,
+        "probability_mean_change": 0.0048303205039701425,
+        "probability_up": 25,
+        "probability_down": 54
+      },
+      "early": {
+        "shots": 19,
+        "mean": 0.17348656607301613,
+        "sd_between_shots": 0.26373696806803726,
+        "median": 0.2283959686756134,
+        "improved": 7,
+        "worsened": 12,
+        "probability_mean_change": 0.01756169487673201,
+        "probability_up": 12,
+        "probability_down": 7
+      },
+      "danger": {
+        "shots": 32,
+        "mean": -0.025935299425327685,
+        "sd_between_shots": 0.0970148130430915,
+        "median": -0.000452234351541847,
+        "improved": 16,
+        "worsened": 16,
+        "probability_mean_change": 0.01807878117688233,
+        "probability_up": 17,
+        "probability_down": 15
+      },
+      "macro": 0.06076459263258904
+    },
+    "forecast_blocked": {
+      "safe": {
+        "shots": 80,
+        "mean": -0.0016438109800219537,
+        "sd_between_shots": 0.03979925219562854,
+        "median": -1.4066696166992188e-05,
+        "improved": 43,
+        "worsened": 36,
+        "probability_mean_change": -0.0006328154129732865,
+        "probability_up": 36,
+        "probability_down": 43
+      },
+      "early": {
+        "shots": 19,
+        "mean": -0.02580981976107547,
+        "sd_between_shots": 0.18966357521264895,
+        "median": -0.014127075672149658,
+        "improved": 11,
+        "worsened": 8,
+        "probability_mean_change": -0.011331128005526568,
+        "probability_up": 8,
+        "probability_down": 11
+      },
+      "danger": {
+        "shots": 32,
+        "mean": -0.004967497334291693,
+        "sd_between_shots": 0.05790101176405431,
+        "median": 0.00020662532187998295,
+        "improved": 14,
+        "worsened": 18,
+        "probability_mean_change": 0.0016162183819687925,
+        "probability_up": 14,
+        "probability_down": 18
+      },
+      "macro": -0.010807042691796373
+    },
+    "forecast_fresh": {
+      "safe": {
+        "shots": 80,
+        "mean": 0.011263367719948292,
+        "sd_between_shots": 0.07543030215221574,
+        "median": -1.3530254364013672e-05,
+        "improved": 43,
+        "worsened": 35,
+        "probability_mean_change": 0.0025187101411574984,
+        "probability_up": 35,
+        "probability_down": 43
+      },
+      "early": {
+        "shots": 19,
+        "mean": -0.061000080485092964,
+        "sd_between_shots": 0.18795110868634674,
+        "median": -0.03424929082393646,
+        "improved": 15,
+        "worsened": 4,
+        "probability_mean_change": -0.01753108074741536,
+        "probability_up": 3,
+        "probability_down": 16
+      },
+      "danger": {
+        "shots": 32,
+        "mean": 0.017531438483274542,
+        "sd_between_shots": 0.08300977936977608,
+        "median": 0.0010157909709960222,
+        "improved": 10,
+        "worsened": 22,
+        "probability_mean_change": -0.009350646156235598,
+        "probability_up": 10,
+        "probability_down": 22
+      },
+      "macro": -0.010735091427290044
+    }
+  },
+  "timing_occupancy_diagnostic": {
+    "blocked": {
+      "danger_endpoints": 125,
+      "mean_positive_fraction_in_arrived_targets": 0.14536000000000002,
+      "zero_positive_target_endpoints": 73
+    },
+    "fresh": {
+      "danger_endpoints": 125,
+      "mean_positive_fraction_in_arrived_targets": 0.24336000000000005,
+      "zero_positive_target_endpoints": 19
+    }
+  },
+  "same_seed_reproduction": {
+    "validation_equal": true,
+    "training_equal": true,
+    "heads_equal": {
+      "blocked_mean": true,
+      "blocked_worst": true,
+      "fresh_mean": true,
+      "fresh_worst": true
+    }
+  },
+  "source_screen": {
+    "blocked_mean": false,
+    "blocked_worst": false,
+    "fresh_mean": false,
+    "fresh_worst": false
+  },
+  "no_east_results": true,
+  "independent_confirmation": false
+}

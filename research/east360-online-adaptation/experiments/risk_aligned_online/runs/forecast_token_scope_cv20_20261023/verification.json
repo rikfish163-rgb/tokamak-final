@@ -1,0 +1,211 @@
+{
+  "status": "VERIFIED",
+  "completed_sha256": "7e4ba1b6a51e69eb1eccc74b32d6dd6c905eec568d03f9f2af390fdb46dcf89d",
+  "audit_sha256": "19d563a6597740f1bd4658e65e9e9e160b40b32390fe1524b98224f2076d961c",
+  "analysis_sha256": "e08068bb867c2d86eb6a486c048fe450811eb560c04b491bb4b568232eaf9014",
+  "test_sha256": "bd6f5917d6479728d3e4cbf1f81ac3de06c7b17fb3fe3a533faff2a6b13ec33d",
+  "recounts": 100,
+  "full_stream_replays": [
+    {
+      "fold": 0,
+      "shot": 62630,
+      "arms": 5,
+      "exact": true
+    },
+    {
+      "fold": 0,
+      "shot": 63226,
+      "arms": 5,
+      "exact": true
+    },
+    {
+      "fold": 0,
+      "shot": 63711,
+      "arms": 5,
+      "exact": true
+    },
+    {
+      "fold": 0,
+      "shot": 64481,
+      "arms": 5,
+      "exact": true
+    },
+    {
+      "fold": 0,
+      "shot": 68933,
+      "arms": 5,
+      "exact": true
+    },
+    {
+      "fold": 1,
+      "shot": 62945,
+      "arms": 5,
+      "exact": true
+    },
+    {
+      "fold": 1,
+      "shot": 63712,
+      "arms": 5,
+      "exact": true
+    },
+    {
+      "fold": 1,
+      "shot": 63824,
+      "arms": 5,
+      "exact": true
+    },
+    {
+      "fold": 1,
+      "shot": 64894,
+      "arms": 5,
+      "exact": true
+    },
+    {
+      "fold": 1,
+      "shot": 70633,
+      "arms": 5,
+      "exact": true
+    },
+    {
+      "fold": 2,
+      "shot": 63481,
+      "arms": 5,
+      "exact": true
+    },
+    {
+      "fold": 2,
+      "shot": 63776,
+      "arms": 5,
+      "exact": true
+    },
+    {
+      "fold": 2,
+      "shot": 64677,
+      "arms": 5,
+      "exact": true
+    },
+    {
+      "fold": 2,
+      "shot": 65063,
+      "arms": 5,
+      "exact": true
+    },
+    {
+      "fold": 2,
+      "shot": 72239,
+      "arms": 5,
+      "exact": true
+    },
+    {
+      "fold": 3,
+      "shot": 63645,
+      "arms": 5,
+      "exact": true
+    },
+    {
+      "fold": 3,
+      "shot": 63933,
+      "arms": 5,
+      "exact": true
+    },
+    {
+      "fold": 3,
+      "shot": 66611,
+      "arms": 5,
+      "exact": true
+    },
+    {
+      "fold": 3,
+      "shot": 70868,
+      "arms": 5,
+      "exact": true
+    },
+    {
+      "fold": 3,
+      "shot": 72415,
+      "arms": 5,
+      "exact": true
+    }
+  ],
+  "training_draws_checked": {
+    "0": 32768,
+    "1": 32768,
+    "2": 32768,
+    "3": 32768
+  },
+  "exact_refits": [
+    {
+      "fold": 0,
+      "heads": [
+        "full",
+        "patch"
+      ],
+      "steps_per_head": 256
+    }
+  ],
+  "source_and_classifier_parameters_verified": true,
+  "actual_intra_steps": 2772,
+  "metrics": {
+    "static": {
+      "tp": 3,
+      "fp": 1,
+      "n_disrupt": 4,
+      "n_safe": 16,
+      "tpr": 0.75,
+      "fpr": 0.0625,
+      "J": 0.6875,
+      "threshold": 0.7258946895599365,
+      "median_lead_ms": 258.0,
+      "very_early_over3000": 0
+    },
+    "full_all": {
+      "tp": 2,
+      "fp": 1,
+      "n_disrupt": 4,
+      "n_safe": 16,
+      "tpr": 0.5,
+      "fpr": 0.0625,
+      "J": 0.4375,
+      "threshold": 0.7258946895599365,
+      "median_lead_ms": 626.5,
+      "very_early_over3000": 0
+    },
+    "full_observation": {
+      "tp": 2,
+      "fp": 1,
+      "n_disrupt": 4,
+      "n_safe": 16,
+      "tpr": 0.5,
+      "fpr": 0.0625,
+      "J": 0.4375,
+      "threshold": 0.7258946895599365,
+      "median_lead_ms": 625.0,
+      "very_early_over3000": 0
+    },
+    "patch_all": {
+      "tp": 2,
+      "fp": 1,
+      "n_disrupt": 4,
+      "n_safe": 16,
+      "tpr": 0.5,
+      "fpr": 0.0625,
+      "J": 0.4375,
+      "threshold": 0.7258946895599365,
+      "median_lead_ms": 630.0,
+      "very_early_over3000": 0
+    },
+    "patch_observation": {
+      "tp": 2,
+      "fp": 1,
+      "n_disrupt": 4,
+      "n_safe": 16,
+      "tpr": 0.5,
+      "fpr": 0.0625,
+      "J": 0.4375,
+      "threshold": 0.7258946895599365,
+      "median_lead_ms": 630.0,
+      "very_early_over3000": 0
+    }
+  },
+  "scope": "development CV20; same-implementation neural replay, not independent confirmation"
+}

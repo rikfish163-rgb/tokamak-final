@@ -1,0 +1,486 @@
+{
+  "protocol": {
+    "parent_sha256": "c7270c1ea3652db2e30e972d4ca9a4a2d33220a68e4a3765c8b7f5bcceeaeb02",
+    "direction_sha256": "5fe39f2afd8fdd853003eb69e292db06451213ed4be2236e7222a119a6d87886",
+    "history_summary_sha256": "19e4a032b89bf0677d71d73fe9cfd83fd2603ae3eecb97354222b6dd2e361926",
+    "threshold": 0.7258946895599365,
+    "seed": 131,
+    "fit_ids": [
+      54006,
+      54014,
+      54068,
+      54094,
+      54098,
+      54099,
+      54105,
+      54157,
+      54165,
+      54170,
+      54178,
+      54227,
+      54237,
+      54243,
+      54244,
+      54252,
+      54272,
+      54276,
+      54313,
+      54314,
+      54328,
+      54338,
+      54340,
+      54344,
+      54396
+    ],
+    "audit_ids": [
+      53825,
+      54003,
+      54017,
+      54078,
+      54160,
+      54347,
+      54351
+    ],
+    "future_ids": [
+      54404,
+      54405,
+      54411,
+      54421,
+      54426,
+      54466,
+      54666,
+      54686,
+      54752,
+      54775,
+      54785,
+      54792,
+      54793,
+      54818,
+      54828,
+      54829,
+      54846,
+      54860,
+      54865,
+      54883,
+      54889,
+      54890,
+      54904,
+      54905,
+      54918,
+      54924,
+      54927,
+      54928,
+      54938,
+      54941,
+      54958,
+      54977
+    ],
+    "future_access": "only after one historical guard passes",
+    "steps": 32,
+    "pairs": "one safe + one disruptive each step, chronological cyclic within class",
+    "lr": 3e-05,
+    "optimizer": "Adam, no weight decay",
+    "training_target": "single-event three-action historical counterfactual; error then whole risk",
+    "rules": "zero B before first32; only candidate after first32; reject once and stop if audit fails",
+    "information_arms": [
+      "S",
+      "H",
+      "P",
+      "L"
+    ],
+    "source_frozen": true,
+    "direction_frozen": true,
+    "final_score_correction": false,
+    "source_only_initialization": true,
+    "evidence": "DEVELOPMENT_ONLY; historical rule training is supervised, current shot action inputs unlabeled",
+    "code_sha256": {
+      "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/signed_intra_20261005/context.py": "e7ec42b711766eacc075b6a49c64382be11ffbadf1c9eb76182144c2240f998f",
+      "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/signed_intra_20261005/direction.py": "da30a607291a3aa5ec5f0a93f67a6218050a9344199dca4a0c26101403c9a75c",
+      "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/signed_intra_20261005/finite_probe.py": "bdf0c98d677e4a0da8bbcd582fe55214e59ca29585f45aa097dd03c04fad1eaf",
+      "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/signed_intra_20261005/policy.py": "9a3b9498d1ab93d4ef972f1148729a1e665180cdcde000299c91129cd22296ee",
+      "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/simple23.py": "2234ab9c872baf1f5c6667225094d482b8c44ad83c091bb56bb7d8224e1a7b22",
+      "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/simple_data.py": "0d9b1e5f2caf5dc63cb227f79150ad0743d653d3b6f75546cc4df8277886f046",
+      "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/io23.py": "714b0339e3119cb39f02234ea9e2df7643a90cc303c127d70b110fa74170f72c",
+      "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/simple_online.py": "34f97c09bacdb755db3ea426cb52ab6f5e47b2446eb064181dc7bd5074122c6d",
+      "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/simple_train.py": "5716a805eed13578ae7dfc0fda5970178dfb579e87a9d51338a3b83f4c9d6ab9",
+      "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/ffn_intra_20261005/model.py": "c177187d0605f5e4907fd3f8312ec79d6a0a8ee4ae0d111519f8d477e7d95559",
+      "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/redesign_20261004/intra.py": "313707485f3c0a730ae98ac8d86f0ae0aa748c04b23a0ad0a3019dd118db0b27",
+      "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/redesign_20261004/prepare_prior.py": "469c568e685ebf6d9451eb5ccdeddcca98eb8195897934814d7eb8b13952a49f"
+    }
+  },
+  "audit": {
+    "old": {
+      "tp": 0,
+      "fp": 0,
+      "n_disrupt": 1,
+      "n_safe": 6,
+      "tpr": 0.0,
+      "fpr": 0.0,
+      "J": 0.0,
+      "threshold": 0.7258946895599365,
+      "median_lead_ms": null,
+      "predictions": [
+        {
+          "shot": 53825,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        {
+          "shot": 54003,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        {
+          "shot": 54017,
+          "is_disrupt": true,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        {
+          "shot": 54078,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        {
+          "shot": 54160,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        {
+          "shot": 54347,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        {
+          "shot": 54351,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      ],
+      "risks": {
+        "0": 0.22525337216250127,
+        "1": 1.4436996591704827
+      }
+    },
+    "candidate": {
+      "tp": 0,
+      "fp": 0,
+      "n_disrupt": 1,
+      "n_safe": 6,
+      "tpr": 0.0,
+      "fpr": 0.0,
+      "J": 0.0,
+      "threshold": 0.7258946895599365,
+      "median_lead_ms": null,
+      "predictions": [
+        {
+          "shot": 53825,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        {
+          "shot": 54003,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        {
+          "shot": 54017,
+          "is_disrupt": true,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        {
+          "shot": 54078,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        {
+          "shot": 54160,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        {
+          "shot": 54347,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        {
+          "shot": 54351,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      ],
+      "risks": {
+        "0": 0.17046881470968112,
+        "1": 1.6678937038049626
+      }
+    }
+  },
+  "admitted": false,
+  "future_run": false,
+  "cold_start": {
+    "tp": 1,
+    "fp": 1,
+    "n_disrupt": 5,
+    "n_safe": 27,
+    "tpr": 0.2,
+    "fpr": 0.037037037037037035,
+    "J": 0.16296296296296298,
+    "threshold": 0.7258946895599365,
+    "median_lead_ms": 84.0,
+    "predictions": [
+      {
+        "shot": 53825,
+        "is_disrupt": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      {
+        "shot": 54003,
+        "is_disrupt": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      {
+        "shot": 54006,
+        "is_disrupt": true,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      {
+        "shot": 54014,
+        "is_disrupt": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      {
+        "shot": 54017,
+        "is_disrupt": true,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      {
+        "shot": 54068,
+        "is_disrupt": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      {
+        "shot": 54078,
+        "is_disrupt": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      {
+        "shot": 54094,
+        "is_disrupt": true,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      {
+        "shot": 54098,
+        "is_disrupt": true,
+        "alarm": true,
+        "lead_ms": 84.0,
+        "timely": true
+      },
+      {
+        "shot": 54099,
+        "is_disrupt": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      {
+        "shot": 54105,
+        "is_disrupt": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      {
+        "shot": 54157,
+        "is_disrupt": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      {
+        "shot": 54160,
+        "is_disrupt": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      {
+        "shot": 54165,
+        "is_disrupt": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      {
+        "shot": 54170,
+        "is_disrupt": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      {
+        "shot": 54178,
+        "is_disrupt": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      {
+        "shot": 54227,
+        "is_disrupt": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      {
+        "shot": 54237,
+        "is_disrupt": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      {
+        "shot": 54243,
+        "is_disrupt": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      {
+        "shot": 54244,
+        "is_disrupt": false,
+        "alarm": true,
+        "lead_ms": null,
+        "timely": false
+      },
+      {
+        "shot": 54252,
+        "is_disrupt": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      {
+        "shot": 54272,
+        "is_disrupt": true,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      {
+        "shot": 54276,
+        "is_disrupt": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      {
+        "shot": 54313,
+        "is_disrupt": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      {
+        "shot": 54314,
+        "is_disrupt": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      {
+        "shot": 54328,
+        "is_disrupt": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      {
+        "shot": 54338,
+        "is_disrupt": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      {
+        "shot": 54340,
+        "is_disrupt": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      {
+        "shot": 54344,
+        "is_disrupt": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      {
+        "shot": 54347,
+        "is_disrupt": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      {
+        "shot": 54351,
+        "is_disrupt": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      {
+        "shot": 54396,
+        "is_disrupt": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      }
+    ]
+  },
+  "classifier_unchanged": true,
+  "elapsed_seconds": 25.836858231996302
+}

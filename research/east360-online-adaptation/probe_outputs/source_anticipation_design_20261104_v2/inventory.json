@@ -1,0 +1,183 @@
+{
+  "train": {
+    "records": 10044,
+    "shots": 1303,
+    "strata": {
+      "disruptive_0_to_30ms": {
+        "records": 194,
+        "shots": 135,
+        "hdf_disruptive_shots": 135
+      },
+      "disruptive_30_to_125ms": {
+        "records": 378,
+        "shots": 123,
+        "hdf_disruptive_shots": 123
+      },
+      "disruptive_earlier_than_125ms": {
+        "records": 179,
+        "shots": 65,
+        "hdf_disruptive_shots": 65
+      },
+      "safe": {
+        "records": 9293,
+        "shots": 1163,
+        "hdf_disruptive_shots": 0
+      }
+    },
+    "label_pairs": {
+      "0_to_0": 9472,
+      "0_to_1": 376,
+      "1_to_0": 0,
+      "1_to_1": 196
+    }
+  },
+  "val": {
+    "records": 946,
+    "shots": 145,
+    "strata": {
+      "disruptive_0_to_30ms": {
+        "records": 91,
+        "shots": 65,
+        "hdf_disruptive_shots": 65
+      },
+      "disruptive_30_to_125ms": {
+        "records": 155,
+        "shots": 53,
+        "hdf_disruptive_shots": 53
+      },
+      "disruptive_earlier_than_125ms": {
+        "records": 62,
+        "shots": 20,
+        "hdf_disruptive_shots": 20
+      },
+      "safe": {
+        "records": 638,
+        "shots": 80,
+        "hdf_disruptive_shots": 0
+      }
+    },
+    "label_pairs": {
+      "0_to_0": 698,
+      "0_to_1": 131,
+      "1_to_0": 2,
+      "1_to_1": 115
+    }
+  },
+  "permutation": {
+    "seed": 131,
+    "permutation": "within HDF-disruptive TRAIN shot x equal scheduled occurrence count; safe/unsampled unchanged",
+    "exposure_matched": true,
+    "training_draws": 512,
+    "unique_scheduled_records": 411,
+    "future_positive_draws": 256,
+    "shuffled_positive_draws": 256,
+    "changed_draws": 56,
+    "changed_records": 48,
+    "changed_shots": [
+      1052272,
+      1052639,
+      1054339,
+      1055074,
+      1055118,
+      1055242,
+      1055333,
+      1055342,
+      1055345,
+      1055350,
+      1055351,
+      1055356,
+      1055357,
+      1055477,
+      1055965,
+      1056919,
+      1057202,
+      1057203,
+      1057231,
+      1057335,
+      1057636,
+      1057653
+    ],
+    "homogeneous_disruptive_shots": [
+      1051501,
+      1052269,
+      1052388,
+      1052565,
+      1052641,
+      1052948,
+      1052959,
+      1052962,
+      1053016,
+      1053034,
+      1053036,
+      1053042,
+      1053098,
+      1053231,
+      1053412,
+      1053785,
+      1053824,
+      1053851,
+      1053927,
+      1053930,
+      1053931,
+      1053932,
+      1053934,
+      1053936,
+      1053940,
+      1053941,
+      1055220,
+      1055235,
+      1055249,
+      1055332,
+      1055416,
+      1055492,
+      1055966,
+      1056175,
+      1056179,
+      1056183,
+      1056184,
+      1056188,
+      1056189,
+      1056191,
+      1056193,
+      1056194,
+      1056198,
+      1056205,
+      1056219,
+      1056223,
+      1056284,
+      1056294,
+      1056324,
+      1056381,
+      1056382,
+      1056383,
+      1056386,
+      1056390,
+      1056391,
+      1056680,
+      1056840,
+      1056844,
+      1056849,
+      1056865,
+      1056920,
+      1057338,
+      1057521,
+      1057526,
+      1057567,
+      1057569,
+      1057578,
+      1057609,
+      1057610,
+      1057611,
+      1057614,
+      1057831,
+      1057836,
+      1058023,
+      1058053
+    ],
+    "positives": 572,
+    "shuffled_positives": 572,
+    "record_order": "same as supplied records"
+  },
+  "original_point_targets_preserved": true,
+  "trained_model_count": 0
+}

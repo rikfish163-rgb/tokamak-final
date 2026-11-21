@@ -1,0 +1,106 @@
+{
+  "status": "VERIFIED",
+  "completed_sha256": "ab70e3f49bcedb781d8bce6c6d75562eaeca0b3ce266a53ff939cc28810b248f",
+  "audit_sha256": "e27b2416085560f89eb6477e3555e66c5167b3ac7f9e253a51ed0e24526212af",
+  "diagnostic_sha256": "d8e660c6fa97a5ce2517240a12681c9e1072f427afdad054e18611e446375e31",
+  "metrics": {
+    "static": {
+      "tp": 3,
+      "fp": 1,
+      "n_disrupt": 4,
+      "n_safe": 16,
+      "tpr": 0.75,
+      "fpr": 0.0625,
+      "J": 0.6875,
+      "threshold": 0.7258946895599365,
+      "median_lead_ms": 258.0,
+      "very_early_over3000": 0
+    },
+    "warm_intra": {
+      "tp": 2,
+      "fp": 1,
+      "n_disrupt": 4,
+      "n_safe": 16,
+      "tpr": 0.5,
+      "fpr": 0.0625,
+      "J": 0.4375,
+      "threshold": 0.7258946895599365,
+      "median_lead_ms": 630.0,
+      "very_early_over3000": 0
+    },
+    "tail2": {
+      "tp": 2,
+      "fp": 1,
+      "n_disrupt": 4,
+      "n_safe": 16,
+      "tpr": 0.5,
+      "fpr": 0.0625,
+      "J": 0.4375,
+      "threshold": 0.7258946895599365,
+      "median_lead_ms": 641.0,
+      "very_early_over3000": 0
+    },
+    "tail8": {
+      "tp": 2,
+      "fp": 2,
+      "n_disrupt": 4,
+      "n_safe": 16,
+      "tpr": 0.5,
+      "fpr": 0.125,
+      "J": 0.375,
+      "threshold": 0.7258946895599365,
+      "median_lead_ms": 662.5,
+      "very_early_over3000": 0
+    }
+  },
+  "gate": false,
+  "independent_shot_counts": 80,
+  "exact_cuda_replayed_shots": 20,
+  "new_arms_per_shot": 2,
+  "refitted_folds": [
+    0
+  ],
+  "refitted_arms": [
+    "tail2",
+    "tail8"
+  ],
+  "exact_training_histories": true,
+  "training_counts": {
+    "fold0": {
+      "episodes": 256,
+      "forward_steps": 5582,
+      "differentiated_steps": 1253
+    },
+    "fold1": {
+      "episodes": 256,
+      "forward_steps": 7412,
+      "differentiated_steps": 1217
+    },
+    "fold2": {
+      "episodes": 256,
+      "forward_steps": 6488,
+      "differentiated_steps": 1224
+    },
+    "fold3": {
+      "episodes": 256,
+      "forward_steps": 5826,
+      "differentiated_steps": 1220
+    }
+  },
+  "updates": {
+    "tail2": {
+      "steps": 693,
+      "loss_decreased": 693,
+      "max_step": 0.0010000062451896218
+    },
+    "tail8": {
+      "steps": 693,
+      "loss_decreased": 693,
+      "max_step": 0.0010000057191206062
+    }
+  },
+  "source_and_classifiers_unchanged": true,
+  "test360_accessed": false,
+  "seconds": 51.316034619001584,
+  "limitation": "Four disrupted shots; developmental cross-validation, not independent future confirmation. Neural replay uses the same implementation."
+}

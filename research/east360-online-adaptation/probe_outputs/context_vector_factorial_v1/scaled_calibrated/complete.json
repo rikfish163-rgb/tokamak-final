@@ -1,0 +1,80 @@
+{
+  "groups": {
+    "real": {
+      "safe": {
+        "shots": 3,
+        "mean_delta_bce": 0.1456402106427996,
+        "improved": 2,
+        "worsened": 1
+      },
+      "danger_timely": {
+        "shots": 17,
+        "mean_delta_bce": -1.1933381551299362,
+        "improved": 13,
+        "worsened": 4
+      }
+    },
+    "reverse": {
+      "safe": {
+        "shots": 3,
+        "mean_delta_bce": 0.1509304131813228,
+        "improved": 2,
+        "worsened": 1
+      },
+      "danger_timely": {
+        "shots": 17,
+        "mean_delta_bce": -1.137711666008388,
+        "improved": 13,
+        "worsened": 4
+      }
+    },
+    "mean_feedback": {
+      "safe": {
+        "shots": 3,
+        "mean_delta_bce": 0.14544107836580175,
+        "improved": 2,
+        "worsened": 1
+      },
+      "danger_timely": {
+        "shots": 17,
+        "mean_delta_bce": -1.328114987111949,
+        "improved": 14,
+        "worsened": 3
+      }
+    },
+    "constant": {
+      "safe": {
+        "shots": 3,
+        "mean_delta_bce": 1.5186279440911337,
+        "improved": 0,
+        "worsened": 3
+      },
+      "danger_timely": {
+        "shots": 17,
+        "mean_delta_bce": -1.6453599603274205,
+        "improved": 17,
+        "worsened": 0
+      }
+    },
+    "risk_axis": {
+      "safe": {
+        "shots": 3,
+        "mean_delta_bce": 0.011931409468307933,
+        "improved": 2,
+        "worsened": 1
+      },
+      "danger_timely": {
+        "shots": 17,
+        "mean_delta_bce": -0.8347894719694973,
+        "improved": 14,
+        "worsened": 3
+      }
+    }
+  },
+  "full_stream_gate": false,
+  "reasons": [
+    "safe did not pass the prespecified conditional screen",
+    "danger_timely did not pass the prespecified conditional screen"
+  ],
+  "policy_sha256": "9b95e433796d5deec1d068942b016bb467643f24f5e149a23b8a8aa82a8077a9"
+}

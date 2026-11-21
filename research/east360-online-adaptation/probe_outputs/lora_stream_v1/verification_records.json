@@ -1,0 +1,220 @@
+{
+  "status": "PASS",
+  "cases": 360,
+  "curves": 1440,
+  "metrics": {
+    "cold": {
+      "full360": {
+        "n": 360,
+        "n_disrupt": 180,
+        "n_safe": 180,
+        "tp": 125,
+        "fp": 35,
+        "tpr": 0.6944444444444444,
+        "fpr": 0.19444444444444445,
+        "J": 0.5,
+        "early_over3000": 18
+      },
+      "warmup20": {
+        "n": 20,
+        "n_disrupt": 8,
+        "n_safe": 12,
+        "tp": 7,
+        "fp": 6,
+        "tpr": 0.875,
+        "fpr": 0.5,
+        "J": 0.375,
+        "early_over3000": 2
+      },
+      "suffix340": {
+        "n": 340,
+        "n_disrupt": 172,
+        "n_safe": 168,
+        "tp": 118,
+        "fp": 29,
+        "tpr": 0.686046511627907,
+        "fpr": 0.17261904761904762,
+        "J": 0.5134274640088594,
+        "early_over3000": 16
+      }
+    },
+    "real": {
+      "full360": {
+        "n": 360,
+        "n_disrupt": 180,
+        "n_safe": 180,
+        "tp": 126,
+        "fp": 35,
+        "tpr": 0.7,
+        "fpr": 0.19444444444444445,
+        "J": 0.5055555555555555,
+        "early_over3000": 18
+      },
+      "warmup20": {
+        "n": 20,
+        "n_disrupt": 8,
+        "n_safe": 12,
+        "tp": 7,
+        "fp": 6,
+        "tpr": 0.875,
+        "fpr": 0.5,
+        "J": 0.375,
+        "early_over3000": 2
+      },
+      "suffix340": {
+        "n": 340,
+        "n_disrupt": 172,
+        "n_safe": 168,
+        "tp": 119,
+        "fp": 29,
+        "tpr": 0.6918604651162791,
+        "fpr": 0.17261904761904762,
+        "J": 0.5192414174972315,
+        "early_over3000": 16
+      }
+    },
+    "reverse": {
+      "full360": {
+        "n": 360,
+        "n_disrupt": 180,
+        "n_safe": 180,
+        "tp": 126,
+        "fp": 35,
+        "tpr": 0.7,
+        "fpr": 0.19444444444444445,
+        "J": 0.5055555555555555,
+        "early_over3000": 18
+      },
+      "warmup20": {
+        "n": 20,
+        "n_disrupt": 8,
+        "n_safe": 12,
+        "tp": 7,
+        "fp": 6,
+        "tpr": 0.875,
+        "fpr": 0.5,
+        "J": 0.375,
+        "early_over3000": 2
+      },
+      "suffix340": {
+        "n": 340,
+        "n_disrupt": 172,
+        "n_safe": 168,
+        "tp": 119,
+        "fp": 29,
+        "tpr": 0.6918604651162791,
+        "fpr": 0.17261904761904762,
+        "J": 0.5192414174972315,
+        "early_over3000": 16
+      }
+    },
+    "hold": {
+      "full360": {
+        "n": 360,
+        "n_disrupt": 180,
+        "n_safe": 180,
+        "tp": 126,
+        "fp": 35,
+        "tpr": 0.7,
+        "fpr": 0.19444444444444445,
+        "J": 0.5055555555555555,
+        "early_over3000": 18
+      },
+      "warmup20": {
+        "n": 20,
+        "n_disrupt": 8,
+        "n_safe": 12,
+        "tp": 7,
+        "fp": 6,
+        "tpr": 0.875,
+        "fpr": 0.5,
+        "J": 0.375,
+        "early_over3000": 2
+      },
+      "suffix340": {
+        "n": 340,
+        "n_disrupt": 172,
+        "n_safe": 168,
+        "tp": 119,
+        "fp": 29,
+        "tpr": 0.6918604651162791,
+        "fpr": 0.17261904761904762,
+        "J": 0.5192414174972315,
+        "early_over3000": 16
+      }
+    }
+  },
+  "flips": {
+    "real": {
+      "rescued_D": [
+        93995
+      ],
+      "lost_D": [],
+      "removed_FP": [],
+      "added_FP": []
+    },
+    "reverse": {
+      "rescued_D": [
+        93995
+      ],
+      "lost_D": [],
+      "removed_FP": [],
+      "added_FP": []
+    },
+    "hold": {
+      "rescued_D": [
+        93995
+      ],
+      "lost_D": [],
+      "removed_FP": [],
+      "added_FP": []
+    }
+  },
+  "update_statistics": {
+    "real": {
+      "events": 10910,
+      "accepted": 10849,
+      "nonzero_gradients": 10910,
+      "observed_scalars": 5678075
+    },
+    "reverse": {
+      "events": 10910,
+      "accepted": 10854,
+      "nonzero_gradients": 10910,
+      "observed_scalars": 5678075
+    },
+    "hold": {
+      "events": 10910,
+      "accepted": 10765,
+      "nonzero_gradients": 10910,
+      "observed_scalars": 5678075
+    }
+  },
+  "action_statistics": {
+    "cold": {
+      "endpoints": 1434425,
+      "capped_endpoints": 0,
+      "max_rms": 0.0
+    },
+    "real": {
+      "endpoints": 1434425,
+      "capped_endpoints": 21451,
+      "max_rms": 0.2500000092442344
+    },
+    "reverse": {
+      "endpoints": 1434425,
+      "capped_endpoints": 22034,
+      "max_rms": 0.25000000878258194
+    },
+    "hold": {
+      "endpoints": 1434425,
+      "capped_endpoints": 23903,
+      "max_rms": 0.25000000874958117
+    }
+  },
+  "protocol_sha256": "9294e7de6be9cef1926e028cae334187fb7ec7f6b10a504f3301e2ae4d27adda",
+  "completed_sha256": "76ebb4035873ba3c6b85da9d89b995233d2ce36222237bf1733058d4c9482f4c",
+  "code_snapshot_sha256": "b2412db34b82125c6f5b2ef64f53d48659cf29944f3a72152b86a4b08f60e31b",
+  "input_hashes_sha256": "c919aa60bd251eaaa5a7e43ef1ed8fa5d0e867f6552db0d53871ccd1e4ad5a86",
+  "limitations": "Recorded action RMS, masks and gradients were checked as logs, not independently recomputed from the neural model or signals. Record consistency does not establish physical contribution or independent future validation."
+}

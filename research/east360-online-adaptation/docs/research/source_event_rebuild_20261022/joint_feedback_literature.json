@@ -1,0 +1,65 @@
+{
+  "date": "2026-10-22",
+  "scope": "Targeted primary-method checks for the joint source experiment and its failure analysis, not 100 full-text reviews.",
+  "records": [
+    {
+      "key": "bartler2022mt3",
+      "title": "MT3: Meta Test-Time Training for Self-Supervised Test-Time Adaption",
+      "venue": "AISTATS 2022",
+      "url": "https://proceedings.mlr.press/v151/bartler22a/bartler22a.pdf",
+      "read_scope": "Method sections 2.1-2.2, algorithms 1-2, source initialization and per-instance reset; introductory comparison to joint training.",
+      "experiment_link": "Motivates a differentiable outer gradient to the recipient encoder, not merely fitting a reconstruction head.",
+      "boundary": "BYOL/image adaptation, not a tokamak reproduction or an EAST performance guarantee."
+    },
+    {
+      "key": "gu2025docttt",
+      "title": "DocTTT: Test-Time Training for Handwritten Document Recognition Using Meta-Auxiliary Learning",
+      "venue": "WACV 2025",
+      "url": "https://arxiv.org/html/2501.12898v1",
+      "read_scope": "Introduction, sections 3.1-3.3, algorithm 1 and ablation table 5; CVF PDF retrieval failed, author preprint used.",
+      "experiment_link": "Jointly prepare shared features and an auxiliary objective through adaptation, then evaluate the primary task after the update.",
+      "boundary": "Its image SSIM objective and OCR results do not validate masked diagnostic completion or precursor mechanisms."
+    },
+    {
+      "key": "zheng2023transfer",
+      "title": "Disruption prediction for future tokamaks using parameter-based transfer learning",
+      "url": "https://www.nature.com/articles/s42005-023-01296-9",
+      "read_scope": "Primary indexed Methods text: Labeling and Weight calculation. Direct publisher open was blocked by redirect; not claimed as a fresh complete read.",
+      "experiment_link": "Class-weight control and distinction between precursor events and disruption alarm labels.",
+      "boundary": "The present sampler-prior importance weighting is computed from TRAIN's actual sampling distribution, not copied numerical settings."
+    },
+    {
+      "key": "zhu2023events",
+      "title": "Integrated deep learning framework for unstable event identification and disruption prediction of tokamak plasmas",
+      "doi": "10.1088/1741-4326/acb803",
+      "url": "https://library.psfc.mit.edu/catalog/reports/2020/23ja/23ja109/23ja109_full.pdf",
+      "read_scope": "Primary institutional indexed abstract only; full PDF retrieval again returned 502.",
+      "experiment_link": "Motivates studying event information alongside risk; not proof that adding a categorical auxiliary loss is sufficient.",
+      "boundary": "Manually named unstable events in that study are not equivalent to this project's A-F algorithmic clusters."
+    },
+    {
+      "key": "shen2026event_abstract",
+      "title": "Autonomous Discovery of Disruption Precursor Event Chains in Tokamak Plasmas via Progressive Multiple-Instance Learning",
+      "url": "https://conferences.iaea.org/event/454/contributions/43124/",
+      "read_scope": "IAEA conference abstract and author listing; event scheduled for November 2026.",
+      "experiment_link": "Event sequence, potentially reversible transitions and weak supervision are relevant to state-conditioned feedback.",
+      "boundary": "Conference abstract, not a verified full methods paper or an independently validated physical cause taxonomy."
+    },
+    {
+      "key": "fentazi2026delay",
+      "title": "Training on the Future: A Delay-Aware Audit of Test-Time Adaptation for Time-Series Forecasting",
+      "url": "https://arxiv.org/html/2610.12232v1",
+      "read_scope": "Primary preprint abstract/introduction this round, causal release section in the preceding review.",
+      "experiment_link": "Observed-window updates affect only subsequent immutable predictions; forecasting error is not interchangeable with risk performance.",
+      "boundary": "Recent forecasting preprint, not a tokamak result; output correctors are not adopted as neural risk adaptation."
+    },
+    {
+      "key": "koshizuka2026horizon",
+      "title": "Horizon-Aware Early Event Prediction for Tokamak Disruption Alarms",
+      "url": "https://arxiv.org/html/2609.24443v1",
+      "read_scope": "Abstract, introduction, sections 2.1-2.2, 3.2-3.6 and 4.1-4.2.",
+      "experiment_link": "Useful distinction between prediction horizon, censoring and operational event evaluation.",
+      "boundary": "Within-device preprint with a different warning deadline and dataset; no claim that its soft labels are already adopted or applicable unchanged."
+    }
+  ]
+}

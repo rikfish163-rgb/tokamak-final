@@ -1,0 +1,26 @@
+{
+  "output": "/media/hetaisheng/044A81D94A81C83E/Fuison-intra-trajectory-20261028/probe_outputs/commissioning_seed_errors_20261111_v1/base_137",
+  "epochs": 30,
+  "steps": 256,
+  "batch_size": 64,
+  "forecast_steps": 256,
+  "seed": 137,
+  "val_fpr_cap": 0.1,
+  "input_view": "source",
+  "format": "simple23-v1",
+  "label": "max(25ms,AdvancedTime)",
+  "mode": "supervised_then_frozen_forecast",
+  "roles": {
+    "train": 1353,
+    "val": 160,
+    "test": 220
+  },
+  "split_sha256": "b97fda3853e756b1f4a2a6778c48137fe642276ed0b39c49a1b0834c47856bb1",
+  "evidence": "DEVELOPMENT_ONLY",
+  "code_sha256": {
+    "simple23.py": "2234ab9c872baf1f5c6667225094d482b8c44ad83c091bb56bb7d8224e1a7b22",
+    "simple_train.py": "5716a805eed13578ae7dfc0fda5970178dfb579e87a9d51338a3b83f4c9d6ab9",
+    "simple_data.py": "0d9b1e5f2caf5dc63cb227f79150ad0743d653d3b6f75546cc4df8277886f046",
+    "io23.py": "5a26ba79e9fbc7bd9480ef03fe914f83878d108b11257a9e88b3ea4f6f8020e8"
+  }
+}

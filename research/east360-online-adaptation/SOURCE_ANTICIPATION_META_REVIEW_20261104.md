@@ -1,0 +1,22 @@
+# Source anticipation teacher: bounded implementation review
+
+The CPU-only sidecar implements the requested offline gradient-direction objective in [meta.py](/media/hetaisheng/044A81D94A81C83E/Fuison-intra-trajectory-20261028/experiments/risk_aligned_online/source_anticipation_20261104/meta.py). It does not load data, assign labels, fit a head, alter source/risk parameters, or implement a trainer. The native pilot audit remains unchanged.
+
+## API and contract
+
+- `features(base, x, a, delta)` returns `{"logit": B, "features": B×1088}` from the native forward at `initial_fast + delta`. Its temporary forecast-head-input hook is removed even on failure; the captured feature path remains differentiable.
+- `objective(base, head, origin_x, origin_mask, query_x, query_mask, truth25, target_mask, labels, *, initial_head_state)` returns `(loss, info)`. Inputs are `B×128×23`, targets/mask are `B×25×23`, and binary labels are `B`. Both possible teacher labels are supplied by the caller offline; this module does not determine either label or read metadata.
+- The source must be frozen and in eval mode. The head must be a separate trainable `Linear(1088,575)` with no shared source storage. Pass a detached, cloned initial `{"weight", "bias"}` snapshot on the same dtype/device; a live `head.state_dict()` alias is rejected. The anchor is the mean squared distance across **all** head parameters.
+- `info` contains differentiable `alignment`, `absolute_proxy`, `anchor`, `delta`, and `proxy_gradient`; detached `desired_gradient`; and integer `observed_rows`, `unobserved_rows`, `zero_desired_rows`, `zero_proxy_rows`, `alignment_rows`. The two zero-gradient counts refer to observed rows. Alignment includes observed rows with nonzero desired gradient, including zero-proxy rows; fully unobserved batches raise `no_target`, and batches with no usable teacher direction raise `no_teacher_direction` with support counts.
+- `inner_state(base, info["delta"], info["proxy_gradient"], create_graph=False)` returns the native normalized `.05` step with radius `1`; `create_graph=True` preserves the outer path even inside a `no_grad` caller. It uses the original `normalized_step` and does not update source weights.
+
+The loss is `alignment + 0.20 × absolute_proxy + 1e−4 × anchor`. The proxy is native absolute source-coordinate H25 SmoothL1. The teacher is the detached `(1−2×label) × ∇delta query_logit`, evaluated at the same zero delta; cosine denominators include the specified `1e−12`. No confidence multiplier or direct risk-score correction is added.
+
+## Verification
+
+- Tests were written first and initially failed because the module did not exist. Final command: `PYTHONDONTWRITEBYTECODE=1 PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 CUDA_VISIBLE_DEVICES=-1 /home/hetaisheng/miniconda3/envs/rl_env/bin/python -m pytest -q -p no:cacheprovider tests/test_source_anticipation_meta_20261104.py tests/test_native_token_pilot_scoring_20261104.py` → **24 passed**: 22 sidecar tests and 2 existing scoring tests.
+- The [test suite](/media/hetaisheng/044A81D94A81C83E/Fuison-intra-trajectory-20261028/tests/test_source_anticipation_meta_20261104.py) verifies native zero-offset equality, label-signed query gradients, the exact absolute proxy gradient, differentiable alignment and inner-step outer gradients, actual head-only backward, anchor snapshot independence, mixed/empty support, strict invalid inputs, and hook cleanup on exceptions. A source-state/hook/gradient fixture checks immutability after every case.
+- Fixed-direction alignment finite differences using the hash-locked source and synthetic tensors: float32 step `1e−3`, analytic `4.002565383911133`, finite difference `4.002422094345093`, relative error `3.5799431688489426e−5`; float64 step `2e−5`, analytic `4.002527784238959`, finite difference `4.002527739910278`, relative error `1.1075171381637861e−8`. Float64 converts a copy of the source for numerical checking; it is not a new checkpoint.
+- `ruff check --no-cache` and `ruff format --check --no-cache` passed for the two Python files. Source checkpoint SHA-256: `c7270c1ea3652db2e30e972d4ca9a4a2d33220a68e4a3765c8b7f5bcceeaeb02`. Coverage was not measured because the runtime lacks the `coverage` package.
+
+These checks establish the CPU interface and synthetic differentiation only. No raw shots, GPU, optimization loop, target deployment, or empirical gain were evaluated. The main process must separately verify its data/label construction and matched teacher schedules before any fit.

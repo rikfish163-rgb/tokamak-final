@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "items": [
+    {
+      "id": "label-coverage",
+      "title": "这批事件标签覆盖哪些数据？",
+      "queries": [{
+        "id": "archive-profile",
+        "source": {
+          "label": "用户提供的事件标签及本地 HDF5",
+          "files": [{"label":"JTEXT_event_labels.csv"},{"label":"字段说明.txt"},{"label":"shot_linkage.csv"},{"label":"summary.json"}],
+          "metricDefinitions": [{"label":"计数口径","definition":"炮数按 shot_no 去重；事件数仅统计 annotation_status 为 event 的记录。"}],
+          "caveats": ["A–F 为模型根据完整记录生成的候选事件，尚非人工确认的物理事件；压缩包不含 EAST 标签。"],
+          "evidenceFlow": [{"kind":"validation","title":"文件一致性","detail":"没有重复行或事件键；732 个区间与包内 provenance 的类别和 5 ms token 换算一致。"},{"kind":"validation","title":"本地信号对照","detail":"匹配 1,733 炮，结局全部一致；679 个可匹配事件未越出信号记录。"}]
+        },
+        "columns": ["项目","数量"],
+        "rows": [{"项目":"全部炮数","数量":1816},{"项目":"破裂炮","数量":412},{"项目":"安全炮","数量":1404},{"项目":"事件数","数量":732},{"项目":"有事件炮数","数量":573},{"项目":"本地匹配炮数","数量":1733},{"项目":"本地缺失炮数","数量":83}],
+        "preview": {"kind":"aggregate","note":"原始 CSV 与 HDF5 关联后的完整计数。"}
+      }]
+    },
+    {
+      "id": "split-overlap",
+      "title": "原测试集能否直接验证新训练？",
+      "queries": [{
+        "id": "cohort-overlap",
+        "source": {
+          "label":"事件队列与源模型划分交叉核对",
+          "files":[{"label":"JTEXT_event_labels.csv"},{"label":"J-TEXT canonical index.json"},{"label":"shot_linkage.csv"}],
+          "caveats":["仅移除最终训练中的测试 CSV 行，不能排除上游事件发现模型或词表已使用这些炮。"],
+          "metricDefinitions":[{"label":"重合炮数","definition":"按炮号将标注项目队列与当前源模型 train、val、test 三组进行精确连接。"}]
+        },
+        "columns":["当前划分","标注training_pool","标注sanity"],
+        "rows":[{"当前划分":"TRAIN1353","标注training_pool":1217,"标注sanity":136},{"当前划分":"VAL160","标注training_pool":139,"标注sanity":21},{"当前划分":"TEST220","标注training_pool":202,"标注sanity":18}],
+        "preview":{"kind":"aggregate","note":"仅展示当前 1,733 炮；其余 83 炮没有本地 HDF5。"}
+      }]
+    },
+    {
+      "id":"existing-errors",
+      "title":"标签能否帮助解释已有错误？",
+      "queries":[{
+        "id":"prediction-error-join",
+        "source":{
+          "label":"已保存的 J-TEXT TEST220 预测与事件标签",
+          "files":[{"label":"gradient_aligned512_20260929/test220.json"},{"label":"source_test220_errors_joined.csv"},{"label":"events_joined.csv"}],
+          "metricDefinitions":[{"label":"漏报／晚报","definition":"破裂炮没有报警，或报警提前量未严格大于 10 ms。"}],
+          "caveats":["这是事后错误定位；未训练新的破裂预测模型，不能据此宣称已经救回错误炮。","离线事件起点不是在线检测器确认事件的时刻。"]
+        },
+        "columns":["原模型结果","总炮数","带事件炮数"],
+        "rows":[{"原模型结果":"漏报／晚报","总炮数":10,"带事件炮数":8},{"原模型结果":"误报","总炮数":13,"带事件炮数":9}],
+        "preview":{"kind":"aggregate","note":"当前源基模 TEST220 错误炮的完整计数。"}
+      }]
+    }
+  ]
+}

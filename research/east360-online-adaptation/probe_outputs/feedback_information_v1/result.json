@@ -1,0 +1,395 @@
+{
+  "status": "stop_scalar_route",
+  "counts": {
+    "safe": 177,
+    "safe_with_candidate": 166,
+    "disruptive": 163,
+    "d_time_window": 113,
+    "d_after_no_alarm": 45,
+    "eligible_disruptive": 45,
+    "eligible_cold_not_timely": 32,
+    "matched_pairs": 41,
+    "matched_cold_not_timely": 29,
+    "safe_candidate_clocks": 5682
+  },
+  "statistics": {
+    "q": {
+      "true": {
+        "estimate": 0.0010421524587700738,
+        "ci95": [
+          -0.0003536686292910057,
+          0.0025422093379292203
+        ]
+      },
+      "reverse": {
+        "estimate": -0.0007526716004854076,
+        "ci95": [
+          -0.002474322430727474,
+          0.0007459756413027764
+        ]
+      },
+      "hold": {
+        "estimate": 0.00023648659636241987,
+        "ci95": [
+          -0.0002870296880377393,
+          0.0007691644780576729
+        ]
+      }
+    },
+    "hold_target": {
+      "true": {
+        "estimate": -0.024176454149115394,
+        "ci95": [
+          -0.03790658629379505,
+          -0.012297027034439955
+        ]
+      },
+      "reverse": {
+        "estimate": -0.025041353192017307,
+        "ci95": [
+          -0.038670174832773685,
+          -0.013413348982858316
+        ]
+      },
+      "hold": {
+        "estimate": -0.023768435922090853,
+        "ci95": [
+          -0.03729332000471691,
+          -0.01187549682908955
+        ]
+      }
+    },
+    "screen_contrasts": {
+      "D_true": {
+        "estimate": 0.0010421524587700738,
+        "ci95": [
+          -0.0003536686292910057,
+          0.0025422093379292203
+        ]
+      },
+      "abs_D_true_minus_abs_D_reverse": {
+        "estimate": 0.00028948085828466616,
+        "ci95": [
+          -0.0007573318780163457,
+          0.0011504274256129029
+        ]
+      },
+      "abs_D_true_minus_abs_D_hold": {
+        "estimate": 0.0008056658624076539,
+        "ci95": [
+          -0.00023506518400797827,
+          0.0021993387287092816
+        ]
+      }
+    },
+    "screen_status": "stop_scalar_route"
+  },
+  "bootstrap": {
+    "replicates": 2000,
+    "seed": 131,
+    "confidence": 0.95,
+    "method": "percentile linear",
+    "paired": true,
+    "rematched": false,
+    "shared_draws_for_all_contrasts": true
+  },
+  "acceptance_all_suffix_feedback": {
+    "prior_true": {
+      "accepted": 10774,
+      "abstained": 0,
+      "reasons": {
+        "accepted": 10774
+      },
+      "accepted_factors": {
+        "1.0": 10774
+      }
+    },
+    "true_true": {
+      "accepted": 10774,
+      "abstained": 0,
+      "reasons": {
+        "accepted": 10774
+      },
+      "accepted_factors": {
+        "1.0": 6325,
+        "0.5": 2527,
+        "0.25": 1386,
+        "0.125": 456,
+        "0.0625": 74,
+        "0.03125": 6
+      }
+    },
+    "true_reverse": {
+      "accepted": 10774,
+      "abstained": 0,
+      "reasons": {
+        "accepted": 10774
+      },
+      "accepted_factors": {
+        "1.0": 6277,
+        "0.5": 2506,
+        "0.125": 483,
+        "0.25": 1428,
+        "0.0625": 75,
+        "0.03125": 5
+      }
+    },
+    "true_hold": {
+      "accepted": 10774,
+      "abstained": 0,
+      "reasons": {
+        "accepted": 10774
+      },
+      "accepted_factors": {
+        "1.0": 5451,
+        "0.5": 2456,
+        "0.25": 1830,
+        "0.125": 787,
+        "0.0625": 214,
+        "0.03125": 34,
+        "0.015625": 2
+      }
+    },
+    "reverse_true": {
+      "accepted": 10774,
+      "abstained": 0,
+      "reasons": {
+        "accepted": 10774
+      },
+      "accepted_factors": {
+        "1.0": 6367,
+        "0.5": 2463,
+        "0.25": 1403,
+        "0.125": 465,
+        "0.0625": 72,
+        "0.03125": 4
+      }
+    },
+    "reverse_reverse": {
+      "accepted": 10774,
+      "abstained": 0,
+      "reasons": {
+        "accepted": 10774
+      },
+      "accepted_factors": {
+        "1.0": 6323,
+        "0.5": 2453,
+        "0.25": 1437,
+        "0.125": 479,
+        "0.0625": 76,
+        "0.03125": 6
+      }
+    },
+    "reverse_hold": {
+      "accepted": 10774,
+      "abstained": 0,
+      "reasons": {
+        "accepted": 10774
+      },
+      "accepted_factors": {
+        "1.0": 5462,
+        "0.5": 2417,
+        "0.25": 1873,
+        "0.125": 780,
+        "0.0625": 216,
+        "0.03125": 24,
+        "0.015625": 2
+      }
+    },
+    "hold_true": {
+      "accepted": 10774,
+      "abstained": 0,
+      "reasons": {
+        "accepted": 10774
+      },
+      "accepted_factors": {
+        "1.0": 5922,
+        "0.5": 2659,
+        "0.25": 1618,
+        "0.125": 491,
+        "0.0625": 78,
+        "0.03125": 6
+      }
+    },
+    "hold_reverse": {
+      "accepted": 10774,
+      "abstained": 0,
+      "reasons": {
+        "accepted": 10774
+      },
+      "accepted_factors": {
+        "1.0": 5811,
+        "0.5": 2686,
+        "0.25": 1632,
+        "0.125": 552,
+        "0.0625": 84,
+        "0.03125": 9
+      }
+    },
+    "hold_hold": {
+      "accepted": 10774,
+      "abstained": 0,
+      "reasons": {
+        "accepted": 10774
+      },
+      "accepted_factors": {
+        "1.0": 3817,
+        "0.5": 2881,
+        "0.25": 2484,
+        "0.125": 1246,
+        "0.0625": 300,
+        "0.03125": 43,
+        "0.015625": 3
+      }
+    }
+  },
+  "acceptance_matched_feedback": {
+    "prior_true": {
+      "accepted": 82,
+      "abstained": 0,
+      "reasons": {
+        "accepted": 82
+      },
+      "accepted_factors": {
+        "1.0": 82
+      }
+    },
+    "true_true": {
+      "accepted": 82,
+      "abstained": 0,
+      "reasons": {
+        "accepted": 82
+      },
+      "accepted_factors": {
+        "1.0": 56,
+        "0.25": 6,
+        "0.5": 17,
+        "0.125": 2,
+        "0.0625": 1
+      }
+    },
+    "true_reverse": {
+      "accepted": 82,
+      "abstained": 0,
+      "reasons": {
+        "accepted": 82
+      },
+      "accepted_factors": {
+        "1.0": 57,
+        "0.5": 15,
+        "0.25": 8,
+        "0.125": 2
+      }
+    },
+    "true_hold": {
+      "accepted": 82,
+      "abstained": 0,
+      "reasons": {
+        "accepted": 82
+      },
+      "accepted_factors": {
+        "1.0": 51,
+        "0.25": 7,
+        "0.5": 19,
+        "0.125": 4,
+        "0.0625": 1
+      }
+    },
+    "reverse_true": {
+      "accepted": 82,
+      "abstained": 0,
+      "reasons": {
+        "accepted": 82
+      },
+      "accepted_factors": {
+        "1.0": 56,
+        "0.25": 9,
+        "0.5": 15,
+        "0.125": 1,
+        "0.0625": 1
+      }
+    },
+    "reverse_reverse": {
+      "accepted": 82,
+      "abstained": 0,
+      "reasons": {
+        "accepted": 82
+      },
+      "accepted_factors": {
+        "1.0": 58,
+        "0.25": 6,
+        "0.5": 15,
+        "0.125": 2,
+        "0.0625": 1
+      }
+    },
+    "reverse_hold": {
+      "accepted": 82,
+      "abstained": 0,
+      "reasons": {
+        "accepted": 82
+      },
+      "accepted_factors": {
+        "1.0": 51,
+        "0.25": 8,
+        "0.5": 18,
+        "0.125": 5
+      }
+    },
+    "hold_true": {
+      "accepted": 82,
+      "abstained": 0,
+      "reasons": {
+        "accepted": 82
+      },
+      "accepted_factors": {
+        "1.0": 57,
+        "0.125": 4,
+        "0.5": 11,
+        "0.25": 9,
+        "0.0625": 1
+      }
+    },
+    "hold_reverse": {
+      "accepted": 82,
+      "abstained": 0,
+      "reasons": {
+        "accepted": 82
+      },
+      "accepted_factors": {
+        "1.0": 54,
+        "0.25": 10,
+        "0.5": 14,
+        "0.125": 3,
+        "0.0625": 1
+      }
+    },
+    "hold_hold": {
+      "accepted": 82,
+      "abstained": 0,
+      "reasons": {
+        "accepted": 82
+      },
+      "accepted_factors": {
+        "1.0": 47,
+        "0.125": 4,
+        "0.5": 15,
+        "0.25": 14,
+        "0.0625": 2
+      }
+    }
+  },
+  "old_feasibility_reference": {
+    "eligible_disruptive": 45,
+    "matched_pairs": 41,
+    "matched_cold_not_timely": 29
+  },
+  "limitations": [
+    "outcome-selected clocks are retrospective only",
+    "confidence intervals describe the fixed matched set, not full-stream significance or rematching/development uncertainty",
+    "cold probability and clock do not match the complete prefix",
+    "no causal physics or alarm benefit follows",
+    "hold target is zero increment, not a hold-last predictor benchmark",
+    "original data and experiment were previously exposed to development"
+  ]
+}

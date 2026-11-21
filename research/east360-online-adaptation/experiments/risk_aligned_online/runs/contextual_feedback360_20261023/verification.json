@@ -1,0 +1,237 @@
+{
+  "status": "VERIFIED_COUNTS_PREPARATION_AND_STATEFUL_POLICY_REPLAY",
+  "completed_sha256": "d8bbfe4e8ca3ab62845d4cef4149b00b742d5476b2534e7a6e3bd9912dcdebc1",
+  "audit_sha256": "a8581bf3620e8c179b4c1bcf8297b7edd547346d88f30eccbc467a75e20d050a",
+  "counts": {
+    "static/calibrated": {
+      "tp": 132,
+      "fp": 37,
+      "very_early_over3000": 22
+    },
+    "static/source_threshold": {
+      "tp": 101,
+      "fp": 17,
+      "very_early_over3000": 12
+    },
+    "uniform/calibrated": {
+      "tp": 133,
+      "fp": 36,
+      "very_early_over3000": 22
+    },
+    "uniform/source_threshold": {
+      "tp": 101,
+      "fp": 17,
+      "very_early_over3000": 12
+    },
+    "fixed/calibrated": {
+      "tp": 134,
+      "fp": 36,
+      "very_early_over3000": 22
+    },
+    "fixed/source_threshold": {
+      "tp": 102,
+      "fp": 17,
+      "very_early_over3000": 11
+    },
+    "online/calibrated": {
+      "tp": 133,
+      "fp": 36,
+      "very_early_over3000": 22
+    },
+    "online/source_threshold": {
+      "tp": 102,
+      "fp": 17,
+      "very_early_over3000": 11
+    },
+    "hold/calibrated": {
+      "tp": 133,
+      "fp": 36,
+      "very_early_over3000": 22
+    },
+    "hold/source_threshold": {
+      "tp": 101,
+      "fp": 17,
+      "very_early_over3000": 12
+    },
+    "mean/calibrated": {
+      "tp": 134,
+      "fp": 35,
+      "very_early_over3000": 22
+    },
+    "mean/source_threshold": {
+      "tp": 102,
+      "fp": 17,
+      "very_early_over3000": 11
+    }
+  },
+  "shot_arm_checks": 4320,
+  "intra_updates": 45204,
+  "post_shot_steps": 1440,
+  "preparation_replayed": 256,
+  "stateful_shots_replayed": [
+    54157,
+    54160,
+    61617,
+    61629,
+    94363,
+    94364,
+    94365,
+    94395,
+    94402,
+    94422,
+    94428,
+    94439,
+    94452,
+    94515,
+    94803,
+    94901,
+    95123,
+    95766,
+    95770,
+    95930,
+    96099,
+    96161,
+    96332,
+    96375
+  ],
+  "flips": {
+    "static": [
+      {
+        "shot": 62765,
+        "beneficial": true,
+        "before": {
+          "shot": 62765,
+          "is_disrupt": false,
+          "alarm": true,
+          "lead_ms": null,
+          "timely": false
+        },
+        "after": {
+          "shot": 62765,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 87861,
+        "beneficial": true,
+        "before": {
+          "shot": 87861,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 29.0,
+          "timely": false
+        },
+        "after": {
+          "shot": 87861,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 32.0,
+          "timely": true
+        }
+      }
+    ],
+    "uniform": [
+      {
+        "shot": 87537,
+        "beneficial": false,
+        "before": {
+          "shot": 87537,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 123.402625,
+          "timely": true
+        },
+        "after": {
+          "shot": 87537,
+          "is_disrupt": true,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 87861,
+        "beneficial": true,
+        "before": {
+          "shot": 87861,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 29.0,
+          "timely": false
+        },
+        "after": {
+          "shot": 87861,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 32.0,
+          "timely": true
+        }
+      }
+    ],
+    "fixed": [
+      {
+        "shot": 87537,
+        "beneficial": false,
+        "before": {
+          "shot": 87537,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 123.402625,
+          "timely": true
+        },
+        "after": {
+          "shot": 87537,
+          "is_disrupt": true,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      }
+    ],
+    "hold": [],
+    "mean": [
+      {
+        "shot": 87537,
+        "beneficial": false,
+        "before": {
+          "shot": 87537,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 123.402625,
+          "timely": true
+        },
+        "after": {
+          "shot": 87537,
+          "is_disrupt": true,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 94361,
+        "beneficial": false,
+        "before": {
+          "shot": 94361,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        "after": {
+          "shot": 94361,
+          "is_disrupt": false,
+          "alarm": true,
+          "lead_ms": null,
+          "timely": false
+        }
+      }
+    ]
+  },
+  "persistent_classifier_unchanged": true,
+  "source_unchanged": true,
+  "independent_confirmation": false
+}

@@ -1,0 +1,26 @@
+{
+  "status": "PASS_MATHEMATICAL_CHARACTERIZATION_NOT_METHOD_VALIDATION",
+  "perfect_prediction": {
+    "contrast": -0.0003140096618357489,
+    "reconstruction": 4.7787513557488717e-36,
+    "contrast_gradient_norm": 0.0010450873262214464,
+    "reconstruction_gradient_norm": 1.1483783809332041e-19
+  },
+  "zero_prediction": {
+    "contrast": 0.0003140096618357488,
+    "reconstruction": 0.0003140096618357489,
+    "contrast_gradient_norm": 0.0010450873262214464,
+    "reconstruction_gradient_norm": 0.0010450873262214464
+  },
+  "tenfold_wrong_saturated": {
+    "contrast": -0.008681739130434782,
+    "reconstruction": 0.05639652173913044,
+    "contrast_gradient_norm": 0.0,
+    "reconstruction_gradient_norm": 0.008688692867336902
+  },
+  "gradient_equal_at_zero_and_perfect": true,
+  "interpretation": "The contrast intentionally cancels the common prediction term in the quadratic region, and can stop when both Huber terms saturate. It is not the ordinary innovation/reconstruction loss.",
+  "new_neural_updates": 0,
+  "raw_data_reads": 0,
+  "code_sha256": "1919f248b7854cde888832d661015df441c5b99d3b5efeff6c1a4fb66a6e94ae"
+}

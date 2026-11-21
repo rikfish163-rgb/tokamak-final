@@ -1,0 +1,853 @@
+{
+  "status": "VERIFIED_COUNTS_MATURITY_DOSES_AND_FOUR_REPLAYS",
+  "completed_sha256": "4d0961d420f2e139d2a8149ea7154479265b5ae900ce1c16b3197ae66c14d45e",
+  "audit_sha256": "3f3c4624b323cd89e4b4adc4fb795d07446771bedfed16c66a67132c724d3e9c",
+  "shot_arm_checks": 3600,
+  "mature_negative_uses_checked": 177936,
+  "max_step_difference": 1.0824413229074456e-08,
+  "counts": {
+    "static/calibrated": {
+      "tp": 132,
+      "fp": 37,
+      "very_early_over3000": 22
+    },
+    "previous_bce/calibrated": {
+      "tp": 134,
+      "fp": 33,
+      "very_early_over3000": 22
+    },
+    "rank_current/calibrated": {
+      "tp": 133,
+      "fp": 33,
+      "very_early_over3000": 21
+    },
+    "bce_matched/calibrated": {
+      "tp": 132,
+      "fp": 33,
+      "very_early_over3000": 22
+    },
+    "rank_history_matched/calibrated": {
+      "tp": 132,
+      "fp": 36,
+      "very_early_over3000": 21
+    },
+    "static/source_threshold": {
+      "tp": 101,
+      "fp": 17,
+      "very_early_over3000": 12
+    },
+    "previous_bce/source_threshold": {
+      "tp": 103,
+      "fp": 16,
+      "very_early_over3000": 12
+    },
+    "rank_current/source_threshold": {
+      "tp": 99,
+      "fp": 17,
+      "very_early_over3000": 11
+    },
+    "bce_matched/source_threshold": {
+      "tp": 99,
+      "fp": 17,
+      "very_early_over3000": 11
+    },
+    "rank_history_matched/source_threshold": {
+      "tp": 101,
+      "fp": 17,
+      "very_early_over3000": 11
+    }
+  },
+  "horizon_counts": {
+    "static": {
+      "has_30_125": 123,
+      "early_only": 9
+    },
+    "previous_bce": {
+      "has_30_125": 114,
+      "early_only": 20
+    },
+    "rank_current": {
+      "has_30_125": 115,
+      "early_only": 18
+    },
+    "bce_matched": {
+      "has_30_125": 113,
+      "early_only": 19
+    },
+    "rank_history_matched": {
+      "has_30_125": 122,
+      "early_only": 10
+    }
+  },
+  "updates": {
+    "rank_current": {
+      "steps": 11301,
+      "nonzero": 11301,
+      "objective_decreased": 11299,
+      "mean_positive_bce_increased": 419,
+      "any_positive_bce_increased": 2069,
+      "mean_positive_bce_change": -8.728855455411439e-05
+    },
+    "bce_matched": {
+      "steps": 11301,
+      "nonzero": 11301,
+      "objective_decreased": 11292,
+      "mean_positive_bce_increased": 769,
+      "any_positive_bce_increased": 1808,
+      "mean_positive_bce_change": 0.0001579069321956652
+    },
+    "rank_history_matched": {
+      "steps": 11301,
+      "nonzero": 11301,
+      "objective_decreased": 11181,
+      "mean_positive_bce_increased": 7305,
+      "any_positive_bce_increased": 11301,
+      "mean_positive_bce_change": 0.0006835799645901989
+    }
+  },
+  "flips": {
+    "static -> rank_current/calibrated": [
+      {
+        "shot": 62765,
+        "beneficial": true,
+        "before": {
+          "shot": 62765,
+          "is_disrupt": false,
+          "alarm": true,
+          "lead_ms": null,
+          "timely": false
+        },
+        "after": {
+          "shot": 62765,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 69768,
+        "beneficial": false,
+        "before": {
+          "shot": 69768,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 348.9,
+          "timely": true
+        },
+        "after": {
+          "shot": 69768,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 2.9,
+          "timely": false
+        }
+      },
+      {
+        "shot": 70258,
+        "beneficial": true,
+        "before": {
+          "shot": 70258,
+          "is_disrupt": false,
+          "alarm": true,
+          "lead_ms": null,
+          "timely": false
+        },
+        "after": {
+          "shot": 70258,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 71013,
+        "beneficial": false,
+        "before": {
+          "shot": 71013,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 617.0,
+          "timely": true
+        },
+        "after": {
+          "shot": 71013,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 29.0,
+          "timely": false
+        }
+      },
+      {
+        "shot": 75226,
+        "beneficial": true,
+        "before": {
+          "shot": 75226,
+          "is_disrupt": false,
+          "alarm": true,
+          "lead_ms": null,
+          "timely": false
+        },
+        "after": {
+          "shot": 75226,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 77302,
+        "beneficial": true,
+        "before": {
+          "shot": 77302,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 30.0,
+          "timely": false
+        },
+        "after": {
+          "shot": 77302,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 31.0,
+          "timely": true
+        }
+      },
+      {
+        "shot": 87484,
+        "beneficial": true,
+        "before": {
+          "shot": 87484,
+          "is_disrupt": false,
+          "alarm": true,
+          "lead_ms": null,
+          "timely": false
+        },
+        "after": {
+          "shot": 87484,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 87537,
+        "beneficial": true,
+        "before": {
+          "shot": 87537,
+          "is_disrupt": true,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        "after": {
+          "shot": 87537,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 123.402625,
+          "timely": true
+        }
+      },
+      {
+        "shot": 87861,
+        "beneficial": true,
+        "before": {
+          "shot": 87861,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 29.0,
+          "timely": false
+        },
+        "after": {
+          "shot": 87861,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 33.0,
+          "timely": true
+        }
+      }
+    ],
+    "previous_bce -> rank_current/calibrated": [
+      {
+        "shot": 63690,
+        "beneficial": false,
+        "before": {
+          "shot": 63690,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 807.257249,
+          "timely": true
+        },
+        "after": {
+          "shot": 63690,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 10.257249,
+          "timely": false
+        }
+      },
+      {
+        "shot": 64581,
+        "beneficial": true,
+        "before": {
+          "shot": 64581,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 12.217459,
+          "timely": false
+        },
+        "after": {
+          "shot": 64581,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 390.217459,
+          "timely": true
+        }
+      },
+      {
+        "shot": 71415,
+        "beneficial": true,
+        "before": {
+          "shot": 71415,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 5.0,
+          "timely": false
+        },
+        "after": {
+          "shot": 71415,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 168.0,
+          "timely": true
+        }
+      },
+      {
+        "shot": 73653,
+        "beneficial": true,
+        "before": {
+          "shot": 73653,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 26.0,
+          "timely": false
+        },
+        "after": {
+          "shot": 73653,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 31.0,
+          "timely": true
+        }
+      },
+      {
+        "shot": 73669,
+        "beneficial": false,
+        "before": {
+          "shot": 73669,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 3252.0,
+          "timely": true
+        },
+        "after": {
+          "shot": 73669,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 29.0,
+          "timely": false
+        }
+      },
+      {
+        "shot": 79739,
+        "beneficial": false,
+        "before": {
+          "shot": 79739,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 31.0,
+          "timely": true
+        },
+        "after": {
+          "shot": 79739,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 30.0,
+          "timely": false
+        }
+      },
+      {
+        "shot": 80600,
+        "beneficial": false,
+        "before": {
+          "shot": 80600,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 37.0,
+          "timely": true
+        },
+        "after": {
+          "shot": 80600,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 15.0,
+          "timely": false
+        }
+      },
+      {
+        "shot": 82833,
+        "beneficial": true,
+        "before": {
+          "shot": 82833,
+          "is_disrupt": false,
+          "alarm": true,
+          "lead_ms": null,
+          "timely": false
+        },
+        "after": {
+          "shot": 82833,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 94361,
+        "beneficial": false,
+        "before": {
+          "shot": 94361,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        "after": {
+          "shot": 94361,
+          "is_disrupt": false,
+          "alarm": true,
+          "lead_ms": null,
+          "timely": false
+        }
+      }
+    ],
+    "bce_matched -> rank_current/calibrated": [
+      {
+        "shot": 79712,
+        "beneficial": true,
+        "before": {
+          "shot": 79712,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 13.060344,
+          "timely": false
+        },
+        "after": {
+          "shot": 79712,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 37.060344,
+          "timely": true
+        }
+      }
+    ],
+    "rank_history_matched -> rank_current/calibrated": [
+      {
+        "shot": 69768,
+        "beneficial": false,
+        "before": {
+          "shot": 69768,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 277.9,
+          "timely": true
+        },
+        "after": {
+          "shot": 69768,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 2.9,
+          "timely": false
+        }
+      },
+      {
+        "shot": 70258,
+        "beneficial": true,
+        "before": {
+          "shot": 70258,
+          "is_disrupt": false,
+          "alarm": true,
+          "lead_ms": null,
+          "timely": false
+        },
+        "after": {
+          "shot": 70258,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 71013,
+        "beneficial": false,
+        "before": {
+          "shot": 71013,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 584.0,
+          "timely": true
+        },
+        "after": {
+          "shot": 71013,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 29.0,
+          "timely": false
+        }
+      },
+      {
+        "shot": 75226,
+        "beneficial": true,
+        "before": {
+          "shot": 75226,
+          "is_disrupt": false,
+          "alarm": true,
+          "lead_ms": null,
+          "timely": false
+        },
+        "after": {
+          "shot": 75226,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 77302,
+        "beneficial": true,
+        "before": {
+          "shot": 77302,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 30.0,
+          "timely": false
+        },
+        "after": {
+          "shot": 77302,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 31.0,
+          "timely": true
+        }
+      },
+      {
+        "shot": 87484,
+        "beneficial": true,
+        "before": {
+          "shot": 87484,
+          "is_disrupt": false,
+          "alarm": true,
+          "lead_ms": null,
+          "timely": false
+        },
+        "after": {
+          "shot": 87484,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 87537,
+        "beneficial": true,
+        "before": {
+          "shot": 87537,
+          "is_disrupt": true,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        "after": {
+          "shot": 87537,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 123.402625,
+          "timely": true
+        }
+      },
+      {
+        "shot": 87861,
+        "beneficial": true,
+        "before": {
+          "shot": 87861,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 29.0,
+          "timely": false
+        },
+        "after": {
+          "shot": 87861,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 33.0,
+          "timely": true
+        }
+      }
+    ],
+    "static -> rank_current/source_threshold": [
+      {
+        "shot": 70327,
+        "beneficial": false,
+        "before": {
+          "shot": 70327,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 849.0,
+          "timely": true
+        },
+        "after": {
+          "shot": 70327,
+          "is_disrupt": true,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 71415,
+        "beneficial": false,
+        "before": {
+          "shot": 71415,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 71.0,
+          "timely": true
+        },
+        "after": {
+          "shot": 71415,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 1.0,
+          "timely": false
+        }
+      }
+    ],
+    "previous_bce -> rank_current/source_threshold": [
+      {
+        "shot": 63690,
+        "beneficial": false,
+        "before": {
+          "shot": 63690,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 672.257249,
+          "timely": true
+        },
+        "after": {
+          "shot": 63690,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 10.257249,
+          "timely": false
+        }
+      },
+      {
+        "shot": 64646,
+        "beneficial": true,
+        "before": {
+          "shot": 64646,
+          "is_disrupt": false,
+          "alarm": true,
+          "lead_ms": null,
+          "timely": false
+        },
+        "after": {
+          "shot": 64646,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 70217,
+        "beneficial": false,
+        "before": {
+          "shot": 70217,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        "after": {
+          "shot": 70217,
+          "is_disrupt": false,
+          "alarm": true,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 70394,
+        "beneficial": false,
+        "before": {
+          "shot": 70394,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        "after": {
+          "shot": 70394,
+          "is_disrupt": false,
+          "alarm": true,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 71265,
+        "beneficial": true,
+        "before": {
+          "shot": 71265,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 3.1,
+          "timely": false
+        },
+        "after": {
+          "shot": 71265,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 2944.1,
+          "timely": true
+        }
+      },
+      {
+        "shot": 73669,
+        "beneficial": false,
+        "before": {
+          "shot": 73669,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 3248.0,
+          "timely": true
+        },
+        "after": {
+          "shot": 73669,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 15.0,
+          "timely": false
+        }
+      },
+      {
+        "shot": 85023,
+        "beneficial": false,
+        "before": {
+          "shot": 85023,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 77.0,
+          "timely": true
+        },
+        "after": {
+          "shot": 85023,
+          "is_disrupt": true,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 87537,
+        "beneficial": false,
+        "before": {
+          "shot": 87537,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 123.402625,
+          "timely": true
+        },
+        "after": {
+          "shot": 87537,
+          "is_disrupt": true,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 87861,
+        "beneficial": false,
+        "before": {
+          "shot": 87861,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 43.0,
+          "timely": true
+        },
+        "after": {
+          "shot": 87861,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 8.0,
+          "timely": false
+        }
+      }
+    ],
+    "bce_matched -> rank_current/source_threshold": [],
+    "rank_history_matched -> rank_current/source_threshold": [
+      {
+        "shot": 70327,
+        "beneficial": false,
+        "before": {
+          "shot": 70327,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 849.0,
+          "timely": true
+        },
+        "after": {
+          "shot": 70327,
+          "is_disrupt": true,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 71415,
+        "beneficial": false,
+        "before": {
+          "shot": 71415,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 61.0,
+          "timely": true
+        },
+        "after": {
+          "shot": 71415,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 1.0,
+          "timely": false
+        }
+      }
+    ]
+  },
+  "replayed_shots": [
+    62765,
+    64581,
+    71415,
+    87537
+  ],
+  "source_unchanged": true,
+  "independent_confirmation": false
+}

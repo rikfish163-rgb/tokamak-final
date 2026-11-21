@@ -1,0 +1,204 @@
+{
+  "verification": {
+    "verified_seals": 600,
+    "verified_attempts": 9028,
+    "fast_reset_checks": 240,
+    "source_hash_unchanged": true,
+    "code_snapshot_hashes_match": true,
+    "alignment_identical": true,
+    "static_startup_predictions_identical": true
+  },
+  "segments": {
+    "mask_static": {
+      "startup30": {
+        "tp": 1,
+        "fp": 1,
+        "n_disrupt": 5,
+        "n_safe": 25,
+        "tpr": 0.2,
+        "fpr": 0.04,
+        "J": 0.16,
+        "threshold": 0.7258946895599365,
+        "median_lead_ms": 84.0
+      },
+      "after30": {
+        "tp": 23,
+        "fp": 13,
+        "n_disrupt": 34,
+        "n_safe": 56,
+        "tpr": 0.6764705882352942,
+        "fpr": 0.23214285714285715,
+        "J": 0.444327731092437,
+        "threshold": 0.7258946895599365,
+        "median_lead_ms": 2177.0
+      }
+    },
+    "static": {
+      "startup30": {
+        "tp": 1,
+        "fp": 1,
+        "n_disrupt": 5,
+        "n_safe": 25,
+        "tpr": 0.2,
+        "fpr": 0.04,
+        "J": 0.16,
+        "threshold": 0.7258946895599365,
+        "median_lead_ms": 84.0
+      },
+      "after30": {
+        "tp": 19,
+        "fp": 7,
+        "n_disrupt": 34,
+        "n_safe": 56,
+        "tpr": 0.5588235294117647,
+        "fpr": 0.125,
+        "J": 0.4338235294117647,
+        "threshold": 0.7258946895599365,
+        "median_lead_ms": 2126.1
+      }
+    },
+    "intra": {
+      "startup30": {
+        "tp": 1,
+        "fp": 1,
+        "n_disrupt": 5,
+        "n_safe": 25,
+        "tpr": 0.2,
+        "fpr": 0.04,
+        "J": 0.16,
+        "threshold": 0.7258946895599365,
+        "median_lead_ms": 84.0
+      },
+      "after30": {
+        "tp": 19,
+        "fp": 7,
+        "n_disrupt": 34,
+        "n_safe": 56,
+        "tpr": 0.5588235294117647,
+        "fpr": 0.125,
+        "J": 0.4338235294117647,
+        "threshold": 0.7258946895599365,
+        "median_lead_ms": 2126.1
+      }
+    },
+    "inter": {
+      "startup30": {
+        "tp": 1,
+        "fp": 0,
+        "n_disrupt": 5,
+        "n_safe": 25,
+        "tpr": 0.2,
+        "fpr": 0.0,
+        "J": 0.2,
+        "threshold": 0.7258946895599365,
+        "median_lead_ms": 84.0
+      },
+      "after30": {
+        "tp": 19,
+        "fp": 10,
+        "n_disrupt": 34,
+        "n_safe": 56,
+        "tpr": 0.5588235294117647,
+        "fpr": 0.17857142857142858,
+        "J": 0.3802521008403361,
+        "threshold": 0.7258946895599365,
+        "median_lead_ms": 2153.0
+      }
+    },
+    "both": {
+      "startup30": {
+        "tp": 1,
+        "fp": 0,
+        "n_disrupt": 5,
+        "n_safe": 25,
+        "tpr": 0.2,
+        "fpr": 0.0,
+        "J": 0.2,
+        "threshold": 0.7258946895599365,
+        "median_lead_ms": 84.0
+      },
+      "after30": {
+        "tp": 19,
+        "fp": 10,
+        "n_disrupt": 34,
+        "n_safe": 56,
+        "tpr": 0.5588235294117647,
+        "fpr": 0.17857142857142858,
+        "J": 0.3802521008403361,
+        "threshold": 0.7258946895599365,
+        "median_lead_ms": 2153.0
+      }
+    }
+  },
+  "paired_flips": {
+    "mask_static": {
+      "versus": "static",
+      "flips": {
+        "timely_gained": [
+          54846,
+          54865,
+          58467,
+          59036
+        ],
+        "timely_lost": [],
+        "fp_added": [
+          54792,
+          54793,
+          54905,
+          54977,
+          56994,
+          57264,
+          58599,
+          58677
+        ],
+        "fp_removed": [
+          55036,
+          58442
+        ]
+      },
+      "changed_score_traces": 90
+    },
+    "intra": {
+      "versus": "static",
+      "flips": {
+        "timely_gained": [],
+        "timely_lost": [],
+        "fp_added": [],
+        "fp_removed": []
+      },
+      "changed_score_traces": 120
+    },
+    "inter": {
+      "versus": "static",
+      "flips": {
+        "timely_gained": [],
+        "timely_lost": [],
+        "fp_added": [
+          55041,
+          56994,
+          58599
+        ],
+        "fp_removed": [
+          54244
+        ]
+      },
+      "changed_score_traces": 117
+    },
+    "both": {
+      "versus": "static",
+      "flips": {
+        "timely_gained": [],
+        "timely_lost": [],
+        "fp_added": [
+          55041,
+          56994,
+          58599
+        ],
+        "fp_removed": [
+          54244
+        ]
+      },
+      "changed_score_traces": 120
+    }
+  }
+}

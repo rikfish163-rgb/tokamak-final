@@ -1,0 +1,546 @@
+{
+  "status": "POSTHOC_DIAGNOSTIC",
+  "completed_sha256": "1dbc3b674371c87fd65e12617f55d6866338dc8b1d054e3ff2880fefbc9f93c3",
+  "code_sha256": "8469a92d67af569194b39c9d3fc0c0485936b4b45fe6b2a817ff901d55c43619",
+  "uses_evaluation_outcomes": true,
+  "changes_to_predictions": false,
+  "prespecified_in_main_plan": false,
+  "results": {
+    "0": {
+      "warm_static": {
+        "auc": 0.7909836065573771,
+        "positive_shots": 4,
+        "negative_shots": 61,
+        "oracle": [
+          {
+            "cap": 0.1,
+            "threshold": 1.0000000000000002,
+            "tp": 0,
+            "fp": 0,
+            "tpr": 0.0,
+            "fpr": 0.0
+          },
+          {
+            "cap": 0.15,
+            "threshold": 0.9716524481773376,
+            "tp": 2,
+            "fp": 9,
+            "tpr": 0.5,
+            "fpr": 0.14754098360655737
+          },
+          {
+            "cap": 0.2,
+            "threshold": 0.9716524481773376,
+            "tp": 2,
+            "fp": 9,
+            "tpr": 0.5,
+            "fpr": 0.14754098360655737
+          }
+        ],
+        "deployment_authorized": false,
+        "meaning": "posthoc threshold ceiling on these same labelled traces only"
+      },
+      "warm_intra": {
+        "auc": 0.7909836065573771,
+        "positive_shots": 4,
+        "negative_shots": 61,
+        "oracle": [
+          {
+            "cap": 0.1,
+            "threshold": 1.0000000000000002,
+            "tp": 0,
+            "fp": 0,
+            "tpr": 0.0,
+            "fpr": 0.0
+          },
+          {
+            "cap": 0.15,
+            "threshold": 0.9716524481773376,
+            "tp": 2,
+            "fp": 9,
+            "tpr": 0.5,
+            "fpr": 0.14754098360655737
+          },
+          {
+            "cap": 0.2,
+            "threshold": 0.9716524481773376,
+            "tp": 2,
+            "fp": 9,
+            "tpr": 0.5,
+            "fpr": 0.14754098360655737
+          }
+        ],
+        "deployment_authorized": false,
+        "meaning": "posthoc threshold ceiling on these same labelled traces only"
+      },
+      "prepared_static": {
+        "auc": 0.7581967213114754,
+        "positive_shots": 4,
+        "negative_shots": 61,
+        "oracle": [
+          {
+            "cap": 0.1,
+            "threshold": 1.0000000000000002,
+            "tp": 0,
+            "fp": 0,
+            "tpr": 0.0,
+            "fpr": 0.0
+          },
+          {
+            "cap": 0.15,
+            "threshold": 0.9791845083236694,
+            "tp": 1,
+            "fp": 7,
+            "tpr": 0.25,
+            "fpr": 0.11475409836065574
+          },
+          {
+            "cap": 0.2,
+            "threshold": 0.945949375629425,
+            "tp": 2,
+            "fp": 10,
+            "tpr": 0.5,
+            "fpr": 0.16393442622950818
+          }
+        ],
+        "deployment_authorized": false,
+        "meaning": "posthoc threshold ceiling on these same labelled traces only"
+      },
+      "prepared_intra": {
+        "auc": 0.7622950819672131,
+        "positive_shots": 4,
+        "negative_shots": 61,
+        "oracle": [
+          {
+            "cap": 0.1,
+            "threshold": 1.0000000000000002,
+            "tp": 0,
+            "fp": 0,
+            "tpr": 0.0,
+            "fpr": 0.0
+          },
+          {
+            "cap": 0.15,
+            "threshold": 0.9783529043197632,
+            "tp": 1,
+            "fp": 7,
+            "tpr": 0.25,
+            "fpr": 0.11475409836065574
+          },
+          {
+            "cap": 0.2,
+            "threshold": 0.9435220956802368,
+            "tp": 2,
+            "fp": 11,
+            "tpr": 0.5,
+            "fpr": 0.18032786885245902
+          }
+        ],
+        "deployment_authorized": false,
+        "meaning": "posthoc threshold ceiling on these same labelled traces only"
+      }
+    },
+    "1": {
+      "warm_static": {
+        "auc": 0.7418032786885246,
+        "positive_shots": 4,
+        "negative_shots": 61,
+        "oracle": [
+          {
+            "cap": 0.1,
+            "threshold": 0.6908343434333801,
+            "tp": 1,
+            "fp": 5,
+            "tpr": 0.25,
+            "fpr": 0.08196721311475409
+          },
+          {
+            "cap": 0.15,
+            "threshold": 0.6908343434333801,
+            "tp": 1,
+            "fp": 5,
+            "tpr": 0.25,
+            "fpr": 0.08196721311475409
+          },
+          {
+            "cap": 0.2,
+            "threshold": 0.6908343434333801,
+            "tp": 1,
+            "fp": 5,
+            "tpr": 0.25,
+            "fpr": 0.08196721311475409
+          }
+        ],
+        "deployment_authorized": false,
+        "meaning": "posthoc threshold ceiling on these same labelled traces only"
+      },
+      "warm_intra": {
+        "auc": 0.7418032786885246,
+        "positive_shots": 4,
+        "negative_shots": 61,
+        "oracle": [
+          {
+            "cap": 0.1,
+            "threshold": 0.683935821056366,
+            "tp": 1,
+            "fp": 5,
+            "tpr": 0.25,
+            "fpr": 0.08196721311475409
+          },
+          {
+            "cap": 0.15,
+            "threshold": 0.683935821056366,
+            "tp": 1,
+            "fp": 5,
+            "tpr": 0.25,
+            "fpr": 0.08196721311475409
+          },
+          {
+            "cap": 0.2,
+            "threshold": 0.683935821056366,
+            "tp": 1,
+            "fp": 5,
+            "tpr": 0.25,
+            "fpr": 0.08196721311475409
+          }
+        ],
+        "deployment_authorized": false,
+        "meaning": "posthoc threshold ceiling on these same labelled traces only"
+      },
+      "prepared_static": {
+        "auc": 0.6680327868852459,
+        "positive_shots": 4,
+        "negative_shots": 61,
+        "oracle": [
+          {
+            "cap": 0.1,
+            "threshold": 0.8650424480438232,
+            "tp": 1,
+            "fp": 5,
+            "tpr": 0.25,
+            "fpr": 0.08196721311475409
+          },
+          {
+            "cap": 0.15,
+            "threshold": 0.8650424480438232,
+            "tp": 1,
+            "fp": 5,
+            "tpr": 0.25,
+            "fpr": 0.08196721311475409
+          },
+          {
+            "cap": 0.2,
+            "threshold": 0.8650424480438232,
+            "tp": 1,
+            "fp": 5,
+            "tpr": 0.25,
+            "fpr": 0.08196721311475409
+          }
+        ],
+        "deployment_authorized": false,
+        "meaning": "posthoc threshold ceiling on these same labelled traces only"
+      },
+      "prepared_intra": {
+        "auc": 0.639344262295082,
+        "positive_shots": 4,
+        "negative_shots": 61,
+        "oracle": [
+          {
+            "cap": 0.1,
+            "threshold": 1.0000000000000002,
+            "tp": 0,
+            "fp": 0,
+            "tpr": 0.0,
+            "fpr": 0.0
+          },
+          {
+            "cap": 0.15,
+            "threshold": 1.0000000000000002,
+            "tp": 0,
+            "fp": 0,
+            "tpr": 0.0,
+            "fpr": 0.0
+          },
+          {
+            "cap": 0.2,
+            "threshold": 0.8686338067054749,
+            "tp": 1,
+            "fp": 10,
+            "tpr": 0.25,
+            "fpr": 0.16393442622950818
+          }
+        ],
+        "deployment_authorized": false,
+        "meaning": "posthoc threshold ceiling on these same labelled traces only"
+      }
+    },
+    "2": {
+      "warm_static": {
+        "auc": 0.8032786885245902,
+        "positive_shots": 4,
+        "negative_shots": 61,
+        "oracle": [
+          {
+            "cap": 0.1,
+            "threshold": 1.0000000000000002,
+            "tp": 0,
+            "fp": 0,
+            "tpr": 0.0,
+            "fpr": 0.0
+          },
+          {
+            "cap": 0.15,
+            "threshold": 0.9838238954544067,
+            "tp": 2,
+            "fp": 9,
+            "tpr": 0.5,
+            "fpr": 0.14754098360655737
+          },
+          {
+            "cap": 0.2,
+            "threshold": 0.9823774099349976,
+            "tp": 3,
+            "fp": 11,
+            "tpr": 0.75,
+            "fpr": 0.18032786885245902
+          }
+        ],
+        "deployment_authorized": false,
+        "meaning": "posthoc threshold ceiling on these same labelled traces only"
+      },
+      "warm_intra": {
+        "auc": 0.8032786885245902,
+        "positive_shots": 4,
+        "negative_shots": 61,
+        "oracle": [
+          {
+            "cap": 0.1,
+            "threshold": 1.0000000000000002,
+            "tp": 0,
+            "fp": 0,
+            "tpr": 0.0,
+            "fpr": 0.0
+          },
+          {
+            "cap": 0.15,
+            "threshold": 0.9837777614593506,
+            "tp": 2,
+            "fp": 9,
+            "tpr": 0.5,
+            "fpr": 0.14754098360655737
+          },
+          {
+            "cap": 0.2,
+            "threshold": 0.9823348522186279,
+            "tp": 3,
+            "fp": 11,
+            "tpr": 0.75,
+            "fpr": 0.18032786885245902
+          }
+        ],
+        "deployment_authorized": false,
+        "meaning": "posthoc threshold ceiling on these same labelled traces only"
+      },
+      "prepared_static": {
+        "auc": 0.7827868852459017,
+        "positive_shots": 4,
+        "negative_shots": 61,
+        "oracle": [
+          {
+            "cap": 0.1,
+            "threshold": 1.0000000000000002,
+            "tp": 0,
+            "fp": 0,
+            "tpr": 0.0,
+            "fpr": 0.0
+          },
+          {
+            "cap": 0.15,
+            "threshold": 0.9869266152381897,
+            "tp": 1,
+            "fp": 8,
+            "tpr": 0.25,
+            "fpr": 0.13114754098360656
+          },
+          {
+            "cap": 0.2,
+            "threshold": 0.9843323230743408,
+            "tp": 2,
+            "fp": 12,
+            "tpr": 0.5,
+            "fpr": 0.19672131147540983
+          }
+        ],
+        "deployment_authorized": false,
+        "meaning": "posthoc threshold ceiling on these same labelled traces only"
+      },
+      "prepared_intra": {
+        "auc": 0.7622950819672131,
+        "positive_shots": 4,
+        "negative_shots": 61,
+        "oracle": [
+          {
+            "cap": 0.1,
+            "threshold": 1.0000000000000002,
+            "tp": 0,
+            "fp": 0,
+            "tpr": 0.0,
+            "fpr": 0.0
+          },
+          {
+            "cap": 0.15,
+            "threshold": 1.0000000000000002,
+            "tp": 0,
+            "fp": 0,
+            "tpr": 0.0,
+            "fpr": 0.0
+          },
+          {
+            "cap": 0.2,
+            "threshold": 0.9865642786026001,
+            "tp": 1,
+            "fp": 11,
+            "tpr": 0.25,
+            "fpr": 0.18032786885245902
+          }
+        ],
+        "deployment_authorized": false,
+        "meaning": "posthoc threshold ceiling on these same labelled traces only"
+      }
+    },
+    "3": {
+      "warm_static": {
+        "auc": 0.6639344262295082,
+        "positive_shots": 4,
+        "negative_shots": 61,
+        "oracle": [
+          {
+            "cap": 0.1,
+            "threshold": 1.0000000000000002,
+            "tp": 0,
+            "fp": 0,
+            "tpr": 0.0,
+            "fpr": 0.0
+          },
+          {
+            "cap": 0.15,
+            "threshold": 1.0000000000000002,
+            "tp": 0,
+            "fp": 0,
+            "tpr": 0.0,
+            "fpr": 0.0
+          },
+          {
+            "cap": 0.2,
+            "threshold": 1.0000000000000002,
+            "tp": 0,
+            "fp": 0,
+            "tpr": 0.0,
+            "fpr": 0.0
+          }
+        ],
+        "deployment_authorized": false,
+        "meaning": "posthoc threshold ceiling on these same labelled traces only"
+      },
+      "warm_intra": {
+        "auc": 0.6639344262295082,
+        "positive_shots": 4,
+        "negative_shots": 61,
+        "oracle": [
+          {
+            "cap": 0.1,
+            "threshold": 1.0000000000000002,
+            "tp": 0,
+            "fp": 0,
+            "tpr": 0.0,
+            "fpr": 0.0
+          },
+          {
+            "cap": 0.15,
+            "threshold": 1.0000000000000002,
+            "tp": 0,
+            "fp": 0,
+            "tpr": 0.0,
+            "fpr": 0.0
+          },
+          {
+            "cap": 0.2,
+            "threshold": 1.0000000000000002,
+            "tp": 0,
+            "fp": 0,
+            "tpr": 0.0,
+            "fpr": 0.0
+          }
+        ],
+        "deployment_authorized": false,
+        "meaning": "posthoc threshold ceiling on these same labelled traces only"
+      },
+      "prepared_static": {
+        "auc": 0.6967213114754098,
+        "positive_shots": 4,
+        "negative_shots": 61,
+        "oracle": [
+          {
+            "cap": 0.1,
+            "threshold": 1.0000000000000002,
+            "tp": 0,
+            "fp": 0,
+            "tpr": 0.0,
+            "fpr": 0.0
+          },
+          {
+            "cap": 0.15,
+            "threshold": 1.0000000000000002,
+            "tp": 0,
+            "fp": 0,
+            "tpr": 0.0,
+            "fpr": 0.0
+          },
+          {
+            "cap": 0.2,
+            "threshold": 0.9381019473075867,
+            "tp": 1,
+            "fp": 10,
+            "tpr": 0.25,
+            "fpr": 0.16393442622950818
+          }
+        ],
+        "deployment_authorized": false,
+        "meaning": "posthoc threshold ceiling on these same labelled traces only"
+      },
+      "prepared_intra": {
+        "auc": 0.6475409836065574,
+        "positive_shots": 4,
+        "negative_shots": 61,
+        "oracle": [
+          {
+            "cap": 0.1,
+            "threshold": 0.9905766248703003,
+            "tp": 1,
+            "fp": 5,
+            "tpr": 0.25,
+            "fpr": 0.08196721311475409
+          },
+          {
+            "cap": 0.15,
+            "threshold": 0.9905766248703003,
+            "tp": 1,
+            "fp": 5,
+            "tpr": 0.25,
+            "fpr": 0.08196721311475409
+          },
+          {
+            "cap": 0.2,
+            "threshold": 0.9905766248703003,
+            "tp": 1,
+            "fp": 5,
+            "tpr": 0.25,
+            "fpr": 0.08196721311475409
+          }
+        ],
+        "deployment_authorized": false,
+        "meaning": "posthoc threshold ceiling on these same labelled traces only"
+      }
+    }
+  }
+}

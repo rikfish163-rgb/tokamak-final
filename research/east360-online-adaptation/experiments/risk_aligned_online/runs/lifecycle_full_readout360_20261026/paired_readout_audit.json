@@ -1,0 +1,2070 @@
+{
+  "old_run": "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/runs/lifecycle_positive_D360_20261026",
+  "new_run": "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/runs/lifecycle_full_readout360_20261026",
+  "unchanged_metadata": [
+    "order.json",
+    "input_map.json",
+    "source_replay.json",
+    "input_hashes.json"
+  ],
+  "identical_source_aligned_shots": 360,
+  "identical_values_per_arm": 1509354,
+  "threshold": 0.7258946895599365,
+  "old_metrics": {
+    "source": {
+      "n": 360,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tp": 145,
+      "fp": 94,
+      "tpr": 0.8055555555555556,
+      "fpr": 0.5222222222222223,
+      "J": 0.2833333333333333,
+      "early_over3000": 33
+    },
+    "aligned": {
+      "n": 360,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tp": 119,
+      "fp": 26,
+      "tpr": 0.6611111111111111,
+      "fpr": 0.14444444444444443,
+      "J": 0.5166666666666666,
+      "early_over3000": 17
+    },
+    "cold": {
+      "n": 360,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tp": 125,
+      "fp": 32,
+      "tpr": 0.6944444444444444,
+      "fpr": 0.17777777777777778,
+      "J": 0.5166666666666666,
+      "early_over3000": 17
+    },
+    "intra": {
+      "n": 360,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tp": 125,
+      "fp": 32,
+      "tpr": 0.6944444444444444,
+      "fpr": 0.17777777777777778,
+      "J": 0.5166666666666666,
+      "early_over3000": 17
+    },
+    "inter": {
+      "n": 360,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tp": 126,
+      "fp": 30,
+      "tpr": 0.7,
+      "fpr": 0.16666666666666666,
+      "J": 0.5333333333333333,
+      "early_over3000": 17
+    },
+    "both": {
+      "n": 360,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tp": 126,
+      "fp": 29,
+      "tpr": 0.7,
+      "fpr": 0.16111111111111112,
+      "J": 0.5388888888888889,
+      "early_over3000": 18
+    },
+    "both_shadow": {
+      "n": 360,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tp": 126,
+      "fp": 30,
+      "tpr": 0.7,
+      "fpr": 0.16666666666666666,
+      "J": 0.5333333333333333,
+      "early_over3000": 18
+    },
+    "intra_reverse": {
+      "n": 360,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tp": 125,
+      "fp": 32,
+      "tpr": 0.6944444444444444,
+      "fpr": 0.17777777777777778,
+      "J": 0.5166666666666666,
+      "early_over3000": 17
+    }
+  },
+  "new_metrics": {
+    "source": {
+      "n": 360,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tp": 145,
+      "fp": 94,
+      "tpr": 0.8055555555555556,
+      "fpr": 0.5222222222222223,
+      "J": 0.2833333333333333,
+      "early_over3000": 33
+    },
+    "aligned": {
+      "n": 360,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tp": 119,
+      "fp": 26,
+      "tpr": 0.6611111111111111,
+      "fpr": 0.14444444444444443,
+      "J": 0.5166666666666666,
+      "early_over3000": 17
+    },
+    "cold": {
+      "n": 360,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tp": 125,
+      "fp": 32,
+      "tpr": 0.6944444444444444,
+      "fpr": 0.17777777777777778,
+      "J": 0.5166666666666666,
+      "early_over3000": 17
+    },
+    "intra": {
+      "n": 360,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tp": 124,
+      "fp": 32,
+      "tpr": 0.6888888888888889,
+      "fpr": 0.17777777777777778,
+      "J": 0.5111111111111111,
+      "early_over3000": 17
+    },
+    "inter": {
+      "n": 360,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tp": 126,
+      "fp": 30,
+      "tpr": 0.7,
+      "fpr": 0.16666666666666666,
+      "J": 0.5333333333333333,
+      "early_over3000": 17
+    },
+    "both": {
+      "n": 360,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tp": 126,
+      "fp": 29,
+      "tpr": 0.7,
+      "fpr": 0.16111111111111112,
+      "J": 0.5388888888888889,
+      "early_over3000": 18
+    },
+    "both_shadow": {
+      "n": 360,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tp": 126,
+      "fp": 30,
+      "tpr": 0.7,
+      "fpr": 0.16666666666666666,
+      "J": 0.5333333333333333,
+      "early_over3000": 18
+    },
+    "intra_reverse": {
+      "n": 360,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tp": 124,
+      "fp": 32,
+      "tpr": 0.6888888888888889,
+      "fpr": 0.17777777777777778,
+      "J": 0.5111111111111111,
+      "early_over3000": 17
+    }
+  },
+  "new_minus_old": {
+    "source": {
+      "rescued_D": [],
+      "lost_D": [],
+      "removed_FP": [],
+      "added_FP": []
+    },
+    "aligned": {
+      "rescued_D": [],
+      "lost_D": [],
+      "removed_FP": [],
+      "added_FP": []
+    },
+    "cold": {
+      "rescued_D": [],
+      "lost_D": [],
+      "removed_FP": [],
+      "added_FP": []
+    },
+    "intra": {
+      "rescued_D": [],
+      "lost_D": [
+        64835
+      ],
+      "removed_FP": [],
+      "added_FP": []
+    },
+    "inter": {
+      "rescued_D": [],
+      "lost_D": [],
+      "removed_FP": [],
+      "added_FP": []
+    },
+    "both": {
+      "rescued_D": [],
+      "lost_D": [],
+      "removed_FP": [],
+      "added_FP": []
+    },
+    "both_shadow": {
+      "rescued_D": [],
+      "lost_D": [],
+      "removed_FP": [],
+      "added_FP": []
+    },
+    "intra_reverse": {
+      "rescued_D": [],
+      "lost_D": [
+        64835
+      ],
+      "removed_FP": [],
+      "added_FP": []
+    }
+  },
+  "fast_writes": 178235,
+  "readout_energy": {
+    "full": 314095.44047510746,
+    "level": 224495.28888998748,
+    "shape": 89600.15158511992
+  },
+  "level_energy_fraction": 0.7147359049542747,
+  "per_shot_level_fraction_quantiles": [
+    0.5699155471903753,
+    0.7501144962144375,
+    0.7830584636393878,
+    0.8039306765431394,
+    0.8422013628224783
+  ],
+  "intra_probability_change": {
+    "changed_endpoints": 1424626,
+    "total_endpoints": 1509354,
+    "mean_absolute": 0.0004169505288870867,
+    "max_absolute": 0.0585559606552124,
+    "per_shot": [
+      {
+        "shot": 71304,
+        "changed": 0,
+        "max_absolute_probability_delta": 0.0
+      },
+      {
+        "shot": 71265,
+        "changed": 0,
+        "max_absolute_probability_delta": 0.0
+      },
+      {
+        "shot": 71415,
+        "changed": 0,
+        "max_absolute_probability_delta": 0.0
+      },
+      {
+        "shot": 74087,
+        "changed": 0,
+        "max_absolute_probability_delta": 0.0
+      },
+      {
+        "shot": 71370,
+        "changed": 0,
+        "max_absolute_probability_delta": 0.0
+      },
+      {
+        "shot": 70861,
+        "changed": 0,
+        "max_absolute_probability_delta": 0.0
+      },
+      {
+        "shot": 69454,
+        "changed": 0,
+        "max_absolute_probability_delta": 0.0
+      },
+      {
+        "shot": 69765,
+        "changed": 0,
+        "max_absolute_probability_delta": 0.0
+      },
+      {
+        "shot": 69768,
+        "changed": 0,
+        "max_absolute_probability_delta": 0.0
+      },
+      {
+        "shot": 69859,
+        "changed": 0,
+        "max_absolute_probability_delta": 0.0
+      },
+      {
+        "shot": 69458,
+        "changed": 0,
+        "max_absolute_probability_delta": 0.0
+      },
+      {
+        "shot": 69855,
+        "changed": 0,
+        "max_absolute_probability_delta": 0.0
+      },
+      {
+        "shot": 69781,
+        "changed": 0,
+        "max_absolute_probability_delta": 0.0
+      },
+      {
+        "shot": 69854,
+        "changed": 0,
+        "max_absolute_probability_delta": 0.0
+      },
+      {
+        "shot": 70327,
+        "changed": 0,
+        "max_absolute_probability_delta": 0.0
+      },
+      {
+        "shot": 70404,
+        "changed": 0,
+        "max_absolute_probability_delta": 0.0
+      },
+      {
+        "shot": 70392,
+        "changed": 0,
+        "max_absolute_probability_delta": 0.0
+      },
+      {
+        "shot": 70394,
+        "changed": 0,
+        "max_absolute_probability_delta": 0.0
+      },
+      {
+        "shot": 69791,
+        "changed": 0,
+        "max_absolute_probability_delta": 0.0
+      },
+      {
+        "shot": 70418,
+        "changed": 0,
+        "max_absolute_probability_delta": 0.0
+      },
+      {
+        "shot": 70323,
+        "changed": 3659,
+        "max_absolute_probability_delta": 0.02808496356010437
+      },
+      {
+        "shot": 70320,
+        "changed": 881,
+        "max_absolute_probability_delta": 0.025676071643829346
+      },
+      {
+        "shot": 74826,
+        "changed": 2067,
+        "max_absolute_probability_delta": 0.04082679748535156
+      },
+      {
+        "shot": 73547,
+        "changed": 2079,
+        "max_absolute_probability_delta": 0.03991514444351196
+      },
+      {
+        "shot": 73541,
+        "changed": 5646,
+        "max_absolute_probability_delta": 0.037827372550964355
+      },
+      {
+        "shot": 73135,
+        "changed": 766,
+        "max_absolute_probability_delta": 0.0474419891834259
+      },
+      {
+        "shot": 73439,
+        "changed": 1903,
+        "max_absolute_probability_delta": 0.014885962009429932
+      },
+      {
+        "shot": 68309,
+        "changed": 2312,
+        "max_absolute_probability_delta": 0.0014501214027404785
+      },
+      {
+        "shot": 65944,
+        "changed": 4690,
+        "max_absolute_probability_delta": 0.022214651107788086
+      },
+      {
+        "shot": 71086,
+        "changed": 1398,
+        "max_absolute_probability_delta": 0.006342887878417969
+      },
+      {
+        "shot": 74554,
+        "changed": 1543,
+        "max_absolute_probability_delta": 0.005081355571746826
+      },
+      {
+        "shot": 73278,
+        "changed": 1110,
+        "max_absolute_probability_delta": 0.01042085886001587
+      },
+      {
+        "shot": 75226,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.009129494428634644
+      },
+      {
+        "shot": 71013,
+        "changed": 4216,
+        "max_absolute_probability_delta": 0.008206784725189209
+      },
+      {
+        "shot": 72984,
+        "changed": 5357,
+        "max_absolute_probability_delta": 0.002365618944168091
+      },
+      {
+        "shot": 75174,
+        "changed": 541,
+        "max_absolute_probability_delta": 0.0023468732833862305
+      },
+      {
+        "shot": 75657,
+        "changed": 1156,
+        "max_absolute_probability_delta": 0.016664117574691772
+      },
+      {
+        "shot": 75656,
+        "changed": 1483,
+        "max_absolute_probability_delta": 0.0072823166847229
+      },
+      {
+        "shot": 73089,
+        "changed": 982,
+        "max_absolute_probability_delta": 0.014991939067840576
+      },
+      {
+        "shot": 74928,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.011380225419998169
+      },
+      {
+        "shot": 72419,
+        "changed": 5357,
+        "max_absolute_probability_delta": 0.0005673766136169434
+      },
+      {
+        "shot": 73403,
+        "changed": 24183,
+        "max_absolute_probability_delta": 0.0062136054039001465
+      },
+      {
+        "shot": 74875,
+        "changed": 1131,
+        "max_absolute_probability_delta": 0.007814109325408936
+      },
+      {
+        "shot": 74562,
+        "changed": 4955,
+        "max_absolute_probability_delta": 0.014088630676269531
+      },
+      {
+        "shot": 73597,
+        "changed": 2288,
+        "max_absolute_probability_delta": 0.017003357410430908
+      },
+      {
+        "shot": 74939,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.007700562477111816
+      },
+      {
+        "shot": 74407,
+        "changed": 1062,
+        "max_absolute_probability_delta": 0.0031867027282714844
+      },
+      {
+        "shot": 72578,
+        "changed": 2492,
+        "max_absolute_probability_delta": 0.0015388131141662598
+      },
+      {
+        "shot": 73969,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.0020588040351867676
+      },
+      {
+        "shot": 73405,
+        "changed": 18687,
+        "max_absolute_probability_delta": 0.013598978519439697
+      },
+      {
+        "shot": 72523,
+        "changed": 670,
+        "max_absolute_probability_delta": 0.01673176884651184
+      },
+      {
+        "shot": 72511,
+        "changed": 5358,
+        "max_absolute_probability_delta": 0.004512131214141846
+      },
+      {
+        "shot": 66404,
+        "changed": 5457,
+        "max_absolute_probability_delta": 0.003680296242237091
+      },
+      {
+        "shot": 67002,
+        "changed": 1037,
+        "max_absolute_probability_delta": 0.0029368698596954346
+      },
+      {
+        "shot": 66431,
+        "changed": 10952,
+        "max_absolute_probability_delta": 0.00016313046216964722
+      },
+      {
+        "shot": 66995,
+        "changed": 1307,
+        "max_absolute_probability_delta": 0.021038085222244263
+      },
+      {
+        "shot": 66116,
+        "changed": 5702,
+        "max_absolute_probability_delta": 0.03504836559295654
+      },
+      {
+        "shot": 67102,
+        "changed": 5449,
+        "max_absolute_probability_delta": 2.2640451788902283e-05
+      },
+      {
+        "shot": 66160,
+        "changed": 5457,
+        "max_absolute_probability_delta": 0.00012044049799442291
+      },
+      {
+        "shot": 66458,
+        "changed": 5456,
+        "max_absolute_probability_delta": 0.0007652025669813156
+      },
+      {
+        "shot": 66206,
+        "changed": 5452,
+        "max_absolute_probability_delta": 4.673376679420471e-05
+      },
+      {
+        "shot": 67046,
+        "changed": 5455,
+        "max_absolute_probability_delta": 0.00018659420311450958
+      },
+      {
+        "shot": 70258,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.008573830127716064
+      },
+      {
+        "shot": 66185,
+        "changed": 5456,
+        "max_absolute_probability_delta": 8.513545617461205e-05
+      },
+      {
+        "shot": 70263,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.00043504126369953156
+      },
+      {
+        "shot": 69657,
+        "changed": 5397,
+        "max_absolute_probability_delta": 0.0029524564743041992
+      },
+      {
+        "shot": 68552,
+        "changed": 6957,
+        "max_absolute_probability_delta": 0.0002624187618494034
+      },
+      {
+        "shot": 71076,
+        "changed": 6955,
+        "max_absolute_probability_delta": 7.687602192163467e-05
+      },
+      {
+        "shot": 72922,
+        "changed": 2840,
+        "max_absolute_probability_delta": 0.0585559606552124
+      },
+      {
+        "shot": 75615,
+        "changed": 2486,
+        "max_absolute_probability_delta": 0.018465518951416016
+      },
+      {
+        "shot": 73421,
+        "changed": 25371,
+        "max_absolute_probability_delta": 0.013057708740234375
+      },
+      {
+        "shot": 75603,
+        "changed": 3643,
+        "max_absolute_probability_delta": 0.015707015991210938
+      },
+      {
+        "shot": 73323,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.0032545626163482666
+      },
+      {
+        "shot": 73653,
+        "changed": 2085,
+        "max_absolute_probability_delta": 0.01638925075531006
+      },
+      {
+        "shot": 69593,
+        "changed": 1581,
+        "max_absolute_probability_delta": 0.013546228408813477
+      },
+      {
+        "shot": 74676,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.004980415105819702
+      },
+      {
+        "shot": 74970,
+        "changed": 2525,
+        "max_absolute_probability_delta": 0.04720214009284973
+      },
+      {
+        "shot": 73790,
+        "changed": 4958,
+        "max_absolute_probability_delta": 0.006799966096878052
+      },
+      {
+        "shot": 74990,
+        "changed": 3780,
+        "max_absolute_probability_delta": 0.018984436988830566
+      },
+      {
+        "shot": 73652,
+        "changed": 3229,
+        "max_absolute_probability_delta": 0.01971215009689331
+      },
+      {
+        "shot": 74599,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.0001338394358754158
+      },
+      {
+        "shot": 73740,
+        "changed": 4958,
+        "max_absolute_probability_delta": 0.02551555633544922
+      },
+      {
+        "shot": 71060,
+        "changed": 6956,
+        "max_absolute_probability_delta": 8.930638432502747e-05
+      },
+      {
+        "shot": 73665,
+        "changed": 16387,
+        "max_absolute_probability_delta": 0.015532195568084717
+      },
+      {
+        "shot": 73912,
+        "changed": 11069,
+        "max_absolute_probability_delta": 0.008681535720825195
+      },
+      {
+        "shot": 73889,
+        "changed": 1243,
+        "max_absolute_probability_delta": 0.01622140407562256
+      },
+      {
+        "shot": 73907,
+        "changed": 8037,
+        "max_absolute_probability_delta": 0.009164512157440186
+      },
+      {
+        "shot": 73750,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.013344943523406982
+      },
+      {
+        "shot": 73669,
+        "changed": 24165,
+        "max_absolute_probability_delta": 0.018381118774414062
+      },
+      {
+        "shot": 74727,
+        "changed": 4572,
+        "max_absolute_probability_delta": 0.03525403141975403
+      },
+      {
+        "shot": 73743,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.0034043267369270325
+      },
+      {
+        "shot": 66595,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.0024351775646209717
+      },
+      {
+        "shot": 67601,
+        "changed": 613,
+        "max_absolute_probability_delta": 0.0019420981407165527
+      },
+      {
+        "shot": 70043,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.01532939076423645
+      },
+      {
+        "shot": 67778,
+        "changed": 3077,
+        "max_absolute_probability_delta": 0.045249879360198975
+      },
+      {
+        "shot": 66497,
+        "changed": 4958,
+        "max_absolute_probability_delta": 0.00012968946248292923
+      },
+      {
+        "shot": 67681,
+        "changed": 4954,
+        "max_absolute_probability_delta": 0.0001698015257716179
+      },
+      {
+        "shot": 70217,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.00982615351676941
+      },
+      {
+        "shot": 69082,
+        "changed": 1484,
+        "max_absolute_probability_delta": 0.025676697492599487
+      },
+      {
+        "shot": 67900,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.013556241989135742
+      },
+      {
+        "shot": 67451,
+        "changed": 4958,
+        "max_absolute_probability_delta": 0.03474336862564087
+      },
+      {
+        "shot": 69810,
+        "changed": 716,
+        "max_absolute_probability_delta": 0.002699226140975952
+      },
+      {
+        "shot": 69813,
+        "changed": 3981,
+        "max_absolute_probability_delta": 0.021213412284851074
+      },
+      {
+        "shot": 68703,
+        "changed": 4959,
+        "max_absolute_probability_delta": 2.3109372705221176e-05
+      },
+      {
+        "shot": 69324,
+        "changed": 3702,
+        "max_absolute_probability_delta": 0.03384298086166382
+      },
+      {
+        "shot": 68901,
+        "changed": 4137,
+        "max_absolute_probability_delta": 0.00013388320803642273
+      },
+      {
+        "shot": 69840,
+        "changed": 4957,
+        "max_absolute_probability_delta": 5.9412792325019836e-05
+      },
+      {
+        "shot": 69672,
+        "changed": 4958,
+        "max_absolute_probability_delta": 6.800051778554916e-05
+      },
+      {
+        "shot": 70470,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.0006085038185119629
+      },
+      {
+        "shot": 69671,
+        "changed": 4959,
+        "max_absolute_probability_delta": 4.2887404561042786e-05
+      },
+      {
+        "shot": 74663,
+        "changed": 613,
+        "max_absolute_probability_delta": 0.015813857316970825
+      },
+      {
+        "shot": 75361,
+        "changed": 4653,
+        "max_absolute_probability_delta": 0.01582050323486328
+      },
+      {
+        "shot": 75135,
+        "changed": 4958,
+        "max_absolute_probability_delta": 0.005585134029388428
+      },
+      {
+        "shot": 79649,
+        "changed": 335,
+        "max_absolute_probability_delta": 0.008321583271026611
+      },
+      {
+        "shot": 89441,
+        "changed": 2008,
+        "max_absolute_probability_delta": 0.024675607681274414
+      },
+      {
+        "shot": 89483,
+        "changed": 1693,
+        "max_absolute_probability_delta": 0.009257018566131592
+      },
+      {
+        "shot": 63220,
+        "changed": 783,
+        "max_absolute_probability_delta": 0.026391327381134033
+      },
+      {
+        "shot": 63097,
+        "changed": 3458,
+        "max_absolute_probability_delta": 0.0005919337272644043
+      },
+      {
+        "shot": 61475,
+        "changed": 4716,
+        "max_absolute_probability_delta": 0.013988703489303589
+      },
+      {
+        "shot": 61468,
+        "changed": 4956,
+        "max_absolute_probability_delta": 0.0012412965297698975
+      },
+      {
+        "shot": 61474,
+        "changed": 4957,
+        "max_absolute_probability_delta": 0.006375670433044434
+      },
+      {
+        "shot": 79712,
+        "changed": 1552,
+        "max_absolute_probability_delta": 0.0047370195388793945
+      },
+      {
+        "shot": 78789,
+        "changed": 3186,
+        "max_absolute_probability_delta": 0.01094675064086914
+      },
+      {
+        "shot": 87494,
+        "changed": 3627,
+        "max_absolute_probability_delta": 0.019189000129699707
+      },
+      {
+        "shot": 90874,
+        "changed": 3592,
+        "max_absolute_probability_delta": 0.0016088858246803284
+      },
+      {
+        "shot": 89881,
+        "changed": 3655,
+        "max_absolute_probability_delta": 0.0006629005074501038
+      },
+      {
+        "shot": 87484,
+        "changed": 3458,
+        "max_absolute_probability_delta": 0.00018571875989437103
+      },
+      {
+        "shot": 87508,
+        "changed": 966,
+        "max_absolute_probability_delta": 0.0010567978024482727
+      },
+      {
+        "shot": 87487,
+        "changed": 1916,
+        "max_absolute_probability_delta": 0.002481997013092041
+      },
+      {
+        "shot": 87537,
+        "changed": 1685,
+        "max_absolute_probability_delta": 0.0008640065789222717
+      },
+      {
+        "shot": 79604,
+        "changed": 1698,
+        "max_absolute_probability_delta": 0.011016309261322021
+      },
+      {
+        "shot": 94901,
+        "changed": 1372,
+        "max_absolute_probability_delta": 0.024394214153289795
+      },
+      {
+        "shot": 64581,
+        "changed": 4944,
+        "max_absolute_probability_delta": 0.01316535472869873
+      },
+      {
+        "shot": 78722,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.016479909420013428
+      },
+      {
+        "shot": 83346,
+        "changed": 884,
+        "max_absolute_probability_delta": 0.002171635627746582
+      },
+      {
+        "shot": 92394,
+        "changed": 4862,
+        "max_absolute_probability_delta": 0.001372218132019043
+      },
+      {
+        "shot": 86167,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.0014764964580535889
+      },
+      {
+        "shot": 87861,
+        "changed": 5706,
+        "max_absolute_probability_delta": 0.019337832927703857
+      },
+      {
+        "shot": 91214,
+        "changed": 1248,
+        "max_absolute_probability_delta": 0.007431387901306152
+      },
+      {
+        "shot": 86155,
+        "changed": 5139,
+        "max_absolute_probability_delta": 0.006737887859344482
+      },
+      {
+        "shot": 86984,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.004275411367416382
+      },
+      {
+        "shot": 86616,
+        "changed": 5042,
+        "max_absolute_probability_delta": 0.00063314288854599
+      },
+      {
+        "shot": 60999,
+        "changed": 7166,
+        "max_absolute_probability_delta": 0.002425774931907654
+      },
+      {
+        "shot": 80600,
+        "changed": 1856,
+        "max_absolute_probability_delta": 0.013166546821594238
+      },
+      {
+        "shot": 90740,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.0037570595741271973
+      },
+      {
+        "shot": 78668,
+        "changed": 5156,
+        "max_absolute_probability_delta": 0.01119321584701538
+      },
+      {
+        "shot": 59935,
+        "changed": 2958,
+        "max_absolute_probability_delta": 0.005823105573654175
+      },
+      {
+        "shot": 64258,
+        "changed": 1144,
+        "max_absolute_probability_delta": 0.012822389602661133
+      },
+      {
+        "shot": 91055,
+        "changed": 4956,
+        "max_absolute_probability_delta": 0.0007945746183395386
+      },
+      {
+        "shot": 91054,
+        "changed": 4958,
+        "max_absolute_probability_delta": 0.0009665936231613159
+      },
+      {
+        "shot": 91052,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.001180797815322876
+      },
+      {
+        "shot": 82847,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.0007846280932426453
+      },
+      {
+        "shot": 82833,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.0011787712574005127
+      },
+      {
+        "shot": 93300,
+        "changed": 3137,
+        "max_absolute_probability_delta": 0.013065338134765625
+      },
+      {
+        "shot": 82834,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.0054972171783447266
+      },
+      {
+        "shot": 64646,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.001244962215423584
+      },
+      {
+        "shot": 64562,
+        "changed": 4957,
+        "max_absolute_probability_delta": 0.010518968105316162
+      },
+      {
+        "shot": 83646,
+        "changed": 3458,
+        "max_absolute_probability_delta": 0.0001915283501148224
+      },
+      {
+        "shot": 89326,
+        "changed": 4757,
+        "max_absolute_probability_delta": 0.002876788377761841
+      },
+      {
+        "shot": 82447,
+        "changed": 958,
+        "max_absolute_probability_delta": 0.0004884153604507446
+      },
+      {
+        "shot": 87689,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.004443138837814331
+      },
+      {
+        "shot": 95770,
+        "changed": 4287,
+        "max_absolute_probability_delta": 0.008644789457321167
+      },
+      {
+        "shot": 96332,
+        "changed": 2500,
+        "max_absolute_probability_delta": 0.005020439624786377
+      },
+      {
+        "shot": 64266,
+        "changed": 588,
+        "max_absolute_probability_delta": 0.023469865322113037
+      },
+      {
+        "shot": 95766,
+        "changed": 756,
+        "max_absolute_probability_delta": 0.006027400493621826
+      },
+      {
+        "shot": 89495,
+        "changed": 5252,
+        "max_absolute_probability_delta": 0.0033209621906280518
+      },
+      {
+        "shot": 60239,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.007127642631530762
+      },
+      {
+        "shot": 62250,
+        "changed": 2957,
+        "max_absolute_probability_delta": 0.00016295164823532104
+      },
+      {
+        "shot": 77002,
+        "changed": 1706,
+        "max_absolute_probability_delta": 0.0039688944816589355
+      },
+      {
+        "shot": 64129,
+        "changed": 703,
+        "max_absolute_probability_delta": 0.053593456745147705
+      },
+      {
+        "shot": 61629,
+        "changed": 1367,
+        "max_absolute_probability_delta": 0.012885689735412598
+      },
+      {
+        "shot": 76861,
+        "changed": 4956,
+        "max_absolute_probability_delta": 0.007936745882034302
+      },
+      {
+        "shot": 60916,
+        "changed": 4957,
+        "max_absolute_probability_delta": 0.00021196529269218445
+      },
+      {
+        "shot": 61323,
+        "changed": 4957,
+        "max_absolute_probability_delta": 0.002949267625808716
+      },
+      {
+        "shot": 64308,
+        "changed": 5220,
+        "max_absolute_probability_delta": 0.004312664270401001
+      },
+      {
+        "shot": 63323,
+        "changed": 4954,
+        "max_absolute_probability_delta": 0.00030368566513061523
+      },
+      {
+        "shot": 63273,
+        "changed": 5957,
+        "max_absolute_probability_delta": 0.000126570463180542
+      },
+      {
+        "shot": 64143,
+        "changed": 1779,
+        "max_absolute_probability_delta": 0.042909860610961914
+      },
+      {
+        "shot": 94452,
+        "changed": 963,
+        "max_absolute_probability_delta": 0.0016962289810180664
+      },
+      {
+        "shot": 94281,
+        "changed": 1407,
+        "max_absolute_probability_delta": 0.006957530975341797
+      },
+      {
+        "shot": 60917,
+        "changed": 4957,
+        "max_absolute_probability_delta": 0.0003532916307449341
+      },
+      {
+        "shot": 62765,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.00040481239557266235
+      },
+      {
+        "shot": 62360,
+        "changed": 2956,
+        "max_absolute_probability_delta": 0.0005007460713386536
+      },
+      {
+        "shot": 62182,
+        "changed": 5380,
+        "max_absolute_probability_delta": 0.010875523090362549
+      },
+      {
+        "shot": 62773,
+        "changed": 3171,
+        "max_absolute_probability_delta": 0.03578883409500122
+      },
+      {
+        "shot": 62158,
+        "changed": 2942,
+        "max_absolute_probability_delta": 0.00043260306119918823
+      },
+      {
+        "shot": 77859,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.0006938278675079346
+      },
+      {
+        "shot": 62931,
+        "changed": 4959,
+        "max_absolute_probability_delta": 9.228289127349854e-05
+      },
+      {
+        "shot": 62123,
+        "changed": 4957,
+        "max_absolute_probability_delta": 0.0004868805408477783
+      },
+      {
+        "shot": 61617,
+        "changed": 4957,
+        "max_absolute_probability_delta": 0.0020792484283447266
+      },
+      {
+        "shot": 80793,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.0007758960127830505
+      },
+      {
+        "shot": 62425,
+        "changed": 682,
+        "max_absolute_probability_delta": 0.027001261711120605
+      },
+      {
+        "shot": 61638,
+        "changed": 5152,
+        "max_absolute_probability_delta": 0.0061769187450408936
+      },
+      {
+        "shot": 77782,
+        "changed": 1974,
+        "max_absolute_probability_delta": 0.015709280967712402
+      },
+      {
+        "shot": 77783,
+        "changed": 1468,
+        "max_absolute_probability_delta": 0.018480241298675537
+      },
+      {
+        "shot": 59940,
+        "changed": 2958,
+        "max_absolute_probability_delta": 0.0040159523487091064
+      },
+      {
+        "shot": 77788,
+        "changed": 3343,
+        "max_absolute_probability_delta": 0.015870869159698486
+      },
+      {
+        "shot": 76956,
+        "changed": 2257,
+        "max_absolute_probability_delta": 0.009451806545257568
+      },
+      {
+        "shot": 61065,
+        "changed": 6957,
+        "max_absolute_probability_delta": 0.0038184821605682373
+      },
+      {
+        "shot": 62592,
+        "changed": 903,
+        "max_absolute_probability_delta": 0.021874666213989258
+      },
+      {
+        "shot": 62394,
+        "changed": 2757,
+        "max_absolute_probability_delta": 0.017038017511367798
+      },
+      {
+        "shot": 63690,
+        "changed": 3052,
+        "max_absolute_probability_delta": 0.013512462377548218
+      },
+      {
+        "shot": 62399,
+        "changed": 2757,
+        "max_absolute_probability_delta": 0.009986639022827148
+      },
+      {
+        "shot": 62383,
+        "changed": 2755,
+        "max_absolute_probability_delta": 5.8572739362716675e-05
+      },
+      {
+        "shot": 80546,
+        "changed": 4158,
+        "max_absolute_probability_delta": 0.0038213729858398438
+      },
+      {
+        "shot": 94422,
+        "changed": 4956,
+        "max_absolute_probability_delta": 0.004410266876220703
+      },
+      {
+        "shot": 54160,
+        "changed": 3654,
+        "max_absolute_probability_delta": 9.08784568309784e-05
+      },
+      {
+        "shot": 91885,
+        "changed": 3002,
+        "max_absolute_probability_delta": 0.026420414447784424
+      },
+      {
+        "shot": 94439,
+        "changed": 5173,
+        "max_absolute_probability_delta": 0.008147954940795898
+      },
+      {
+        "shot": 94428,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.007020622491836548
+      },
+      {
+        "shot": 54157,
+        "changed": 3655,
+        "max_absolute_probability_delta": 0.00013473257422447205
+      },
+      {
+        "shot": 90232,
+        "changed": 1225,
+        "max_absolute_probability_delta": 0.015293002128601074
+      },
+      {
+        "shot": 91149,
+        "changed": 5332,
+        "max_absolute_probability_delta": 0.004401981830596924
+      },
+      {
+        "shot": 85632,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.0053452253341674805
+      },
+      {
+        "shot": 91064,
+        "changed": 4957,
+        "max_absolute_probability_delta": 0.005547821521759033
+      },
+      {
+        "shot": 85320,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.0008442401885986328
+      },
+      {
+        "shot": 85316,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.0010466277599334717
+      },
+      {
+        "shot": 90863,
+        "changed": 4956,
+        "max_absolute_probability_delta": 0.0084475576877594
+      },
+      {
+        "shot": 95930,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.009136021137237549
+      },
+      {
+        "shot": 94352,
+        "changed": 4954,
+        "max_absolute_probability_delta": 0.009234398603439331
+      },
+      {
+        "shot": 94365,
+        "changed": 4957,
+        "max_absolute_probability_delta": 0.0049162358045578
+      },
+      {
+        "shot": 91723,
+        "changed": 4957,
+        "max_absolute_probability_delta": 0.001688450574874878
+      },
+      {
+        "shot": 94361,
+        "changed": 4956,
+        "max_absolute_probability_delta": 0.002015233039855957
+      },
+      {
+        "shot": 94803,
+        "changed": 3427,
+        "max_absolute_probability_delta": 0.005691111087799072
+      },
+      {
+        "shot": 94364,
+        "changed": 4957,
+        "max_absolute_probability_delta": 0.001234680414199829
+      },
+      {
+        "shot": 85261,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.0029997825622558594
+      },
+      {
+        "shot": 94363,
+        "changed": 4957,
+        "max_absolute_probability_delta": 0.015683412551879883
+      },
+      {
+        "shot": 85533,
+        "changed": 2565,
+        "max_absolute_probability_delta": 0.010267674922943115
+      },
+      {
+        "shot": 86921,
+        "changed": 4957,
+        "max_absolute_probability_delta": 0.0005531162023544312
+      },
+      {
+        "shot": 89899,
+        "changed": 1141,
+        "max_absolute_probability_delta": 0.012097179889678955
+      },
+      {
+        "shot": 90978,
+        "changed": 4958,
+        "max_absolute_probability_delta": 0.005443006753921509
+      },
+      {
+        "shot": 93641,
+        "changed": 4957,
+        "max_absolute_probability_delta": 0.0026766955852508545
+      },
+      {
+        "shot": 93224,
+        "changed": 1312,
+        "max_absolute_probability_delta": 0.0014827102422714233
+      },
+      {
+        "shot": 88135,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.0017017126083374023
+      },
+      {
+        "shot": 93218,
+        "changed": 1782,
+        "max_absolute_probability_delta": 0.001304715871810913
+      },
+      {
+        "shot": 96099,
+        "changed": 4958,
+        "max_absolute_probability_delta": 0.009724915027618408
+      },
+      {
+        "shot": 94515,
+        "changed": 1953,
+        "max_absolute_probability_delta": 0.0008207559585571289
+      },
+      {
+        "shot": 89074,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.0007094293832778931
+      },
+      {
+        "shot": 89101,
+        "changed": 4958,
+        "max_absolute_probability_delta": 0.0027794837951660156
+      },
+      {
+        "shot": 95123,
+        "changed": 3207,
+        "max_absolute_probability_delta": 0.012393712997436523
+      },
+      {
+        "shot": 96161,
+        "changed": 3660,
+        "max_absolute_probability_delta": 0.002573564648628235
+      },
+      {
+        "shot": 93202,
+        "changed": 1989,
+        "max_absolute_probability_delta": 0.013178527355194092
+      },
+      {
+        "shot": 93995,
+        "changed": 5069,
+        "max_absolute_probability_delta": 0.004008293151855469
+      },
+      {
+        "shot": 79354,
+        "changed": 4657,
+        "max_absolute_probability_delta": 0.015460312366485596
+      },
+      {
+        "shot": 81684,
+        "changed": 1995,
+        "max_absolute_probability_delta": 0.007789909839630127
+      },
+      {
+        "shot": 63656,
+        "changed": 1368,
+        "max_absolute_probability_delta": 0.013644218444824219
+      },
+      {
+        "shot": 63960,
+        "changed": 4956,
+        "max_absolute_probability_delta": 0.000834241509437561
+      },
+      {
+        "shot": 81481,
+        "changed": 4979,
+        "max_absolute_probability_delta": 0.00017962977290153503
+      },
+      {
+        "shot": 80012,
+        "changed": 2536,
+        "max_absolute_probability_delta": 0.0071887969970703125
+      },
+      {
+        "shot": 78008,
+        "changed": 5194,
+        "max_absolute_probability_delta": 0.019618630409240723
+      },
+      {
+        "shot": 80529,
+        "changed": 4979,
+        "max_absolute_probability_delta": 0.00043388083577156067
+      },
+      {
+        "shot": 59886,
+        "changed": 4958,
+        "max_absolute_probability_delta": 0.0005008205771446228
+      },
+      {
+        "shot": 81406,
+        "changed": 4698,
+        "max_absolute_probability_delta": 0.019067108631134033
+      },
+      {
+        "shot": 80955,
+        "changed": 4979,
+        "max_absolute_probability_delta": 0.001141577959060669
+      },
+      {
+        "shot": 81017,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.0011601299047470093
+      },
+      {
+        "shot": 77822,
+        "changed": 1263,
+        "max_absolute_probability_delta": 0.023776710033416748
+      },
+      {
+        "shot": 79580,
+        "changed": 4979,
+        "max_absolute_probability_delta": 0.013818234205245972
+      },
+      {
+        "shot": 80036,
+        "changed": 2010,
+        "max_absolute_probability_delta": 0.013710975646972656
+      },
+      {
+        "shot": 80053,
+        "changed": 5159,
+        "max_absolute_probability_delta": 0.01168137788772583
+      },
+      {
+        "shot": 93112,
+        "changed": 5210,
+        "max_absolute_probability_delta": 0.003973335027694702
+      },
+      {
+        "shot": 63764,
+        "changed": 4958,
+        "max_absolute_probability_delta": 0.00010822713375091553
+      },
+      {
+        "shot": 62878,
+        "changed": 11176,
+        "max_absolute_probability_delta": 0.007562518119812012
+      },
+      {
+        "shot": 63423,
+        "changed": 4954,
+        "max_absolute_probability_delta": 0.00010842457413673401
+      },
+      {
+        "shot": 63566,
+        "changed": 4091,
+        "max_absolute_probability_delta": 0.015447258949279785
+      },
+      {
+        "shot": 63753,
+        "changed": 4957,
+        "max_absolute_probability_delta": 0.0005300305783748627
+      },
+      {
+        "shot": 63544,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.00011293590068817139
+      },
+      {
+        "shot": 64494,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.00018098950386047363
+      },
+      {
+        "shot": 64236,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.0003155060112476349
+      },
+      {
+        "shot": 63545,
+        "changed": 1140,
+        "max_absolute_probability_delta": 0.019626736640930176
+      },
+      {
+        "shot": 63772,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.00020126253366470337
+      },
+      {
+        "shot": 63510,
+        "changed": 4957,
+        "max_absolute_probability_delta": 0.0014614313840866089
+      },
+      {
+        "shot": 65023,
+        "changed": 2319,
+        "max_absolute_probability_delta": 0.0032681822776794434
+      },
+      {
+        "shot": 59394,
+        "changed": 6957,
+        "max_absolute_probability_delta": 0.0009347200393676758
+      },
+      {
+        "shot": 81368,
+        "changed": 3256,
+        "max_absolute_probability_delta": 0.02080872654914856
+      },
+      {
+        "shot": 80746,
+        "changed": 4786,
+        "max_absolute_probability_delta": 0.0010103918612003326
+      },
+      {
+        "shot": 79734,
+        "changed": 4958,
+        "max_absolute_probability_delta": 0.0016963183879852295
+      },
+      {
+        "shot": 85692,
+        "changed": 3654,
+        "max_absolute_probability_delta": 0.0049346089363098145
+      },
+      {
+        "shot": 79739,
+        "changed": 3261,
+        "max_absolute_probability_delta": 0.01490551233291626
+      },
+      {
+        "shot": 85680,
+        "changed": 5112,
+        "max_absolute_probability_delta": 0.00180739164352417
+      },
+      {
+        "shot": 85681,
+        "changed": 5533,
+        "max_absolute_probability_delta": 0.005589425563812256
+      },
+      {
+        "shot": 85684,
+        "changed": 5045,
+        "max_absolute_probability_delta": 0.003217756748199463
+      },
+      {
+        "shot": 94395,
+        "changed": 4957,
+        "max_absolute_probability_delta": 0.013819396495819092
+      },
+      {
+        "shot": 85683,
+        "changed": 5041,
+        "max_absolute_probability_delta": 0.0020207762718200684
+      },
+      {
+        "shot": 94402,
+        "changed": 4957,
+        "max_absolute_probability_delta": 0.004455685615539551
+      },
+      {
+        "shot": 86756,
+        "changed": 4957,
+        "max_absolute_probability_delta": 0.0013830363750457764
+      },
+      {
+        "shot": 93602,
+        "changed": 4658,
+        "max_absolute_probability_delta": 0.0024654269218444824
+      },
+      {
+        "shot": 79913,
+        "changed": 5354,
+        "max_absolute_probability_delta": 0.0030978918075561523
+      },
+      {
+        "shot": 91689,
+        "changed": 1896,
+        "max_absolute_probability_delta": 0.007186412811279297
+      },
+      {
+        "shot": 87363,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.0018595755100250244
+      },
+      {
+        "shot": 93983,
+        "changed": 4457,
+        "max_absolute_probability_delta": 0.006138205528259277
+      },
+      {
+        "shot": 93387,
+        "changed": 2606,
+        "max_absolute_probability_delta": 0.005383014678955078
+      },
+      {
+        "shot": 65067,
+        "changed": 2525,
+        "max_absolute_probability_delta": 0.018275290727615356
+      },
+      {
+        "shot": 64919,
+        "changed": 2040,
+        "max_absolute_probability_delta": 0.024082660675048828
+      },
+      {
+        "shot": 64990,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.00015208497643470764
+      },
+      {
+        "shot": 64995,
+        "changed": 4957,
+        "max_absolute_probability_delta": 0.00043276697397232056
+      },
+      {
+        "shot": 64697,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.0005189329385757446
+      },
+      {
+        "shot": 81634,
+        "changed": 4957,
+        "max_absolute_probability_delta": 0.0013304948806762695
+      },
+      {
+        "shot": 77906,
+        "changed": 3527,
+        "max_absolute_probability_delta": 0.019376516342163086
+      },
+      {
+        "shot": 77901,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.008754938840866089
+      },
+      {
+        "shot": 77835,
+        "changed": 4958,
+        "max_absolute_probability_delta": 0.013239055871963501
+      },
+      {
+        "shot": 89485,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.0019530653953552246
+      },
+      {
+        "shot": 87847,
+        "changed": 4958,
+        "max_absolute_probability_delta": 0.006673216819763184
+      },
+      {
+        "shot": 77302,
+        "changed": 4409,
+        "max_absolute_probability_delta": 0.005688875913619995
+      },
+      {
+        "shot": 64448,
+        "changed": 3567,
+        "max_absolute_probability_delta": 0.008164048194885254
+      },
+      {
+        "shot": 77295,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.004212573170661926
+      },
+      {
+        "shot": 77565,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.0005499646067619324
+      },
+      {
+        "shot": 62540,
+        "changed": 3920,
+        "max_absolute_probability_delta": 0.0011091157793998718
+      },
+      {
+        "shot": 77628,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.0005214586853981018
+      },
+      {
+        "shot": 62473,
+        "changed": 2757,
+        "max_absolute_probability_delta": 0.00020126253366470337
+      },
+      {
+        "shot": 80801,
+        "changed": 4957,
+        "max_absolute_probability_delta": 0.00869840383529663
+      },
+      {
+        "shot": 86499,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.0015719830989837646
+      },
+      {
+        "shot": 94248,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.003463566303253174
+      },
+      {
+        "shot": 85422,
+        "changed": 4958,
+        "max_absolute_probability_delta": 0.004047513008117676
+      },
+      {
+        "shot": 85599,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.006047964096069336
+      },
+      {
+        "shot": 90631,
+        "changed": 5067,
+        "max_absolute_probability_delta": 0.007344841957092285
+      },
+      {
+        "shot": 93306,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.0044831037521362305
+      },
+      {
+        "shot": 96375,
+        "changed": 4757,
+        "max_absolute_probability_delta": 0.009892940521240234
+      },
+      {
+        "shot": 94323,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.00172346830368042
+      },
+      {
+        "shot": 94258,
+        "changed": 5079,
+        "max_absolute_probability_delta": 0.011434555053710938
+      },
+      {
+        "shot": 90675,
+        "changed": 5464,
+        "max_absolute_probability_delta": 0.004143893718719482
+      },
+      {
+        "shot": 94274,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.0032382607460021973
+      },
+      {
+        "shot": 85123,
+        "changed": 4755,
+        "max_absolute_probability_delta": 0.006297081708908081
+      },
+      {
+        "shot": 85526,
+        "changed": 5579,
+        "max_absolute_probability_delta": 0.005288898944854736
+      },
+      {
+        "shot": 85181,
+        "changed": 5106,
+        "max_absolute_probability_delta": 0.00542101263999939
+      },
+      {
+        "shot": 89044,
+        "changed": 2303,
+        "max_absolute_probability_delta": 0.007226347923278809
+      },
+      {
+        "shot": 87009,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.0011117160320281982
+      },
+      {
+        "shot": 89549,
+        "changed": 3829,
+        "max_absolute_probability_delta": 0.004713535308837891
+      },
+      {
+        "shot": 86941,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.0016090869903564453
+      },
+      {
+        "shot": 86930,
+        "changed": 4958,
+        "max_absolute_probability_delta": 0.005428627133369446
+      },
+      {
+        "shot": 89721,
+        "changed": 4959,
+        "max_absolute_probability_delta": 0.0021565258502960205
+      },
+      {
+        "shot": 90314,
+        "changed": 1088,
+        "max_absolute_probability_delta": 0.006081700325012207
+      },
+      {
+        "shot": 90166,
+        "changed": 4957,
+        "max_absolute_probability_delta": 0.0031456947326660156
+      },
+      {
+        "shot": 90321,
+        "changed": 7897,
+        "max_absolute_probability_delta": 0.007759571075439453
+      },
+      {
+        "shot": 64835,
+        "changed": 1373,
+        "max_absolute_probability_delta": 0.022153377532958984
+      },
+      {
+        "shot": 64869,
+        "changed": 4957,
+        "max_absolute_probability_delta": 0.00018171221017837524
+      },
+      {
+        "shot": 77419,
+        "changed": 4957,
+        "max_absolute_probability_delta": 0.002099469304084778
+      },
+      {
+        "shot": 78776,
+        "changed": 4755,
+        "max_absolute_probability_delta": 0.0014098584651947021
+      },
+      {
+        "shot": 78617,
+        "changed": 1296,
+        "max_absolute_probability_delta": 0.0067667365074157715
+      },
+      {
+        "shot": 54178,
+        "changed": 3157,
+        "max_absolute_probability_delta": 0.0006687790155410767
+      },
+      {
+        "shot": 54170,
+        "changed": 3157,
+        "max_absolute_probability_delta": 0.00033321231603622437
+      },
+      {
+        "shot": 54165,
+        "changed": 3156,
+        "max_absolute_probability_delta": 5.8125704526901245e-05
+      },
+      {
+        "shot": 89570,
+        "changed": 4459,
+        "max_absolute_probability_delta": 0.0016974806785583496
+      },
+      {
+        "shot": 83166,
+        "changed": 1111,
+        "max_absolute_probability_delta": 0.01839900016784668
+      },
+      {
+        "shot": 83218,
+        "changed": 1521,
+        "max_absolute_probability_delta": 0.011664628982543945
+      },
+      {
+        "shot": 83164,
+        "changed": 1054,
+        "max_absolute_probability_delta": 0.018801987171173096
+      },
+      {
+        "shot": 83231,
+        "changed": 4957,
+        "max_absolute_probability_delta": 0.0006790310144424438
+      },
+      {
+        "shot": 79899,
+        "changed": 1364,
+        "max_absolute_probability_delta": 0.004077881574630737
+      },
+      {
+        "shot": 83568,
+        "changed": 4038,
+        "max_absolute_probability_delta": 0.0016375184059143066
+      },
+      {
+        "shot": 62565,
+        "changed": 4756,
+        "max_absolute_probability_delta": 0.00032495707273483276
+      },
+      {
+        "shot": 62573,
+        "changed": 4754,
+        "max_absolute_probability_delta": 0.0004804357886314392
+      },
+      {
+        "shot": 84841,
+        "changed": 998,
+        "max_absolute_probability_delta": 0.011603116989135742
+      },
+      {
+        "shot": 83887,
+        "changed": 518,
+        "max_absolute_probability_delta": 0.011318981647491455
+      },
+      {
+        "shot": 83376,
+        "changed": 4957,
+        "max_absolute_probability_delta": 0.004546940326690674
+      },
+      {
+        "shot": 83438,
+        "changed": 4956,
+        "max_absolute_probability_delta": 0.005046963691711426
+      },
+      {
+        "shot": 54905,
+        "changed": 2458,
+        "max_absolute_probability_delta": 0.001225098967552185
+      },
+      {
+        "shot": 54889,
+        "changed": 2458,
+        "max_absolute_probability_delta": 0.00045008957386016846
+      },
+      {
+        "shot": 83910,
+        "changed": 4958,
+        "max_absolute_probability_delta": 0.0012934207916259766
+      },
+      {
+        "shot": 85023,
+        "changed": 1067,
+        "max_absolute_probability_delta": 0.011709153652191162
+      },
+      {
+        "shot": 85032,
+        "changed": 2186,
+        "max_absolute_probability_delta": 0.01486670970916748
+      },
+      {
+        "shot": 84711,
+        "changed": 2321,
+        "max_absolute_probability_delta": 0.026424407958984375
+      }
+    ]
+  },
+  "evidence_scope": "POSTHOC_DIAGNOSTIC_NOT_INDEPENDENT_VALIDATION"
+}

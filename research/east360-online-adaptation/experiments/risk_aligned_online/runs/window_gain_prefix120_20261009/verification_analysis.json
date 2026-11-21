@@ -1,0 +1,103 @@
+{
+  "scope": "INDEPENDENT SEALED-TRACE RECOUNT; development prefix only",
+  "verified_counts": {
+    "seals": 600,
+    "timing_attempts": 9028,
+    "zero_shot_resets": 240,
+    "unchanged_control_curves": 360
+  },
+  "metrics": {
+    "mask_static": {
+      "tp": 24,
+      "fp": 14,
+      "n_disrupt": 39,
+      "n_safe": 81,
+      "tpr": 0.6153846153846154,
+      "fpr": 0.1728395061728395,
+      "J": 0.4425451092117759,
+      "very_early_gt3s": 9,
+      "accepted_intra_updates": 0
+    },
+    "static": {
+      "tp": 20,
+      "fp": 8,
+      "n_disrupt": 39,
+      "n_safe": 81,
+      "tpr": 0.5128205128205128,
+      "fpr": 0.09876543209876543,
+      "J": 0.41405508072174735,
+      "very_early_gt3s": 5,
+      "accepted_intra_updates": 0
+    },
+    "intra": {
+      "tp": 20,
+      "fp": 8,
+      "n_disrupt": 39,
+      "n_safe": 81,
+      "tpr": 0.5128205128205128,
+      "fpr": 0.09876543209876543,
+      "J": 0.41405508072174735,
+      "very_early_gt3s": 5,
+      "accepted_intra_updates": 4514
+    },
+    "inter": {
+      "tp": 19,
+      "fp": 4,
+      "n_disrupt": 39,
+      "n_safe": 81,
+      "tpr": 0.48717948717948717,
+      "fpr": 0.04938271604938271,
+      "J": 0.43779677113010446,
+      "very_early_gt3s": 4,
+      "accepted_intra_updates": 0
+    },
+    "both": {
+      "tp": 20,
+      "fp": 5,
+      "n_disrupt": 39,
+      "n_safe": 81,
+      "tpr": 0.5128205128205128,
+      "fpr": 0.06172839506172839,
+      "J": 0.4510921177587844,
+      "very_early_gt3s": 5,
+      "accepted_intra_updates": 4514
+    }
+  },
+  "flips_vs_input_matched_static": {
+    "intra": {
+      "rescued_disrupt": [],
+      "lost_timely_disrupt": [],
+      "added_fp": [],
+      "removed_fp": []
+    },
+    "inter": {
+      "rescued_disrupt": [],
+      "lost_timely_disrupt": [
+        55854
+      ],
+      "added_fp": [],
+      "removed_fp": [
+        56012,
+        58442,
+        58471,
+        58717
+      ]
+    },
+    "both": {
+      "rescued_disrupt": [],
+      "lost_timely_disrupt": [],
+      "added_fp": [],
+      "removed_fp": [
+        56012,
+        58442,
+        58717
+      ]
+    }
+  },
+  "maximum_curve_changes_vs_static": {
+    "intra": 0.37931641936302185,
+    "both": 0.41621384024620056
+  },
+  "source_sha256": "c7270c1ea3652db2e30e972d4ca9a4a2d33220a68e4a3765c8b7f5bcceeaeb02",
+  "alignment_identical_all_arms": true
+}

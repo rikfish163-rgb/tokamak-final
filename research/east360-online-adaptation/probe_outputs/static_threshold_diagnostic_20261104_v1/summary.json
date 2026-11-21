@@ -1,0 +1,309 @@
+{
+  "fixed_threshold": {
+    "unmapped": {
+      "tp": 145,
+      "fp": 94,
+      "n_disruptive": 180,
+      "n_safe": 180,
+      "tpr": 0.8055555555555556,
+      "fpr": 0.5222222222222223,
+      "J": 0.2833333333333333
+    },
+    "map_after20": {
+      "tp": 116,
+      "fp": 29,
+      "n_disruptive": 180,
+      "n_safe": 180,
+      "tpr": 0.6444444444444445,
+      "fpr": 0.16111111111111112,
+      "J": 0.4833333333333334
+    },
+    "retrospective_map_all": {
+      "tp": 116,
+      "fp": 23,
+      "n_disruptive": 180,
+      "n_safe": 180,
+      "tpr": 0.6444444444444445,
+      "fpr": 0.12777777777777777,
+      "J": 0.5166666666666667
+    }
+  },
+  "retrospective_all360_threshold_capacity": {
+    "unmapped": {
+      "0.1": {
+        "cutoff": 0.913861095905304,
+        "tp": 94,
+        "fp": 17,
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "tpr": 0.5222222222222223,
+        "fpr": 0.09444444444444444,
+        "J": 0.4277777777777778,
+        "uses_all360_outcomes": true,
+        "deployable": false
+      },
+      "0.15": {
+        "cutoff": 0.8906481266021729,
+        "tp": 107,
+        "fp": 26,
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "tpr": 0.5944444444444444,
+        "fpr": 0.14444444444444443,
+        "J": 0.45,
+        "uses_all360_outcomes": true,
+        "deployable": false
+      },
+      "0.2": {
+        "cutoff": 0.8783110976219177,
+        "tp": 110,
+        "fp": 36,
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "tpr": 0.6111111111111112,
+        "fpr": 0.2,
+        "J": 0.41111111111111115,
+        "uses_all360_outcomes": true,
+        "deployable": false
+      }
+    },
+    "map_after20": {
+      "0.1": {
+        "cutoff": 0.7944376468658447,
+        "tp": 109,
+        "fp": 17,
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "tpr": 0.6055555555555555,
+        "fpr": 0.09444444444444444,
+        "J": 0.5111111111111111,
+        "uses_all360_outcomes": true,
+        "deployable": false
+      },
+      "0.15": {
+        "cutoff": 0.7409291863441467,
+        "tp": 114,
+        "fp": 27,
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "tpr": 0.6333333333333333,
+        "fpr": 0.15,
+        "J": 0.4833333333333333,
+        "uses_all360_outcomes": true,
+        "deployable": false
+      },
+      "0.2": {
+        "cutoff": 0.6688308715820312,
+        "tp": 119,
+        "fp": 34,
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "tpr": 0.6611111111111111,
+        "fpr": 0.18888888888888888,
+        "J": 0.4722222222222222,
+        "uses_all360_outcomes": true,
+        "deployable": false
+      }
+    },
+    "retrospective_map_all": {
+      "0.1": {
+        "cutoff": 0.7637356519699097,
+        "tp": 112,
+        "fp": 18,
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "tpr": 0.6222222222222222,
+        "fpr": 0.1,
+        "J": 0.5222222222222223,
+        "uses_all360_outcomes": true,
+        "deployable": false
+      },
+      "0.15": {
+        "cutoff": 0.6664986610412598,
+        "tp": 119,
+        "fp": 27,
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "tpr": 0.6611111111111111,
+        "fpr": 0.15,
+        "J": 0.5111111111111111,
+        "uses_all360_outcomes": true,
+        "deployable": false
+      },
+      "0.2": {
+        "cutoff": 0.6108067035675049,
+        "tp": 126,
+        "fp": 36,
+        "n_disruptive": 180,
+        "n_safe": 180,
+        "tpr": 0.7,
+        "fpr": 0.2,
+        "J": 0.49999999999999994,
+        "uses_all360_outcomes": true,
+        "deployable": false
+      }
+    }
+  },
+  "first20_label_threshold_controls": {
+    "unmapped": {
+      "0.1": {
+        "cutoff": 0.7724398970603943,
+        "preparation_safe_shots": 12,
+        "preparation_labeled_shots": 20,
+        "preparation_fpr_on_ended_data": 0.08333333333333333,
+        "full360": {
+          "tp": 138,
+          "fp": 83,
+          "n_disruptive": 180,
+          "n_safe": 180,
+          "tpr": 0.7666666666666667,
+          "fpr": 0.46111111111111114,
+          "J": 0.3055555555555556
+        },
+        "suffix340": {
+          "tp": 131,
+          "fp": 77,
+          "n_disruptive": 172,
+          "n_safe": 168,
+          "tpr": 0.7616279069767442,
+          "fpr": 0.4583333333333333,
+          "J": 0.3032945736434109
+        },
+        "first20_predictions_unchanged": true,
+        "empirical_suffix_fpr_not_guaranteed": true
+      },
+      "0.15": {
+        "cutoff": 0.7724398970603943,
+        "preparation_safe_shots": 12,
+        "preparation_labeled_shots": 20,
+        "preparation_fpr_on_ended_data": 0.08333333333333333,
+        "full360": {
+          "tp": 138,
+          "fp": 83,
+          "n_disruptive": 180,
+          "n_safe": 180,
+          "tpr": 0.7666666666666667,
+          "fpr": 0.46111111111111114,
+          "J": 0.3055555555555556
+        },
+        "suffix340": {
+          "tp": 131,
+          "fp": 77,
+          "n_disruptive": 172,
+          "n_safe": 168,
+          "tpr": 0.7616279069767442,
+          "fpr": 0.4583333333333333,
+          "J": 0.3032945736434109
+        },
+        "first20_predictions_unchanged": true,
+        "empirical_suffix_fpr_not_guaranteed": true
+      },
+      "0.2": {
+        "cutoff": 0.7715232968330383,
+        "preparation_safe_shots": 12,
+        "preparation_labeled_shots": 20,
+        "preparation_fpr_on_ended_data": 0.16666666666666666,
+        "full360": {
+          "tp": 139,
+          "fp": 85,
+          "n_disruptive": 180,
+          "n_safe": 180,
+          "tpr": 0.7722222222222223,
+          "fpr": 0.4722222222222222,
+          "J": 0.30000000000000004
+        },
+        "suffix340": {
+          "tp": 132,
+          "fp": 79,
+          "n_disruptive": 172,
+          "n_safe": 168,
+          "tpr": 0.7674418604651163,
+          "fpr": 0.47023809523809523,
+          "J": 0.2972037652270211
+        },
+        "first20_predictions_unchanged": true,
+        "empirical_suffix_fpr_not_guaranteed": true
+      }
+    },
+    "retrospective_map_all": {
+      "0.1": {
+        "cutoff": 0.5634515285491943,
+        "preparation_safe_shots": 12,
+        "preparation_labeled_shots": 20,
+        "preparation_fpr_on_ended_data": 0.08333333333333333,
+        "full360": {
+          "tp": 133,
+          "fp": 48,
+          "n_disruptive": 180,
+          "n_safe": 180,
+          "tpr": 0.7388888888888889,
+          "fpr": 0.26666666666666666,
+          "J": 0.47222222222222227
+        },
+        "suffix340": {
+          "tp": 126,
+          "fp": 42,
+          "n_disruptive": 172,
+          "n_safe": 168,
+          "tpr": 0.7325581395348837,
+          "fpr": 0.25,
+          "J": 0.4825581395348837
+        },
+        "first20_predictions_unchanged": true,
+        "empirical_suffix_fpr_not_guaranteed": true
+      },
+      "0.15": {
+        "cutoff": 0.5634515285491943,
+        "preparation_safe_shots": 12,
+        "preparation_labeled_shots": 20,
+        "preparation_fpr_on_ended_data": 0.08333333333333333,
+        "full360": {
+          "tp": 133,
+          "fp": 48,
+          "n_disruptive": 180,
+          "n_safe": 180,
+          "tpr": 0.7388888888888889,
+          "fpr": 0.26666666666666666,
+          "J": 0.47222222222222227
+        },
+        "suffix340": {
+          "tp": 126,
+          "fp": 42,
+          "n_disruptive": 172,
+          "n_safe": 168,
+          "tpr": 0.7325581395348837,
+          "fpr": 0.25,
+          "J": 0.4825581395348837
+        },
+        "first20_predictions_unchanged": true,
+        "empirical_suffix_fpr_not_guaranteed": true
+      },
+      "0.2": {
+        "cutoff": 0.4943064749240875,
+        "preparation_safe_shots": 12,
+        "preparation_labeled_shots": 20,
+        "preparation_fpr_on_ended_data": 0.16666666666666666,
+        "full360": {
+          "tp": 135,
+          "fp": 61,
+          "n_disruptive": 180,
+          "n_safe": 180,
+          "tpr": 0.75,
+          "fpr": 0.3388888888888889,
+          "J": 0.4111111111111111
+        },
+        "suffix340": {
+          "tp": 128,
+          "fp": 55,
+          "n_disruptive": 172,
+          "n_safe": 168,
+          "tpr": 0.7441860465116279,
+          "fpr": 0.3273809523809524,
+          "J": 0.4168050941306755
+        },
+        "first20_predictions_unchanged": true,
+        "empirical_suffix_fpr_not_guaranteed": true
+      }
+    }
+  }
+}

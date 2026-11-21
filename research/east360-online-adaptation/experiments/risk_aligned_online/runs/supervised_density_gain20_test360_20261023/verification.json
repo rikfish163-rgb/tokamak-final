@@ -1,0 +1,167 @@
+{
+  "status": "VERIFIED",
+  "protocol_sha256": "6997c19e02f6083ecaa8247a9bfd0760c07712bfcc4b677dbd260118a7cf4693",
+  "completed_sha256": "3c0d9b9f552efd5ac7bf661d7fc764e6b199d55501d4d2012cee8d78c1688d95",
+  "audit_sha256": "1c034f46ef355f870a663924847bb3e2cbc9c805006faeebf7c7e062ac6e42f6",
+  "all_traces_independently_recounted": 1440,
+  "network_changed_only_forecast_head": [
+    "base.forecast_head.weight",
+    "base.forecast_head.bias"
+  ],
+  "source_archive_unchanged": true,
+  "update_summary": {
+    "steps": 11301,
+    "nonzero": 11301,
+    "same_sample_loss_decreased": 11301,
+    "max_delta": 0.0010000085358233862
+  },
+  "sampled_cuda_replays": [
+    {
+      "shot": 54157,
+      "arms": 2,
+      "max_abs_difference": 0.0,
+      "update_receipts_exact": true
+    },
+    {
+      "shot": 75135,
+      "arms": 2,
+      "max_abs_difference": 0.0,
+      "update_receipts_exact": true
+    },
+    {
+      "shot": 96375,
+      "arms": 2,
+      "max_abs_difference": 0.0,
+      "update_receipts_exact": true
+    }
+  ],
+  "full_independent_reinference": false,
+  "comparisons": {
+    "static_mapping_change": {
+      "rescued_timely": [
+        60999,
+        62182,
+        63656,
+        64835,
+        69768,
+        69791,
+        69813,
+        71013,
+        73135,
+        73541,
+        74087,
+        74970,
+        75603,
+        76956,
+        77302,
+        77782,
+        78617,
+        79712,
+        79899,
+        81406,
+        85023,
+        86155,
+        93995,
+        94515,
+        94803
+      ],
+      "lost_timely": [
+        73421
+      ],
+      "removed_fp": [],
+      "added_fp": [
+        54905,
+        59935,
+        59940,
+        62394,
+        64562,
+        64646,
+        66404,
+        67046,
+        70043,
+        70258,
+        70323,
+        70470,
+        73743,
+        73790,
+        74676,
+        74939,
+        75226,
+        76861,
+        77295,
+        77835,
+        77901,
+        78776,
+        79580,
+        79734,
+        80053,
+        80746,
+        80793,
+        82833,
+        82834,
+        83376,
+        83438,
+        85123,
+        85316,
+        85320,
+        85632,
+        86499,
+        86984,
+        87009,
+        87363,
+        88135,
+        89101,
+        89326,
+        89485,
+        89570,
+        89721,
+        90166,
+        90863,
+        90978,
+        91723,
+        93306,
+        93602,
+        93641,
+        94248,
+        94274,
+        94352,
+        94363,
+        94402,
+        94422,
+        94428,
+        95930,
+        96099
+      ]
+    },
+    "original_intra": {
+      "rescued_timely": [],
+      "lost_timely": [
+        73421
+      ],
+      "removed_fp": [],
+      "added_fp": [
+        83376,
+        93306
+      ]
+    },
+    "learned_intra": {
+      "rescued_timely": [
+        71086
+      ],
+      "lost_timely": [
+        69768,
+        73665
+      ],
+      "removed_fp": [
+        85316
+      ],
+      "added_fp": [
+        77565,
+        87847,
+        94323
+      ]
+    }
+  },
+  "independent_confirmation": false,
+  "label_access_claim": "No TEST HDF outcome or DownTime used before sealing; class split manifest already known"
+}

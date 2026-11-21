@@ -1,0 +1,325 @@
+{
+  "complete": true,
+  "raw_fixed_exact_replay": true,
+  "variants": {
+    "raw_fixed": {
+      "groups": {
+        "real": {
+          "safe": {
+            "shots": 3,
+            "mean_delta_bce": -0.08391652400245143,
+            "improved": 2,
+            "worsened": 1
+          },
+          "danger_timely": {
+            "shots": 17,
+            "mean_delta_bce": -0.2993775995623004,
+            "improved": 14,
+            "worsened": 3
+          }
+        },
+        "reverse": {
+          "safe": {
+            "shots": 3,
+            "mean_delta_bce": -0.08269876384977387,
+            "improved": 2,
+            "worsened": 1
+          },
+          "danger_timely": {
+            "shots": 17,
+            "mean_delta_bce": -0.32531403790563046,
+            "improved": 15,
+            "worsened": 2
+          }
+        },
+        "mean_feedback": {
+          "safe": {
+            "shots": 3,
+            "mean_delta_bce": -0.07946043070115108,
+            "improved": 2,
+            "worsened": 1
+          },
+          "danger_timely": {
+            "shots": 17,
+            "mean_delta_bce": -0.3006532496499896,
+            "improved": 14,
+            "worsened": 3
+          }
+        },
+        "constant": {
+          "safe": {
+            "shots": 3,
+            "mean_delta_bce": 0.24684345501079052,
+            "improved": 0,
+            "worsened": 3
+          },
+          "danger_timely": {
+            "shots": 17,
+            "mean_delta_bce": -0.5471681323961326,
+            "improved": 17,
+            "worsened": 0
+          }
+        },
+        "risk_axis": {
+          "safe": {
+            "shots": 3,
+            "mean_delta_bce": -0.08172739930456864,
+            "improved": 2,
+            "worsened": 1
+          },
+          "danger_timely": {
+            "shots": 17,
+            "mean_delta_bce": -0.34150628597167443,
+            "improved": 14,
+            "worsened": 3
+          }
+        }
+      },
+      "full_stream_gate": false,
+      "reasons": [
+        "danger_timely did not pass the prespecified conditional screen"
+      ]
+    },
+    "scaled_fixed": {
+      "groups": {
+        "real": {
+          "safe": {
+            "shots": 3,
+            "mean_delta_bce": -0.11338486130125597,
+            "improved": 2,
+            "worsened": 1
+          },
+          "danger_timely": {
+            "shots": 17,
+            "mean_delta_bce": -0.3075246457956575,
+            "improved": 15,
+            "worsened": 2
+          }
+        },
+        "reverse": {
+          "safe": {
+            "shots": 3,
+            "mean_delta_bce": -0.11228503900363696,
+            "improved": 2,
+            "worsened": 1
+          },
+          "danger_timely": {
+            "shots": 17,
+            "mean_delta_bce": -0.32793255350160766,
+            "improved": 16,
+            "worsened": 1
+          }
+        },
+        "mean_feedback": {
+          "safe": {
+            "shots": 3,
+            "mean_delta_bce": -0.11330509647523847,
+            "improved": 2,
+            "worsened": 1
+          },
+          "danger_timely": {
+            "shots": 17,
+            "mean_delta_bce": -0.3024952133956097,
+            "improved": 14,
+            "worsened": 3
+          }
+        },
+        "constant": {
+          "safe": {
+            "shots": 3,
+            "mean_delta_bce": 0.38790281231080576,
+            "improved": 0,
+            "worsened": 3
+          },
+          "danger_timely": {
+            "shots": 17,
+            "mean_delta_bce": -0.6161514552512061,
+            "improved": 17,
+            "worsened": 0
+          }
+        },
+        "risk_axis": {
+          "safe": {
+            "shots": 3,
+            "mean_delta_bce": -0.1074249089735007,
+            "improved": 2,
+            "worsened": 1
+          },
+          "danger_timely": {
+            "shots": 17,
+            "mean_delta_bce": -0.33463745620958074,
+            "improved": 14,
+            "worsened": 3
+          }
+        }
+      },
+      "full_stream_gate": false,
+      "reasons": [
+        "danger_timely did not pass the prespecified conditional screen"
+      ]
+    },
+    "raw_calibrated": {
+      "groups": {
+        "real": {
+          "safe": {
+            "shots": 3,
+            "mean_delta_bce": 0.1303884014716805,
+            "improved": 2,
+            "worsened": 1
+          },
+          "danger_timely": {
+            "shots": 17,
+            "mean_delta_bce": -1.3144630151905599,
+            "improved": 13,
+            "worsened": 4
+          }
+        },
+        "reverse": {
+          "safe": {
+            "shots": 3,
+            "mean_delta_bce": 0.1304711734481405,
+            "improved": 2,
+            "worsened": 1
+          },
+          "danger_timely": {
+            "shots": 17,
+            "mean_delta_bce": -1.2889711925293033,
+            "improved": 13,
+            "worsened": 4
+          }
+        },
+        "mean_feedback": {
+          "safe": {
+            "shots": 3,
+            "mean_delta_bce": 0.12809866342424997,
+            "improved": 2,
+            "worsened": 1
+          },
+          "danger_timely": {
+            "shots": 17,
+            "mean_delta_bce": -1.2879124701031783,
+            "improved": 13,
+            "worsened": 4
+          }
+        },
+        "constant": {
+          "safe": {
+            "shots": 3,
+            "mean_delta_bce": 1.3561151620852163,
+            "improved": 0,
+            "worsened": 3
+          },
+          "danger_timely": {
+            "shots": 17,
+            "mean_delta_bce": -1.9057390325879648,
+            "improved": 16,
+            "worsened": 1
+          }
+        },
+        "risk_axis": {
+          "safe": {
+            "shots": 3,
+            "mean_delta_bce": -0.0076569456524712325,
+            "improved": 2,
+            "worsened": 1
+          },
+          "danger_timely": {
+            "shots": 17,
+            "mean_delta_bce": -0.941151539581682,
+            "improved": 13,
+            "worsened": 4
+          }
+        }
+      },
+      "full_stream_gate": false,
+      "reasons": [
+        "safe did not pass the prespecified conditional screen",
+        "danger_timely did not pass the prespecified conditional screen"
+      ]
+    },
+    "scaled_calibrated": {
+      "groups": {
+        "real": {
+          "safe": {
+            "shots": 3,
+            "mean_delta_bce": 0.1456402106427996,
+            "improved": 2,
+            "worsened": 1
+          },
+          "danger_timely": {
+            "shots": 17,
+            "mean_delta_bce": -1.1933381551299362,
+            "improved": 13,
+            "worsened": 4
+          }
+        },
+        "reverse": {
+          "safe": {
+            "shots": 3,
+            "mean_delta_bce": 0.1509304131813228,
+            "improved": 2,
+            "worsened": 1
+          },
+          "danger_timely": {
+            "shots": 17,
+            "mean_delta_bce": -1.137711666008388,
+            "improved": 13,
+            "worsened": 4
+          }
+        },
+        "mean_feedback": {
+          "safe": {
+            "shots": 3,
+            "mean_delta_bce": 0.14544107836580175,
+            "improved": 2,
+            "worsened": 1
+          },
+          "danger_timely": {
+            "shots": 17,
+            "mean_delta_bce": -1.328114987111949,
+            "improved": 14,
+            "worsened": 3
+          }
+        },
+        "constant": {
+          "safe": {
+            "shots": 3,
+            "mean_delta_bce": 1.5186279440911337,
+            "improved": 0,
+            "worsened": 3
+          },
+          "danger_timely": {
+            "shots": 17,
+            "mean_delta_bce": -1.6453599603274205,
+            "improved": 17,
+            "worsened": 0
+          }
+        },
+        "risk_axis": {
+          "safe": {
+            "shots": 3,
+            "mean_delta_bce": 0.011931409468307933,
+            "improved": 2,
+            "worsened": 1
+          },
+          "danger_timely": {
+            "shots": 17,
+            "mean_delta_bce": -0.8347894719694973,
+            "improved": 14,
+            "worsened": 3
+          }
+        }
+      },
+      "full_stream_gate": false,
+      "reasons": [
+        "safe did not pass the prespecified conditional screen",
+        "danger_timely did not pass the prespecified conditional screen"
+      ]
+    }
+  },
+  "selected_for_full_stream": null,
+  "source_unchanged": true,
+  "suffix_labels_read": 0,
+  "full_stream_run": false,
+  "seconds": 30.909485538999434
+}

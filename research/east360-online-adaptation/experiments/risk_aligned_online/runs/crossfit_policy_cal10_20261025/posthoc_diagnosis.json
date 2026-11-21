@@ -1,0 +1,219 @@
+{
+  "scope": "POST_HOC_DIAGNOSTIC_ONLY_NO_SELECTION_OR_NEW360",
+  "completed_sha256": "4a4f1d54c294af1fa33445282aa1270fb1db86380d18e10899232c84e401bf4a",
+  "audit_sha256": "a41d109ceedeeb89169bb75aca0ec3692a2a783ca37319213ed9914ceffc2c92",
+  "context_epoch": 10,
+  "strength": 0.6230780535458827,
+  "historical_counts": {
+    "current": {
+      "tp": 0,
+      "fp": 5,
+      "very_early_over3000": 0
+    },
+    "baseline": {
+      "tp": 0,
+      "fp": 5,
+      "very_early_over3000": 0
+    },
+    "passed": false
+  },
+  "historical_disruptive_losses": [
+    {
+      "shot": 63226,
+      "before": 2.4790852069854736,
+      "after": 2.486152410507202,
+      "delta": 0.007067203521728516,
+      "static_prefix_winner": true
+    },
+    {
+      "shot": 70868,
+      "before": 3.0384676456451416,
+      "after": 3.0351901054382324,
+      "delta": -0.0032775402069091797,
+      "static_prefix_winner": false
+    },
+    {
+      "shot": 75604,
+      "before": 1.1257107257843018,
+      "after": 1.1058781147003174,
+      "delta": -0.019832611083984375,
+      "static_prefix_winner": false
+    },
+    {
+      "shot": 88785,
+      "before": 1.4876071214675903,
+      "after": 1.4848670959472656,
+      "delta": -0.002740025520324707,
+      "static_prefix_winner": false
+    }
+  ],
+  "zero_credit_shots": [
+    63226,
+    58717,
+    81150
+  ],
+  "cached_gradient_blocks": 717,
+  "winning_blocks_with_policy_gradient": 17,
+  "gradient_cosine_to_uniform": {
+    "quantile_levels": [
+      0,
+      0.25,
+      0.5,
+      0.75,
+      1
+    ],
+    "values": [
+      0.735336602238346,
+      0.9351135581813415,
+      0.9557833069158456,
+      0.970441882209133,
+      0.9935374363062403
+    ],
+    "above_point99": 17
+  },
+  "channel_coefficients": [
+    {
+      "name": "Bt",
+      "mean": 0.019328766773227386,
+      "minimum": 0.018050126668976037,
+      "maximum": 0.020493207753015757
+    },
+    {
+      "name": "CIII",
+      "mean": 0.015248188924917161,
+      "minimum": 0.0,
+      "maximum": 0.02017375656973393
+    },
+    {
+      "name": "MNM",
+      "mean": 0.0,
+      "minimum": 0.0,
+      "maximum": 0.0
+    },
+    {
+      "name": "Mir_VV",
+      "mean": 0.052630481527097726,
+      "minimum": 0.04799088457312367,
+      "maximum": 0.05897264653198325
+    },
+    {
+      "name": "Mir_avg_amp",
+      "mean": 0.01990039572785139,
+      "minimum": 0.017648818422821653,
+      "maximum": 0.022518724769841608
+    },
+    {
+      "name": "Mir_avg_fre",
+      "mean": 0.019583033072035263,
+      "minimum": 0.01695843445579752,
+      "maximum": 0.024695099623720042
+    },
+    {
+      "name": "Z_proxy",
+      "mean": 0.053924306846040854,
+      "minimum": 0.0494885389060661,
+      "maximum": 0.05898974431327859
+    },
+    {
+      "name": "dx_a",
+      "mean": 0.0193959770023336,
+      "minimum": 0.018012158072296933,
+      "maximum": 0.021193427053113587
+    },
+    {
+      "name": "dy_a",
+      "mean": 0.019067276138306614,
+      "minimum": 0.016370740009969263,
+      "maximum": 0.02274404844217953
+    },
+    {
+      "name": "ip",
+      "mean": 0.01933465704775785,
+      "minimum": 0.017986341471075095,
+      "maximum": 0.020621007959899143
+    },
+    {
+      "name": "mode_number_n",
+      "mean": 0.051366553238044566,
+      "minimum": 0.03131773969290999,
+      "maximum": 0.08030904949453745
+    },
+    {
+      "name": "n=1 amplitude",
+      "mean": 0.019526739048601978,
+      "minimum": 0.017442125035748407,
+      "maximum": 0.024208748143364597
+    },
+    {
+      "name": "ne_nG",
+      "mean": 0.019414168436619937,
+      "minimum": 0.017963879406444134,
+      "maximum": 0.020747419248653875
+    },
+    {
+      "name": "qa_proxy",
+      "mean": 0.019311388564802717,
+      "minimum": 0.01802674444142647,
+      "maximum": 0.02051396046748963
+    },
+    {
+      "name": "sxr_kurt",
+      "mean": 0.03581239955466661,
+      "minimum": 0.027877675531973685,
+      "maximum": 0.04430814548073508
+    },
+    {
+      "name": "sxr_mean",
+      "mean": 0.02107325469078613,
+      "minimum": 0.01827380138201607,
+      "maximum": 0.022889233321911756
+    },
+    {
+      "name": "sxr_skew",
+      "mean": 0.038598970937283344,
+      "minimum": 0.02969949061919063,
+      "maximum": 0.049759651351232136
+    },
+    {
+      "name": "sxr_var",
+      "mean": 0.022729117122403473,
+      "minimum": 0.018499055576427,
+      "maximum": 0.027509925862603854
+    },
+    {
+      "name": "v_loop",
+      "mean": 0.05341267251557338,
+      "minimum": 0.04623399924035304,
+      "maximum": 0.05987707245171887
+    },
+    {
+      "name": "xuv_kurt",
+      "mean": 0.019416376273519272,
+      "minimum": 0.014345481628249767,
+      "maximum": 0.025461684377759145
+    },
+    {
+      "name": "xuv_ratio",
+      "mean": 0.019527682898161362,
+      "minimum": 0.011630549708316939,
+      "maximum": 0.031055759810652332
+    },
+    {
+      "name": "xuv_skew",
+      "mean": 0.019733297320985936,
+      "minimum": 0.0139464017982061,
+      "maximum": 0.028901865062700923
+    },
+    {
+      "name": "xuv_var",
+      "mean": 0.044742349884866195,
+      "minimum": 0.03738120859545493,
+      "maximum": 0.051106217404951464
+    }
+  ],
+  "calibration_disruption_loss_change": 0.004361034429262389,
+  "calibration_balanced_loss_gap_to_uniform": 0.0013362930171497145,
+  "calibration_balanced_loss_gap_to_permuted": 0.002294026880736544,
+  "evidence_limit": "Directional similarity is not proof of identical updates or a physical mechanism; policy context averages arrived residuals, but channel gradients can retain timing information.",
+  "code_sha256": "f035e7e932d5282aa557be6c1e42c7b0e4acc57387070aa879b103c980c50799"
+}

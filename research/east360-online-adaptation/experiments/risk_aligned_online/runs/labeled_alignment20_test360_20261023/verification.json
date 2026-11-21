@@ -1,0 +1,394 @@
+{
+  "status": "VERIFIED",
+  "all_shot_traces_recounted": 3240,
+  "metadata_training_roles": 88,
+  "signal_fitting_shots": 20,
+  "outcome_access_gate": "TRAIN only before evaluation",
+  "prefix_mapping_recomputed": true,
+  "gradient_steps": {
+    "input_only": 11301,
+    "supervised": 11301,
+    "global_moments": 11301,
+    "conditional_moments": 11301
+  },
+  "positive_parameter_steps": {
+    "input_only": 11301,
+    "supervised": 11301,
+    "global_moments": 11301,
+    "conditional_moments": 11301
+  },
+  "sampled_cuda_replays": [
+    {
+      "shot": 54157,
+      "arms": 9,
+      "prediction_max_abs": 0.0,
+      "update_receipts_exact": true
+    },
+    {
+      "shot": 75135,
+      "arms": 9,
+      "prediction_max_abs": 0.0,
+      "update_receipts_exact": true
+    },
+    {
+      "shot": 96375,
+      "arms": 9,
+      "prediction_max_abs": 0.0,
+      "update_receipts_exact": true
+    }
+  ],
+  "full_independent_reinference": false,
+  "protocol_sha256": "526af059dff67465e9ed86d01a361c21c71af4102ad335c8a8812954941a1a68",
+  "completed_sha256": "62f4b762cdf81738dcd5e670f39a123bee60af8a3f52769f64ffe0b1acc3120d",
+  "parent_sha256": "c7270c1ea3652db2e30e972d4ca9a4a2d33220a68e4a3765c8b7f5bcceeaeb02",
+  "counts": {
+    "raw_source": {
+      "tp": 145,
+      "fp": 94,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "early": 33
+    },
+    "input_only_static": {
+      "tp": 117,
+      "fp": 27,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "early": 16
+    },
+    "input_only_intra": {
+      "tp": 116,
+      "fp": 29,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "early": 14
+    },
+    "supervised_static": {
+      "tp": 130,
+      "fp": 41,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "early": 20
+    },
+    "supervised_intra": {
+      "tp": 136,
+      "fp": 47,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "early": 23
+    },
+    "global_moments_static": {
+      "tp": 132,
+      "fp": 43,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "early": 20
+    },
+    "global_moments_intra": {
+      "tp": 136,
+      "fp": 50,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "early": 20
+    },
+    "conditional_moments_static": {
+      "tp": 131,
+      "fp": 41,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "early": 16
+    },
+    "conditional_moments_intra": {
+      "tp": 135,
+      "fp": 47,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "early": 17
+    }
+  },
+  "paired_intra_changes": {
+    "input_only": {
+      "rescued_timely": [],
+      "lost_timely": [
+        73421
+      ],
+      "removed_fp": [],
+      "added_fp": [
+        83376,
+        93306
+      ]
+    },
+    "supervised": {
+      "rescued_timely": [
+        69813,
+        71265,
+        85526,
+        89881,
+        94803,
+        95770
+      ],
+      "lost_timely": [],
+      "removed_fp": [
+        63764,
+        70392,
+        80955
+      ],
+      "added_fp": [
+        79580,
+        80053,
+        82834,
+        85632,
+        86167,
+        91064,
+        94274,
+        94361,
+        94395
+      ]
+    },
+    "global_moments": {
+      "rescued_timely": [
+        62182,
+        65944,
+        69791,
+        71265,
+        90874
+      ],
+      "lost_timely": [
+        73405
+      ],
+      "removed_fp": [
+        63097,
+        80955
+      ],
+      "added_fp": [
+        63764,
+        80053,
+        82833,
+        85632,
+        86167,
+        87009,
+        94274,
+        94395,
+        94422
+      ]
+    },
+    "conditional_moments": {
+      "rescued_timely": [
+        62182,
+        65944,
+        69813,
+        71415,
+        90874
+      ],
+      "lost_timely": [
+        73405
+      ],
+      "removed_fp": [
+        73969
+      ],
+      "added_fp": [
+        63764,
+        70258,
+        79734,
+        80053,
+        85632,
+        93306,
+        94422
+      ]
+    }
+  },
+  "paired_static_changes": {
+    "supervised": {
+      "rescued_timely": [
+        60999,
+        62182,
+        63690,
+        64835,
+        69768,
+        69781,
+        69791,
+        70320,
+        70327,
+        70861,
+        71013,
+        71086,
+        71370,
+        73135,
+        74087,
+        77302,
+        79899,
+        85023,
+        86155,
+        90874,
+        92394
+      ],
+      "lost_timely": [
+        61638,
+        65944,
+        73421,
+        78668,
+        79604,
+        85526,
+        85683,
+        95770
+      ],
+      "removed_fp": [
+        60239,
+        62399,
+        67900,
+        74928,
+        80801,
+        85422,
+        91064,
+        94361,
+        94395
+      ],
+      "added_fp": [
+        62383,
+        63097,
+        63764,
+        64562,
+        64646,
+        70258,
+        70323,
+        70392,
+        70404,
+        71076,
+        73790,
+        74676,
+        75226,
+        76861,
+        77295,
+        77565,
+        77628,
+        80955,
+        85123,
+        86984,
+        87009,
+        89326,
+        94323
+      ]
+    },
+    "global_moments": {
+      "rescued_timely": [
+        60999,
+        63656,
+        63690,
+        64835,
+        69781,
+        70320,
+        70327,
+        70861,
+        71013,
+        71086,
+        71370,
+        73405,
+        74970,
+        75603,
+        77302,
+        79899,
+        85023,
+        86155,
+        92394
+      ],
+      "lost_timely": [
+        61638,
+        65944,
+        73421,
+        73665
+      ],
+      "removed_fp": [
+        60239,
+        67900,
+        80801,
+        85422,
+        94395
+      ],
+      "added_fp": [
+        61468,
+        62158,
+        62383,
+        63097,
+        64562,
+        64646,
+        70043,
+        70392,
+        70404,
+        73790,
+        76861,
+        77295,
+        77565,
+        77628,
+        80955,
+        82834,
+        85123,
+        86984,
+        87847,
+        89326,
+        93306
+      ]
+    },
+    "conditional_moments": {
+      "rescued_timely": [
+        60999,
+        63656,
+        63690,
+        64835,
+        69454,
+        69781,
+        70320,
+        70327,
+        70861,
+        71013,
+        71086,
+        71265,
+        71370,
+        73405,
+        74970,
+        75603,
+        77302,
+        85023,
+        86155,
+        92394
+      ],
+      "lost_timely": [
+        61475,
+        61638,
+        65944,
+        73421,
+        73665,
+        78668
+      ],
+      "removed_fp": [
+        60239,
+        67900,
+        74928,
+        80801,
+        85422,
+        94395
+      ],
+      "added_fp": [
+        61468,
+        62158,
+        62383,
+        64562,
+        64646,
+        70043,
+        70392,
+        70404,
+        73790,
+        73969,
+        76861,
+        77295,
+        77565,
+        77628,
+        82833,
+        82834,
+        85123,
+        86167,
+        86984,
+        87847
+      ]
+    }
+  }
+}

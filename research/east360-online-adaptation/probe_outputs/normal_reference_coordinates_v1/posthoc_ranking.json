@@ -1,0 +1,192 @@
+{
+  "scope": "POSTHOC_DEVELOPMENT_DIAGNOSTIC_NOT_DEPLOYED",
+  "definition": "D score=max probability at strict lead>30ms; S=max over entire saved record; AUC=P(Dscore>Sscore)+0.5 ties",
+  "all360_labels_used_for_caps": true,
+  "thresholds_must_not_be_reported_as_online_policy": true,
+  "n_disrupt": 180,
+  "n_safe": 180,
+  "metrics": {
+    "source": {
+      "operational_auc": 0.7434259259259259,
+      "caps": [
+        {
+          "cap": 0.1,
+          "tp": 94,
+          "fp": 17,
+          "tpr": 0.5222222222222223,
+          "fpr": 0.09444444444444444,
+          "threshold": 0.9143219590187073
+        },
+        {
+          "cap": 0.15,
+          "tp": 107,
+          "fp": 26,
+          "tpr": 0.5944444444444444,
+          "fpr": 0.14444444444444443,
+          "threshold": 0.8917556405067444
+        },
+        {
+          "cap": 0.2,
+          "tp": 110,
+          "fp": 36,
+          "tpr": 0.6111111111111112,
+          "fpr": 0.2,
+          "threshold": 0.881620466709137
+        }
+      ],
+      "no_timely_observation_shots": 0
+    },
+    "density": {
+      "operational_auc": 0.7954629629629629,
+      "caps": [
+        {
+          "cap": 0.1,
+          "tp": 109,
+          "fp": 17,
+          "tpr": 0.6055555555555555,
+          "fpr": 0.09444444444444444,
+          "threshold": 0.7968754768371582
+        },
+        {
+          "cap": 0.15,
+          "tp": 114,
+          "fp": 27,
+          "tpr": 0.6333333333333333,
+          "fpr": 0.15,
+          "threshold": 0.7421343922615051
+        },
+        {
+          "cap": 0.2,
+          "tp": 119,
+          "fp": 34,
+          "tpr": 0.6611111111111111,
+          "fpr": 0.18888888888888888,
+          "threshold": 0.6720395088195801
+        }
+      ],
+      "no_timely_observation_shots": 0
+    },
+    "pooled_diagonal": {
+      "operational_auc": 0.7325925925925926,
+      "caps": [
+        {
+          "cap": 0.1,
+          "tp": 76,
+          "fp": 17,
+          "tpr": 0.4222222222222222,
+          "fpr": 0.09444444444444444,
+          "threshold": 0.9868296980857849
+        },
+        {
+          "cap": 0.15,
+          "tp": 93,
+          "fp": 26,
+          "tpr": 0.5166666666666667,
+          "fpr": 0.14444444444444443,
+          "threshold": 0.9815436601638794
+        },
+        {
+          "cap": 0.2,
+          "tp": 105,
+          "fp": 35,
+          "tpr": 0.5833333333333334,
+          "fpr": 0.19444444444444445,
+          "threshold": 0.9717183113098145
+        }
+      ],
+      "no_timely_observation_shots": 0
+    },
+    "safe_diagonal": {
+      "operational_auc": 0.7424691358024691,
+      "caps": [
+        {
+          "cap": 0.1,
+          "tp": 65,
+          "fp": 18,
+          "tpr": 0.3611111111111111,
+          "fpr": 0.1,
+          "threshold": 0.9891185760498047
+        },
+        {
+          "cap": 0.15,
+          "tp": 94,
+          "fp": 25,
+          "tpr": 0.5222222222222223,
+          "fpr": 0.1388888888888889,
+          "threshold": 0.985692024230957
+        },
+        {
+          "cap": 0.2,
+          "tp": 101,
+          "fp": 35,
+          "tpr": 0.5611111111111111,
+          "fpr": 0.19444444444444445,
+          "threshold": 0.9811393618583679
+        }
+      ],
+      "no_timely_observation_shots": 0
+    },
+    "pooled_correlation": {
+      "operational_auc": 0.7401851851851852,
+      "caps": [
+        {
+          "cap": 0.1,
+          "tp": 77,
+          "fp": 18,
+          "tpr": 0.42777777777777776,
+          "fpr": 0.1,
+          "threshold": 0.9832114577293396
+        },
+        {
+          "cap": 0.15,
+          "tp": 90,
+          "fp": 27,
+          "tpr": 0.5,
+          "fpr": 0.15,
+          "threshold": 0.9769227504730225
+        },
+        {
+          "cap": 0.2,
+          "tp": 105,
+          "fp": 36,
+          "tpr": 0.5833333333333334,
+          "fpr": 0.2,
+          "threshold": 0.9642800688743591
+        }
+      ],
+      "no_timely_observation_shots": 0
+    },
+    "safe_correlation": {
+      "operational_auc": 0.764537037037037,
+      "caps": [
+        {
+          "cap": 0.1,
+          "tp": 52,
+          "fp": 18,
+          "tpr": 0.28888888888888886,
+          "fpr": 0.1,
+          "threshold": 0.9893665909767151
+        },
+        {
+          "cap": 0.15,
+          "tp": 98,
+          "fp": 27,
+          "tpr": 0.5444444444444444,
+          "fpr": 0.15,
+          "threshold": 0.9858235120773315
+        },
+        {
+          "cap": 0.2,
+          "tp": 114,
+          "fp": 36,
+          "tpr": 0.6333333333333333,
+          "fpr": 0.2,
+          "threshold": 0.9813515543937683
+        }
+      ],
+      "no_timely_observation_shots": 0
+    }
+  },
+  "completed_sha256": "1241061101a2a84c85653aa2a829e5d9642f95ac7c5ad854b6c8eb63dee383b6",
+  "code_sha256": "79981ef9c0ce31dbc2a567999b391d087247b61b167035256deb7240fb263fc9"
+}

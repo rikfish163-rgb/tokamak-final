@@ -1,0 +1,102 @@
+{
+  "status": "POINT_DIAGNOSTIC_NOT_STREAM",
+  "table": {
+    "forecast_only": {
+      "safe": {
+        "teacher_bce": 0.11390764318928688,
+        "static_bce": 0.09048459057659629,
+        "static_minus_teacher": -0.023423052612690592,
+        "adapted_minus_same_parent": {
+          "real": 0.281072525430307,
+          "time": 0.2813219897581752,
+          "channel": 0.06520475483829123,
+          "scalar": 0.28137477839270825
+        }
+      },
+      "earlier": {
+        "teacher_bce": 0.7508312894384956,
+        "static_bce": 0.5621776171536044,
+        "static_minus_teacher": -0.18865367228489127,
+        "adapted_minus_same_parent": {
+          "real": -0.18821306611751099,
+          "time": -0.1919789499373759,
+          "channel": 0.14849973894792118,
+          "scalar": -0.15695069560776004
+        }
+      },
+      "timely": {
+        "teacher_bce": 1.6131860997782308,
+        "static_bce": 2.0196476429767714,
+        "static_minus_teacher": 0.40646154319854055,
+        "adapted_minus_same_parent": {
+          "real": -0.25253656621327536,
+          "time": -0.2403352162311018,
+          "channel": -0.3730565084480516,
+          "scalar": -0.3002301891507603
+        }
+      }
+    },
+    "aligned": {
+      "safe": {
+        "teacher_bce": 0.11390764318928688,
+        "static_bce": 0.11983891530630846,
+        "static_minus_teacher": 0.005931272117021574,
+        "adapted_minus_same_parent": {
+          "real": 0.44175877470487385,
+          "time": 0.4431914012388756,
+          "channel": 0.05474742545669467,
+          "scalar": 0.44287069501593795
+        }
+      },
+      "earlier": {
+        "teacher_bce": 0.7508312894384956,
+        "static_bce": 0.7723942727177872,
+        "static_minus_teacher": 0.021562983279291514,
+        "adapted_minus_same_parent": {
+          "real": -0.2661049848947146,
+          "time": -0.2694650937424836,
+          "channel": -0.09308283854955934,
+          "scalar": -0.24242980781724252
+        }
+      },
+      "timely": {
+        "teacher_bce": 1.6131860997782308,
+        "static_bce": 1.6229981650038943,
+        "static_minus_teacher": 0.009812065225663469,
+        "adapted_minus_same_parent": {
+          "real": -0.4021872292769422,
+          "time": -0.39411093606581715,
+          "channel": -0.17806603113112487,
+          "scalar": -0.47753210693471404
+        }
+      }
+    }
+  },
+  "records": {
+    "forecast_only": {
+      "update_norm_median": 0.26873829518313874,
+      "update_norm_max": 0.26873830865236675,
+      "gradient_norm_median": 3.2501850739749467,
+      "unmatched_controls": 0,
+      "proxy_before_mean": 0.5179464396834373,
+      "proxy_after_mean": 0.49584234654903414,
+      "static_logit_drift_mean": 0.4951191408187151,
+      "static_logit_drift_max": 3.3244695365428925,
+      "static_cls_mse": 0.07683227956295013,
+      "adaptation_logit_change_median": 2.3154481053352356
+    },
+    "aligned": {
+      "update_norm_median": 0.2687652056450338,
+      "update_norm_max": 0.2687652156441232,
+      "gradient_norm_median": 3.4335790950420284,
+      "unmatched_controls": 0,
+      "proxy_before_mean": 0.5587773725390435,
+      "proxy_after_mean": 0.49876772284507753,
+      "static_logit_drift_mean": 0.05897120252251625,
+      "static_logit_drift_max": 0.26751708984375,
+      "static_cls_mse": 0.002491369843482971,
+      "adaptation_logit_change_median": 2.381941854953766
+    }
+  },
+  "teacher_parity_error": 0.0
+}

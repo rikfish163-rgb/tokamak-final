@@ -1,0 +1,180 @@
+{
+  "status": "passed",
+  "completed_sha256": "4a4f1d54c294af1fa33445282aa1270fb1db86380d18e10899232c84e401bf4a",
+  "teacher_audit": {
+    "status": "passed",
+    "completed_sha256": "166190042ab812799a7af448f1d3d251a01112bca1703f5948be8004983b712e",
+    "folded_training_steps": 3072,
+    "folds": [
+      {
+        "fold": 0,
+        "steps": {
+          "risk_manifest.jsonl": 512,
+          "forecast_manifest.jsonl": 256
+        },
+        "density_gain": 0.00027829149500181786
+      },
+      {
+        "fold": 1,
+        "steps": {
+          "risk_manifest.jsonl": 512,
+          "forecast_manifest.jsonl": 256
+        },
+        "density_gain": 0.000407053940017576
+      },
+      {
+        "fold": 2,
+        "steps": {
+          "risk_manifest.jsonl": 512,
+          "forecast_manifest.jsonl": 256
+        },
+        "density_gain": 0.00027186914477787165
+      },
+      {
+        "fold": 3,
+        "steps": {
+          "risk_manifest.jsonl": 512,
+          "forecast_manifest.jsonl": 256
+        },
+        "density_gain": 0.00042899512040893987
+      }
+    ],
+    "all20_held_once": true,
+    "input_hashes_checked": 20,
+    "training_target_ids_strictly_exclude_held": true,
+    "density_maps_recomputed_from_training15_only": true,
+    "source_and_deployed_parent_unchanged": true,
+    "audit_code_sha256": "dcd58a028a2f651cd282cfdb6f208b2aaa7d294b1ed4a5e23c251722b6ba1a4e"
+  },
+  "teachers_replayed_both_backends": [
+    63226,
+    70868,
+    75604,
+    88785
+  ],
+  "training_objective_recounts": 22,
+  "cached_blocks_rebuilt": 717,
+  "selected_objectives_replayed": {
+    "global": {
+      "epoch": 10,
+      "objective": -0.02268017642199993,
+      "history_gate": {
+        "current": {
+          "tp": 0,
+          "fp": 5,
+          "very_early_over3000": 0
+        },
+        "baseline": {
+          "tp": 0,
+          "fp": 5,
+          "very_early_over3000": 0
+        },
+        "passed": false
+      }
+    },
+    "context": {
+      "epoch": 10,
+      "objective": -0.024380429997108877,
+      "history_gate": {
+        "current": {
+          "tp": 0,
+          "fp": 5,
+          "very_early_over3000": 0
+        },
+        "baseline": {
+          "tp": 0,
+          "fp": 5,
+          "very_early_over3000": 0
+        },
+        "passed": false
+      }
+    }
+  },
+  "real_model_chain_rule": {
+    "shot": 70868,
+    "count": 512,
+    "end": 622,
+    "selection": "smallest disruptive ID whose winning endpoint depends on update",
+    "static_prefix_zero_policy_derivative": [
+      63226,
+      58717,
+      81150
+    ],
+    "max_absolute_error": 4.336808689942018e-19,
+    "reference_norm": 0.004794865048829317
+  },
+  "complete_shots_replayed": [
+    89272,
+    89284,
+    89584
+  ],
+  "independent_metrics": {
+    "off": {
+      "tp": 1,
+      "fp": 1,
+      "very_early_over3000": 0,
+      "bag_disrupt_loss": 0.5140873953286531,
+      "bag_safe_loss": 0.2664175829122829,
+      "bag_balanced_loss": 0.390252489120468
+    },
+    "insample": {
+      "tp": 1,
+      "fp": 0,
+      "very_early_over3000": 0,
+      "bag_disrupt_loss": 0.5188545216152795,
+      "bag_safe_loss": 0.25963040769692447,
+      "bag_balanced_loss": 0.38924246465610196
+    },
+    "crossfit_global": {
+      "tp": 1,
+      "fp": 0,
+      "very_early_over3000": 0,
+      "bag_disrupt_loss": 0.5184214273960146,
+      "bag_safe_loss": 0.25944072063099266,
+      "bag_balanced_loss": 0.38893107401350363
+    },
+    "crossfit_context": {
+      "tp": 1,
+      "fp": 0,
+      "very_early_over3000": 0,
+      "bag_disrupt_loss": 0.5184484297579156,
+      "bag_safe_loss": 0.2591713295476812,
+      "bag_balanced_loss": 0.3888098796527984
+    },
+    "uniform": {
+      "tp": 1,
+      "fp": 0,
+      "very_early_over3000": 0,
+      "bag_disrupt_loss": 0.5162392857508672,
+      "bag_safe_loss": 0.25870788752043006,
+      "bag_balanced_loss": 0.3874735866356486
+    },
+    "permuted": {
+      "tp": 1,
+      "fp": 0,
+      "very_early_over3000": 0,
+      "bag_disrupt_loss": 0.5129739320139082,
+      "bag_safe_loss": 0.2600577735302153,
+      "bag_balanced_loss": 0.38651585277206174
+    },
+    "hold": {
+      "tp": 1,
+      "fp": 0,
+      "very_early_over3000": 0,
+      "bag_disrupt_loss": 0.521201810920987,
+      "bag_safe_loss": 0.25962128362367554,
+      "bag_balanced_loss": 0.3904115472723313
+    }
+  },
+  "gradient_updates": {
+    "insample": 333,
+    "crossfit_global": 333,
+    "crossfit_context": 333,
+    "uniform": 333,
+    "permuted": 333,
+    "hold": 333
+  },
+  "source_and_parent_unchanged": true,
+  "input_file_hashes_checked": 30,
+  "audit_code_sha256": "dcd58a028a2f651cd282cfdb6f208b2aaa7d294b1ed4a5e23c251722b6ba1a4e"
+}

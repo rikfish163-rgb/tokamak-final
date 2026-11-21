@@ -1,0 +1,92 @@
+{
+  "status": "passed",
+  "completed_sha256": "efb92b0207bf81e92fb04b5e57c5ec97284d6b5577ff2c7038df503420a40998",
+  "historical_rows": 721,
+  "independent_LP_refits": 2,
+  "replays": [
+    {
+      "shot": 54314,
+      "kind": "historical_geometry",
+      "rows": 22
+    },
+    {
+      "shot": 63226,
+      "kind": "historical_geometry",
+      "rows": 57
+    },
+    {
+      "shot": 89272,
+      "kind": "complete_stream",
+      "arms": 6
+    },
+    {
+      "shot": 89284,
+      "kind": "complete_stream",
+      "arms": 6
+    },
+    {
+      "shot": 89584,
+      "kind": "complete_stream",
+      "arms": 6
+    }
+  ],
+  "independent_metrics": {
+    "off": {
+      "tp": 1,
+      "fp": 1,
+      "very_early_over3000": 0,
+      "danger_loss": 2.386533861340191,
+      "safe_loss": 0.04688224519781282,
+      "balanced_loss": 1.216708053269002
+    },
+    "block": {
+      "tp": 1,
+      "fp": 1,
+      "very_early_over3000": 0,
+      "danger_loss": 2.3829466633886045,
+      "safe_loss": 0.04925252253325361,
+      "balanced_loss": 1.216099592960929
+    },
+    "point": {
+      "tp": 1,
+      "fp": 0,
+      "very_early_over3000": 0,
+      "danger_loss": 2.4004190111089088,
+      "safe_loss": 0.04398015781411908,
+      "balanced_loss": 1.2221995844615139
+    },
+    "uniform": {
+      "tp": 1,
+      "fp": 0,
+      "very_early_over3000": 0,
+      "danger_loss": 2.386473710073571,
+      "safe_loss": 0.04405663292526985,
+      "balanced_loss": 1.2152651714994205
+    },
+    "permuted": {
+      "tp": 1,
+      "fp": 0,
+      "very_early_over3000": 0,
+      "danger_loss": 2.384834790546621,
+      "safe_loss": 0.04354690546321708,
+      "balanced_loss": 1.214190848004919
+    },
+    "hold": {
+      "tp": 1,
+      "fp": 1,
+      "very_early_over3000": 0,
+      "danger_loss": 2.389477824252111,
+      "safe_loss": 0.0489076585420826,
+      "balanced_loss": 1.2191927413970967
+    }
+  },
+  "gradient_updates": {
+    "block": 333,
+    "point": 333,
+    "uniform": 333,
+    "permuted": 333,
+    "hold": 333
+  },
+  "source_and_parent_unchanged": true,
+  "audit_code_sha256": "8f8aa3d65c39db802f3ff0643c117a38ccd608dcce23cbf575ae717373ac26e4"
+}

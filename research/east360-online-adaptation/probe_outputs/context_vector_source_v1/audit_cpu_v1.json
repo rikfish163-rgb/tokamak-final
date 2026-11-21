@@ -1,0 +1,146 @@
+{
+  "verified": true,
+  "raw_inputs": 1513,
+  "validation_windows": 946,
+  "per_shot_rows": 975,
+  "source_screen_passed": false,
+  "reasons": [
+    "safe: real does not outperform mean_feedback",
+    "danger: real does not improve baseline"
+  ],
+  "component_not_stream": true,
+  "inference_replayed": false,
+  "descriptive": {
+    "method": "10000 paired shot bootstrap draws; seed131; unadjusted descriptive intervals",
+    "not_confirmatory": true,
+    "between_seed_variation_not_measured": true,
+    "groups": {
+      "safe": {
+        "baseline": {
+          "shots": 80,
+          "real_minus_control": -0.036742079572285535,
+          "percentile95": [
+            -0.06251529679723668,
+            -0.015211361019533253
+          ]
+        },
+        "reverse": {
+          "shots": 80,
+          "real_minus_control": -0.00022531814818628682,
+          "percentile95": [
+            -0.000985731153776311,
+            0.00038545031329253565
+          ]
+        },
+        "mean_feedback": {
+          "shots": 80,
+          "real_minus_control": 0.000725708491831451,
+          "percentile95": [
+            -7.067352967764351e-05,
+            0.001681976211553152
+          ]
+        },
+        "constant": {
+          "shots": 80,
+          "real_minus_control": 0.019513099144469897,
+          "percentile95": [
+            0.007237229161865455,
+            0.034443422039521686
+          ]
+        },
+        "risk_axis": {
+          "shots": 80,
+          "real_minus_control": -0.004412219401903619,
+          "percentile95": [
+            -0.0583422831258099,
+            0.03954715269747098
+          ]
+        }
+      },
+      "danger": {
+        "baseline": {
+          "shots": 64,
+          "real_minus_control": 0.09243844233619164,
+          "percentile95": [
+            0.0493177733223882,
+            0.14248230158811945
+          ]
+        },
+        "reverse": {
+          "shots": 64,
+          "real_minus_control": -0.0018981510998964952,
+          "percentile95": [
+            -0.004228138624397952,
+            -0.00044960527253635866
+          ]
+        },
+        "mean_feedback": {
+          "shots": 64,
+          "real_minus_control": -0.0036981034436758264,
+          "percentile95": [
+            -0.008216889657276598,
+            -6.31279567043248e-06
+          ]
+        },
+        "constant": {
+          "shots": 64,
+          "real_minus_control": -0.0671395793971534,
+          "percentile95": [
+            -0.10974728791947766,
+            -0.033733003235211965
+          ]
+        },
+        "risk_axis": {
+          "shots": 64,
+          "real_minus_control": -0.1970099774540733,
+          "percentile95": [
+            -0.3501441067566966,
+            -0.07568920855933671
+          ]
+        }
+      },
+      "early": {
+        "baseline": {
+          "shots": 51,
+          "real_minus_control": -0.2237442546374294,
+          "percentile95": [
+            -0.28925138550763085,
+            -0.16373881065485665
+          ]
+        },
+        "reverse": {
+          "shots": 51,
+          "real_minus_control": -7.752799144592134e-05,
+          "percentile95": [
+            -0.001302406445337858,
+            0.0014890072033162558
+          ]
+        },
+        "mean_feedback": {
+          "shots": 51,
+          "real_minus_control": 0.0026814881430872305,
+          "percentile95": [
+            -0.0006712485565658064,
+            0.006669056215839073
+          ]
+        },
+        "constant": {
+          "shots": 51,
+          "real_minus_control": 0.13701002594673506,
+          "percentile95": [
+            0.09097135047215155,
+            0.18738477566308992
+          ]
+        },
+        "risk_axis": {
+          "shots": 51,
+          "real_minus_control": 0.22273473457873774,
+          "percentile95": [
+            0.10972486690597824,
+            0.3456698588015537
+          ]
+        }
+      }
+    }
+  }
+}

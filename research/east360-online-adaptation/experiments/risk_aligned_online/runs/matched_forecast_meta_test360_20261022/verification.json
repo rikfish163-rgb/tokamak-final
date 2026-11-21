@@ -1,0 +1,98 @@
+{
+  "status": "VERIFIED",
+  "rescored_traces": 1440,
+  "replayed_full_shots": [
+    61617,
+    74990,
+    96375
+  ],
+  "replayed_unique_full_traces": 9,
+  "max_replay_difference": 0.0,
+  "recovery_checked": true,
+  "recovered_prefix_count": 147,
+  "source_final_head_episodes_replayed": [
+    {
+      "shot": 1053380,
+      "query": 318
+    },
+    {
+      "shot": 1055775,
+      "query": 289
+    }
+  ],
+  "source_archive_unchanged": true,
+  "target_update_boundaries_valid": true,
+  "training_manifest_checked": true,
+  "update_summary": {
+    "forecast": {
+      "updates": 10635,
+      "loss_decreased": 10635,
+      "max_step": 0.0010000095237719202
+    },
+    "meta": {
+      "updates": 10635,
+      "loss_decreased": 10635,
+      "max_step": 0.0010000090017059928
+    }
+  },
+  "paired_comparisons": {
+    "static_to_original": {
+      "rescued_timely": [],
+      "lost_timely": [
+        73421
+      ],
+      "removed_fp": [
+        67900
+      ],
+      "added_fp": [
+        83376,
+        85599,
+        93306
+      ]
+    },
+    "static_to_forecast": {
+      "rescued_timely": [],
+      "lost_timely": [
+        73421
+      ],
+      "removed_fp": [
+        67900
+      ],
+      "added_fp": []
+    },
+    "static_to_meta": {
+      "rescued_timely": [
+        93995
+      ],
+      "lost_timely": [
+        73421
+      ],
+      "removed_fp": [
+        67900
+      ],
+      "added_fp": [
+        83376,
+        85599,
+        93306
+      ]
+    },
+    "forecast_to_meta": {
+      "rescued_timely": [
+        93995
+      ],
+      "lost_timely": [],
+      "removed_fp": [],
+      "added_fp": [
+        83376,
+        85599,
+        93306
+      ]
+    }
+  },
+  "very_early_over3000ms": {
+    "static": 17,
+    "original": 15,
+    "forecast": 15,
+    "meta": 15
+  }
+}

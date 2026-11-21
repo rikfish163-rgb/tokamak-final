@@ -1,0 +1,58 @@
+{
+  "status": "PASS",
+  "checks": {
+    "native": {
+      "native_zero_error": 0.0,
+      "gradient_norm": 0.6107977628707886,
+      "finite_differences": [
+        {
+          "epsilon": 0.005,
+          "analytic": 0.6107977628707886,
+          "numeric": 0.6108283996582031
+        },
+        {
+          "epsilon": 0.0025,
+          "analytic": 0.6107977628707886,
+          "numeric": 0.6106853485107422
+        }
+      ],
+      "direct_ffn_error": 0.0
+    },
+    "no_MNM": {
+      "native_zero_error": 0.0,
+      "gradient_norm": 0.5771276950836182,
+      "finite_differences": [
+        {
+          "epsilon": 0.005,
+          "analytic": 0.5771276950836182,
+          "numeric": 0.5771160125732422
+        },
+        {
+          "epsilon": 0.0025,
+          "analytic": 0.5771276950836182,
+          "numeric": 0.5771636962890625
+        }
+      ],
+      "direct_ffn_error": 0.0
+    },
+    "no_MNM_CIII": {
+      "native_zero_error": 0.0,
+      "gradient_norm": 0.9357855916023254,
+      "finite_differences": [
+        {
+          "epsilon": 0.005,
+          "analytic": 0.9357855916023254,
+          "numeric": 0.9357929229736328
+        },
+        {
+          "epsilon": 0.0025,
+          "analytic": 0.9357855916023254,
+          "numeric": 0.9357929229736328
+        }
+      ],
+      "direct_ffn_error": 0.0
+    }
+  },
+  "source_only": true,
+  "east_reads": 0
+}

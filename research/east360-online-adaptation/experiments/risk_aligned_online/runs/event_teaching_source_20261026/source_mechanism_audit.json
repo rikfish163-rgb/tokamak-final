@@ -1,0 +1,77 @@
+{
+  "scope": "POST_HOC_SOURCE_CHECKPOINT_AND_OBJECTIVE_ONLY",
+  "source_audit_sha256": "4cd4c123ae7ca7a43519fab7b796eb9a7476c25ce8f248200ddd85b5f078dbf5",
+  "source_event_probe_sha256": "067bdbee7468d19537e15147b5a5c4d43565a16cf3810c7df9ed882809e1df39",
+  "projections": {
+    "none": {
+      "largest_energy_fraction": 0.6500920705903002,
+      "top4_energy_fraction": 0.9070530650719126,
+      "participation_rank": 2.2006326160981557,
+      "horizon_cosines": [
+        0.7324369000971229,
+        0.6482474311044719,
+        0.567375305143045,
+        0.9240901073017074,
+        0.8066480114699965,
+        0.9358133772949427
+      ],
+      "frobenius_norm": 2.1061234791406998
+    },
+    "true": {
+      "largest_energy_fraction": 0.6402801755026601,
+      "top4_energy_fraction": 0.9048612828920843,
+      "participation_rank": 2.2439449289088818,
+      "horizon_cosines": [
+        0.6907382238450973,
+        0.5933465227631403,
+        0.5323977269675209,
+        0.9206168599120488,
+        0.8203680732317276,
+        0.9405071867154364
+      ],
+      "frobenius_norm": 2.1578334714791594
+    },
+    "shuffled": {
+      "largest_energy_fraction": 0.6615117499778638,
+      "top4_energy_fraction": 0.9061559830330451,
+      "participation_rank": 2.1460089610610873,
+      "horizon_cosines": [
+        0.7267661289006432,
+        0.6273383079511459,
+        0.5444081440038571,
+        0.9261907811082406,
+        0.8246779881378278,
+        0.942635846276327
+      ],
+      "frobenius_norm": 2.119413619786712
+    }
+  },
+  "reference_only": [
+    {
+      "label": 0.0,
+      "reference_logit_before": 0.0,
+      "reference_logit_after": 0.00042869761293769454,
+      "reference_gradient": -0.004286976129376945,
+      "reference_loss_change": 0.00021437177917416061,
+      "direction_loss_change": -1.8282816082088081e-06,
+      "after_loss_change": 0.0,
+      "deployed_model_modified": false,
+      "scope": "INDEPENDENT_LOGIT_COUNTEREXAMPLE_NOT_EAST_CAUSAL_ATTRIBUTION"
+    },
+    {
+      "label": 1.0,
+      "reference_logit_before": 0.0,
+      "reference_logit_after": -0.0004286976129376923,
+      "reference_gradient": 0.004286976129376923,
+      "reference_loss_change": 0.00021437177917416061,
+      "direction_loss_change": -1.8282816082088353e-06,
+      "after_loss_change": 0.0,
+      "deployed_model_modified": false,
+      "scope": "INDEPENDENT_LOGIT_COUNTEREXAMPLE_NOT_EAST_CAUSAL_ATTRIBUTION"
+    }
+  ],
+  "interpretation": "Relative loss can decrease by degrading its trainable reference. Projection similarity is descriptive, not proof of causal failure.",
+  "model_parameters_modified": false,
+  "east_outcomes_read": 0,
+  "code_sha256": "3dd6fe52226bb819b1c4ee3d53bb35d7b33c3799b2e9182ab26e93f1e6966292"
+}

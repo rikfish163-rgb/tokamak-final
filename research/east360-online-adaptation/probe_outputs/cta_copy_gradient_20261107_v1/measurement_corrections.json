@@ -1,0 +1,45 @@
+{
+  "status": "APPENDED_MEASUREMENT_CORRECTION",
+  "reason": "Original teacher had no measured full step. The original summary 0 is a display default, not a measurement. Sealed records and outcomes are unchanged.",
+  "corrected_fields": [
+    {
+      "file": "source_val_result.json",
+      "path": "models.teacher.summary.safe.actual_full_step_harmful_windows",
+      "original_value": 0,
+      "correct_value": null
+    },
+    {
+      "file": "source_val_result.json",
+      "path": "models.teacher.summary.earlier.actual_full_step_harmful_windows",
+      "original_value": 0,
+      "correct_value": null
+    },
+    {
+      "file": "source_val_result.json",
+      "path": "models.teacher.summary.timely.actual_full_step_harmful_windows",
+      "original_value": 0,
+      "correct_value": null
+    },
+    {
+      "file": "east20_result.json",
+      "path": "models.teacher.summary.safe.actual_full_step_harmful_windows",
+      "original_value": 0,
+      "correct_value": null
+    },
+    {
+      "file": "east20_result.json",
+      "path": "models.teacher.summary.earlier.actual_full_step_harmful_windows",
+      "original_value": 0,
+      "correct_value": null
+    },
+    {
+      "file": "east20_result.json",
+      "path": "models.teacher.summary.timely.actual_full_step_harmful_windows",
+      "original_value": 0,
+      "correct_value": null
+    }
+  ],
+  "also_applies_to": "completed.json summary source_val/east20 teacher groups",
+  "corrected_source": "source_bundle.zip/run_cta_copy_gradient_20261107.py",
+  "regression_test": "7 pilot tests passed, including unmeasured teacher summary null regression; 2026-11-07"
+}

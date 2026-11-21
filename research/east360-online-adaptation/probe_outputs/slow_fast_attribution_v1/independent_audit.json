@@ -1,0 +1,190 @@
+{
+  "status": "PASS",
+  "full_stream_shots": 360,
+  "scored_curves": 2880,
+  "matched_original_curves": 1800,
+  "exact_update_receipts": 680,
+  "source_checkpoint_unchanged": true,
+  "cold20_training_receipt_exact": true,
+  "unchanged_after_rejected_updates": true,
+  "metrics": {
+    "cold_off": {
+      "n": 360,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tp": 125,
+      "fp": 35,
+      "tpr": 0.6944444444444444,
+      "fpr": 0.19444444444444445,
+      "J": 0.5,
+      "early_over3000": 18
+    },
+    "cold_on": {
+      "n": 360,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tp": 125,
+      "fp": 34,
+      "tpr": 0.6944444444444444,
+      "fpr": 0.18888888888888888,
+      "J": 0.5055555555555555,
+      "early_over3000": 18
+    },
+    "both_off": {
+      "n": 360,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tp": 127,
+      "fp": 34,
+      "tpr": 0.7055555555555556,
+      "fpr": 0.18888888888888888,
+      "J": 0.5166666666666667,
+      "early_over3000": 18
+    },
+    "both_on": {
+      "n": 360,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tp": 127,
+      "fp": 37,
+      "tpr": 0.7055555555555556,
+      "fpr": 0.20555555555555555,
+      "J": 0.5,
+      "early_over3000": 18
+    },
+    "both_slow_cold_readout": {
+      "n": 360,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tp": 127,
+      "fp": 35,
+      "tpr": 0.7055555555555556,
+      "fpr": 0.19444444444444445,
+      "J": 0.5111111111111112,
+      "early_over3000": 18
+    },
+    "cold_slow_both_readout": {
+      "n": 360,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tp": 125,
+      "fp": 34,
+      "tpr": 0.6944444444444444,
+      "fpr": 0.18888888888888888,
+      "J": 0.5055555555555555,
+      "early_over3000": 18
+    },
+    "inter_off": {
+      "n": 360,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tp": 130,
+      "fp": 36,
+      "tpr": 0.7222222222222222,
+      "fpr": 0.2,
+      "J": 0.5222222222222221,
+      "early_over3000": 20
+    },
+    "inter_slow_cold_readout": {
+      "n": 360,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tp": 129,
+      "fp": 39,
+      "tpr": 0.7166666666666667,
+      "fpr": 0.21666666666666667,
+      "J": 0.5,
+      "early_over3000": 19
+    }
+  },
+  "swaps": {
+    "both_slow_cold_readout__minus__both_on": {
+      "rescued_D": [],
+      "lost_D": [],
+      "removed_FP": [
+        83376,
+        94402
+      ],
+      "added_FP": []
+    },
+    "cold_slow_both_readout__minus__cold_on": {
+      "rescued_D": [],
+      "lost_D": [],
+      "removed_FP": [],
+      "added_FP": []
+    },
+    "both_slow_cold_readout__minus__both_off": {
+      "rescued_D": [],
+      "lost_D": [],
+      "removed_FP": [],
+      "added_FP": [
+        64562
+      ]
+    },
+    "inter_slow_cold_readout__minus__inter_off": {
+      "rescued_D": [],
+      "lost_D": [
+        81406
+      ],
+      "removed_FP": [],
+      "added_FP": [
+        64562,
+        83376,
+        94402
+      ]
+    },
+    "both_on__minus__both_off": {
+      "rescued_D": [],
+      "lost_D": [],
+      "removed_FP": [],
+      "added_FP": [
+        64562,
+        83376,
+        94402
+      ]
+    },
+    "both_on__minus__cold_on": {
+      "rescued_D": [
+        73541,
+        86155,
+        87861,
+        74970
+      ],
+      "lost_D": [
+        85526,
+        65023
+      ],
+      "removed_FP": [
+        67900,
+        85422,
+        85599,
+        75135
+      ],
+      "added_FP": [
+        82834,
+        87689,
+        60239,
+        70043,
+        64562,
+        83376,
+        94402
+      ]
+    }
+  },
+  "independent_cuda_replayed_shots": [
+    74087,
+    59935,
+    62573,
+    60239,
+    64562,
+    83376,
+    94402
+  ],
+  "independent_cuda_replayed_curves": 56,
+  "helper_not_used_for_cuda_verification": true,
+  "training_not_reexecuted_by_this_verifier": true,
+  "completed_sha256": "bbbea164486e5f515942e4e078052a504016d67244db4f3e1e15bb0504700f79",
+  "verifier_sha256": "af7e5a2bed3cf81b9f1e13817b9b75e1751539fa2137b177f63befac32b636ab",
+  "independent_future_confirmation": false,
+  "no_deployable_policy_gain_claim": true
+}

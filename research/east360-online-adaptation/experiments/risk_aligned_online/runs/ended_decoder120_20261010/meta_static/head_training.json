@@ -1,0 +1,1681 @@
+{
+  "mode": "risk_after_update",
+  "fit_ids": [
+    88197,
+    71301,
+    70869,
+    83354,
+    56606,
+    72721,
+    69923,
+    56591,
+    83320,
+    92933,
+    69291,
+    86435,
+    58597,
+    71310,
+    92920,
+    87496,
+    69807,
+    70327,
+    70404,
+    66930,
+    94151,
+    70276,
+    96506,
+    73540,
+    74749,
+    68111,
+    73495,
+    54014,
+    63197,
+    75238
+  ],
+  "n_disrupt": 23,
+  "n_safe": 7,
+  "fixed_peaks": [
+    {
+      "shot": 88197,
+      "label": 0,
+      "query": 4838
+    },
+    {
+      "shot": 71301,
+      "label": 1,
+      "query": 240
+    },
+    {
+      "shot": 70869,
+      "label": 1,
+      "query": 3959
+    },
+    {
+      "shot": 83354,
+      "label": 1,
+      "query": 316
+    },
+    {
+      "shot": 56606,
+      "label": 1,
+      "query": 11474
+    },
+    {
+      "shot": 72721,
+      "label": 1,
+      "query": 489
+    },
+    {
+      "shot": 69923,
+      "label": 1,
+      "query": 2137
+    },
+    {
+      "shot": 56591,
+      "label": 0,
+      "query": 325
+    },
+    {
+      "shot": 83320,
+      "label": 1,
+      "query": 2969
+    },
+    {
+      "shot": 92933,
+      "label": 1,
+      "query": 3240
+    },
+    {
+      "shot": 69291,
+      "label": 0,
+      "query": 5438
+    },
+    {
+      "shot": 86435,
+      "label": 1,
+      "query": 1109
+    },
+    {
+      "shot": 58597,
+      "label": 0,
+      "query": 3001
+    },
+    {
+      "shot": 71310,
+      "label": 1,
+      "query": 2125
+    },
+    {
+      "shot": 92920,
+      "label": 1,
+      "query": 2427
+    },
+    {
+      "shot": 87496,
+      "label": 1,
+      "query": 3601
+    },
+    {
+      "shot": 69807,
+      "label": 1,
+      "query": 1018
+    },
+    {
+      "shot": 70327,
+      "label": 1,
+      "query": 912
+    },
+    {
+      "shot": 70404,
+      "label": 0,
+      "query": 2945
+    },
+    {
+      "shot": 66930,
+      "label": 0,
+      "query": 368
+    },
+    {
+      "shot": 94151,
+      "label": 1,
+      "query": 4662
+    },
+    {
+      "shot": 70276,
+      "label": 1,
+      "query": 903
+    },
+    {
+      "shot": 96506,
+      "label": 1,
+      "query": 3669
+    },
+    {
+      "shot": 73540,
+      "label": 1,
+      "query": 1113
+    },
+    {
+      "shot": 74749,
+      "label": 1,
+      "query": 2665
+    },
+    {
+      "shot": 68111,
+      "label": 1,
+      "query": 2525
+    },
+    {
+      "shot": 73495,
+      "label": 1,
+      "query": 220
+    },
+    {
+      "shot": 54014,
+      "label": 0,
+      "query": 5566
+    },
+    {
+      "shot": 63197,
+      "label": 1,
+      "query": 141
+    },
+    {
+      "shot": 75238,
+      "label": 1,
+      "query": 1107
+    }
+  ],
+  "objective": "0.20 actual mature H25 signal maintenance plus adapted risk only in meta arm",
+  "peak_selection": "same initial causal intra peaks; D lead>30, S all valid",
+  "peak_reselection": false,
+  "second_order_unroll_depth": 4,
+  "actual_burn_in": true,
+  "learning_rate": 0.0003,
+  "steps": 40,
+  "records": [
+    {
+      "iteration": 1,
+      "records": [
+        {
+          "mature_events": 30,
+          "burn_in_events": 26,
+          "accepted_updates": 30,
+          "differentiated_updates": 4,
+          "fast_norm": 1.00000005517157,
+          "shot": 58597,
+          "label": 0,
+          "query": 3001,
+          "adapted_probability": 0.052425701171159744,
+          "risk_loss": 0.0206765066832304,
+          "maintenance_loss": 1.091465950012207,
+          "objective": 0.23896969854831696
+        },
+        {
+          "mature_events": 47,
+          "burn_in_events": 43,
+          "accepted_updates": 43,
+          "differentiated_updates": 4,
+          "fast_norm": 0.9924030165482087,
+          "shot": 94151,
+          "label": 1,
+          "query": 4662,
+          "adapted_probability": 0.8460670709609985,
+          "risk_loss": 0.39326968789100647,
+          "maintenance_loss": 0.6756341457366943,
+          "objective": 0.528396487236023
+        }
+      ],
+      "gradient_norm": 0.29184868931770325,
+      "decoder_delta_norm": 0.23210239248383935,
+      "risk_gradient_norm": 0.575616357530617,
+      "objective": 0.38368309289216995
+    },
+    {
+      "iteration": 2,
+      "records": [
+        {
+          "mature_events": 55,
+          "burn_in_events": 51,
+          "accepted_updates": 55,
+          "differentiated_updates": 4,
+          "fast_norm": 1.0000000119373085,
+          "shot": 69291,
+          "label": 0,
+          "query": 5438,
+          "adapted_probability": 0.9460890293121338,
+          "risk_loss": 2.0316574573516846,
+          "maintenance_loss": 0.6095390915870667,
+          "objective": 2.1535651683807373
+        },
+        {
+          "mature_events": 9,
+          "burn_in_events": 5,
+          "accepted_updates": 9,
+          "differentiated_updates": 4,
+          "fast_norm": 0.38501479734634725,
+          "shot": 70327,
+          "label": 1,
+          "query": 912,
+          "adapted_probability": 0.22642745077610016,
+          "risk_loss": 2.3073229789733887,
+          "maintenance_loss": 0.6096064448356628,
+          "objective": 2.42924427986145
+        }
+      ],
+      "gradient_norm": 1.0401701927185059,
+      "decoder_delta_norm": 0.16742105769491428,
+      "risk_gradient_norm": 2.3478865091077554,
+      "objective": 2.2914047241210938
+    },
+    {
+      "iteration": 3,
+      "records": [
+        {
+          "mature_events": 30,
+          "burn_in_events": 26,
+          "accepted_updates": 30,
+          "differentiated_updates": 4,
+          "fast_norm": 0.9028965517350397,
+          "shot": 70404,
+          "label": 0,
+          "query": 2945,
+          "adapted_probability": 0.12282460182905197,
+          "risk_loss": 0.05152363330125809,
+          "maintenance_loss": 0.6682227849960327,
+          "objective": 0.18516820669174194
+        },
+        {
+          "mature_events": 10,
+          "burn_in_events": 6,
+          "accepted_updates": 10,
+          "differentiated_updates": 4,
+          "fast_norm": 0.3944762223663073,
+          "shot": 69807,
+          "label": 1,
+          "query": 1018,
+          "adapted_probability": 0.10803128033876419,
+          "risk_loss": 3.129622220993042,
+          "maintenance_loss": 0.6519068479537964,
+          "objective": 3.2600035667419434
+        }
+      ],
+      "gradient_norm": 0.9326492547988892,
+      "decoder_delta_norm": 0.15518570869034157,
+      "risk_gradient_norm": 1.9297882336604595,
+      "objective": 1.7225858867168427
+    },
+    {
+      "iteration": 4,
+      "records": [
+        {
+          "mature_events": 56,
+          "burn_in_events": 52,
+          "accepted_updates": 54,
+          "differentiated_updates": 4,
+          "fast_norm": 1.0000000070170847,
+          "shot": 54014,
+          "label": 0,
+          "query": 5566,
+          "adapted_probability": 0.3685413897037506,
+          "risk_loss": 0.19916771352291107,
+          "maintenance_loss": 0.7688537836074829,
+          "objective": 0.3529384732246399
+        },
+        {
+          "mature_events": 115,
+          "burn_in_events": 111,
+          "accepted_updates": 115,
+          "differentiated_updates": 4,
+          "fast_norm": 0.9999999616217067,
+          "shot": 56606,
+          "label": 1,
+          "query": 11474,
+          "adapted_probability": 0.6428744792938232,
+          "risk_loss": 0.904675304889679,
+          "maintenance_loss": 0.7642918825149536,
+          "objective": 1.0575337409973145
+        }
+      ],
+      "gradient_norm": 0.5830585360527039,
+      "decoder_delta_norm": 0.13472478664955356,
+      "risk_gradient_norm": 1.3553738150488281,
+      "objective": 0.7052361071109772
+    },
+    {
+      "iteration": 5,
+      "records": [
+        {
+          "mature_events": 55,
+          "burn_in_events": 51,
+          "accepted_updates": 53,
+          "differentiated_updates": 4,
+          "fast_norm": 0.9822373614966075,
+          "shot": 69291,
+          "label": 0,
+          "query": 5438,
+          "adapted_probability": 0.9473426938056946,
+          "risk_loss": 2.053288221359253,
+          "maintenance_loss": 0.5290302634239197,
+          "objective": 2.1590943336486816
+        },
+        {
+          "mature_events": 40,
+          "burn_in_events": 36,
+          "accepted_updates": 37,
+          "differentiated_updates": 4,
+          "fast_norm": 0.9554048503485625,
+          "shot": 70869,
+          "label": 1,
+          "query": 3959,
+          "adapted_probability": 0.037312086671590805,
+          "risk_loss": 4.238833904266357,
+          "maintenance_loss": 0.6394373178482056,
+          "objective": 4.366721153259277
+        }
+      ],
+      "gradient_norm": 0.8340063691139221,
+      "decoder_delta_norm": 0.11899932545896583,
+      "risk_gradient_norm": 2.0293470109290666,
+      "objective": 3.2629077434539795
+    },
+    {
+      "iteration": 6,
+      "records": [
+        {
+          "mature_events": 56,
+          "burn_in_events": 52,
+          "accepted_updates": 56,
+          "differentiated_updates": 4,
+          "fast_norm": 0.9999999994354772,
+          "shot": 54014,
+          "label": 0,
+          "query": 5566,
+          "adapted_probability": 0.30634456872940063,
+          "risk_loss": 0.15423670411109924,
+          "maintenance_loss": 0.7508840560913086,
+          "objective": 0.30441349744796753
+        },
+        {
+          "mature_events": 11,
+          "burn_in_events": 7,
+          "accepted_updates": 11,
+          "differentiated_updates": 4,
+          "fast_norm": 0.4228934826640812,
+          "shot": 75238,
+          "label": 1,
+          "query": 1107,
+          "adapted_probability": 0.8758702874183655,
+          "risk_loss": 0.31868043541908264,
+          "maintenance_loss": 0.5631099939346313,
+          "objective": 0.43130242824554443
+        }
+      ],
+      "gradient_norm": 0.35121065378189087,
+      "decoder_delta_norm": 0.10920259850036014,
+      "risk_gradient_norm": 0.7144829761135861,
+      "objective": 0.367857962846756
+    },
+    {
+      "iteration": 7,
+      "records": [
+        {
+          "mature_events": 30,
+          "burn_in_events": 26,
+          "accepted_updates": 30,
+          "differentiated_updates": 4,
+          "fast_norm": 0.9999999904518269,
+          "shot": 58597,
+          "label": 0,
+          "query": 3001,
+          "adapted_probability": 0.09402213990688324,
+          "risk_loss": 0.038439929485321045,
+          "maintenance_loss": 1.0144411325454712,
+          "objective": 0.241328164935112
+        },
+        {
+          "mature_events": 2,
+          "burn_in_events": 0,
+          "accepted_updates": 2,
+          "differentiated_updates": 2,
+          "fast_norm": 0.07271650795457456,
+          "shot": 73495,
+          "label": 1,
+          "query": 220,
+          "adapted_probability": 0.5688427686691284,
+          "risk_loss": 1.1010231971740723,
+          "maintenance_loss": 0.561471700668335,
+          "objective": 1.2133175134658813
+        }
+      ],
+      "gradient_norm": 0.19975127279758453,
+      "decoder_delta_norm": 0.09883591461623194,
+      "risk_gradient_norm": 0.3696881521685794,
+      "objective": 0.7273228392004967
+    },
+    {
+      "iteration": 8,
+      "records": [
+        {
+          "mature_events": 56,
+          "burn_in_events": 52,
+          "accepted_updates": 56,
+          "differentiated_updates": 4,
+          "fast_norm": 0.9999999737194405,
+          "shot": 54014,
+          "label": 0,
+          "query": 5566,
+          "adapted_probability": 0.19712011516094208,
+          "risk_loss": 0.08866038173437119,
+          "maintenance_loss": 0.7228870987892151,
+          "objective": 0.23323780298233032
+        },
+        {
+          "mature_events": 9,
+          "burn_in_events": 5,
+          "accepted_updates": 9,
+          "differentiated_updates": 4,
+          "fast_norm": 0.38821192852777536,
+          "shot": 70327,
+          "label": 1,
+          "query": 912,
+          "adapted_probability": 0.48953813314437866,
+          "risk_loss": 1.3247973918914795,
+          "maintenance_loss": 0.6218067407608032,
+          "objective": 1.449158787727356
+        }
+      ],
+      "gradient_norm": 0.7071072459220886,
+      "decoder_delta_norm": 0.10389748814650654,
+      "risk_gradient_norm": 1.4572953028620423,
+      "objective": 0.8411982953548431
+    },
+    {
+      "iteration": 9,
+      "records": [
+        {
+          "mature_events": 3,
+          "burn_in_events": 0,
+          "accepted_updates": 3,
+          "differentiated_updates": 3,
+          "fast_norm": 0.10987818906101944,
+          "shot": 56591,
+          "label": 0,
+          "query": 325,
+          "adapted_probability": 0.1800428181886673,
+          "risk_loss": 0.07965564727783203,
+          "maintenance_loss": 0.8374599814414978,
+          "objective": 0.24714764952659607
+        },
+        {
+          "mature_events": 47,
+          "burn_in_events": 43,
+          "accepted_updates": 42,
+          "differentiated_updates": 4,
+          "fast_norm": 0.99431958659587,
+          "shot": 94151,
+          "label": 1,
+          "query": 4662,
+          "adapted_probability": 0.9253366589546204,
+          "risk_loss": 0.19365698099136353,
+          "maintenance_loss": 0.5966588258743286,
+          "objective": 0.3129887580871582
+        }
+      ],
+      "gradient_norm": 0.15650531649589539,
+      "decoder_delta_norm": 0.09146042666617925,
+      "risk_gradient_norm": 0.26183437741733856,
+      "objective": 0.28006820380687714
+    },
+    {
+      "iteration": 10,
+      "records": [
+        {
+          "mature_events": 30,
+          "burn_in_events": 26,
+          "accepted_updates": 30,
+          "differentiated_updates": 4,
+          "fast_norm": 0.9999999394083932,
+          "shot": 58597,
+          "label": 0,
+          "query": 3001,
+          "adapted_probability": 0.09348843991756439,
+          "risk_loss": 0.03820376843214035,
+          "maintenance_loss": 0.9773536324501038,
+          "objective": 0.23367449641227722
+        },
+        {
+          "mature_events": 2,
+          "burn_in_events": 0,
+          "accepted_updates": 2,
+          "differentiated_updates": 2,
+          "fast_norm": 0.07250534819866229,
+          "shot": 73495,
+          "label": 1,
+          "query": 220,
+          "adapted_probability": 0.5813868045806885,
+          "risk_loss": 1.0670509338378906,
+          "maintenance_loss": 0.5364141464233398,
+          "objective": 1.1743338108062744
+        }
+      ],
+      "gradient_norm": 0.22924600541591644,
+      "decoder_delta_norm": 0.08831295905097639,
+      "risk_gradient_norm": 0.4400340842681695,
+      "objective": 0.7040041536092758
+    },
+    {
+      "iteration": 11,
+      "records": [
+        {
+          "mature_events": 56,
+          "burn_in_events": 52,
+          "accepted_updates": 55,
+          "differentiated_updates": 3,
+          "fast_norm": 0.9999999881079018,
+          "shot": 54014,
+          "label": 0,
+          "query": 5566,
+          "adapted_probability": 0.12582968175411224,
+          "risk_loss": 0.05292817950248718,
+          "maintenance_loss": 0.6703487038612366,
+          "objective": 0.1869979202747345
+        },
+        {
+          "mature_events": 27,
+          "burn_in_events": 23,
+          "accepted_updates": 27,
+          "differentiated_updates": 4,
+          "fast_norm": 0.737127180642349,
+          "shot": 74749,
+          "label": 1,
+          "query": 2665,
+          "adapted_probability": 0.9766743183135986,
+          "risk_loss": 0.061327360570430756,
+          "maintenance_loss": 0.5100060105323792,
+          "objective": 0.16332855820655823
+        }
+      ],
+      "gradient_norm": 0.1630215346813202,
+      "decoder_delta_norm": 0.08371901110174709,
+      "risk_gradient_norm": 0.23900851020117286,
+      "objective": 0.17516323924064636
+    },
+    {
+      "iteration": 12,
+      "records": [
+        {
+          "mature_events": 4,
+          "burn_in_events": 0,
+          "accepted_updates": 4,
+          "differentiated_updates": 4,
+          "fast_norm": 0.15917393503290586,
+          "shot": 66930,
+          "label": 0,
+          "query": 368,
+          "adapted_probability": 0.7431709170341492,
+          "risk_loss": 0.7384399771690369,
+          "maintenance_loss": 0.4129337966442108,
+          "objective": 0.8210267424583435
+        },
+        {
+          "mature_events": 37,
+          "burn_in_events": 33,
+          "accepted_updates": 36,
+          "differentiated_updates": 3,
+          "fast_norm": 0.99999996698195,
+          "shot": 96506,
+          "label": 1,
+          "query": 3669,
+          "adapted_probability": 0.5774134993553162,
+          "risk_loss": 1.0777761936187744,
+          "maintenance_loss": 0.5393961071968079,
+          "objective": 1.1856553554534912
+        }
+      ],
+      "gradient_norm": 0.9511560797691345,
+      "decoder_delta_norm": 0.07743392691266193,
+      "risk_gradient_norm": 2.2023871485814035,
+      "objective": 1.0033410489559174
+    },
+    {
+      "iteration": 13,
+      "records": [
+        {
+          "mature_events": 49,
+          "burn_in_events": 45,
+          "accepted_updates": 49,
+          "differentiated_updates": 4,
+          "fast_norm": 0.9999999439591528,
+          "shot": 88197,
+          "label": 0,
+          "query": 4838,
+          "adapted_probability": 0.23012720048427582,
+          "risk_loss": 0.10694559663534164,
+          "maintenance_loss": 0.46683627367019653,
+          "objective": 0.20031285285949707
+        },
+        {
+          "mature_events": 37,
+          "burn_in_events": 33,
+          "accepted_updates": 36,
+          "differentiated_updates": 3,
+          "fast_norm": 0.9999998880079706,
+          "shot": 96506,
+          "label": 1,
+          "query": 3669,
+          "adapted_probability": 0.6167376637458801,
+          "risk_loss": 0.972937285900116,
+          "maintenance_loss": 0.5331611633300781,
+          "objective": 1.0795695781707764
+        }
+      ],
+      "gradient_norm": 0.7886388301849365,
+      "decoder_delta_norm": 0.08949545565898585,
+      "risk_gradient_norm": 1.8582499153986696,
+      "objective": 0.6399412155151367
+    },
+    {
+      "iteration": 14,
+      "records": [
+        {
+          "mature_events": 56,
+          "burn_in_events": 52,
+          "accepted_updates": 55,
+          "differentiated_updates": 3,
+          "fast_norm": 0.9999999545955791,
+          "shot": 54014,
+          "label": 0,
+          "query": 5566,
+          "adapted_probability": 0.11961690336465836,
+          "risk_loss": 0.05003282055258751,
+          "maintenance_loss": 0.6272259950637817,
+          "objective": 0.1754780262708664
+        },
+        {
+          "mature_events": 3,
+          "burn_in_events": 0,
+          "accepted_updates": 3,
+          "differentiated_updates": 3,
+          "fast_norm": 0.10266434322989862,
+          "shot": 83354,
+          "label": 1,
+          "query": 316,
+          "adapted_probability": 0.23478415608406067,
+          "risk_loss": 2.2650082111358643,
+          "maintenance_loss": 0.3923117220401764,
+          "objective": 2.343470573425293
+        }
+      ],
+      "gradient_norm": 0.5801085233688354,
+      "decoder_delta_norm": 0.09009959613407431,
+      "risk_gradient_norm": 1.3101966173408326,
+      "objective": 1.2594742998480797
+    },
+    {
+      "iteration": 15,
+      "records": [
+        {
+          "mature_events": 55,
+          "burn_in_events": 51,
+          "accepted_updates": 53,
+          "differentiated_updates": 4,
+          "fast_norm": 0.9424873583160635,
+          "shot": 69291,
+          "label": 0,
+          "query": 5438,
+          "adapted_probability": 0.9502550363540649,
+          "risk_loss": 2.105756998062134,
+          "maintenance_loss": 0.469007283449173,
+          "objective": 2.1995584964752197
+        },
+        {
+          "mature_events": 47,
+          "burn_in_events": 43,
+          "accepted_updates": 45,
+          "differentiated_updates": 4,
+          "fast_norm": 0.9974768482598486,
+          "shot": 94151,
+          "label": 1,
+          "query": 4662,
+          "adapted_probability": 0.9378060102462769,
+          "risk_loss": 0.1618018001317978,
+          "maintenance_loss": 0.5412102341651917,
+          "objective": 0.27004384994506836
+        }
+      ],
+      "gradient_norm": 0.5796557664871216,
+      "decoder_delta_norm": 0.07946452439224064,
+      "risk_gradient_norm": 1.2564777973532582,
+      "objective": 1.234801173210144
+    },
+    {
+      "iteration": 16,
+      "records": [
+        {
+          "mature_events": 49,
+          "burn_in_events": 45,
+          "accepted_updates": 48,
+          "differentiated_updates": 4,
+          "fast_norm": 1.0000000692176285,
+          "shot": 88197,
+          "label": 0,
+          "query": 4838,
+          "adapted_probability": 0.3926573097705841,
+          "risk_loss": 0.21843762695789337,
+          "maintenance_loss": 0.4851665794849396,
+          "objective": 0.31547093391418457
+        },
+        {
+          "mature_events": 40,
+          "burn_in_events": 36,
+          "accepted_updates": 37,
+          "differentiated_updates": 4,
+          "fast_norm": 0.999999955979779,
+          "shot": 70869,
+          "label": 1,
+          "query": 3959,
+          "adapted_probability": 0.131920725107193,
+          "risk_loss": 2.91377329826355,
+          "maintenance_loss": 0.6680257320404053,
+          "objective": 3.0473785400390625
+        }
+      ],
+      "gradient_norm": 0.8450859785079956,
+      "decoder_delta_norm": 0.0694603421185096,
+      "risk_gradient_norm": 1.8270115769233723,
+      "objective": 1.6814247369766235
+    },
+    {
+      "iteration": 17,
+      "records": [
+        {
+          "mature_events": 3,
+          "burn_in_events": 0,
+          "accepted_updates": 3,
+          "differentiated_updates": 3,
+          "fast_norm": 0.11018428122085717,
+          "shot": 56591,
+          "label": 0,
+          "query": 325,
+          "adapted_probability": 0.18712154030799866,
+          "risk_loss": 0.08335211873054504,
+          "maintenance_loss": 0.8088352680206299,
+          "objective": 0.24511916935443878
+        },
+        {
+          "mature_events": 2,
+          "burn_in_events": 0,
+          "accepted_updates": 2,
+          "differentiated_updates": 2,
+          "fast_norm": 0.07996109199139706,
+          "shot": 63197,
+          "label": 1,
+          "query": 141,
+          "adapted_probability": 0.14487935602664948,
+          "risk_loss": 2.8112473487854004,
+          "maintenance_loss": 0.5079796314239502,
+          "objective": 2.9128432273864746
+        }
+      ],
+      "gradient_norm": 0.29707109928131104,
+      "decoder_delta_norm": 0.06649345316313371,
+      "risk_gradient_norm": 0.5817136257726712,
+      "objective": 1.5789811983704567
+    },
+    {
+      "iteration": 18,
+      "records": [
+        {
+          "mature_events": 4,
+          "burn_in_events": 0,
+          "accepted_updates": 4,
+          "differentiated_updates": 4,
+          "fast_norm": 0.15273873925811735,
+          "shot": 66930,
+          "label": 0,
+          "query": 368,
+          "adapted_probability": 0.7522494792938232,
+          "risk_loss": 0.763859748840332,
+          "maintenance_loss": 0.40082526206970215,
+          "objective": 0.8440247774124146
+        },
+        {
+          "mature_events": 3,
+          "burn_in_events": 0,
+          "accepted_updates": 3,
+          "differentiated_updates": 3,
+          "fast_norm": 0.10656629883447906,
+          "shot": 83354,
+          "label": 1,
+          "query": 316,
+          "adapted_probability": 0.25612202286720276,
+          "risk_loss": 2.1623454093933105,
+          "maintenance_loss": 0.3869980275630951,
+          "objective": 2.2397449016571045
+        }
+      ],
+      "gradient_norm": 0.613957405090332,
+      "decoder_delta_norm": 0.06745816776222441,
+      "risk_gradient_norm": 1.3272983331300727,
+      "objective": 1.5418848395347595
+    },
+    {
+      "iteration": 19,
+      "records": [
+        {
+          "mature_events": 4,
+          "burn_in_events": 0,
+          "accepted_updates": 4,
+          "differentiated_updates": 4,
+          "fast_norm": 0.15202808723732136,
+          "shot": 66930,
+          "label": 0,
+          "query": 368,
+          "adapted_probability": 0.7474512457847595,
+          "risk_loss": 0.7502773404121399,
+          "maintenance_loss": 0.39662691950798035,
+          "objective": 0.8296027183532715
+        },
+        {
+          "mature_events": 25,
+          "burn_in_events": 21,
+          "accepted_updates": 25,
+          "differentiated_updates": 4,
+          "fast_norm": 0.9430185983355198,
+          "shot": 92920,
+          "label": 1,
+          "query": 2427,
+          "adapted_probability": 0.5788955688476562,
+          "risk_loss": 1.0737719535827637,
+          "maintenance_loss": 0.6222507357597351,
+          "objective": 1.1982221603393555
+        }
+      ],
+      "gradient_norm": 1.1821131706237793,
+      "decoder_delta_norm": 0.07715641499592944,
+      "risk_gradient_norm": 2.6293814975818606,
+      "objective": 1.0139124393463135
+    },
+    {
+      "iteration": 20,
+      "records": [
+        {
+          "mature_events": 56,
+          "burn_in_events": 52,
+          "accepted_updates": 53,
+          "differentiated_updates": 3,
+          "fast_norm": 1.000000040352802,
+          "shot": 54014,
+          "label": 0,
+          "query": 5566,
+          "adapted_probability": 0.26385369896888733,
+          "risk_loss": 0.12693674862384796,
+          "maintenance_loss": 0.5978307723999023,
+          "objective": 0.24650290608406067
+        },
+        {
+          "mature_events": 11,
+          "burn_in_events": 7,
+          "accepted_updates": 11,
+          "differentiated_updates": 4,
+          "fast_norm": 0.44460840701029525,
+          "shot": 86435,
+          "label": 1,
+          "query": 1109,
+          "adapted_probability": 0.4670770764350891,
+          "risk_loss": 1.3916712999343872,
+          "maintenance_loss": 0.4483453929424286,
+          "objective": 1.4813404083251953
+        }
+      ],
+      "gradient_norm": 0.6567218899726868,
+      "decoder_delta_norm": 0.07688440386172218,
+      "risk_gradient_norm": 1.6357509096162903,
+      "objective": 0.863921657204628
+    },
+    {
+      "iteration": 21,
+      "records": [
+        {
+          "mature_events": 30,
+          "burn_in_events": 26,
+          "accepted_updates": 30,
+          "differentiated_updates": 4,
+          "fast_norm": 0.8638481670044555,
+          "shot": 70404,
+          "label": 0,
+          "query": 2945,
+          "adapted_probability": 0.5253422260284424,
+          "risk_loss": 0.34919941425323486,
+          "maintenance_loss": 0.6244075298309326,
+          "objective": 0.4740809202194214
+        },
+        {
+          "mature_events": 22,
+          "burn_in_events": 18,
+          "accepted_updates": 22,
+          "differentiated_updates": 4,
+          "fast_norm": 0.7157973427099458,
+          "shot": 69923,
+          "label": 1,
+          "query": 2137,
+          "adapted_probability": 0.8375552296638489,
+          "risk_loss": 0.4145091772079468,
+          "maintenance_loss": 0.5484063625335693,
+          "objective": 0.5241904258728027
+        }
+      ],
+      "gradient_norm": 0.6666334271430969,
+      "decoder_delta_norm": 0.07584825988057686,
+      "risk_gradient_norm": 1.6154931556083503,
+      "objective": 0.49913567304611206
+    },
+    {
+      "iteration": 22,
+      "records": [
+        {
+          "mature_events": 30,
+          "burn_in_events": 26,
+          "accepted_updates": 30,
+          "differentiated_updates": 4,
+          "fast_norm": 0.9999999553973443,
+          "shot": 58597,
+          "label": 0,
+          "query": 3001,
+          "adapted_probability": 0.15284313261508942,
+          "risk_loss": 0.06590761244297028,
+          "maintenance_loss": 0.9541214108467102,
+          "objective": 0.25673189759254456
+        },
+        {
+          "mature_events": 3,
+          "burn_in_events": 0,
+          "accepted_updates": 3,
+          "differentiated_updates": 3,
+          "fast_norm": 0.08905301439975032,
+          "shot": 71301,
+          "label": 1,
+          "query": 240,
+          "adapted_probability": 0.9796380400657654,
+          "risk_loss": 0.05358249694108963,
+          "maintenance_loss": 0.7177199721336365,
+          "objective": 0.19712650775909424
+        }
+      ],
+      "gradient_norm": 0.15453417599201202,
+      "decoder_delta_norm": 0.06913653698723436,
+      "risk_gradient_norm": 0.17926996145633167,
+      "objective": 0.2269292026758194
+    },
+    {
+      "iteration": 23,
+      "records": [
+        {
+          "mature_events": 30,
+          "burn_in_events": 26,
+          "accepted_updates": 30,
+          "differentiated_updates": 4,
+          "fast_norm": 0.9999999587841955,
+          "shot": 58597,
+          "label": 0,
+          "query": 3001,
+          "adapted_probability": 0.1531076282262802,
+          "risk_loss": 0.06603793799877167,
+          "maintenance_loss": 0.9540374279022217,
+          "objective": 0.2568454146385193
+        },
+        {
+          "mature_events": 47,
+          "burn_in_events": 43,
+          "accepted_updates": 45,
+          "differentiated_updates": 4,
+          "fast_norm": 0.9940195800955819,
+          "shot": 94151,
+          "label": 1,
+          "query": 4662,
+          "adapted_probability": 0.9620609879493713,
+          "risk_loss": 0.09933251887559891,
+          "maintenance_loss": 0.5255622863769531,
+          "objective": 0.2044449746608734
+        }
+      ],
+      "gradient_norm": 0.14085419476032257,
+      "decoder_delta_norm": 0.06378973594759714,
+      "risk_gradient_norm": 0.23746575199889755,
+      "objective": 0.23064519464969635
+    },
+    {
+      "iteration": 24,
+      "records": [
+        {
+          "mature_events": 4,
+          "burn_in_events": 0,
+          "accepted_updates": 4,
+          "differentiated_updates": 4,
+          "fast_norm": 0.14902078904464058,
+          "shot": 66930,
+          "label": 0,
+          "query": 368,
+          "adapted_probability": 0.7155435681343079,
+          "risk_loss": 0.6677626967430115,
+          "maintenance_loss": 0.37673690915107727,
+          "objective": 0.7431100606918335
+        },
+        {
+          "mature_events": 27,
+          "burn_in_events": 23,
+          "accepted_updates": 27,
+          "differentiated_updates": 4,
+          "fast_norm": 0.6229163340029797,
+          "shot": 74749,
+          "label": 1,
+          "query": 2665,
+          "adapted_probability": 0.9765886068344116,
+          "risk_loss": 0.06155149266123772,
+          "maintenance_loss": 0.4573456943035126,
+          "objective": 0.15302063524723053
+        }
+      ],
+      "gradient_norm": 0.4989891052246094,
+      "decoder_delta_norm": 0.06642397123451511,
+      "risk_gradient_norm": 0.963691420519339,
+      "objective": 0.448065347969532
+    },
+    {
+      "iteration": 25,
+      "records": [
+        {
+          "mature_events": 4,
+          "burn_in_events": 0,
+          "accepted_updates": 4,
+          "differentiated_updates": 4,
+          "fast_norm": 0.1479352726642888,
+          "shot": 66930,
+          "label": 0,
+          "query": 368,
+          "adapted_probability": 0.7013053297996521,
+          "risk_loss": 0.6347715854644775,
+          "maintenance_loss": 0.3728221356868744,
+          "objective": 0.7093360424041748
+        },
+        {
+          "mature_events": 25,
+          "burn_in_events": 21,
+          "accepted_updates": 25,
+          "differentiated_updates": 4,
+          "fast_norm": 0.8511757799916084,
+          "shot": 68111,
+          "label": 1,
+          "query": 2525,
+          "adapted_probability": 0.9720095992088318,
+          "risk_loss": 0.07349185645580292,
+          "maintenance_loss": 0.6128113269805908,
+          "objective": 0.1960541307926178
+        }
+      ],
+      "gradient_norm": 0.45969289541244507,
+      "decoder_delta_norm": 0.07188688690832648,
+      "risk_gradient_norm": 0.9560595620082193,
+      "objective": 0.4526950865983963
+    },
+    {
+      "iteration": 26,
+      "records": [
+        {
+          "mature_events": 4,
+          "burn_in_events": 0,
+          "accepted_updates": 4,
+          "differentiated_updates": 4,
+          "fast_norm": 0.14668027450896762,
+          "shot": 66930,
+          "label": 0,
+          "query": 368,
+          "adapted_probability": 0.6814277172088623,
+          "risk_loss": 0.5920610427856445,
+          "maintenance_loss": 0.3695653975009918,
+          "objective": 0.6659741401672363
+        },
+        {
+          "mature_events": 11,
+          "burn_in_events": 7,
+          "accepted_updates": 11,
+          "differentiated_updates": 4,
+          "fast_norm": 0.4617176174325461,
+          "shot": 86435,
+          "label": 1,
+          "query": 1109,
+          "adapted_probability": 0.5429931879043579,
+          "risk_loss": 1.1721317768096924,
+          "maintenance_loss": 0.47943371534347534,
+          "objective": 1.2680184841156006
+        }
+      ],
+      "gradient_norm": 0.6202017664909363,
+      "decoder_delta_norm": 0.08065345088419067,
+      "risk_gradient_norm": 1.3406929010369772,
+      "objective": 0.9669963121414185
+    },
+    {
+      "iteration": 27,
+      "records": [
+        {
+          "mature_events": 55,
+          "burn_in_events": 51,
+          "accepted_updates": 55,
+          "differentiated_updates": 4,
+          "fast_norm": 0.7961105927206652,
+          "shot": 69291,
+          "label": 0,
+          "query": 5438,
+          "adapted_probability": 0.956773579120636,
+          "risk_loss": 2.2362349033355713,
+          "maintenance_loss": 0.4365147352218628,
+          "objective": 2.323537826538086
+        },
+        {
+          "mature_events": 27,
+          "burn_in_events": 23,
+          "accepted_updates": 27,
+          "differentiated_updates": 4,
+          "fast_norm": 0.6031163553579839,
+          "shot": 74749,
+          "label": 1,
+          "query": 2665,
+          "adapted_probability": 0.9712457656860352,
+          "risk_loss": 0.07548064738512039,
+          "maintenance_loss": 0.43422549962997437,
+          "objective": 0.16232573986053467
+        }
+      ],
+      "gradient_norm": 0.7688460946083069,
+      "decoder_delta_norm": 0.08310571242095491,
+      "risk_gradient_norm": 1.616551979443741,
+      "objective": 1.2429317831993103
+    },
+    {
+      "iteration": 28,
+      "records": [
+        {
+          "mature_events": 55,
+          "burn_in_events": 51,
+          "accepted_updates": 55,
+          "differentiated_updates": 4,
+          "fast_norm": 0.8145874010577288,
+          "shot": 69291,
+          "label": 0,
+          "query": 5438,
+          "adapted_probability": 0.9521236419677734,
+          "risk_loss": 2.1411938667297363,
+          "maintenance_loss": 0.44234275817871094,
+          "objective": 2.2296624183654785
+        },
+        {
+          "mature_events": 47,
+          "burn_in_events": 43,
+          "accepted_updates": 45,
+          "differentiated_updates": 4,
+          "fast_norm": 0.9889037247585282,
+          "shot": 94151,
+          "label": 1,
+          "query": 4662,
+          "adapted_probability": 0.9591355323791504,
+          "risk_loss": 0.10690565407276154,
+          "maintenance_loss": 0.5004069805145264,
+          "objective": 0.20698705315589905
+        }
+      ],
+      "gradient_norm": 0.7850270867347717,
+      "decoder_delta_norm": 0.09099579712364397,
+      "risk_gradient_norm": 1.6631212130112902,
+      "objective": 1.2183247357606888
+    },
+    {
+      "iteration": 29,
+      "records": [
+        {
+          "mature_events": 4,
+          "burn_in_events": 0,
+          "accepted_updates": 4,
+          "differentiated_updates": 4,
+          "fast_norm": 0.14592082154749128,
+          "shot": 66930,
+          "label": 0,
+          "query": 368,
+          "adapted_probability": 0.6115423440933228,
+          "risk_loss": 0.46653860807418823,
+          "maintenance_loss": 0.38949087262153625,
+          "objective": 0.5444368124008179
+        },
+        {
+          "mature_events": 11,
+          "burn_in_events": 7,
+          "accepted_updates": 11,
+          "differentiated_updates": 4,
+          "fast_norm": 0.4484751293223536,
+          "shot": 73540,
+          "label": 1,
+          "query": 1113,
+          "adapted_probability": 0.9920560717582703,
+          "risk_loss": 0.02098396234214306,
+          "maintenance_loss": 0.7000091075897217,
+          "objective": 0.1609857827425003
+        }
+      ],
+      "gradient_norm": 0.2851037383079529,
+      "decoder_delta_norm": 0.08911576276064964,
+      "risk_gradient_norm": 0.5307958534791309,
+      "objective": 0.3527112975716591
+    },
+    {
+      "iteration": 30,
+      "records": [
+        {
+          "mature_events": 3,
+          "burn_in_events": 0,
+          "accepted_updates": 3,
+          "differentiated_updates": 3,
+          "fast_norm": 0.1139731192986121,
+          "shot": 56591,
+          "label": 0,
+          "query": 325,
+          "adapted_probability": 0.19499608874320984,
+          "risk_loss": 0.08752408623695374,
+          "maintenance_loss": 0.8680849671363831,
+          "objective": 0.2611410617828369
+        },
+        {
+          "mature_events": 27,
+          "burn_in_events": 23,
+          "accepted_updates": 27,
+          "differentiated_updates": 4,
+          "fast_norm": 0.6189373860954808,
+          "shot": 74749,
+          "label": 1,
+          "query": 2665,
+          "adapted_probability": 0.9592562913894653,
+          "risk_loss": 0.10659343749284744,
+          "maintenance_loss": 0.4275185465812683,
+          "objective": 0.19209715723991394
+        }
+      ],
+      "gradient_norm": 0.1400679647922516,
+      "decoder_delta_norm": 0.08025948571693323,
+      "risk_gradient_norm": 0.20146803989778572,
+      "objective": 0.22661910951137543
+    },
+    {
+      "iteration": 31,
+      "records": [
+        {
+          "mature_events": 4,
+          "burn_in_events": 0,
+          "accepted_updates": 4,
+          "differentiated_updates": 4,
+          "fast_norm": 0.1486292834836995,
+          "shot": 66930,
+          "label": 0,
+          "query": 368,
+          "adapted_probability": 0.5808041095733643,
+          "risk_loss": 0.4208044409751892,
+          "maintenance_loss": 0.43429604172706604,
+          "objective": 0.5076636672019958
+        },
+        {
+          "mature_events": 3,
+          "burn_in_events": 0,
+          "accepted_updates": 3,
+          "differentiated_updates": 3,
+          "fast_norm": 0.11049704706868103,
+          "shot": 83354,
+          "label": 1,
+          "query": 316,
+          "adapted_probability": 0.2658712863922119,
+          "risk_loss": 2.1177423000335693,
+          "maintenance_loss": 0.35187140107154846,
+          "objective": 2.1881165504455566
+        }
+      ],
+      "gradient_norm": 0.4956507086753845,
+      "decoder_delta_norm": 0.07452022893033826,
+      "risk_gradient_norm": 0.9365253626136455,
+      "objective": 1.3478901088237762
+    },
+    {
+      "iteration": 32,
+      "records": [
+        {
+          "mature_events": 56,
+          "burn_in_events": 52,
+          "accepted_updates": 54,
+          "differentiated_updates": 4,
+          "fast_norm": 0.9999999653186097,
+          "shot": 54014,
+          "label": 0,
+          "query": 5566,
+          "adapted_probability": 0.17427855730056763,
+          "risk_loss": 0.07668252289295197,
+          "maintenance_loss": 0.5647087693214417,
+          "objective": 0.18962427973747253
+        },
+        {
+          "mature_events": 47,
+          "burn_in_events": 43,
+          "accepted_updates": 45,
+          "differentiated_updates": 4,
+          "fast_norm": 0.9854920278264272,
+          "shot": 94151,
+          "label": 1,
+          "query": 4662,
+          "adapted_probability": 0.9489216804504395,
+          "risk_loss": 0.13326114416122437,
+          "maintenance_loss": 0.4721567630767822,
+          "objective": 0.22769249975681305
+        }
+      ],
+      "gradient_norm": 0.225456103682518,
+      "decoder_delta_norm": 0.06915653766231876,
+      "risk_gradient_norm": 0.5386941316264015,
+      "objective": 0.2086583897471428
+    },
+    {
+      "iteration": 33,
+      "records": [
+        {
+          "mature_events": 49,
+          "burn_in_events": 45,
+          "accepted_updates": 49,
+          "differentiated_updates": 4,
+          "fast_norm": 1.0000000366548802,
+          "shot": 88197,
+          "label": 0,
+          "query": 4838,
+          "adapted_probability": 0.6716972589492798,
+          "risk_loss": 0.5724355578422546,
+          "maintenance_loss": 0.4664643406867981,
+          "objective": 0.6657284498214722
+        },
+        {
+          "mature_events": 9,
+          "burn_in_events": 5,
+          "accepted_updates": 9,
+          "differentiated_updates": 4,
+          "fast_norm": 0.3300906875943522,
+          "shot": 70276,
+          "label": 1,
+          "query": 903,
+          "adapted_probability": 0.964236855506897,
+          "risk_loss": 0.09369240701198578,
+          "maintenance_loss": 0.6038982272148132,
+          "objective": 0.21447205543518066
+        }
+      ],
+      "gradient_norm": 1.0942121744155884,
+      "decoder_delta_norm": 0.07788580313439164,
+      "risk_gradient_norm": 2.145501708303326,
+      "objective": 0.4401002526283264
+    },
+    {
+      "iteration": 34,
+      "records": [
+        {
+          "mature_events": 55,
+          "burn_in_events": 51,
+          "accepted_updates": 55,
+          "differentiated_updates": 4,
+          "fast_norm": 0.9341080860674872,
+          "shot": 69291,
+          "label": 0,
+          "query": 5438,
+          "adapted_probability": 0.8894227147102356,
+          "risk_loss": 1.3955732583999634,
+          "maintenance_loss": 0.5588672161102295,
+          "objective": 1.507346749305725
+        },
+        {
+          "mature_events": 37,
+          "burn_in_events": 33,
+          "accepted_updates": 37,
+          "differentiated_updates": 4,
+          "fast_norm": 0.8945689807353249,
+          "shot": 96506,
+          "label": 1,
+          "query": 3669,
+          "adapted_probability": 0.8807081580162048,
+          "risk_loss": 0.30653056502342224,
+          "maintenance_loss": 0.48378872871398926,
+          "objective": 0.4032883048057556
+        }
+      ],
+      "gradient_norm": 0.7802817225456238,
+      "decoder_delta_norm": 0.0808780423829646,
+      "risk_gradient_norm": 2.0402993115612595,
+      "objective": 0.9553175270557404
+    },
+    {
+      "iteration": 35,
+      "records": [
+        {
+          "mature_events": 49,
+          "burn_in_events": 45,
+          "accepted_updates": 49,
+          "differentiated_updates": 4,
+          "fast_norm": 1.0000000355881158,
+          "shot": 88197,
+          "label": 0,
+          "query": 4838,
+          "adapted_probability": 0.44415614008903503,
+          "risk_loss": 0.2636984884738922,
+          "maintenance_loss": 0.43451783061027527,
+          "objective": 0.35060206055641174
+        },
+        {
+          "mature_events": 3,
+          "burn_in_events": 0,
+          "accepted_updates": 3,
+          "differentiated_updates": 3,
+          "fast_norm": 0.10170570417236656,
+          "shot": 71301,
+          "label": 1,
+          "query": 240,
+          "adapted_probability": 0.9774377346038818,
+          "risk_loss": 0.059333935379981995,
+          "maintenance_loss": 0.5873070955276489,
+          "objective": 0.1767953634262085
+        }
+      ],
+      "gradient_norm": 0.6896100640296936,
+      "decoder_delta_norm": 0.08829471974152109,
+      "risk_gradient_norm": 1.3048195146261798,
+      "objective": 0.2636987119913101
+    },
+    {
+      "iteration": 36,
+      "records": [
+        {
+          "mature_events": 55,
+          "burn_in_events": 51,
+          "accepted_updates": 55,
+          "differentiated_updates": 4,
+          "fast_norm": 0.9993281485864073,
+          "shot": 69291,
+          "label": 0,
+          "query": 5438,
+          "adapted_probability": 0.8422382473945618,
+          "risk_loss": 1.1039108037948608,
+          "maintenance_loss": 0.6281650066375732,
+          "objective": 1.2295438051223755
+        },
+        {
+          "mature_events": 2,
+          "burn_in_events": 0,
+          "accepted_updates": 2,
+          "differentiated_updates": 2,
+          "fast_norm": 0.07017270759016213,
+          "shot": 73495,
+          "label": 1,
+          "query": 220,
+          "adapted_probability": 0.537013053894043,
+          "risk_loss": 1.188812255859375,
+          "maintenance_loss": 0.456644743680954,
+          "objective": 1.2801412343978882
+        }
+      ],
+      "gradient_norm": 0.7699765563011169,
+      "decoder_delta_norm": 0.09487343274396609,
+      "risk_gradient_norm": 1.8163061642218636,
+      "objective": 1.2548425197601318
+    },
+    {
+      "iteration": 37,
+      "records": [
+        {
+          "mature_events": 30,
+          "burn_in_events": 26,
+          "accepted_updates": 30,
+          "differentiated_updates": 4,
+          "fast_norm": 1.0000000239124558,
+          "shot": 58597,
+          "label": 0,
+          "query": 3001,
+          "adapted_probability": 0.04932885989546776,
+          "risk_loss": 0.019404135644435883,
+          "maintenance_loss": 0.8680424094200134,
+          "objective": 0.19301262497901917
+        },
+        {
+          "mature_events": 115,
+          "burn_in_events": 111,
+          "accepted_updates": 115,
+          "differentiated_updates": 4,
+          "fast_norm": 0.9979352911488342,
+          "shot": 56606,
+          "label": 1,
+          "query": 11474,
+          "adapted_probability": 0.8920552134513855,
+          "risk_loss": 0.2779759466648102,
+          "maintenance_loss": 0.6665939688682556,
+          "objective": 0.41129475831985474
+        }
+      ],
+      "gradient_norm": 0.2504735291004181,
+      "decoder_delta_norm": 0.08556437743464716,
+      "risk_gradient_norm": 0.5065159629791852,
+      "objective": 0.30215369164943695
+    },
+    {
+      "iteration": 38,
+      "records": [
+        {
+          "mature_events": 4,
+          "burn_in_events": 0,
+          "accepted_updates": 4,
+          "differentiated_updates": 4,
+          "fast_norm": 0.15311713782109707,
+          "shot": 66930,
+          "label": 0,
+          "query": 368,
+          "adapted_probability": 0.5502440929412842,
+          "risk_loss": 0.3797910511493683,
+          "maintenance_loss": 0.7060899138450623,
+          "objective": 0.5210090279579163
+        },
+        {
+          "mature_events": 47,
+          "burn_in_events": 43,
+          "accepted_updates": 45,
+          "differentiated_updates": 4,
+          "fast_norm": 0.985268583719233,
+          "shot": 94151,
+          "label": 1,
+          "query": 4662,
+          "adapted_probability": 0.9123415946960449,
+          "risk_loss": 0.22669252753257751,
+          "maintenance_loss": 0.4512394666671753,
+          "objective": 0.31694042682647705
+        }
+      ],
+      "gradient_norm": 0.3066542446613312,
+      "decoder_delta_norm": 0.07296814027376355,
+      "risk_gradient_norm": 0.5182317341255211,
+      "objective": 0.41897472739219666
+    },
+    {
+      "iteration": 39,
+      "records": [
+        {
+          "mature_events": 55,
+          "burn_in_events": 51,
+          "accepted_updates": 54,
+          "differentiated_updates": 4,
+          "fast_norm": 0.9999999584625668,
+          "shot": 69291,
+          "label": 0,
+          "query": 5438,
+          "adapted_probability": 0.8012043833732605,
+          "risk_loss": 0.9250046014785767,
+          "maintenance_loss": 0.7452386617660522,
+          "objective": 1.074052333831787
+        },
+        {
+          "mature_events": 11,
+          "burn_in_events": 7,
+          "accepted_updates": 11,
+          "differentiated_updates": 4,
+          "fast_norm": 0.3017017774518835,
+          "shot": 86435,
+          "label": 1,
+          "query": 1109,
+          "adapted_probability": 0.19307440519332886,
+          "risk_loss": 2.4905483722686768,
+          "maintenance_loss": 0.34670644998550415,
+          "objective": 2.559889554977417
+        }
+      ],
+      "gradient_norm": 1.8766729831695557,
+      "decoder_delta_norm": 0.058661752122820515,
+      "risk_gradient_norm": 3.8875073770090687,
+      "objective": 1.816970944404602
+    },
+    {
+      "iteration": 40,
+      "records": [
+        {
+          "mature_events": 30,
+          "burn_in_events": 26,
+          "accepted_updates": 30,
+          "differentiated_updates": 4,
+          "fast_norm": 0.6669299679691095,
+          "shot": 70404,
+          "label": 0,
+          "query": 2945,
+          "adapted_probability": 0.04562723636627197,
+          "risk_loss": 0.017892004922032356,
+          "maintenance_loss": 0.4755427837371826,
+          "objective": 0.11300056427717209
+        },
+        {
+          "mature_events": 22,
+          "burn_in_events": 18,
+          "accepted_updates": 22,
+          "differentiated_updates": 4,
+          "fast_norm": 0.7106203272085739,
+          "shot": 69923,
+          "label": 1,
+          "query": 2137,
+          "adapted_probability": 0.4829593598842621,
+          "risk_loss": 1.3441987037658691,
+          "maintenance_loss": 0.5049654841423035,
+          "objective": 1.4451918601989746
+        }
+      ],
+      "gradient_norm": 0.5445604920387268,
+      "decoder_delta_norm": 0.053016077074044904,
+      "risk_gradient_norm": 1.069122560269846,
+      "objective": 0.7790962122380733
+    }
+  ],
+  "seed": 131,
+  "elapsed_seconds": 25.59822726099992,
+  "artifact_sha256": "7c549061cf51860fb2ed4330a2c25ffdfe595416c13a58206775d6016d3c0cfd"
+}

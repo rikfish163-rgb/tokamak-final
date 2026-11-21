@@ -1,0 +1,136 @@
+{
+  "status": "VERIFIED_COUNTS_SELECTION_SELECTED_REPLAY_AND_REFIT",
+  "completed_sha256": "9180eff55301a9433cde3e5fcc1ea347c5d5f68e58aa2a6e5d953af5cc333af7",
+  "audit_sha256": "7b2935148fee4980222f2ee03b33e530a10808d562b1187e4732dfe37badbae7",
+  "diagnostic_sha256": "64ed3ddc95ebf0156d557693976cc408679e4417a293d86071dc0987149da0fa",
+  "shot_arm_checks": 765,
+  "training_manifests": 24,
+  "classes": [
+    {
+      "fold": 0,
+      "method": "blind_target",
+      "n_disrupt": 1
+    },
+    {
+      "fold": 0,
+      "method": "aware_mixed",
+      "n_disrupt": 4
+    },
+    {
+      "fold": 0,
+      "method": "aware_target",
+      "n_disrupt": 4
+    },
+    {
+      "fold": 1,
+      "method": "blind_target",
+      "n_disrupt": 3
+    },
+    {
+      "fold": 1,
+      "method": "aware_mixed",
+      "n_disrupt": 4
+    },
+    {
+      "fold": 1,
+      "method": "aware_target",
+      "n_disrupt": 4
+    },
+    {
+      "fold": 2,
+      "method": "blind_target",
+      "n_disrupt": 5
+    },
+    {
+      "fold": 2,
+      "method": "aware_mixed",
+      "n_disrupt": 4
+    },
+    {
+      "fold": 2,
+      "method": "aware_target",
+      "n_disrupt": 4
+    },
+    {
+      "fold": 3,
+      "method": "blind_target",
+      "n_disrupt": 3
+    },
+    {
+      "fold": 3,
+      "method": "aware_mixed",
+      "n_disrupt": 4
+    },
+    {
+      "fold": 3,
+      "method": "aware_target",
+      "n_disrupt": 4
+    }
+  ],
+  "replays": [
+    {
+      "fold": 0,
+      "method": "blind_target",
+      "shot": 54314
+    },
+    {
+      "fold": 0,
+      "method": "blind_target",
+      "shot": 63226
+    },
+    {
+      "fold": 0,
+      "method": "aware_mixed",
+      "shot": 54314
+    },
+    {
+      "fold": 0,
+      "method": "aware_mixed",
+      "shot": 63226
+    },
+    {
+      "fold": 0,
+      "method": "aware_target",
+      "shot": 54314
+    },
+    {
+      "fold": 0,
+      "method": "aware_target",
+      "shot": 63226
+    }
+  ],
+  "refits": [
+    {
+      "method": "blind_target",
+      "state_exact": true,
+      "batches_and_losses_exact": true,
+      "artifacts": {
+        "audit_refit0_blind_target/forecast_exclusions.json": "e14c10ac37a95c0135d3be9cece6cd613a75ce12f42612beaaadf1b24f57aa34",
+        "audit_refit0_blind_target/forecast_manifest.jsonl": "2d087b7ab9af4ba93ffd89bef43e82bb04a26119af3196abeafdb9fce682211b",
+        "audit_refit0_blind_target/forecast_training.json": "a36b3b125d0d54049109df822dc8e5364c7324dc2d87cec45f11df9e50e5c6fb",
+        "audit_refit0_blind_target/gradient_relations.json": "f3fe19fb8e96cd73f1d320f3bcb3e7c7ff7b03c542bbfcdbee44b617ac0b91c7",
+        "audit_refit0_blind_target/preparation.json": "c3b7d1b347c8e36d75b8dc13235211a47f1b18e31a386097668b1e914a1c1b54",
+        "audit_refit0_blind_target/prepared.pt": "1b4f3f758930735722d1297421ca2d59ca8ba8fef8ad5491282af0077217f6b3",
+        "audit_refit0_blind_target/risk_manifest.jsonl": "6baa943b5576e8974c2dc16750bb62bf3dcc7e2f71a0dd7355a4f9f0cb5e07fa",
+        "audit_refit0_blind_target/risk_training.json": "fb7e41a12fa13078232b38129efe2901ef41df0bce2f3729144cf5b391058cd4"
+      }
+    },
+    {
+      "method": "blind_mixed",
+      "state_exact": true,
+      "batches_and_losses_exact": true,
+      "artifacts": {
+        "audit_refit0_blind_mixed/forecast_exclusions.json": "e14c10ac37a95c0135d3be9cece6cd613a75ce12f42612beaaadf1b24f57aa34",
+        "audit_refit0_blind_mixed/forecast_manifest.jsonl": "2d087b7ab9af4ba93ffd89bef43e82bb04a26119af3196abeafdb9fce682211b",
+        "audit_refit0_blind_mixed/forecast_training.json": "7e9bbe54c7c3a20842a89ac334713fcc014dc767a52d3322990f39cdb77c1d3e",
+        "audit_refit0_blind_mixed/gradient_relations.json": "0cd45ead73b79de9e12426e758e7b5eff33f07df5fff8f3344baa0c52914609e",
+        "audit_refit0_blind_mixed/preparation.json": "4db32a83ce2928628cdcc28fc41e9f5ec8f0b0b52e83062602dc544cdb687b59",
+        "audit_refit0_blind_mixed/prepared.pt": "be4088eab0b7073759a64ae81a5027a03743855a103d820b7cf4d98a7a959bcd",
+        "audit_refit0_blind_mixed/risk_manifest.jsonl": "6baa943b5576e8974c2dc16750bb62bf3dcc7e2f71a0dd7355a4f9f0cb5e07fa",
+        "audit_refit0_blind_mixed/risk_training.json": "58835c245d86b85cc89a2d95a6e6f6f7027055fb14e1b7fced2f01e387ee8ce0"
+      }
+    }
+  ],
+  "source_unchanged": true,
+  "seconds": 26.19557427199834
+}

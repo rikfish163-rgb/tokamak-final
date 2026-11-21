@@ -1,0 +1,67 @@
+{
+  "scope": "NONDEPLOYABLE_LABEL_ORACLE; DEVELOPED360; NOT A PERFORMANCE UPPER BOUND",
+  "shot_ids": [
+    54157,
+    54160
+  ],
+  "threshold": 0.12540414929389954,
+  "source_sha256": "c7270c1ea3652db2e30e972d4ca9a4a2d33220a68e4a3765c8b7f5bcceeaeb02",
+  "preparation_ids": [
+    54314,
+    58717,
+    59215,
+    59643,
+    61327,
+    63226,
+    63712,
+    66662,
+    67722,
+    70633,
+    70868,
+    72415,
+    75501,
+    75604,
+    79460,
+    80087,
+    81150,
+    83407,
+    84901,
+    88785
+  ],
+  "calibration_ids": [
+    89272,
+    89284,
+    89449,
+    89584,
+    89976,
+    91285,
+    91775,
+    92011,
+    92315,
+    92601
+  ],
+  "previous_sha256": "d8bbfe4e8ca3ab62845d4cef4149b00b742d5476b2534e7a6e3bd9912dcdebc1",
+  "plan_sha256": "bf18fccfac5070257b42ba9cb76b05b9799261364cb1a3d40fb03e828c2f9c30",
+  "arms": [
+    "static",
+    "oracle1",
+    "oracle4"
+  ],
+  "learning_rate": 0.001,
+  "clip_norm": 1.0,
+  "first_update": 256,
+  "stride": 128,
+  "observed_windows_per_update": 8,
+  "labels_accessed_before_current_shot": true,
+  "future_signals_in_gradient": false,
+  "event_labels_used": false,
+  "code_sha256": {
+    "experiments/risk_aligned_online/observed_oracle_20261023/learning.py": "8b47d02266baaa013f0704279d85cd894b5eb54aa5b4d9ea63b6761277747d09",
+    "experiments/risk_aligned_online/tests/test_observed_oracle.py": "5dfa32c219e44d122afd5163a8f36605c5bc3d1125bd6328efbce58b159b69e6",
+    "experiments/risk_aligned_online/observed_oracle_20261023/run.py": "007a2a98a8380b569f2c449630086f97480d65a8d0913e1e3583e8164a734d47"
+  },
+  "input_sha256": {
+    "/media/hetaisheng/044A81D94A81C83E/Fuison/data/EAST/unified_hdf5/54100/54157.hdf5": "952757d5519c43d1304243a32aa0a33295ae6f1e4d625727af7ec365892df320",
+    "/media/hetaisheng/044A81D94A81C83E/Fuison/data/EAST/unified_hdf5/54100/54160.hdf5": "c1d1ed1657d74e8ae1523be067362457d845131d5f8b0fbf68e36f31b0afbfd7"
+  }
+}

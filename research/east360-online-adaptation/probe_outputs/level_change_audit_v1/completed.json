@@ -1,0 +1,207 @@
+{
+  "status": "COMPLETED_READ_ONLY_DIAGNOSTIC",
+  "no_model_changes": true,
+  "source_reference_shots": 1353,
+  "full_stream_shots": 360,
+  "groups": {
+    "source_only20": {
+      "TP": {
+        "shots": 8,
+        "outside_fraction": {
+          "n": 8,
+          "q25": 0.5,
+          "median": 0.5714285714285714,
+          "q75": 0.6233766233766234
+        },
+        "increment_rms": {
+          "n": 8,
+          "q25": 0.08068675212137641,
+          "median": 0.10720678549828766,
+          "q75": 0.17448046408141166
+        },
+        "learned_context_norm": {
+          "n": 0,
+          "q25": null,
+          "median": null,
+          "q75": null
+        },
+        "exactly_constant_prefixes": 0
+      },
+      "FN": {
+        "shots": 10,
+        "outside_fraction": {
+          "n": 10,
+          "q25": 0.551948051948052,
+          "median": 0.5909090909090909,
+          "q75": 0.6904761904761905
+        },
+        "increment_rms": {
+          "n": 10,
+          "q25": 0.11609460397082035,
+          "median": 0.16361539573318729,
+          "q75": 0.2522744904478651
+        },
+        "learned_context_norm": {
+          "n": 0,
+          "q25": null,
+          "median": null,
+          "q75": null
+        },
+        "exactly_constant_prefixes": 0
+      },
+      "FP": {
+        "shots": 0,
+        "outside_fraction": {
+          "n": 0,
+          "q25": null,
+          "median": null,
+          "q75": null
+        },
+        "increment_rms": {
+          "n": 0,
+          "q25": null,
+          "median": null,
+          "q75": null
+        },
+        "learned_context_norm": {
+          "n": 0,
+          "q25": null,
+          "median": null,
+          "q75": null
+        },
+        "exactly_constant_prefixes": 0
+      },
+      "TN": {
+        "shots": 2,
+        "outside_fraction": {
+          "n": 2,
+          "q25": 0.5795454545454545,
+          "median": 0.6136363636363635,
+          "q75": 0.6477272727272727
+        },
+        "increment_rms": {
+          "n": 2,
+          "q25": 0.09909388060798663,
+          "median": 0.11190616413228513,
+          "q75": 0.12471844765658363
+        },
+        "learned_context_norm": {
+          "n": 0,
+          "q25": null,
+          "median": null,
+          "q75": null
+        },
+        "exactly_constant_prefixes": 0
+      }
+    },
+    "cold_suffix340": {
+      "TP": {
+        "shots": 126,
+        "outside_fraction": {
+          "n": 126,
+          "q25": 0.5,
+          "median": 0.5238095238095238,
+          "q75": 0.5714285714285714
+        },
+        "increment_rms": {
+          "n": 126,
+          "q25": 0.05159985899290251,
+          "median": 0.09392722364909858,
+          "q75": 0.16203321055243597
+        },
+        "learned_context_norm": {
+          "n": 126,
+          "q25": 0.007885398343205452,
+          "median": 0.016559443436563015,
+          "q75": 0.03203745651990175
+        },
+        "exactly_constant_prefixes": 0
+      },
+      "FN": {
+        "shots": 36,
+        "outside_fraction": {
+          "n": 36,
+          "q25": 0.5,
+          "median": 0.5454545454545454,
+          "q75": 0.6190476190476191
+        },
+        "increment_rms": {
+          "n": 36,
+          "q25": 0.039547536919468815,
+          "median": 0.0666372628060623,
+          "q75": 0.10032822258047593
+        },
+        "learned_context_norm": {
+          "n": 36,
+          "q25": 0.005236839526332915,
+          "median": 0.010909313801676035,
+          "q75": 0.020008227787911892
+        },
+        "exactly_constant_prefixes": 0
+      },
+      "FP": {
+        "shots": 42,
+        "outside_fraction": {
+          "n": 42,
+          "q25": 0.5,
+          "median": 0.5454545454545454,
+          "q75": 0.5909090909090909
+        },
+        "increment_rms": {
+          "n": 42,
+          "q25": 0.04078746103151147,
+          "median": 0.07815214287512817,
+          "q75": 0.10940732884230052
+        },
+        "learned_context_norm": {
+          "n": 42,
+          "q25": 0.004805847653187811,
+          "median": 0.008657785598188639,
+          "q75": 0.017145427875220776
+        },
+        "exactly_constant_prefixes": 0
+      },
+      "TN": {
+        "shots": 136,
+        "outside_fraction": {
+          "n": 136,
+          "q25": 0.5,
+          "median": 0.5454545454545454,
+          "q75": 0.5909090909090909
+        },
+        "increment_rms": {
+          "n": 136,
+          "q25": 0.032438591665141375,
+          "median": 0.05369313413958249,
+          "q75": 0.1065619920504139
+        },
+        "learned_context_norm": {
+          "n": 136,
+          "q25": 0.004137287964113057,
+          "median": 0.007697024615481496,
+          "q75": 0.016924871131777763
+        },
+        "exactly_constant_prefixes": 0
+      }
+    }
+  },
+  "matched_comparison": {
+    "false_alarm_cases": 42,
+    "available_TN_shots": 136,
+    "cases_with_controls": 42,
+    "level_comparable": 39,
+    "change_comparable": 35,
+    "higher_outside": 1,
+    "lower_change": 3,
+    "joint_comparable": 35,
+    "joint_higher_level_lower_change": 1,
+    "exact_constant_before_alarm": 0,
+    "no_arrived_feedback_before_alarm": 7
+  },
+  "seconds": 15.374150757999814,
+  "source_bounds_sha256": "c9b44f1dd63d3f608450796f782d6bdaa66aa91e6104e5ea8c4f7ed91566ab32",
+  "snapshots_sha256": "30f0204d2d1d4762505019c7114747088c0e715441a0329a8b4c4eb2c14ed0f1",
+  "matched_sha256": "5d7c947cc9580698f922ad6eb5c9fa1efabd462edae905ca6737f492c6f37f49",
+  "causal_explanation_proven": false,
+  "independent_confirmation": false
+}

@@ -1,0 +1,224 @@
+{
+  "scope": "Independent seal/outcome recount, matched 355; development only",
+  "checked_seals": 710,
+  "source_checkpoint_unchanged": true,
+  "source_convention_fit_train1353_only": true,
+  "original_static_record_bitwise_equal": true,
+  "evaluation_ids_equal": true,
+  "threshold_and_time_axes_equal": true,
+  "n_disrupt": 180,
+  "n_safe": 175,
+  "analysis": {
+    "source_mask_matched": {
+      "tp": 161,
+      "fp": 132,
+      "tpr": 0.8944444444444445,
+      "fpr": 0.7542857142857143,
+      "early_over_3s": 55,
+      "rescued": [
+        61629,
+        63545,
+        63566,
+        77788,
+        81684,
+        83887,
+        86616,
+        87508,
+        87537,
+        87861,
+        92394
+      ],
+      "lost": [],
+      "added_fp": [
+        59886,
+        60916,
+        60917,
+        61065,
+        61617,
+        62123,
+        62158,
+        62360,
+        62383,
+        62565,
+        62573,
+        63097,
+        63323,
+        77859,
+        80955,
+        81017,
+        81634,
+        82847,
+        83910,
+        85261,
+        86167,
+        86921,
+        89074,
+        91052,
+        91054,
+        91055,
+        94365
+      ],
+      "removed_fp": [],
+      "timely_peak_auc": 0.7343174603174604,
+      "posthoc_caps": {
+        "0.1": {
+          "tp": 93,
+          "fp": 16,
+          "tpr": 0.5166666666666667,
+          "fpr": 0.09142857142857143,
+          "threshold": 0.9388787150382996,
+          "scope": "POSTHOC ONLY; target outcomes used; not deployed"
+        },
+        "0.15": {
+          "tp": 103,
+          "fp": 26,
+          "tpr": 0.5722222222222222,
+          "fpr": 0.14857142857142858,
+          "threshold": 0.928263247013092,
+          "scope": "POSTHOC ONLY; target outcomes used; not deployed"
+        },
+        "0.2": {
+          "tp": 112,
+          "fp": 35,
+          "tpr": 0.6222222222222222,
+          "fpr": 0.2,
+          "threshold": 0.9157220125198364,
+          "scope": "POSTHOC ONLY; target outcomes used; not deployed"
+        }
+      },
+      "coefficient_groups": {
+        "near_one": {
+          "n_disrupt": 0,
+          "tp": 0,
+          "rescued": [],
+          "lost": [],
+          "scope": "posthoc outcome association; not selection policy"
+        },
+        "near_068775": {
+          "n_disrupt": 180,
+          "tp": 161,
+          "rescued": [
+            61629,
+            63545,
+            63566,
+            77788,
+            81684,
+            83887,
+            86616,
+            87508,
+            87537,
+            87861,
+            92394
+          ],
+          "lost": [],
+          "scope": "posthoc outcome association; not selection policy"
+        }
+      }
+    },
+    "density_only": {
+      "tp": 129,
+      "fp": 54,
+      "tpr": 0.7166666666666667,
+      "fpr": 0.30857142857142855,
+      "early_over_3s": 21,
+      "rescued": [
+        63656,
+        64835,
+        69768,
+        76956,
+        77782,
+        79712,
+        80600,
+        85023,
+        86155,
+        87861,
+        93995,
+        94901
+      ],
+      "lost": [],
+      "added_fp": [
+        59935,
+        59940,
+        62394,
+        76861,
+        79580,
+        80053,
+        82834,
+        83376,
+        83438,
+        87009,
+        87363,
+        87689,
+        88135,
+        89101,
+        89570,
+        90863,
+        91723,
+        94352,
+        94363,
+        94395,
+        94402,
+        94428,
+        95930,
+        96099
+      ],
+      "removed_fp": [],
+      "timely_peak_auc": 0.8004761904761905,
+      "posthoc_caps": {
+        "0.1": {
+          "tp": 111,
+          "fp": 17,
+          "tpr": 0.6166666666666667,
+          "fpr": 0.09714285714285714,
+          "threshold": 0.8981001973152161,
+          "scope": "POSTHOC ONLY; target outcomes used; not deployed"
+        },
+        "0.15": {
+          "tp": 118,
+          "fp": 26,
+          "tpr": 0.6555555555555556,
+          "fpr": 0.14857142857142858,
+          "threshold": 0.8430855870246887,
+          "scope": "POSTHOC ONLY; target outcomes used; not deployed"
+        },
+        "0.2": {
+          "tp": 123,
+          "fp": 35,
+          "tpr": 0.6833333333333333,
+          "fpr": 0.2,
+          "threshold": 0.7992503046989441,
+          "scope": "POSTHOC ONLY; target outcomes used; not deployed"
+        }
+      },
+      "coefficient_groups": {
+        "near_one": {
+          "n_disrupt": 0,
+          "tp": 0,
+          "rescued": [],
+          "lost": [],
+          "scope": "posthoc outcome association; not selection policy"
+        },
+        "near_068775": {
+          "n_disrupt": 180,
+          "tp": 129,
+          "rescued": [
+            63656,
+            64835,
+            69768,
+            76956,
+            77782,
+            79712,
+            80600,
+            85023,
+            86155,
+            87861,
+            93995,
+            94901
+          ],
+          "lost": [],
+          "scope": "posthoc outcome association; not selection policy"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "status": "PASS",
+  "scope": "INDEPENDENT_CPU_HDF_CURVE_COUNTS_AND_SOURCE_COAVAILABILITY",
+  "curves_recomputed": 1100,
+  "metrics": {
+    "qualified_native": {
+      "tp": 100,
+      "fp": 13,
+      "n_disrupt": 110,
+      "n_safe": 110,
+      "tpr": 0.9090909090909091,
+      "fpr": 0.11818181818181818,
+      "J": 0.7909090909090909
+    },
+    "contract_native": {
+      "tp": 100,
+      "fp": 13,
+      "n_disrupt": 110,
+      "n_safe": 110,
+      "tpr": 0.9090909090909091,
+      "fpr": 0.11818181818181818,
+      "J": 0.7909090909090909
+    },
+    "no_MNM": {
+      "tp": 92,
+      "fp": 15,
+      "n_disrupt": 110,
+      "n_safe": 110,
+      "tpr": 0.8363636363636363,
+      "fpr": 0.13636363636363635,
+      "J": 0.7
+    },
+    "no_CIII": {
+      "tp": 100,
+      "fp": 27,
+      "n_disrupt": 110,
+      "n_safe": 110,
+      "tpr": 0.9090909090909091,
+      "fpr": 0.24545454545454545,
+      "J": 0.6636363636363636
+    },
+    "no_MNM_CIII": {
+      "tp": 97,
+      "fp": 29,
+      "n_disrupt": 110,
+      "n_safe": 110,
+      "tpr": 0.8818181818181818,
+      "fpr": 0.2636363636363636,
+      "J": 0.6181818181818182
+    }
+  },
+  "source_coavailability": {
+    "train": {
+      "shots": 1353,
+      "samples": 476194,
+      "CIII_Bt_mask_disagreements": 0,
+      "MNM_Bt_mask_disagreements": 0,
+      "CIII_sentinel_points": 0
+    },
+    "val": {
+      "shots": 160,
+      "samples": 48606,
+      "CIII_Bt_mask_disagreements": 0,
+      "MNM_Bt_mask_disagreements": 0,
+      "CIII_sentinel_points": 0
+    },
+    "test": {
+      "shots": 220,
+      "samples": 67375,
+      "CIII_Bt_mask_disagreements": 0,
+      "MNM_Bt_mask_disagreements": 0,
+      "CIII_sentinel_points": 0
+    }
+  },
+  "source_online_run": false,
+  "model_replay": false,
+  "training_steps": 0
+}

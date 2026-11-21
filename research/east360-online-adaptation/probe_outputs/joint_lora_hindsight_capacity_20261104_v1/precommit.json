@@ -1,0 +1,215 @@
+{
+  "status": "PRECOMMITTED_BEFORE_RAW_SIGNAL_ACCESS",
+  "created_utc": "2026-11-05T06:16:26.769667+00:00",
+  "scope": "HINDSIGHT_ORACLE_NOT_ONLINE_NOT_UPPER_BOUND",
+  "source_completed_sha256": "ef41bc2db11c19d12f7fd2f6b2fea24a5208d0daa4cf5b818c996bf80d66d78f",
+  "v5_completed_sha256": "5d0e33682a1cd62ced8b39b428a1b0da885b93b49672ef6aa63b173cf6ae8222",
+  "v5_metadata_sha256": "286f838542f5186be61696485bd3952fda66bcacc72a32a27f72a96971ea79b1",
+  "script_sha256": "0fba7baa7149bdbbe87ef4ac1d36c82ff4a17bc997638c208fd0b1d5e3954b7e",
+  "plan_sha256": "b0b08fedb710dafee4bbc2adc7cec8138c8890b5034b3364a8bace9ef6f59ca7",
+  "settings": {
+    "threshold": 0.7258946895599365,
+    "first_adapted": 135,
+    "max_per_stratum": 2,
+    "support_count": 8,
+    "steps": 60,
+    "learning_rate": 0.01,
+    "grad_clip": 1.0,
+    "joint_radius": 0.5,
+    "optimizer": "Adam, zero weight decay",
+    "seed": 20261104,
+    "trainable": "last-layer rank-2 Q/V LoRA, 512",
+    "inference_batch": 256,
+    "cpu_threads": 1,
+    "device": "cpu",
+    "reference_parity_atol": 3e-06
+  },
+  "eligible_stratum_counts": {
+    "close": 2,
+    "deep": 16,
+    "safe": 19
+  },
+  "shots": [
+    {
+      "index": 21,
+      "shot": 74087,
+      "kind": "deep",
+      "margin": 0.720060370862484,
+      "source_first_index": null,
+      "source_curve_sha256": "bb0f5e637c27d1412d7be350004f02f3df601375e4f40531cc101c7952d556aa",
+      "support_indices": [
+        1651,
+        3167,
+        4683,
+        6199,
+        7735,
+        7754,
+        7773,
+        7792
+      ],
+      "support_labels": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ],
+      "down_s": 10.84011172,
+      "disruptive": true
+    },
+    {
+      "index": 28,
+      "shot": 90874,
+      "kind": "deep",
+      "margin": 0.6897432655096054,
+      "source_first_index": null,
+      "source_curve_sha256": "615f0f969d5e10fce610f0543c87c96de318d94aab13ac2108ab9ae70e2f6db7",
+      "support_indices": [
+        809,
+        1484,
+        2159,
+        2834,
+        3528,
+        3547,
+        3566,
+        3585
+      ],
+      "support_labels": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ],
+      "down_s": 6.63319303,
+      "disruptive": true
+    },
+    {
+      "index": 46,
+      "shot": 70394,
+      "kind": "safe",
+      "margin": null,
+      "source_first_index": 2154,
+      "source_curve_sha256": "143debf5ddbcbe47f20e8a7e2790571f0ccb0cd29910c15da0af40c754074972",
+      "support_indices": [
+        538,
+        942,
+        1346,
+        1750,
+        2154,
+        2170,
+        2186,
+        2202
+      ],
+      "support_labels": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "down_s": null,
+      "disruptive": false
+    },
+    {
+      "index": 74,
+      "shot": 65944,
+      "kind": "close",
+      "margin": 0.0014019012451171875,
+      "source_first_index": null,
+      "source_curve_sha256": "b35c1586dea217528bb12a2dab2f9912bfe05a88b1052175bd48911b1f7cef0b",
+      "support_indices": [
+        1029,
+        1923,
+        2817,
+        3711,
+        4625,
+        4644,
+        4663,
+        4682
+      ],
+      "support_labels": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ],
+      "down_s": 7.730366569,
+      "disruptive": true
+    },
+    {
+      "index": 98,
+      "shot": 91064,
+      "kind": "safe",
+      "margin": null,
+      "source_first_index": 2384,
+      "source_curve_sha256": "c04db2b917626c5b108648b985257d65db38520449432b445bf7e4ae23f4e1fc",
+      "support_indices": [
+        584,
+        1034,
+        1484,
+        1934,
+        2384,
+        2400,
+        2416,
+        2432
+      ],
+      "support_labels": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "down_s": null,
+      "disruptive": false
+    },
+    {
+      "index": 245,
+      "shot": 75603,
+      "kind": "close",
+      "margin": 0.0635380744934082,
+      "source_first_index": null,
+      "source_curve_sha256": "b72ef5a041993baa9187b8155ab9bc1c9621849e245634c1baa7e77908c2a29f",
+      "support_indices": [
+        819,
+        1504,
+        2188,
+        2873,
+        3577,
+        3596,
+        3615,
+        3634
+      ],
+      "support_labels": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ],
+      "down_s": 6.683,
+      "disruptive": true
+    }
+  ],
+  "seconds": 0.26879989600001863
+}

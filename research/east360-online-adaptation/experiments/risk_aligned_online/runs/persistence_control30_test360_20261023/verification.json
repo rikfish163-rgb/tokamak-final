@@ -1,0 +1,100 @@
+{
+  "status": "VERIFIED_COUNTS_AND_TWO_COMPLETE_SHAM_REPLAYS",
+  "completed_sha256": "1ba0fa3b983b7fa47cdcadc5d83fb4001c17f63e633ba589df607de17212f416",
+  "audit_sha256": "8a57336b3b8de7c6a275ba3477eb35ce7199575e8dc53ab7a528fc915e2fa665",
+  "shot_arm_checks": 2160,
+  "flips": {
+    "static -> real_intra/calibrated": [
+      {
+        "shot": 62765,
+        "beneficial": true,
+        "before": {
+          "shot": 62765,
+          "is_disrupt": false,
+          "alarm": true,
+          "lead_ms": null,
+          "timely": false
+        },
+        "after": {
+          "shot": 62765,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 87537,
+        "beneficial": true,
+        "before": {
+          "shot": 87537,
+          "is_disrupt": true,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        "after": {
+          "shot": 87537,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 123.402625,
+          "timely": true
+        }
+      }
+    ],
+    "static -> persistence_sham/calibrated": [
+      {
+        "shot": 62765,
+        "beneficial": true,
+        "before": {
+          "shot": 62765,
+          "is_disrupt": false,
+          "alarm": true,
+          "lead_ms": null,
+          "timely": false
+        },
+        "after": {
+          "shot": 62765,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      },
+      {
+        "shot": 87537,
+        "beneficial": true,
+        "before": {
+          "shot": 87537,
+          "is_disrupt": true,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        "after": {
+          "shot": 87537,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 123.402625,
+          "timely": true
+        }
+      }
+    ],
+    "real_intra -> persistence_sham/calibrated": [],
+    "static -> real_intra/source_threshold": [],
+    "static -> persistence_sham/source_threshold": [],
+    "real_intra -> persistence_sham/source_threshold": []
+  },
+  "replayed_shots": [
+    62765,
+    87537
+  ],
+  "updates": {
+    "count": 11301,
+    "steps": 11301,
+    "nonzero": 11301,
+    "loss_decreased": 11301
+  },
+  "source_unchanged": true,
+  "note": "Post-run audit code separately hashed; two shots chosen before sham execution based on previous experiment."
+}

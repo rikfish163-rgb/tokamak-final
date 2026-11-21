@@ -1,0 +1,15 @@
+{
+  "scholar_confirmation":"pending",
+  "independent_review":false,
+  "pairs":[
+    {"pair_id":"CP1","paper_a":"shen2024domain","paper_b":"project_zero_target_start","pair_assessment":"conditional_difference","description":"The paper uses known EAST discharges for normalization/alignment; the requested starting point excludes this information.","resolution_status":"resolved_in_synthesis","resolution_pointer":"研究重构方案.md section 3: do not compare them as the same zero-target-information setting."},
+    {"pair_id":"CP2","paper_a":"xue2026physics","paper_b":"project_intra_requirement","pair_assessment":"conditional_difference","description":"Its weak persistent tearing-mode correction uses labeled failure-driven classifier fine-tuning; it does not demonstrate within-shot unlabeled neural adaptation.","resolution_status":"resolved_in_synthesis","resolution_pointer":"研究重构方案.md sections 3 and 5 separate motivation, intra-shot and inter-shot evidence."},
+    {"pair_id":"CP3","paper_a":"kim2025tafas","paper_b":"fentazi2026delay","pair_assessment":"conditional_difference","description":"Partly observed forecasting feedback and delay-sensitive evaluation require explicit target-maturity conventions; apparent gains depend on the tested protocol.","resolution_status":"flagged_unresolved","note":"No independent execution of either paper. The project adopts explicit arrival checks, not either paper's effect-size claim."},
+    {"pair_id":"CP4","paper_a":"gandelsman2022tttmae","paper_b":"encoder_decoder_test360_20261021","pair_assessment":"conditional_difference","description":"Different source pretraining, downstream task and update objectives; project failure does not refute the vision method.","resolution_status":"resolved_in_synthesis","resolution_pointer":"研究重构方案.md sections 3 and 8; archive failure and redesign source preparation."}
+  ],
+  "additional_audit_finding_after_manifest":{
+    "finding":"Source inner loop updates token gain/bias via direct forecast error; the latest EAST controls update embedding/encoder/norm via four-view reconstruction.",
+    "evidence":["experiments/risk_aligned_online/fast_meta.py:30","experiments/risk_aligned_online/joint_meta.py:39","experiments/risk_aligned_online/aligned_encoder.py:66"],
+    "treatment":"Added as an explicit implementation mismatch, not claimed to explain all failures or to guarantee the redesign. Original claim-intent manifest was not rewritten."
+  }
+}

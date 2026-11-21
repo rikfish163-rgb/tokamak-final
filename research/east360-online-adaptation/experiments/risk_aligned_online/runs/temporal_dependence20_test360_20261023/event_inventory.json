@@ -1,0 +1,1488 @@
+{
+  "scope": "POSTHOC ANNOTATION INVENTORY, NO TRAINING",
+  "selected20": [
+    54314,
+    54941,
+    57264,
+    58717,
+    59215,
+    59643,
+    60155,
+    60476,
+    60479,
+    61059,
+    61327,
+    62440,
+    62557,
+    62583,
+    62630,
+    62945,
+    63226,
+    63824,
+    64677,
+    70868
+  ],
+  "lost29": [
+    60999,
+    62182,
+    62540,
+    63656,
+    63690,
+    64835,
+    68901,
+    69791,
+    69813,
+    71013,
+    71086,
+    73135,
+    73541,
+    74087,
+    74970,
+    75603,
+    76956,
+    77302,
+    77782,
+    78617,
+    79712,
+    79899,
+    81406,
+    85023,
+    86155,
+    93995,
+    94515,
+    94803,
+    94901
+  ],
+  "input_map_sha256": "b3c8fce8eb4cae2671179a712c1e7fe75465c23d44c68856feebe8ca7669835e",
+  "provenance_sha256": "7558a8626c799f94fee68838828f1ceb53db20958cea185c13ea48380e139307",
+  "code_sha256": "016f537ae7b1ebced27186d831cd23aec8cae1b00376da5ec6aa83a70bdb9d57",
+  "supplement": {
+    "path": "/media/hetaisheng/044A81D94A81C83E/Fuison/outputs/event_labels_audit_20261019/input/event_labels_20261018/JTEXT_event_labels.csv",
+    "sha256": "24fa872346d5b269f2a1ff3d750a8d810c1bc66195c47c34bd665c9da00b197c",
+    "total_shots": 1816,
+    "event_shots": 573,
+    "intervals": 732,
+    "source_roles": {
+      "train": {
+        "metadata_shots": 1353,
+        "event_shots": 327,
+        "intervals": 401
+      },
+      "val": {
+        "metadata_shots": 160,
+        "event_shots": 83,
+        "intervals": 112
+      },
+      "test": {
+        "metadata_shots": 220,
+        "event_shots": 122,
+        "intervals": 166
+      },
+      "outside": {
+        "metadata_shots": 83,
+        "event_shots": 41,
+        "intervals": 53
+      }
+    },
+    "groups": {
+      "selected20": {
+        "metadata_overlap": [],
+        "event_overlap": []
+      },
+      "lost29": {
+        "metadata_overlap": [],
+        "event_overlap": []
+      }
+    }
+  },
+  "legacy": {
+    "east_shot_onset_labels.csv": {
+      "path": "/media/hetaisheng/044A81D94A81C83E/Fuison/east_shot_onset_labels.csv",
+      "sha256": "53d38b1cad51df0ba39df7f2dff22df317157f977843bd510acf564375529994",
+      "total_rows": 1174,
+      "total_shots": 587,
+      "groups": {
+        "selected20": {
+          "shots": 4,
+          "rows": 8,
+          "missing": [
+            54314,
+            54941,
+            57264,
+            58717,
+            59215,
+            59643,
+            60155,
+            60476,
+            60479,
+            61059,
+            61327,
+            62440,
+            62557,
+            62583,
+            62630,
+            62945
+          ],
+          "split_counts": {
+            "train": 8
+          },
+          "value_counts": {
+            "0.05": 4,
+            "0.18": 4
+          },
+          "confidence_counts": {
+            "validated": 8
+          },
+          "records": [
+            {
+              "shot_no": "63226",
+              "split": "train",
+              "onset_idx": "1",
+              "event": "Tearing_Mode_onset",
+              "pathway": "E",
+              "adaptive_onset_ms": "0.05",
+              "severity": "Critical",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "63226",
+              "split": "train",
+              "onset_idx": "1",
+              "event": "Parameter_Decay_onset",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.18",
+              "severity": "High",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "63824",
+              "split": "train",
+              "onset_idx": "1",
+              "event": "Tearing_Mode_onset",
+              "pathway": "E",
+              "adaptive_onset_ms": "0.05",
+              "severity": "Critical",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "63824",
+              "split": "train",
+              "onset_idx": "1",
+              "event": "Parameter_Decay_onset",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.18",
+              "severity": "High",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "64677",
+              "split": "train",
+              "onset_idx": "1",
+              "event": "Tearing_Mode_onset",
+              "pathway": "E",
+              "adaptive_onset_ms": "0.05",
+              "severity": "Critical",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "64677",
+              "split": "train",
+              "onset_idx": "1",
+              "event": "Parameter_Decay_onset",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.18",
+              "severity": "High",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "70868",
+              "split": "train",
+              "onset_idx": "1",
+              "event": "Tearing_Mode_onset",
+              "pathway": "E",
+              "adaptive_onset_ms": "0.05",
+              "severity": "Critical",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "70868",
+              "split": "train",
+              "onset_idx": "1",
+              "event": "Parameter_Decay_onset",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.18",
+              "severity": "High",
+              "confidence": "validated"
+            }
+          ]
+        },
+        "lost29": {
+          "shots": 28,
+          "rows": 56,
+          "missing": [
+            60999
+          ],
+          "split_counts": {
+            "test": 56
+          },
+          "value_counts": {
+            "0.05": 28,
+            "0.18": 28
+          },
+          "confidence_counts": {
+            "validated": 56
+          },
+          "records": [
+            {
+              "shot_no": "62182",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Tearing_Mode_onset",
+              "pathway": "E",
+              "adaptive_onset_ms": "0.05",
+              "severity": "Critical",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "62182",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Parameter_Decay_onset",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.18",
+              "severity": "High",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "62540",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Tearing_Mode_onset",
+              "pathway": "E",
+              "adaptive_onset_ms": "0.05",
+              "severity": "Critical",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "62540",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Parameter_Decay_onset",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.18",
+              "severity": "High",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "63656",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Tearing_Mode_onset",
+              "pathway": "E",
+              "adaptive_onset_ms": "0.05",
+              "severity": "Critical",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "63656",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Parameter_Decay_onset",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.18",
+              "severity": "High",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "63690",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Tearing_Mode_onset",
+              "pathway": "E",
+              "adaptive_onset_ms": "0.05",
+              "severity": "Critical",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "63690",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Parameter_Decay_onset",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.18",
+              "severity": "High",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "64835",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Tearing_Mode_onset",
+              "pathway": "E",
+              "adaptive_onset_ms": "0.05",
+              "severity": "Critical",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "64835",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Parameter_Decay_onset",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.18",
+              "severity": "High",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "68901",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Tearing_Mode_onset",
+              "pathway": "E",
+              "adaptive_onset_ms": "0.05",
+              "severity": "Critical",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "68901",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Parameter_Decay_onset",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.18",
+              "severity": "High",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "69791",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Tearing_Mode_onset",
+              "pathway": "E",
+              "adaptive_onset_ms": "0.05",
+              "severity": "Critical",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "69791",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Parameter_Decay_onset",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.18",
+              "severity": "High",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "69813",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Tearing_Mode_onset",
+              "pathway": "E",
+              "adaptive_onset_ms": "0.05",
+              "severity": "Critical",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "69813",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Parameter_Decay_onset",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.18",
+              "severity": "High",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "71013",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Tearing_Mode_onset",
+              "pathway": "E",
+              "adaptive_onset_ms": "0.05",
+              "severity": "Critical",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "71013",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Parameter_Decay_onset",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.18",
+              "severity": "High",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "71086",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Tearing_Mode_onset",
+              "pathway": "E",
+              "adaptive_onset_ms": "0.05",
+              "severity": "Critical",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "71086",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Parameter_Decay_onset",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.18",
+              "severity": "High",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "73135",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Tearing_Mode_onset",
+              "pathway": "E",
+              "adaptive_onset_ms": "0.05",
+              "severity": "Critical",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "73135",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Parameter_Decay_onset",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.18",
+              "severity": "High",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "73541",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Tearing_Mode_onset",
+              "pathway": "E",
+              "adaptive_onset_ms": "0.05",
+              "severity": "Critical",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "73541",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Parameter_Decay_onset",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.18",
+              "severity": "High",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "74087",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Tearing_Mode_onset",
+              "pathway": "E",
+              "adaptive_onset_ms": "0.05",
+              "severity": "Critical",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "74087",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Parameter_Decay_onset",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.18",
+              "severity": "High",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "74970",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Tearing_Mode_onset",
+              "pathway": "E",
+              "adaptive_onset_ms": "0.05",
+              "severity": "Critical",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "74970",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Parameter_Decay_onset",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.18",
+              "severity": "High",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "75603",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Tearing_Mode_onset",
+              "pathway": "E",
+              "adaptive_onset_ms": "0.05",
+              "severity": "Critical",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "75603",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Parameter_Decay_onset",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.18",
+              "severity": "High",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "76956",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Tearing_Mode_onset",
+              "pathway": "E",
+              "adaptive_onset_ms": "0.05",
+              "severity": "Critical",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "76956",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Parameter_Decay_onset",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.18",
+              "severity": "High",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "77302",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Tearing_Mode_onset",
+              "pathway": "E",
+              "adaptive_onset_ms": "0.05",
+              "severity": "Critical",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "77302",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Parameter_Decay_onset",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.18",
+              "severity": "High",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "77782",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Tearing_Mode_onset",
+              "pathway": "E",
+              "adaptive_onset_ms": "0.05",
+              "severity": "Critical",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "77782",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Parameter_Decay_onset",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.18",
+              "severity": "High",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "78617",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Tearing_Mode_onset",
+              "pathway": "E",
+              "adaptive_onset_ms": "0.05",
+              "severity": "Critical",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "78617",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Parameter_Decay_onset",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.18",
+              "severity": "High",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "79712",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Tearing_Mode_onset",
+              "pathway": "E",
+              "adaptive_onset_ms": "0.05",
+              "severity": "Critical",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "79712",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Parameter_Decay_onset",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.18",
+              "severity": "High",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "79899",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Tearing_Mode_onset",
+              "pathway": "E",
+              "adaptive_onset_ms": "0.05",
+              "severity": "Critical",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "79899",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Parameter_Decay_onset",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.18",
+              "severity": "High",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "81406",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Tearing_Mode_onset",
+              "pathway": "E",
+              "adaptive_onset_ms": "0.05",
+              "severity": "Critical",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "81406",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Parameter_Decay_onset",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.18",
+              "severity": "High",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "85023",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Tearing_Mode_onset",
+              "pathway": "E",
+              "adaptive_onset_ms": "0.05",
+              "severity": "Critical",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "85023",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Parameter_Decay_onset",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.18",
+              "severity": "High",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "86155",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Tearing_Mode_onset",
+              "pathway": "E",
+              "adaptive_onset_ms": "0.05",
+              "severity": "Critical",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "86155",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Parameter_Decay_onset",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.18",
+              "severity": "High",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "93995",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Tearing_Mode_onset",
+              "pathway": "E",
+              "adaptive_onset_ms": "0.05",
+              "severity": "Critical",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "93995",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Parameter_Decay_onset",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.18",
+              "severity": "High",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "94515",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Tearing_Mode_onset",
+              "pathway": "E",
+              "adaptive_onset_ms": "0.05",
+              "severity": "Critical",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "94515",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Parameter_Decay_onset",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.18",
+              "severity": "High",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "94803",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Tearing_Mode_onset",
+              "pathway": "E",
+              "adaptive_onset_ms": "0.05",
+              "severity": "Critical",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "94803",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Parameter_Decay_onset",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.18",
+              "severity": "High",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "94901",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Tearing_Mode_onset",
+              "pathway": "E",
+              "adaptive_onset_ms": "0.05",
+              "severity": "Critical",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "94901",
+              "split": "test",
+              "onset_idx": "1",
+              "event": "Parameter_Decay_onset",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.18",
+              "severity": "High",
+              "confidence": "validated"
+            }
+          ]
+        }
+      },
+      "distinct_event_templates": [
+        [
+          "Parameter_Decay_onset",
+          "D",
+          "0.18",
+          "High"
+        ],
+        [
+          "Tearing_Mode_onset",
+          "E",
+          "0.05",
+          "Critical"
+        ]
+      ]
+    },
+    "east_shot_onset_labels_advtime.csv": {
+      "path": "/media/hetaisheng/044A81D94A81C83E/Fuison/east_shot_onset_labels_advtime.csv",
+      "sha256": "81ab7efd0bd5441d6cfcac71f25774f1982a90b6f6ca5bf5fc233639494079ea",
+      "total_rows": 591,
+      "total_shots": 591,
+      "groups": {
+        "selected20": {
+          "shots": 4,
+          "rows": 4,
+          "missing": [
+            54314,
+            54941,
+            57264,
+            58717,
+            59215,
+            59643,
+            60155,
+            60476,
+            60479,
+            61059,
+            61327,
+            62440,
+            62557,
+            62583,
+            62630,
+            62945
+          ],
+          "split_counts": {
+            "train": 4
+          },
+          "value_counts": {
+            "0.125": 3,
+            "0.138": 1
+          },
+          "confidence_counts": {
+            "floored_to_125": 3,
+            "validated": 1
+          },
+          "records": [
+            {
+              "shot_no": "63226",
+              "split": "train",
+              "onset_idx": "1",
+              "event": "AdvancedTime_floor125",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.125",
+              "severity": "High",
+              "confidence": "floored_to_125"
+            },
+            {
+              "shot_no": "63824",
+              "split": "train",
+              "onset_idx": "1",
+              "event": "AdvancedTime_floor125",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.138",
+              "severity": "High",
+              "confidence": "validated"
+            },
+            {
+              "shot_no": "64677",
+              "split": "train",
+              "onset_idx": "1",
+              "event": "AdvancedTime_floor125",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.125",
+              "severity": "High",
+              "confidence": "floored_to_125"
+            },
+            {
+              "shot_no": "70868",
+              "split": "train",
+              "onset_idx": "1",
+              "event": "AdvancedTime_floor125",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.125",
+              "severity": "High",
+              "confidence": "floored_to_125"
+            }
+          ]
+        },
+        "lost29": {
+          "shots": 28,
+          "rows": 28,
+          "missing": [
+            60999
+          ],
+          "split_counts": {
+            "train": 28
+          },
+          "value_counts": {
+            "0.125": 28
+          },
+          "confidence_counts": {
+            "fallback_no_advtime": 26,
+            "floored_to_125": 2
+          },
+          "records": [
+            {
+              "shot_no": "62182",
+              "split": "train",
+              "onset_idx": "1",
+              "event": "AdvancedTime_floor125",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.125",
+              "severity": "High",
+              "confidence": "fallback_no_advtime"
+            },
+            {
+              "shot_no": "62540",
+              "split": "train",
+              "onset_idx": "1",
+              "event": "AdvancedTime_floor125",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.125",
+              "severity": "High",
+              "confidence": "fallback_no_advtime"
+            },
+            {
+              "shot_no": "63656",
+              "split": "train",
+              "onset_idx": "1",
+              "event": "AdvancedTime_floor125",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.125",
+              "severity": "High",
+              "confidence": "fallback_no_advtime"
+            },
+            {
+              "shot_no": "63690",
+              "split": "train",
+              "onset_idx": "1",
+              "event": "AdvancedTime_floor125",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.125",
+              "severity": "High",
+              "confidence": "floored_to_125"
+            },
+            {
+              "shot_no": "64835",
+              "split": "train",
+              "onset_idx": "1",
+              "event": "AdvancedTime_floor125",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.125",
+              "severity": "High",
+              "confidence": "fallback_no_advtime"
+            },
+            {
+              "shot_no": "68901",
+              "split": "train",
+              "onset_idx": "1",
+              "event": "AdvancedTime_floor125",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.125",
+              "severity": "High",
+              "confidence": "fallback_no_advtime"
+            },
+            {
+              "shot_no": "69791",
+              "split": "train",
+              "onset_idx": "1",
+              "event": "AdvancedTime_floor125",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.125",
+              "severity": "High",
+              "confidence": "fallback_no_advtime"
+            },
+            {
+              "shot_no": "69813",
+              "split": "train",
+              "onset_idx": "1",
+              "event": "AdvancedTime_floor125",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.125",
+              "severity": "High",
+              "confidence": "fallback_no_advtime"
+            },
+            {
+              "shot_no": "71013",
+              "split": "train",
+              "onset_idx": "1",
+              "event": "AdvancedTime_floor125",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.125",
+              "severity": "High",
+              "confidence": "fallback_no_advtime"
+            },
+            {
+              "shot_no": "71086",
+              "split": "train",
+              "onset_idx": "1",
+              "event": "AdvancedTime_floor125",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.125",
+              "severity": "High",
+              "confidence": "fallback_no_advtime"
+            },
+            {
+              "shot_no": "73135",
+              "split": "train",
+              "onset_idx": "1",
+              "event": "AdvancedTime_floor125",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.125",
+              "severity": "High",
+              "confidence": "fallback_no_advtime"
+            },
+            {
+              "shot_no": "73541",
+              "split": "train",
+              "onset_idx": "1",
+              "event": "AdvancedTime_floor125",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.125",
+              "severity": "High",
+              "confidence": "fallback_no_advtime"
+            },
+            {
+              "shot_no": "74087",
+              "split": "train",
+              "onset_idx": "1",
+              "event": "AdvancedTime_floor125",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.125",
+              "severity": "High",
+              "confidence": "fallback_no_advtime"
+            },
+            {
+              "shot_no": "74970",
+              "split": "train",
+              "onset_idx": "1",
+              "event": "AdvancedTime_floor125",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.125",
+              "severity": "High",
+              "confidence": "fallback_no_advtime"
+            },
+            {
+              "shot_no": "75603",
+              "split": "train",
+              "onset_idx": "1",
+              "event": "AdvancedTime_floor125",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.125",
+              "severity": "High",
+              "confidence": "fallback_no_advtime"
+            },
+            {
+              "shot_no": "76956",
+              "split": "train",
+              "onset_idx": "1",
+              "event": "AdvancedTime_floor125",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.125",
+              "severity": "High",
+              "confidence": "fallback_no_advtime"
+            },
+            {
+              "shot_no": "77302",
+              "split": "train",
+              "onset_idx": "1",
+              "event": "AdvancedTime_floor125",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.125",
+              "severity": "High",
+              "confidence": "fallback_no_advtime"
+            },
+            {
+              "shot_no": "77782",
+              "split": "train",
+              "onset_idx": "1",
+              "event": "AdvancedTime_floor125",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.125",
+              "severity": "High",
+              "confidence": "fallback_no_advtime"
+            },
+            {
+              "shot_no": "78617",
+              "split": "train",
+              "onset_idx": "1",
+              "event": "AdvancedTime_floor125",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.125",
+              "severity": "High",
+              "confidence": "fallback_no_advtime"
+            },
+            {
+              "shot_no": "79712",
+              "split": "train",
+              "onset_idx": "1",
+              "event": "AdvancedTime_floor125",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.125",
+              "severity": "High",
+              "confidence": "floored_to_125"
+            },
+            {
+              "shot_no": "79899",
+              "split": "train",
+              "onset_idx": "1",
+              "event": "AdvancedTime_floor125",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.125",
+              "severity": "High",
+              "confidence": "fallback_no_advtime"
+            },
+            {
+              "shot_no": "81406",
+              "split": "train",
+              "onset_idx": "1",
+              "event": "AdvancedTime_floor125",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.125",
+              "severity": "High",
+              "confidence": "fallback_no_advtime"
+            },
+            {
+              "shot_no": "85023",
+              "split": "train",
+              "onset_idx": "1",
+              "event": "AdvancedTime_floor125",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.125",
+              "severity": "High",
+              "confidence": "fallback_no_advtime"
+            },
+            {
+              "shot_no": "86155",
+              "split": "train",
+              "onset_idx": "1",
+              "event": "AdvancedTime_floor125",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.125",
+              "severity": "High",
+              "confidence": "fallback_no_advtime"
+            },
+            {
+              "shot_no": "93995",
+              "split": "train",
+              "onset_idx": "1",
+              "event": "AdvancedTime_floor125",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.125",
+              "severity": "High",
+              "confidence": "fallback_no_advtime"
+            },
+            {
+              "shot_no": "94515",
+              "split": "train",
+              "onset_idx": "1",
+              "event": "AdvancedTime_floor125",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.125",
+              "severity": "High",
+              "confidence": "fallback_no_advtime"
+            },
+            {
+              "shot_no": "94803",
+              "split": "train",
+              "onset_idx": "1",
+              "event": "AdvancedTime_floor125",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.125",
+              "severity": "High",
+              "confidence": "fallback_no_advtime"
+            },
+            {
+              "shot_no": "94901",
+              "split": "train",
+              "onset_idx": "1",
+              "event": "AdvancedTime_floor125",
+              "pathway": "D",
+              "adaptive_onset_ms": "0.125",
+              "severity": "High",
+              "confidence": "fallback_no_advtime"
+            }
+          ]
+        }
+      },
+      "distinct_event_templates": [
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.125",
+          "High"
+        ],
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.127",
+          "High"
+        ],
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.128",
+          "High"
+        ],
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.129",
+          "High"
+        ],
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.13",
+          "High"
+        ],
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.133",
+          "High"
+        ],
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.135",
+          "High"
+        ],
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.136",
+          "High"
+        ],
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.137",
+          "High"
+        ],
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.138",
+          "High"
+        ],
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.141",
+          "High"
+        ],
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.143",
+          "High"
+        ],
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.144",
+          "High"
+        ],
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.146",
+          "High"
+        ],
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.151",
+          "High"
+        ],
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.152",
+          "High"
+        ],
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.154",
+          "High"
+        ],
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.156",
+          "High"
+        ],
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.157",
+          "High"
+        ],
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.162",
+          "High"
+        ],
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.169",
+          "High"
+        ],
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.17",
+          "High"
+        ],
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.171",
+          "High"
+        ],
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.172",
+          "High"
+        ],
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.176",
+          "High"
+        ],
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.177",
+          "High"
+        ],
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.179",
+          "High"
+        ],
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.181",
+          "High"
+        ],
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.183",
+          "High"
+        ],
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.186",
+          "High"
+        ],
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.188",
+          "High"
+        ],
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.192",
+          "High"
+        ],
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.201",
+          "High"
+        ],
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.205",
+          "High"
+        ],
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.209",
+          "High"
+        ],
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.212",
+          "High"
+        ],
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.213",
+          "High"
+        ],
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.218",
+          "High"
+        ],
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.22",
+          "High"
+        ],
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.225",
+          "High"
+        ],
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.234",
+          "High"
+        ],
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.25",
+          "High"
+        ],
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.251",
+          "High"
+        ],
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.275",
+          "High"
+        ],
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.312",
+          "High"
+        ],
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.409",
+          "High"
+        ],
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.531",
+          "High"
+        ],
+        [
+          "AdvancedTime_floor125",
+          "D",
+          "0.856",
+          "High"
+        ]
+      ]
+    }
+  },
+  "interpretation": "supplement is JTEXT offline discovered events; missing means unknown; legacy EAST templates are not event truth"
+}

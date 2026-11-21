@@ -1,0 +1,264 @@
+{
+  "status": "VERIFIED",
+  "all_shot_traces_recounted": 1800,
+  "parent_sha256": "c7270c1ea3652db2e30e972d4ca9a4a2d33220a68e4a3765c8b7f5bcceeaeb02",
+  "protocol_sha256": "94c1c5586594f3fa11573fc8f86d7e9871901a9e7fd614b7ee761bc1254ea09e",
+  "completed_sha256": "10da6fad2db50b4ac3b098fcb1c6bda86d1e3316ea5d7c82a5b3b9a58625e605",
+  "optimized_tensors": {
+    "warm": [],
+    "forecast": [
+      "base.forecast_head.weight",
+      "base.forecast_head.bias"
+    ],
+    "point_meta": [
+      "base.forecast_head.weight",
+      "base.forecast_head.bias"
+    ],
+    "maximum_meta": [
+      "base.forecast_head.weight",
+      "base.forecast_head.bias"
+    ]
+  },
+  "steps": {
+    "warm": 11301,
+    "forecast": 11301,
+    "point_meta": 11301,
+    "maximum_meta": 11301
+  },
+  "nonzero_parameter_updates": {
+    "warm": 11301,
+    "forecast": 11301,
+    "point_meta": 11301,
+    "maximum_meta": 11301
+  },
+  "paired_vs_static": {
+    "warm_intra": {
+      "rescued_timely": [],
+      "lost_timely": [
+        73421
+      ],
+      "removed_fp": [],
+      "added_fp": [
+        83376,
+        93306
+      ]
+    },
+    "forecast_intra": {
+      "rescued_timely": [],
+      "lost_timely": [
+        72578,
+        73421
+      ],
+      "removed_fp": [
+        60239,
+        87689
+      ],
+      "added_fp": []
+    },
+    "point_meta_intra": {
+      "rescued_timely": [
+        71013,
+        86155,
+        93995
+      ],
+      "lost_timely": [
+        65944
+      ],
+      "removed_fp": [],
+      "added_fp": [
+        61065,
+        64562,
+        64646,
+        70323,
+        73790,
+        75226,
+        83376,
+        83438,
+        87847,
+        93306,
+        94402,
+        95930
+      ]
+    },
+    "maximum_meta_intra": {
+      "rescued_timely": [
+        93995
+      ],
+      "lost_timely": [
+        65944,
+        73421
+      ],
+      "removed_fp": [],
+      "added_fp": [
+        64562,
+        70323,
+        73790,
+        83376,
+        87847,
+        93306,
+        94402
+      ]
+    }
+  },
+  "paired_vs_forecast": {
+    "point_meta_intra": {
+      "rescued_timely": [
+        71013,
+        72578,
+        73421,
+        86155,
+        93995
+      ],
+      "lost_timely": [
+        65944
+      ],
+      "removed_fp": [],
+      "added_fp": [
+        60239,
+        61065,
+        64562,
+        64646,
+        70323,
+        73790,
+        75226,
+        83376,
+        83438,
+        87689,
+        87847,
+        93306,
+        94402,
+        95930
+      ]
+    },
+    "maximum_meta_intra": {
+      "rescued_timely": [
+        72578,
+        93995
+      ],
+      "lost_timely": [
+        65944
+      ],
+      "removed_fp": [],
+      "added_fp": [
+        60239,
+        64562,
+        70323,
+        73790,
+        83376,
+        87689,
+        87847,
+        93306,
+        94402
+      ]
+    }
+  },
+  "false_alarms_before_first_update": {
+    "static": [
+      67900,
+      72419,
+      72511,
+      75135,
+      85422,
+      90740,
+      93983
+    ],
+    "warm_intra": [
+      67900,
+      72419,
+      72511,
+      75135,
+      85422,
+      90740,
+      93983
+    ],
+    "forecast_intra": [
+      67900,
+      72419,
+      72511,
+      75135,
+      85422,
+      90740,
+      93983
+    ],
+    "point_meta_intra": [
+      67900,
+      72419,
+      72511,
+      75135,
+      85422,
+      90740,
+      93983
+    ],
+    "maximum_meta_intra": [
+      67900,
+      72419,
+      72511,
+      75135,
+      85422,
+      90740,
+      93983
+    ]
+  },
+  "sampled_cuda_replays": [
+    {
+      "shot": 54157,
+      "arms": 5,
+      "max_abs_error": 0.0,
+      "update_receipts_exact": true
+    },
+    {
+      "shot": 75135,
+      "arms": 5,
+      "max_abs_error": 0.0,
+      "update_receipts_exact": true
+    },
+    {
+      "shot": 96375,
+      "arms": 5,
+      "max_abs_error": 0.0,
+      "update_receipts_exact": true
+    }
+  ],
+  "risk_only_gradient_checks": [
+    {
+      "arm": "warm",
+      "shot": 59643,
+      "is_disrupt": false,
+      "risk_only_head_grad_norm": 0.03714671730995178,
+      "forecast_grad_norm": 0.20923089981079102,
+      "scaled_risk_grad_norm": 18.5733585357666,
+      "gradient_cosine": 0.021656885743141174
+    },
+    {
+      "arm": "warm",
+      "shot": 63226,
+      "is_disrupt": true,
+      "risk_only_head_grad_norm": 0.8166754841804504,
+      "forecast_grad_norm": 0.14017556607723236,
+      "scaled_risk_grad_norm": 408.3377380371094,
+      "gradient_cosine": 0.11571292579174042
+    },
+    {
+      "arm": "maximum_meta",
+      "shot": 59643,
+      "is_disrupt": false,
+      "risk_only_head_grad_norm": 0.006133446004241705,
+      "forecast_grad_norm": 0.5943722724914551,
+      "scaled_risk_grad_norm": 3.066722869873047,
+      "gradient_cosine": -0.0010985778644680977
+    },
+    {
+      "arm": "maximum_meta",
+      "shot": 63226,
+      "is_disrupt": true,
+      "risk_only_head_grad_norm": 0.6039975881576538,
+      "forecast_grad_norm": 0.5415307879447937,
+      "scaled_risk_grad_norm": 301.998779296875,
+      "gradient_cosine": -0.008556390181183815
+    }
+  ],
+  "full_independent_reinference": false,
+  "test_manifest_classes_read": true,
+  "label_access_claim": "No TEST HDF outcome/DownTime used before all seals; split manifest had class lists",
+  "forecast_control_claim": "Label-selected episodes, same budget, through-update forecast objective; not wholly label-free preparation"
+}

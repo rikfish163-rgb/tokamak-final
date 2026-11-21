@@ -1,0 +1,34 @@
+{
+  "output": "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/runs/source_joint_asinh_20260928",
+  "epochs": 15,
+  "steps": 128,
+  "batch_size": 32,
+  "mode": "joint",
+  "seed": 131,
+  "train_limit": null,
+  "val_limit": null,
+  "test_limit": null,
+  "window": 128,
+  "horizon": 25,
+  "forecast_space": "asinh",
+  "device": "cuda",
+  "evidence": "DEVELOPMENT_ONLY",
+  "roles": {
+    "train": 1353,
+    "val": 160
+  },
+  "threshold_origin": "J-TEXT VAL160",
+  "label_contract": {
+    "jtext": "max(25ms,AdvancedTime)",
+    "east": "fixed125ms auxiliary on J-TEXT"
+  },
+  "source_hashes": {
+    "canonical_roles": "2fe42e4190adfef4236692d5b6d71390cca79d69e4d069daf41e9105ded4349c",
+    "selected_train_val": "5cc87f627bd472752010cec010b3ab8d792519bc60f97474907331f430db3e58",
+    "advanced_time": "559da4f719373b0c13b96d34e27a2b46b80eba7f0ef185c3b6ac58b3761e0199",
+    "data.py": "69eb850f03b5a21fa9b20a899259a3bc98391f6608c8cddd323cbc8ecf17264a",
+    "train_source.py": "2c929cc3a5ab860435bef7337debf91df3efa976e52f905180399b75b80426aa",
+    "model.py": "d91c4c185abd18328f4dfa6585f3e555fe13fc19105b06262b7497e07bc3c0f7",
+    "learning.py": "5fab089c0312d8627b95eaf2b1d48d1c4ec14ea9616574fc13ca404e846bc68e"
+  }
+}

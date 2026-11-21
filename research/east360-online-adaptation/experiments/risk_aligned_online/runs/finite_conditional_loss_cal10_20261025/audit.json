@@ -1,0 +1,96 @@
+{
+  "status": "passed",
+  "completed_sha256": "8b93d59ec31695b11de9b7858e39e83d9d1c926a491a118729686d60dc476bd9",
+  "training_objective_recounts": 22,
+  "cached_blocks_rebuilt": 717,
+  "selected_objectives_replayed": {
+    "global": {
+      "epoch": 10,
+      "objective": -0.00806823628668467
+    },
+    "context": {
+      "epoch": 10,
+      "objective": -0.010146108821731795
+    }
+  },
+  "real_model_chain_rule": {
+    "shot": 63226,
+    "count": 3712,
+    "end": 3817,
+    "maximum_absolute_error": 3.469446951953614e-18,
+    "reference_norm": 0.024735931004965038
+  },
+  "complete_shots_replayed": [
+    89272,
+    89284,
+    89584
+  ],
+  "independent_metrics": {
+    "off": {
+      "tp": 1,
+      "fp": 1,
+      "very_early_over3000": 0,
+      "danger_loss": 2.386533861340191,
+      "safe_loss": 0.04688224519781282,
+      "balanced_loss": 1.216708053269002
+    },
+    "linear": {
+      "tp": 1,
+      "fp": 1,
+      "very_early_over3000": 0,
+      "danger_loss": 2.3829466633886045,
+      "safe_loss": 0.04925252253325361,
+      "balanced_loss": 1.216099592960929
+    },
+    "finite_global": {
+      "tp": 1,
+      "fp": 0,
+      "very_early_over3000": 0,
+      "danger_loss": 2.3877966310863266,
+      "safe_loss": 0.04538474732320246,
+      "balanced_loss": 1.2165906892047644
+    },
+    "finite_context": {
+      "tp": 1,
+      "fp": 0,
+      "very_early_over3000": 0,
+      "danger_loss": 2.388006668460052,
+      "safe_loss": 0.0453146106900484,
+      "balanced_loss": 1.2166606395750503
+    },
+    "uniform": {
+      "tp": 1,
+      "fp": 0,
+      "very_early_over3000": 0,
+      "danger_loss": 2.386773539806713,
+      "safe_loss": 0.045291290301019485,
+      "balanced_loss": 1.2160324150538662
+    },
+    "permuted": {
+      "tp": 1,
+      "fp": 0,
+      "very_early_over3000": 0,
+      "danger_loss": 2.3872965812237554,
+      "safe_loss": 0.04550959567076233,
+      "balanced_loss": 1.216403088447259
+    },
+    "hold": {
+      "tp": 1,
+      "fp": 0,
+      "very_early_over3000": 0,
+      "danger_loss": 2.3893250100616013,
+      "safe_loss": 0.045209433404453284,
+      "balanced_loss": 1.2172672217330274
+    }
+  },
+  "gradient_updates": {
+    "linear": 333,
+    "finite_global": 333,
+    "finite_context": 333,
+    "uniform": 333,
+    "permuted": 333,
+    "hold": 333
+  },
+  "source_and_parent_unchanged": true,
+  "audit_code_sha256": "4d8b4fb4cb6a665908d64244635129a561b9129068242ea64e0314043d3aa489"
+}

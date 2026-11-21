@@ -1,0 +1,78 @@
+{
+  "complete": true,
+  "complete_sha256": "4462fa80f19da72a04a88d3348b4d04da145e74765605a0e95385fb0dbb802ed",
+  "coverage340": true,
+  "distinct_windows": 1358,
+  "posthoc_groups": {
+    "timely_positive": {
+      "windows": 115,
+      "shots": 115,
+      "directions": {
+        "full": {
+          "median": -9.474430443115621e-05,
+          "positive": 49
+        },
+        "prediction_path": {
+          "median": -0.00018688900318356559,
+          "positive": 49
+        },
+        "target_path": {
+          "median": -0.0001231390702754965,
+          "positive": 48
+        },
+        "dynamic": {
+          "median": 4.174777473692013e-05,
+          "positive": 58
+        }
+      }
+    },
+    "miss_timely_positive": {
+      "windows": 34,
+      "shots": 34,
+      "directions": {
+        "full": {
+          "median": -0.0004259439355707251,
+          "positive": 10
+        },
+        "prediction_path": {
+          "median": 0.002089354970320501,
+          "positive": 28
+        },
+        "target_path": {
+          "median": -0.0009998455878558556,
+          "positive": 4
+        },
+        "dynamic": {
+          "median": -1.7469241148361142e-05,
+          "positive": 16
+        }
+      }
+    },
+    "safe": {
+      "windows": 708,
+      "shots": 177,
+      "directions": {
+        "full": {
+          "median": -0.0006088000416109392,
+          "positive": 70
+        },
+        "prediction_path": {
+          "median": 0.0012570180472950253,
+          "positive": 479
+        },
+        "target_path": {
+          "median": -0.0009056488220663848,
+          "positive": 34
+        },
+        "dynamic": {
+          "median": -0.0004361894677254116,
+          "positive": 154
+        }
+      }
+    }
+  },
+  "previous_complete_sha256": "b41399db134f53fe3864f231e4accc969d356e7393d55ff6fe0bb53dc5ebb7f6",
+  "no_online_performance_claim": true,
+  "zero_state_local_derivative_only": true,
+  "note": "Outcome groups explain diagnosed directions; never an online selector or inferred TP/FP gain."
+}

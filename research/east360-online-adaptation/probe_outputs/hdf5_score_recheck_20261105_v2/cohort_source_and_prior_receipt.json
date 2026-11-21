@@ -1,0 +1,81 @@
+{
+  "status": "PASS",
+  "hdf5_metadata_sha256": "286f838542f5186be61696485bd3952fda66bcacc72a32a27f72a96971ea79b1",
+  "fixed_cohort_outcomes_sha256": "b309f91270877a9530166fb9b0cec6edf5332b04e1dc049c0daea66796cee29e",
+  "source": {
+    "tp": 100,
+    "fp": 13,
+    "n_disrupt": 110,
+    "n_safe": 110,
+    "tpr": 0.9090909090909091,
+    "fpr": 0.11818181818181818,
+    "J": 0.7909090909090909,
+    "aligned_leads": 106,
+    "checkpoint_sha256": "c7270c1ea3652db2e30e972d4ca9a4a2d33220a68e4a3765c8b7f5bcceeaeb02",
+    "report_sha256": "cf4716e86a1ff93923309613315ffc81893a81a39e54cdfe2c1ecf15ca16c07c",
+    "threshold": 0.7258946895599365,
+    "scope": "saved alarm records; no forward replay"
+  },
+  "jtext_splits": {
+    "train": {
+      "shots": 1353,
+      "disruptive": 188,
+      "safe": 1165
+    },
+    "val": {
+      "shots": 160,
+      "disruptive": 80,
+      "safe": 80
+    },
+    "test": {
+      "shots": 220,
+      "disruptive": 110,
+      "safe": 110
+    }
+  },
+  "east_slices": {
+    "full": {
+      "shots": 360,
+      "disruptive": 180,
+      "safe": 180
+    },
+    "startup20": {
+      "shots": 20,
+      "disruptive": 8,
+      "safe": 12
+    },
+    "rest340": {
+      "shots": 340,
+      "disruptive": 172,
+      "safe": 168
+    },
+    "teaching80": {
+      "shots": 80,
+      "disruptive": 59,
+      "safe": 21
+    },
+    "first100": {
+      "shots": 100,
+      "disruptive": 67,
+      "safe": 33
+    },
+    "suffix260": {
+      "shots": 260,
+      "disruptive": 113,
+      "safe": 147
+    }
+  },
+  "east_endpoint_diagnostic": {
+    "n": 240,
+    "groups": {
+      "earlier": 118,
+      "positive": 59,
+      "safe": 63
+    }
+  },
+  "previous_five": {
+    "summary_inputs_rehashed": 20,
+    "previously_scored_curves": 8640,
+    "this_check_only_hashes": true
+  }
+}

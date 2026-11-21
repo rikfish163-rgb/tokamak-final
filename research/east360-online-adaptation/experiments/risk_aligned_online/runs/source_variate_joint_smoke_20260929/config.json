@@ -1,0 +1,38 @@
+{
+  "output": "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/runs/source_variate_joint_smoke_20260929",
+  "epochs": 1,
+  "steps": 2,
+  "batch_size": 8,
+  "mode": "joint",
+  "backbone": "variate",
+  "seed": 131,
+  "train_limit": 12,
+  "val_limit": 8,
+  "test_limit": 8,
+  "window": 128,
+  "horizon": 25,
+  "forecast_space": "asinh",
+  "prefix_weight": 0.25,
+  "val_target_tpr": 0.95,
+  "device": "cuda",
+  "source_recipe": "v3_source_strata_hard_negatives_constrained_validation",
+  "evidence": "SMOKE",
+  "roles": {
+    "train": 12,
+    "val": 8
+  },
+  "threshold_origin": "J-TEXT VAL smoke subset",
+  "label_contract": {
+    "jtext": "max(25ms,AdvancedTime)",
+    "east": "fixed125ms auxiliary on J-TEXT"
+  },
+  "source_hashes": {
+    "canonical_roles": "2fe42e4190adfef4236692d5b6d71390cca79d69e4d069daf41e9105ded4349c",
+    "selected_train_val": "1aea0a2b3be5e7eab946cc0e3e68e97d67ce0d7b15c59a72a873b9fc2a390360",
+    "advanced_time": "559da4f719373b0c13b96d34e27a2b46b80eba7f0ef185c3b6ac58b3761e0199",
+    "data.py": "9b0acf29bcd10908a603cc0b27834d58747400ad25efea0c427931be0af4f48d",
+    "train_source.py": "cf3b4fe29352c84b59aafc20920f499ff4d3c2e0448ed83781949988cf7a7239",
+    "model.py": "a07d66993a26bd9b6b35e14f3cfe1ff225d41458f70318c93b9be45330130261",
+    "learning.py": "5fab089c0312d8627b95eaf2b1d48d1c4ec14ea9616574fc13ca404e846bc68e"
+  }
+}

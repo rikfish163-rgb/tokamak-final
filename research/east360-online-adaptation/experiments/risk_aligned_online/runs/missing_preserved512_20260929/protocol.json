@@ -1,0 +1,24 @@
+{
+  "parent_sha256": "c7270c1ea3652db2e30e972d4ca9a4a2d33220a68e4a3765c8b7f5bcceeaeb02",
+  "steps": 512,
+  "batch_size": 64,
+  "lr": 1e-05,
+  "weight_decay": 0.0,
+  "seed": 131,
+  "augmentation_seed": 4000131,
+  "max_drop": 4,
+  "clean_weight": 0.5,
+  "missing_weight": 0.5,
+  "teacher_weight": 1.0,
+  "protection": "clean-input logit SmoothL1",
+  "threshold_selection": "clean VAL160 only, FPR<.1; no TEST access",
+  "scope": "DEVELOPMENT_ONLY; source robustness, not intra adaptation",
+  "code_sha256": {
+    "missing_training.py": "c6ef77fdddaef548575b8b1ad47f127762bd890db2b5ca054e114fab6ca95451",
+    "missing_input_probe.py": "2653dc339d1d0d09e8c4e52dbcec530bff9126599845540d1edfb87494261394",
+    "simple_train.py": "5716a805eed13578ae7dfc0fda5970178dfb579e87a9d51338a3b83f4c9d6ab9",
+    "simple_data.py": "751ee1f34410ca2fe1caf7f58a99549a9e9334e6287d3330b8a8d965c45f70fa",
+    "simple23.py": "2234ab9c872baf1f5c6667225094d482b8c44ad83c091bb56bb7d8224e1a7b22",
+    "io23.py": "99ad1ff56e2cf50556d96b8fba9834be23734e1d13b91639edc02e8d6679d26a"
+  }
+}

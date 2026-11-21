@@ -1,0 +1,472 @@
+{
+  "scope": "POSTHOC DESCRIPTION, NOT A CAUSAL ATTRIBUTION OR A DEPLOYMENT POLICY",
+  "grouping": "six consecutive groups of60 in already fixed360 shot-ID order; no outcome-based grouping",
+  "caveat": "shot ID approximates period, not a measured operating condition; IDs are not model inputs",
+  "code_sha256": "47d72fe309f3a885bc5e216fb4e46939b9220f55206cfe9a640f04147b865700",
+  "verification_sha256": "1cf3a63f9c56dc65b45484f33434c6e96be60b78bafd6286b6edbbcd4886ab09",
+  "per_shot_sha256": "e95aff780266a9bd3d926b5bcb0c180b83280364aaac5c886677a3b34ac55d95",
+  "selection_sha256": "8af296238c687c3f0c883ee115ef756ec40b2957feabb99d48e25d12cf2ada96",
+  "preparation": {
+    "safe": {
+      "count": 16,
+      "minimum": 54314,
+      "maximum": 62945
+    },
+    "disruptive": {
+      "count": 4,
+      "minimum": 63226,
+      "maximum": 70868
+    },
+    "all_safe_earlier_than_all_disruptive": true
+  },
+  "cohorts": {
+    "original_static": [
+      {
+        "first": 54157,
+        "last": 64258,
+        "n_disrupt": 18,
+        "n_safe": 42,
+        "tp": 10,
+        "fp": 3,
+        "early_fp": 0
+      },
+      {
+        "first": 64266,
+        "last": 70263,
+        "n_disrupt": 30,
+        "n_safe": 30,
+        "tp": 19,
+        "fp": 4,
+        "early_fp": 1
+      },
+      {
+        "first": 70320,
+        "last": 74990,
+        "n_disrupt": 39,
+        "n_safe": 21,
+        "tp": 25,
+        "fp": 7,
+        "early_fp": 2
+      },
+      {
+        "first": 75135,
+        "last": 83164,
+        "n_disrupt": 32,
+        "n_safe": 28,
+        "tp": 20,
+        "fp": 4,
+        "early_fp": 1
+      },
+      {
+        "first": 83166,
+        "last": 89721,
+        "n_disrupt": 29,
+        "n_safe": 31,
+        "tp": 20,
+        "fp": 3,
+        "early_fp": 1
+      },
+      {
+        "first": 89881,
+        "last": 96375,
+        "n_disrupt": 32,
+        "n_safe": 28,
+        "tp": 23,
+        "fp": 6,
+        "early_fp": 2
+      }
+    ],
+    "original_intra": [
+      {
+        "first": 54157,
+        "last": 64258,
+        "n_disrupt": 18,
+        "n_safe": 42,
+        "tp": 10,
+        "fp": 3,
+        "early_fp": 0
+      },
+      {
+        "first": 64266,
+        "last": 70263,
+        "n_disrupt": 30,
+        "n_safe": 30,
+        "tp": 19,
+        "fp": 4,
+        "early_fp": 1
+      },
+      {
+        "first": 70320,
+        "last": 74990,
+        "n_disrupt": 39,
+        "n_safe": 21,
+        "tp": 24,
+        "fp": 7,
+        "early_fp": 2
+      },
+      {
+        "first": 75135,
+        "last": 83164,
+        "n_disrupt": 32,
+        "n_safe": 28,
+        "tp": 20,
+        "fp": 4,
+        "early_fp": 1
+      },
+      {
+        "first": 83166,
+        "last": 89721,
+        "n_disrupt": 29,
+        "n_safe": 31,
+        "tp": 20,
+        "fp": 4,
+        "early_fp": 1
+      },
+      {
+        "first": 89881,
+        "last": 96375,
+        "n_disrupt": 32,
+        "n_safe": 28,
+        "tp": 23,
+        "fp": 7,
+        "early_fp": 2
+      }
+    ],
+    "mean_static": [
+      {
+        "first": 54157,
+        "last": 64258,
+        "n_disrupt": 18,
+        "n_safe": 42,
+        "tp": 10,
+        "fp": 2,
+        "early_fp": 0
+      },
+      {
+        "first": 64266,
+        "last": 70263,
+        "n_disrupt": 30,
+        "n_safe": 30,
+        "tp": 28,
+        "fp": 24,
+        "early_fp": 21
+      },
+      {
+        "first": 70320,
+        "last": 74990,
+        "n_disrupt": 39,
+        "n_safe": 21,
+        "tp": 37,
+        "fp": 17,
+        "early_fp": 16
+      },
+      {
+        "first": 75135,
+        "last": 83164,
+        "n_disrupt": 32,
+        "n_safe": 28,
+        "tp": 21,
+        "fp": 7,
+        "early_fp": 4
+      },
+      {
+        "first": 83166,
+        "last": 89721,
+        "n_disrupt": 29,
+        "n_safe": 31,
+        "tp": 22,
+        "fp": 10,
+        "early_fp": 6
+      },
+      {
+        "first": 89881,
+        "last": 96375,
+        "n_disrupt": 32,
+        "n_safe": 28,
+        "tp": 24,
+        "fp": 8,
+        "early_fp": 2
+      }
+    ],
+    "mean_intra": [
+      {
+        "first": 54157,
+        "last": 64258,
+        "n_disrupt": 18,
+        "n_safe": 42,
+        "tp": 10,
+        "fp": 3,
+        "early_fp": 0
+      },
+      {
+        "first": 64266,
+        "last": 70263,
+        "n_disrupt": 30,
+        "n_safe": 30,
+        "tp": 29,
+        "fp": 24,
+        "early_fp": 21
+      },
+      {
+        "first": 70320,
+        "last": 74990,
+        "n_disrupt": 39,
+        "n_safe": 21,
+        "tp": 36,
+        "fp": 18,
+        "early_fp": 16
+      },
+      {
+        "first": 75135,
+        "last": 83164,
+        "n_disrupt": 32,
+        "n_safe": 28,
+        "tp": 21,
+        "fp": 9,
+        "early_fp": 4
+      },
+      {
+        "first": 83166,
+        "last": 89721,
+        "n_disrupt": 29,
+        "n_safe": 31,
+        "tp": 22,
+        "fp": 11,
+        "early_fp": 6
+      },
+      {
+        "first": 89881,
+        "last": 96375,
+        "n_disrupt": 32,
+        "n_safe": 28,
+        "tp": 24,
+        "fp": 9,
+        "early_fp": 2
+      }
+    ],
+    "safe_peak_static": [
+      {
+        "first": 54157,
+        "last": 64258,
+        "n_disrupt": 18,
+        "n_safe": 42,
+        "tp": 8,
+        "fp": 2,
+        "early_fp": 0
+      },
+      {
+        "first": 64266,
+        "last": 70263,
+        "n_disrupt": 30,
+        "n_safe": 30,
+        "tp": 27,
+        "fp": 23,
+        "early_fp": 20
+      },
+      {
+        "first": 70320,
+        "last": 74990,
+        "n_disrupt": 39,
+        "n_safe": 21,
+        "tp": 37,
+        "fp": 19,
+        "early_fp": 15
+      },
+      {
+        "first": 75135,
+        "last": 83164,
+        "n_disrupt": 32,
+        "n_safe": 28,
+        "tp": 19,
+        "fp": 4,
+        "early_fp": 3
+      },
+      {
+        "first": 83166,
+        "last": 89721,
+        "n_disrupt": 29,
+        "n_safe": 31,
+        "tp": 18,
+        "fp": 2,
+        "early_fp": 1
+      },
+      {
+        "first": 89881,
+        "last": 96375,
+        "n_disrupt": 32,
+        "n_safe": 28,
+        "tp": 20,
+        "fp": 3,
+        "early_fp": 2
+      }
+    ],
+    "safe_peak_intra": [
+      {
+        "first": 54157,
+        "last": 64258,
+        "n_disrupt": 18,
+        "n_safe": 42,
+        "tp": 8,
+        "fp": 2,
+        "early_fp": 0
+      },
+      {
+        "first": 64266,
+        "last": 70263,
+        "n_disrupt": 30,
+        "n_safe": 30,
+        "tp": 27,
+        "fp": 24,
+        "early_fp": 20
+      },
+      {
+        "first": 70320,
+        "last": 74990,
+        "n_disrupt": 39,
+        "n_safe": 21,
+        "tp": 37,
+        "fp": 19,
+        "early_fp": 15
+      },
+      {
+        "first": 75135,
+        "last": 83164,
+        "n_disrupt": 32,
+        "n_safe": 28,
+        "tp": 20,
+        "fp": 10,
+        "early_fp": 3
+      },
+      {
+        "first": 83166,
+        "last": 89721,
+        "n_disrupt": 29,
+        "n_safe": 31,
+        "tp": 18,
+        "fp": 3,
+        "early_fp": 1
+      },
+      {
+        "first": 89881,
+        "last": 96375,
+        "n_disrupt": 32,
+        "n_safe": 28,
+        "tp": 21,
+        "fp": 3,
+        "early_fp": 2
+      }
+    ],
+    "peak_static": [
+      {
+        "first": 54157,
+        "last": 64258,
+        "n_disrupt": 18,
+        "n_safe": 42,
+        "tp": 7,
+        "fp": 1,
+        "early_fp": 0
+      },
+      {
+        "first": 64266,
+        "last": 70263,
+        "n_disrupt": 30,
+        "n_safe": 30,
+        "tp": 25,
+        "fp": 22,
+        "early_fp": 17
+      },
+      {
+        "first": 70320,
+        "last": 74990,
+        "n_disrupt": 39,
+        "n_safe": 21,
+        "tp": 36,
+        "fp": 16,
+        "early_fp": 12
+      },
+      {
+        "first": 75135,
+        "last": 83164,
+        "n_disrupt": 32,
+        "n_safe": 28,
+        "tp": 15,
+        "fp": 4,
+        "early_fp": 3
+      },
+      {
+        "first": 83166,
+        "last": 89721,
+        "n_disrupt": 29,
+        "n_safe": 31,
+        "tp": 13,
+        "fp": 1,
+        "early_fp": 1
+      },
+      {
+        "first": 89881,
+        "last": 96375,
+        "n_disrupt": 32,
+        "n_safe": 28,
+        "tp": 15,
+        "fp": 2,
+        "early_fp": 2
+      }
+    ],
+    "peak_intra": [
+      {
+        "first": 54157,
+        "last": 64258,
+        "n_disrupt": 18,
+        "n_safe": 42,
+        "tp": 8,
+        "fp": 2,
+        "early_fp": 0
+      },
+      {
+        "first": 64266,
+        "last": 70263,
+        "n_disrupt": 30,
+        "n_safe": 30,
+        "tp": 25,
+        "fp": 23,
+        "early_fp": 17
+      },
+      {
+        "first": 70320,
+        "last": 74990,
+        "n_disrupt": 39,
+        "n_safe": 21,
+        "tp": 36,
+        "fp": 16,
+        "early_fp": 12
+      },
+      {
+        "first": 75135,
+        "last": 83164,
+        "n_disrupt": 32,
+        "n_safe": 28,
+        "tp": 17,
+        "fp": 7,
+        "early_fp": 3
+      },
+      {
+        "first": 83166,
+        "last": 89721,
+        "n_disrupt": 29,
+        "n_safe": 31,
+        "tp": 14,
+        "fp": 3,
+        "early_fp": 1
+      },
+      {
+        "first": 89881,
+        "last": 96375,
+        "n_disrupt": 32,
+        "n_safe": 28,
+        "tp": 16,
+        "fp": 2,
+        "early_fp": 2
+      }
+    ]
+  }
+}

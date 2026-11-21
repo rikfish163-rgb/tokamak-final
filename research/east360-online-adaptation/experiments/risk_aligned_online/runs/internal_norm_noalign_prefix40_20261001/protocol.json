@@ -1,0 +1,59 @@
+{
+  "source_gate": {
+    "qualified": true,
+    "reasons": [],
+    "tpr": 0.9090909090909091,
+    "fpr": 0.11818181818181818,
+    "lead_rule": "round lead_ms to 9 decimals then >10",
+    "checkpoint_sha256": "c7270c1ea3652db2e30e972d4ca9a4a2d33220a68e4a3765c8b7f5bcceeaeb02",
+    "report_sha256": "cf4716e86a1ff93923309613315ffc81893a81a39e54cdfe2c1ecf15ca16c07c",
+    "evaluation_set": "J-TEXT TEST220 development acceptance"
+  },
+  "checkpoint": "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/runs/gradient_aligned512_20260929/source.pt",
+  "model_config": {
+    "window": 128,
+    "patch": 8,
+    "dim": 64,
+    "heads": 4,
+    "layers": 2,
+    "horizon": 25,
+    "fast_site": "tokens",
+    "fast_rule": "normalized",
+    "input_view": "source"
+  },
+  "threshold": 0.7258946895599365,
+  "threshold_origin": "fixed J-TEXT VAL",
+  "lead_rule": "strict >30ms",
+  "input_contract": "CIII -10 +/-0.01 mask candidate; no semantic repair of unknown units",
+  "auxiliary_channels": [
+    "ip",
+    "dx_a",
+    "dy_a",
+    "Mir_avg_amp",
+    "sxr_mean",
+    "xuv_var"
+  ],
+  "adapted_names": [
+    "encoder.layers.1.norm1.weight",
+    "encoder.layers.1.norm1.bias",
+    "encoder.layers.1.norm2.weight",
+    "encoder.layers.1.norm2.bias"
+  ],
+  "stride": 100,
+  "lr": 0.01,
+  "radius": 0.25,
+  "inter_lr": 0.01,
+  "label_access": "automatic post-shot reveal after durable seal",
+  "numerical_alignment_channels": [],
+  "numerical_alignment_prefix_points": 100,
+  "numerical_alignment_warning": "not physical calibration; may erase absolute-level information",
+  "interpretation": "development experiment; no support110; no new risk head; no alarm adjustment",
+  "source_sha256": "c7270c1ea3652db2e30e972d4ca9a4a2d33220a68e4a3765c8b7f5bcceeaeb02",
+  "code_sha256": {
+    "representation_online.py": "ec5ce38b98e6fce2e18a6ba7b73ce962a234d89e58843f42355764d39f268aa9",
+    "causal_input.py": "e7291090c5da98a4a4a890dca87eba4fc768b10dbb0a9e0228bc2a1a217fd111",
+    "simple23.py": "2234ab9c872baf1f5c6667225094d482b8c44ad83c091bb56bb7d8224e1a7b22",
+    "simple_data.py": "751ee1f34410ca2fe1caf7f58a99549a9e9334e6287d3330b8a8d965c45f70fa",
+    "io23.py": "99ad1ff56e2cf50556d96b8fba9834be23734e1d13b91639edc02e8d6679d26a"
+  }
+}

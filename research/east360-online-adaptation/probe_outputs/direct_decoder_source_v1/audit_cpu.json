@@ -1,0 +1,903 @@
+{
+  "status": "PASS",
+  "completed_sha256": "53a445eb75eedea0cccd0bc04d64d2ff59beb3bda216bb49f3d7d6dfa2d3f092",
+  "val_rows": 25542,
+  "train_rows": 1305,
+  "max_double_bce_error": 4.7006969243566094e-07,
+  "gate": {
+    "safe_improved": true,
+    "danger_improved": false,
+    "compatible_danger_improved": false,
+    "native_protected": false,
+    "better_than_forecast_only_real": false,
+    "better_than_mean_meta_real": true,
+    "better_than_worst_meta_reverse": true,
+    "better_than_worst_meta_hold": true,
+    "passed": false
+  },
+  "raw_inputs_read": 0,
+  "neural_replayed": false,
+  "training_repeated": false,
+  "summary": {
+    "native": {
+      "forecast_only_real": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": 0.0007824961406489214,
+          "helpful_points": 287,
+          "harmful_points": 315
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": -7.039131011143105e-05,
+          "helpful_points": 46,
+          "harmful_points": 52
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": 0.004008677245633387,
+          "helpful_points": 82,
+          "harmful_points": 70
+        },
+        "balanced": 0.00035605241526874516,
+        "compatible_danger": {
+          "n_shots": 11,
+          "n_points": 30,
+          "mean_delta_bce": -0.0032677368021033935
+        }
+      },
+      "forecast_only_reverse": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": 0.0001055300546189148,
+          "helpful_points": 278,
+          "harmful_points": 322
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.00013258714551782434,
+          "helpful_points": 47,
+          "harmful_points": 48
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.002301338916065312,
+          "helpful_points": 78,
+          "harmful_points": 77
+        },
+        "balanced": 0.00011905860006836957,
+        "compatible_danger": {
+          "n_shots": 11,
+          "n_points": 30,
+          "mean_delta_bce": -0.0018660952266531445
+        }
+      },
+      "forecast_only_hold": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.0008277671411633491,
+          "helpful_points": 278,
+          "harmful_points": 318
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.0014078926674084783,
+          "helpful_points": 38,
+          "harmful_points": 46
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": 0.0010006532476507088,
+          "helpful_points": 84,
+          "harmful_points": 64
+        },
+        "balanced": 0.0002900627631225646,
+        "compatible_danger": {
+          "n_shots": 11,
+          "n_points": 30,
+          "mean_delta_bce": -0.0019571966646860046
+        }
+      },
+      "mean_meta_real": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.03304749261587858,
+          "helpful_points": 602,
+          "harmful_points": 36
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.06846724777531649,
+          "helpful_points": 14,
+          "harmful_points": 103
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.19035614439669776,
+          "helpful_points": 176,
+          "harmful_points": 15
+        },
+        "balanced": 0.017709877579718952,
+        "compatible_danger": {
+          "n_shots": 11,
+          "n_points": 30,
+          "mean_delta_bce": 0.16990703379622463
+        }
+      },
+      "mean_meta_reverse": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.03379366754864653,
+          "helpful_points": 597,
+          "harmful_points": 40
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.06569908232015137,
+          "helpful_points": 14,
+          "harmful_points": 103
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.1864518699873618,
+          "helpful_points": 177,
+          "harmful_points": 14
+        },
+        "balanced": 0.01595270738575242,
+        "compatible_danger": {
+          "n_shots": 11,
+          "n_points": 30,
+          "mean_delta_bce": 0.1776448501993648
+        }
+      },
+      "mean_meta_hold": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.035204393044114116,
+          "helpful_points": 608,
+          "harmful_points": 30
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.0709326759471705,
+          "helpful_points": 13,
+          "harmful_points": 104
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.19725266182873427,
+          "helpful_points": 176,
+          "harmful_points": 15
+        },
+        "balanced": 0.01786414145152819,
+        "compatible_danger": {
+          "n_shots": 11,
+          "n_points": 30,
+          "mean_delta_bce": 0.18186218208266478
+        }
+      },
+      "worst_meta_real": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.0014663355425000191,
+          "helpful_points": 585,
+          "harmful_points": 53
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.007178983101299049,
+          "helpful_points": 68,
+          "harmful_points": 49
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.007044796246329165,
+          "helpful_points": 118,
+          "harmful_points": 73
+        },
+        "balanced": 0.002856323779399515,
+        "compatible_danger": {
+          "n_shots": 11,
+          "n_points": 30,
+          "mean_delta_bce": 0.054486542516811315
+        }
+      },
+      "worst_meta_reverse": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.0013324335217475892,
+          "helpful_points": 583,
+          "harmful_points": 55
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.007165500804330804,
+          "helpful_points": 67,
+          "harmful_points": 50
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.011808703050893895,
+          "helpful_points": 124,
+          "harmful_points": 67
+        },
+        "balanced": 0.0029165336412916073,
+        "compatible_danger": {
+          "n_shots": 11,
+          "n_points": 30,
+          "mean_delta_bce": 0.055661297121057
+        }
+      },
+      "worst_meta_hold": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.0013093341141939164,
+          "helpful_points": 586,
+          "harmful_points": 52
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.00789690735109616,
+          "helpful_points": 69,
+          "harmful_points": 48
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.013336004503245227,
+          "helpful_points": 126,
+          "harmful_points": 65
+        },
+        "balanced": 0.0032937866184511223,
+        "compatible_danger": {
+          "n_shots": 11,
+          "n_points": 30,
+          "mean_delta_bce": 0.05914783437567
+        }
+      }
+    },
+    "no_MNM": {
+      "forecast_only_real": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.0012209117412567139,
+          "helpful_points": 373,
+          "harmful_points": 227
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": -0.002749886495647453,
+          "helpful_points": 48,
+          "harmful_points": 49
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": 0.0017461709796436245,
+          "helpful_points": 87,
+          "harmful_points": 59
+        },
+        "balanced": -0.0019853991184520837,
+        "compatible_danger": {
+          "n_shots": 11,
+          "n_points": 30,
+          "mean_delta_bce": -1.1895811467468118e-06
+        }
+      },
+      "forecast_only_reverse": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.0018093341806282603,
+          "helpful_points": 370,
+          "harmful_points": 229
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": -0.0002694340710669551,
+          "helpful_points": 52,
+          "harmful_points": 43
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": 0.0028033069368837934,
+          "helpful_points": 78,
+          "harmful_points": 69
+        },
+        "balanced": -0.0010393841258476077,
+        "compatible_danger": {
+          "n_shots": 11,
+          "n_points": 30,
+          "mean_delta_bce": -0.00042295630908373636
+        }
+      },
+      "forecast_only_hold": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.0016676107111076514,
+          "helpful_points": 396,
+          "harmful_points": 184
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.0009655482553214481,
+          "helpful_points": 38,
+          "harmful_points": 41
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": 1.1690623230404306e-05,
+          "helpful_points": 85,
+          "harmful_points": 56
+        },
+        "balanced": -0.00035103122789310165,
+        "compatible_danger": {
+          "n_shots": 11,
+          "n_points": 30,
+          "mean_delta_bce": 0.0004697979964090118
+        }
+      },
+      "mean_meta_real": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.0372606297954917,
+          "helpful_points": 620,
+          "harmful_points": 18
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.1159583454863986,
+          "helpful_points": 14,
+          "harmful_points": 103
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.17773715427387105,
+          "helpful_points": 180,
+          "harmful_points": 11
+        },
+        "balanced": 0.03934885784545346,
+        "compatible_danger": {
+          "n_shots": 11,
+          "n_points": 30,
+          "mean_delta_bce": 0.20481895344247195
+        }
+      },
+      "mean_meta_reverse": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.03734301555280885,
+          "helpful_points": 620,
+          "harmful_points": 17
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.10764270468685676,
+          "helpful_points": 12,
+          "harmful_points": 105
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.16852768543554625,
+          "helpful_points": 182,
+          "harmful_points": 9
+        },
+        "balanced": 0.035149844567023955,
+        "compatible_danger": {
+          "n_shots": 11,
+          "n_points": 30,
+          "mean_delta_bce": 0.215410525042733
+        }
+      },
+      "mean_meta_hold": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.038427092507481574,
+          "helpful_points": 625,
+          "harmful_points": 13
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.11915864395698356,
+          "helpful_points": 12,
+          "harmful_points": 105
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.18208750763944548,
+          "helpful_points": 179,
+          "harmful_points": 12
+        },
+        "balanced": 0.04036577572475099,
+        "compatible_danger": {
+          "n_shots": 11,
+          "n_points": 30,
+          "mean_delta_bce": 0.2205788186454976
+        }
+      },
+      "worst_meta_real": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.0075784681364893915,
+          "helpful_points": 600,
+          "harmful_points": 38
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.010124709471191247,
+          "helpful_points": 66,
+          "harmful_points": 51
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.028055341417938612,
+          "helpful_points": 132,
+          "harmful_points": 59
+        },
+        "balanced": 0.0012731206673509275,
+        "compatible_danger": {
+          "n_shots": 11,
+          "n_points": 30,
+          "mean_delta_bce": 0.0676396670327945
+        }
+      },
+      "worst_meta_reverse": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.007479833873609701,
+          "helpful_points": 600,
+          "harmful_points": 38
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.010300836334499764,
+          "helpful_points": 61,
+          "harmful_points": 56
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.024951404579380315,
+          "helpful_points": 130,
+          "harmful_points": 61
+        },
+        "balanced": 0.0014105012304450313,
+        "compatible_danger": {
+          "n_shots": 11,
+          "n_points": 30,
+          "mean_delta_bce": 0.06912867302272581
+        }
+      },
+      "worst_meta_hold": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.007496944380303225,
+          "helpful_points": 602,
+          "harmful_points": 36
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.009994100831508625,
+          "helpful_points": 65,
+          "harmful_points": 52
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.030006679180178214,
+          "helpful_points": 129,
+          "harmful_points": 62
+        },
+        "balanced": 0.0012485782256027,
+        "compatible_danger": {
+          "n_shots": 11,
+          "n_points": 30,
+          "mean_delta_bce": 0.07070881494490261
+        }
+      }
+    },
+    "no_MNM_CIII": {
+      "forecast_only_real": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.004793986864387989,
+          "helpful_points": 377,
+          "harmful_points": 228
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.0006694853991489038,
+          "helpful_points": 54,
+          "harmful_points": 49
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.004062300944139088,
+          "helpful_points": 90,
+          "harmful_points": 75
+        },
+        "balanced": -0.0020622507326195426,
+        "compatible_danger": {
+          "n_shots": 11,
+          "n_points": 30,
+          "mean_delta_bce": -0.009286331400896113
+        }
+      },
+      "forecast_only_reverse": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.005050330578039089,
+          "helpful_points": 379,
+          "harmful_points": 229
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": -0.0022719667356882597,
+          "helpful_points": 56,
+          "harmful_points": 44
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.006588327746932246,
+          "helpful_points": 86,
+          "harmful_points": 72
+        },
+        "balanced": -0.0036611486568636745,
+        "compatible_danger": {
+          "n_shots": 11,
+          "n_points": 30,
+          "mean_delta_bce": -0.014319338306615298
+        }
+      },
+      "forecast_only_hold": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.005710199940949678,
+          "helpful_points": 408,
+          "harmful_points": 185
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.0021212042856426534,
+          "helpful_points": 34,
+          "harmful_points": 45
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.008266286027420359,
+          "helpful_points": 89,
+          "harmful_points": 55
+        },
+        "balanced": -0.0017944978276535125,
+        "compatible_danger": {
+          "n_shots": 11,
+          "n_points": 30,
+          "mean_delta_bce": -0.01410434781009275
+        }
+      },
+      "mean_meta_real": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.07133288597688078,
+          "helpful_points": 630,
+          "harmful_points": 8
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.11403149189288905,
+          "helpful_points": 9,
+          "harmful_points": 108
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.22176484033381905,
+          "helpful_points": 182,
+          "harmful_points": 9
+        },
+        "balanced": 0.021349302958004135,
+        "compatible_danger": {
+          "n_shots": 11,
+          "n_points": 30,
+          "mean_delta_bce": 0.2520374309864234
+        }
+      },
+      "mean_meta_reverse": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.0714380127377808,
+          "helpful_points": 627,
+          "harmful_points": 11
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.11179540740714791,
+          "helpful_points": 11,
+          "harmful_points": 106
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.21583681789711187,
+          "helpful_points": 183,
+          "harmful_points": 8
+        },
+        "balanced": 0.020178697334683554,
+        "compatible_danger": {
+          "n_shots": 11,
+          "n_points": 30,
+          "mean_delta_bce": 0.25642516687653505
+        }
+      },
+      "mean_meta_hold": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.07373183897385995,
+          "helpful_points": 634,
+          "harmful_points": 4
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.11987185672790344,
+          "helpful_points": 9,
+          "harmful_points": 108
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.22882502887373657,
+          "helpful_points": 185,
+          "harmful_points": 6
+        },
+        "balanced": 0.02307000887702175,
+        "compatible_danger": {
+          "n_shots": 11,
+          "n_points": 30,
+          "mean_delta_bce": 0.2661376395615551
+        }
+      },
+      "worst_meta_real": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.009921769549449285,
+          "helpful_points": 574,
+          "harmful_points": 64
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.011854044212980495,
+          "helpful_points": 61,
+          "harmful_points": 56
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.015570355001506572,
+          "helpful_points": 127,
+          "harmful_points": 64
+        },
+        "balanced": 0.0009661373317656052,
+        "compatible_danger": {
+          "n_shots": 11,
+          "n_points": 30,
+          "mean_delta_bce": 0.06960648316607781
+        }
+      },
+      "worst_meta_reverse": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.00977456970140338,
+          "helpful_points": 573,
+          "harmful_points": 65
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.01419529127250869,
+          "helpful_points": 62,
+          "harmful_points": 55
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.020499989016105037,
+          "helpful_points": 137,
+          "harmful_points": 54
+        },
+        "balanced": 0.002210360785552655,
+        "compatible_danger": {
+          "n_shots": 11,
+          "n_points": 30,
+          "mean_delta_bce": 0.07010996532203122
+        }
+      },
+      "worst_meta_hold": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.009713302413001657,
+          "helpful_points": 575,
+          "harmful_points": 63
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.015679736610382817,
+          "helpful_points": 62,
+          "harmful_points": 55
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.021683273626531427,
+          "helpful_points": 135,
+          "harmful_points": 56
+        },
+        "balanced": 0.00298321709869058,
+        "compatible_danger": {
+          "n_shots": 11,
+          "n_points": 30,
+          "mean_delta_bce": 0.072202990459504
+        }
+      }
+    }
+  },
+  "train_summary": {
+    "no_MNM_CIII": {
+      "forecast_only_real": {
+        "safe": {
+          "n_shots": 164,
+          "n_points": 297,
+          "mean_delta_bce": -0.00550939415113159,
+          "helpful_points": 133,
+          "harmful_points": 109
+        },
+        "danger": {
+          "n_shots": 98,
+          "n_points": 138,
+          "mean_delta_bce": 0.00011265250778167817,
+          "helpful_points": 46,
+          "harmful_points": 61
+        },
+        "early": {
+          "n_shots": 0,
+          "n_points": 0,
+          "mean_delta_bce": null,
+          "helpful_points": 0,
+          "harmful_points": 0
+        },
+        "balanced": -0.002698370821674956,
+        "compatible_danger": {
+          "n_shots": 15,
+          "n_points": 25,
+          "mean_delta_bce": 0.001205253197501103
+        }
+      },
+      "mean_meta_real": {
+        "safe": {
+          "n_shots": 164,
+          "n_points": 297,
+          "mean_delta_bce": -0.18464904506360888,
+          "helpful_points": 296,
+          "harmful_points": 1
+        },
+        "danger": {
+          "n_shots": 98,
+          "n_points": 138,
+          "mean_delta_bce": 0.03547590513251164,
+          "helpful_points": 34,
+          "harmful_points": 104
+        },
+        "early": {
+          "n_shots": 0,
+          "n_points": 0,
+          "mean_delta_bce": null,
+          "helpful_points": 0,
+          "harmful_points": 0
+        },
+        "balanced": -0.07458656996554862,
+        "compatible_danger": {
+          "n_shots": 15,
+          "n_points": 25,
+          "mean_delta_bce": 0.020099570001992913
+        }
+      },
+      "worst_meta_real": {
+        "safe": {
+          "n_shots": 164,
+          "n_points": 297,
+          "mean_delta_bce": -0.038324345955484555,
+          "helpful_points": 252,
+          "harmful_points": 45
+        },
+        "danger": {
+          "n_shots": 98,
+          "n_points": 138,
+          "mean_delta_bce": -0.0062403101830420145,
+          "helpful_points": 125,
+          "harmful_points": 13
+        },
+        "early": {
+          "n_shots": 0,
+          "n_points": 0,
+          "mean_delta_bce": null,
+          "helpful_points": 0,
+          "harmful_points": 0
+        },
+        "balanced": -0.022282328069263287,
+        "compatible_danger": {
+          "n_shots": 15,
+          "n_points": 25,
+          "mean_delta_bce": -0.008988229268127016
+        }
+      }
+    }
+  }
+}

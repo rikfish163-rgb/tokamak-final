@@ -1,0 +1,153 @@
+{
+  "verified_seals": 120,
+  "metrics": {
+    "early_fixed": {
+      "all": {
+        "tp": 41,
+        "fp": 11,
+        "n_disrupt": 59,
+        "n_safe": 61,
+        "early_over_3000": 7,
+        "tpr": 0.6949152542372882,
+        "fpr": 0.18032786885245902,
+        "J": 0.5145873853848292
+      },
+      "first30": {
+        "tp": 15,
+        "fp": 4,
+        "n_disrupt": 23,
+        "n_safe": 7,
+        "early_over_3000": 2,
+        "tpr": 0.6521739130434783,
+        "fpr": 0.5714285714285714,
+        "J": 0.08074534161490687
+      },
+      "after30": {
+        "tp": 26,
+        "fp": 7,
+        "n_disrupt": 36,
+        "n_safe": 54,
+        "early_over_3000": 5,
+        "tpr": 0.7222222222222222,
+        "fpr": 0.12962962962962962,
+        "J": 0.5925925925925926
+      }
+    }
+  },
+  "paired_changes": {
+    "static_to_early_fixed": {
+      "all": {
+        "rescued": [
+          72721,
+          69923,
+          92933,
+          86435,
+          84520,
+          92426,
+          79306,
+          85620
+        ],
+        "lost": [
+          60557
+        ],
+        "removed_fp": [],
+        "new_fp": [
+          58597,
+          70404,
+          66930,
+          84974
+        ]
+      },
+      "after30": {
+        "rescued": [
+          84520,
+          92426,
+          79306,
+          85620
+        ],
+        "lost": [
+          60557
+        ],
+        "removed_fp": [],
+        "new_fp": [
+          84974
+        ]
+      }
+    },
+    "original_intra_to_early_fixed": {
+      "all": {
+        "rescued": [
+          72721,
+          69923,
+          92933,
+          86435,
+          71310,
+          96506,
+          75238,
+          92426,
+          79306,
+          85620
+        ],
+        "lost": [],
+        "removed_fp": [],
+        "new_fp": [
+          58597,
+          70404,
+          66930
+        ]
+      },
+      "after30": {
+        "rescued": [
+          92426,
+          79306,
+          85620
+        ],
+        "lost": [],
+        "removed_fp": [],
+        "new_fp": []
+      }
+    },
+    "meta_after30_to_early_fixed": {
+      "all": {
+        "rescued": [
+          72721,
+          69923,
+          92933,
+          86435,
+          71310,
+          96506,
+          75238
+        ],
+        "lost": [],
+        "removed_fp": [],
+        "new_fp": [
+          58597,
+          70404,
+          66930
+        ]
+      },
+      "after30": {
+        "rescued": [],
+        "lost": [],
+        "removed_fp": [],
+        "new_fp": []
+      }
+    }
+  },
+  "actual_steps": {
+    "early_fixed": {
+      "total_executed": 152,
+      "final_optimizer_steps": 40,
+      "updates": 29
+    }
+  },
+  "control_max_curve_errors": {
+    "early_fixed_after30_vs_previous_fixed": 0.0
+  },
+  "identical_early_aux_heads": null,
+  "source_unchanged": true,
+  "causal_history_verified": true,
+  "archived_core_matches": true,
+  "compute_matched": false,
+  "scope": "DEVELOPMENT pilot, no independent or physical-law claim"
+}

@@ -1,0 +1,323 @@
+{
+  "status": "PASS_WITH_LIMITS",
+  "scope": "ENDED20_ONLY_OFFLINE_GRADIENT_DIAGNOSTIC",
+  "outcome_authority": "HDF5 meta/IsDisrupt and meta/DownTime",
+  "counts": {
+    "raw_hdf5_hashes_verified_against_two_manifests": 20,
+    "hdf5_outcomes_and_origin_inventories_verified": 20,
+    "hdf5_disruptive_shots": 8,
+    "unique_origins": 160,
+    "state_rows": 320,
+    "gradient_vectors_and_norms_verified": 1280,
+    "dc_ac_cosines_verified_from_vectors": 640,
+    "split_equations_verified": 320,
+    "target_masks_and_proxy_labels_verified": 320,
+    "summary_leaves_verified": 176,
+    "summary_distributions_verified": 34,
+    "summary_median_q10_q90_values_verified": 102,
+    "risk_probe_groups_verified": 8,
+    "risk_probe_count_fields_verified": 40,
+    "archived_and_current_code_files_verified": 94,
+    "risk_eligible_rows_by_state": {
+      "0.0": 158,
+      "0.2": 158
+    }
+  },
+  "relative_split_tolerance": 0.00002,
+  "maximum_stored_vector_float64_split_error": 2.814329527048514e-7,
+  "maximum_reproduced_float32_split_error": 2.814329527048514e-7,
+  "source_sha256": "c7270c1ea3652db2e30e972d4ca9a4a2d33220a68e4a3765c8b7f5bcceeaeb02",
+  "cold_sha256": "a06377a218a0f06def1eb3652cc091b5c514653681bffcf5dbfda7906f9db344",
+  "verifier_sha256": "9de40625bd2994ce2335c9285c0ade21455f4ef9cbfeaab9c9e60115c40fa0e6",
+  "quantile_method": "linear order-statistic interpolation",
+  "audit_input_sha256": {
+    "protocol.json": "5a049102a40a52da9e8ef09433c3a97c86bde481ed2b5868a47f285e523669f7",
+    "inventory.json": "9c31834a7c7d15665bbbcde739ea2ea6c468f3fed686547c77f56e49bedd743c",
+    "rows.json": "b87a318f2d036a9bea6866e63985a28816c7d2964609ef4424e050f38acbef6e",
+    "completed.json": "326ac06875aeb5bc2e94cb9712c5a1f5b10bcd12da70f1c0b4feb79cdd8427df",
+    "code_snapshot.zip": "38d6754c42e61ac1498c3928410223446aead6c1c0c0955fcbb9a0cd3b9242cb"
+  },
+  "recomputed_summary": {
+    "0.0": {
+      "original_reverse_cosine": {
+        "n": 160,
+        "median": 0.9985448023645385,
+        "q10": 0.9910894908882075,
+        "q90": 0.9999506438275891
+      },
+      "centered_reverse_cosine": {
+        "n": 160,
+        "median": 0.8590063273178137,
+        "q10": 0.4504864654027272,
+        "q90": 0.9904586033103524
+      },
+      "DC_to_total_cosine": {
+        "n": 160,
+        "median": 0.996403095990469,
+        "q10": 0.988037669357711,
+        "q90": 0.9988721493148761
+      },
+      "AC_to_total_cosine": {
+        "n": 160,
+        "median": 0.1568676840582018,
+        "q10": -0.0902334708252042,
+        "q90": 0.45669873283984697
+      },
+      "gradient_norms": {
+        "original": {
+          "n": 160,
+          "median": 0.00504578278454929,
+          "q10": 0.0010540627045991402,
+          "q90": 0.01277182074004081
+        },
+        "DC": {
+          "n": 160,
+          "median": 0.005058613529722326,
+          "q10": 0.001044913686053758,
+          "q90": 0.012392257950782977
+        },
+        "AC": {
+          "n": 160,
+          "median": 0.0005179968052544778,
+          "q10": 0.00007057638055078694,
+          "q90": 0.0012849429937772862
+        },
+        "centered": {
+          "n": 160,
+          "median": 0.0006461234754112648,
+          "q10": 0.00010844404783370438,
+          "q90": 0.0016157051411377751
+        }
+      },
+      "relative_AC_norm": {
+        "n": 160,
+        "median": 0.0877108437050035,
+        "q10": 0.04918971555483442,
+        "q90": 0.15893400321904297
+      },
+      "risk_probes": {
+        "original": {
+          "n": 158,
+          "moving": 158,
+          "improved": 76,
+          "worsened": 82,
+          "unchanged": 0,
+          "delta": {
+            "n": 158,
+            "median": 0.000001430511474609375,
+            "q10": -0.00017693042755126954,
+            "q90": 0.00021219253540039068
+          },
+          "cosine": {
+            "n": 158,
+            "median": -0.00045299882996337627,
+            "q10": -0.37260740779962864,
+            "q90": 0.42698046137834944
+          }
+        },
+        "DC": {
+          "n": 158,
+          "moving": 158,
+          "improved": 76,
+          "worsened": 82,
+          "unchanged": 0,
+          "delta": {
+            "n": 158,
+            "median": 0.0000011920928955078125,
+            "q10": -0.0001678466796875,
+            "q90": 0.00020356178283691408
+          },
+          "cosine": {
+            "n": 158,
+            "median": 0.0010729528857092736,
+            "q10": -0.3698659316508527,
+            "q90": 0.4165702398613302
+          }
+        },
+        "AC": {
+          "n": 158,
+          "moving": 158,
+          "improved": 82,
+          "worsened": 75,
+          "unchanged": 1,
+          "delta": {
+            "n": 158,
+            "median": -0.0000029802322387695312,
+            "q10": -0.0002055764198303222,
+            "q90": 0.00018582344055175786
+          },
+          "cosine": {
+            "n": 158,
+            "median": 0.029774030133417055,
+            "q10": -0.27508202228675843,
+            "q90": 0.31230187101735074
+          }
+        },
+        "centered": {
+          "n": 158,
+          "moving": 158,
+          "improved": 79,
+          "worsened": 79,
+          "unchanged": 0,
+          "delta": {
+            "n": 158,
+            "median": -9.5367431640625e-7,
+            "q10": -0.00021074414253234862,
+            "q90": 0.00021415948867797876
+          },
+          "cosine": {
+            "n": 158,
+            "median": 0.042208039285170265,
+            "q10": -0.2804494716650513,
+            "q90": 0.3308031916930514
+          }
+        }
+      }
+    },
+    "0.2": {
+      "original_reverse_cosine": {
+        "n": 160,
+        "median": 0.9985517588047242,
+        "q10": 0.9910156292463189,
+        "q90": 0.9999506472102863
+      },
+      "centered_reverse_cosine": {
+        "n": 160,
+        "median": 0.8301937552361989,
+        "q10": 0.41027357997780034,
+        "q90": 0.9897348272936755
+      },
+      "DC_to_total_cosine": {
+        "n": 160,
+        "median": 0.9964645378641674,
+        "q10": 0.9893559917274438,
+        "q90": 0.9988615316716642
+      },
+      "AC_to_total_cosine": {
+        "n": 160,
+        "median": 0.1517604926823506,
+        "q10": -0.10144075366847702,
+        "q90": 0.4417390496867074
+      },
+      "gradient_norms": {
+        "original": {
+          "n": 160,
+          "median": 0.0050464413517736974,
+          "q10": 0.0010526106336943874,
+          "q90": 0.012828232266639948
+        },
+        "DC": {
+          "n": 160,
+          "median": 0.0050846905453861115,
+          "q10": 0.001042993920103267,
+          "q90": 0.012694024085140863
+        },
+        "AC": {
+          "n": 160,
+          "median": 0.0004942240941894271,
+          "q10": 0.00006973533571405296,
+          "q90": 0.0011385296818406797
+        },
+        "centered": {
+          "n": 160,
+          "median": 0.0006099039006396245,
+          "q10": 0.00010746154644119131,
+          "q90": 0.0015477971654963192
+        }
+      },
+      "relative_AC_norm": {
+        "n": 160,
+        "median": 0.0865714291605315,
+        "q10": 0.04994442453822199,
+        "q90": 0.15267813722582987
+      },
+      "risk_probes": {
+        "original": {
+          "n": 158,
+          "moving": 158,
+          "improved": 76,
+          "worsened": 81,
+          "unchanged": 1,
+          "delta": {
+            "n": 158,
+            "median": 0.0000018477439880371094,
+            "q10": -0.0002773404121398926,
+            "q90": 0.00030931830406189046
+          },
+          "cosine": {
+            "n": 158,
+            "median": -0.005990946414687502,
+            "q10": -0.3857918367668092,
+            "q90": 0.44924574534634715
+          }
+        },
+        "DC": {
+          "n": 158,
+          "moving": 158,
+          "improved": 76,
+          "worsened": 81,
+          "unchanged": 1,
+          "delta": {
+            "n": 158,
+            "median": 0.00000286102294921875,
+            "q10": -0.00029171705245971673,
+            "q90": 0.00030402541160583587
+          },
+          "cosine": {
+            "n": 158,
+            "median": -0.010426753124635885,
+            "q10": -0.37367514990074746,
+            "q90": 0.43767590938255113
+          }
+        },
+        "AC": {
+          "n": 158,
+          "moving": 158,
+          "improved": 88,
+          "worsened": 69,
+          "unchanged": 1,
+          "delta": {
+            "n": 158,
+            "median": -0.000007033348083496094,
+            "q10": -0.0002056002616882324,
+            "q90": 0.00016721487045288095
+          },
+          "cosine": {
+            "n": 158,
+            "median": 0.04843378641540054,
+            "q10": -0.25844978059297163,
+            "q90": 0.31205163385315965
+          }
+        },
+        "centered": {
+          "n": 158,
+          "moving": 158,
+          "improved": 86,
+          "worsened": 69,
+          "unchanged": 3,
+          "delta": {
+            "n": 158,
+            "median": -0.000007867813110351562,
+            "q10": -0.00023864507675170897,
+            "q90": 0.00016883611679077148
+          },
+          "cosine": {
+            "n": 158,
+            "median": 0.03132882979346943,
+            "q10": -0.26895553021044555,
+            "q90": 0.33873295619017335
+          }
+        }
+      }
+    }
+  },
+  "limits": [
+    "All gradients were stored from the source-model forward/VJP; source forwards and VJPs were not independently recomputed.",
+    "The two gate states were checked as stored row metadata, not re-established by replaying the source model.",
+    "Reverse-gradient and risk-gradient vectors were not saved; their row cosines and risk-loss deltas were aggregated but not independently regenerated.",
+    "Claims that no training, no suffix access, and source state unchanged are audit-record declarations, not independently monitored execution traces.",
+    "The first 20 shots were already used in preparation; stored vectors and archive consistency do not prove causal physics or independent future performance."
+  ],
+  "suffix_signal_outcome_or_metric_files_opened": 0,
+  "gpu_used": false
+}

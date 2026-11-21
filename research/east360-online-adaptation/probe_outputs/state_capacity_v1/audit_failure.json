@@ -1,0 +1,18 @@
+{
+  "status": "DIAGNOSTIC_RUN_COMPLETED_BUT_INDEPENDENT_RADIUS_CHECK_FAILED",
+  "audit_exit_code": 1,
+  "audit_script_sha256": "4e7a7a2afeba28dad404174c9b5f772247a47bedc46cf376d3efb4e54ba010bb",
+  "executed_optimizer_sha256": "b562b63ac17fdc3846d2792208dfae62109ab7b3fe74d93905e220708e32b2d8",
+  "operator": "source_operator",
+  "shot": 61629,
+  "stored_fp32_radius": 3.592630624771118,
+  "cpu_float64_radius": 3.5926405180323595,
+  "absolute_difference": 0.00000989326124134493,
+  "relative_difference": 0.0000027537576308256234,
+  "declared_atol": 0.000002,
+  "declared_rtol": 0.000002,
+  "tolerance_relaxed": false,
+  "remedy": "recompute matrix product and SVD in float64; rerun in state_capacity_v2",
+  "original_outputs_preserved": true,
+  "not_a_failure_or_fix_of_the_deployed_source_checkpoint": true
+}

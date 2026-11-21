@@ -1,0 +1,253 @@
+{
+  "status": "VERIFIED",
+  "completed_sha256": "37112521a50d2db72fd726d9ae267f8d310a9adf69f243862d46ff6676707b49",
+  "audit_sha256": "25a030c1a09b36b376613c43cbb666aa96fa8f04a076a6411ac8ee50b5934855",
+  "independently_recounted_shots": 1440,
+  "sampled_cuda_replays": [
+    {
+      "shot": 54157,
+      "curves": 2,
+      "exact": true
+    },
+    {
+      "shot": 61065,
+      "curves": 2,
+      "exact": true
+    },
+    {
+      "shot": 61638,
+      "curves": 2,
+      "exact": true
+    },
+    {
+      "shot": 69454,
+      "curves": 2,
+      "exact": true
+    },
+    {
+      "shot": 69768,
+      "curves": 2,
+      "exact": true
+    },
+    {
+      "shot": 73669,
+      "curves": 2,
+      "exact": true
+    },
+    {
+      "shot": 75135,
+      "curves": 2,
+      "exact": true
+    },
+    {
+      "shot": 87009,
+      "curves": 2,
+      "exact": true
+    },
+    {
+      "shot": 96375,
+      "curves": 2,
+      "exact": true
+    }
+  ],
+  "full_independent_reinference": false,
+  "parent_unchanged": true,
+  "update_summary": {
+    "local_reset": {
+      "steps": 11301,
+      "nonzero": 11301,
+      "loss_decreased": 11301,
+      "absolute_logit_increased": 11301,
+      "negative_logit_steps": 10376,
+      "max_step": 0.001000008277470071,
+      "parent_distances_summary": {
+        "min": 4.852912878349122e-05,
+        "median": 0.0009999999317398956,
+        "max": 0.001000008277470071
+      },
+      "update_interval_ms_summary": {
+        "min": 127.99999999999656,
+        "median": 128.0000000000001,
+        "max": 128.00000000000188
+      }
+    },
+    "cumulative": {
+      "steps": 11301,
+      "nonzero": 11301,
+      "loss_decreased": 11301,
+      "absolute_logit_increased": 11301,
+      "negative_logit_steps": 10630,
+      "max_step": 0.0010000089692437633,
+      "parent_distances_summary": {
+        "min": 8.648630824028116e-05,
+        "median": 0.014782876912637511,
+        "max": 0.07236273980173522
+      },
+      "update_interval_ms_summary": {
+        "min": 127.99999999999656,
+        "median": 128.0000000000001,
+        "max": 128.00000000000188
+      }
+    }
+  },
+  "paired_flips": {
+    "forecast": {
+      "rescued_timely": [
+        69768
+      ],
+      "lost_timely": [
+        61638,
+        73669,
+        77302
+      ],
+      "removed_fp": [
+        61065
+      ],
+      "added_fp": [
+        87009,
+        93306,
+        94422
+      ]
+    },
+    "local_reset": {
+      "rescued_timely": [
+        69768,
+        74087
+      ],
+      "lost_timely": [
+        73669,
+        94803
+      ],
+      "removed_fp": [
+        61065
+      ],
+      "added_fp": [
+        87009,
+        93306
+      ]
+    },
+    "cumulative": {
+      "rescued_timely": [
+        69454
+      ],
+      "lost_timely": [
+        61638,
+        65023,
+        66116,
+        68309,
+        71370,
+        73669,
+        74826,
+        77302,
+        77782,
+        79899,
+        81406,
+        85526,
+        85683,
+        90321,
+        93112,
+        94803,
+        95770
+      ],
+      "removed_fp": [
+        61065,
+        61474,
+        77628,
+        77901,
+        78722,
+        79580,
+        80801,
+        82834,
+        83376,
+        91064,
+        94274,
+        94361,
+        94363,
+        94395
+      ],
+      "added_fp": []
+    }
+  },
+  "preupdate_unremovable_false_alarms": [
+    59940,
+    64562,
+    70404,
+    83438,
+    85123,
+    85599,
+    87689,
+    87847,
+    93983
+  ],
+  "descriptive_wilson95": {
+    "static": {
+      "tp": 126,
+      "fp": 30,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tpr": 0.7,
+      "fpr": 0.16666666666666666,
+      "J": 0.5333333333333333,
+      "tpr_wilson95": [
+        0.6294468133268561,
+        0.7621949875044985
+      ],
+      "fpr_wilson95": [
+        0.11931179926281874,
+        0.22795186601825654
+      ]
+    },
+    "forecast": {
+      "tp": 124,
+      "fp": 32,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tpr": 0.6888888888888889,
+      "fpr": 0.17777777777777778,
+      "J": 0.5111111111111111,
+      "tpr_wilson95": [
+        0.6179052403139406,
+        0.7519786826934499
+      ],
+      "fpr_wilson95": [
+        0.12883593460378476,
+        0.24018560850125473
+      ]
+    },
+    "local_reset": {
+      "tp": 126,
+      "fp": 31,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tpr": 0.7,
+      "fpr": 0.17222222222222222,
+      "J": 0.5277777777777777,
+      "tpr_wilson95": [
+        0.6294468133268561,
+        0.7621949875044985
+      ],
+      "fpr_wilson95": [
+        0.12406395536443111,
+        0.23407864882862628
+      ]
+    },
+    "cumulative": {
+      "tp": 110,
+      "fp": 16,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tpr": 0.6111111111111112,
+      "fpr": 0.08888888888888889,
+      "J": 0.5222222222222223,
+      "tpr_wilson95": [
+        0.5382819727491671,
+        0.6792968054904746
+      ],
+      "fpr_wilson95": [
+        0.05545460269973843,
+        0.13950391781358787
+      ]
+    }
+  },
+  "caveat": "development-selected deterministic single parent; intervals descriptive, not independent future confirmation"
+}

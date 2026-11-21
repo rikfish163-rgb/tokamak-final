@@ -1,0 +1,92 @@
+{
+  "base_bitwise_unchanged": true,
+  "east_data_used": false,
+  "source_head_sha256": {
+    "signal": "01c1d0f3f1fe57eac2789a74959b3039efc87a073ac86ffe8620865bfcd54116",
+    "risk_embedding": "9a243570a00d26f0c301208df8b6884d2d54f43fb349f40ae8b301dcdcc51452",
+    "risk_ffn": "14c3dffa1363516dfeed724510e2b4df17da3d6fd54ee2666e1ab2434b10d80b"
+  },
+  "elapsed_seconds": 68.16749238600096,
+  "screens": {
+    "signal": {
+      "passed": false,
+      "n": 128,
+      "before": 1.0354112320237618,
+      "after": 1.0951615674057393,
+      "classes": {
+        "0": {
+          "n": 53,
+          "before": 0.040793793381385085,
+          "after": 0.11620543812805752
+        },
+        "1": {
+          "n": 75,
+          "before": 1.738274221997708,
+          "after": 1.786957232095301
+        }
+      },
+      "criterion": "paired mean BCE decreases >1e-6 and neither endpoint-label class worsens >1e-6",
+      "not_a_whole_shot_or_EAST_gain": true
+    },
+    "risk_embedding": {
+      "passed": false,
+      "n": 128,
+      "before": 1.0354112320237618,
+      "after": 0.9595267280747066,
+      "classes": {
+        "0": {
+          "n": 53,
+          "before": 0.040793793381385085,
+          "after": 0.2080852265627879
+        },
+        "1": {
+          "n": 75,
+          "before": 1.738274221997708,
+          "after": 1.4905453891431293
+        }
+      },
+      "criterion": "paired mean BCE decreases >1e-6 and neither endpoint-label class worsens >1e-6",
+      "not_a_whole_shot_or_EAST_gain": true
+    },
+    "risk_ffn": {
+      "passed": false,
+      "n": 128,
+      "before": 1.0354112320237618,
+      "after": 1.0334635795443319,
+      "classes": {
+        "0": {
+          "n": 53,
+          "before": 0.040793793381385085,
+          "after": 0.04165716666095662
+        },
+        "1": {
+          "n": 75,
+          "before": 1.738274221997708,
+          "after": 1.7343401113152503
+        }
+      },
+      "criterion": "paired mean BCE decreases >1e-6 and neither endpoint-label class worsens >1e-6",
+      "not_a_whole_shot_or_EAST_gain": true
+    },
+    "signal_ffn": {
+      "passed": false,
+      "n": 128,
+      "before": 1.0354112320237618,
+      "after": 1.035067663371592,
+      "classes": {
+        "0": {
+          "n": 53,
+          "before": 0.040793793381385085,
+          "after": 0.041211687168985045
+        },
+        "1": {
+          "n": 75,
+          "before": 1.738274221997708,
+          "after": 1.7373925532214343
+        }
+      },
+      "criterion": "paired mean BCE decreases >1e-6 and neither endpoint-label class worsens >1e-6",
+      "not_a_whole_shot_or_EAST_gain": true
+    }
+  }
+}

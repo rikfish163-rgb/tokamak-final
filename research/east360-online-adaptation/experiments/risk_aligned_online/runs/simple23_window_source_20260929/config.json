@@ -1,0 +1,26 @@
+{
+  "output": "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/runs/simple23_window_source_20260929",
+  "epochs": 30,
+  "steps": 256,
+  "batch_size": 64,
+  "forecast_steps": 256,
+  "seed": 131,
+  "val_fpr_cap": 0.1,
+  "input_view": "window",
+  "format": "simple23-v1",
+  "label": "max(25ms,AdvancedTime)",
+  "mode": "supervised_then_frozen_forecast",
+  "roles": {
+    "train": 1353,
+    "val": 160,
+    "test": 220
+  },
+  "split_sha256": "b97fda3853e756b1f4a2a6778c48137fe642276ed0b39c49a1b0834c47856bb1",
+  "evidence": "DEVELOPMENT_ONLY",
+  "code_sha256": {
+    "simple23.py": "878575cb06f483040d4d05a0e8ed2e5a8baa1e595fb92365b7e3d7f1ec3452ed",
+    "simple_train.py": "80d452436c5d6212905a856701e030a3a76647064fa996a9ec563b7a4037258a",
+    "simple_data.py": "751ee1f34410ca2fe1caf7f58a99549a9e9334e6287d3330b8a8d965c45f70fa",
+    "io23.py": "99ad1ff56e2cf50556d96b8fba9834be23734e1d13b91639edc02e8d6679d26a"
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "status": "INDEPENDENT_HDF5_RECOUNT",
+  "first_alarms": 5400,
+  "counts": {
+    "0.1": {
+      "parent": [
+        93,
+        12
+      ],
+      "fixed": [
+        95,
+        12
+      ],
+      "real": [
+        96,
+        12
+      ],
+      "shifted": [
+        95,
+        12
+      ],
+      "lag": [
+        96,
+        12
+      ]
+    },
+    "0.15": {
+      "parent": [
+        93,
+        12
+      ],
+      "fixed": [
+        95,
+        12
+      ],
+      "real": [
+        96,
+        12
+      ],
+      "shifted": [
+        95,
+        12
+      ],
+      "lag": [
+        96,
+        12
+      ]
+    },
+    "0.2": {
+      "parent": [
+        130,
+        29
+      ],
+      "fixed": [
+        125,
+        27
+      ],
+      "real": [
+        124,
+        27
+      ],
+      "shifted": [
+        125,
+        27
+      ],
+      "lag": [
+        124,
+        27
+      ]
+    }
+  },
+  "curve_points_different": {
+    "real_minus_fixed": 1371525,
+    "shifted_minus_fixed": 1371504,
+    "real_minus_shifted": 1371505,
+    "real_minus_lag": 1360632
+  },
+  "max_curve_diff": {
+    "real_minus_fixed": 0.05634903907775879,
+    "shifted_minus_fixed": 0.02683568000793457,
+    "real_minus_shifted": 0.046185463666915894,
+    "real_minus_lag": 0.020105093717575073
+  },
+  "median_peak_delta": {
+    "disruptive": 1.7702579498291016e-05,
+    "safe": 0.0
+  },
+  "main_flips": [
+    {
+      "shot": 64835,
+      "disruptive": true,
+      "peaks": {
+        "fixed": 0.5765348076820374,
+        "real": 0.5745537281036377,
+        "shifted": 0.5765575766563416
+      },
+      "operational_flags": {
+        "fixed": true,
+        "real": false,
+        "shifted": true
+      },
+      "leads": {
+        "fixed": 31.0,
+        "real": 29.0,
+        "shifted": 31.0
+      }
+    }
+  ],
+  "lead_definition_sensitivity": {
+    "parent": {
+      "at_least_20ms": 138,
+      "strictly_over_30ms": 130
+    },
+    "fixed": {
+      "at_least_20ms": 132,
+      "strictly_over_30ms": 125
+    },
+    "real": {
+      "at_least_20ms": 132,
+      "strictly_over_30ms": 124
+    },
+    "shifted": {
+      "at_least_20ms": 132,
+      "strictly_over_30ms": 125
+    },
+    "lag": {
+      "at_least_20ms": 132,
+      "strictly_over_30ms": 124
+    }
+  }
+}

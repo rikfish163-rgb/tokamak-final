@@ -1,0 +1,161 @@
+{
+  "status": "COMPLETED_RISK_CONDITIONED_GEOMETRIC_SCREEN",
+  "real": {
+    "groups": {
+      "class0": {
+        "n_total": 76,
+        "n_shots": 20,
+        "before_defined": 76,
+        "before_mean_cosine": -0.008635125668647032,
+        "before_positive_fraction": 0.52,
+        "after_defined": 76,
+        "after_mean_cosine": -0.0002578120556092411,
+        "after_positive_fraction": 0.515,
+        "gain": 0.008377313613037791
+      },
+      "class1": {
+        "n_total": 24,
+        "n_shots": 8,
+        "before_defined": 24,
+        "before_mean_cosine": 0.031707412307531754,
+        "before_positive_fraction": 0.5833333333333333,
+        "after_defined": 24,
+        "after_mean_cosine": 0.03510550258667518,
+        "after_positive_fraction": 0.6666666666666666,
+        "gain": 0.003398090279143423
+      },
+      "safe": {
+        "n_total": 60,
+        "n_shots": 12,
+        "before_defined": 60,
+        "before_mean_cosine": 0.005186302379834911,
+        "before_positive_fraction": 0.5333333333333333,
+        "after_defined": 60,
+        "after_mean_cosine": 0.013616396921089883,
+        "after_positive_fraction": 0.5666666666666668,
+        "gain": 0.00843009454125497
+      }
+    },
+    "gates": {
+      "coverage": true,
+      "class0": false,
+      "class1": false,
+      "safe": true,
+      "passed": false
+    }
+  },
+  "reverse_same_weights": {
+    "groups": {
+      "class0": {
+        "n_total": 76,
+        "n_shots": 20,
+        "before_defined": 76,
+        "before_mean_cosine": 0.012076890760404082,
+        "before_positive_fraction": 0.6,
+        "after_defined": 76,
+        "after_mean_cosine": 0.01450302999281193,
+        "after_positive_fraction": 0.52,
+        "gain": 0.002426139232407849
+      },
+      "class1": {
+        "n_total": 24,
+        "n_shots": 8,
+        "before_defined": 24,
+        "before_mean_cosine": -0.02921869454081211,
+        "before_positive_fraction": 0.29166666666666663,
+        "after_defined": 24,
+        "after_mean_cosine": -0.03601320256790354,
+        "after_positive_fraction": 0.20833333333333331,
+        "gain": -0.0067945080270914275
+      },
+      "safe": {
+        "n_total": 60,
+        "n_shots": 12,
+        "before_defined": 60,
+        "before_mean_cosine": 0.0069289638157104495,
+        "before_positive_fraction": 0.5833333333333334,
+        "after_defined": 60,
+        "after_mean_cosine": 0.011828493956097955,
+        "after_positive_fraction": 0.5333333333333333,
+        "gain": 0.0048995301403875055
+      }
+    },
+    "gates": {
+      "coverage": true,
+      "class0": false,
+      "class1": false,
+      "safe": true,
+      "passed": false
+    }
+  },
+  "constant_condition": {
+    "groups": {
+      "class0": {
+        "n_total": 76,
+        "n_shots": 20,
+        "before_defined": 76,
+        "before_mean_cosine": -0.008635125668647032,
+        "before_positive_fraction": 0.52,
+        "after_defined": 76,
+        "after_mean_cosine": 0.0037148407073728496,
+        "after_positive_fraction": 0.5050000000000001,
+        "gain": 0.012349966376019882
+      },
+      "class1": {
+        "n_total": 24,
+        "n_shots": 8,
+        "before_defined": 24,
+        "before_mean_cosine": 0.031707412307531754,
+        "before_positive_fraction": 0.5833333333333333,
+        "after_defined": 24,
+        "after_mean_cosine": 0.04018547673152255,
+        "after_positive_fraction": 0.7083333333333333,
+        "gain": 0.008478064423990794
+      },
+      "safe": {
+        "n_total": 60,
+        "n_shots": 12,
+        "before_defined": 60,
+        "before_mean_cosine": 0.005186302379834911,
+        "before_positive_fraction": 0.5333333333333333,
+        "after_defined": 60,
+        "after_mean_cosine": 0.013073509644723666,
+        "after_positive_fraction": 0.55,
+        "gain": 0.007887207264888754
+      }
+    },
+    "gates": {
+      "coverage": true,
+      "class0": true,
+      "class1": false,
+      "safe": true,
+      "passed": false
+    }
+  },
+  "real_minus_constant_after": {
+    "class1": -0.005079974144847371,
+    "safe": 0.000542887276366217
+  },
+  "conditioning_gate": false,
+  "condition_quantiles": [
+    0.006796372588723898,
+    0.06159324757754803,
+    0.278003066778183,
+    0.7874957025051117,
+    0.9860357046127319
+  ],
+  "ready_for_neural_probe": false,
+  "method_promoted": false,
+  "online_gain_measured": false,
+  "independent_future_confirmation": false,
+  "full_fit_used_for_validation": false,
+  "scientific_goal_achieved": false,
+  "artifact_sha256": {
+    "folds.json": "31d514d60bef2e91f58e730333dcd8998cbd94ea2890230c82c354c321d58df7",
+    "held_real.json": "4d7cf918f9d16adccee8f356f1e82bd2ab6ddea7df23654c82631236fa6e5f91",
+    "held_reverse.json": "cc3eb8f844c493eedea9d0fd97a8d69fcc961333dca6d21b0600c44be00e99f2",
+    "held_constant.json": "2432d0e5126ff7a0b604eb89b932a138cfef03e0d561f411fa4ac867d570a8bd",
+    "full_fit.json": "0b0fb9be13ddbc80fd113df2e6c6ee4a2f733bef6cc33f4952bdbbed47fd4649"
+  },
+  "seconds": 2.054292056000122
+}

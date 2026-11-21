@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-22",
+  "scope": "Additional primary-text checks for paired-feedback and sequential sampling controls; not a claim of 100 fully read papers.",
+  "records": [
+    {
+      "key": "chen2023itta",
+      "title": "Improved Test-Time Adaptation for Domain Generalization",
+      "venue": "CVPR 2023",
+      "url": "https://arxiv.org/html/2304.04494v2",
+      "read_scope": "Abstract, introduction, sections 3.1 and 3.2 including algorithms 1 and 2.",
+      "used_for": "Test whether an auxiliary update is aligned with the prediction objective; inspect which internal parameters are adapted.",
+      "boundary": "Image-domain method. Current completion decoder and original-encoder updates are not an exact ITTA reproduction and have no inherited EAST performance guarantee."
+    },
+    {
+      "key": "shen2024sampling",
+      "title": "Cross-tokamak disruption prediction based on domain adaptation",
+      "doi": "10.1088/1741-4326/ad3e12",
+      "url": "https://arxiv.org/pdf/2309.05361",
+      "read_scope": "This round: abstract, introduction and section 3.1 labeling and negative sampling; previous feature, split and normalization checks retained separately.",
+      "used_for": "Motivated explicit negative-sampling controls: fixed-window positives from disruptive shots, negative examples from safe shots.",
+      "boundary": "Paper fixed J-TEXT 25 ms differs from current max(25 ms, AdvancedTime); sampling difference is a hypothesis to test, not proof of a code bug."
+    },
+    {
+      "key": "paper131_sampling_physics",
+      "local": "docs/literature/paper_131.txt",
+      "document_type_observed": "HUST doctoral dissertation",
+      "read_scope": "Sections 3.3.2 and 4.4.1-4.4.2: moment features, dimensionless proxies and labeling.",
+      "used_for": "Disambiguate channel-array variance versus temporal variance; examine exclusion of early disruptive-shot negatives under fixed-window labels.",
+      "boundary": "Feature descriptions in the dissertation do not prove that every current HDF5 field was extracted identically. Current files lack unit metadata and extraction scripts."
+    },
+    {
+      "key": "shen2026_alignment_lead_only",
+      "title": "The role of data quality and alignment in cross-tokamak disruption prediction",
+      "doi": "10.1088/1361-6587/ae9985",
+      "url": "https://iopscience.iop.org/article/10.1088/1361-6587/ae9985",
+      "read_scope": "Bibliographic lead only; publisher full text not obtained in this round.",
+      "used_for": "Further retrieval lead only.",
+      "boundary": "No quantitative or method-specific claim based on this entry."
+    }
+  ],
+  "experiment_boundary": {
+    "F_R_P": "Initial declared arms",
+    "C": "Sequential follow-up after F/R/P outcomes",
+    "B_S": "Sequential sampling controls after literature check",
+    "all_six_source_gate": false,
+    "new_east_experiment": false
+  }
+}

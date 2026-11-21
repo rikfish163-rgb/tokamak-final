@@ -1,0 +1,128 @@
+{
+  "status": "VERIFIED",
+  "rescored_traces": 2160,
+  "replayed_full_shots": [
+    61617,
+    74990,
+    96375
+  ],
+  "replayed_full_traces": 18,
+  "max_replay_difference": 0.0,
+  "all_update_time_boundaries_valid": true,
+  "source_archive_unchanged": true,
+  "update_summary": {
+    "density": {
+      "updates": 10635,
+      "loss_decreased": 10635,
+      "step_norm_max": 0.0010000090853140825,
+      "gradient_norm_max": 7.440577030181885
+    },
+    "replay": {
+      "updates": 10635,
+      "loss_decreased": 10635,
+      "step_norm_max": 0.0010000094353060443,
+      "gradient_norm_max": 9.138376235961914
+    },
+    "coral": {
+      "updates": 10635,
+      "loss_decreased": 10635,
+      "step_norm_max": 0.0010000106846615885,
+      "gradient_norm_max": 8.366768836975098
+    }
+  },
+  "paired_comparisons": {
+    "density_static_to_intra": {
+      "rescued_timely": [
+        74970
+      ],
+      "lost_timely": [
+        73421
+      ],
+      "removed_fp": [
+        67900
+      ],
+      "added_fp": [
+        83376,
+        85599,
+        87847
+      ]
+    },
+    "replay_static_to_intra": {
+      "rescued_timely": [],
+      "lost_timely": [
+        73403,
+        73405
+      ],
+      "removed_fp": [
+        70323
+      ],
+      "added_fp": [
+        83376,
+        87847,
+        93306
+      ]
+    },
+    "coral_static_to_intra": {
+      "rescued_timely": [
+        63566,
+        78668,
+        85526,
+        94803
+      ],
+      "lost_timely": [],
+      "removed_fp": [],
+      "added_fp": [
+        83376,
+        85316,
+        87847,
+        89721,
+        91064,
+        94428
+      ]
+    },
+    "replay_static_to_coral_static": {
+      "rescued_timely": [
+        63656,
+        63690,
+        70327,
+        76956,
+        77782,
+        77788,
+        79712,
+        85023
+      ],
+      "lost_timely": [
+        69768,
+        69791,
+        78668,
+        85526
+      ],
+      "removed_fp": [
+        70323,
+        75135,
+        80801,
+        91064
+      ],
+      "added_fp": [
+        62394,
+        73969,
+        77835,
+        80053,
+        87363,
+        88135,
+        90166,
+        93306,
+        94363,
+        94402
+      ]
+    }
+  },
+  "very_early_over3000ms": {
+    "density_static": 17,
+    "density_intra": 15,
+    "replay_static": 21,
+    "replay_intra": 19,
+    "coral_static": 23,
+    "coral_intra": 23
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "status": "STOPPED_BY_NUMERICAL_PARITY_ASSERTION",
+  "sealed_shots": 334,
+  "first_unsealed_shot": 94258,
+  "reason": "Batch64 or arm-concatenated GEMM differs from archived batch32 at a threshold crossing; this incomplete run is not reported as a completed experiment.",
+  "probe": {
+    "batch32_risk_max_abs_error": 0.0,
+    "batch32_risk_state_max_abs_error": 0.0,
+    "batch64_max_abs_error": 3.5762786865234375e-7,
+    "different_crossing_index": 820,
+    "batch64_probability": 0.7258945107460022,
+    "reference_probability": 0.7258947491645813,
+    "threshold": 0.7258946895599365
+  },
+  "action": "Keep this directory unchanged; rerun all arms in a new directory using separate batch32 forwards; do not loosen threshold-crossing verification."
+}

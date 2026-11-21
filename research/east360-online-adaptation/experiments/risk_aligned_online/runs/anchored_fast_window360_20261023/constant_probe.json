@@ -1,0 +1,53 @@
+{
+  "scope": "POST_HOC_DIAGNOSTIC_ONLY; every128th full past window; no outcomes, no fitting, not TPR/FPR",
+  "intervention": "constant means only in auxiliary coordinates; real prediction h/q unchanged; mask unchanged",
+  "windows": 11664,
+  "shots": 360,
+  "zero_reference_writes": 0,
+  "constant_write_norm_ratio_quantiles": [
+    0.9937588155269623,
+    1.3077172636985779,
+    2.352117729187012
+  ],
+  "median_shot_median_write_ratio": 1.338299572467804,
+  "cosine_quantiles": [
+    0.7795491516590118,
+    0.9589737057685852,
+    0.9951543152332306
+  ],
+  "score_summary": {
+    "parent": {
+      "median": 0.010661384090781212,
+      "fraction_sampled_points_over_threshold": 0.08084705075445817
+    },
+    "actual": {
+      "median": 0.0036443229764699936,
+      "fraction_sampled_points_over_threshold": 0.07896090534979423
+    },
+    "constant": {
+      "median": 0.0034799035638570786,
+      "fraction_sampled_points_over_threshold": 0.07853223593964334
+    },
+    "matched_constant": {
+      "median": 0.0035969195887446404,
+      "fraction_sampled_points_over_threshold": 0.07964677640603567
+    }
+  },
+  "absolute_probability_change_quantiles": {
+    "constant": [
+      5.7408120483160016e-06,
+      9.836629033088684e-05,
+      0.0015051657101139426
+    ],
+    "matched_constant": [
+      2.4460954591631884e-06,
+      3.101432230323553e-05,
+      0.0007032360183075071
+    ]
+  },
+  "completed_sha256": "0b04c565ece85653f8a3d5657c7db91cd210ada1842b3a64e5cf753f15e95b99",
+  "checkpoint_sha256": "6a934c48a212778c24bc0479666eb7df68b0bf27d23bb9b018f647842deb6eeb",
+  "code_sha256": "4b8d2238c2892f03510c960e5b37a14dfc7f39c45b0efaa2b63c481b47ae0eb8",
+  "source_unchanged": true,
+  "arrays_sha256": "29a04af6d71aa5418fa10eb3051fc2f87ae7c58f41e19bcc7698fdfd570ee90c"
+}

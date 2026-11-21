@@ -1,0 +1,254 @@
+{
+  "status": "PASS_RECOUNT_LOCKED_POINT_ATTRIBUTION",
+  "recomputed_suffix_curves": 1300,
+  "reference_prefix_shots": 100,
+  "all_locked_real_curves_exact": true,
+  "full360": {
+    "static": {
+      "n_disruptive": 180,
+      "n_safe": 180,
+      "tp": 116,
+      "fp": 29,
+      "tpr": 0.6444444444444445,
+      "fpr": 0.16111111111111112,
+      "j": 0.4833333333333334,
+      "early_over3000": 16,
+      "tp_30_to_3000": 100
+    },
+    "point_real": {
+      "n_disruptive": 180,
+      "n_safe": 180,
+      "tp": 119,
+      "fp": 31,
+      "tpr": 0.6611111111111111,
+      "fpr": 0.17222222222222222,
+      "j": 0.4888888888888889,
+      "early_over3000": 16,
+      "tp_30_to_3000": 103
+    },
+    "point_lagged": {
+      "n_disruptive": 180,
+      "n_safe": 180,
+      "tp": 119,
+      "fp": 31,
+      "tpr": 0.6611111111111111,
+      "fpr": 0.17222222222222222,
+      "j": 0.4888888888888889,
+      "early_over3000": 16,
+      "tp_30_to_3000": 103
+    },
+    "point_reversed": {
+      "n_disruptive": 180,
+      "n_safe": 180,
+      "tp": 116,
+      "fp": 31,
+      "tpr": 0.6444444444444445,
+      "fpr": 0.17222222222222222,
+      "j": 0.47222222222222227,
+      "early_over3000": 17,
+      "tp_30_to_3000": 99
+    },
+    "point_state": {
+      "n_disruptive": 180,
+      "n_safe": 180,
+      "tp": 110,
+      "fp": 28,
+      "tpr": 0.6111111111111112,
+      "fpr": 0.15555555555555556,
+      "j": 0.4555555555555556,
+      "early_over3000": 16,
+      "tp_30_to_3000": 94
+    }
+  },
+  "suffix260": {
+    "static": {
+      "n_disruptive": 113,
+      "n_safe": 147,
+      "tp": 82,
+      "fp": 20,
+      "tpr": 0.7256637168141593,
+      "fpr": 0.1360544217687075,
+      "j": 0.5896092950454518,
+      "early_over3000": 12,
+      "tp_30_to_3000": 70
+    },
+    "point_real": {
+      "n_disruptive": 113,
+      "n_safe": 147,
+      "tp": 85,
+      "fp": 22,
+      "tpr": 0.7522123893805309,
+      "fpr": 0.14965986394557823,
+      "j": 0.6025525254349526,
+      "early_over3000": 12,
+      "tp_30_to_3000": 73
+    },
+    "point_lagged": {
+      "n_disruptive": 113,
+      "n_safe": 147,
+      "tp": 85,
+      "fp": 22,
+      "tpr": 0.7522123893805309,
+      "fpr": 0.14965986394557823,
+      "j": 0.6025525254349526,
+      "early_over3000": 12,
+      "tp_30_to_3000": 73
+    },
+    "point_reversed": {
+      "n_disruptive": 113,
+      "n_safe": 147,
+      "tp": 82,
+      "fp": 22,
+      "tpr": 0.7256637168141593,
+      "fpr": 0.14965986394557823,
+      "j": 0.5760038528685811,
+      "early_over3000": 13,
+      "tp_30_to_3000": 69
+    },
+    "point_state": {
+      "n_disruptive": 113,
+      "n_safe": 147,
+      "tp": 76,
+      "fp": 19,
+      "tpr": 0.672566371681416,
+      "fpr": 0.1292517006802721,
+      "j": 0.5433146710011438,
+      "early_over3000": 12,
+      "tp_30_to_3000": 64
+    }
+  },
+  "paired": {
+    "static": {
+      "tp_gained": [
+        71013,
+        74970,
+        75603
+      ],
+      "tp_lost": [],
+      "fp_added": [
+        75226,
+        85599
+      ],
+      "fp_removed": []
+    },
+    "point_lagged": {
+      "tp_gained": [],
+      "tp_lost": [],
+      "fp_added": [
+        85599
+      ],
+      "fp_removed": [
+        75135
+      ]
+    },
+    "point_reversed": {
+      "tp_gained": [
+        79354,
+        71013,
+        75603
+      ],
+      "tp_lost": [],
+      "fp_added": [
+        85599
+      ],
+      "fp_removed": [
+        75135
+      ]
+    },
+    "point_state": {
+      "tp_gained": [
+        79354,
+        73597,
+        95770,
+        71013,
+        78668,
+        74970,
+        75603,
+        85526,
+        74663
+      ],
+      "tp_lost": [],
+      "fp_added": [
+        75226,
+        67900,
+        85599
+      ],
+      "fp_removed": []
+    }
+  },
+  "paired_capped": {
+    "static": {
+      "tp_gained": [
+        71013,
+        74970,
+        75603
+      ],
+      "tp_lost": [],
+      "fp_added": [
+        75226,
+        85599
+      ],
+      "fp_removed": []
+    },
+    "point_lagged": {
+      "tp_gained": [],
+      "tp_lost": [],
+      "fp_added": [
+        85599
+      ],
+      "fp_removed": [
+        75135
+      ]
+    },
+    "point_reversed": {
+      "tp_gained": [
+        79354,
+        71013,
+        75603,
+        85526
+      ],
+      "tp_lost": [],
+      "fp_added": [
+        85599
+      ],
+      "fp_removed": [
+        75135
+      ]
+    },
+    "point_state": {
+      "tp_gained": [
+        79354,
+        73597,
+        95770,
+        71013,
+        78668,
+        74970,
+        75603,
+        85526,
+        74663
+      ],
+      "tp_lost": [],
+      "fp_added": [
+        75226,
+        67900,
+        85599
+      ],
+      "fp_removed": []
+    }
+  },
+  "norm_mismatches": {
+    "trajectory_lagged": 0,
+    "trajectory_reversed": 0,
+    "trajectory_state": 0
+  },
+  "temporary_nonzero_arrivals": {
+    "point_real": 35832,
+    "trajectory_real": 35832,
+    "trajectory_lagged": 35832,
+    "trajectory_reversed": 35832,
+    "trajectory_state": 35832
+  },
+  "hdf5_metadata_sha256": "286f838542f5186be61696485bd3952fda66bcacc72a32a27f72a96971ea79b1",
+  "auditor_sha256": "ee7ffeea9904a950020cb6fda30bd22420314e1b7bab093b04c2ddb496d39b7e",
+  "producer_completion_sha256": "8b9127f66cc00b2f9b9cab726378c620fafa7bd625c42bb61fee89786cff19f2"
+}

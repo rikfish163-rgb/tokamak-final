@@ -1,0 +1,102 @@
+{
+  "future_timely_timepoints": 1615,
+  "future_timely_points_origin_over_125_ms": 638,
+  "future_timely_points_origin_eligible": 977,
+  "future_timely_episodes_origin_over_125_ms": 34,
+  "future_timely_episodes_origin_eligible": 46,
+  "future_timely_points_origin_other_ineligible": 0,
+  "shots_with_future_timely_points_origin_over_125_ms": [
+    69454,
+    69458,
+    69765,
+    69768,
+    69781,
+    69791,
+    69854,
+    69855,
+    69859,
+    70327,
+    70418,
+    70861,
+    71265,
+    71304,
+    71370,
+    71415,
+    74087
+  ],
+  "restricted_groups": {
+    "real": {
+      "danger_timely": {
+        "shots": 17,
+        "windows": 46,
+        "timepoints": 977,
+        "mean_delta_bce": 0.04660445150330624,
+        "median_delta_bce": 0.006352986091671886,
+        "improved": 0,
+        "worsened": 17,
+        "unchanged": 0
+      },
+      "safe": {
+        "shots": 3,
+        "windows": 527,
+        "timepoints": 13175,
+        "mean_delta_bce": -0.03644510721200444,
+        "median_delta_bce": -0.035227903679225854,
+        "improved": 3,
+        "worsened": 0,
+        "unchanged": 0
+      }
+    },
+    "misplaced": {
+      "danger_timely": {
+        "shots": 17,
+        "windows": 46,
+        "timepoints": 977,
+        "mean_delta_bce": -0.17116153342686913,
+        "median_delta_bce": -0.24382369792100883,
+        "improved": 11,
+        "worsened": 6,
+        "unchanged": 0
+      },
+      "safe": {
+        "shots": 3,
+        "windows": 527,
+        "timepoints": 13175,
+        "mean_delta_bce": -0.03168387522850369,
+        "median_delta_bce": -0.035227903679225854,
+        "improved": 2,
+        "worsened": 1,
+        "unchanged": 0
+      }
+    },
+    "identical": {
+      "danger_timely": {
+        "shots": 17,
+        "windows": 46,
+        "timepoints": 977,
+        "mean_delta_bce": 0.0,
+        "median_delta_bce": 0.0,
+        "improved": 0,
+        "worsened": 0,
+        "unchanged": 17
+      },
+      "safe": {
+        "shots": 3,
+        "windows": 527,
+        "timepoints": 13175,
+        "mean_delta_bce": 0.0,
+        "median_delta_bce": 0.0,
+        "improved": 0,
+        "worsened": 0,
+        "unchanged": 3
+      }
+    }
+  },
+  "restricted_gate": {
+    "eligible": false,
+    "failed_groups": [
+      "danger_timely"
+    ]
+  },
+  "note": "Exploratory intersection of the plan's origin/arrival rule and the archived future-time group; not the published gate."
+}

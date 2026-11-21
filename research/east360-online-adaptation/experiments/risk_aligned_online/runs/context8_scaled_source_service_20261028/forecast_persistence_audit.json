@@ -1,0 +1,1699 @@
+{
+  "scope": "SOURCE_VAL160_FORECAST_DIAGNOSTIC_NOT_EAST_PERFORMANCE",
+  "model_updates": 0,
+  "east_records_read": 0,
+  "test220_records_read": 0,
+  "baseline": "hold last observed normalized diagnostic patch, zero future increment",
+  "metric": "TRAIN-scaled squared increment error; identical weighted observed denominator",
+  "aggregation": "each shot equally weighted; ratio excludes exact zero baseline explicitly",
+  "trained_errors": "recorded source epoch evaluations, not newly rerun",
+  "input_hashes": {
+    "protocol.json": "e88dec3850c9b9455842cef72fb5ca44eec5141516aa2e7cfeb4c32e07c9f481",
+    "complete.json": "2f31140daa2b380b03526f40778d6c0e18d7ecf34d6004d3bec833f3ec7a8bc8",
+    "audit.json": "8b2ac20dc5569865bb344bdc095165cf7a28d49007009649f5439180aa472b07",
+    "val_epoch0.json": "4ed35c13e624a604d60753c8d71ffd7c1555a46408fba855825bb5f9572f7660",
+    "val_epoch1.json": "f93a0b487c96583ee4c921d1af57c06d9e447c830da5bd6d6a54105a46d7cd89",
+    "val_epoch2.json": "de0dc497c67232d7c355180111daa5980e733dd7646e77434ead410d8e55dadf"
+  },
+  "code_sha256": "65ea5a4d57110d9a939b4fa7e6ab5eefd412329d5c95dd5aac47352b544e9d9a",
+  "summary": {
+    "all": {
+      "shots": 160,
+      "statistics": {
+        "persistence": {
+          "mean": 0.025305276726430747,
+          "median": 0.017835326492786407
+        },
+        "epoch0": {
+          "mean": 0.025309326563728973,
+          "median": 0.01781891379505396
+        },
+        "epoch1": {
+          "mean": 0.025309144549828487,
+          "median": 0.01775940228253603
+        },
+        "epoch2": {
+          "mean": 0.025230338821711485,
+          "median": 0.017697183415293694
+        }
+      },
+      "epoch2_better_than_persistence": 81,
+      "epoch2_better_than_epoch0": 103,
+      "ratio_defined_shots": 160,
+      "epoch2_over_persistence_median": 0.9998814985667127
+    },
+    "D": {
+      "shots": 80,
+      "statistics": {
+        "persistence": {
+          "mean": 0.03396115289651789,
+          "median": 0.024746568873524666
+        },
+        "epoch0": {
+          "mean": 0.033949050260707735,
+          "median": 0.024755246937274933
+        },
+        "epoch1": {
+          "mean": 0.03393712615943514,
+          "median": 0.02475577127188444
+        },
+        "epoch2": {
+          "mean": 0.033783893325016835,
+          "median": 0.02480818424373865
+        }
+      },
+      "epoch2_better_than_persistence": 53,
+      "epoch2_better_than_epoch0": 57,
+      "ratio_defined_shots": 80,
+      "epoch2_over_persistence_median": 0.9982135189265215
+    },
+    "S": {
+      "shots": 80,
+      "statistics": {
+        "persistence": {
+          "mean": 0.01664940055634361,
+          "median": 0.010713688097894192
+        },
+        "epoch0": {
+          "mean": 0.016669602866750212,
+          "median": 0.01072683883830905
+        },
+        "epoch1": {
+          "mean": 0.016681162940221837,
+          "median": 0.010741354431957006
+        },
+        "epoch2": {
+          "mean": 0.016676784318406135,
+          "median": 0.010744220577180386
+        }
+      },
+      "epoch2_better_than_persistence": 28,
+      "epoch2_better_than_epoch0": 46,
+      "ratio_defined_shots": 80,
+      "epoch2_over_persistence_median": 1.0014852942475492
+    }
+  },
+  "shots": [
+    {
+      "shot": 1051509,
+      "disruptive": true,
+      "persistence": 0.05376088246703148,
+      "epoch0": 0.05378619581460953,
+      "epoch1": 0.053737346082925797,
+      "epoch2": 0.05374579131603241,
+      "unweighted_persistence": 1.5779433250427246,
+      "unweighted_epoch2": 1.5782771110534668
+    },
+    {
+      "shot": 1051525,
+      "disruptive": true,
+      "persistence": 0.05836053565144539,
+      "epoch0": 0.058239150792360306,
+      "epoch1": 0.058134302496910095,
+      "epoch2": 0.058030541986227036,
+      "unweighted_persistence": 1.7825297117233276,
+      "unweighted_epoch2": 1.7824652194976807
+    },
+    {
+      "shot": 1051571,
+      "disruptive": true,
+      "persistence": 0.014276381582021713,
+      "epoch0": 0.013898497447371483,
+      "epoch1": 0.013594756834208965,
+      "epoch2": 0.013927887193858624,
+      "unweighted_persistence": 0.16797631978988647,
+      "unweighted_epoch2": 0.16771826148033142
+    },
+    {
+      "shot": 1051592,
+      "disruptive": false,
+      "persistence": 0.002491028979420662,
+      "epoch0": 0.002492302330210805,
+      "epoch1": 0.002488422207534313,
+      "epoch2": 0.002491917461156845,
+      "unweighted_persistence": 0.007370383013039827,
+      "unweighted_epoch2": 0.007394062355160713
+    },
+    {
+      "shot": 1051764,
+      "disruptive": true,
+      "persistence": 0.019439520314335823,
+      "epoch0": 0.019455859437584877,
+      "epoch1": 0.019455738365650177,
+      "epoch2": 0.01945505104959011,
+      "unweighted_persistence": 0.14196929335594177,
+      "unweighted_epoch2": 0.14201000332832336
+    },
+    {
+      "shot": 1051769,
+      "disruptive": false,
+      "persistence": 0.003548248205333948,
+      "epoch0": 0.003549895714968443,
+      "epoch1": 0.0035496109630912542,
+      "epoch2": 0.0035542198456823826,
+      "unweighted_persistence": 0.014445352368056774,
+      "unweighted_epoch2": 0.014458932913839817
+    },
+    {
+      "shot": 1052047,
+      "disruptive": false,
+      "persistence": 0.021117256954312325,
+      "epoch0": 0.021178768947720528,
+      "epoch1": 0.02118806540966034,
+      "epoch2": 0.02118769846856594,
+      "unweighted_persistence": 0.05136614292860031,
+      "unweighted_epoch2": 0.05146513134241104
+    },
+    {
+      "shot": 1052171,
+      "disruptive": false,
+      "persistence": 0.02141696587204933,
+      "epoch0": 0.02150554582476616,
+      "epoch1": 0.02150387316942215,
+      "epoch2": 0.021493805572390556,
+      "unweighted_persistence": 0.05520813539624214,
+      "unweighted_epoch2": 0.05524774640798569
+    },
+    {
+      "shot": 1052334,
+      "disruptive": false,
+      "persistence": 0.008820521645247936,
+      "epoch0": 0.008842887356877327,
+      "epoch1": 0.008834050968289375,
+      "epoch2": 0.008819055743515491,
+      "unweighted_persistence": 0.021717768162488937,
+      "unweighted_epoch2": 0.021726202219724655
+    },
+    {
+      "shot": 1052573,
+      "disruptive": true,
+      "persistence": 0.02939162775874138,
+      "epoch0": 0.02931762859225273,
+      "epoch1": 0.029086917638778687,
+      "epoch2": 0.02857501618564129,
+      "unweighted_persistence": 0.5151964426040649,
+      "unweighted_epoch2": 0.5123783946037292
+    },
+    {
+      "shot": 1052582,
+      "disruptive": true,
+      "persistence": 0.061783336102962494,
+      "epoch0": 0.061707865446805954,
+      "epoch1": 0.061376698315143585,
+      "epoch2": 0.060945749282836914,
+      "unweighted_persistence": 1.1784569025039673,
+      "unweighted_epoch2": 1.1760307550430298
+    },
+    {
+      "shot": 1052588,
+      "disruptive": true,
+      "persistence": 0.04305124282836914,
+      "epoch0": 0.0430932454764843,
+      "epoch1": 0.04324116185307503,
+      "epoch2": 0.04361676797270775,
+      "unweighted_persistence": 0.7927465438842773,
+      "unweighted_epoch2": 0.7949895262718201
+    },
+    {
+      "shot": 1052594,
+      "disruptive": true,
+      "persistence": 0.1137455552816391,
+      "epoch0": 0.11342013627290726,
+      "epoch1": 0.11345506459474564,
+      "epoch2": 0.11195190250873566,
+      "unweighted_persistence": 2.786252975463867,
+      "unweighted_epoch2": 2.7855377197265625
+    },
+    {
+      "shot": 1052909,
+      "disruptive": false,
+      "persistence": 0.03416268154978752,
+      "epoch0": 0.034458059817552567,
+      "epoch1": 0.03443146124482155,
+      "epoch2": 0.03444645553827286,
+      "unweighted_persistence": 0.06467659771442413,
+      "unweighted_epoch2": 0.0649665892124176
+    },
+    {
+      "shot": 1052920,
+      "disruptive": true,
+      "persistence": 0.015895193442702293,
+      "epoch0": 0.01594334840774536,
+      "epoch1": 0.01593002863228321,
+      "epoch2": 0.015960870310664177,
+      "unweighted_persistence": 0.05829630792140961,
+      "unweighted_epoch2": 0.05839518830180168
+    },
+    {
+      "shot": 1052953,
+      "disruptive": true,
+      "persistence": 0.014058825559914112,
+      "epoch0": 0.014070109464228153,
+      "epoch1": 0.014041167683899403,
+      "epoch2": 0.014039681293070316,
+      "unweighted_persistence": 0.5345350503921509,
+      "unweighted_epoch2": 0.5348547697067261
+    },
+    {
+      "shot": 1052955,
+      "disruptive": true,
+      "persistence": 0.03492199629545212,
+      "epoch0": 0.03492952883243561,
+      "epoch1": 0.03488503396511078,
+      "epoch2": 0.034893691539764404,
+      "unweighted_persistence": 1.8665040731430054,
+      "unweighted_epoch2": 1.867836356163025
+    },
+    {
+      "shot": 1052960,
+      "disruptive": true,
+      "persistence": 0.013712864369153976,
+      "epoch0": 0.013737945817410946,
+      "epoch1": 0.013761904090642929,
+      "epoch2": 0.013732909224927425,
+      "unweighted_persistence": 0.15994633734226227,
+      "unweighted_epoch2": 0.1599881798028946
+    },
+    {
+      "shot": 1052964,
+      "disruptive": true,
+      "persistence": 0.008985734544694424,
+      "epoch0": 0.008986675180494785,
+      "epoch1": 0.009001554921269417,
+      "epoch2": 0.0090027479454875,
+      "unweighted_persistence": 0.07174771279096603,
+      "unweighted_epoch2": 0.07187800854444504
+    },
+    {
+      "shot": 1052966,
+      "disruptive": false,
+      "persistence": 0.031083909794688225,
+      "epoch0": 0.031088443472981453,
+      "epoch1": 0.03109808638691902,
+      "epoch2": 0.03111368604004383,
+      "unweighted_persistence": 1.5374585390090942,
+      "unweighted_epoch2": 1.5381226539611816
+    },
+    {
+      "shot": 1053129,
+      "disruptive": false,
+      "persistence": 0.029292356222867966,
+      "epoch0": 0.029373692348599434,
+      "epoch1": 0.02936450019478798,
+      "epoch2": 0.029401319101452827,
+      "unweighted_persistence": 0.08429388701915741,
+      "unweighted_epoch2": 0.08441900461912155
+    },
+    {
+      "shot": 1053131,
+      "disruptive": true,
+      "persistence": 0.05600738152861595,
+      "epoch0": 0.05598847195506096,
+      "epoch1": 0.0562920868396759,
+      "epoch2": 0.05547899380326271,
+      "unweighted_persistence": 1.6417956352233887,
+      "unweighted_epoch2": 1.6421258449554443
+    },
+    {
+      "shot": 1053189,
+      "disruptive": false,
+      "persistence": 0.009489485993981361,
+      "epoch0": 0.009476548060774803,
+      "epoch1": 0.009469294920563698,
+      "epoch2": 0.009466750547289848,
+      "unweighted_persistence": 0.02885565720498562,
+      "unweighted_epoch2": 0.028850968927145004
+    },
+    {
+      "shot": 1053220,
+      "disruptive": false,
+      "persistence": 0.007411330938339233,
+      "epoch0": 0.007447016425430775,
+      "epoch1": 0.007426092401146889,
+      "epoch2": 0.007423593197017908,
+      "unweighted_persistence": 0.01858464628458023,
+      "unweighted_epoch2": 0.018641788512468338
+    },
+    {
+      "shot": 1053232,
+      "disruptive": false,
+      "persistence": 0.022703098133206367,
+      "epoch0": 0.02272680774331093,
+      "epoch1": 0.022841619327664375,
+      "epoch2": 0.022991381585597992,
+      "unweighted_persistence": 0.5794044733047485,
+      "unweighted_epoch2": 0.5797396898269653
+    },
+    {
+      "shot": 1053263,
+      "disruptive": false,
+      "persistence": 0.009424271062016487,
+      "epoch0": 0.00943516194820404,
+      "epoch1": 0.009437155909836292,
+      "epoch2": 0.009438857436180115,
+      "unweighted_persistence": 0.026873143389821053,
+      "unweighted_epoch2": 0.02689819596707821
+    },
+    {
+      "shot": 1053267,
+      "disruptive": false,
+      "persistence": 0.010489973239600658,
+      "epoch0": 0.010503065772354603,
+      "epoch1": 0.010507991537451744,
+      "epoch2": 0.010510224848985672,
+      "unweighted_persistence": 0.027878524735569954,
+      "unweighted_epoch2": 0.027920329943299294
+    },
+    {
+      "shot": 1053602,
+      "disruptive": false,
+      "persistence": 0.025370867922902107,
+      "epoch0": 0.02538817748427391,
+      "epoch1": 0.025385143235325813,
+      "epoch2": 0.025407375767827034,
+      "unweighted_persistence": 0.0989106297492981,
+      "unweighted_epoch2": 0.09914470463991165
+    },
+    {
+      "shot": 1053633,
+      "disruptive": false,
+      "persistence": 0.00511572603136301,
+      "epoch0": 0.005095154047012329,
+      "epoch1": 0.005091262981295586,
+      "epoch2": 0.005094420164823532,
+      "unweighted_persistence": 0.016652248799800873,
+      "unweighted_epoch2": 0.016630545258522034
+    },
+    {
+      "shot": 1053719,
+      "disruptive": false,
+      "persistence": 0.009888947010040283,
+      "epoch0": 0.009898485615849495,
+      "epoch1": 0.009900610893964767,
+      "epoch2": 0.009913877584040165,
+      "unweighted_persistence": 0.04024273902177811,
+      "unweighted_epoch2": 0.04031432047486305
+    },
+    {
+      "shot": 1053782,
+      "disruptive": false,
+      "persistence": 0.030001211911439896,
+      "epoch0": 0.030233586207032204,
+      "epoch1": 0.030228424817323685,
+      "epoch2": 0.030267339199781418,
+      "unweighted_persistence": 0.07886713743209839,
+      "unweighted_epoch2": 0.07909694314002991
+    },
+    {
+      "shot": 1053826,
+      "disruptive": true,
+      "persistence": 0.013876134529709816,
+      "epoch0": 0.013903571292757988,
+      "epoch1": 0.013925826177001,
+      "epoch2": 0.013923168182373047,
+      "unweighted_persistence": 0.08982689678668976,
+      "unweighted_epoch2": 0.0897667333483696
+    },
+    {
+      "shot": 1053908,
+      "disruptive": false,
+      "persistence": 0.008377223275601864,
+      "epoch0": 0.008365866728127003,
+      "epoch1": 0.008343862369656563,
+      "epoch2": 0.008343096822500229,
+      "unweighted_persistence": 0.030162302777171135,
+      "unweighted_epoch2": 0.030159885063767433
+    },
+    {
+      "shot": 1053928,
+      "disruptive": true,
+      "persistence": 0.002886591712012887,
+      "epoch0": 0.0028915375005453825,
+      "epoch1": 0.002891198033466935,
+      "epoch2": 0.0028990984428673983,
+      "unweighted_persistence": 0.01207931898534298,
+      "unweighted_epoch2": 0.012105909176170826
+    },
+    {
+      "shot": 1053929,
+      "disruptive": true,
+      "persistence": 0.0035733056720346212,
+      "epoch0": 0.0035765075590461493,
+      "epoch1": 0.0035779622849076986,
+      "epoch2": 0.003583943471312523,
+      "unweighted_persistence": 0.014491088688373566,
+      "unweighted_epoch2": 0.014525571838021278
+    },
+    {
+      "shot": 1053990,
+      "disruptive": false,
+      "persistence": 0.010041121393442154,
+      "epoch0": 0.010067654773592949,
+      "epoch1": 0.010066784918308258,
+      "epoch2": 0.010070472955703735,
+      "unweighted_persistence": 0.03990372270345688,
+      "unweighted_epoch2": 0.039969779551029205
+    },
+    {
+      "shot": 1054063,
+      "disruptive": false,
+      "persistence": 0.02914465218782425,
+      "epoch0": 0.029206855222582817,
+      "epoch1": 0.029248656705021858,
+      "epoch2": 0.029295267537236214,
+      "unweighted_persistence": 1.0073943138122559,
+      "unweighted_epoch2": 1.0069000720977783
+    },
+    {
+      "shot": 1054177,
+      "disruptive": false,
+      "persistence": 0.02676551043987274,
+      "epoch0": 0.02691064216196537,
+      "epoch1": 0.026893265545368195,
+      "epoch2": 0.026843668892979622,
+      "unweighted_persistence": 0.031581223011016846,
+      "unweighted_epoch2": 0.03171690180897713
+    },
+    {
+      "shot": 1054187,
+      "disruptive": true,
+      "persistence": 0.03308025375008583,
+      "epoch0": 0.033069923520088196,
+      "epoch1": 0.03307082876563072,
+      "epoch2": 0.0330909788608551,
+      "unweighted_persistence": 0.40144824981689453,
+      "unweighted_epoch2": 0.4018150568008423
+    },
+    {
+      "shot": 1054188,
+      "disruptive": true,
+      "persistence": 0.021500011906027794,
+      "epoch0": 0.021523326635360718,
+      "epoch1": 0.021504845470190048,
+      "epoch2": 0.021515382453799248,
+      "unweighted_persistence": 0.19829222559928894,
+      "unweighted_epoch2": 0.1984376758337021
+    },
+    {
+      "shot": 1054214,
+      "disruptive": false,
+      "persistence": 0.029482968151569366,
+      "epoch0": 0.029517335817217827,
+      "epoch1": 0.029433026909828186,
+      "epoch2": 0.029335513710975647,
+      "unweighted_persistence": 0.7946624159812927,
+      "unweighted_epoch2": 0.7926948666572571
+    },
+    {
+      "shot": 1054218,
+      "disruptive": false,
+      "persistence": 0.006978274788707495,
+      "epoch0": 0.006988842040300369,
+      "epoch1": 0.0069933063350617886,
+      "epoch2": 0.006994348485022783,
+      "unweighted_persistence": 0.028430365025997162,
+      "unweighted_epoch2": 0.02847650647163391
+    },
+    {
+      "shot": 1054229,
+      "disruptive": true,
+      "persistence": 0.07877741008996964,
+      "epoch0": 0.07900233566761017,
+      "epoch1": 0.07946646958589554,
+      "epoch2": 0.07891257852315903,
+      "unweighted_persistence": 2.212949514389038,
+      "unweighted_epoch2": 2.2095539569854736
+    },
+    {
+      "shot": 1054234,
+      "disruptive": true,
+      "persistence": 0.07274791598320007,
+      "epoch0": 0.07272962480783463,
+      "epoch1": 0.07244692742824554,
+      "epoch2": 0.07250595092773438,
+      "unweighted_persistence": 3.1008222103118896,
+      "unweighted_epoch2": 3.1020071506500244
+    },
+    {
+      "shot": 1054246,
+      "disruptive": false,
+      "persistence": 0.004790367558598518,
+      "epoch0": 0.004787921439856291,
+      "epoch1": 0.004793842323124409,
+      "epoch2": 0.004793200176209211,
+      "unweighted_persistence": 0.019222302362322807,
+      "unweighted_epoch2": 0.019227730110287666
+    },
+    {
+      "shot": 1054247,
+      "disruptive": false,
+      "persistence": 0.0141377542167902,
+      "epoch0": 0.014148218557238579,
+      "epoch1": 0.014149431139230728,
+      "epoch2": 0.014151297509670258,
+      "unweighted_persistence": 0.052477143704891205,
+      "unweighted_epoch2": 0.05255177244544029
+    },
+    {
+      "shot": 1054250,
+      "disruptive": false,
+      "persistence": 0.002485396573320031,
+      "epoch0": 0.0024899339769035578,
+      "epoch1": 0.002482328098267317,
+      "epoch2": 0.0024893395602703094,
+      "unweighted_persistence": 0.008703452534973621,
+      "unweighted_epoch2": 0.008706925436854362
+    },
+    {
+      "shot": 1054258,
+      "disruptive": true,
+      "persistence": 0.08650008589029312,
+      "epoch0": 0.08658208698034286,
+      "epoch1": 0.08662351220846176,
+      "epoch2": 0.08661556988954544,
+      "unweighted_persistence": 0.1832960546016693,
+      "unweighted_epoch2": 0.18344983458518982
+    },
+    {
+      "shot": 1054337,
+      "disruptive": true,
+      "persistence": 0.008368687704205513,
+      "epoch0": 0.00839711632579565,
+      "epoch1": 0.00834638997912407,
+      "epoch2": 0.008371859788894653,
+      "unweighted_persistence": 0.02068820223212242,
+      "unweighted_epoch2": 0.020664507523179054
+    },
+    {
+      "shot": 1054592,
+      "disruptive": false,
+      "persistence": 0.0835285633802414,
+      "epoch0": 0.08354607969522476,
+      "epoch1": 0.08366107195615768,
+      "epoch2": 0.08361456543207169,
+      "unweighted_persistence": 0.3094831109046936,
+      "unweighted_epoch2": 0.3094099164009094
+    },
+    {
+      "shot": 1054601,
+      "disruptive": false,
+      "persistence": 0.008893752470612526,
+      "epoch0": 0.008931816555559635,
+      "epoch1": 0.008932448923587799,
+      "epoch2": 0.00892052985727787,
+      "unweighted_persistence": 0.02793729119002819,
+      "unweighted_epoch2": 0.027973411604762077
+    },
+    {
+      "shot": 1054612,
+      "disruptive": false,
+      "persistence": 0.01040042843669653,
+      "epoch0": 0.01042988058179617,
+      "epoch1": 0.01041322760283947,
+      "epoch2": 0.010406949557363987,
+      "unweighted_persistence": 0.03058530017733574,
+      "unweighted_epoch2": 0.030647536739706993
+    },
+    {
+      "shot": 1054646,
+      "disruptive": false,
+      "persistence": 0.009281211532652378,
+      "epoch0": 0.00929293967783451,
+      "epoch1": 0.009275868535041809,
+      "epoch2": 0.00927050318568945,
+      "unweighted_persistence": 0.03495844081044197,
+      "unweighted_epoch2": 0.034956496208906174
+    },
+    {
+      "shot": 1054781,
+      "disruptive": false,
+      "persistence": 0.01793976128101349,
+      "epoch0": 0.01793544925749302,
+      "epoch1": 0.01786264032125473,
+      "epoch2": 0.01781843602657318,
+      "unweighted_persistence": 0.05106296390295029,
+      "unweighted_epoch2": 0.0510588176548481
+    },
+    {
+      "shot": 1054784,
+      "disruptive": false,
+      "persistence": 0.02154105342924595,
+      "epoch0": 0.021525051444768906,
+      "epoch1": 0.021462203934788704,
+      "epoch2": 0.02141127921640873,
+      "unweighted_persistence": 0.06437376141548157,
+      "unweighted_epoch2": 0.06449361890554428
+    },
+    {
+      "shot": 1054798,
+      "disruptive": false,
+      "persistence": 0.015818361192941666,
+      "epoch0": 0.015873471274971962,
+      "epoch1": 0.015834828838706017,
+      "epoch2": 0.01582683064043522,
+      "unweighted_persistence": 0.05075597018003464,
+      "unweighted_epoch2": 0.05076397582888603
+    },
+    {
+      "shot": 1054941,
+      "disruptive": false,
+      "persistence": 0.005786243826150894,
+      "epoch0": 0.005792839918285608,
+      "epoch1": 0.00578119745478034,
+      "epoch2": 0.005792445037513971,
+      "unweighted_persistence": 0.0167259331792593,
+      "unweighted_epoch2": 0.016748668625950813
+    },
+    {
+      "shot": 1054966,
+      "disruptive": true,
+      "persistence": 0.039405886083841324,
+      "epoch0": 0.039405886083841324,
+      "epoch1": 0.039405886083841324,
+      "epoch2": 0.039405886083841324,
+      "unweighted_persistence": 0.8983948826789856,
+      "unweighted_epoch2": 0.898394763469696
+    },
+    {
+      "shot": 1054978,
+      "disruptive": false,
+      "persistence": 0.010608138516545296,
+      "epoch0": 0.010622554458677769,
+      "epoch1": 0.010646249167621136,
+      "epoch2": 0.010642477311193943,
+      "unweighted_persistence": 0.027667483314871788,
+      "unweighted_epoch2": 0.02771659940481186
+    },
+    {
+      "shot": 1054981,
+      "disruptive": false,
+      "persistence": 0.01248148363083601,
+      "epoch0": 0.012529700994491577,
+      "epoch1": 0.012526425532996655,
+      "epoch2": 0.012506925500929356,
+      "unweighted_persistence": 0.03958030045032501,
+      "unweighted_epoch2": 0.03960579261183739
+    },
+    {
+      "shot": 1055017,
+      "disruptive": false,
+      "persistence": 0.005234116688370705,
+      "epoch0": 0.005206022411584854,
+      "epoch1": 0.005187915172427893,
+      "epoch2": 0.0051979911513626575,
+      "unweighted_persistence": 0.014482643455266953,
+      "unweighted_epoch2": 0.014525869861245155
+    },
+    {
+      "shot": 1055060,
+      "disruptive": false,
+      "persistence": 0.008764149621129036,
+      "epoch0": 0.00877638440579176,
+      "epoch1": 0.008744573220610619,
+      "epoch2": 0.008745863102376461,
+      "unweighted_persistence": 0.022201431915163994,
+      "unweighted_epoch2": 0.022190365940332413
+    },
+    {
+      "shot": 1055068,
+      "disruptive": true,
+      "persistence": 0.09328891336917877,
+      "epoch0": 0.09323432296514511,
+      "epoch1": 0.09395050257444382,
+      "epoch2": 0.09455276280641556,
+      "unweighted_persistence": 1.7281737327575684,
+      "unweighted_epoch2": 1.7301796674728394
+    },
+    {
+      "shot": 1055070,
+      "disruptive": true,
+      "persistence": 0.12890516221523285,
+      "epoch0": 0.1288379728794098,
+      "epoch1": 0.1275511533021927,
+      "epoch2": 0.12575986981391907,
+      "unweighted_persistence": 2.6713974475860596,
+      "unweighted_epoch2": 2.6552071571350098
+    },
+    {
+      "shot": 1055077,
+      "disruptive": false,
+      "persistence": 0.004742785356938839,
+      "epoch0": 0.004744712729007006,
+      "epoch1": 0.004749714862555265,
+      "epoch2": 0.004752589855343103,
+      "unweighted_persistence": 0.015770193189382553,
+      "unweighted_epoch2": 0.01578589715063572
+    },
+    {
+      "shot": 1055103,
+      "disruptive": false,
+      "persistence": 0.005717043299227953,
+      "epoch0": 0.005715096835047007,
+      "epoch1": 0.005695998668670654,
+      "epoch2": 0.005703053902834654,
+      "unweighted_persistence": 0.018846897408366203,
+      "unweighted_epoch2": 0.01888231933116913
+    },
+    {
+      "shot": 1055186,
+      "disruptive": true,
+      "persistence": 0.014147103764116764,
+      "epoch0": 0.014079377055168152,
+      "epoch1": 0.014082212001085281,
+      "epoch2": 0.014053629711270332,
+      "unweighted_persistence": 0.12895123660564423,
+      "unweighted_epoch2": 0.1288650780916214
+    },
+    {
+      "shot": 1055230,
+      "disruptive": false,
+      "persistence": 0.005027638282626867,
+      "epoch0": 0.005009294953197241,
+      "epoch1": 0.004986172076314688,
+      "epoch2": 0.005001869983971119,
+      "unweighted_persistence": 0.01727856881916523,
+      "unweighted_epoch2": 0.0172883290797472
+    },
+    {
+      "shot": 1055238,
+      "disruptive": true,
+      "persistence": 0.005488244350999594,
+      "epoch0": 0.005485815461724997,
+      "epoch1": 0.005418028216809034,
+      "epoch2": 0.00542195700109005,
+      "unweighted_persistence": 0.03712422400712967,
+      "unweighted_epoch2": 0.0368926003575325
+    },
+    {
+      "shot": 1055243,
+      "disruptive": true,
+      "persistence": 0.025839274749159813,
+      "epoch0": 0.025880707427859306,
+      "epoch1": 0.025797802954912186,
+      "epoch2": 0.02590935118496418,
+      "unweighted_persistence": 0.4047448933124542,
+      "unweighted_epoch2": 0.4035819172859192
+    },
+    {
+      "shot": 1055246,
+      "disruptive": true,
+      "persistence": 0.006936537101864815,
+      "epoch0": 0.006923156324774027,
+      "epoch1": 0.006838066037744284,
+      "epoch2": 0.006860685534775257,
+      "unweighted_persistence": 0.04763409495353699,
+      "unweighted_epoch2": 0.04753820225596428
+    },
+    {
+      "shot": 1055248,
+      "disruptive": true,
+      "persistence": 0.011993197724223137,
+      "epoch0": 0.011987704783678055,
+      "epoch1": 0.011958317831158638,
+      "epoch2": 0.011972501873970032,
+      "unweighted_persistence": 0.42138293385505676,
+      "unweighted_epoch2": 0.42201897501945496
+    },
+    {
+      "shot": 1055254,
+      "disruptive": false,
+      "persistence": 0.004863461013883352,
+      "epoch0": 0.004867918323725462,
+      "epoch1": 0.004878324922174215,
+      "epoch2": 0.004880785942077637,
+      "unweighted_persistence": 0.031763672828674316,
+      "unweighted_epoch2": 0.031817302107810974
+    },
+    {
+      "shot": 1055289,
+      "disruptive": true,
+      "persistence": 0.02649211324751377,
+      "epoch0": 0.026416096836328506,
+      "epoch1": 0.02636992372572422,
+      "epoch2": 0.026194313541054726,
+      "unweighted_persistence": 0.26837947964668274,
+      "unweighted_epoch2": 0.268239289522171
+    },
+    {
+      "shot": 1055314,
+      "disruptive": false,
+      "persistence": 0.011257591657340527,
+      "epoch0": 0.011314972303807735,
+      "epoch1": 0.011370954103767872,
+      "epoch2": 0.0113490866497159,
+      "unweighted_persistence": 0.03589587286114693,
+      "unweighted_epoch2": 0.03610176220536232
+    },
+    {
+      "shot": 1055315,
+      "disruptive": false,
+      "persistence": 0.020039981231093407,
+      "epoch0": 0.020120320841670036,
+      "epoch1": 0.020164944231510162,
+      "epoch2": 0.02016473561525345,
+      "unweighted_persistence": 0.06660064309835434,
+      "unweighted_epoch2": 0.06683897972106934
+    },
+    {
+      "shot": 1055326,
+      "disruptive": true,
+      "persistence": 0.023772763088345528,
+      "epoch0": 0.02380087412893772,
+      "epoch1": 0.023797206580638885,
+      "epoch2": 0.02378518506884575,
+      "unweighted_persistence": 0.4713025987148285,
+      "unweighted_epoch2": 0.47047290205955505
+    },
+    {
+      "shot": 1055329,
+      "disruptive": true,
+      "persistence": 0.010359364561736584,
+      "epoch0": 0.010354333557188511,
+      "epoch1": 0.010249277576804161,
+      "epoch2": 0.010209054686129093,
+      "unweighted_persistence": 0.13015475869178772,
+      "unweighted_epoch2": 0.12999655306339264
+    },
+    {
+      "shot": 1055339,
+      "disruptive": true,
+      "persistence": 0.02662089839577675,
+      "epoch0": 0.02658771723508835,
+      "epoch1": 0.026373054832220078,
+      "epoch2": 0.026043932884931564,
+      "unweighted_persistence": 0.522100031375885,
+      "unweighted_epoch2": 0.5184243321418762
+    },
+    {
+      "shot": 1055353,
+      "disruptive": true,
+      "persistence": 0.019483083859086037,
+      "epoch0": 0.019524043425917625,
+      "epoch1": 0.019519805908203125,
+      "epoch2": 0.019638363271951675,
+      "unweighted_persistence": 0.345905601978302,
+      "unweighted_epoch2": 0.3444395065307617
+    },
+    {
+      "shot": 1055371,
+      "disruptive": true,
+      "persistence": 0.007133485283702612,
+      "epoch0": 0.007140195928514004,
+      "epoch1": 0.007129806559532881,
+      "epoch2": 0.007164333015680313,
+      "unweighted_persistence": 0.07189612090587616,
+      "unweighted_epoch2": 0.07182426005601883
+    },
+    {
+      "shot": 1055375,
+      "disruptive": false,
+      "persistence": 0.005569344386458397,
+      "epoch0": 0.005554533563554287,
+      "epoch1": 0.005558086093515158,
+      "epoch2": 0.005551216658204794,
+      "unweighted_persistence": 0.015045800246298313,
+      "unweighted_epoch2": 0.015041339211165905
+    },
+    {
+      "shot": 1055415,
+      "disruptive": true,
+      "persistence": 0.008809220977127552,
+      "epoch0": 0.008817462250590324,
+      "epoch1": 0.00879500899463892,
+      "epoch2": 0.008787957020103931,
+      "unweighted_persistence": 0.15563498437404633,
+      "unweighted_epoch2": 0.1559058576822281
+    },
+    {
+      "shot": 1055479,
+      "disruptive": true,
+      "persistence": 0.011219317093491554,
+      "epoch0": 0.011244232766330242,
+      "epoch1": 0.011210726574063301,
+      "epoch2": 0.011133742518723011,
+      "unweighted_persistence": 0.10184330493211746,
+      "unweighted_epoch2": 0.10140042006969452
+    },
+    {
+      "shot": 1055490,
+      "disruptive": false,
+      "persistence": 0.004699885845184326,
+      "epoch0": 0.0046929302625358105,
+      "epoch1": 0.004700676072388887,
+      "epoch2": 0.004687778651714325,
+      "unweighted_persistence": 0.012311890721321106,
+      "unweighted_epoch2": 0.0123109957203269
+    },
+    {
+      "shot": 1055495,
+      "disruptive": false,
+      "persistence": 0.014007187448441982,
+      "epoch0": 0.014009392820298672,
+      "epoch1": 0.013980838470160961,
+      "epoch2": 0.014006195589900017,
+      "unweighted_persistence": 0.4530387818813324,
+      "unweighted_epoch2": 0.4530326724052429
+    },
+    {
+      "shot": 1055599,
+      "disruptive": true,
+      "persistence": 0.03338143974542618,
+      "epoch0": 0.03326299041509628,
+      "epoch1": 0.033741023391485214,
+      "epoch2": 0.031508151441812515,
+      "unweighted_persistence": 0.6774776577949524,
+      "unweighted_epoch2": 0.6784096956253052
+    },
+    {
+      "shot": 1055737,
+      "disruptive": false,
+      "persistence": 0.0558328740298748,
+      "epoch0": 0.05586995929479599,
+      "epoch1": 0.05593151971697807,
+      "epoch2": 0.056270092725753784,
+      "unweighted_persistence": 1.7274476289749146,
+      "unweighted_epoch2": 1.7292044162750244
+    },
+    {
+      "shot": 1055788,
+      "disruptive": true,
+      "persistence": 0.015896083787083626,
+      "epoch0": 0.01590479351580143,
+      "epoch1": 0.015873698517680168,
+      "epoch2": 0.01589312218129635,
+      "unweighted_persistence": 0.7066587805747986,
+      "unweighted_epoch2": 0.7065764665603638
+    },
+    {
+      "shot": 1055947,
+      "disruptive": true,
+      "persistence": 0.02004864811897278,
+      "epoch0": 0.020032942295074463,
+      "epoch1": 0.020088834688067436,
+      "epoch2": 0.01998237892985344,
+      "unweighted_persistence": 0.29290610551834106,
+      "unweighted_epoch2": 0.29268980026245117
+    },
+    {
+      "shot": 1055956,
+      "disruptive": true,
+      "persistence": 0.04987804591655731,
+      "epoch0": 0.05020950362086296,
+      "epoch1": 0.050454746931791306,
+      "epoch2": 0.049809277057647705,
+      "unweighted_persistence": 1.094480037689209,
+      "unweighted_epoch2": 1.0938749313354492
+    },
+    {
+      "shot": 1055957,
+      "disruptive": true,
+      "persistence": 0.20211702585220337,
+      "epoch0": 0.20203183591365814,
+      "epoch1": 0.20181116461753845,
+      "epoch2": 0.20202109217643738,
+      "unweighted_persistence": 4.970991134643555,
+      "unweighted_epoch2": 4.970191955566406
+    },
+    {
+      "shot": 1055967,
+      "disruptive": false,
+      "persistence": 0.00745761301368475,
+      "epoch0": 0.007342873141169548,
+      "epoch1": 0.007252642884850502,
+      "epoch2": 0.007335835136473179,
+      "unweighted_persistence": 0.02316124737262726,
+      "unweighted_epoch2": 0.02310764789581299
+    },
+    {
+      "shot": 1055988,
+      "disruptive": false,
+      "persistence": 0.006966755259782076,
+      "epoch0": 0.006847409997135401,
+      "epoch1": 0.006729250308126211,
+      "epoch2": 0.006817185785621405,
+      "unweighted_persistence": 0.018988195806741714,
+      "unweighted_epoch2": 0.01892794668674469
+    },
+    {
+      "shot": 1056017,
+      "disruptive": false,
+      "persistence": 0.00578294787555933,
+      "epoch0": 0.0057929037138819695,
+      "epoch1": 0.005780761130154133,
+      "epoch2": 0.005785960704088211,
+      "unweighted_persistence": 0.017848988994956017,
+      "unweighted_epoch2": 0.017923982813954353
+    },
+    {
+      "shot": 1056056,
+      "disruptive": false,
+      "persistence": 0.005303337704390287,
+      "epoch0": 0.0053162039257586,
+      "epoch1": 0.005305722821503878,
+      "epoch2": 0.005313351284712553,
+      "unweighted_persistence": 0.017764493823051453,
+      "unweighted_epoch2": 0.017799580469727516
+    },
+    {
+      "shot": 1056087,
+      "disruptive": false,
+      "persistence": 0.1014346331357956,
+      "epoch0": 0.10169132053852081,
+      "epoch1": 0.10167230665683746,
+      "epoch2": 0.1016029343008995,
+      "unweighted_persistence": 0.07668965309858322,
+      "unweighted_epoch2": 0.07679866254329681
+    },
+    {
+      "shot": 1056182,
+      "disruptive": true,
+      "persistence": 0.017730891704559326,
+      "epoch0": 0.0177023783326149,
+      "epoch1": 0.01765616424381733,
+      "epoch2": 0.017575930804014206,
+      "unweighted_persistence": 0.777826726436615,
+      "unweighted_epoch2": 0.7795538902282715
+    },
+    {
+      "shot": 1056187,
+      "disruptive": true,
+      "persistence": 0.02256288379430771,
+      "epoch0": 0.022542323917150497,
+      "epoch1": 0.022531267255544662,
+      "epoch2": 0.022527027875185013,
+      "unweighted_persistence": 1.0815250873565674,
+      "unweighted_epoch2": 1.0833911895751953
+    },
+    {
+      "shot": 1056192,
+      "disruptive": true,
+      "persistence": 0.02480846643447876,
+      "epoch0": 0.02479483187198639,
+      "epoch1": 0.024757469072937965,
+      "epoch2": 0.024725565686821938,
+      "unweighted_persistence": 1.0598962306976318,
+      "unweighted_epoch2": 1.0624053478240967
+    },
+    {
+      "shot": 1056196,
+      "disruptive": true,
+      "persistence": 0.02408822439610958,
+      "epoch0": 0.024084990844130516,
+      "epoch1": 0.0240489449352026,
+      "epoch2": 0.0240117609500885,
+      "unweighted_persistence": 1.171278953552246,
+      "unweighted_epoch2": 1.1740310192108154
+    },
+    {
+      "shot": 1056203,
+      "disruptive": true,
+      "persistence": 0.011353078298270702,
+      "epoch0": 0.011342436075210571,
+      "epoch1": 0.011277394369244576,
+      "epoch2": 0.011211789213120937,
+      "unweighted_persistence": 0.48722904920578003,
+      "unweighted_epoch2": 0.48733851313591003
+    },
+    {
+      "shot": 1056220,
+      "disruptive": true,
+      "persistence": 0.03497064486145973,
+      "epoch0": 0.03497437760233879,
+      "epoch1": 0.034935761243104935,
+      "epoch2": 0.03496295586228371,
+      "unweighted_persistence": 1.8135032653808594,
+      "unweighted_epoch2": 1.8144550323486328
+    },
+    {
+      "shot": 1056225,
+      "disruptive": true,
+      "persistence": 0.020922239869832993,
+      "epoch0": 0.020932145416736603,
+      "epoch1": 0.020915640518069267,
+      "epoch2": 0.020874351263046265,
+      "unweighted_persistence": 0.7530410885810852,
+      "unweighted_epoch2": 0.7538443803787231
+    },
+    {
+      "shot": 1056233,
+      "disruptive": false,
+      "persistence": 0.02349897287786007,
+      "epoch0": 0.023458214476704597,
+      "epoch1": 0.02336953766644001,
+      "epoch2": 0.023194171488285065,
+      "unweighted_persistence": 0.5884456038475037,
+      "unweighted_epoch2": 0.5866694450378418
+    },
+    {
+      "shot": 1056287,
+      "disruptive": true,
+      "persistence": 0.027677081525325775,
+      "epoch0": 0.02760823629796505,
+      "epoch1": 0.027288811281323433,
+      "epoch2": 0.026873420923948288,
+      "unweighted_persistence": 0.5649169087409973,
+      "unweighted_epoch2": 0.5609665513038635
+    },
+    {
+      "shot": 1056288,
+      "disruptive": false,
+      "persistence": 0.022903699427843094,
+      "epoch0": 0.022894825786352158,
+      "epoch1": 0.02280220203101635,
+      "epoch2": 0.022680513560771942,
+      "unweighted_persistence": 0.49982866644859314,
+      "unweighted_epoch2": 0.498619943857193
+    },
+    {
+      "shot": 1056293,
+      "disruptive": true,
+      "persistence": 0.02315434254705906,
+      "epoch0": 0.023166686296463013,
+      "epoch1": 0.023197032511234283,
+      "epoch2": 0.02321171574294567,
+      "unweighted_persistence": 0.45483851432800293,
+      "unweighted_epoch2": 0.455343633890152
+    },
+    {
+      "shot": 1056317,
+      "disruptive": true,
+      "persistence": 0.012581555172801018,
+      "epoch0": 0.012566168792545795,
+      "epoch1": 0.012591083534061909,
+      "epoch2": 0.01259142067283392,
+      "unweighted_persistence": 0.07977333664894104,
+      "unweighted_epoch2": 0.07973916083574295
+    },
+    {
+      "shot": 1056334,
+      "disruptive": false,
+      "persistence": 0.006408998277038336,
+      "epoch0": 0.006386762950569391,
+      "epoch1": 0.006322093307971954,
+      "epoch2": 0.006339301820844412,
+      "unweighted_persistence": 0.018382782116532326,
+      "unweighted_epoch2": 0.01837606355547905
+    },
+    {
+      "shot": 1056533,
+      "disruptive": false,
+      "persistence": 0.007637312635779381,
+      "epoch0": 0.0076708425767719746,
+      "epoch1": 0.007653246633708477,
+      "epoch2": 0.0076481797732412815,
+      "unweighted_persistence": 0.018738143146038055,
+      "unweighted_epoch2": 0.01876944862306118
+    },
+    {
+      "shot": 1056641,
+      "disruptive": false,
+      "persistence": 0.016839437186717987,
+      "epoch0": 0.01687980256974697,
+      "epoch1": 0.01687236875295639,
+      "epoch2": 0.016902195289731026,
+      "unweighted_persistence": 0.05025555193424225,
+      "unweighted_epoch2": 0.05039873346686363
+    },
+    {
+      "shot": 1056648,
+      "disruptive": false,
+      "persistence": 0.01140962727367878,
+      "epoch0": 0.011429290287196636,
+      "epoch1": 0.01143599022179842,
+      "epoch2": 0.011449022218585014,
+      "unweighted_persistence": 0.036738067865371704,
+      "unweighted_epoch2": 0.036814697086811066
+    },
+    {
+      "shot": 1056709,
+      "disruptive": false,
+      "persistence": 0.010819237679243088,
+      "epoch0": 0.01083112321794033,
+      "epoch1": 0.010836459696292877,
+      "epoch2": 0.010845963843166828,
+      "unweighted_persistence": 0.03016064129769802,
+      "unweighted_epoch2": 0.030273830518126488
+    },
+    {
+      "shot": 1056765,
+      "disruptive": false,
+      "persistence": 0.006005269940942526,
+      "epoch0": 0.005981230642646551,
+      "epoch1": 0.005980262067168951,
+      "epoch2": 0.005968552082777023,
+      "unweighted_persistence": 0.01789804920554161,
+      "unweighted_epoch2": 0.017950383946299553
+    },
+    {
+      "shot": 1056830,
+      "disruptive": true,
+      "persistence": 0.025883393362164497,
+      "epoch0": 0.025874413549900055,
+      "epoch1": 0.025871405377984047,
+      "epoch2": 0.02581450529396534,
+      "unweighted_persistence": 0.5331606268882751,
+      "unweighted_epoch2": 0.5329052805900574
+    },
+    {
+      "shot": 1056848,
+      "disruptive": true,
+      "persistence": 0.03415621072053909,
+      "epoch0": 0.034189578145742416,
+      "epoch1": 0.034142427146434784,
+      "epoch2": 0.03414386883378029,
+      "unweighted_persistence": 0.1043306291103363,
+      "unweighted_epoch2": 0.10430224984884262
+    },
+    {
+      "shot": 1056921,
+      "disruptive": true,
+      "persistence": 0.03381548821926117,
+      "epoch0": 0.033795371651649475,
+      "epoch1": 0.03340264782309532,
+      "epoch2": 0.033090971410274506,
+      "unweighted_persistence": 0.8078262209892273,
+      "unweighted_epoch2": 0.8025266528129578
+    },
+    {
+      "shot": 1056932,
+      "disruptive": false,
+      "persistence": 0.004253240302205086,
+      "epoch0": 0.0042622326873242855,
+      "epoch1": 0.004268902353942394,
+      "epoch2": 0.0042684925720095634,
+      "unweighted_persistence": 0.014709134586155415,
+      "unweighted_epoch2": 0.014723990112543106
+    },
+    {
+      "shot": 1056967,
+      "disruptive": false,
+      "persistence": 0.0062627037987113,
+      "epoch0": 0.006250616628676653,
+      "epoch1": 0.006119845900684595,
+      "epoch2": 0.006088326685130596,
+      "unweighted_persistence": 0.11130598187446594,
+      "unweighted_epoch2": 0.11125834286212921
+    },
+    {
+      "shot": 1057014,
+      "disruptive": false,
+      "persistence": 0.004656970966607332,
+      "epoch0": 0.004629271104931831,
+      "epoch1": 0.004613135475665331,
+      "epoch2": 0.004607186187058687,
+      "unweighted_persistence": 0.015304647386074066,
+      "unweighted_epoch2": 0.015291250310838223
+    },
+    {
+      "shot": 1057090,
+      "disruptive": false,
+      "persistence": 0.019025612622499466,
+      "epoch0": 0.01900208555161953,
+      "epoch1": 0.018960490822792053,
+      "epoch2": 0.018990477547049522,
+      "unweighted_persistence": 0.07874570041894913,
+      "unweighted_epoch2": 0.07878830283880234
+    },
+    {
+      "shot": 1057114,
+      "disruptive": false,
+      "persistence": 0.007514059077948332,
+      "epoch0": 0.007541521452367306,
+      "epoch1": 0.007550565525889397,
+      "epoch2": 0.0075475843623280525,
+      "unweighted_persistence": 0.02590278908610344,
+      "unweighted_epoch2": 0.02595169097185135
+    },
+    {
+      "shot": 1057156,
+      "disruptive": false,
+      "persistence": 0.015558639541268349,
+      "epoch0": 0.01565966196358204,
+      "epoch1": 0.015660395845770836,
+      "epoch2": 0.015607095323503017,
+      "unweighted_persistence": 0.04161078855395317,
+      "unweighted_epoch2": 0.04172736033797264
+    },
+    {
+      "shot": 1057200,
+      "disruptive": true,
+      "persistence": 0.00995700154453516,
+      "epoch0": 0.009738818742334843,
+      "epoch1": 0.009840430691838264,
+      "epoch2": 0.009687255136668682,
+      "unweighted_persistence": 0.02082298882305622,
+      "unweighted_epoch2": 0.020630164071917534
+    },
+    {
+      "shot": 1057204,
+      "disruptive": true,
+      "persistence": 0.024684671312570572,
+      "epoch0": 0.024715662002563477,
+      "epoch1": 0.024754073470830917,
+      "epoch2": 0.024890802800655365,
+      "unweighted_persistence": 0.7308116555213928,
+      "unweighted_epoch2": 0.7327724099159241
+    },
+    {
+      "shot": 1057245,
+      "disruptive": false,
+      "persistence": 0.008770761080086231,
+      "epoch0": 0.008830465376377106,
+      "epoch1": 0.008902467787265778,
+      "epoch2": 0.008893347345292568,
+      "unweighted_persistence": 0.019643858075141907,
+      "unweighted_epoch2": 0.019936786964535713
+    },
+    {
+      "shot": 1057247,
+      "disruptive": false,
+      "persistence": 0.011366375721991062,
+      "epoch0": 0.01143326424062252,
+      "epoch1": 0.011477623134851456,
+      "epoch2": 0.011443814262747765,
+      "unweighted_persistence": 0.02943543531000614,
+      "unweighted_epoch2": 0.029599567875266075
+    },
+    {
+      "shot": 1057248,
+      "disruptive": false,
+      "persistence": 0.024256395176053047,
+      "epoch0": 0.02395210601389408,
+      "epoch1": 0.023167209699749947,
+      "epoch2": 0.023046070709824562,
+      "unweighted_persistence": 0.03752074018120766,
+      "unweighted_epoch2": 0.03704383969306946
+    },
+    {
+      "shot": 1057254,
+      "disruptive": true,
+      "persistence": 0.05040138214826584,
+      "epoch0": 0.0501641146838665,
+      "epoch1": 0.05311015620827675,
+      "epoch2": 0.04925497621297836,
+      "unweighted_persistence": 0.6075379848480225,
+      "unweighted_epoch2": 0.6082786321640015
+    },
+    {
+      "shot": 1057270,
+      "disruptive": false,
+      "persistence": 0.02595735713839531,
+      "epoch0": 0.02524596080183983,
+      "epoch1": 0.0251461211591959,
+      "epoch2": 0.024876056239008904,
+      "unweighted_persistence": 0.13096517324447632,
+      "unweighted_epoch2": 0.13093912601470947
+    },
+    {
+      "shot": 1057283,
+      "disruptive": true,
+      "persistence": 0.009608711116015911,
+      "epoch0": 0.009601502679288387,
+      "epoch1": 0.00949633214622736,
+      "epoch2": 0.009469441138207912,
+      "unweighted_persistence": 0.23302032053470612,
+      "unweighted_epoch2": 0.2332388311624527
+    },
+    {
+      "shot": 1057327,
+      "disruptive": true,
+      "persistence": 0.030706169083714485,
+      "epoch0": 0.03072814829647541,
+      "epoch1": 0.030598094686865807,
+      "epoch2": 0.03023703396320343,
+      "unweighted_persistence": 0.5392362475395203,
+      "unweighted_epoch2": 0.5365976691246033
+    },
+    {
+      "shot": 1057445,
+      "disruptive": true,
+      "persistence": 0.1032458022236824,
+      "epoch0": 0.10328830033540726,
+      "epoch1": 0.1031951978802681,
+      "epoch2": 0.10317728668451309,
+      "unweighted_persistence": 1.8086044788360596,
+      "unweighted_epoch2": 1.8102574348449707
+    },
+    {
+      "shot": 1057448,
+      "disruptive": true,
+      "persistence": 0.018636485561728477,
+      "epoch0": 0.018420599400997162,
+      "epoch1": 0.01851065456867218,
+      "epoch2": 0.018551431596279144,
+      "unweighted_persistence": 0.03900115191936493,
+      "unweighted_epoch2": 0.03898148238658905
+    },
+    {
+      "shot": 1057483,
+      "disruptive": false,
+      "persistence": 0.014817516319453716,
+      "epoch0": 0.014825142920017242,
+      "epoch1": 0.014848245307803154,
+      "epoch2": 0.014912487007677555,
+      "unweighted_persistence": 0.2776429057121277,
+      "unweighted_epoch2": 0.2775493562221527
+    },
+    {
+      "shot": 1057497,
+      "disruptive": true,
+      "persistence": 0.008557124994695187,
+      "epoch0": 0.008574023842811584,
+      "epoch1": 0.008491224609315395,
+      "epoch2": 0.008472306653857231,
+      "unweighted_persistence": 0.1252206712961197,
+      "unweighted_epoch2": 0.12567806243896484
+    },
+    {
+      "shot": 1057527,
+      "disruptive": true,
+      "persistence": 0.049726828932762146,
+      "epoch0": 0.04976743087172508,
+      "epoch1": 0.04982040449976921,
+      "epoch2": 0.049841541796922684,
+      "unweighted_persistence": 0.768244206905365,
+      "unweighted_epoch2": 0.7685151100158691
+    },
+    {
+      "shot": 1057530,
+      "disruptive": true,
+      "persistence": 0.02519611082971096,
+      "epoch0": 0.025220278650522232,
+      "epoch1": 0.0252306517213583,
+      "epoch2": 0.025260204449295998,
+      "unweighted_persistence": 0.38303589820861816,
+      "unweighted_epoch2": 0.383237361907959
+    },
+    {
+      "shot": 1057533,
+      "disruptive": true,
+      "persistence": 0.05412483587861061,
+      "epoch0": 0.054161205887794495,
+      "epoch1": 0.05418941378593445,
+      "epoch2": 0.054233379662036896,
+      "unweighted_persistence": 1.006287932395935,
+      "unweighted_epoch2": 1.006559133529663
+    },
+    {
+      "shot": 1057556,
+      "disruptive": true,
+      "persistence": 0.003910701256245375,
+      "epoch0": 0.0039151753298938274,
+      "epoch1": 0.00391771737486124,
+      "epoch2": 0.00392856914550066,
+      "unweighted_persistence": 0.02977369725704193,
+      "unweighted_epoch2": 0.02983343042433262
+    },
+    {
+      "shot": 1057559,
+      "disruptive": false,
+      "persistence": 0.011398679576814175,
+      "epoch0": 0.011382508091628551,
+      "epoch1": 0.011369341053068638,
+      "epoch2": 0.011373819783329964,
+      "unweighted_persistence": 0.03198990598320961,
+      "unweighted_epoch2": 0.03204462677240372
+    },
+    {
+      "shot": 1057570,
+      "disruptive": true,
+      "persistence": 0.04890304058790207,
+      "epoch0": 0.04897885397076607,
+      "epoch1": 0.04882553219795227,
+      "epoch2": 0.04887722432613373,
+      "unweighted_persistence": 1.7624419927597046,
+      "unweighted_epoch2": 1.7661741971969604
+    },
+    {
+      "shot": 1057595,
+      "disruptive": true,
+      "persistence": 0.08261466026306152,
+      "epoch0": 0.08287035673856735,
+      "epoch1": 0.08246509730815887,
+      "epoch2": 0.08283411711454391,
+      "unweighted_persistence": 1.386888861656189,
+      "unweighted_epoch2": 1.3849953413009644
+    },
+    {
+      "shot": 1057607,
+      "disruptive": true,
+      "persistence": 0.040211282670497894,
+      "epoch0": 0.04024757072329521,
+      "epoch1": 0.04023846983909607,
+      "epoch2": 0.0401265025138855,
+      "unweighted_persistence": 1.240919589996338,
+      "unweighted_epoch2": 1.2425179481506348
+    },
+    {
+      "shot": 1057613,
+      "disruptive": true,
+      "persistence": 0.02248319797217846,
+      "epoch0": 0.022536613047122955,
+      "epoch1": 0.022446975111961365,
+      "epoch2": 0.022345075383782387,
+      "unweighted_persistence": 0.06463490426540375,
+      "unweighted_epoch2": 0.0643392950296402
+    },
+    {
+      "shot": 1057615,
+      "disruptive": true,
+      "persistence": 0.027028337121009827,
+      "epoch0": 0.027089079841971397,
+      "epoch1": 0.02683531492948532,
+      "epoch2": 0.02660532109439373,
+      "unweighted_persistence": 0.06910711526870728,
+      "unweighted_epoch2": 0.06828613579273224
+    },
+    {
+      "shot": 1057633,
+      "disruptive": false,
+      "persistence": 0.012400803156197071,
+      "epoch0": 0.012423083186149597,
+      "epoch1": 0.01241725031286478,
+      "epoch2": 0.012430955655872822,
+      "unweighted_persistence": 0.0410020649433136,
+      "unweighted_epoch2": 0.04108978435397148
+    },
+    {
+      "shot": 1057665,
+      "disruptive": false,
+      "persistence": 0.02486194483935833,
+      "epoch0": 0.02485651709139347,
+      "epoch1": 0.024892138317227364,
+      "epoch2": 0.024910811334848404,
+      "unweighted_persistence": 0.6908695101737976,
+      "unweighted_epoch2": 0.6913443207740784
+    },
+    {
+      "shot": 1057685,
+      "disruptive": true,
+      "persistence": 0.02949598617851734,
+      "epoch0": 0.029515644535422325,
+      "epoch1": 0.02948511578142643,
+      "epoch2": 0.029433200135827065,
+      "unweighted_persistence": 0.8353546857833862,
+      "unweighted_epoch2": 0.8355749845504761
+    },
+    {
+      "shot": 1057713,
+      "disruptive": false,
+      "persistence": 0.08499526232481003,
+      "epoch0": 0.08583904802799225,
+      "epoch1": 0.0883985236287117,
+      "epoch2": 0.08827322721481323,
+      "unweighted_persistence": 0.875140905380249,
+      "unweighted_epoch2": 0.8822075724601746
+    },
+    {
+      "shot": 1057830,
+      "disruptive": true,
+      "persistence": 0.023348845541477203,
+      "epoch0": 0.023077230900526047,
+      "epoch1": 0.022668126970529556,
+      "epoch2": 0.02308565378189087,
+      "unweighted_persistence": 0.16107594966888428,
+      "unweighted_epoch2": 0.1608298122882843
+    },
+    {
+      "shot": 1057861,
+      "disruptive": false,
+      "persistence": 0.016265690326690674,
+      "epoch0": 0.016292285174131393,
+      "epoch1": 0.016286576166749,
+      "epoch2": 0.016290603205561638,
+      "unweighted_persistence": 0.06312157958745956,
+      "unweighted_epoch2": 0.0632181465625763
+    },
+    {
+      "shot": 1057871,
+      "disruptive": false,
+      "persistence": 0.018756059929728508,
+      "epoch0": 0.018767716363072395,
+      "epoch1": 0.018781447783112526,
+      "epoch2": 0.018797658383846283,
+      "unweighted_persistence": 0.07585448771715164,
+      "unweighted_epoch2": 0.07605898380279541
+    },
+    {
+      "shot": 1057896,
+      "disruptive": false,
+      "persistence": 0.010511199943721294,
+      "epoch0": 0.010532726533710957,
+      "epoch1": 0.010526532307267189,
+      "epoch2": 0.0105255376547575,
+      "unweighted_persistence": 0.036497585475444794,
+      "unweighted_epoch2": 0.03656836599111557
+    },
+    {
+      "shot": 1057917,
+      "disruptive": true,
+      "persistence": 0.027969827875494957,
+      "epoch0": 0.027982007712125778,
+      "epoch1": 0.027974111959338188,
+      "epoch2": 0.02795816771686077,
+      "unweighted_persistence": 0.21826158463954926,
+      "unweighted_epoch2": 0.21826308965682983
+    },
+    {
+      "shot": 1057952,
+      "disruptive": false,
+      "persistence": 0.02178872376680374,
+      "epoch0": 0.021781019866466522,
+      "epoch1": 0.021597327664494514,
+      "epoch2": 0.02151564136147499,
+      "unweighted_persistence": 0.7685725688934326,
+      "unweighted_epoch2": 0.7667545080184937
+    },
+    {
+      "shot": 1058008,
+      "disruptive": true,
+      "persistence": 0.022890212014317513,
+      "epoch0": 0.022883545607328415,
+      "epoch1": 0.022854896262288094,
+      "epoch2": 0.02284792624413967,
+      "unweighted_persistence": 0.8992553949356079,
+      "unweighted_epoch2": 0.8996398448944092
+    },
+    {
+      "shot": 1058010,
+      "disruptive": true,
+      "persistence": 0.011899636127054691,
+      "epoch0": 0.011884745210409164,
+      "epoch1": 0.011864073574543,
+      "epoch2": 0.011867017485201359,
+      "unweighted_persistence": 0.13855886459350586,
+      "unweighted_epoch2": 0.13864253461360931
+    },
+    {
+      "shot": 1058043,
+      "disruptive": true,
+      "persistence": 0.0376695953309536,
+      "epoch0": 0.03757651895284653,
+      "epoch1": 0.037278007715940475,
+      "epoch2": 0.037228066474199295,
+      "unweighted_persistence": 1.080762267112732,
+      "unweighted_epoch2": 1.0741161108016968
+    }
+  ],
+  "forecast_weights_sha256": "37f478621917fa8839a3e8ee7498f9e651baf6d9f218ba8a5fa6888feeee6ee9"
+}

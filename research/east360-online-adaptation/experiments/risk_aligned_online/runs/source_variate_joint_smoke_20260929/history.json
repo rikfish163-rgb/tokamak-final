@@ -1,0 +1,162 @@
+[
+  {
+    "epoch": 1,
+    "loss": 1.4834118485450745,
+    "risk_loss": 1.0453696846961975,
+    "startup_risk_loss": 0.8259075880050659,
+    "hard_negative_loss": 0.5637234598398209,
+    "signal_loss": 0.4531724154949188,
+    "gate": 0.0,
+    "meta_improvement": 0.0,
+    "persistence_loss": 0.34759630262851715,
+    "val_jtext": {
+      "tpr": 0.0,
+      "fpr": 0.0,
+      "J": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "n_disrupt": 4,
+      "n_safe": 4,
+      "median_lead_ms": null,
+      "early_over_3000": 0,
+      "threshold": 1.0000000000000002,
+      "predictions": [
+        {
+          "shot": 1051509,
+          "is_disrupt": true,
+          "alarm": false,
+          "timely": false,
+          "lead_ms": null
+        },
+        {
+          "shot": 1051525,
+          "is_disrupt": true,
+          "alarm": false,
+          "timely": false,
+          "lead_ms": null
+        },
+        {
+          "shot": 1051571,
+          "is_disrupt": true,
+          "alarm": false,
+          "timely": false,
+          "lead_ms": null
+        },
+        {
+          "shot": 1051592,
+          "is_disrupt": false,
+          "alarm": false,
+          "timely": false,
+          "lead_ms": null
+        },
+        {
+          "shot": 1051764,
+          "is_disrupt": true,
+          "alarm": false,
+          "timely": false,
+          "lead_ms": null
+        },
+        {
+          "shot": 1051769,
+          "is_disrupt": false,
+          "alarm": false,
+          "timely": false,
+          "lead_ms": null
+        },
+        {
+          "shot": 1052047,
+          "is_disrupt": false,
+          "alarm": false,
+          "timely": false,
+          "lead_ms": null
+        },
+        {
+          "shot": 1052171,
+          "is_disrupt": false,
+          "alarm": false,
+          "timely": false,
+          "lead_ms": null
+        }
+      ],
+      "selection_feasible": false,
+      "target_tpr": 0.95,
+      "max_fpr_exclusive": 0.2
+    },
+    "val_east_aux": {
+      "tpr": 1.0,
+      "fpr": 0.0,
+      "J": 1.0,
+      "tp": 4,
+      "fp": 0,
+      "n_disrupt": 4,
+      "n_safe": 4,
+      "median_lead_ms": 138.26026768399998,
+      "early_over_3000": 0,
+      "threshold": 0.5632830262184143,
+      "predictions": [
+        {
+          "shot": 1051509,
+          "is_disrupt": true,
+          "alarm": true,
+          "timely": true,
+          "lead_ms": 37.549587684
+        },
+        {
+          "shot": 1051525,
+          "is_disrupt": true,
+          "alarm": true,
+          "timely": true,
+          "lead_ms": 286.547887684
+        },
+        {
+          "shot": 1051571,
+          "is_disrupt": true,
+          "alarm": true,
+          "timely": true,
+          "lead_ms": 217.854757684
+        },
+        {
+          "shot": 1051592,
+          "is_disrupt": false,
+          "alarm": false,
+          "timely": false,
+          "lead_ms": null
+        },
+        {
+          "shot": 1051764,
+          "is_disrupt": true,
+          "alarm": true,
+          "timely": true,
+          "lead_ms": 58.665777684
+        },
+        {
+          "shot": 1051769,
+          "is_disrupt": false,
+          "alarm": false,
+          "timely": false,
+          "lead_ms": null
+        },
+        {
+          "shot": 1052047,
+          "is_disrupt": false,
+          "alarm": false,
+          "timely": false,
+          "lead_ms": null
+        },
+        {
+          "shot": 1052171,
+          "is_disrupt": false,
+          "alarm": false,
+          "timely": false,
+          "lead_ms": null
+        }
+      ],
+      "selection_feasible": true,
+      "target_tpr": 0.95,
+      "max_fpr_exclusive": 0.2
+    },
+    "auxiliary_validation_acceptance": true,
+    "source_acceptance": false,
+    "elapsed_s": 0.7523226737976074
+  }
+]

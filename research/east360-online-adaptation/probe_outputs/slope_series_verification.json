@@ -1,0 +1,147 @@
+{
+  "complete": true,
+  "source_unchanged": true,
+  "source_sha256": "c7270c1ea3652db2e30e972d4ca9a4a2d33220a68e4a3765c8b7f5bcceeaeb02",
+  "four_source_training_orders_identical": true,
+  "source_val": 160,
+  "results": {
+    "anchored_forecast_east360_v1": {
+      "complete_sha256": "d102a8a84384b15128090181e070abdf8b19722441a2402f20bc99a7cb26b0d5",
+      "seals": 360,
+      "arms": 4
+    },
+    "matured_slope_probe_v1": {
+      "complete_sha256": "fcf5e8d964ef5af5dfb878a3b46e0bfcddf10a677abc01680bbc311292509b2d",
+      "seals": 360,
+      "arms": 1
+    },
+    "matured_slope_release_v1": {
+      "complete_sha256": "4111faa8a009a625ccc442701443f16ccd81b2bde64156fddbdafcec314d6c49",
+      "seals": 360,
+      "arms": 1
+    }
+  },
+  "top3_channels": [
+    "xuv_var",
+    "xuv_skew",
+    "sxr_var"
+  ],
+  "top3_excess_fraction": 0.7866797752537179,
+  "paired_differences": {
+    "matured_slope_probe_v1": {
+      "mean": 0.019921199958642118,
+      "median": 0.0016938289627432823,
+      "q25": -0.0002055796212516725,
+      "q75": 0.011798324529081583,
+      "positive": 236,
+      "negative": 124,
+      "interpretation": "descriptive_shot_differences_not_independent_confirmation_or_risk"
+    },
+    "matured_slope_release_v1": {
+      "mean": 0.00825074563148923,
+      "median": 0.00025742221623659134,
+      "q25": -0.0005115127714816481,
+      "q75": 0.0051916369702667,
+      "positive": 201,
+      "negative": 159,
+      "interpretation": "descriptive_shot_differences_not_independent_confirmation_or_risk"
+    }
+  },
+  "largest_aux_errors_old_risk_status": [
+    {
+      "shot": 90232,
+      "aux_excess": 0.6241794228553772,
+      "channel": "xuv_var",
+      "old_cold_status": "TP"
+    },
+    {
+      "shot": 77822,
+      "aux_excess": 0.5473370403051376,
+      "channel": "xuv_var",
+      "old_cold_status": "TP"
+    },
+    {
+      "shot": 64143,
+      "aux_excess": 0.3882068172097206,
+      "channel": "xuv_skew",
+      "old_cold_status": "TP"
+    },
+    {
+      "shot": 79739,
+      "aux_excess": 0.36477155610919,
+      "channel": "xuv_var",
+      "old_cold_status": "TP"
+    },
+    {
+      "shot": 81406,
+      "aux_excess": 0.3125854656100273,
+      "channel": "xuv_var",
+      "old_cold_status": "MISS_OR_TARDY"
+    },
+    {
+      "shot": 84841,
+      "aux_excess": 0.24413789063692093,
+      "channel": "xuv_var",
+      "old_cold_status": "TP"
+    },
+    {
+      "shot": 64129,
+      "aux_excess": 0.19546335563063622,
+      "channel": "xuv_kurt",
+      "old_cold_status": "TP"
+    },
+    {
+      "shot": 93202,
+      "aux_excess": 0.19524460285902023,
+      "channel": "xuv_var",
+      "old_cold_status": "TP"
+    },
+    {
+      "shot": 62592,
+      "aux_excess": 0.19343378394842148,
+      "channel": "xuv_skew",
+      "old_cold_status": "TP"
+    },
+    {
+      "shot": 90314,
+      "aux_excess": 0.18930839747190475,
+      "channel": "sxr_var",
+      "old_cold_status": "TP"
+    },
+    {
+      "shot": 83887,
+      "aux_excess": 0.16070494055747986,
+      "channel": "xuv_var",
+      "old_cold_status": "MISS_OR_TARDY"
+    },
+    {
+      "shot": 94363,
+      "aux_excess": 0.1603656467050314,
+      "channel": "xuv_var",
+      "old_cold_status": "TN"
+    }
+  ],
+  "snapshot_sha256": "5acb953fca3688aa57385b48552d665406139f15bea73f7f89fe91112126eb04",
+  "code_sha256": {
+    "experiments/risk_aligned_online/expected_dynamics_20261028/anchored.py": "019a9140463718e38b8b59c3a7bfd839d9795da573a5e8bfd0642cb32908b940",
+    "experiments/risk_aligned_online/expected_dynamics_20261028/anchored_east.py": "6773e5d11df32e12389fa0f1d2e22d172d76e66c6582d2349345e346c68249e2",
+    "experiments/risk_aligned_online/expected_dynamics_20261028/anchored_train.py": "149b1e7bd0842dfc16b83c0cb5494ccdd753c574787a786ee8cab13050dc7fe0",
+    "experiments/risk_aligned_online/expected_dynamics_20261028/audit_forecast.py": "2cdbf4729d978873f966bf4c4cfce60ca1e4ed3bd15c15168d049895ec2cdbb7",
+    "experiments/risk_aligned_online/expected_dynamics_20261028/east_decomposition.py": "eccf424217a065487a5949cb2692cc66cad475758612ad8477254178655863ee",
+    "experiments/risk_aligned_online/expected_dynamics_20261028/east_forecast.py": "92295f1e6807d57137db68d242b30a3dd97f63c9b92127161da80ac8db5f95a6",
+    "experiments/risk_aligned_online/expected_dynamics_20261028/forecast.py": "6a1a3aa6ff0327f7351dc51b3b4a0295223d2a8311325fdd4b9d32e3ee4318b1",
+    "experiments/risk_aligned_online/expected_dynamics_20261028/matured_slope.py": "24f4de5e4444dce06fe152b7902565b2b9ef68fbc98b51d78a83006e99468a6a",
+    "experiments/risk_aligned_online/expected_dynamics_20261028/memory.py": "1c61a29761635f952f757f9d6806524d65f3193d752cd36074b241a11fd03218",
+    "experiments/risk_aligned_online/expected_dynamics_20261028/pair.py": "f350f541d342f5894cdb6b300cf0479937254fdf2c5daff8835360a6e920d561",
+    "experiments/risk_aligned_online/expected_dynamics_20261028/pretrain.py": "94ee48104e803537e81523a2a28eaaa47f07c244ce63cf892b9fe269e9d24f09",
+    "experiments/risk_aligned_online/expected_dynamics_20261028/slope_diagnosis.py": "44769b831bac0a9f9293a58e3d63d55187fcc2f27b8b9459405e7d3f9d93bcdc",
+    "experiments/risk_aligned_online/expected_dynamics_20261028/slope_probe.py": "55ce81474a3974ee5f7c20f0bc038b407617e2d27f7e4f6ac91a621f2d2862e6",
+    "experiments/risk_aligned_online/expected_dynamics_20261028/slope_release.py": "c6897f1a1157f854e049331688280c6a3dad5bbb9aa145f59ebf61e003b99c17",
+    "experiments/risk_aligned_online/expected_dynamics_20261028/verify_slope_series.py": "26d5c70ccf17f4c0fe1f03938399ef3dfa14a19d3520e39edf20bc2524fd5327",
+    "MATURED_SLOPE_PLAN.md": "81b35be28e13eb3796f1e8bb5200ba80fc374daf83b5d11d005642862c8724c0",
+    "SLOPE_RELEASE_PLAN.md": "382ef20251871fc80b7c243e47489868e605803c3b19881d506142a84fb34410",
+    "ANCHORED_FORECAST_PLAN.md": "479febca1387c707b130ef48a5d0b838889ad4b5032d1c88f24ebfc20f2e2abe",
+    "experiments/risk_aligned_online/tests/test_matured_slope.py": "0b75ae6316cb4a441c8f05655924672ed745097d8bb2369084b4c4c6f96696b8",
+    "experiments/risk_aligned_online/tests/test_anchored_forecast.py": "774e9f0d0c086de98780827b8bbeb5cd7315a7da876a8e68d235b86c8af55894"
+  }
+}

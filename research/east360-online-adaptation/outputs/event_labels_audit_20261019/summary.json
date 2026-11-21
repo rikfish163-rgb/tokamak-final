@@ -1,0 +1,975 @@
+{
+  "archive_sha256": "fc5614419f220ac8a96f4f8c63bb7b2f8ac1ef5e8968e88ef83b2d30652ad250",
+  "csv_sha256": "24fa872346d5b269f2a1ff3d750a8d810c1bc66195c47c34bd665c9da00b197c",
+  "rows": 1975,
+  "shots": 1816,
+  "events": 732,
+  "event_bearing_shots": 573,
+  "labels": {
+    "0": 1404,
+    "1": 412
+  },
+  "cohort_by_label": [
+    {
+      "cohort": "sanity",
+      "disruption_label": 0,
+      "shots": 143
+    },
+    {
+      "cohort": "sanity",
+      "disruption_label": 1,
+      "shots": 39
+    },
+    {
+      "cohort": "training_pool",
+      "disruption_label": 0,
+      "shots": 1261
+    },
+    {
+      "cohort": "training_pool",
+      "disruption_label": 1,
+      "shots": 373
+    }
+  ],
+  "status_by_label": [
+    {
+      "annotation_status": "event",
+      "disruption_label": 0,
+      "shots": 188
+    },
+    {
+      "annotation_status": "event",
+      "disruption_label": 1,
+      "shots": 385
+    },
+    {
+      "annotation_status": "excluded_short_record",
+      "disruption_label": 1,
+      "shots": 9
+    },
+    {
+      "annotation_status": "no_event_detected",
+      "disruption_label": 0,
+      "shots": 1216
+    },
+    {
+      "annotation_status": "no_event_detected",
+      "disruption_label": 1,
+      "shots": 18
+    }
+  ],
+  "validation": {
+    "duplicate_rows": 0,
+    "duplicate_event_keys": 0,
+    "inconsistent_shot_labels": 0,
+    "inconsistent_shot_cohorts": 0,
+    "invalid_intervals": 0,
+    "invalid_classes": 0,
+    "populated_non_event_fields": 0,
+    "ordering_or_overlap_errors": [],
+    "provenance_mismatches": [],
+    "provenance_unique_keys": 732,
+    "csv_payload_equal": true,
+    "csv_payload_values_equal": true
+  },
+  "hdf5_link": {
+    "found": 1733,
+    "missing": [
+      1051783,
+      1074373,
+      1074374,
+      1074375,
+      1074377,
+      1074378,
+      1074379,
+      1074380,
+      1074381,
+      1074382,
+      1074383,
+      1074388,
+      1074389,
+      1074390,
+      1074392,
+      1074393,
+      1074394,
+      1074396,
+      1074397,
+      1074399,
+      1074403,
+      1074404,
+      1080542,
+      1080544,
+      1080546,
+      1080547,
+      1080548,
+      1080549,
+      1080550,
+      1080551,
+      1080552,
+      1080553,
+      1080554,
+      1080555,
+      1080556,
+      1080558,
+      1080559,
+      1080562,
+      1080563,
+      1080564,
+      1080566,
+      1080567,
+      1080568,
+      1080569,
+      1080570,
+      1080571,
+      1080572,
+      1080573,
+      1080574,
+      1080575,
+      1080576,
+      1080577,
+      1080578,
+      1080579,
+      1080580,
+      1080581,
+      1080582,
+      1080583,
+      1080584,
+      1080585,
+      1080586,
+      1080587,
+      1080588,
+      1080589,
+      1080591,
+      1080592,
+      1080593,
+      1080594,
+      1080595,
+      1080596,
+      1080598,
+      1080599,
+      1080600,
+      1080601,
+      1080602,
+      1080603,
+      1074395,
+      1074398,
+      1080557,
+      1080561,
+      1080565,
+      1080590,
+      1080597
+    ],
+    "outcome_mismatches": [],
+    "source_clock_start": {
+      "n": 1733,
+      "min": 0.15,
+      "q25": 0.15,
+      "median": 0.15,
+      "q75": 0.15,
+      "max": 0.15
+    },
+    "source_rate_hz": {
+      "n": 1733,
+      "min": 1000.0,
+      "q25": 1000.0,
+      "median": 1000.0,
+      "q75": 1000.0,
+      "max": 1000.0
+    },
+    "events_outside_record": [],
+    "events_beyond_disruption": [],
+    "local_hdf5_count": 1733,
+    "local_without_labels": 0
+  },
+  "split_overlap": [
+    {
+      "canonical_role": "outside_canonical",
+      "cohort": "sanity",
+      "shots": 7
+    },
+    {
+      "canonical_role": "outside_canonical",
+      "cohort": "training_pool",
+      "shots": 76
+    },
+    {
+      "canonical_role": "test",
+      "cohort": "sanity",
+      "shots": 18
+    },
+    {
+      "canonical_role": "test",
+      "cohort": "training_pool",
+      "shots": 202
+    },
+    {
+      "canonical_role": "train",
+      "cohort": "sanity",
+      "shots": 136
+    },
+    {
+      "canonical_role": "train",
+      "cohort": "training_pool",
+      "shots": 1217
+    },
+    {
+      "canonical_role": "val",
+      "cohort": "sanity",
+      "shots": 21
+    },
+    {
+      "canonical_role": "val",
+      "cohort": "training_pool",
+      "shots": 139
+    }
+  ],
+  "canonical_without_labels": {
+    "test": [],
+    "train": [],
+    "val": []
+  },
+  "families": [
+    {
+      "family": "A",
+      "events": 40,
+      "shots": 31,
+      "disruptive_shots": 17,
+      "safe_shots": 14,
+      "pool_events": 35,
+      "sanity_events": 5,
+      "duration_median_ms": 85.0,
+      "start_lead_median_ms": 241.2949188419,
+      "end_lead_median_ms": 3.325,
+      "shot_min": 1054592,
+      "shot_max": 1080564
+    },
+    {
+      "family": "B",
+      "events": 27,
+      "shots": 24,
+      "disruptive_shots": 17,
+      "safe_shots": 7,
+      "pool_events": 24,
+      "sanity_events": 3,
+      "duration_median_ms": 160.0,
+      "start_lead_median_ms": 236.9598476837,
+      "end_lead_median_ms": 2.4597976837,
+      "shot_min": 1053034,
+      "shot_max": 1057273
+    },
+    {
+      "family": "C",
+      "events": 218,
+      "shots": 202,
+      "disruptive_shots": 105,
+      "safe_shots": 97,
+      "pool_events": 195,
+      "sanity_events": 23,
+      "duration_median_ms": 55.0,
+      "start_lead_median_ms": 215.3595076837,
+      "end_lead_median_ms": 76.8593576837,
+      "shot_min": 1051571,
+      "shot_max": 1057983
+    },
+    {
+      "family": "D",
+      "events": 317,
+      "shots": 291,
+      "disruptive_shots": 236,
+      "safe_shots": 55,
+      "pool_events": 287,
+      "sanity_events": 30,
+      "duration_median_ms": 140.0,
+      "start_lead_median_ms": 163.5619376837,
+      "end_lead_median_ms": 3.0554876837,
+      "shot_min": 1051501,
+      "shot_max": 1058073
+    },
+    {
+      "family": "E",
+      "events": 85,
+      "shots": 76,
+      "disruptive_shots": 64,
+      "safe_shots": 12,
+      "pool_events": 77,
+      "sanity_events": 8,
+      "duration_median_ms": 80.0,
+      "start_lead_median_ms": 50.3540076837,
+      "end_lead_median_ms": 1.7683676837,
+      "shot_min": 1051763,
+      "shot_max": 1080602
+    },
+    {
+      "family": "F",
+      "events": 45,
+      "shots": 42,
+      "disruptive_shots": 29,
+      "safe_shots": 13,
+      "pool_events": 37,
+      "sanity_events": 8,
+      "duration_median_ms": 75.0,
+      "start_lead_median_ms": 86.8738576837,
+      "end_lead_median_ms": 2.8175126837,
+      "shot_min": 1051684,
+      "shot_max": 1058057
+    }
+  ],
+  "linked_families": [
+    {
+      "event_class": "A",
+      "disruption_label": 0,
+      "events": 16,
+      "shots": 11
+    },
+    {
+      "event_class": "A",
+      "disruption_label": 1,
+      "events": 12,
+      "shots": 11
+    },
+    {
+      "event_class": "B",
+      "disruption_label": 0,
+      "events": 8,
+      "shots": 7
+    },
+    {
+      "event_class": "B",
+      "disruption_label": 1,
+      "events": 19,
+      "shots": 17
+    },
+    {
+      "event_class": "C",
+      "disruption_label": 0,
+      "events": 103,
+      "shots": 97
+    },
+    {
+      "event_class": "C",
+      "disruption_label": 1,
+      "events": 115,
+      "shots": 105
+    },
+    {
+      "event_class": "D",
+      "disruption_label": 0,
+      "events": 59,
+      "shots": 55
+    },
+    {
+      "event_class": "D",
+      "disruption_label": 1,
+      "events": 258,
+      "shots": 236
+    },
+    {
+      "event_class": "E",
+      "disruption_label": 0,
+      "events": 11,
+      "shots": 8
+    },
+    {
+      "event_class": "E",
+      "disruption_label": 1,
+      "events": 33,
+      "shots": 32
+    },
+    {
+      "event_class": "F",
+      "disruption_label": 0,
+      "events": 15,
+      "shots": 13
+    },
+    {
+      "event_class": "F",
+      "disruption_label": 1,
+      "events": 30,
+      "shots": 29
+    }
+  ],
+  "unlinked_families": [
+    {
+      "event_class": "A",
+      "events": 12,
+      "shots": 9
+    },
+    {
+      "event_class": "E",
+      "events": 41,
+      "shots": 36
+    }
+  ],
+  "timing": {
+    "duration_ms": {
+      "n": 732,
+      "min": 4.999999999999977,
+      "q25": 39.99999999999998,
+      "median": 104.99999999999999,
+      "q75": 199.99999999999997,
+      "max": 480.0
+    },
+    "first_disruptive_event_start_lead_ms": {
+      "n": 351,
+      "min": 15.373507683715925,
+      "q25": 96.9158526837159,
+      "median": 178.84815768371593,
+      "q75": 255.0055426837159,
+      "max": 503.03323768371587
+    },
+    "scope": "Lead times and label-window comparisons use only matched local disruptive HDF5 records.",
+    "disruptive_event_starts_before_source_positive": 423,
+    "disruptive_event_total": 467,
+    "event_duration_fraction_outside_source_positive": 0.8198092611580522,
+    "disruptive_event_duration_ms": 56495.0,
+    "source_positive_overlap_ms": 10179.875790875836,
+    "starts_at_165ms": 143,
+    "disruptive_event_end_within_5ms_of_down": 338,
+    "ends_within_5ms_of_record_end": 436,
+    "first_event_lead_gt30_shots": 333,
+    "first_event_lead_gt10_shots": 351
+  },
+  "sequences": {
+    "event_count_distribution": {
+      "1": 429,
+      "2": 131,
+      "3": 12,
+      "5": 1
+    },
+    "shots_with_multiple_classes": 93,
+    "distinct_sequences": 31,
+    "transitions": 159,
+    "same_class_transitions": 63,
+    "cross_class_transitions": 96,
+    "transition_counts": [
+      {
+        "source": "A",
+        "target": "A",
+        "label": 0,
+        "count": 6
+      },
+      {
+        "source": "A",
+        "target": "A",
+        "label": 1,
+        "count": 2
+      },
+      {
+        "source": "A",
+        "target": "C",
+        "label": 0,
+        "count": 1
+      },
+      {
+        "source": "A",
+        "target": "E",
+        "label": 1,
+        "count": 4
+      },
+      {
+        "source": "B",
+        "target": "B",
+        "label": 0,
+        "count": 1
+      },
+      {
+        "source": "B",
+        "target": "B",
+        "label": 1,
+        "count": 2
+      },
+      {
+        "source": "B",
+        "target": "E",
+        "label": 1,
+        "count": 1
+      },
+      {
+        "source": "C",
+        "target": "A",
+        "label": 0,
+        "count": 1
+      },
+      {
+        "source": "C",
+        "target": "C",
+        "label": 0,
+        "count": 5
+      },
+      {
+        "source": "C",
+        "target": "C",
+        "label": 1,
+        "count": 10
+      },
+      {
+        "source": "C",
+        "target": "D",
+        "label": 0,
+        "count": 6
+      },
+      {
+        "source": "C",
+        "target": "D",
+        "label": 1,
+        "count": 48
+      },
+      {
+        "source": "C",
+        "target": "E",
+        "label": 0,
+        "count": 3
+      },
+      {
+        "source": "C",
+        "target": "E",
+        "label": 1,
+        "count": 6
+      },
+      {
+        "source": "C",
+        "target": "F",
+        "label": 1,
+        "count": 2
+      },
+      {
+        "source": "D",
+        "target": "C",
+        "label": 1,
+        "count": 15
+      },
+      {
+        "source": "D",
+        "target": "D",
+        "label": 0,
+        "count": 4
+      },
+      {
+        "source": "D",
+        "target": "D",
+        "label": 1,
+        "count": 22
+      },
+      {
+        "source": "D",
+        "target": "E",
+        "label": 1,
+        "count": 3
+      },
+      {
+        "source": "E",
+        "target": "A",
+        "label": 1,
+        "count": 1
+      },
+      {
+        "source": "E",
+        "target": "C",
+        "label": 0,
+        "count": 1
+      },
+      {
+        "source": "E",
+        "target": "E",
+        "label": 0,
+        "count": 2
+      },
+      {
+        "source": "E",
+        "target": "E",
+        "label": 1,
+        "count": 6
+      },
+      {
+        "source": "E",
+        "target": "F",
+        "label": 0,
+        "count": 1
+      },
+      {
+        "source": "F",
+        "target": "E",
+        "label": 1,
+        "count": 3
+      },
+      {
+        "source": "F",
+        "target": "F",
+        "label": 0,
+        "count": 2
+      },
+      {
+        "source": "F",
+        "target": "F",
+        "label": 1,
+        "count": 1
+      }
+    ]
+  },
+  "shot_number_only": {
+    "description": "Depth-3 tree; train on training_pool, test on sanity; sole input=shot number. Descriptive confounding check, not prediction evidence.",
+    "sanity_event_accuracy": 0.4675324675324675,
+    "sanity_balanced_accuracy": 0.3085748792270531,
+    "majority_accuracy": 0.38961038961038963,
+    "confusion_matrix": [
+      [
+        0,
+        0,
+        1,
+        4,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        3,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        10,
+        13,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        9,
+        20,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        3,
+        0,
+        3,
+        1
+      ],
+      [
+        0,
+        0,
+        2,
+        3,
+        0,
+        3
+      ]
+    ],
+    "thresholds": [
+      1074381.0,
+      1057628.5,
+      1056304.5,
+      1057721.0,
+      1077472.5,
+      1080565.0
+    ]
+  },
+  "source_test_errors": [
+    {
+      "category": "FN_or_late",
+      "status": "event",
+      "shots": 8
+    },
+    {
+      "category": "FN_or_late",
+      "status": "no_event_detected",
+      "shots": 2
+    },
+    {
+      "category": "FP",
+      "status": "event",
+      "shots": 9
+    },
+    {
+      "category": "FP",
+      "status": "no_event_detected",
+      "shots": 4
+    },
+    {
+      "category": "TN",
+      "status": "event",
+      "shots": 8
+    },
+    {
+      "category": "TN",
+      "status": "no_event_detected",
+      "shots": 89
+    },
+    {
+      "category": "TP",
+      "status": "event",
+      "shots": 97
+    },
+    {
+      "category": "TP",
+      "status": "excluded_short_record",
+      "shots": 2
+    },
+    {
+      "category": "TP",
+      "status": "no_event_detected",
+      "shots": 1
+    }
+  ],
+  "source_test_error_cases": [
+    {
+      "shot_no": 1052127,
+      "is_disrupt": true,
+      "alarm": true,
+      "lead_ms": 5.773667684,
+      "timely": false,
+      "category": "FN_or_late",
+      "cohort": "training_pool",
+      "status": "event",
+      "families": "F"
+    },
+    {
+      "shot_no": 1052585,
+      "is_disrupt": false,
+      "alarm": true,
+      "lead_ms": null,
+      "timely": false,
+      "category": "FP",
+      "cohort": "training_pool",
+      "status": "event",
+      "families": "D"
+    },
+    {
+      "shot_no": 1052853,
+      "is_disrupt": false,
+      "alarm": true,
+      "lead_ms": null,
+      "timely": false,
+      "category": "FP",
+      "cohort": "training_pool",
+      "status": "event",
+      "families": "D"
+    },
+    {
+      "shot_no": 1052945,
+      "is_disrupt": false,
+      "alarm": true,
+      "lead_ms": null,
+      "timely": false,
+      "category": "FP",
+      "cohort": "training_pool",
+      "status": "no_event_detected",
+      "families": null
+    },
+    {
+      "shot_no": 1053004,
+      "is_disrupt": true,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "category": "FN_or_late",
+      "cohort": "training_pool",
+      "status": "no_event_detected",
+      "families": null
+    },
+    {
+      "shot_no": 1053197,
+      "is_disrupt": false,
+      "alarm": true,
+      "lead_ms": null,
+      "timely": false,
+      "category": "FP",
+      "cohort": "training_pool",
+      "status": "event",
+      "families": "D"
+    },
+    {
+      "shot_no": 1053308,
+      "is_disrupt": false,
+      "alarm": true,
+      "lead_ms": null,
+      "timely": false,
+      "category": "FP",
+      "cohort": "training_pool",
+      "status": "event",
+      "families": "D"
+    },
+    {
+      "shot_no": 1053313,
+      "is_disrupt": true,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "category": "FN_or_late",
+      "cohort": "training_pool",
+      "status": "event",
+      "families": "C"
+    },
+    {
+      "shot_no": 1053413,
+      "is_disrupt": false,
+      "alarm": true,
+      "lead_ms": null,
+      "timely": false,
+      "category": "FP",
+      "cohort": "training_pool",
+      "status": "event",
+      "families": "B"
+    },
+    {
+      "shot_no": 1053761,
+      "is_disrupt": true,
+      "alarm": true,
+      "lead_ms": 6.474497684,
+      "timely": false,
+      "category": "FN_or_late",
+      "cohort": "sanity",
+      "status": "event",
+      "families": "C"
+    },
+    {
+      "shot_no": 1053770,
+      "is_disrupt": true,
+      "alarm": true,
+      "lead_ms": 5.243017684,
+      "timely": false,
+      "category": "FN_or_late",
+      "cohort": "training_pool",
+      "status": "event",
+      "families": "C|E"
+    },
+    {
+      "shot_no": 1053854,
+      "is_disrupt": true,
+      "alarm": true,
+      "lead_ms": 3.260117684,
+      "timely": false,
+      "category": "FN_or_late",
+      "cohort": "training_pool",
+      "status": "event",
+      "families": "C"
+    },
+    {
+      "shot_no": 1053957,
+      "is_disrupt": false,
+      "alarm": true,
+      "lead_ms": null,
+      "timely": false,
+      "category": "FP",
+      "cohort": "training_pool",
+      "status": "event",
+      "families": "C"
+    },
+    {
+      "shot_no": 1054259,
+      "is_disrupt": true,
+      "alarm": true,
+      "lead_ms": 5.468697684,
+      "timely": false,
+      "category": "FN_or_late",
+      "cohort": "training_pool",
+      "status": "event",
+      "families": "C"
+    },
+    {
+      "shot_no": 1054851,
+      "is_disrupt": false,
+      "alarm": true,
+      "lead_ms": null,
+      "timely": false,
+      "category": "FP",
+      "cohort": "training_pool",
+      "status": "no_event_detected",
+      "families": null
+    },
+    {
+      "shot_no": 1055322,
+      "is_disrupt": false,
+      "alarm": true,
+      "lead_ms": null,
+      "timely": false,
+      "category": "FP",
+      "cohort": "training_pool",
+      "status": "event",
+      "families": "D"
+    },
+    {
+      "shot_no": 1055794,
+      "is_disrupt": false,
+      "alarm": true,
+      "lead_ms": null,
+      "timely": false,
+      "category": "FP",
+      "cohort": "training_pool",
+      "status": "no_event_detected",
+      "families": null
+    },
+    {
+      "shot_no": 1056016,
+      "is_disrupt": true,
+      "alarm": true,
+      "lead_ms": 7.577487684,
+      "timely": false,
+      "category": "FN_or_late",
+      "cohort": "training_pool",
+      "status": "event",
+      "families": "D"
+    },
+    {
+      "shot_no": 1056326,
+      "is_disrupt": false,
+      "alarm": true,
+      "lead_ms": null,
+      "timely": false,
+      "category": "FP",
+      "cohort": "training_pool",
+      "status": "event",
+      "families": "C"
+    },
+    {
+      "shot_no": 1056341,
+      "is_disrupt": false,
+      "alarm": true,
+      "lead_ms": null,
+      "timely": false,
+      "category": "FP",
+      "cohort": "training_pool",
+      "status": "no_event_detected",
+      "families": null
+    },
+    {
+      "shot_no": 1056961,
+      "is_disrupt": true,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "category": "FN_or_late",
+      "cohort": "training_pool",
+      "status": "no_event_detected",
+      "families": null
+    },
+    {
+      "shot_no": 1057199,
+      "is_disrupt": false,
+      "alarm": true,
+      "lead_ms": null,
+      "timely": false,
+      "category": "FP",
+      "cohort": "training_pool",
+      "status": "event",
+      "families": "C"
+    },
+    {
+      "shot_no": 1057443,
+      "is_disrupt": true,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "category": "FN_or_late",
+      "cohort": "training_pool",
+      "status": "event",
+      "families": "C"
+    }
+  ]
+}

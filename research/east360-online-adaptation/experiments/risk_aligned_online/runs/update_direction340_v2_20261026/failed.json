@@ -1,0 +1,7 @@
+{
+  "status": "FAILED",
+  "failure": "Exact reconstruction assertion failed on shot70323 patch374. Diagnostic helper truncated the pointwise key GEMM batch unlike production.",
+  "scientific_result": false,
+  "original_stream_modified": false,
+  "repair": "Preserve production key batch shape; state writes still stop at selected patch. CUDA regression and future-perturbation check added. No tolerance relaxation."
+}

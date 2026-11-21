@@ -1,0 +1,441 @@
+{
+  "scope": "POSTSEAL_EAST_SAFE_DURATION_STANDARDIZATION",
+  "bins": [
+    "<2s",
+    "2–<5s",
+    "5–<10s",
+    "≥10s"
+  ],
+  "columns": [
+    "n_safe",
+    "fixed",
+    "bias_only",
+    "current_5"
+  ],
+  "counts": {
+    "fixed340": [
+      [
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        144,
+        21,
+        23,
+        23
+      ],
+      [
+        22,
+        5,
+        5,
+        5
+      ],
+      [
+        1,
+        0,
+        0,
+        0
+      ]
+    ],
+    "extension": [
+      [
+        3,
+        0,
+        0,
+        0
+      ],
+      [
+        1334,
+        306,
+        351,
+        362
+      ],
+      [
+        223,
+        59,
+        66,
+        68
+      ],
+      [
+        15,
+        2,
+        3,
+        4
+      ]
+    ],
+    "old835": [
+      [
+        3,
+        0,
+        0,
+        0
+      ],
+      [
+        265,
+        64,
+        70,
+        73
+      ],
+      [
+        54,
+        16,
+        17,
+        18
+      ],
+      [
+        3,
+        0,
+        1,
+        1
+      ]
+    ],
+    "other1758": [
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        1069,
+        242,
+        281,
+        289
+      ],
+      [
+        169,
+        43,
+        49,
+        50
+      ],
+      [
+        12,
+        2,
+        2,
+        3
+      ]
+    ]
+  },
+  "original_threshold_counts": {
+    "fixed340": [
+      [
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        144,
+        7,
+        9,
+        9
+      ],
+      [
+        22,
+        2,
+        2,
+        2
+      ],
+      [
+        1,
+        0,
+        0,
+        0
+      ]
+    ],
+    "extension": [
+      [
+        3,
+        0,
+        0,
+        0
+      ],
+      [
+        1334,
+        164,
+        193,
+        203
+      ],
+      [
+        223,
+        34,
+        41,
+        45
+      ],
+      [
+        15,
+        1,
+        2,
+        2
+      ]
+    ],
+    "old835": [
+      [
+        3,
+        0,
+        0,
+        0
+      ],
+      [
+        265,
+        27,
+        35,
+        36
+      ],
+      [
+        54,
+        3,
+        9,
+        10
+      ],
+      [
+        3,
+        0,
+        0,
+        0
+      ]
+    ],
+    "other1758": [
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        1069,
+        137,
+        158,
+        167
+      ],
+      [
+        169,
+        31,
+        32,
+        35
+      ],
+      [
+        12,
+        1,
+        2,
+        2
+      ]
+    ]
+  },
+  "weights": "pooled safe-shot duration distribution on pairwise shared bins",
+  "limitation": "recorded duration only, not verified physical shot length or adjustment for regime",
+  "thresholds_unchanged": true,
+  "comparison": {
+    "extension": {
+      "common_bins": [
+        "<2s",
+        "2–<5s",
+        "5–<10s",
+        "≥10s"
+      ],
+      "excluded": {
+        "fixed340": 0,
+        "target": 0
+      },
+      "arms": {
+        "fixed": {
+          "raw_reference": 0.15476190476190477,
+          "raw_target": 0.233015873015873,
+          "standardized_reference": 0.1556072775952294,
+          "standardized_target": 0.23292337658858,
+          "gap_pp": 7.731609899335061
+        },
+        "bias_only": {
+          "raw_reference": 0.16666666666666666,
+          "raw_target": 0.26666666666666666,
+          "standardized_reference": 0.16738454539659356,
+          "standardized_target": 0.2665520747186435,
+          "gap_pp": 9.916752932205
+        },
+        "current_5": {
+          "raw_reference": 0.16666666666666666,
+          "raw_target": 0.27555555555555555,
+          "standardized_reference": 0.16738454539659356,
+          "standardized_target": 0.2754168953615343,
+          "gap_pp": 10.803234996494073
+        }
+      }
+    },
+    "old835": {
+      "common_bins": [
+        "<2s",
+        "2–<5s",
+        "5–<10s",
+        "≥10s"
+      ],
+      "excluded": {
+        "fixed340": 0,
+        "target": 0
+      },
+      "arms": {
+        "fixed": {
+          "raw_reference": 0.15476190476190477,
+          "raw_target": 0.24615384615384617,
+          "standardized_reference": 0.156021421107628,
+          "standardized_target": 0.24603626168171308,
+          "gap_pp": 9.001484057408508
+        },
+        "bias_only": {
+          "raw_reference": 0.16666666666666666,
+          "raw_target": 0.27076923076923076,
+          "standardized_reference": 0.16754384616960682,
+          "standardized_target": 0.2703793004225474,
+          "gap_pp": 10.283545425294054
+        },
+        "current_5": {
+          "raw_reference": 0.16666666666666666,
+          "raw_target": 0.28307692307692306,
+          "standardized_reference": 0.16754384616960682,
+          "standardized_target": 0.28262594562873944,
+          "gap_pp": 11.508209945913263
+        }
+      }
+    },
+    "other1758": {
+      "common_bins": [
+        "2–<5s",
+        "5–<10s",
+        "≥10s"
+      ],
+      "excluded": {
+        "fixed340": 1,
+        "target": 0
+      },
+      "arms": {
+        "fixed": {
+          "raw_reference": 0.15476190476190477,
+          "raw_target": 0.2296,
+          "standardized_reference": 0.155472776459015,
+          "standardized_target": 0.2296139662438873,
+          "gap_pp": 7.414118978487229
+        },
+        "bias_only": {
+          "raw_reference": 0.16666666666666666,
+          "raw_target": 0.2656,
+          "standardized_reference": 0.16736213582543857,
+          "standardized_target": 0.2656298964062824,
+          "gap_pp": 9.826776058084377
+        },
+        "current_5": {
+          "raw_reference": 0.16666666666666666,
+          "raw_target": 0.2736,
+          "standardized_reference": 0.16736213582543857,
+          "standardized_target": 0.2735982475035404,
+          "gap_pp": 10.623611167810186
+        }
+      }
+    }
+  },
+  "central_bins": {
+    "extension": {
+      "common_bins": [
+        "2–<5s",
+        "5–<10s"
+      ],
+      "excluded": {
+        "fixed340": 2,
+        "target": 18
+      },
+      "arms": {
+        "fixed": {
+          "raw_reference": 0.15476190476190477,
+          "raw_target": 0.233015873015873,
+          "standardized_reference": 0.15741351413144797,
+          "standardized_target": 0.2343889216834368,
+          "gap_pp": 7.697540755198884
+        },
+        "bias_only": {
+          "raw_reference": 0.16666666666666666,
+          "raw_target": 0.26666666666666666,
+          "standardized_reference": 0.1693274884656196,
+          "standardized_target": 0.2677888950868228,
+          "gap_pp": 9.846140662120323
+        },
+        "current_5": {
+          "raw_reference": 0.16666666666666666,
+          "raw_target": 0.27555555555555555,
+          "standardized_reference": 0.1693274884656196,
+          "standardized_target": 0.2761375403067252,
+          "gap_pp": 10.681005184110564
+        }
+      }
+    },
+    "old835": {
+      "common_bins": [
+        "2–<5s",
+        "5–<10s"
+      ],
+      "excluded": {
+        "fixed340": 2,
+        "target": 6
+      },
+      "arms": {
+        "fixed": {
+          "raw_reference": 0.15476190476190477,
+          "raw_target": 0.24615384615384617,
+          "standardized_reference": 0.15859497032177444,
+          "standardized_target": 0.2500945917713084,
+          "gap_pp": 9.149962144953392
+        },
+        "bias_only": {
+          "raw_reference": 0.16666666666666666,
+          "raw_target": 0.27076923076923076,
+          "standardized_reference": 0.17030745600333227,
+          "standardized_target": 0.2720900242783145,
+          "gap_pp": 10.178256827498222
+        },
+        "current_5": {
+          "raw_reference": 0.16666666666666666,
+          "raw_target": 0.28307692307692306,
+          "standardized_reference": 0.17030745600333227,
+          "standardized_target": 0.28453867600337157,
+          "gap_pp": 11.42312200000393
+        }
+      }
+    },
+    "other1758": {
+      "common_bins": [
+        "2–<5s",
+        "5–<10s"
+      ],
+      "excluded": {
+        "fixed340": 2,
+        "target": 12
+      },
+      "arms": {
+        "fixed": {
+          "raw_reference": 0.15476190476190477,
+          "raw_target": 0.2296,
+          "standardized_reference": 0.15691233920400588,
+          "standardized_target": 0.23019681161034303,
+          "gap_pp": 7.328447240633714
+        },
+        "bias_only": {
+          "raw_reference": 0.16666666666666666,
+          "raw_target": 0.2656,
+          "standardized_reference": 0.16891178523122966,
+          "standardized_target": 0.26654622260757505,
+          "gap_pp": 9.763443737634542
+        },
+        "current_5": {
+          "raw_reference": 0.16666666666666666,
+          "raw_target": 0.2736,
+          "standardized_reference": 0.16891178523122966,
+          "standardized_target": 0.2738167497952399,
+          "gap_pp": 10.490496456401022
+        }
+      }
+    }
+  },
+  "reference_seals": {
+    "fixed340": "e08547e8234ea02d12c79be40577363d62167be46c3223702b3473fcd08663e5",
+    "extension": "47a6fbb9df06749427d7c9f2e67944a83736fcb0d674b639fda396026ee09bcd"
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "block": 2,
+  "commit_sha256": "24c86183d125473451460a677f012fbac78b9815b1954db3c0743dcc0e7c5d53",
+  "reveals_sha256": "1dad967860b785ef8dbb5b99154e85c62b305d8fa1e8bc720831771c17143bcd",
+  "state_before_sha256": "026c50a6838476536450ca505095d3356398b8c49647a289afaa307775d04441",
+  "state_after_sha256": "026c50a6838476536450ca505095d3356398b8c49647a289afaa307775d04441",
+  "state_file": null,
+  "state_size": 0,
+  "first_next_rank": 41,
+  "updated_ns": 40768793454930,
+  "decision": "rejected_guard",
+  "query_status": {
+    "inter": {
+      "status": "tardy",
+      "first_index": 1761,
+      "lead_ms": 1.0
+    },
+    "both": {
+      "status": "tardy",
+      "first_index": 1758,
+      "lead_ms": 4.0
+    }
+  },
+  "teaching_indices": [
+    1637,
+    1650,
+    1663,
+    1677,
+    1690,
+    1704,
+    1717,
+    1731
+  ],
+  "fit": {
+    "steps": 20,
+    "initial_loss": 5.397541046142578,
+    "final_loss": 3.648627281188965,
+    "norm": 0.5999997854232788,
+    "n_keys": 4
+  },
+  "diagnostics": {
+    "inter": {
+      "before": {
+        "shot": null,
+        "disruptive": true,
+        "down": 2.863,
+        "status": "tardy",
+        "first_index": 1761,
+        "lead_ms": 1.0
+      },
+      "after": {
+        "shot": null,
+        "disruptive": true,
+        "down": 2.863,
+        "status": "tardy",
+        "first_index": 1760,
+        "lead_ms": 2.0
+      },
+      "peak_gain": 0.0028481590561568737,
+      "corrected": false,
+      "guard_violations": []
+    },
+    "both": {
+      "before": {
+        "shot": null,
+        "disruptive": true,
+        "down": 2.863,
+        "status": "tardy",
+        "first_index": 1758,
+        "lead_ms": 4.0
+      },
+      "after": {
+        "shot": null,
+        "disruptive": true,
+        "down": 2.863,
+        "status": "tardy",
+        "first_index": 1746,
+        "lead_ms": 16.0
+      },
+      "peak_gain": 0.6623964905738831,
+      "corrected": false,
+      "guard_violations": []
+    }
+  },
+  "guard_ids": [
+    71304,
+    87494,
+    69458,
+    87487,
+    70404,
+    70323,
+    86167,
+    54157
+  ],
+  "violations": [
+    {
+      "shot": 70323,
+      "arm": "inter",
+      "reason": "new_false_alarm"
+    }
+  ],
+  "witness_sha256": "0a7479c39e77018b3bab688904a31c56bb7826208ed3ef998525b0c85f5cd805",
+  "proposal_sha256": "41cfe3ee2d845ca03de060ee7b1a9a0f1f38fe56433b8f0c54ee9692d76ccfaa"
+}

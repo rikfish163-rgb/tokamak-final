@@ -1,0 +1,9 @@
+{
+  "status": "SUPERSEDED_BEFORE_MODEL_TRAINING",
+  "reason": "Corpus-level within-shot shuffling preserved global prevalence but not prevalence after the fixed stratified repeated-sample training schedule.",
+  "training_draws": 512,
+  "future125_positive_draws": 256,
+  "shuffled_positive_draws": 301,
+  "model_training_performed": false,
+  "replacement_contract": "Shuffle distinct coordinates only within each HDF-disruptive shot and identical scheduled occurrence counts; keep unsampled coordinates unchanged. This preserves per-shot corpus and actual exposure prevalence with stable per-coordinate labels. A trainer must require exposure_matched=true."
+}

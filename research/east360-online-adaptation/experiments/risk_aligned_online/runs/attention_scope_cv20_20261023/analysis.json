@@ -1,0 +1,1128 @@
+{
+  "contrasts": {
+    "qk_user_target": false,
+    "qk_better_than_matched_full": true,
+    "qk_attributed_screen": false,
+    "vs_static": {
+      "full": {
+        "delta_tp": -1,
+        "delta_fp": 0,
+        "delta_J": -0.25
+      },
+      "qk": {
+        "delta_tp": 0,
+        "delta_fp": 0,
+        "delta_J": 0.0
+      },
+      "value_matched": {
+        "delta_tp": 0,
+        "delta_fp": 0,
+        "delta_J": 0.0
+      },
+      "full_matched": {
+        "delta_tp": -1,
+        "delta_fp": 0,
+        "delta_J": -0.25
+      }
+    }
+  },
+  "metrics": {
+    "static": {
+      "tp": 3,
+      "fp": 1,
+      "n_disrupt": 4,
+      "n_safe": 16,
+      "tpr": 0.75,
+      "fpr": 0.0625,
+      "J": 0.6875,
+      "threshold": 0.7258946895599365,
+      "median_lead_ms": 258.0,
+      "very_early_over3000": 0
+    },
+    "full": {
+      "tp": 2,
+      "fp": 1,
+      "n_disrupt": 4,
+      "n_safe": 16,
+      "tpr": 0.5,
+      "fpr": 0.0625,
+      "J": 0.4375,
+      "threshold": 0.7258946895599365,
+      "median_lead_ms": 630.0,
+      "very_early_over3000": 0
+    },
+    "qk": {
+      "tp": 3,
+      "fp": 1,
+      "n_disrupt": 4,
+      "n_safe": 16,
+      "tpr": 0.75,
+      "fpr": 0.0625,
+      "J": 0.6875,
+      "threshold": 0.7258946895599365,
+      "median_lead_ms": 255.0,
+      "very_early_over3000": 0
+    },
+    "value_matched": {
+      "tp": 3,
+      "fp": 1,
+      "n_disrupt": 4,
+      "n_safe": 16,
+      "tpr": 0.75,
+      "fpr": 0.0625,
+      "J": 0.6875,
+      "threshold": 0.7258946895599365,
+      "median_lead_ms": 255.0,
+      "very_early_over3000": 0
+    },
+    "full_matched": {
+      "tp": 2,
+      "fp": 1,
+      "n_disrupt": 4,
+      "n_safe": 16,
+      "tpr": 0.5,
+      "fpr": 0.0625,
+      "J": 0.4375,
+      "threshold": 0.7258946895599365,
+      "median_lead_ms": 630.0,
+      "very_early_over3000": 0
+    }
+  },
+  "per_shot": [
+    {
+      "arm": "static",
+      "shot": 62630,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.013862160965800285,
+      "max_absolute_difference_from_static": 0.0
+    },
+    {
+      "arm": "full",
+      "shot": 62630,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.013953309506177902,
+      "max_absolute_difference_from_static": 9.114854037761688e-05
+    },
+    {
+      "arm": "qk",
+      "shot": 62630,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.013862513937056065,
+      "max_absolute_difference_from_static": 3.8277357816696167e-07
+    },
+    {
+      "arm": "value_matched",
+      "shot": 62630,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.013862227089703083,
+      "max_absolute_difference_from_static": 6.612390279769897e-08
+    },
+    {
+      "arm": "full_matched",
+      "shot": 62630,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.013864860869944096,
+      "max_absolute_difference_from_static": 2.6999041438102722e-06
+    },
+    {
+      "arm": "static",
+      "shot": 63226,
+      "is_disrupt": true,
+      "alarm": true,
+      "lead_ms": 258.0,
+      "timely": true,
+      "max_timely_probability": 0.7445954084396362,
+      "max_absolute_difference_from_static": 0.0
+    },
+    {
+      "arm": "full",
+      "shot": 63226,
+      "is_disrupt": true,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.5778881907463074,
+      "max_absolute_difference_from_static": 0.2565555274486542
+    },
+    {
+      "arm": "qk",
+      "shot": 63226,
+      "is_disrupt": true,
+      "alarm": true,
+      "lead_ms": 255.0,
+      "timely": true,
+      "max_timely_probability": 0.7402963638305664,
+      "max_absolute_difference_from_static": 0.0057694315910339355
+    },
+    {
+      "arm": "value_matched",
+      "shot": 63226,
+      "is_disrupt": true,
+      "alarm": true,
+      "lead_ms": 255.0,
+      "timely": true,
+      "max_timely_probability": 0.7394072413444519,
+      "max_absolute_difference_from_static": 0.007207751274108887
+    },
+    {
+      "arm": "full_matched",
+      "shot": 63226,
+      "is_disrupt": true,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.7146927714347839,
+      "max_absolute_difference_from_static": 0.0399135947227478
+    },
+    {
+      "arm": "static",
+      "shot": 63711,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.12369973957538605,
+      "max_absolute_difference_from_static": 0.0
+    },
+    {
+      "arm": "full",
+      "shot": 63711,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.11080028116703033,
+      "max_absolute_difference_from_static": 0.012899458408355713
+    },
+    {
+      "arm": "qk",
+      "shot": 63711,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.12360233813524246,
+      "max_absolute_difference_from_static": 9.97781753540039e-05
+    },
+    {
+      "arm": "value_matched",
+      "shot": 63711,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.12350238114595413,
+      "max_absolute_difference_from_static": 0.00020351260900497437
+    },
+    {
+      "arm": "full_matched",
+      "shot": 63711,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.12294021248817444,
+      "max_absolute_difference_from_static": 0.0007979869842529297
+    },
+    {
+      "arm": "static",
+      "shot": 64481,
+      "is_disrupt": false,
+      "alarm": true,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.9921700358390808,
+      "max_absolute_difference_from_static": 0.0
+    },
+    {
+      "arm": "full",
+      "shot": 64481,
+      "is_disrupt": false,
+      "alarm": true,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.9902830123901367,
+      "max_absolute_difference_from_static": 0.2273077368736267
+    },
+    {
+      "arm": "qk",
+      "shot": 64481,
+      "is_disrupt": false,
+      "alarm": true,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.9921463131904602,
+      "max_absolute_difference_from_static": 0.0017406344413757324
+    },
+    {
+      "arm": "value_matched",
+      "shot": 64481,
+      "is_disrupt": false,
+      "alarm": true,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.9921433925628662,
+      "max_absolute_difference_from_static": 0.002575993537902832
+    },
+    {
+      "arm": "full_matched",
+      "shot": 64481,
+      "is_disrupt": false,
+      "alarm": true,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.9920215010643005,
+      "max_absolute_difference_from_static": 0.013954639434814453
+    },
+    {
+      "arm": "static",
+      "shot": 68933,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.016436949372291565,
+      "max_absolute_difference_from_static": 0.0
+    },
+    {
+      "arm": "full",
+      "shot": 68933,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.01645522750914097,
+      "max_absolute_difference_from_static": 5.258340388536453e-05
+    },
+    {
+      "arm": "qk",
+      "shot": 68933,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.016436994075775146,
+      "max_absolute_difference_from_static": 6.48200511932373e-07
+    },
+    {
+      "arm": "value_matched",
+      "shot": 68933,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.016436932608485222,
+      "max_absolute_difference_from_static": 2.551823854446411e-07
+    },
+    {
+      "arm": "full_matched",
+      "shot": 68933,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.016437118873000145,
+      "max_absolute_difference_from_static": 5.513429641723633e-07
+    },
+    {
+      "arm": "static",
+      "shot": 62945,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.017747974023222923,
+      "max_absolute_difference_from_static": 0.0
+    },
+    {
+      "arm": "full",
+      "shot": 62945,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.017741873860359192,
+      "max_absolute_difference_from_static": 6.197020411491394e-06
+    },
+    {
+      "arm": "qk",
+      "shot": 62945,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.017747992649674416,
+      "max_absolute_difference_from_static": 8.102506399154663e-08
+    },
+    {
+      "arm": "value_matched",
+      "shot": 62945,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.017747942358255386,
+      "max_absolute_difference_from_static": 6.51925802230835e-08
+    },
+    {
+      "arm": "full_matched",
+      "shot": 62945,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.017747942358255386,
+      "max_absolute_difference_from_static": 9.033828973770142e-08
+    },
+    {
+      "arm": "static",
+      "shot": 63712,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.007263032719492912,
+      "max_absolute_difference_from_static": 0.0
+    },
+    {
+      "arm": "full",
+      "shot": 63712,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.0072606950998306274,
+      "max_absolute_difference_from_static": 8.80332663655281e-06
+    },
+    {
+      "arm": "qk",
+      "shot": 63712,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.00726322503760457,
+      "max_absolute_difference_from_static": 1.9650906324386597e-07
+    },
+    {
+      "arm": "value_matched",
+      "shot": 63712,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.0072629982605576515,
+      "max_absolute_difference_from_static": 9.778887033462524e-08
+    },
+    {
+      "arm": "full_matched",
+      "shot": 63712,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.007263046223670244,
+      "max_absolute_difference_from_static": 3.511086106300354e-07
+    },
+    {
+      "arm": "static",
+      "shot": 63824,
+      "is_disrupt": true,
+      "alarm": true,
+      "lead_ms": 88.0,
+      "timely": true,
+      "max_timely_probability": 0.8697347044944763,
+      "max_absolute_difference_from_static": 0.0
+    },
+    {
+      "arm": "full",
+      "shot": 63824,
+      "is_disrupt": true,
+      "alarm": true,
+      "lead_ms": 88.0,
+      "timely": true,
+      "max_timely_probability": 0.869695246219635,
+      "max_absolute_difference_from_static": 0.0005376935005187988
+    },
+    {
+      "arm": "qk",
+      "shot": 63824,
+      "is_disrupt": true,
+      "alarm": true,
+      "lead_ms": 88.0,
+      "timely": true,
+      "max_timely_probability": 0.8697347044944763,
+      "max_absolute_difference_from_static": 3.2782554626464844e-07
+    },
+    {
+      "arm": "value_matched",
+      "shot": 63824,
+      "is_disrupt": true,
+      "alarm": true,
+      "lead_ms": 88.0,
+      "timely": true,
+      "max_timely_probability": 0.8697343468666077,
+      "max_absolute_difference_from_static": 3.5762786865234375e-06
+    },
+    {
+      "arm": "full_matched",
+      "shot": 63824,
+      "is_disrupt": true,
+      "alarm": true,
+      "lead_ms": 88.0,
+      "timely": true,
+      "max_timely_probability": 0.8697342872619629,
+      "max_absolute_difference_from_static": 8.046627044677734e-06
+    },
+    {
+      "arm": "static",
+      "shot": 64894,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.007664314936846495,
+      "max_absolute_difference_from_static": 0.0
+    },
+    {
+      "arm": "full",
+      "shot": 64894,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.007664314936846495,
+      "max_absolute_difference_from_static": 2.1262094378471375e-06
+    },
+    {
+      "arm": "qk",
+      "shot": 64894,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.007664314936846495,
+      "max_absolute_difference_from_static": 1.8114224076271057e-07
+    },
+    {
+      "arm": "value_matched",
+      "shot": 64894,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.007664314936846495,
+      "max_absolute_difference_from_static": 7.497146725654602e-08
+    },
+    {
+      "arm": "full_matched",
+      "shot": 64894,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.007664314936846495,
+      "max_absolute_difference_from_static": 5.3551048040390015e-08
+    },
+    {
+      "arm": "static",
+      "shot": 70633,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.37702637910842896,
+      "max_absolute_difference_from_static": 0.0
+    },
+    {
+      "arm": "full",
+      "shot": 70633,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.3736484944820404,
+      "max_absolute_difference_from_static": 0.00337788462638855
+    },
+    {
+      "arm": "qk",
+      "shot": 70633,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.3769788146018982,
+      "max_absolute_difference_from_static": 4.863739013671875e-05
+    },
+    {
+      "arm": "value_matched",
+      "shot": 70633,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.3769998252391815,
+      "max_absolute_difference_from_static": 2.6553869247436523e-05
+    },
+    {
+      "arm": "full_matched",
+      "shot": 70633,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.37680602073669434,
+      "max_absolute_difference_from_static": 0.00022214651107788086
+    },
+    {
+      "arm": "static",
+      "shot": 63481,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.005929635837674141,
+      "max_absolute_difference_from_static": 0.0
+    },
+    {
+      "arm": "full",
+      "shot": 63481,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.005929635837674141,
+      "max_absolute_difference_from_static": 4.20399010181427e-06
+    },
+    {
+      "arm": "qk",
+      "shot": 63481,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.005929635837674141,
+      "max_absolute_difference_from_static": 2.9802322387695312e-08
+    },
+    {
+      "arm": "value_matched",
+      "shot": 63481,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.005929635837674141,
+      "max_absolute_difference_from_static": 2.9802322387695312e-08
+    },
+    {
+      "arm": "full_matched",
+      "shot": 63481,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.005929635837674141,
+      "max_absolute_difference_from_static": 1.1362135410308838e-07
+    },
+    {
+      "arm": "static",
+      "shot": 63776,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.0065883793868124485,
+      "max_absolute_difference_from_static": 0.0
+    },
+    {
+      "arm": "full",
+      "shot": 63776,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.0065883793868124485,
+      "max_absolute_difference_from_static": 9.539537131786346e-06
+    },
+    {
+      "arm": "qk",
+      "shot": 63776,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.0065883793868124485,
+      "max_absolute_difference_from_static": 5.601905286312103e-07
+    },
+    {
+      "arm": "value_matched",
+      "shot": 63776,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.0065883793868124485,
+      "max_absolute_difference_from_static": 1.2852251529693604e-07
+    },
+    {
+      "arm": "full_matched",
+      "shot": 63776,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.0065883793868124485,
+      "max_absolute_difference_from_static": 5.136243999004364e-07
+    },
+    {
+      "arm": "static",
+      "shot": 64677,
+      "is_disrupt": true,
+      "alarm": true,
+      "lead_ms": 1172.0,
+      "timely": true,
+      "max_timely_probability": 0.9668487310409546,
+      "max_absolute_difference_from_static": 0.0
+    },
+    {
+      "arm": "full",
+      "shot": 64677,
+      "is_disrupt": true,
+      "alarm": true,
+      "lead_ms": 1172.0,
+      "timely": true,
+      "max_timely_probability": 0.9662594199180603,
+      "max_absolute_difference_from_static": 0.01916387677192688
+    },
+    {
+      "arm": "qk",
+      "shot": 64677,
+      "is_disrupt": true,
+      "alarm": true,
+      "lead_ms": 1172.0,
+      "timely": true,
+      "max_timely_probability": 0.9668409824371338,
+      "max_absolute_difference_from_static": 0.00023674964904785156
+    },
+    {
+      "arm": "value_matched",
+      "shot": 64677,
+      "is_disrupt": true,
+      "alarm": true,
+      "lead_ms": 1172.0,
+      "timely": true,
+      "max_timely_probability": 0.9668415188789368,
+      "max_absolute_difference_from_static": 0.00021097064018249512
+    },
+    {
+      "arm": "full_matched",
+      "shot": 64677,
+      "is_disrupt": true,
+      "alarm": true,
+      "lead_ms": 1172.0,
+      "timely": true,
+      "max_timely_probability": 0.9668118953704834,
+      "max_absolute_difference_from_static": 0.0012061893939971924
+    },
+    {
+      "arm": "static",
+      "shot": 65063,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.06107045337557793,
+      "max_absolute_difference_from_static": 0.0
+    },
+    {
+      "arm": "full",
+      "shot": 65063,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.06073986738920212,
+      "max_absolute_difference_from_static": 0.00034773722290992737
+    },
+    {
+      "arm": "qk",
+      "shot": 65063,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.06107117608189583,
+      "max_absolute_difference_from_static": 7.525086402893066e-07
+    },
+    {
+      "arm": "value_matched",
+      "shot": 65063,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.06106701120734215,
+      "max_absolute_difference_from_static": 3.591179847717285e-06
+    },
+    {
+      "arm": "full_matched",
+      "shot": 65063,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.061060935258865356,
+      "max_absolute_difference_from_static": 1.0069459676742554e-05
+    },
+    {
+      "arm": "static",
+      "shot": 72239,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.09313792735338211,
+      "max_absolute_difference_from_static": 0.0
+    },
+    {
+      "arm": "full",
+      "shot": 72239,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.09195130318403244,
+      "max_absolute_difference_from_static": 0.0012354552745819092
+    },
+    {
+      "arm": "qk",
+      "shot": 72239,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.09311029314994812,
+      "max_absolute_difference_from_static": 2.763420343399048e-05
+    },
+    {
+      "arm": "value_matched",
+      "shot": 72239,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.09310649335384369,
+      "max_absolute_difference_from_static": 3.143399953842163e-05
+    },
+    {
+      "arm": "full_matched",
+      "shot": 72239,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.09307260066270828,
+      "max_absolute_difference_from_static": 6.532669067382812e-05
+    },
+    {
+      "arm": "static",
+      "shot": 63645,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.5062122941017151,
+      "max_absolute_difference_from_static": 0.0
+    },
+    {
+      "arm": "full",
+      "shot": 63645,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.5071812868118286,
+      "max_absolute_difference_from_static": 0.0014153122901916504
+    },
+    {
+      "arm": "qk",
+      "shot": 63645,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.5061842799186707,
+      "max_absolute_difference_from_static": 3.930926322937012e-05
+    },
+    {
+      "arm": "value_matched",
+      "shot": 63645,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.5062391757965088,
+      "max_absolute_difference_from_static": 3.6090612411499023e-05
+    },
+    {
+      "arm": "full_matched",
+      "shot": 63645,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.5062889456748962,
+      "max_absolute_difference_from_static": 8.144974708557129e-05
+    },
+    {
+      "arm": "static",
+      "shot": 63933,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.006759976036846638,
+      "max_absolute_difference_from_static": 0.0
+    },
+    {
+      "arm": "full",
+      "shot": 63933,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.006764900870621204,
+      "max_absolute_difference_from_static": 2.4573877453804016e-05
+    },
+    {
+      "arm": "qk",
+      "shot": 63933,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.006760622374713421,
+      "max_absolute_difference_from_static": 6.528571248054504e-07
+    },
+    {
+      "arm": "value_matched",
+      "shot": 63933,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.006760289892554283,
+      "max_absolute_difference_from_static": 3.2922253012657166e-07
+    },
+    {
+      "arm": "full_matched",
+      "shot": 63933,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.006760148797184229,
+      "max_absolute_difference_from_static": 1.3597309589385986e-06
+    },
+    {
+      "arm": "static",
+      "shot": 66611,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.010525251738727093,
+      "max_absolute_difference_from_static": 0.0
+    },
+    {
+      "arm": "full",
+      "shot": 66611,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.010515284724533558,
+      "max_absolute_difference_from_static": 5.5439770221710205e-05
+    },
+    {
+      "arm": "qk",
+      "shot": 66611,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.010525231249630451,
+      "max_absolute_difference_from_static": 3.7439167499542236e-07
+    },
+    {
+      "arm": "value_matched",
+      "shot": 66611,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.010525241494178772,
+      "max_absolute_difference_from_static": 6.426125764846802e-08
+    },
+    {
+      "arm": "full_matched",
+      "shot": 66611,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.010525132529437542,
+      "max_absolute_difference_from_static": 7.925555109977722e-07
+    },
+    {
+      "arm": "static",
+      "shot": 70868,
+      "is_disrupt": true,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.007642724085599184,
+      "max_absolute_difference_from_static": 0.0
+    },
+    {
+      "arm": "full",
+      "shot": 70868,
+      "is_disrupt": true,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.007634858600795269,
+      "max_absolute_difference_from_static": 1.876428723335266e-05
+    },
+    {
+      "arm": "qk",
+      "shot": 70868,
+      "is_disrupt": true,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.007642701733857393,
+      "max_absolute_difference_from_static": 9.12696123123169e-08
+    },
+    {
+      "arm": "value_matched",
+      "shot": 70868,
+      "is_disrupt": true,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.007642724085599184,
+      "max_absolute_difference_from_static": 2.5890767574310303e-07
+    },
+    {
+      "arm": "full_matched",
+      "shot": 70868,
+      "is_disrupt": true,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.007642513606697321,
+      "max_absolute_difference_from_static": 4.4051557779312134e-07
+    },
+    {
+      "arm": "static",
+      "shot": 72415,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.39202210307121277,
+      "max_absolute_difference_from_static": 0.0
+    },
+    {
+      "arm": "full",
+      "shot": 72415,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.38847461342811584,
+      "max_absolute_difference_from_static": 0.004185318946838379
+    },
+    {
+      "arm": "qk",
+      "shot": 72415,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.3920210003852844,
+      "max_absolute_difference_from_static": 2.086162567138672e-06
+    },
+    {
+      "arm": "value_matched",
+      "shot": 72415,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.39200514554977417,
+      "max_absolute_difference_from_static": 1.9222497940063477e-05
+    },
+    {
+      "arm": "full_matched",
+      "shot": 72415,
+      "is_disrupt": false,
+      "alarm": false,
+      "lead_ms": null,
+      "timely": false,
+      "max_timely_probability": 0.3919905126094818,
+      "max_absolute_difference_from_static": 3.7670135498046875e-05
+    }
+  ],
+  "updates": {
+    "qk": {
+      "steps": 693,
+      "loss_decreased": 422,
+      "attention_changed": 693,
+      "value_changed": 0,
+      "max_step": 1.1260787075478035e-05,
+      "max_requested_step_gap": 1.8556543694878866e-08,
+      "total_parameter_step": 0.0008861035257011674,
+      "max_attention_change": 3.72081995010376e-05,
+      "max_value_change": 0.0
+    },
+    "value_matched": {
+      "steps": 693,
+      "loss_decreased": 429,
+      "attention_changed": 0,
+      "value_changed": 693,
+      "max_step": 1.1261830069097466e-05,
+      "max_requested_step_gap": 1.9556560938364182e-08,
+      "total_parameter_step": 0.0008874640657044762,
+      "max_attention_change": 0.0,
+      "max_value_change": 2.7954578399658203e-05
+    },
+    "full_matched": {
+      "steps": 693,
+      "loss_decreased": 491,
+      "attention_changed": 693,
+      "value_changed": 693,
+      "max_step": 1.1262897655390927e-05,
+      "max_requested_step_gap": 1.1124851995630509e-08,
+      "total_parameter_step": 0.0008834535871300817,
+      "max_attention_change": 0.00017270445823669434,
+      "max_value_change": 0.00012552738189697266
+    }
+  }
+}

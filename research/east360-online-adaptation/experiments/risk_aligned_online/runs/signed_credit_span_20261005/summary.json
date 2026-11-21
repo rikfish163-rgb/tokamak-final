@@ -1,0 +1,156 @@
+{
+  "protocol": {
+    "shots": [
+      54244,
+      54272
+    ],
+    "selection": "outcome-selected known positive controls; NOT representative",
+    "single": "first legal signed action, then hold current q forever",
+    "repeated": "reuse sealed full fixed-sign trajectories",
+    "parent_sha256": "c7270c1ea3652db2e30e972d4ca9a4a2d33220a68e4a3765c8b7f5bcceeaeb02",
+    "direction_sha256": "5fe39f2afd8fdd853003eb69e292db06451213ed4be2236e7222a119a6d87886",
+    "history_summary_sha256": "19e4a032b89bf0677d71d73fe9cfd83fd2603ae3eecb97354222b6dd2e361926",
+    "threshold": 0.7258946895599365,
+    "device": "NVIDIA GeForce RTX 5070 Laptop GPU",
+    "parity_tolerance": 3e-06,
+    "training": false,
+    "code_snapshot_sha256": "5ed7475d7f125b89a1ef8d957acff138388a7db4c44feb7ea515d4ac2c0275ff"
+  },
+  "results": [
+    {
+      "shot": 54244,
+      "disruptive": false,
+      "source_parity": 0.0,
+      "states": {
+        "-1": {
+          "first_effect": 6,
+          "action": -1,
+          "final_q": -0.02,
+          "repeated_final_q": -1.0
+        },
+        "1": {
+          "first_effect": 6,
+          "action": 1,
+          "final_q": 0.02,
+          "repeated_final_q": 1.0
+        }
+      },
+      "results": {
+        "hold": {
+          "error": 1,
+          "risk": 0.7479440254253518,
+          "shot": 54244,
+          "is_disrupt": false,
+          "alarm": true,
+          "lead_ms": null,
+          "timely": false
+        },
+        "single_-1": {
+          "error": 1,
+          "risk": 0.759698705520324,
+          "shot": 54244,
+          "is_disrupt": false,
+          "alarm": true,
+          "lead_ms": null,
+          "timely": false
+        },
+        "single_1": {
+          "error": 1,
+          "risk": 0.736332480591177,
+          "shot": 54244,
+          "is_disrupt": false,
+          "alarm": true,
+          "lead_ms": null,
+          "timely": false
+        },
+        "repeated_-1": {
+          "error": 1,
+          "risk": 1.5711170420279608,
+          "shot": 54244,
+          "is_disrupt": false,
+          "alarm": true,
+          "lead_ms": null,
+          "timely": false
+        },
+        "repeated_1": {
+          "error": 0,
+          "risk": 0.404862560249187,
+          "shot": 54244,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      }
+    },
+    {
+      "shot": 54272,
+      "disruptive": true,
+      "source_parity": 0.0,
+      "states": {
+        "-1": {
+          "first_effect": 6,
+          "action": -1,
+          "final_q": -0.02,
+          "repeated_final_q": -1.0
+        },
+        "1": {
+          "first_effect": 6,
+          "action": 1,
+          "final_q": 0.02,
+          "repeated_final_q": 1.0
+        }
+      },
+      "results": {
+        "hold": {
+          "error": 1,
+          "risk": 2.9418231671195696,
+          "shot": 54272,
+          "is_disrupt": true,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        "single_-1": {
+          "error": 1,
+          "risk": 2.8891019112075926,
+          "shot": 54272,
+          "is_disrupt": true,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        "single_1": {
+          "error": 1,
+          "risk": 2.9937375445106875,
+          "shot": 54272,
+          "is_disrupt": true,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        "repeated_-1": {
+          "error": 0,
+          "risk": 0.3426669435472814,
+          "shot": 54272,
+          "is_disrupt": true,
+          "alarm": true,
+          "lead_ms": 155.0,
+          "timely": true
+        },
+        "repeated_1": {
+          "error": 1,
+          "risk": 4.669764834366072,
+          "shot": 54272,
+          "is_disrupt": true,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      }
+    }
+  ],
+  "elapsed_seconds": 2.183758266008226,
+  "classifier_unchanged": true,
+  "new_online_candidate": false
+}

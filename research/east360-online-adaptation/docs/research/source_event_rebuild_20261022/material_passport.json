@@ -1,0 +1,36 @@
+{
+  "origin_skill": "academic-research-suite/deep-research; results-analysis",
+  "mode": "lit-review and local data/model audit",
+  "date": "2026-10-22",
+  "verification_status": "Local data audit executed; selected primary-source sections checked; proposed architecture NOT trained or validated",
+  "independent_review": false,
+  "delegation": "Main process only; configured named-role selection was unavailable in the exposed spawn interface",
+  "claim_intent_manifests": [{
+    "manifest_version": "1.0",
+    "manifest_id": "M-20261022-source-event-rebuild",
+    "emitted_by": "main_agent_synthesis",
+    "emitted_at": "2026-10-22",
+    "claims": [
+      {"claim_id":"C1","claim_text":"The qualified source checkpoint used single-step signal/risk meta-training but no event-label joint representation training; source test performance alone is not adaptation evidence.","intended_evidence_kind":"empirical","planned_refs":["bartler2022mt3","zhao2023pitfalls"],"planned_experiment_ids":["source_event_inventory_20261022"]},
+      {"claim_id":"C2","claim_text":"The present HDF5 partitions contain processed flat23 features; TRAIN has 401 event intervals in 327 shots, including 158 safe event-bearing shots, and median recorded spans differ substantially between source training and target test.","intended_evidence_kind":"empirical","planned_refs":[],"planned_experiment_ids":["source_event_inventory_20261022"]},
+      {"claim_id":"C3","claim_text":"Event annotations are offline model-generated weak labels with upstream split exposure; state recognition is not a validated disruption mechanism or proof of adaptable representations.","intended_evidence_kind":"empirical","planned_refs":[],"planned_experiment_ids":["event_labels_audit_20261019","event_prefix_probe_20261021"]},
+      {"claim_id":"C4","claim_text":"Cross-device literature motivates semantic alignment and trajectory-sensitive prediction but often uses target data or label access unavailable in the requested zero-label start.","intended_evidence_kind":"literature","planned_refs":["shen2024domain","xue2026physics","zhu2021scenario","ai2023onset","sabbagh_decaf","tinguely2019survival"]},
+      {"claim_id":"C5","claim_text":"Source preparation for adaptation, auxiliary-task usefulness, and delayed observation access require explicit evaluation; reconstruction improvement alone is insufficient.","intended_evidence_kind":"literature","planned_refs":["bartler2022mt3","xue2020taskselection","kim2025tafas","gandelsman2022tttmae","fentazi2026delay","zhao2023pitfalls"]},
+      {"claim_id":"C6","claim_text":"An event-assisted causal model whose single risk head reads predicted short-term evolution, with source-trained sequential adaptation, is a testable next hypothesis, not an established result or novelty claim.","intended_evidence_kind":"proposal","planned_refs":["xue2020taskselection","bartler2022mt3","sabbagh_decaf"]},
+      {"claim_id":"C7","claim_text":"The last two decoder-scope runs completed but failed the target criterion and are archived, not promoted.","intended_evidence_kind":"empirical","planned_refs":[],"planned_experiment_ids":["decoder_only_test360_20261021","encoder_decoder_test360_20261021"]}
+    ],
+    "manifest_negative_constraints": [
+      {"constraint_id":"NC1","rule":"No claim of independent test confirmation, new physical law, or 100 fully read papers."},
+      {"constraint_id":"NC2","rule":"Do not count signal reconstruction gains, alarm tuning, retrospective threshold selection or inter-shot gains as pure intra-shot success."},
+      {"constraint_id":"NC3","rule":"Keep J-TEXT TEST220 lead>10ms and EAST TEST360 lead>30ms; no target labels or whole-stream statistics before the first EAST shot."},
+      {"constraint_id":"NC4","rule":"Do not infer physical units or exact diagnostic definitions solely from feature names; no deliberate weakening of the naked-transfer baseline."}
+    ]
+  }],
+  "experiment_provenance": [
+    {"experiment_id":"source_event_inventory_20261022","artifact":"outputs/source_event_rebuild_audit_20261022/audit.json"},
+    {"experiment_id":"event_labels_audit_20261019","artifact":"outputs/event_labels_audit_20261019/summary.json"},
+    {"experiment_id":"event_prefix_probe_20261021","artifact":"outputs/event_prefix_probe_20261021/"},
+    {"experiment_id":"decoder_only_test360_20261021","artifact":"experiments/risk_aligned_online/runs/decoder_only_test360_20261021/completed.json"},
+    {"experiment_id":"encoder_decoder_test360_20261021","artifact":"experiments/risk_aligned_online/runs/encoder_decoder_test360_20261021/completed.json"}
+  ]
+}

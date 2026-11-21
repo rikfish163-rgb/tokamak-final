@@ -1,0 +1,505 @@
+{
+  "source_only": true,
+  "posthoc": true,
+  "cases_selected_after_class_audit": [
+    1055789,
+    1055436,
+    1055492
+  ],
+  "candidate_sha256": "75a49b29d9a1d671a9046d74e502f3e356ffc7363e9564400cd47a58c0d1bd4c",
+  "rows": [
+    {
+      "shot": 1055789,
+      "label": 0,
+      "origin": 78,
+      "query": 97,
+      "truth_last_index": 83,
+      "actual_risk_change": 0.016016721725463867,
+      "signal_risk_cosine": -0.15620732307434082,
+      "projected_first_order_risk_change": 0.016215285286307335,
+      "before_delta_norm": 0.21472032368183136,
+      "after_delta_norm": 0.2054218202829361,
+      "gradient_decomposition_verified": true,
+      "causal_state_parity_verified": true,
+      "channels": [
+        {
+          "feature": "mode_number_n",
+          "signal_loss": 0.016957804560661316,
+          "risk_dot_signal_gradient": -0.24592813849449158,
+          "unprojected_first_order_risk_change": 0.008637146092951298
+        },
+        {
+          "feature": "Mir_avg_amp",
+          "signal_loss": 0.014900781214237213,
+          "risk_dot_signal_gradient": -0.07549437880516052,
+          "unprojected_first_order_risk_change": 0.0026514085475355387
+        },
+        {
+          "feature": "Mir_VV",
+          "signal_loss": 0.016058646142482758,
+          "risk_dot_signal_gradient": -0.059605490416288376,
+          "unprojected_first_order_risk_change": 0.0020933812484145164
+        },
+        {
+          "feature": "sxr_kurt",
+          "signal_loss": 0.0016152726020663977,
+          "risk_dot_signal_gradient": -0.017160926014184952,
+          "unprojected_first_order_risk_change": 0.0006027022027410567
+        },
+        {
+          "feature": "Mir_avg_fre",
+          "signal_loss": 0.002158197807148099,
+          "risk_dot_signal_gradient": -0.01639130711555481,
+          "unprojected_first_order_risk_change": 0.0005756727186962962
+        },
+        {
+          "feature": "sxr_var",
+          "signal_loss": 0.0017371956491842866,
+          "risk_dot_signal_gradient": -0.015362370759248734,
+          "unprojected_first_order_risk_change": 0.000539535831194371
+        },
+        {
+          "feature": "xuv_kurt",
+          "signal_loss": 0.004323659464716911,
+          "risk_dot_signal_gradient": -0.012537222355604172,
+          "unprojected_first_order_risk_change": 0.0004403148777782917
+        },
+        {
+          "feature": "n=1 amplitude",
+          "signal_loss": 0.0019201698014512658,
+          "risk_dot_signal_gradient": -0.010037004947662354,
+          "unprojected_first_order_risk_change": 0.0003525057400111109
+        },
+        {
+          "feature": "xuv_ratio",
+          "signal_loss": 0.0021216808818280697,
+          "risk_dot_signal_gradient": -0.008150128647685051,
+          "unprojected_first_order_risk_change": 0.00028623748221434653
+        },
+        {
+          "feature": "Bt",
+          "signal_loss": 0.0005621073651127517,
+          "risk_dot_signal_gradient": -0.007514091208577156,
+          "unprojected_first_order_risk_change": 0.0002638994774315506
+        },
+        {
+          "feature": "qa_proxy",
+          "signal_loss": 0.0011758318869397044,
+          "risk_dot_signal_gradient": -0.004615515470504761,
+          "unprojected_first_order_risk_change": 0.00016209972091019154
+        },
+        {
+          "feature": "MNM",
+          "signal_loss": 0.0005574154201894999,
+          "risk_dot_signal_gradient": -0.00411869864910841,
+          "unprojected_first_order_risk_change": 0.00014465120329987258
+        },
+        {
+          "feature": "Z_proxy",
+          "signal_loss": 0.0008530471823178232,
+          "risk_dot_signal_gradient": -0.0030947576742619276,
+          "unprojected_first_order_risk_change": 0.00010868977551581338
+        },
+        {
+          "feature": "sxr_skew",
+          "signal_loss": 0.001317396410740912,
+          "risk_dot_signal_gradient": -0.003070542588829994,
+          "unprojected_first_order_risk_change": 0.00010783933248603716
+        },
+        {
+          "feature": "dx_a",
+          "signal_loss": 0.0006765882717445493,
+          "risk_dot_signal_gradient": -0.0029162787832319736,
+          "unprojected_first_order_risk_change": 0.00010242149437544867
+        },
+        {
+          "feature": "xuv_skew",
+          "signal_loss": 0.00032378529431298375,
+          "risk_dot_signal_gradient": -0.0020831588190048933,
+          "unprojected_first_order_risk_change": 7.316180563066155e-05
+        },
+        {
+          "feature": "sxr_mean",
+          "signal_loss": 0.0007143531693145633,
+          "risk_dot_signal_gradient": -0.0020126530434936285,
+          "unprojected_first_order_risk_change": 7.068560080369934e-05
+        },
+        {
+          "feature": "ne_nG",
+          "signal_loss": 0.0009435285464860499,
+          "risk_dot_signal_gradient": -0.000314522156259045,
+          "unprojected_first_order_risk_change": 1.1046209692722186e-05
+        },
+        {
+          "feature": "xuv_var",
+          "signal_loss": 0.0007414534338749945,
+          "risk_dot_signal_gradient": 0.0003502429462969303,
+          "unprojected_first_order_risk_change": -1.2300745765969623e-05
+        },
+        {
+          "feature": "dy_a",
+          "signal_loss": 0.000789937621448189,
+          "risk_dot_signal_gradient": 0.003253021975979209,
+          "unprojected_first_order_risk_change": -0.00011424811964388937
+        },
+        {
+          "feature": "ip",
+          "signal_loss": 0.002148545579984784,
+          "risk_dot_signal_gradient": 0.005246317945420742,
+          "unprojected_first_order_risk_change": -0.00018425389134790748
+        },
+        {
+          "feature": "CIII",
+          "signal_loss": 0.001148884417489171,
+          "risk_dot_signal_gradient": 0.008735109120607376,
+          "unprojected_first_order_risk_change": -0.00030678234179504216
+        },
+        {
+          "feature": "v_loop",
+          "signal_loss": 0.015595117583870888,
+          "risk_dot_signal_gradient": 0.01111968606710434,
+          "unprojected_first_order_risk_change": -0.0003905301564373076
+        }
+      ],
+      "single_update_controls": {
+        "without_mode_number_n": {
+          "risk_change": 0.014307498931884766,
+          "delta_step_norm": 0.019999999552965164
+        },
+        "only_mode_number_n": {
+          "risk_change": 0.0139007568359375,
+          "delta_step_norm": 0.019999999552965164
+        }
+      }
+    },
+    {
+      "shot": 1055436,
+      "label": 0,
+      "origin": 338,
+      "query": 346,
+      "truth_last_index": 343,
+      "actual_risk_change": 0.009055495262145996,
+      "signal_risk_cosine": -0.08152441680431366,
+      "projected_first_order_risk_change": 0.009171156212687492,
+      "before_delta_norm": 0.3210901618003845,
+      "after_delta_norm": 0.3244664967060089,
+      "gradient_decomposition_verified": true,
+      "causal_state_parity_verified": true,
+      "channels": [
+        {
+          "feature": "mode_number_n",
+          "signal_loss": 0.09802360832691193,
+          "risk_dot_signal_gradient": -0.29666781425476074,
+          "unprojected_first_order_risk_change": 0.008586105890572071
+        },
+        {
+          "feature": "Z_proxy",
+          "signal_loss": 0.025311868637800217,
+          "risk_dot_signal_gradient": -0.0525471493601799,
+          "unprojected_first_order_risk_change": 0.0015208100667223334
+        },
+        {
+          "feature": "v_loop",
+          "signal_loss": 0.023775337263941765,
+          "risk_dot_signal_gradient": -0.03717389330267906,
+          "unprojected_first_order_risk_change": 0.0010758801363408566
+        },
+        {
+          "feature": "Mir_VV",
+          "signal_loss": 0.006035417318344116,
+          "risk_dot_signal_gradient": -0.021312616765499115,
+          "unprojected_first_order_risk_change": 0.0006168258842080832
+        },
+        {
+          "feature": "CIII",
+          "signal_loss": 0.00377342919819057,
+          "risk_dot_signal_gradient": -0.014845484867691994,
+          "unprojected_first_order_risk_change": 0.00042965533793903887
+        },
+        {
+          "feature": "Mir_avg_fre",
+          "signal_loss": 0.016927624121308327,
+          "risk_dot_signal_gradient": -0.013341182842850685,
+          "unprojected_first_order_risk_change": 0.0003861181321553886
+        },
+        {
+          "feature": "MNM",
+          "signal_loss": 0.003936518914997578,
+          "risk_dot_signal_gradient": -0.004551547579467297,
+          "unprojected_first_order_risk_change": 0.00013173006300348788
+        },
+        {
+          "feature": "Mir_avg_amp",
+          "signal_loss": 0.004548545926809311,
+          "risk_dot_signal_gradient": -0.0041030957363545895,
+          "unprojected_first_order_risk_change": 0.00011875105701619759
+        },
+        {
+          "feature": "Bt",
+          "signal_loss": 0.000851296994369477,
+          "risk_dot_signal_gradient": -0.002840306144207716,
+          "unprojected_first_order_risk_change": 8.220363088184968e-05
+        },
+        {
+          "feature": "qa_proxy",
+          "signal_loss": 0.0007778666913509369,
+          "risk_dot_signal_gradient": -0.0012324361596256495,
+          "unprojected_first_order_risk_change": 3.5668945201905444e-05
+        },
+        {
+          "feature": "sxr_kurt",
+          "signal_loss": 0.0038191701751202345,
+          "risk_dot_signal_gradient": -0.0011279529426246881,
+          "unprojected_first_order_risk_change": 3.264500992372632e-05
+        },
+        {
+          "feature": "dx_a",
+          "signal_loss": 0.003316884860396385,
+          "risk_dot_signal_gradient": -0.0009999427711591125,
+          "unprojected_first_order_risk_change": 2.894016506616026e-05
+        },
+        {
+          "feature": "ip",
+          "signal_loss": 0.0009530015522614121,
+          "risk_dot_signal_gradient": 0.0006446703337132931,
+          "unprojected_first_order_risk_change": -1.865793274191674e-05
+        },
+        {
+          "feature": "ne_nG",
+          "signal_loss": 0.0017350964481011033,
+          "risk_dot_signal_gradient": 0.000818275089841336,
+          "unprojected_first_order_risk_change": -2.3682370738242753e-05
+        },
+        {
+          "feature": "xuv_var",
+          "signal_loss": 0.005006006453186274,
+          "risk_dot_signal_gradient": 0.001285442616790533,
+          "unprojected_first_order_risk_change": -3.7203048123046756e-05
+        },
+        {
+          "feature": "dy_a",
+          "signal_loss": 0.001189220929518342,
+          "risk_dot_signal_gradient": 0.00308675947599113,
+          "unprojected_first_order_risk_change": -8.933644130593166e-05
+        },
+        {
+          "feature": "n=1 amplitude",
+          "signal_loss": 0.002994928974658251,
+          "risk_dot_signal_gradient": 0.003492051735520363,
+          "unprojected_first_order_risk_change": -0.0001010663399938494
+        },
+        {
+          "feature": "xuv_kurt",
+          "signal_loss": 0.005181338172405958,
+          "risk_dot_signal_gradient": 0.012402678839862347,
+          "unprojected_first_order_risk_change": -0.00035895610926672816
+        },
+        {
+          "feature": "sxr_mean",
+          "signal_loss": 0.004428911954164505,
+          "risk_dot_signal_gradient": 0.014585555531084538,
+          "unprojected_first_order_risk_change": -0.00042213252163492143
+        },
+        {
+          "feature": "sxr_skew",
+          "signal_loss": 0.0037699167151004076,
+          "risk_dot_signal_gradient": 0.01518409326672554,
+          "unprojected_first_order_risk_change": -0.00043945529614575207
+        },
+        {
+          "feature": "xuv_skew",
+          "signal_loss": 0.007847516797482967,
+          "risk_dot_signal_gradient": 0.02022898942232132,
+          "unprojected_first_order_risk_change": -0.0005854637711308897
+        },
+        {
+          "feature": "sxr_var",
+          "signal_loss": 0.004711601883172989,
+          "risk_dot_signal_gradient": 0.02510164864361286,
+          "unprojected_first_order_risk_change": -0.0007264874293468893
+        },
+        {
+          "feature": "xuv_ratio",
+          "signal_loss": 0.0072120134718716145,
+          "risk_dot_signal_gradient": 0.037030719220638275,
+          "unprojected_first_order_risk_change": -0.0010717364493757486
+        }
+      ],
+      "single_update_controls": {
+        "without_mode_number_n": {
+          "risk_change": 0.0011900663375854492,
+          "delta_step_norm": 0.019999999552965164
+        },
+        "only_mode_number_n": {
+          "risk_change": 0.011522054672241211,
+          "delta_step_norm": 0.019999999552965164
+        }
+      }
+    },
+    {
+      "shot": 1055492,
+      "label": 1,
+      "origin": 130,
+      "query": 153,
+      "truth_last_index": 135,
+      "actual_risk_change": 0.016892552375793457,
+      "signal_risk_cosine": -0.09850719571113586,
+      "projected_first_order_risk_change": 0.016822250559926033,
+      "before_delta_norm": 0.19891461730003357,
+      "after_delta_norm": 0.19917210936546326,
+      "gradient_decomposition_verified": true,
+      "causal_state_parity_verified": true,
+      "channels": [
+        {
+          "feature": "mode_number_n",
+          "signal_loss": 0.1722608059644699,
+          "risk_dot_signal_gradient": -0.4810903072357178,
+          "unprojected_first_order_risk_change": 0.013408464379608631
+        },
+        {
+          "feature": "Mir_VV",
+          "signal_loss": 0.016340121626853943,
+          "risk_dot_signal_gradient": -0.053020525723695755,
+          "unprojected_first_order_risk_change": 0.0014777348842471838
+        },
+        {
+          "feature": "dx_a",
+          "signal_loss": 0.003367853816598654,
+          "risk_dot_signal_gradient": -0.043601181358098984,
+          "unprojected_first_order_risk_change": 0.0012152083218097687
+        },
+        {
+          "feature": "Mir_avg_fre",
+          "signal_loss": 0.008073544129729271,
+          "risk_dot_signal_gradient": -0.029163092374801636,
+          "unprojected_first_order_risk_change": 0.0008128043846227229
+        },
+        {
+          "feature": "xuv_ratio",
+          "signal_loss": 0.001584768295288086,
+          "risk_dot_signal_gradient": -0.014612688682973385,
+          "unprojected_first_order_risk_change": 0.0004072701558470726
+        },
+        {
+          "feature": "sxr_skew",
+          "signal_loss": 0.0015632526483386755,
+          "risk_dot_signal_gradient": -0.013860492035746574,
+          "unprojected_first_order_risk_change": 0.0003863056772388518
+        },
+        {
+          "feature": "Mir_avg_amp",
+          "signal_loss": 0.0013588148867711425,
+          "risk_dot_signal_gradient": -0.007283209357410669,
+          "unprojected_first_order_risk_change": 0.00020299028255976737
+        },
+        {
+          "feature": "ne_nG",
+          "signal_loss": 0.0009253917378373444,
+          "risk_dot_signal_gradient": -0.005917987786233425,
+          "unprojected_first_order_risk_change": 0.00016494021110702306
+        },
+        {
+          "feature": "sxr_mean",
+          "signal_loss": 0.0004209173785056919,
+          "risk_dot_signal_gradient": -0.005648517049849033,
+          "unprojected_first_order_risk_change": 0.0001574297930346802
+        },
+        {
+          "feature": "CIII",
+          "signal_loss": 0.000874677614774555,
+          "risk_dot_signal_gradient": -0.0050001442432403564,
+          "unprojected_first_order_risk_change": 0.00013935899187345058
+        },
+        {
+          "feature": "MNM",
+          "signal_loss": 0.0011430979939177632,
+          "risk_dot_signal_gradient": -0.0048051318153738976,
+          "unprojected_first_order_risk_change": 0.00013392379332799464
+        },
+        {
+          "feature": "qa_proxy",
+          "signal_loss": 0.0003168828843627125,
+          "risk_dot_signal_gradient": -0.0043774317018687725,
+          "unprojected_first_order_risk_change": 0.00012200337368994951
+        },
+        {
+          "feature": "ip",
+          "signal_loss": 0.0001250358618563041,
+          "risk_dot_signal_gradient": -0.0029931082390248775,
+          "unprojected_first_order_risk_change": 8.342090586666018e-05
+        },
+        {
+          "feature": "Bt",
+          "signal_loss": 0.00017408026906196028,
+          "risk_dot_signal_gradient": -0.0008000587695278227,
+          "unprojected_first_order_risk_change": 2.229843448731117e-05
+        },
+        {
+          "feature": "xuv_kurt",
+          "signal_loss": 0.0005466342554427683,
+          "risk_dot_signal_gradient": -0.0006436150288209319,
+          "unprojected_first_order_risk_change": 1.7938191376742907e-05
+        },
+        {
+          "feature": "n=1 amplitude",
+          "signal_loss": 0.00343123497441411,
+          "risk_dot_signal_gradient": 0.0010409490205347538,
+          "unprojected_first_order_risk_change": -2.9012284358032048e-05
+        },
+        {
+          "feature": "sxr_kurt",
+          "signal_loss": 0.000711676839273423,
+          "risk_dot_signal_gradient": 0.0012717365752905607,
+          "unprojected_first_order_risk_change": -3.544456194504164e-05
+        },
+        {
+          "feature": "xuv_skew",
+          "signal_loss": 0.0006329328170977533,
+          "risk_dot_signal_gradient": 0.0013304395833984017,
+          "unprojected_first_order_risk_change": -3.708067742991261e-05
+        },
+        {
+          "feature": "xuv_var",
+          "signal_loss": 0.002612643176689744,
+          "risk_dot_signal_gradient": 0.003456633538007736,
+          "unprojected_first_order_risk_change": -9.633981972001493e-05
+        },
+        {
+          "feature": "Z_proxy",
+          "signal_loss": 0.00352516514249146,
+          "risk_dot_signal_gradient": 0.004079665057361126,
+          "unprojected_first_order_risk_change": -0.00011370432912372053
+        },
+        {
+          "feature": "dy_a",
+          "signal_loss": 0.0014790922868996859,
+          "risk_dot_signal_gradient": 0.006071276962757111,
+          "unprojected_first_order_risk_change": -0.00016921253700274974
+        },
+        {
+          "feature": "sxr_var",
+          "signal_loss": 0.0012614305596798658,
+          "risk_dot_signal_gradient": 0.01805058866739273,
+          "unprojected_first_order_risk_change": -0.0005030878819525242
+        },
+        {
+          "feature": "v_loop",
+          "signal_loss": 0.004000110551714897,
+          "risk_dot_signal_gradient": 0.033940669149160385,
+          "unprojected_first_order_risk_change": -0.0009459602297283709
+        }
+      ],
+      "single_update_controls": {
+        "without_mode_number_n": {
+          "risk_change": 0.0093153715133667,
+          "delta_step_norm": 0.019999999552965164
+        },
+        "only_mode_number_n": {
+          "risk_change": 0.014559149742126465,
+          "delta_step_norm": 0.019999999552965164
+        }
+      }
+    }
+  ],
+  "interpretation": "local derivative explanation, not a policy, feature exclusion rule or physical mechanism proof"
+}

@@ -1,0 +1,164 @@
+{
+  "jtext": {
+    "tpr": 0.0,
+    "fpr": 0.0,
+    "J": 0.0,
+    "tp": 0,
+    "fp": 0,
+    "n_disrupt": 4,
+    "n_safe": 4,
+    "median_lead_ms": null,
+    "early_over_3000": 0,
+    "threshold": 1.0000000000000002,
+    "predictions": [
+      {
+        "shot": 1051510,
+        "is_disrupt": true,
+        "alarm": false,
+        "timely": false,
+        "lead_ms": null
+      },
+      {
+        "shot": 1051515,
+        "is_disrupt": true,
+        "alarm": false,
+        "timely": false,
+        "lead_ms": null
+      },
+      {
+        "shot": 1051516,
+        "is_disrupt": true,
+        "alarm": false,
+        "timely": false,
+        "lead_ms": null
+      },
+      {
+        "shot": 1051517,
+        "is_disrupt": true,
+        "alarm": false,
+        "timely": false,
+        "lead_ms": null
+      },
+      {
+        "shot": 1051650,
+        "is_disrupt": false,
+        "alarm": false,
+        "timely": false,
+        "lead_ms": null
+      },
+      {
+        "shot": 1052049,
+        "is_disrupt": false,
+        "alarm": false,
+        "timely": false,
+        "lead_ms": null
+      },
+      {
+        "shot": 1052060,
+        "is_disrupt": false,
+        "alarm": false,
+        "timely": false,
+        "lead_ms": null
+      },
+      {
+        "shot": 1052075,
+        "is_disrupt": false,
+        "alarm": false,
+        "timely": false,
+        "lead_ms": null
+      }
+    ]
+  },
+  "east_aux": {
+    "tpr": 1.0,
+    "fpr": 0.5,
+    "J": 0.5,
+    "tp": 4,
+    "fp": 2,
+    "n_disrupt": 4,
+    "n_safe": 4,
+    "median_lead_ms": 174.345757684,
+    "early_over_3000": 0,
+    "threshold": 0.5632830262184143,
+    "predictions": [
+      {
+        "shot": 1051510,
+        "is_disrupt": true,
+        "alarm": true,
+        "timely": true,
+        "lead_ms": 179.546687684
+      },
+      {
+        "shot": 1051515,
+        "is_disrupt": true,
+        "alarm": true,
+        "timely": true,
+        "lead_ms": 156.254517684
+      },
+      {
+        "shot": 1051516,
+        "is_disrupt": true,
+        "alarm": true,
+        "timely": true,
+        "lead_ms": 333.143527684
+      },
+      {
+        "shot": 1051517,
+        "is_disrupt": true,
+        "alarm": true,
+        "timely": true,
+        "lead_ms": 169.144827684
+      },
+      {
+        "shot": 1051650,
+        "is_disrupt": false,
+        "alarm": true,
+        "timely": false,
+        "lead_ms": null
+      },
+      {
+        "shot": 1052049,
+        "is_disrupt": false,
+        "alarm": false,
+        "timely": false,
+        "lead_ms": null
+      },
+      {
+        "shot": 1052060,
+        "is_disrupt": false,
+        "alarm": true,
+        "timely": false,
+        "lead_ms": null
+      },
+      {
+        "shot": 1052075,
+        "is_disrupt": false,
+        "alarm": false,
+        "timely": false,
+        "lead_ms": null
+      }
+    ]
+  },
+  "selected_epoch": 1,
+  "threshold_origin": "J-TEXT VAL smoke subset",
+  "evidence": "SMOKE",
+  "evaluation_contract": "lead_ms rounded to 9 decimals then >10; TPR>=.90; FPR<.20",
+  "validation_source_acceptance": false,
+  "provenance": {
+    "source_hashes": {
+      "canonical_roles": "2fe42e4190adfef4236692d5b6d71390cca79d69e4d069daf41e9105ded4349c",
+      "selected_train_val": "1aea0a2b3be5e7eab946cc0e3e68e97d67ce0d7b15c59a72a873b9fc2a390360",
+      "advanced_time": "559da4f719373b0c13b96d34e27a2b46b80eba7f0ef185c3b6ac58b3761e0199",
+      "data.py": "9b0acf29bcd10908a603cc0b27834d58747400ad25efea0c427931be0af4f48d",
+      "train_source.py": "cf3b4fe29352c84b59aafc20920f499ff4d3c2e0448ed83781949988cf7a7239",
+      "model.py": "a07d66993a26bd9b6b35e14f3cfe1ff225d41458f70318c93b9be45330130261",
+      "learning.py": "5fab089c0312d8627b95eaf2b1d48d1c4ec14ea9616574fc13ca404e846bc68e"
+    },
+    "selected_test_sha256": "b93f6c62902b68d0ced5337b2d187af5aa0d83588c3a8f7d13ba7a5bbd6744f5",
+    "selected_test_count": 8,
+    "checkpoint_sha256": "81d5275c072b0b427d68fd77e0327a8d3fdb3c26bff7a3ede3fd6ff17e5d8dd1",
+    "selection_source": "J-TEXT VAL smoke subset",
+    "scoring": "static source checkpoint; 1 ms endpoints; no fast adaptation"
+  },
+  "test_source_acceptance": false
+}

@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "method": "Independent token-wise ownership reconstruction; CSV start/end checked with Decimal",
+  "rows": 1975,
+  "shots": 1816,
+  "events": 732,
+  "training_pool_shots": 1634,
+  "sanity_shots": 182,
+  "training_pool_events": 655,
+  "sanity_events": 77,
+  "no_event_shots": 1234,
+  "excluded_short_record_shots": 9,
+  "checks": [
+    "All registered shots covered",
+    "Every event class/start/end matches independent merge",
+    "All times exactly equal 0.15 + token*0.005 seconds",
+    "Shot labels match source",
+    "Chronological ordering",
+    "No duplicate rows",
+    "Blank event fields for non-event statuses"
+  ],
+  "reviewer": "audit_onset_labels"
+}

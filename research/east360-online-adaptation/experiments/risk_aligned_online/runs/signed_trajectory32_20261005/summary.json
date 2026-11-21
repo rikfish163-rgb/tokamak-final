@@ -1,0 +1,888 @@
+{
+  "protocol": {
+    "parent_sha256": "c7270c1ea3652db2e30e972d4ca9a4a2d33220a68e4a3765c8b7f5bcceeaeb02",
+    "direction_sha256": "5fe39f2afd8fdd853003eb69e292db06451213ed4be2236e7222a119a6d87886",
+    "history_summary_sha256": "19e4a032b89bf0677d71d73fe9cfd83fd2603ae3eecb97354222b6dd2e361926",
+    "threshold": 0.7258946895599365,
+    "fit_ids": [
+      54006,
+      54014,
+      54068,
+      54094,
+      54098,
+      54099,
+      54105,
+      54157,
+      54165,
+      54170,
+      54178,
+      54227,
+      54237,
+      54243,
+      54244,
+      54252,
+      54272,
+      54276,
+      54313,
+      54314,
+      54328,
+      54338,
+      54340,
+      54344,
+      54396
+    ],
+    "audit_ids": [
+      53825,
+      54003,
+      54017,
+      54078,
+      54160,
+      54347,
+      54351
+    ],
+    "steps": 32,
+    "training_rollouts": 128,
+    "seed": 131,
+    "lr": 3e-05,
+    "optimizer": "Adam, betas=.9/.999, eps=1e-8, wd=0",
+    "target": "paired independent trajectory first-alarm error; no risk-delta reward",
+    "zero_advantage": "skip optimizer step including momentum",
+    "historical_only": true,
+    "future_access": false,
+    "admitted_online_model": false,
+    "actor": "same3x117 rule, same \u00b1.02/.08 actions, q\u00b11, original source-only direction",
+    "evidence": "DEVELOPMENT_ONLY; retrospective historical replay, no rewriting original cold-start outcomes",
+    "hardware": "NVIDIA GeForce RTX 5070 Laptop GPU",
+    "code_sha256": {
+      "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/signed_intra_20261005/context.py": "e7ec42b711766eacc075b6a49c64382be11ffbadf1c9eb76182144c2240f998f",
+      "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/signed_intra_20261005/credit_span.py": "be2ebacace1679ed4830d7d576f6fe0fd2bedf5ae92da80ac3a754217642c1ed",
+      "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/signed_intra_20261005/direction.py": "da30a607291a3aa5ec5f0a93f67a6218050a9344199dca4a0c26101403c9a75c",
+      "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/signed_intra_20261005/finite_probe.py": "bdf0c98d677e4a0da8bbcd582fe55214e59ca29585f45aa097dd03c04fad1eaf",
+      "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/signed_intra_20261005/policy.py": "9a3b9498d1ab93d4ef972f1148729a1e665180cdcde000299c91129cd22296ee",
+      "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/signed_intra_20261005/trajectory_credit.py": "00620b2bb7aa174bdcac50b952c864ee26f0ed9657bbc63e01805ceb6f707901",
+      "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/simple23.py": "2234ab9c872baf1f5c6667225094d482b8c44ad83c091bb56bb7d8224e1a7b22",
+      "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/simple_data.py": "0d9b1e5f2caf5dc63cb227f79150ad0743d653d3b6f75546cc4df8277886f046",
+      "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/io23.py": "714b0339e3119cb39f02234ea9e2df7643a90cc303c127d70b110fa74170f72c",
+      "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/simple_train.py": "5716a805eed13578ae7dfc0fda5970178dfb579e87a9d51338a3b83f4c9d6ab9",
+      "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/simple_online.py": "34f97c09bacdb755db3ea426cb52ab6f5e47b2446eb064181dc7bd5074122c6d",
+      "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/redesign_20261004/intra.py": "313707485f3c0a730ae98ac8d86f0ae0aa748c04b23a0ad0a3019dd118db0b27",
+      "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/redesign_20261004/prepare_prior.py": "469c568e685ebf6d9451eb5ccdeddcca98eb8195897934814d7eb8b13952a49f",
+      "/media/hetaisheng/044A81D94A81C83E/Fuison/experiments/risk_aligned_online/ffn_intra_20261005/model.py": "c177187d0605f5e4907fd3f8312ec79d6a0a8ee4ae0d111519f8d477e7d95559"
+    }
+  },
+  "checks": {
+    "both_classes_had_task_contrast": false,
+    "class_guard": false,
+    "fpr_cap": true,
+    "information": false
+  },
+  "passed_development_checks": false,
+  "audit": {
+    "S": {
+      "tp": 0,
+      "fp": 0,
+      "n_disrupt": 1,
+      "n_safe": 6,
+      "tpr": 0.0,
+      "fpr": 0.0,
+      "J": 0.0,
+      "threshold": 0.7258946895599365,
+      "median_lead_ms": null,
+      "predictions": [
+        {
+          "shot": 53825,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        {
+          "shot": 54003,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        {
+          "shot": 54017,
+          "is_disrupt": true,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        {
+          "shot": 54078,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        {
+          "shot": 54160,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        {
+          "shot": 54347,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        {
+          "shot": 54351,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      ],
+      "risks": {
+        "0": 0.22525337216250127,
+        "1": 1.4436996591704827
+      }
+    },
+    "H": {
+      "tp": 0,
+      "fp": 0,
+      "n_disrupt": 1,
+      "n_safe": 6,
+      "tpr": 0.0,
+      "fpr": 0.0,
+      "J": 0.0,
+      "threshold": 0.7258946895599365,
+      "median_lead_ms": null,
+      "predictions": [
+        {
+          "shot": 53825,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        {
+          "shot": 54003,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        {
+          "shot": 54017,
+          "is_disrupt": true,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        {
+          "shot": 54078,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        {
+          "shot": 54160,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        {
+          "shot": 54347,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        {
+          "shot": 54351,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      ],
+      "risks": {
+        "0": 0.15952757121926076,
+        "1": 1.7361122956484805
+      }
+    },
+    "P": {
+      "tp": 0,
+      "fp": 0,
+      "n_disrupt": 1,
+      "n_safe": 6,
+      "tpr": 0.0,
+      "fpr": 0.0,
+      "J": 0.0,
+      "threshold": 0.7258946895599365,
+      "median_lead_ms": null,
+      "predictions": [
+        {
+          "shot": 53825,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        {
+          "shot": 54003,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        {
+          "shot": 54017,
+          "is_disrupt": true,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        {
+          "shot": 54078,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        {
+          "shot": 54160,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        {
+          "shot": 54347,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        {
+          "shot": 54351,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      ],
+      "risks": {
+        "0": 0.15952757121926076,
+        "1": 1.7361122956484805
+      }
+    },
+    "L": {
+      "tp": 0,
+      "fp": 0,
+      "n_disrupt": 1,
+      "n_safe": 6,
+      "tpr": 0.0,
+      "fpr": 0.0,
+      "J": 0.0,
+      "threshold": 0.7258946895599365,
+      "median_lead_ms": null,
+      "predictions": [
+        {
+          "shot": 53825,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        {
+          "shot": 54003,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        {
+          "shot": 54017,
+          "is_disrupt": true,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        {
+          "shot": 54078,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        {
+          "shot": 54160,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        {
+          "shot": 54347,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        },
+        {
+          "shot": 54351,
+          "is_disrupt": false,
+          "alarm": false,
+          "lead_ms": null,
+          "timely": false
+        }
+      ],
+      "risks": {
+        "0": 0.15952757121926076,
+        "1": 1.7361122956484805
+      }
+    }
+  },
+  "records": [
+    {
+      "shot": 53825,
+      "arms": {
+        "S": {
+          "prediction": {
+            "shot": 53825,
+            "is_disrupt": false,
+            "alarm": false,
+            "lead_ms": null,
+            "timely": false
+          },
+          "risk": 0.14010441578108343,
+          "q_min": 0.0,
+          "q_max": 0.0,
+          "seal_sha256": "59725962897690d56c6868c93a6818756e93270335094998057c17f5a71fecf9"
+        },
+        "H": {
+          "prediction": {
+            "shot": 53825,
+            "is_disrupt": false,
+            "alarm": false,
+            "lead_ms": null,
+            "timely": false
+          },
+          "risk": 0.12705114859593475,
+          "q_min": 0.0,
+          "q_max": 1.0,
+          "seal_sha256": "7bdac460bcb1bd2ca5efc2b03c205908b485d40fa5a100187ac1a1fabd56ff5f"
+        },
+        "P": {
+          "prediction": {
+            "shot": 53825,
+            "is_disrupt": false,
+            "alarm": false,
+            "lead_ms": null,
+            "timely": false
+          },
+          "risk": 0.12705114859593475,
+          "q_min": 0.0,
+          "q_max": 1.0,
+          "seal_sha256": "7bdac460bcb1bd2ca5efc2b03c205908b485d40fa5a100187ac1a1fabd56ff5f"
+        },
+        "L": {
+          "prediction": {
+            "shot": 53825,
+            "is_disrupt": false,
+            "alarm": false,
+            "lead_ms": null,
+            "timely": false
+          },
+          "risk": 0.12705114859593475,
+          "q_min": 0.0,
+          "q_max": 1.0,
+          "seal_sha256": "7bdac460bcb1bd2ca5efc2b03c205908b485d40fa5a100187ac1a1fabd56ff5f"
+        }
+      }
+    },
+    {
+      "shot": 54003,
+      "arms": {
+        "S": {
+          "prediction": {
+            "shot": 54003,
+            "is_disrupt": false,
+            "alarm": false,
+            "lead_ms": null,
+            "timely": false
+          },
+          "risk": 0.2215316991066725,
+          "q_min": 0.0,
+          "q_max": 0.0,
+          "seal_sha256": "2fb3f90e66d8bca42e3e08ee0301117f0e09441f523aaaac3b3bd493a804a447"
+        },
+        "H": {
+          "prediction": {
+            "shot": 54003,
+            "is_disrupt": false,
+            "alarm": false,
+            "lead_ms": null,
+            "timely": false
+          },
+          "risk": 0.16544041290083245,
+          "q_min": 0.0,
+          "q_max": 1.0,
+          "seal_sha256": "62453d3b961bc92884abb6cf03b4f7244f5a37969e947047983187ca883169cf"
+        },
+        "P": {
+          "prediction": {
+            "shot": 54003,
+            "is_disrupt": false,
+            "alarm": false,
+            "lead_ms": null,
+            "timely": false
+          },
+          "risk": 0.16544041290083245,
+          "q_min": 0.0,
+          "q_max": 1.0,
+          "seal_sha256": "62453d3b961bc92884abb6cf03b4f7244f5a37969e947047983187ca883169cf"
+        },
+        "L": {
+          "prediction": {
+            "shot": 54003,
+            "is_disrupt": false,
+            "alarm": false,
+            "lead_ms": null,
+            "timely": false
+          },
+          "risk": 0.16544041290083245,
+          "q_min": 0.0,
+          "q_max": 1.0,
+          "seal_sha256": "62453d3b961bc92884abb6cf03b4f7244f5a37969e947047983187ca883169cf"
+        }
+      }
+    },
+    {
+      "shot": 54017,
+      "arms": {
+        "S": {
+          "prediction": {
+            "shot": 54017,
+            "is_disrupt": true,
+            "alarm": false,
+            "lead_ms": null,
+            "timely": false
+          },
+          "risk": 1.4436996591704827,
+          "q_min": 0.0,
+          "q_max": 0.0,
+          "seal_sha256": "4f929f24aee5ce3ae4a4de113a0b9462202a80234a2a53581e3c30c21667c247"
+        },
+        "H": {
+          "prediction": {
+            "shot": 54017,
+            "is_disrupt": true,
+            "alarm": false,
+            "lead_ms": null,
+            "timely": false
+          },
+          "risk": 1.7361122956484805,
+          "q_min": 0.0,
+          "q_max": 1.0,
+          "seal_sha256": "281c8bf52d0bbdaa0ddcc2a9f7f943f9faab4fd2c4f357acfa9bd3970712fd42"
+        },
+        "P": {
+          "prediction": {
+            "shot": 54017,
+            "is_disrupt": true,
+            "alarm": false,
+            "lead_ms": null,
+            "timely": false
+          },
+          "risk": 1.7361122956484805,
+          "q_min": 0.0,
+          "q_max": 1.0,
+          "seal_sha256": "281c8bf52d0bbdaa0ddcc2a9f7f943f9faab4fd2c4f357acfa9bd3970712fd42"
+        },
+        "L": {
+          "prediction": {
+            "shot": 54017,
+            "is_disrupt": true,
+            "alarm": false,
+            "lead_ms": null,
+            "timely": false
+          },
+          "risk": 1.7361122956484805,
+          "q_min": 0.0,
+          "q_max": 1.0,
+          "seal_sha256": "281c8bf52d0bbdaa0ddcc2a9f7f943f9faab4fd2c4f357acfa9bd3970712fd42"
+        }
+      }
+    },
+    {
+      "shot": 54078,
+      "arms": {
+        "S": {
+          "prediction": {
+            "shot": 54078,
+            "is_disrupt": false,
+            "alarm": false,
+            "lead_ms": null,
+            "timely": false
+          },
+          "risk": 0.059743764763853374,
+          "q_min": 0.0,
+          "q_max": 0.0,
+          "seal_sha256": "f7ba991c2cbb0afdae7678f6e30f43882b6e0d377c11d2fe6441b05620d453c6"
+        },
+        "H": {
+          "prediction": {
+            "shot": 54078,
+            "is_disrupt": false,
+            "alarm": false,
+            "lead_ms": null,
+            "timely": false
+          },
+          "risk": 0.060555006886740134,
+          "q_min": 0.0,
+          "q_max": 1.0,
+          "seal_sha256": "3c723227d1a3856c85428d947cbea1c26028ae58d3f098eb6611151fd9c501d0"
+        },
+        "P": {
+          "prediction": {
+            "shot": 54078,
+            "is_disrupt": false,
+            "alarm": false,
+            "lead_ms": null,
+            "timely": false
+          },
+          "risk": 0.060555006886740134,
+          "q_min": 0.0,
+          "q_max": 1.0,
+          "seal_sha256": "3c723227d1a3856c85428d947cbea1c26028ae58d3f098eb6611151fd9c501d0"
+        },
+        "L": {
+          "prediction": {
+            "shot": 54078,
+            "is_disrupt": false,
+            "alarm": false,
+            "lead_ms": null,
+            "timely": false
+          },
+          "risk": 0.060555006886740134,
+          "q_min": 0.0,
+          "q_max": 1.0,
+          "seal_sha256": "3c723227d1a3856c85428d947cbea1c26028ae58d3f098eb6611151fd9c501d0"
+        }
+      }
+    },
+    {
+      "shot": 54160,
+      "arms": {
+        "S": {
+          "prediction": {
+            "shot": 54160,
+            "is_disrupt": false,
+            "alarm": false,
+            "lead_ms": null,
+            "timely": false
+          },
+          "risk": 0.14653405829465627,
+          "q_min": 0.0,
+          "q_max": 0.0,
+          "seal_sha256": "afe8ac15ea0f65ce7e07de462136f86c519f09cc2e697eb8d1308b11faa46a00"
+        },
+        "H": {
+          "prediction": {
+            "shot": 54160,
+            "is_disrupt": false,
+            "alarm": false,
+            "lead_ms": null,
+            "timely": false
+          },
+          "risk": 0.16208494289772454,
+          "q_min": 0.0,
+          "q_max": 1.0,
+          "seal_sha256": "08dc83d871da2d039605a2183f5b71ab44f06ad45dbc92acd02a4965f16d7a50"
+        },
+        "P": {
+          "prediction": {
+            "shot": 54160,
+            "is_disrupt": false,
+            "alarm": false,
+            "lead_ms": null,
+            "timely": false
+          },
+          "risk": 0.16208494289772454,
+          "q_min": 0.0,
+          "q_max": 1.0,
+          "seal_sha256": "08dc83d871da2d039605a2183f5b71ab44f06ad45dbc92acd02a4965f16d7a50"
+        },
+        "L": {
+          "prediction": {
+            "shot": 54160,
+            "is_disrupt": false,
+            "alarm": false,
+            "lead_ms": null,
+            "timely": false
+          },
+          "risk": 0.16208494289772454,
+          "q_min": 0.0,
+          "q_max": 1.0,
+          "seal_sha256": "08dc83d871da2d039605a2183f5b71ab44f06ad45dbc92acd02a4965f16d7a50"
+        }
+      }
+    },
+    {
+      "shot": 54347,
+      "arms": {
+        "S": {
+          "prediction": {
+            "shot": 54347,
+            "is_disrupt": false,
+            "alarm": false,
+            "lead_ms": null,
+            "timely": false
+          },
+          "risk": 0.30892447016911334,
+          "q_min": 0.0,
+          "q_max": 0.0,
+          "seal_sha256": "c5dd1a9a92a87198897d2965ef2c3eb68b69eca9a3be6f4b3909a54defc84f0e"
+        },
+        "H": {
+          "prediction": {
+            "shot": 54347,
+            "is_disrupt": false,
+            "alarm": false,
+            "lead_ms": null,
+            "timely": false
+          },
+          "risk": 0.1768478379039343,
+          "q_min": 0.0,
+          "q_max": 1.0,
+          "seal_sha256": "0261eb76b29768fcb64f56ef3d393ef67f40b6064b620f7220c56b6a2d16de74"
+        },
+        "P": {
+          "prediction": {
+            "shot": 54347,
+            "is_disrupt": false,
+            "alarm": false,
+            "lead_ms": null,
+            "timely": false
+          },
+          "risk": 0.1768478379039343,
+          "q_min": 0.0,
+          "q_max": 1.0,
+          "seal_sha256": "0261eb76b29768fcb64f56ef3d393ef67f40b6064b620f7220c56b6a2d16de74"
+        },
+        "L": {
+          "prediction": {
+            "shot": 54347,
+            "is_disrupt": false,
+            "alarm": false,
+            "lead_ms": null,
+            "timely": false
+          },
+          "risk": 0.1768478379039343,
+          "q_min": 0.0,
+          "q_max": 1.0,
+          "seal_sha256": "0261eb76b29768fcb64f56ef3d393ef67f40b6064b620f7220c56b6a2d16de74"
+        }
+      }
+    },
+    {
+      "shot": 54351,
+      "arms": {
+        "S": {
+          "prediction": {
+            "shot": 54351,
+            "is_disrupt": false,
+            "alarm": false,
+            "lead_ms": null,
+            "timely": false
+          },
+          "risk": 0.47468182485962873,
+          "q_min": 0.0,
+          "q_max": 0.0,
+          "seal_sha256": "a1f86e8423b103be03ddeeb407eeed78922a6b7ed0e9c73cfb4c6ea79bf58d5f"
+        },
+        "H": {
+          "prediction": {
+            "shot": 54351,
+            "is_disrupt": false,
+            "alarm": false,
+            "lead_ms": null,
+            "timely": false
+          },
+          "risk": 0.2651860781303983,
+          "q_min": 0.0,
+          "q_max": 1.0,
+          "seal_sha256": "8530511db51a834333ac02c0cd328073b4ef223f4367c50c89f84108ace7144e"
+        },
+        "P": {
+          "prediction": {
+            "shot": 54351,
+            "is_disrupt": false,
+            "alarm": false,
+            "lead_ms": null,
+            "timely": false
+          },
+          "risk": 0.2651860781303983,
+          "q_min": 0.0,
+          "q_max": 1.0,
+          "seal_sha256": "8530511db51a834333ac02c0cd328073b4ef223f4367c50c89f84108ace7144e"
+        },
+        "L": {
+          "prediction": {
+            "shot": 54351,
+            "is_disrupt": false,
+            "alarm": false,
+            "lead_ms": null,
+            "timely": false
+          },
+          "risk": 0.2651860781303983,
+          "q_min": 0.0,
+          "q_max": 1.0,
+          "seal_sha256": "8530511db51a834333ac02c0cd328073b4ef223f4367c50c89f84108ace7144e"
+        }
+      }
+    }
+  ],
+  "class_contrast_pairs": [
+    2,
+    0
+  ],
+  "optimizer_steps": 2,
+  "training_rollouts": 128,
+  "rule_norm": 0.0009221589560703407,
+  "parity": [
+    {
+      "shot": 54006,
+      "max_abs": 0.0
+    },
+    {
+      "shot": 54014,
+      "max_abs": 0.0
+    },
+    {
+      "shot": 54068,
+      "max_abs": 0.0
+    },
+    {
+      "shot": 54094,
+      "max_abs": 0.0
+    },
+    {
+      "shot": 54098,
+      "max_abs": 0.0
+    },
+    {
+      "shot": 54099,
+      "max_abs": 0.0
+    },
+    {
+      "shot": 54105,
+      "max_abs": 0.0
+    },
+    {
+      "shot": 54157,
+      "max_abs": 0.0
+    },
+    {
+      "shot": 54165,
+      "max_abs": 0.0
+    },
+    {
+      "shot": 54170,
+      "max_abs": 0.0
+    },
+    {
+      "shot": 54178,
+      "max_abs": 0.0
+    },
+    {
+      "shot": 54227,
+      "max_abs": 0.0
+    },
+    {
+      "shot": 54237,
+      "max_abs": 0.0
+    },
+    {
+      "shot": 54243,
+      "max_abs": 0.0
+    },
+    {
+      "shot": 54244,
+      "max_abs": 0.0
+    },
+    {
+      "shot": 54252,
+      "max_abs": 0.0
+    },
+    {
+      "shot": 54272,
+      "max_abs": 0.0
+    },
+    {
+      "shot": 54276,
+      "max_abs": 0.0
+    },
+    {
+      "shot": 54313,
+      "max_abs": 0.0
+    },
+    {
+      "shot": 54314,
+      "max_abs": 0.0
+    },
+    {
+      "shot": 54328,
+      "max_abs": 0.0
+    },
+    {
+      "shot": 54338,
+      "max_abs": 0.0
+    },
+    {
+      "shot": 54340,
+      "max_abs": 0.0
+    },
+    {
+      "shot": 54344,
+      "max_abs": 0.0
+    },
+    {
+      "shot": 54396,
+      "max_abs": 0.0
+    },
+    {
+      "shot": 53825,
+      "max_abs": 0.0
+    },
+    {
+      "shot": 54003,
+      "max_abs": 0.0
+    },
+    {
+      "shot": 54017,
+      "max_abs": 0.0
+    },
+    {
+      "shot": 54078,
+      "max_abs": 0.0
+    },
+    {
+      "shot": 54160,
+      "max_abs": 0.0
+    },
+    {
+      "shot": 54347,
+      "max_abs": 0.0
+    },
+    {
+      "shot": 54351,
+      "max_abs": 0.0
+    }
+  ],
+  "classifier_unchanged": true,
+  "admitted": false,
+  "future_run": false,
+  "elapsed_seconds": 74.84983004401147
+}

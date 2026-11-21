@@ -1,0 +1,246 @@
+{
+  "status": "VERIFIED",
+  "audit_sha256": "77d36f39aa3ed4504d7bc98036b19735bf1911525141876b4780557ae44a64b9",
+  "completed_sha256": "21cb95fe0a4fa4861da5d064b1dfc8b55a03230303787576796c0c53f791d6ef",
+  "protocol_sha256": "3ab2d71b5e7178912c58af01250b1e7f05a00658a77965350cb78ac8a5cb9a65",
+  "all_traces_independently_recounted": 3240,
+  "sampled_cuda_replays": [
+    {
+      "shot": 54157,
+      "curves": 8,
+      "max_abs_error": 0.0,
+      "stats_exact": true
+    },
+    {
+      "shot": 75135,
+      "curves": 8,
+      "max_abs_error": 0.0,
+      "stats_exact": true
+    },
+    {
+      "shot": 96375,
+      "curves": 8,
+      "max_abs_error": 0.0,
+      "stats_exact": true
+    }
+  ],
+  "full_independent_reinference": false,
+  "base_weights_exact": true,
+  "scale_recomputed": true,
+  "risk_only_gradient_norms": {
+    "level": {
+      "prior": 0.002285894937813282,
+      "key.weight": 0.004056909587234259,
+      "key.bias": 0.00040770723717287183,
+      "readout.weight": 0.0323261022567749
+    },
+    "change": {
+      "prior": 0.0035280019510537386,
+      "key.weight": 0.0096057103946805,
+      "key.bias": 0.0005774078308604658,
+      "readout.weight": 0.03510747104883194
+    }
+  },
+  "training_key_within_window_std": {
+    "level": {
+      "n": 2048,
+      "mean": 0.07638231596661171,
+      "median": 0.052255649119615555
+    },
+    "change": {
+      "n": 2048,
+      "mean": 0.17397094228908827,
+      "median": 0.1665005087852478
+    }
+  },
+  "statistics": {
+    "level_prior": {
+      "points": 1509354,
+      "fit_observed": 1498194,
+      "fast_changed": 0,
+      "fast_delta_sum": 0.0,
+      "held_error_sum": 1937615.09146142,
+      "held_targets": 32747558,
+      "correction_norm_sum": 636263.4284958243,
+      "mean_held_smoothl1": 0.059168231459012
+    },
+    "level_fit": {
+      "points": 1509354,
+      "fit_observed": 1498194,
+      "fast_changed": 1498194,
+      "fast_delta_sum": 875670.0091671348,
+      "held_error_sum": 1829915.5700583756,
+      "held_targets": 32747558,
+      "correction_norm_sum": 502038.708212018,
+      "mean_held_smoothl1": 0.05587945122681745
+    },
+    "level_shuffled": {
+      "points": 1509354,
+      "fit_observed": 1498194,
+      "fast_changed": 1498194,
+      "fast_delta_sum": 728119.2503937185,
+      "held_error_sum": 1886196.1759545952,
+      "held_targets": 32747558,
+      "correction_norm_sum": 507048.39024826884,
+      "mean_held_smoothl1": 0.05759807115860655
+    },
+    "level_mean": {
+      "points": 1509354,
+      "fit_observed": 1498194,
+      "fast_changed": 1498194,
+      "fast_delta_sum": 829256.7674361765,
+      "held_error_sum": 1872846.810293883,
+      "held_targets": 32747558,
+      "correction_norm_sum": 506118.65443977714,
+      "mean_held_smoothl1": 0.05719042654398484
+    },
+    "change_prior": {
+      "points": 1509354,
+      "fit_observed": 1498194,
+      "fast_changed": 0,
+      "fast_delta_sum": 0.0,
+      "held_error_sum": 1839230.3275476396,
+      "held_targets": 32747558,
+      "correction_norm_sum": 560884.1422028542,
+      "mean_held_smoothl1": 0.056163892512157386
+    },
+    "change_fit": {
+      "points": 1509354,
+      "fit_observed": 1498194,
+      "fast_changed": 1498194,
+      "fast_delta_sum": 1833925.7799502015,
+      "held_error_sum": 1697736.7934924662,
+      "held_targets": 32747558,
+      "correction_norm_sum": 489284.7258005142,
+      "mean_held_smoothl1": 0.0518431570834218
+    },
+    "change_shuffled": {
+      "points": 1509354,
+      "fit_observed": 1498194,
+      "fast_changed": 1498194,
+      "fast_delta_sum": 1748234.996932298,
+      "held_error_sum": 1935867.1001288146,
+      "held_targets": 32747558,
+      "correction_norm_sum": 513832.29631102085,
+      "mean_held_smoothl1": 0.05911485369775708
+    },
+    "change_mean": {
+      "points": 1509354,
+      "fit_observed": 1498194,
+      "fast_changed": 1498194,
+      "fast_delta_sum": 615754.0264399946,
+      "held_error_sum": 1855689.3957863003,
+      "held_targets": 32747558,
+      "correction_norm_sum": 512187.72861763835,
+      "mean_held_smoothl1": 0.05666649695791974
+    }
+  },
+  "paired_contrasts": {
+    "level_fit_vs_prior": {
+      "rescued_timely": [],
+      "lost_timely": [
+        71013,
+        75615
+      ],
+      "removed_fp": [],
+      "added_fp": [
+        61065,
+        62158
+      ]
+    },
+    "level_shuffled_vs_prior": {
+      "rescued_timely": [],
+      "lost_timely": [
+        75615
+      ],
+      "removed_fp": [],
+      "added_fp": [
+        61065,
+        62158,
+        72984
+      ]
+    },
+    "level_mean_vs_prior": {
+      "rescued_timely": [],
+      "lost_timely": [
+        71013,
+        75615
+      ],
+      "removed_fp": [],
+      "added_fp": [
+        61065,
+        62158
+      ]
+    },
+    "level_correct_vs_shuffled": {
+      "rescued_timely": [],
+      "lost_timely": [
+        71013
+      ],
+      "removed_fp": [
+        72984
+      ],
+      "added_fp": []
+    },
+    "level_correct_vs_mean": {
+      "rescued_timely": [],
+      "lost_timely": [],
+      "removed_fp": [],
+      "added_fp": []
+    },
+    "change_fit_vs_prior": {
+      "rescued_timely": [],
+      "lost_timely": [],
+      "removed_fp": [],
+      "added_fp": [
+        77835,
+        83910,
+        87009
+      ]
+    },
+    "change_shuffled_vs_prior": {
+      "rescued_timely": [],
+      "lost_timely": [],
+      "removed_fp": [],
+      "added_fp": [
+        77835,
+        83910,
+        87009
+      ]
+    },
+    "change_mean_vs_prior": {
+      "rescued_timely": [],
+      "lost_timely": [],
+      "removed_fp": [],
+      "added_fp": [
+        77835,
+        83910,
+        87009
+      ]
+    },
+    "change_correct_vs_shuffled": {
+      "rescued_timely": [],
+      "lost_timely": [],
+      "removed_fp": [],
+      "added_fp": []
+    },
+    "change_correct_vs_mean": {
+      "rescued_timely": [],
+      "lost_timely": [],
+      "removed_fp": [],
+      "added_fp": []
+    },
+    "change_fit_vs_level_fit": {
+      "rescued_timely": [],
+      "lost_timely": [
+        77788
+      ],
+      "removed_fp": [
+        62158
+      ],
+      "added_fp": []
+    }
+  },
+  "independent_confirmation": false,
+  "scope": "single seed development test; no deployed Transformer backprop or physical-law claim"
+}

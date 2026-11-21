@@ -1,0 +1,978 @@
+{
+  "source_sha256": "a3e983d0b8d132453a3ef9faecb54fe37c3cc1ce08f00f9cc5fd6147b2e2ee87",
+  "split": "J-TEXT VAL160 only; no parameter update",
+  "forecast_semantics": "change from current observed value; source asinh/delta-RMS coordinates",
+  "evaluation": "origin stride8; only complete 32-point record horizon; valid preterminal targets",
+  "counts": 3872000,
+  "mse_skill": 0.10517289976214583,
+  "huber_skill": 0.09599485487493409,
+  "event_conditional_endpoint_accuracy": 0.06497305619707468,
+  "event_points": 12990,
+  "channels": {
+    "Bt": {
+      "n": 176000,
+      "mse": 1.174377416280183,
+      "persistence_mse": 1.1710992911837317,
+      "mse_skill_vs_persistence": -0.0027991863039535936,
+      "huber_skill_vs_persistence": -0.00532108149629007
+    },
+    "CIII": {
+      "n": 176000,
+      "mse": 1.162692172256383,
+      "persistence_mse": 1.1705545104850423,
+      "mse_skill_vs_persistence": 0.006716763856987162,
+      "huber_skill_vs_persistence": 0.0194613467406467
+    },
+    "MNM": {
+      "n": 176000,
+      "mse": 1.016625462491404,
+      "persistence_mse": 1.0744154536276844,
+      "mse_skill_vs_persistence": 0.05378737893349994,
+      "huber_skill_vs_persistence": 0.023325491549991417
+    },
+    "Mir_VV": {
+      "n": 176000,
+      "mse": 1.1720852441570975,
+      "persistence_mse": 1.2343225859186866,
+      "mse_skill_vs_persistence": 0.05042226600371802,
+      "huber_skill_vs_persistence": 0.026748025608463788
+    },
+    "Mir_avg_amp": {
+      "n": 176000,
+      "mse": 1.5858261988271367,
+      "persistence_mse": 1.6251701910218055,
+      "mse_skill_vs_persistence": 0.02420915200883167,
+      "huber_skill_vs_persistence": -0.003971231848485468
+    },
+    "Mir_avg_fre": {
+      "n": 176000,
+      "mse": 1.1693601146895778,
+      "persistence_mse": 1.2297395124056123,
+      "mse_skill_vs_persistence": 0.049099339418573806,
+      "huber_skill_vs_persistence": 0.018058932042765208
+    },
+    "Z_proxy": {
+      "n": 176000,
+      "mse": 0.7598929126912898,
+      "persistence_mse": 1.1322925042022358,
+      "mse_skill_vs_persistence": 0.3288899203420257,
+      "huber_skill_vs_persistence": 0.2743112821350778
+    },
+    "dx_a": {
+      "n": 176000,
+      "mse": 0.9811336354775863,
+      "persistence_mse": 1.2111418432755903,
+      "mse_skill_vs_persistence": 0.18991021495544735,
+      "huber_skill_vs_persistence": 0.14122737922144535
+    },
+    "dy_a": {
+      "n": 176000,
+      "mse": 1.093683209852739,
+      "persistence_mse": 1.1152123671228236,
+      "mse_skill_vs_persistence": 0.01930498432834682,
+      "huber_skill_vs_persistence": 0.014232109826276762
+    },
+    "ip": {
+      "n": 176000,
+      "mse": 1.200034864729101,
+      "persistence_mse": 1.4777550408623434,
+      "mse_skill_vs_persistence": 0.187933837783547,
+      "huber_skill_vs_persistence": 0.13236170521719148
+    },
+    "mode_number_n": {
+      "n": 0,
+      "mse": null,
+      "persistence_mse": null,
+      "mse_skill_vs_persistence": null,
+      "huber_skill_vs_persistence": null
+    },
+    "n=1 amplitude": {
+      "n": 176000,
+      "mse": 0.982157609614459,
+      "persistence_mse": 0.9887834587625481,
+      "mse_skill_vs_persistence": 0.00670101131786871,
+      "huber_skill_vs_persistence": 0.007686758766228485
+    },
+    "ne_nG": {
+      "n": 176000,
+      "mse": 0.964641521692276,
+      "persistence_mse": 1.1365165017193013,
+      "mse_skill_vs_persistence": 0.1512296387839649,
+      "huber_skill_vs_persistence": 0.13156675437528687
+    },
+    "qa_proxy": {
+      "n": 176000,
+      "mse": 0.9318565615523945,
+      "persistence_mse": 1.063387695941058,
+      "mse_skill_vs_persistence": 0.12369066793862371,
+      "huber_skill_vs_persistence": 0.10844642860531006
+    },
+    "sxr_kurt": {
+      "n": 176000,
+      "mse": 0.9627950716885654,
+      "persistence_mse": 1.0051470156989315,
+      "mse_skill_vs_persistence": 0.0421350741223826,
+      "huber_skill_vs_persistence": 0.02962807338463247
+    },
+    "sxr_mean": {
+      "n": 176000,
+      "mse": 0.7007972595149821,
+      "persistence_mse": 0.9342470993602817,
+      "mse_skill_vs_persistence": 0.2498801869496332,
+      "huber_skill_vs_persistence": 0.2135720320201948
+    },
+    "sxr_skew": {
+      "n": 176000,
+      "mse": 0.904162831588225,
+      "persistence_mse": 0.9813662818995389,
+      "mse_skill_vs_persistence": 0.07866935285557042,
+      "huber_skill_vs_persistence": 0.05736183988716892
+    },
+    "sxr_var": {
+      "n": 176000,
+      "mse": 0.7607456750869751,
+      "persistence_mse": 1.0097516139592468,
+      "mse_skill_vs_persistence": 0.2466011793691686,
+      "huber_skill_vs_persistence": 0.2181697121138726
+    },
+    "v_loop": {
+      "n": 176000,
+      "mse": 0.6770157314647328,
+      "persistence_mse": 1.0836613699522886,
+      "mse_skill_vs_persistence": 0.37525157744200066,
+      "huber_skill_vs_persistence": 0.3175236861917823
+    },
+    "xuv_kurt": {
+      "n": 176000,
+      "mse": 1.2612305448272012,
+      "persistence_mse": 1.3884592392600394,
+      "mse_skill_vs_persistence": 0.0916330064544374,
+      "huber_skill_vs_persistence": 0.08026831718671468
+    },
+    "xuv_ratio": {
+      "n": 176000,
+      "mse": 2.8274697523767296,
+      "persistence_mse": 2.883031883285825,
+      "mse_skill_vs_persistence": 0.019272118089020296,
+      "huber_skill_vs_persistence": 0.044051748367838206
+    },
+    "xuv_skew": {
+      "n": 176000,
+      "mse": 1.3243293276483363,
+      "persistence_mse": 1.424150710248981,
+      "mse_skill_vs_persistence": 0.07009186730187655,
+      "huber_skill_vs_persistence": 0.05323724141898967
+    },
+    "xuv_var": {
+      "n": 176000,
+      "mse": 0.342748024306514,
+      "persistence_mse": 0.43106744953275233,
+      "mse_skill_vs_persistence": 0.2048853962923216,
+      "huber_skill_vs_persistence": 0.14951573713731525
+    }
+  },
+  "per_shot": [
+    {
+      "shot": 1051509,
+      "prediction_huber": 0.46407344937324524,
+      "persistence_huber": 0.510530948638916
+    },
+    {
+      "shot": 1051525,
+      "prediction_huber": 0.4194107949733734,
+      "persistence_huber": 0.4513169229030609
+    },
+    {
+      "shot": 1051571,
+      "prediction_huber": 0.23539415001869202,
+      "persistence_huber": 0.2900652587413788
+    },
+    {
+      "shot": 1051592,
+      "prediction_huber": 0.1176547110080719,
+      "persistence_huber": 0.12426010519266129
+    },
+    {
+      "shot": 1051764,
+      "prediction_huber": 0.3870377540588379,
+      "persistence_huber": 0.3947431445121765
+    },
+    {
+      "shot": 1051769,
+      "prediction_huber": 0.18325954675674438,
+      "persistence_huber": 0.18644016981124878
+    },
+    {
+      "shot": 1052047,
+      "prediction_huber": 0.3054734170436859,
+      "persistence_huber": 0.3387465178966522
+    },
+    {
+      "shot": 1052171,
+      "prediction_huber": 0.33668243885040283,
+      "persistence_huber": 0.38777902722358704
+    },
+    {
+      "shot": 1052334,
+      "prediction_huber": 0.23193080723285675,
+      "persistence_huber": 0.2572312355041504
+    },
+    {
+      "shot": 1052573,
+      "prediction_huber": 0.35888707637786865,
+      "persistence_huber": 0.40669310092926025
+    },
+    {
+      "shot": 1052582,
+      "prediction_huber": 0.4472998380661011,
+      "persistence_huber": 0.4827888607978821
+    },
+    {
+      "shot": 1052588,
+      "prediction_huber": 0.3879139721393585,
+      "persistence_huber": 0.4263773560523987
+    },
+    {
+      "shot": 1052594,
+      "prediction_huber": 0.6910911202430725,
+      "persistence_huber": 0.7559370398521423
+    },
+    {
+      "shot": 1052909,
+      "prediction_huber": 0.4705391526222229,
+      "persistence_huber": 0.5092902779579163
+    },
+    {
+      "shot": 1052920,
+      "prediction_huber": 0.3234763443470001,
+      "persistence_huber": 0.31797805428504944
+    },
+    {
+      "shot": 1052953,
+      "prediction_huber": 0.24573463201522827,
+      "persistence_huber": 0.2518208920955658
+    },
+    {
+      "shot": 1052955,
+      "prediction_huber": 0.2658279836177826,
+      "persistence_huber": 0.2745508849620819
+    },
+    {
+      "shot": 1052960,
+      "prediction_huber": 0.291766494512558,
+      "persistence_huber": 0.32012906670570374
+    },
+    {
+      "shot": 1052964,
+      "prediction_huber": 0.2864111065864563,
+      "persistence_huber": 0.30679231882095337
+    },
+    {
+      "shot": 1052966,
+      "prediction_huber": 0.28182515501976013,
+      "persistence_huber": 0.30503836274147034
+    },
+    {
+      "shot": 1053129,
+      "prediction_huber": 0.422574520111084,
+      "persistence_huber": 0.46312499046325684
+    },
+    {
+      "shot": 1053131,
+      "prediction_huber": 0.3956845700740814,
+      "persistence_huber": 0.42630037665367126
+    },
+    {
+      "shot": 1053189,
+      "prediction_huber": 0.21976909041404724,
+      "persistence_huber": 0.22940222918987274
+    },
+    {
+      "shot": 1053220,
+      "prediction_huber": 0.206442192196846,
+      "persistence_huber": 0.24993301928043365
+    },
+    {
+      "shot": 1053232,
+      "prediction_huber": 0.24915145337581635,
+      "persistence_huber": 0.24733571708202362
+    },
+    {
+      "shot": 1053263,
+      "prediction_huber": 0.2851758599281311,
+      "persistence_huber": 0.2990533709526062
+    },
+    {
+      "shot": 1053267,
+      "prediction_huber": 0.29657745361328125,
+      "persistence_huber": 0.3115746080875397
+    },
+    {
+      "shot": 1053602,
+      "prediction_huber": 0.5090600252151489,
+      "persistence_huber": 0.5367235541343689
+    },
+    {
+      "shot": 1053633,
+      "prediction_huber": 0.23784813284873962,
+      "persistence_huber": 0.25558000802993774
+    },
+    {
+      "shot": 1053719,
+      "prediction_huber": 0.19147183001041412,
+      "persistence_huber": 0.20206543803215027
+    },
+    {
+      "shot": 1053782,
+      "prediction_huber": 0.41374972462654114,
+      "persistence_huber": 0.4712744355201721
+    },
+    {
+      "shot": 1053826,
+      "prediction_huber": 0.26412510871887207,
+      "persistence_huber": 0.2925071120262146
+    },
+    {
+      "shot": 1053908,
+      "prediction_huber": 0.37785598635673523,
+      "persistence_huber": 0.4200659990310669
+    },
+    {
+      "shot": 1053928,
+      "prediction_huber": 0.17961525917053223,
+      "persistence_huber": 0.18910656869411469
+    },
+    {
+      "shot": 1053929,
+      "prediction_huber": 0.17532382905483246,
+      "persistence_huber": 0.1896906942129135
+    },
+    {
+      "shot": 1053990,
+      "prediction_huber": 0.2995636761188507,
+      "persistence_huber": 0.3445972204208374
+    },
+    {
+      "shot": 1054063,
+      "prediction_huber": 0.27552294731140137,
+      "persistence_huber": 0.3188839256763458
+    },
+    {
+      "shot": 1054177,
+      "prediction_huber": 0.5552120804786682,
+      "persistence_huber": 0.5609379410743713
+    },
+    {
+      "shot": 1054187,
+      "prediction_huber": 0.4198386073112488,
+      "persistence_huber": 0.4588286578655243
+    },
+    {
+      "shot": 1054188,
+      "prediction_huber": 0.3636690378189087,
+      "persistence_huber": 0.4126599431037903
+    },
+    {
+      "shot": 1054214,
+      "prediction_huber": 0.2838969826698303,
+      "persistence_huber": 0.30672672390937805
+    },
+    {
+      "shot": 1054218,
+      "prediction_huber": 0.2256714552640915,
+      "persistence_huber": 0.25327053666114807
+    },
+    {
+      "shot": 1054229,
+      "prediction_huber": 0.5566766262054443,
+      "persistence_huber": 0.5741164684295654
+    },
+    {
+      "shot": 1054234,
+      "prediction_huber": 0.34721729159355164,
+      "persistence_huber": 0.3627990186214447
+    },
+    {
+      "shot": 1054246,
+      "prediction_huber": 0.17818939685821533,
+      "persistence_huber": 0.1957959234714508
+    },
+    {
+      "shot": 1054247,
+      "prediction_huber": 0.2743753492832184,
+      "persistence_huber": 0.3037150204181671
+    },
+    {
+      "shot": 1054250,
+      "prediction_huber": 0.2262720763683319,
+      "persistence_huber": 0.23981373012065887
+    },
+    {
+      "shot": 1054258,
+      "prediction_huber": 0.8620156049728394,
+      "persistence_huber": 0.9449266791343689
+    },
+    {
+      "shot": 1054337,
+      "prediction_huber": 0.3747747838497162,
+      "persistence_huber": 0.386584997177124
+    },
+    {
+      "shot": 1054592,
+      "prediction_huber": 0.9559495449066162,
+      "persistence_huber": 1.0670645236968994
+    },
+    {
+      "shot": 1054601,
+      "prediction_huber": 0.24434278905391693,
+      "persistence_huber": 0.27440300583839417
+    },
+    {
+      "shot": 1054612,
+      "prediction_huber": 0.2853533625602722,
+      "persistence_huber": 0.32543453574180603
+    },
+    {
+      "shot": 1054646,
+      "prediction_huber": 0.2925742268562317,
+      "persistence_huber": 0.33024150133132935
+    },
+    {
+      "shot": 1054781,
+      "prediction_huber": 0.34457099437713623,
+      "persistence_huber": 0.408637136220932
+    },
+    {
+      "shot": 1054784,
+      "prediction_huber": 0.3794735372066498,
+      "persistence_huber": 0.44487234950065613
+    },
+    {
+      "shot": 1054798,
+      "prediction_huber": 0.3232271373271942,
+      "persistence_huber": 0.3845215439796448
+    },
+    {
+      "shot": 1054941,
+      "prediction_huber": 0.17404049634933472,
+      "persistence_huber": 0.20340663194656372
+    },
+    {
+      "shot": 1054966,
+      "prediction_huber": 0.8780137896537781,
+      "persistence_huber": 0.8938317894935608
+    },
+    {
+      "shot": 1054978,
+      "prediction_huber": 0.18902161717414856,
+      "persistence_huber": 0.23852147161960602
+    },
+    {
+      "shot": 1054981,
+      "prediction_huber": 0.21451152861118317,
+      "persistence_huber": 0.27348312735557556
+    },
+    {
+      "shot": 1055017,
+      "prediction_huber": 0.15320180356502533,
+      "persistence_huber": 0.1856883317232132
+    },
+    {
+      "shot": 1055060,
+      "prediction_huber": 0.19774587452411652,
+      "persistence_huber": 0.22956962883472443
+    },
+    {
+      "shot": 1055068,
+      "prediction_huber": 0.783846914768219,
+      "persistence_huber": 0.8460795879364014
+    },
+    {
+      "shot": 1055070,
+      "prediction_huber": 0.7320758104324341,
+      "persistence_huber": 0.8087457418441772
+    },
+    {
+      "shot": 1055077,
+      "prediction_huber": 0.12524831295013428,
+      "persistence_huber": 0.14649811387062073
+    },
+    {
+      "shot": 1055103,
+      "prediction_huber": 0.17044536769390106,
+      "persistence_huber": 0.209637850522995
+    },
+    {
+      "shot": 1055186,
+      "prediction_huber": 0.2893891930580139,
+      "persistence_huber": 0.2927049398422241
+    },
+    {
+      "shot": 1055230,
+      "prediction_huber": 0.1578034609556198,
+      "persistence_huber": 0.18773633241653442
+    },
+    {
+      "shot": 1055238,
+      "prediction_huber": 0.2164478302001953,
+      "persistence_huber": 0.24093426764011383
+    },
+    {
+      "shot": 1055243,
+      "prediction_huber": 0.30785050988197327,
+      "persistence_huber": 0.35083743929862976
+    },
+    {
+      "shot": 1055246,
+      "prediction_huber": 0.229231595993042,
+      "persistence_huber": 0.23667491972446442
+    },
+    {
+      "shot": 1055248,
+      "prediction_huber": 0.23108556866645813,
+      "persistence_huber": 0.2392788529396057
+    },
+    {
+      "shot": 1055254,
+      "prediction_huber": 0.17422214150428772,
+      "persistence_huber": 0.18671417236328125
+    },
+    {
+      "shot": 1055289,
+      "prediction_huber": 0.4767938554286957,
+      "persistence_huber": 0.4929642975330353
+    },
+    {
+      "shot": 1055314,
+      "prediction_huber": 0.21932661533355713,
+      "persistence_huber": 0.24777422845363617
+    },
+    {
+      "shot": 1055315,
+      "prediction_huber": 0.30173152685165405,
+      "persistence_huber": 0.3285817801952362
+    },
+    {
+      "shot": 1055326,
+      "prediction_huber": 0.2931422293186188,
+      "persistence_huber": 0.3336007297039032
+    },
+    {
+      "shot": 1055329,
+      "prediction_huber": 0.24731263518333435,
+      "persistence_huber": 0.2903689444065094
+    },
+    {
+      "shot": 1055339,
+      "prediction_huber": 0.33927369117736816,
+      "persistence_huber": 0.38811060786247253
+    },
+    {
+      "shot": 1055353,
+      "prediction_huber": 0.3171314597129822,
+      "persistence_huber": 0.3460969030857086
+    },
+    {
+      "shot": 1055371,
+      "prediction_huber": 0.30295076966285706,
+      "persistence_huber": 0.329664021730423
+    },
+    {
+      "shot": 1055375,
+      "prediction_huber": 0.17430748045444489,
+      "persistence_huber": 0.1900726705789566
+    },
+    {
+      "shot": 1055415,
+      "prediction_huber": 0.2363995909690857,
+      "persistence_huber": 0.2438010722398758
+    },
+    {
+      "shot": 1055479,
+      "prediction_huber": 0.2773823142051697,
+      "persistence_huber": 0.3169137239456177
+    },
+    {
+      "shot": 1055490,
+      "prediction_huber": 0.17297078669071198,
+      "persistence_huber": 0.156611829996109
+    },
+    {
+      "shot": 1055495,
+      "prediction_huber": 0.1850663423538208,
+      "persistence_huber": 0.21859107911586761
+    },
+    {
+      "shot": 1055599,
+      "prediction_huber": 0.34162846207618713,
+      "persistence_huber": 0.3847808539867401
+    },
+    {
+      "shot": 1055737,
+      "prediction_huber": 0.289582759141922,
+      "persistence_huber": 0.30100172758102417
+    },
+    {
+      "shot": 1055788,
+      "prediction_huber": 0.21567828953266144,
+      "persistence_huber": 0.2515593469142914
+    },
+    {
+      "shot": 1055947,
+      "prediction_huber": 0.307155579328537,
+      "persistence_huber": 0.3491043448448181
+    },
+    {
+      "shot": 1055956,
+      "prediction_huber": 0.42484378814697266,
+      "persistence_huber": 0.48088425397872925
+    },
+    {
+      "shot": 1055957,
+      "prediction_huber": 1.3528772592544556,
+      "persistence_huber": 1.4662388563156128
+    },
+    {
+      "shot": 1055967,
+      "prediction_huber": 0.19432586431503296,
+      "persistence_huber": 0.2383565902709961
+    },
+    {
+      "shot": 1055988,
+      "prediction_huber": 0.1705833375453949,
+      "persistence_huber": 0.21589206159114838
+    },
+    {
+      "shot": 1056017,
+      "prediction_huber": 0.16851834952831268,
+      "persistence_huber": 0.20278607308864594
+    },
+    {
+      "shot": 1056056,
+      "prediction_huber": 0.17257022857666016,
+      "persistence_huber": 0.19706501066684723
+    },
+    {
+      "shot": 1056087,
+      "prediction_huber": 0.7703370451927185,
+      "persistence_huber": 0.773653507232666
+    },
+    {
+      "shot": 1056182,
+      "prediction_huber": 0.25785693526268005,
+      "persistence_huber": 0.31592968106269836
+    },
+    {
+      "shot": 1056187,
+      "prediction_huber": 0.25957727432250977,
+      "persistence_huber": 0.32529348134994507
+    },
+    {
+      "shot": 1056192,
+      "prediction_huber": 0.23076272010803223,
+      "persistence_huber": 0.29288655519485474
+    },
+    {
+      "shot": 1056196,
+      "prediction_huber": 0.2835543155670166,
+      "persistence_huber": 0.333810955286026
+    },
+    {
+      "shot": 1056203,
+      "prediction_huber": 0.23712649941444397,
+      "persistence_huber": 0.2850286364555359
+    },
+    {
+      "shot": 1056220,
+      "prediction_huber": 0.2260500192642212,
+      "persistence_huber": 0.23650674521923065
+    },
+    {
+      "shot": 1056225,
+      "prediction_huber": 0.21217425167560577,
+      "persistence_huber": 0.24947135150432587
+    },
+    {
+      "shot": 1056233,
+      "prediction_huber": 0.25723209977149963,
+      "persistence_huber": 0.2965025007724762
+    },
+    {
+      "shot": 1056287,
+      "prediction_huber": 0.3679409325122833,
+      "persistence_huber": 0.4144951403141022
+    },
+    {
+      "shot": 1056288,
+      "prediction_huber": 0.3290018141269684,
+      "persistence_huber": 0.36306631565093994
+    },
+    {
+      "shot": 1056293,
+      "prediction_huber": 0.23062288761138916,
+      "persistence_huber": 0.24262478947639465
+    },
+    {
+      "shot": 1056317,
+      "prediction_huber": 0.30923062562942505,
+      "persistence_huber": 0.340107798576355
+    },
+    {
+      "shot": 1056334,
+      "prediction_huber": 0.2627394497394562,
+      "persistence_huber": 0.282632052898407
+    },
+    {
+      "shot": 1056533,
+      "prediction_huber": 0.21582062542438507,
+      "persistence_huber": 0.2622078061103821
+    },
+    {
+      "shot": 1056641,
+      "prediction_huber": 0.23237711191177368,
+      "persistence_huber": 0.2544291615486145
+    },
+    {
+      "shot": 1056648,
+      "prediction_huber": 0.21573041379451752,
+      "persistence_huber": 0.23518507182598114
+    },
+    {
+      "shot": 1056709,
+      "prediction_huber": 0.26761892437934875,
+      "persistence_huber": 0.30918633937835693
+    },
+    {
+      "shot": 1056765,
+      "prediction_huber": 0.30135318636894226,
+      "persistence_huber": 0.31735900044441223
+    },
+    {
+      "shot": 1056830,
+      "prediction_huber": 0.36062702536582947,
+      "persistence_huber": 0.3743080198764801
+    },
+    {
+      "shot": 1056848,
+      "prediction_huber": 0.3923221230506897,
+      "persistence_huber": 0.43297240138053894
+    },
+    {
+      "shot": 1056921,
+      "prediction_huber": 0.41190508008003235,
+      "persistence_huber": 0.4591023921966553
+    },
+    {
+      "shot": 1056932,
+      "prediction_huber": 0.13067373633384705,
+      "persistence_huber": 0.14777493476867676
+    },
+    {
+      "shot": 1056967,
+      "prediction_huber": 0.21711882948875427,
+      "persistence_huber": 0.23352865874767303
+    },
+    {
+      "shot": 1057014,
+      "prediction_huber": 0.1959429234266281,
+      "persistence_huber": 0.19322162866592407
+    },
+    {
+      "shot": 1057090,
+      "prediction_huber": 0.35873955488204956,
+      "persistence_huber": 0.3788096606731415
+    },
+    {
+      "shot": 1057114,
+      "prediction_huber": 0.2603336274623871,
+      "persistence_huber": 0.2963275909423828
+    },
+    {
+      "shot": 1057156,
+      "prediction_huber": 0.36262786388397217,
+      "persistence_huber": 0.4172844886779785
+    },
+    {
+      "shot": 1057200,
+      "prediction_huber": 0.24965661764144897,
+      "persistence_huber": 0.2557174265384674
+    },
+    {
+      "shot": 1057204,
+      "prediction_huber": 0.2771493196487427,
+      "persistence_huber": 0.29357701539993286
+    },
+    {
+      "shot": 1057245,
+      "prediction_huber": 0.21450980007648468,
+      "persistence_huber": 0.2637520730495453
+    },
+    {
+      "shot": 1057247,
+      "prediction_huber": 0.295993834733963,
+      "persistence_huber": 0.3498799204826355
+    },
+    {
+      "shot": 1057248,
+      "prediction_huber": 0.38113170862197876,
+      "persistence_huber": 0.5089914202690125
+    },
+    {
+      "shot": 1057254,
+      "prediction_huber": 0.47789430618286133,
+      "persistence_huber": 0.5529108047485352
+    },
+    {
+      "shot": 1057270,
+      "prediction_huber": 0.33342576026916504,
+      "persistence_huber": 0.3926692008972168
+    },
+    {
+      "shot": 1057283,
+      "prediction_huber": 0.25368157029151917,
+      "persistence_huber": 0.26287204027175903
+    },
+    {
+      "shot": 1057327,
+      "prediction_huber": 0.4324716627597809,
+      "persistence_huber": 0.5097689628601074
+    },
+    {
+      "shot": 1057445,
+      "prediction_huber": 0.8121253252029419,
+      "persistence_huber": 0.8282393217086792
+    },
+    {
+      "shot": 1057448,
+      "prediction_huber": 0.3731265962123871,
+      "persistence_huber": 0.3585471510887146
+    },
+    {
+      "shot": 1057483,
+      "prediction_huber": 0.28354504704475403,
+      "persistence_huber": 0.29364314675331116
+    },
+    {
+      "shot": 1057497,
+      "prediction_huber": 0.29337164759635925,
+      "persistence_huber": 0.306162029504776
+    },
+    {
+      "shot": 1057527,
+      "prediction_huber": 0.4524725377559662,
+      "persistence_huber": 0.46231451630592346
+    },
+    {
+      "shot": 1057530,
+      "prediction_huber": 0.43981626629829407,
+      "persistence_huber": 0.45206254720687866
+    },
+    {
+      "shot": 1057533,
+      "prediction_huber": 0.4485032260417938,
+      "persistence_huber": 0.4479190409183502
+    },
+    {
+      "shot": 1057556,
+      "prediction_huber": 0.2395620346069336,
+      "persistence_huber": 0.25560927391052246
+    },
+    {
+      "shot": 1057559,
+      "prediction_huber": 0.32659009099006653,
+      "persistence_huber": 0.37380847334861755
+    },
+    {
+      "shot": 1057570,
+      "prediction_huber": 0.402825266122818,
+      "persistence_huber": 0.4613575339317322
+    },
+    {
+      "shot": 1057595,
+      "prediction_huber": 0.6351478695869446,
+      "persistence_huber": 0.7136799693107605
+    },
+    {
+      "shot": 1057607,
+      "prediction_huber": 0.37214428186416626,
+      "persistence_huber": 0.4256558418273926
+    },
+    {
+      "shot": 1057613,
+      "prediction_huber": 0.3895972967147827,
+      "persistence_huber": 0.4480358958244324
+    },
+    {
+      "shot": 1057615,
+      "prediction_huber": 0.3868405818939209,
+      "persistence_huber": 0.4443151652812958
+    },
+    {
+      "shot": 1057633,
+      "prediction_huber": 0.2896072566509247,
+      "persistence_huber": 0.31951630115509033
+    },
+    {
+      "shot": 1057665,
+      "prediction_huber": 0.32208043336868286,
+      "persistence_huber": 0.33826959133148193
+    },
+    {
+      "shot": 1057685,
+      "prediction_huber": 0.3277225196361542,
+      "persistence_huber": 0.34082603454589844
+    },
+    {
+      "shot": 1057713,
+      "prediction_huber": 0.6712425947189331,
+      "persistence_huber": 0.753374457359314
+    },
+    {
+      "shot": 1057830,
+      "prediction_huber": 0.4382378160953522,
+      "persistence_huber": 0.47931990027427673
+    },
+    {
+      "shot": 1057861,
+      "prediction_huber": 0.34581229090690613,
+      "persistence_huber": 0.3797663152217865
+    },
+    {
+      "shot": 1057871,
+      "prediction_huber": 0.3428040146827698,
+      "persistence_huber": 0.36837759613990784
+    },
+    {
+      "shot": 1057896,
+      "prediction_huber": 0.27797120809555054,
+      "persistence_huber": 0.32642579078674316
+    },
+    {
+      "shot": 1057917,
+      "prediction_huber": 0.4167197644710541,
+      "persistence_huber": 0.4850560426712036
+    },
+    {
+      "shot": 1057952,
+      "prediction_huber": 0.22320786118507385,
+      "persistence_huber": 0.24285271763801575
+    },
+    {
+      "shot": 1058008,
+      "prediction_huber": 0.2210553139448166,
+      "persistence_huber": 0.24042057991027832
+    },
+    {
+      "shot": 1058010,
+      "prediction_huber": 0.25048524141311646,
+      "persistence_huber": 0.2800956964492798
+    },
+    {
+      "shot": 1058043,
+      "prediction_huber": 0.5677217245101929,
+      "persistence_huber": 0.60052090883255
+    }
+  ],
+  "independent_confirmation": false,
+  "source_meta_prepared": false
+}

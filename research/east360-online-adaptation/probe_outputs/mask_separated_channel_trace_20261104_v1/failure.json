@@ -1,0 +1,11 @@
+{
+  "status": "FAILED_NUMERICAL_DECOMPOSITION_CHECK",
+  "completed_episodes_before_failure": 50,
+  "failure_location": "gradient_trace.py metric component sum versus full-gradient metric_direction",
+  "max_reported_absolute_difference": 0.000005430541932582855,
+  "max_reported_relative_difference": 0.0004165007558185607,
+  "interpretation": "Whole-loss and separate per-channel float32 reverse-mode reductions differ. The damped inverse metric amplifies their cancellation residual. Do not attribute this residual to a physical channel.",
+  "repair": "Use the actually computed whole-loss gradient for common step scaling, perform decomposition in float64, explicitly retain the whole-minus-channel gradient reduction residual as a separate numerical term. Preserve this failed directory; rerun into v2.",
+  "pilot_predictions_affected": false,
+  "online_gain_claimed": false
+}

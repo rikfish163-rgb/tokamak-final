@@ -1,0 +1,54 @@
+{
+  "status": "PASS",
+  "complete_curves_recounted": 3600,
+  "reference_curves_exact": 720,
+  "optimizer_replays": [
+    {
+      "step": 0,
+      "route": "aligned_last",
+      "loss_gradient_change_norm_exact": true,
+      "final_parameters_exact": false
+    },
+    {
+      "step": 0,
+      "route": "per_token",
+      "loss_gradient_change_norm_exact": true,
+      "final_parameters_exact": false
+    },
+    {
+      "step": 127,
+      "route": "aligned_last",
+      "loss_gradient_change_norm_exact": true,
+      "final_parameters_exact": false
+    },
+    {
+      "step": 127,
+      "route": "per_token",
+      "loss_gradient_change_norm_exact": true,
+      "final_parameters_exact": false
+    },
+    {
+      "step": 255,
+      "route": "aligned_last",
+      "loss_gradient_change_norm_exact": true,
+      "final_parameters_exact": true
+    },
+    {
+      "step": 255,
+      "route": "per_token",
+      "loss_gradient_change_norm_exact": true,
+      "final_parameters_exact": true
+    }
+  ],
+  "replay_shots": [
+    74087,
+    73403,
+    63656,
+    62573
+  ],
+  "exact_inference_replay_curves": 40,
+  "original_learning_and_forward_reused": true,
+  "completed_sha256": "91818bf2ab3b423610ae2e9ad19d16af71eba201d6099643b4dd66062deac09d",
+  "verifier_sha256": "8b42cf274ac97d4d92777e0ec0b45e3c98196ef8649ba2e4f98d8afb89e004c5",
+  "independent_future_confirmation": false
+}

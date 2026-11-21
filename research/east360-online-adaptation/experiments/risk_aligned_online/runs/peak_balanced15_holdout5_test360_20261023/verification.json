@@ -1,0 +1,258 @@
+{
+  "status": "VERIFIED",
+  "protocol_sha256": "db67248e695ca74ce5f676d2fe50f77b943b13cb56e9af75ccd6a1f9a49b2542",
+  "completed_sha256": "dd761a98a9cb23a1d754a5ca29b77b28c9a801f84820f91a72ee24d7983e1687",
+  "audit_code_sha256": "8ac3cd0169711f440f83a2eea771f4e0d20ede027b648a665b359734e85bb4a8",
+  "all_shot_traces_recounted": 2160,
+  "changed_tensors": {
+    "warm": [],
+    "random_original": [
+      "base.forecast_head.weight",
+      "base.forecast_head.bias"
+    ],
+    "random_balanced": [
+      "base.forecast_head.weight",
+      "base.forecast_head.bias"
+    ],
+    "peak_original": [
+      "base.forecast_head.weight",
+      "base.forecast_head.bias"
+    ],
+    "peak_balanced": [
+      "base.forecast_head.weight",
+      "base.forecast_head.bias"
+    ]
+  },
+  "all_safe_training_peaks_covered": 12,
+  "per_episode_gradient_caps_valid": true,
+  "median_risk_gradient_scale": {
+    "random_balanced": 0.03614424838938301,
+    "peak_balanced": 0.015099483345245808
+  },
+  "gradient_steps": {
+    "warm": 11301,
+    "random_original": 11301,
+    "random_balanced": 11301,
+    "peak_original": 11301,
+    "peak_balanced": 11301
+  },
+  "nonzero_updates": {
+    "warm": 11301,
+    "random_original": 11301,
+    "random_balanced": 11301,
+    "peak_original": 11301,
+    "peak_balanced": 11301
+  },
+  "sampled_cuda_replays": [
+    {
+      "shot": 54157,
+      "arms": 6,
+      "max_abs_error": 0.0,
+      "update_receipts_exact": true
+    },
+    {
+      "shot": 75135,
+      "arms": 6,
+      "max_abs_error": 0.0,
+      "update_receipts_exact": true
+    },
+    {
+      "shot": 96375,
+      "arms": 6,
+      "max_abs_error": 0.0,
+      "update_receipts_exact": true
+    }
+  ],
+  "full_independent_reinference": false,
+  "calibration_peak_trace_replays": [
+    54314,
+    54941,
+    57264,
+    58717,
+    59215,
+    59643,
+    60155,
+    60476,
+    60479,
+    61059,
+    61327,
+    62440
+  ],
+  "real_first_step_gradient_replays": [
+    {
+      "arm": "random_balanced",
+      "shot": 59643,
+      "exact": true,
+      "forecast_norm": 0.20923089876000214,
+      "scaled_risk_norm": 18.573359616468633,
+      "risk_scale": 0.011265107825429775,
+      "capped_risk_norm": 0.20923089876000214,
+      "gradient_cosine": 0.021656882743670766
+    },
+    {
+      "arm": "random_balanced",
+      "shot": 63226,
+      "exact": true,
+      "forecast_norm": 0.14017556329762312,
+      "scaled_risk_norm": 408.337742338915,
+      "risk_scale": 0.0003432833871655176,
+      "capped_risk_norm": 0.14017556329762312,
+      "gradient_cosine": 0.11571292498147567
+    },
+    {
+      "arm": "peak_balanced",
+      "shot": 59643,
+      "exact": true,
+      "forecast_norm": 0.33190162408080215,
+      "scaled_risk_norm": 19.657354587561894,
+      "risk_scale": 0.016884348430628172,
+      "capped_risk_norm": 0.33190162408080215,
+      "gradient_cosine": -0.014094475702070284
+    },
+    {
+      "arm": "peak_balanced",
+      "shot": 63226,
+      "exact": true,
+      "forecast_norm": 0.14017556329762312,
+      "scaled_risk_norm": 408.337742338915,
+      "risk_scale": 0.0003432833871655176,
+      "capped_risk_norm": 0.14017556329762312,
+      "gradient_cosine": 0.11571292498147567
+    }
+  ],
+  "descriptive_factorial_J_effects": {
+    "sampling_with_original": 0.005555555555555536,
+    "sampling_with_balanced": 0.0,
+    "balance_with_random": 0.03333333333333327,
+    "balance_with_peak": 0.027777777777777735,
+    "interaction": -0.005555555555555536
+  },
+  "paired_vs_static": {
+    "warm_intra": {
+      "rescued_timely": [],
+      "lost_timely": [
+        73421
+      ],
+      "removed_fp": [],
+      "added_fp": [
+        83376,
+        93306
+      ]
+    },
+    "random_original_intra": {
+      "rescued_timely": [
+        93995
+      ],
+      "lost_timely": [
+        65944,
+        73421
+      ],
+      "removed_fp": [],
+      "added_fp": [
+        64562,
+        70323,
+        73790,
+        83376,
+        87847,
+        93306,
+        94402
+      ]
+    },
+    "random_balanced_intra": {
+      "rescued_timely": [],
+      "lost_timely": [
+        65944,
+        72578,
+        73421
+      ],
+      "removed_fp": [
+        60239,
+        87689
+      ],
+      "added_fp": [
+        87847
+      ]
+    },
+    "peak_original_intra": {
+      "rescued_timely": [
+        86155,
+        93995
+      ],
+      "lost_timely": [
+        65944,
+        73421
+      ],
+      "removed_fp": [],
+      "added_fp": [
+        64562,
+        70323,
+        73790,
+        83376,
+        87847,
+        93306,
+        94402
+      ]
+    },
+    "peak_balanced_intra": {
+      "rescued_timely": [],
+      "lost_timely": [
+        65944,
+        72578,
+        73421
+      ],
+      "removed_fp": [
+        60239,
+        87689
+      ],
+      "added_fp": [
+        87847
+      ]
+    }
+  },
+  "paired_vs_random_original": {
+    "random_balanced_intra": {
+      "rescued_timely": [],
+      "lost_timely": [
+        72578,
+        93995
+      ],
+      "removed_fp": [
+        60239,
+        64562,
+        70323,
+        73790,
+        83376,
+        87689,
+        93306,
+        94402
+      ],
+      "added_fp": []
+    },
+    "peak_original_intra": {
+      "rescued_timely": [
+        86155
+      ],
+      "lost_timely": [],
+      "removed_fp": [],
+      "added_fp": []
+    },
+    "peak_balanced_intra": {
+      "rescued_timely": [],
+      "lost_timely": [
+        72578,
+        93995
+      ],
+      "removed_fp": [
+        60239,
+        64562,
+        70323,
+        73790,
+        83376,
+        87689,
+        93306,
+        94402
+      ],
+      "added_fp": []
+    }
+  }
+}

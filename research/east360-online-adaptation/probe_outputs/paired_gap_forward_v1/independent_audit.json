@@ -1,0 +1,311 @@
+{
+  "status": "PASS",
+  "metrics": {
+    "cold_off": {
+      "n": 360,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tp": 125,
+      "fp": 35,
+      "tpr": 0.6944444444444444,
+      "fpr": 0.19444444444444445,
+      "J": 0.5,
+      "early_over3000": 18
+    },
+    "cold_on": {
+      "n": 360,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tp": 125,
+      "fp": 34,
+      "tpr": 0.6944444444444444,
+      "fpr": 0.18888888888888888,
+      "J": 0.5055555555555555,
+      "early_over3000": 18
+    },
+    "original_on": {
+      "n": 360,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tp": 127,
+      "fp": 37,
+      "tpr": 0.7055555555555556,
+      "fpr": 0.20555555555555555,
+      "J": 0.5,
+      "early_over3000": 18
+    },
+    "original_off": {
+      "n": 360,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tp": 127,
+      "fp": 34,
+      "tpr": 0.7055555555555556,
+      "fpr": 0.18888888888888888,
+      "J": 0.5166666666666667,
+      "early_over3000": 18
+    },
+    "dual_on": {
+      "n": 360,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tp": 129,
+      "fp": 36,
+      "tpr": 0.7166666666666667,
+      "fpr": 0.2,
+      "J": 0.5166666666666666,
+      "early_over3000": 18
+    },
+    "dual_off": {
+      "n": 360,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tp": 129,
+      "fp": 34,
+      "tpr": 0.7166666666666667,
+      "fpr": 0.18888888888888888,
+      "J": 0.5277777777777778,
+      "early_over3000": 18
+    },
+    "paired_on": {
+      "n": 360,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tp": 130,
+      "fp": 37,
+      "tpr": 0.7222222222222222,
+      "fpr": 0.20555555555555555,
+      "J": 0.5166666666666666,
+      "early_over3000": 20
+    },
+    "paired_off": {
+      "n": 360,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tp": 130,
+      "fp": 36,
+      "tpr": 0.7222222222222222,
+      "fpr": 0.2,
+      "J": 0.5222222222222221,
+      "early_over3000": 20
+    },
+    "half_on": {
+      "n": 360,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tp": 131,
+      "fp": 37,
+      "tpr": 0.7277777777777777,
+      "fpr": 0.20555555555555555,
+      "J": 0.5222222222222221,
+      "early_over3000": 19
+    },
+    "half_off": {
+      "n": 360,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tp": 131,
+      "fp": 36,
+      "tpr": 0.7277777777777777,
+      "fpr": 0.2,
+      "J": 0.5277777777777777,
+      "early_over3000": 19
+    },
+    "paired_reverse": {
+      "n": 360,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tp": 131,
+      "fp": 37,
+      "tpr": 0.7277777777777777,
+      "fpr": 0.20555555555555555,
+      "J": 0.5222222222222221,
+      "early_over3000": 22
+    }
+  },
+  "swaps": {
+    "original_on__minus__own_off": {
+      "rescued_D": [],
+      "lost_D": [],
+      "removed_FP": [],
+      "added_FP": [
+        64562,
+        83376,
+        94402
+      ]
+    },
+    "dual_on__minus__own_off": {
+      "rescued_D": [],
+      "lost_D": [],
+      "removed_FP": [],
+      "added_FP": [
+        64562,
+        83376
+      ]
+    },
+    "paired_on__minus__own_off": {
+      "rescued_D": [],
+      "lost_D": [],
+      "removed_FP": [],
+      "added_FP": [
+        64562
+      ]
+    },
+    "half_on__minus__own_off": {
+      "rescued_D": [],
+      "lost_D": [],
+      "removed_FP": [],
+      "added_FP": [
+        64562
+      ]
+    },
+    "paired_on__minus__original_on": {
+      "rescued_D": [
+        93995,
+        85526,
+        65023
+      ],
+      "lost_D": [],
+      "removed_FP": [
+        82834,
+        83376,
+        94402
+      ],
+      "added_FP": [
+        67900,
+        85422,
+        75135
+      ]
+    },
+    "paired_on__minus__dual_on": {
+      "rescued_D": [
+        93995,
+        65023
+      ],
+      "lost_D": [
+        63656
+      ],
+      "removed_FP": [
+        82834,
+        83376
+      ],
+      "added_FP": [
+        67900,
+        85422,
+        75135
+      ]
+    },
+    "paired_on__minus__half_on": {
+      "rescued_D": [],
+      "lost_D": [
+        85023
+      ],
+      "removed_FP": [],
+      "added_FP": []
+    },
+    "paired_on__minus__cold_on": {
+      "rescued_D": [
+        73541,
+        86155,
+        87861,
+        93995,
+        74970
+      ],
+      "lost_D": [],
+      "removed_FP": [
+        85599
+      ],
+      "added_FP": [
+        87689,
+        60239,
+        70043,
+        64562
+      ]
+    },
+    "paired_on__minus__paired_reverse": {
+      "rescued_D": [],
+      "lost_D": [
+        81406
+      ],
+      "removed_FP": [],
+      "added_FP": []
+    }
+  },
+  "full360": true,
+  "matched_reference_curves": 1440,
+  "proposals_checked": 1360,
+  "accepted": {
+    "original": 57,
+    "dual": 54,
+    "paired": 15,
+    "half": 29
+  },
+  "accepted_with_future_shot": {
+    "original": 57,
+    "dual": 54,
+    "paired": 15,
+    "half": 29
+  },
+  "original_eligible": {
+    "original": 57,
+    "dual": 57,
+    "paired": 57,
+    "half": 57
+  },
+  "all_four_losses_verified_arithmetically": true,
+  "all_rollbacks_exact": true,
+  "own_endpoint_selection_recomputed": true,
+  "changed_shots": [
+    63656,
+    65023,
+    67900,
+    75135,
+    82834,
+    83376,
+    85023,
+    85422,
+    85526,
+    93995,
+    94402
+  ],
+  "selected_neural_replay": [
+    74087,
+    59935,
+    62573,
+    63656,
+    65023,
+    67900,
+    75135,
+    82834,
+    83376,
+    85023,
+    85422,
+    85526
+  ],
+  "all_changed_shots_neurally_replayed": false,
+  "selected_replay_cap": 12,
+  "completed_sha256": "e767e3b8a415141f784a039254d74aa056ea74eacc04a70baafa3d723a896495",
+  "neural_replay": {
+    "status": "PASS",
+    "shots": [
+      74087,
+      59935,
+      62573,
+      63656,
+      65023,
+      67900,
+      75135,
+      82834,
+      83376,
+      85023,
+      85422,
+      85526
+    ],
+    "exact_curves": 132,
+    "forward_runner_not_used": true,
+    "persistent_training_not_reexecuted": true
+  },
+  "verifier_sha256": "389c79ef1d36d36f1217966c961fa485bbf41d2a818765289e076bd320cb73a0",
+  "independent_confirmation": false,
+  "own_forward_histories": true
+}

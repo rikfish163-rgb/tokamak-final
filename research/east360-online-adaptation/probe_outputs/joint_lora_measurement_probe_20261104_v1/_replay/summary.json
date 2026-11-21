@@ -1,0 +1,585 @@
+{
+  "groups": {
+    "safe": {
+      "shots": 21,
+      "cases": 63,
+      "no_support_cases": 0,
+      "unshifted_bce": {
+        "real_vs_none": {
+          "mean_delta": 7.998186444479322e-05,
+          "shot_sd": 0.0012767695234441442,
+          "shot_se": 0.00027861395172359456,
+          "improved_shots": 10,
+          "worse_shots": 11,
+          "tied_shots": 0
+        },
+        "hold_vs_none": {
+          "mean_delta": 0.00021586626295059448,
+          "shot_sd": 0.0019860189738939178,
+          "shot_se": 0.00043338487045178117,
+          "improved_shots": 13,
+          "worse_shots": 8,
+          "tied_shots": 0
+        },
+        "reverse_vs_none": {
+          "mean_delta": 0.00016522596752832806,
+          "shot_sd": 0.0009590773289306782,
+          "shot_se": 0.0002092878312924235,
+          "improved_shots": 10,
+          "worse_shots": 11,
+          "tied_shots": 0
+        },
+        "motion_vs_none": {
+          "mean_delta": 1.1083625611804788e-05,
+          "shot_sd": 0.0010592841868878081,
+          "shot_se": 0.00023115476042300616,
+          "improved_shots": 8,
+          "worse_shots": 13,
+          "tied_shots": 0
+        },
+        "anti_motion_vs_none": {
+          "mean_delta": 1.044500441778279e-06,
+          "shot_sd": 0.001060473620381407,
+          "shot_se": 0.00023141431609055533,
+          "improved_shots": 13,
+          "worse_shots": 8,
+          "tied_shots": 0
+        },
+        "real_vs_hold": {
+          "mean_delta": -0.00013588439850580126,
+          "shot_sd": 0.0021408203483071903,
+          "shot_se": 0.00046716529978187745,
+          "improved_shots": 8,
+          "worse_shots": 13,
+          "tied_shots": 0
+        },
+        "real_vs_reverse": {
+          "mean_delta": -8.524410308353486e-05,
+          "shot_sd": 0.0019126864037586782,
+          "shot_se": 0.0004173823917112863,
+          "improved_shots": 9,
+          "worse_shots": 12,
+          "tied_shots": 0
+        },
+        "motion_vs_anti_motion": {
+          "mean_delta": 1.0039125170026523e-05,
+          "shot_sd": 0.00211975182822444,
+          "shot_se": 0.00046256777177902507,
+          "improved_shots": 8,
+          "worse_shots": 13,
+          "tied_shots": 0
+        },
+        "motion_vs_hold": {
+          "mean_delta": -0.00020478263733878971,
+          "shot_sd": 0.0021883147080804834,
+          "shot_se": 0.0004775294187697146,
+          "improved_shots": 9,
+          "worse_shots": 12,
+          "tied_shots": 0
+        }
+      },
+      "threshold_centered_bce": {
+        "real_vs_none": {
+          "mean_delta": 8.19081351870582e-05,
+          "shot_sd": 0.0007425211032830652,
+          "shot_se": 0.00016203138861413188,
+          "improved_shots": 10,
+          "worse_shots": 11,
+          "tied_shots": 0
+        },
+        "hold_vs_none": {
+          "mean_delta": 0.00022528095850868828,
+          "shot_sd": 0.0012362326598339668,
+          "shot_se": 0.0002697680828697975,
+          "improved_shots": 12,
+          "worse_shots": 9,
+          "tied_shots": 0
+        },
+        "reverse_vs_none": {
+          "mean_delta": 0.0001350054665217324,
+          "shot_sd": 0.000500205695712886,
+          "shot_se": 0.00010915383160249278,
+          "improved_shots": 9,
+          "worse_shots": 12,
+          "tied_shots": 0
+        },
+        "motion_vs_none": {
+          "mean_delta": -1.0439327784946991e-05,
+          "shot_sd": 0.0005779993649170857,
+          "shot_se": 0.00012612980196994992,
+          "improved_shots": 8,
+          "worse_shots": 13,
+          "tied_shots": 0
+        },
+        "anti_motion_vs_none": {
+          "mean_delta": 1.78435492137122e-05,
+          "shot_sd": 0.0005792509603382316,
+          "shot_se": 0.0001264029224821814,
+          "improved_shots": 13,
+          "worse_shots": 8,
+          "tied_shots": 0
+        },
+        "real_vs_hold": {
+          "mean_delta": -0.0001433728233216301,
+          "shot_sd": 0.0012800979478186194,
+          "shot_se": 0.0002793402734684026,
+          "improved_shots": 10,
+          "worse_shots": 11,
+          "tied_shots": 0
+        },
+        "real_vs_reverse": {
+          "mean_delta": -5.309733133467416e-05,
+          "shot_sd": 0.0010605241820140397,
+          "shot_se": 0.00023142534954335533,
+          "improved_shots": 9,
+          "worse_shots": 12,
+          "tied_shots": 0
+        },
+        "motion_vs_anti_motion": {
+          "mean_delta": -2.828287699865915e-05,
+          "shot_sd": 0.0011572430170562473,
+          "shot_se": 0.0002525311296723488,
+          "improved_shots": 8,
+          "worse_shots": 13,
+          "tied_shots": 0
+        },
+        "motion_vs_hold": {
+          "mean_delta": -0.00023572028629363528,
+          "shot_sd": 0.0012721931437067041,
+          "shot_se": 0.0002776153037923717,
+          "improved_shots": 11,
+          "worse_shots": 10,
+          "tied_shots": 0
+        }
+      },
+      "threshold_near": {
+        "half_width": 0.05,
+        "cases": 4,
+        "shots": 3,
+        "arms": {
+          "real": {
+            "mean_delta_probability": 2.6404857635498047e-05,
+            "upward_crossings": 0,
+            "downward_crossings": 0
+          },
+          "hold": {
+            "mean_delta_probability": 0.0013076066970825195,
+            "upward_crossings": 0,
+            "downward_crossings": 0
+          },
+          "reverse": {
+            "mean_delta_probability": -0.00042842328548431396,
+            "upward_crossings": 0,
+            "downward_crossings": 0
+          },
+          "motion": {
+            "mean_delta_probability": 0.0008893013000488281,
+            "upward_crossings": 0,
+            "downward_crossings": 0
+          },
+          "anti_motion": {
+            "mean_delta_probability": -0.0008976459503173828,
+            "upward_crossings": 0,
+            "downward_crossings": 0
+          }
+        }
+      }
+    },
+    "earlier": {
+      "shots": 59,
+      "cases": 118,
+      "no_support_cases": 0,
+      "unshifted_bce": {
+        "real_vs_none": {
+          "mean_delta": 0.0001556428812317929,
+          "shot_sd": 0.0055723465920459,
+          "shot_se": 0.0007254577344261609,
+          "improved_shots": 30,
+          "worse_shots": 29,
+          "tied_shots": 0
+        },
+        "hold_vs_none": {
+          "mean_delta": -0.0005027366391683029,
+          "shot_sd": 0.0041051996767118735,
+          "shot_se": 0.0005344514752699491,
+          "improved_shots": 35,
+          "worse_shots": 24,
+          "tied_shots": 0
+        },
+        "reverse_vs_none": {
+          "mean_delta": 5.7268445774660276e-06,
+          "shot_sd": 0.005291335322390679,
+          "shot_se": 0.0006888731832564091,
+          "improved_shots": 36,
+          "worse_shots": 23,
+          "tied_shots": 0
+        },
+        "motion_vs_none": {
+          "mean_delta": 0.0005692592111684508,
+          "shot_sd": 0.005982110533971411,
+          "shot_se": 0.0007788044557846528,
+          "improved_shots": 25,
+          "worse_shots": 34,
+          "tied_shots": 0
+        },
+        "anti_motion_vs_none": {
+          "mean_delta": -0.0005228388107429117,
+          "shot_sd": 0.005992873970908445,
+          "shot_se": 0.000780205735917896,
+          "improved_shots": 33,
+          "worse_shots": 26,
+          "tied_shots": 0
+        },
+        "real_vs_hold": {
+          "mean_delta": 0.0006583795204000958,
+          "shot_sd": 0.004064272875912595,
+          "shot_se": 0.0005291232596439619,
+          "improved_shots": 22,
+          "worse_shots": 37,
+          "tied_shots": 0
+        },
+        "real_vs_reverse": {
+          "mean_delta": 0.00014991603665432686,
+          "shot_sd": 0.009433812760414799,
+          "shot_se": 0.0012281778096754025,
+          "improved_shots": 23,
+          "worse_shots": 36,
+          "tied_shots": 0
+        },
+        "motion_vs_anti_motion": {
+          "mean_delta": 0.0010920980219113624,
+          "shot_sd": 0.011974385504044852,
+          "shot_se": 0.001558932208436163,
+          "improved_shots": 25,
+          "worse_shots": 34,
+          "tied_shots": 0
+        },
+        "motion_vs_hold": {
+          "mean_delta": 0.0010719958503367538,
+          "shot_sd": 0.006186776071859711,
+          "shot_se": 0.000805449639277635,
+          "improved_shots": 23,
+          "worse_shots": 36,
+          "tied_shots": 0
+        }
+      },
+      "threshold_centered_bce": {
+        "real_vs_none": {
+          "mean_delta": 0.00021497324361639507,
+          "shot_sd": 0.0036102567682860464,
+          "shot_se": 0.000470015397024309,
+          "improved_shots": 31,
+          "worse_shots": 28,
+          "tied_shots": 0
+        },
+        "hold_vs_none": {
+          "mean_delta": -0.00021513841919979806,
+          "shot_sd": 0.0032078853308626053,
+          "shot_se": 0.00041763109777636243,
+          "improved_shots": 36,
+          "worse_shots": 23,
+          "tied_shots": 0
+        },
+        "reverse_vs_none": {
+          "mean_delta": -1.7669746431253724e-05,
+          "shot_sd": 0.003397370176012967,
+          "shot_se": 0.0004422999234138581,
+          "improved_shots": 36,
+          "worse_shots": 23,
+          "tied_shots": 0
+        },
+        "motion_vs_none": {
+          "mean_delta": 0.0004463205903263415,
+          "shot_sd": 0.003691251649799318,
+          "shot_se": 0.0004805600324435427,
+          "improved_shots": 25,
+          "worse_shots": 34,
+          "tied_shots": 0
+        },
+        "anti_motion_vs_none": {
+          "mean_delta": -0.00041275256771152304,
+          "shot_sd": 0.003708637833939717,
+          "shot_se": 0.0004828235208228933,
+          "improved_shots": 33,
+          "worse_shots": 26,
+          "tied_shots": 0
+        },
+        "real_vs_hold": {
+          "mean_delta": 0.00043011166281619316,
+          "shot_sd": 0.00229359427702643,
+          "shot_se": 0.000298600541157921,
+          "improved_shots": 23,
+          "worse_shots": 36,
+          "tied_shots": 0
+        },
+        "real_vs_reverse": {
+          "mean_delta": 0.0002326429900476488,
+          "shot_sd": 0.005658341907302353,
+          "shot_se": 0.0007366533708688512,
+          "improved_shots": 25,
+          "worse_shots": 34,
+          "tied_shots": 0
+        },
+        "motion_vs_anti_motion": {
+          "mean_delta": 0.0008590731580378646,
+          "shot_sd": 0.00739918155469937,
+          "shot_se": 0.0009632913887557103,
+          "improved_shots": 25,
+          "worse_shots": 34,
+          "tied_shots": 0
+        },
+        "motion_vs_hold": {
+          "mean_delta": 0.0006614590095261396,
+          "shot_sd": 0.004116609824071779,
+          "shot_se": 0.0005359369499288658,
+          "improved_shots": 23,
+          "worse_shots": 36,
+          "tied_shots": 0
+        }
+      },
+      "threshold_near": {
+        "half_width": 0.05,
+        "cases": 5,
+        "shots": 5,
+        "arms": {
+          "real": {
+            "mean_delta_probability": 0.0007651925086975097,
+            "upward_crossings": 0,
+            "downward_crossings": 1
+          },
+          "hold": {
+            "mean_delta_probability": -0.0002455711364746094,
+            "upward_crossings": 0,
+            "downward_crossings": 1
+          },
+          "reverse": {
+            "mean_delta_probability": -0.0012218832969665527,
+            "upward_crossings": 0,
+            "downward_crossings": 1
+          },
+          "motion": {
+            "mean_delta_probability": 0.001402294635772705,
+            "upward_crossings": 0,
+            "downward_crossings": 1
+          },
+          "anti_motion": {
+            "mean_delta_probability": -0.0014226675033569337,
+            "upward_crossings": 0,
+            "downward_crossings": 1
+          }
+        }
+      }
+    },
+    "positive": {
+      "shots": 59,
+      "cases": 59,
+      "no_support_cases": 0,
+      "unshifted_bce": {
+        "real_vs_none": {
+          "mean_delta": 0.0024699172462826057,
+          "shot_sd": 0.006921842261318964,
+          "shot_se": 0.0009011471059821592,
+          "improved_shots": 25,
+          "worse_shots": 34,
+          "tied_shots": 0
+        },
+        "hold_vs_none": {
+          "mean_delta": 0.0023491381336066684,
+          "shot_sd": 0.006426298138150129,
+          "shot_se": 0.0008366327562438613,
+          "improved_shots": 23,
+          "worse_shots": 36,
+          "tied_shots": 0
+        },
+        "reverse_vs_none": {
+          "mean_delta": 0.0009083901453068701,
+          "shot_sd": 0.007534173575509179,
+          "shot_se": 0.00098086585293604,
+          "improved_shots": 30,
+          "worse_shots": 29,
+          "tied_shots": 0
+        },
+        "motion_vs_none": {
+          "mean_delta": 0.00030142290643968826,
+          "shot_sd": 0.007379377802956967,
+          "shot_se": 0.0009607131598830322,
+          "improved_shots": 27,
+          "worse_shots": 32,
+          "tied_shots": 0
+        },
+        "anti_motion_vs_none": {
+          "mean_delta": -0.0002905827378696304,
+          "shot_sd": 0.007458065124175982,
+          "shot_se": 0.000970957376540534,
+          "improved_shots": 32,
+          "worse_shots": 27,
+          "tied_shots": 0
+        },
+        "real_vs_hold": {
+          "mean_delta": 0.00012077911267593755,
+          "shot_sd": 0.007679417819944828,
+          "shot_se": 0.0009997750429453498,
+          "improved_shots": 30,
+          "worse_shots": 29,
+          "tied_shots": 0
+        },
+        "real_vs_reverse": {
+          "mean_delta": 0.0015615271009757356,
+          "shot_sd": 0.01165832706834677,
+          "shot_se": 0.001517784904886327,
+          "improved_shots": 30,
+          "worse_shots": 29,
+          "tied_shots": 0
+        },
+        "motion_vs_anti_motion": {
+          "mean_delta": 0.0005920056443093186,
+          "shot_sd": 0.014837077430263919,
+          "shot_se": 0.0019316229527842203,
+          "improved_shots": 27,
+          "worse_shots": 32,
+          "tied_shots": 0
+        },
+        "motion_vs_hold": {
+          "mean_delta": -0.00204771522716698,
+          "shot_sd": 0.010598390801364613,
+          "shot_se": 0.0013797929565788401,
+          "improved_shots": 35,
+          "worse_shots": 24,
+          "tied_shots": 0
+        }
+      },
+      "threshold_centered_bce": {
+        "real_vs_none": {
+          "mean_delta": 0.002466953280618635,
+          "shot_sd": 0.008397561597588992,
+          "shot_se": 0.0010932693992844983,
+          "improved_shots": 25,
+          "worse_shots": 34,
+          "tied_shots": 0
+        },
+        "hold_vs_none": {
+          "mean_delta": 0.0030033065605971775,
+          "shot_sd": 0.008133215018310162,
+          "shot_se": 0.0010588544060066815,
+          "improved_shots": 23,
+          "worse_shots": 36,
+          "tied_shots": 0
+        },
+        "reverse_vs_none": {
+          "mean_delta": 0.001509030996742895,
+          "shot_sd": 0.009290470751416317,
+          "shot_se": 0.0012095162696260868,
+          "improved_shots": 30,
+          "worse_shots": 29,
+          "tied_shots": 0
+        },
+        "motion_vs_none": {
+          "mean_delta": -0.0001694311593043602,
+          "shot_sd": 0.00913871761642678,
+          "shot_se": 0.001189759694243873,
+          "improved_shots": 27,
+          "worse_shots": 32,
+          "tied_shots": 0
+        },
+        "anti_motion_vs_none": {
+          "mean_delta": 0.00018529224572545391,
+          "shot_sd": 0.009241219678971416,
+          "shot_se": 0.0012031043261398473,
+          "improved_shots": 32,
+          "worse_shots": 27,
+          "tied_shots": 0
+        },
+        "real_vs_hold": {
+          "mean_delta": -0.000536353279978542,
+          "shot_sd": 0.009431136463673844,
+          "shot_se": 0.0012278293855172361,
+          "improved_shots": 30,
+          "worse_shots": 29,
+          "tied_shots": 0
+        },
+        "real_vs_reverse": {
+          "mean_delta": 0.0009579222838757401,
+          "shot_sd": 0.013868022923575939,
+          "shot_se": 0.0018054628018774528,
+          "improved_shots": 30,
+          "worse_shots": 29,
+          "tied_shots": 0
+        },
+        "motion_vs_anti_motion": {
+          "mean_delta": -0.00035472340502981414,
+          "shot_sd": 0.018379578344336178,
+          "shot_se": 0.002392817288935861,
+          "improved_shots": 27,
+          "worse_shots": 32,
+          "tied_shots": 0
+        },
+        "motion_vs_hold": {
+          "mean_delta": -0.0031727377199015374,
+          "shot_sd": 0.01383928179641289,
+          "shot_se": 0.0018017210258317342,
+          "improved_shots": 35,
+          "worse_shots": 24,
+          "tied_shots": 0
+        }
+      },
+      "threshold_near": {
+        "half_width": 0.05,
+        "cases": 6,
+        "shots": 6,
+        "arms": {
+          "real": {
+            "mean_delta_probability": -0.0003664096196492513,
+            "upward_crossings": 0,
+            "downward_crossings": 0
+          },
+          "hold": {
+            "mean_delta_probability": -0.0022329390048980713,
+            "upward_crossings": 0,
+            "downward_crossings": 0
+          },
+          "reverse": {
+            "mean_delta_probability": -0.0021777252356211343,
+            "upward_crossings": 0,
+            "downward_crossings": 0
+          },
+          "motion": {
+            "mean_delta_probability": 0.0019279817740122478,
+            "upward_crossings": 0,
+            "downward_crossings": 0
+          },
+          "anti_motion": {
+            "mean_delta_probability": -0.0019412438074747722,
+            "upward_crossings": 0,
+            "downward_crossings": 0
+          }
+        }
+      }
+    }
+  },
+  "shots_processed": 80,
+  "cases": 240,
+  "shots_without_cases": 0,
+  "no_support_cases": 0,
+  "decomposition_error": {
+    "real_minus_hold_motion": {
+      "max_abs": 4.284083843231201e-08,
+      "l2": 1.5631771868045846e-07,
+      "relative_l2": 2.137257165602885e-06
+    },
+    "reverse_minus_hold_plus_motion": {
+      "max_abs": 6.82193785905838e-08,
+      "l2": 2.5928512824858484e-07,
+      "relative_l2": 1.9402556977030204e-06
+    },
+    "anti_plus_motion": {
+      "max_abs": 0.0,
+      "l2": 0.0,
+      "relative_l2": 0.0
+    }
+  },
+  "parity_max_abs": {
+    "target_max_abs": 9.5367431640625e-07,
+    "prediction_max_abs": 1.952052116394043e-06,
+    "static_probability_abs": 1.5497207641601562e-06
+  }
+}

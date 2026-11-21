@@ -1,0 +1,379 @@
+{
+  "status": "PASS",
+  "cases": 100,
+  "methods_per_case": 9,
+  "folds": 4,
+  "summary": {
+    "shared_real": {
+      "disruptive": {
+        "n_points": 40,
+        "n_shots": 8,
+        "mean_delta_bce": -0.026917665775170116,
+        "helpful_points": 24,
+        "harmful_points": 16
+      },
+      "safe": {
+        "n_points": 60,
+        "n_shots": 12,
+        "mean_delta_bce": 0.007603395284136214,
+        "helpful_points": 6,
+        "harmful_points": 37
+      },
+      "danger_window": {
+        "n_points": 24,
+        "n_shots": 8,
+        "mean_delta_bce": 0.003868650893589692,
+        "helpful_points": 13,
+        "harmful_points": 11
+      },
+      "balanced": -0.009657135245516951
+    },
+    "shared_reverse": {
+      "disruptive": {
+        "n_points": 40,
+        "n_shots": 8,
+        "mean_delta_bce": -0.02670468962194886,
+        "helpful_points": 20,
+        "harmful_points": 20
+      },
+      "safe": {
+        "n_points": 60,
+        "n_shots": 12,
+        "mean_delta_bce": 0.007958091926093957,
+        "helpful_points": 6,
+        "harmful_points": 36
+      },
+      "danger_window": {
+        "n_points": 24,
+        "n_shots": 8,
+        "mean_delta_bce": 0.002323577700868462,
+        "helpful_points": 10,
+        "harmful_points": 14
+      },
+      "balanced": -0.009373298847927453
+    },
+    "shared_hold": {
+      "disruptive": {
+        "n_points": 40,
+        "n_shots": 8,
+        "mean_delta_bce": -0.027864798540153425,
+        "helpful_points": 20,
+        "harmful_points": 20
+      },
+      "safe": {
+        "n_points": 60,
+        "n_shots": 12,
+        "mean_delta_bce": 0.008725897343178347,
+        "helpful_points": 6,
+        "harmful_points": 42
+      },
+      "danger_window": {
+        "n_points": 24,
+        "n_shots": 8,
+        "mean_delta_bce": 0.002257081616275335,
+        "helpful_points": 10,
+        "harmful_points": 14
+      },
+      "balanced": -0.00956945059848754
+    },
+    "true_real": {
+      "disruptive": {
+        "n_points": 40,
+        "n_shots": 8,
+        "mean_delta_bce": -0.01837799881385732,
+        "helpful_points": 20,
+        "harmful_points": 20
+      },
+      "safe": {
+        "n_points": 60,
+        "n_shots": 12,
+        "mean_delta_bce": 0.004750650262431115,
+        "helpful_points": 8,
+        "harmful_points": 33
+      },
+      "danger_window": {
+        "n_points": 24,
+        "n_shots": 8,
+        "mean_delta_bce": 0.002172950666241285,
+        "helpful_points": 10,
+        "harmful_points": 14
+      },
+      "balanced": -0.006813674275713103
+    },
+    "true_reverse": {
+      "disruptive": {
+        "n_points": 40,
+        "n_shots": 8,
+        "mean_delta_bce": -0.01883515090129017,
+        "helpful_points": 17,
+        "harmful_points": 23
+      },
+      "safe": {
+        "n_points": 60,
+        "n_shots": 12,
+        "mean_delta_bce": 0.004922421280497996,
+        "helpful_points": 8,
+        "harmful_points": 32
+      },
+      "danger_window": {
+        "n_points": 24,
+        "n_shots": 8,
+        "mean_delta_bce": -0.00026912409512555016,
+        "helpful_points": 8,
+        "harmful_points": 16
+      },
+      "balanced": -0.006956364810396087
+    },
+    "true_hold": {
+      "disruptive": {
+        "n_points": 40,
+        "n_shots": 8,
+        "mean_delta_bce": -0.0199731282152272,
+        "helpful_points": 18,
+        "harmful_points": 22
+      },
+      "safe": {
+        "n_points": 60,
+        "n_shots": 12,
+        "mean_delta_bce": 0.00561959017578752,
+        "helpful_points": 8,
+        "harmful_points": 37
+      },
+      "danger_window": {
+        "n_points": 24,
+        "n_shots": 8,
+        "mean_delta_bce": 5.740203908818388e-07,
+        "helpful_points": 9,
+        "harmful_points": 15
+      },
+      "balanced": -0.00717676901971984
+    },
+    "shuffled_real": {
+      "disruptive": {
+        "n_points": 40,
+        "n_shots": 8,
+        "mean_delta_bce": -0.030515716828926044,
+        "helpful_points": 25,
+        "harmful_points": 15
+      },
+      "safe": {
+        "n_points": 60,
+        "n_shots": 12,
+        "mean_delta_bce": 0.007098264594672866,
+        "helpful_points": 7,
+        "harmful_points": 38
+      },
+      "danger_window": {
+        "n_points": 24,
+        "n_shots": 8,
+        "mean_delta_bce": 0.0037699443443769192,
+        "helpful_points": 14,
+        "harmful_points": 10
+      },
+      "balanced": -0.011708726117126589
+    },
+    "shuffled_reverse": {
+      "disruptive": {
+        "n_points": 40,
+        "n_shots": 8,
+        "mean_delta_bce": -0.030116921537312068,
+        "helpful_points": 22,
+        "harmful_points": 18
+      },
+      "safe": {
+        "n_points": 60,
+        "n_shots": 12,
+        "mean_delta_bce": 0.00746848102037732,
+        "helpful_points": 7,
+        "harmful_points": 39
+      },
+      "danger_window": {
+        "n_points": 24,
+        "n_shots": 8,
+        "mean_delta_bce": 0.0029673234576403093,
+        "helpful_points": 11,
+        "harmful_points": 13
+      },
+      "balanced": -0.011324220258467374
+    },
+    "shuffled_hold": {
+      "disruptive": {
+        "n_points": 40,
+        "n_shots": 8,
+        "mean_delta_bce": -0.03129886169113099,
+        "helpful_points": 24,
+        "harmful_points": 16
+      },
+      "safe": {
+        "n_points": 60,
+        "n_shots": 12,
+        "mean_delta_bce": 0.008215385483052192,
+        "helpful_points": 7,
+        "harmful_points": 43
+      },
+      "danger_window": {
+        "n_points": 24,
+        "n_shots": 8,
+        "mean_delta_bce": 0.0026559796845444486,
+        "helpful_points": 13,
+        "harmful_points": 11
+      },
+      "balanced": -0.011541738104039398
+    }
+  },
+  "gates": {
+    "disruptive": true,
+    "safe": false,
+    "danger_window": false,
+    "better_than_shared_real": false,
+    "better_than_shuffled_real": false,
+    "better_than_true_reverse": false,
+    "better_than_true_hold": false,
+    "passed": false
+  },
+  "context": {
+    "true": {
+      "mean_probabilities": [
+        0.0136528925936989,
+        0.0012296826621852836,
+        0.0814939471846425,
+        0.0003715753682770131,
+        0.1795428409223041,
+        0.7237090631445607
+      ],
+      "argmax_counts": [
+        1,
+        0,
+        3,
+        0,
+        12,
+        84
+      ],
+      "entropy_quantiles": [
+        0.031219830235398534,
+        0.46076288034152435,
+        0.8291151729950915
+      ],
+      "std_by_family": [
+        0.06041660832813047,
+        0.004191853545644139,
+        0.15924632683826737,
+        0.0006840393122111018,
+        0.277438417016036,
+        0.28839543590664424
+      ],
+      "outcome_groups": {
+        "D": [
+          0.021202618225018587,
+          7.944002587019794e-05,
+          0.09766441980729643,
+          0.00016974565769655066,
+          0.17534207502735627,
+          0.7055417033776393
+        ],
+        "S": [
+          0.008619742172819108,
+          0.001996511086395341,
+          0.07071363210287321,
+          0.0005061285086639881,
+          0.182343351518936,
+          0.7358206363225084
+        ]
+      }
+    },
+    "shuffled": {
+      "mean_probabilities": [
+        0.6332804843038321,
+        0.0022747165546387494,
+        0.034630381539463996,
+        0.11800169691443443,
+        0.20118947931616277,
+        0.010623242636793293
+      ],
+      "argmax_counts": [
+        79,
+        0,
+        0,
+        7,
+        14,
+        0
+      ],
+      "entropy_quantiles": [
+        0.25807612455414985,
+        0.7804834292919619,
+        1.1326643037690522
+      ],
+      "std_by_family": [
+        0.23356608064976425,
+        0.00639306412350774,
+        0.04462221198793822,
+        0.17354797966039728,
+        0.21070361189591744,
+        0.03755545940386491
+      ],
+      "outcome_groups": {
+        "D": [
+          0.6736765645444394,
+          0.0017513559251675303,
+          0.02686361367814243,
+          0.10075161515851505,
+          0.17970585698658398,
+          0.01725099555169436
+        ],
+        "S": [
+          0.6063497641434272,
+          0.002623623640952895,
+          0.03980822678034504,
+          0.1295017514183807,
+          0.21551189420254863,
+          0.006204740693525916
+        ]
+      }
+    }
+  },
+  "table_diagnostics": {
+    "0": {
+      "true": {
+        "centered_between_fraction": 0.7348952412928647,
+        "centered_table_rms": 0.025054670039050205
+      },
+      "shuffled": {
+        "centered_between_fraction": 0.5049991958901798,
+        "centered_table_rms": 0.026012403877935863
+      }
+    },
+    "1": {
+      "true": {
+        "centered_between_fraction": 0.5567474663546989,
+        "centered_table_rms": 0.0390501582242431
+      },
+      "shuffled": {
+        "centered_between_fraction": 0.35201912779655703,
+        "centered_table_rms": 0.03610516589048865
+      }
+    },
+    "2": {
+      "true": {
+        "centered_between_fraction": 0.780911784994642,
+        "centered_table_rms": 0.026511079787045238
+      },
+      "shuffled": {
+        "centered_between_fraction": 0.4272757540966809,
+        "centered_table_rms": 0.024305108558122037
+      }
+    },
+    "3": {
+      "true": {
+        "centered_between_fraction": 0.7922800432980459,
+        "centered_table_rms": 0.028146716801693113
+      },
+      "shuffled": {
+        "centered_between_fraction": 0.34365988603960956,
+        "centered_table_rms": 0.023520350469566853
+      }
+    }
+  },
+  "completed_sha256": "5d2c60152902f4575583a5c8d80d51e926b3b6b7c454d8fbfa2529d21c3d82e4",
+  "verifier_sha256": "042c7c052e20b9c9ce647ffd1ecd625734da7ca45735b479dcc391608d978dda",
+  "scope": "Recorded logits, state/gradient norms, fold separation and summaries; no neural rerun or physical-state certification."
+}

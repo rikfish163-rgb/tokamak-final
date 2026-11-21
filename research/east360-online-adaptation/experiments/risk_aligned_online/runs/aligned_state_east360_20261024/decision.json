@@ -1,0 +1,12 @@
+{
+  "status": "REJECTED_NOT_PROMOTED",
+  "reason": [
+    "Static target start has only 14/180 timely detections at the independently fixed calibration threshold",
+    "Real feedback, constant-window feedback and reversed-window feedback remove the identical single false alarm and rescue no missed disruption",
+    "Even post-hoc threshold selection on all TEST labels reaches only 83/180 for off and 85/180 for real at FPR<=0.20; those are diagnostics, not deployable results"
+  ],
+  "raw_intra_gate_interpretation": "completed.json intra_gate=true means only positive local delta-J within the FPR cap. It does not assert adequate target performance, temporal specificity, or promotion.",
+  "original_source_retained": true,
+  "inter_shot_trial_started": false,
+  "independent_confirmation": false
+}

@@ -1,0 +1,161 @@
+{
+  "status": "COMPLETED",
+  "results": [
+    {
+      "learning_rate": 0.001,
+      "summary": {
+        "clean": {
+          "n": 128,
+          "before_bce": 0.4662973350547217,
+          "after_bce": 0.4671947000965031,
+          "risk_improved": 64,
+          "reconstruction_improved": 128,
+          "reconstruction_better_risk_worse": 64,
+          "before_clean_logit_mse": 0.0,
+          "after_clean_logit_mse": 0.04781644058988413,
+          "classes": {
+            "0": {
+              "n": 64,
+              "before_bce": 0.36204030575479695,
+              "after_bce": 0.3692606796749951
+            },
+            "1": {
+              "n": 64,
+              "before_bce": 0.5705543643546465,
+              "after_bce": 0.5651287205180113
+            }
+          }
+        },
+        "shift": {
+          "n": 128,
+          "before_bce": 1.034781075088167,
+          "after_bce": 1.0315519253332948,
+          "risk_improved": 81,
+          "reconstruction_improved": 128,
+          "reconstruction_better_risk_worse": 47,
+          "before_clean_logit_mse": 14.212799486899293,
+          "after_clean_logit_mse": 13.887836806788254,
+          "classes": {
+            "0": {
+              "n": 64,
+              "before_bce": 0.9608049728108953,
+              "after_bce": 0.9760616033980947
+            },
+            "1": {
+              "n": 64,
+              "before_bce": 1.1087571773654386,
+              "after_bce": 1.0870422472684946
+            }
+          }
+        }
+      },
+      "probe_gate": false
+    },
+    {
+      "learning_rate": 0.01,
+      "summary": {
+        "clean": {
+          "n": 128,
+          "before_bce": 0.4662973350547217,
+          "after_bce": 0.5358966166973143,
+          "risk_improved": 56,
+          "reconstruction_improved": 127,
+          "reconstruction_better_risk_worse": 71,
+          "before_clean_logit_mse": 0.0,
+          "after_clean_logit_mse": 1.297703209258119,
+          "classes": {
+            "0": {
+              "n": 64,
+              "before_bce": 0.36204030575479695,
+              "after_bce": 0.43615422642818136
+            },
+            "1": {
+              "n": 64,
+              "before_bce": 0.5705543643546465,
+              "after_bce": 0.635639006966447
+            }
+          }
+        },
+        "shift": {
+          "n": 128,
+          "before_bce": 1.034781075088167,
+          "after_bce": 0.9700625463327976,
+          "risk_improved": 67,
+          "reconstruction_improved": 128,
+          "reconstruction_better_risk_worse": 61,
+          "before_clean_logit_mse": 14.212799486899293,
+          "after_clean_logit_mse": 11.317052921993154,
+          "classes": {
+            "0": {
+              "n": 64,
+              "before_bce": 0.9608049728108953,
+              "after_bce": 0.8988981866704355
+            },
+            "1": {
+              "n": 64,
+              "before_bce": 1.1087571773654386,
+              "after_bce": 1.0412269059951595
+            }
+          }
+        }
+      },
+      "probe_gate": false
+    },
+    {
+      "learning_rate": 0.1,
+      "summary": {
+        "clean": {
+          "n": 128,
+          "before_bce": 0.4662973350547217,
+          "after_bce": 0.9317274522068284,
+          "risk_improved": 36,
+          "reconstruction_improved": 21,
+          "reconstruction_better_risk_worse": 15,
+          "before_clean_logit_mse": 0.0,
+          "after_clean_logit_mse": 11.201467663889371,
+          "classes": {
+            "0": {
+              "n": 64,
+              "before_bce": 0.36204030575479695,
+              "after_bce": 0.9986155669579224
+            },
+            "1": {
+              "n": 64,
+              "before_bce": 0.5705543643546465,
+              "after_bce": 0.8648393374557342
+            }
+          }
+        },
+        "shift": {
+          "n": 128,
+          "before_bce": 1.034781075088167,
+          "after_bce": 1.0049700558877794,
+          "risk_improved": 47,
+          "reconstruction_improved": 100,
+          "reconstruction_better_risk_worse": 63,
+          "before_clean_logit_mse": 14.212799486899293,
+          "after_clean_logit_mse": 15.124738079802757,
+          "classes": {
+            "0": {
+              "n": 64,
+              "before_bce": 0.9608049728108953,
+              "after_bce": 1.1914877846875953
+            },
+            "1": {
+              "n": 64,
+              "before_bce": 1.1087571773654386,
+              "after_bce": 0.8184523270879636
+            }
+          }
+        }
+      },
+      "probe_gate": false
+    }
+  ],
+  "selected_rate": null,
+  "source_qualified": false,
+  "allow_east_candidate": false,
+  "persistent_unchanged": true,
+  "seconds": 20.487696297001094,
+  "evidence": "source window failure analysis; NOT shot-level online gains or physical recovery"
+}

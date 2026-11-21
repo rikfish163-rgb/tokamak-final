@@ -1,0 +1,484 @@
+{
+  "complete360": true,
+  "identical_cold_start_predictions": 20,
+  "prediction_hashes_verified": 360,
+  "source_checkpoint_unchanged": true,
+  "code_archive_verified": true,
+  "outcome_reconstruction_independent_of_trainer": true,
+  "metrics": {
+    "source": {
+      "n": 360,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tp": 145,
+      "fp": 94,
+      "tpr": 0.8055555555555556,
+      "fpr": 0.5222222222222223,
+      "J": 0.2833333333333333,
+      "early_over3000": 33
+    },
+    "aligned": {
+      "n": 360,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tp": 119,
+      "fp": 26,
+      "tpr": 0.6611111111111111,
+      "fpr": 0.14444444444444443,
+      "J": 0.5166666666666666,
+      "early_over3000": 17
+    },
+    "cold": {
+      "n": 360,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tp": 125,
+      "fp": 32,
+      "tpr": 0.6944444444444444,
+      "fpr": 0.17777777777777778,
+      "J": 0.5166666666666666,
+      "early_over3000": 17
+    },
+    "intra": {
+      "n": 360,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tp": 125,
+      "fp": 32,
+      "tpr": 0.6944444444444444,
+      "fpr": 0.17777777777777778,
+      "J": 0.5166666666666666,
+      "early_over3000": 17
+    },
+    "inter": {
+      "n": 360,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tp": 126,
+      "fp": 30,
+      "tpr": 0.7,
+      "fpr": 0.16666666666666666,
+      "J": 0.5333333333333333,
+      "early_over3000": 17
+    },
+    "both": {
+      "n": 360,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tp": 126,
+      "fp": 29,
+      "tpr": 0.7,
+      "fpr": 0.16111111111111112,
+      "J": 0.5388888888888889,
+      "early_over3000": 18
+    },
+    "both_shadow": {
+      "n": 360,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tp": 126,
+      "fp": 30,
+      "tpr": 0.7,
+      "fpr": 0.16666666666666666,
+      "J": 0.5333333333333333,
+      "early_over3000": 18
+    },
+    "intra_reverse": {
+      "n": 360,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tp": 125,
+      "fp": 32,
+      "tpr": 0.6944444444444444,
+      "fpr": 0.17777777777777778,
+      "J": 0.5166666666666666,
+      "early_over3000": 17
+    }
+  },
+  "flips": {
+    "aligned__minus__source": {
+      "rescued_D": [
+        73421
+      ],
+      "lost_D": [
+        73541,
+        73135,
+        71086,
+        71013,
+        75603,
+        74970,
+        69813,
+        68901,
+        79712,
+        94901,
+        86155,
+        60999,
+        62182,
+        77782,
+        76956,
+        63690,
+        94803,
+        94515,
+        93995,
+        63656,
+        81406,
+        77302,
+        62540,
+        64835,
+        78617,
+        79899,
+        85023
+      ],
+      "removed_FP": [
+        70323,
+        75226,
+        74939,
+        66404,
+        67046,
+        70258,
+        74676,
+        73790,
+        71060,
+        73743,
+        70043,
+        70470,
+        86984,
+        59935,
+        82833,
+        82834,
+        64646,
+        64562,
+        89326,
+        87689,
+        76861,
+        80793,
+        59940,
+        62394,
+        94422,
+        94428,
+        85632,
+        85320,
+        85316,
+        90863,
+        95930,
+        94352,
+        91723,
+        94363,
+        90978,
+        93641,
+        88135,
+        96099,
+        89101,
+        79580,
+        80053,
+        80746,
+        79734,
+        94402,
+        86756,
+        93602,
+        87363,
+        77901,
+        77835,
+        89485,
+        77295,
+        77565,
+        77628,
+        86499,
+        94248,
+        93306,
+        94323,
+        94274,
+        85123,
+        87009,
+        86930,
+        89721,
+        90166,
+        78776,
+        89570,
+        83376,
+        83438,
+        54905
+      ],
+      "added_FP": []
+    },
+    "cold__minus__aligned": {
+      "rescued_D": [
+        70320,
+        73135,
+        71013,
+        75603,
+        93995,
+        64835
+      ],
+      "lost_D": [],
+      "removed_FP": [],
+      "added_FP": [
+        70323,
+        75226,
+        70258,
+        73790,
+        87689,
+        93306
+      ]
+    },
+    "intra__minus__cold": {
+      "rescued_D": [],
+      "lost_D": [],
+      "removed_FP": [],
+      "added_FP": []
+    },
+    "inter__minus__cold": {
+      "rescued_D": [
+        73405,
+        74970
+      ],
+      "lost_D": [
+        93995
+      ],
+      "removed_FP": [
+        85599,
+        93306
+      ],
+      "added_FP": []
+    },
+    "both__minus__intra": {
+      "rescued_D": [
+        73405,
+        74970
+      ],
+      "lost_D": [
+        93995
+      ],
+      "removed_FP": [
+        73790,
+        87689,
+        85599,
+        93306
+      ],
+      "added_FP": [
+        70043
+      ]
+    },
+    "both__minus__both_shadow": {
+      "rescued_D": [],
+      "lost_D": [],
+      "removed_FP": [
+        73790
+      ],
+      "added_FP": []
+    },
+    "intra__minus__intra_reverse": {
+      "rescued_D": [],
+      "lost_D": [],
+      "removed_FP": [],
+      "added_FP": []
+    }
+  },
+  "threshold": 0.7258946895599365,
+  "workpoints": {
+    "source": [
+      {
+        "cap": 0.1,
+        "tpr": 0.5222222222222223,
+        "fpr": 0.09444444444444444,
+        "threshold": 0.9143219590187073,
+        "scope": "POSTHOC_DEVELOPMENT_WORKPOINT_NOT_DEPLOYED"
+      },
+      {
+        "cap": 0.15,
+        "tpr": 0.5944444444444444,
+        "fpr": 0.14444444444444443,
+        "threshold": 0.8917556405067444,
+        "scope": "POSTHOC_DEVELOPMENT_WORKPOINT_NOT_DEPLOYED"
+      },
+      {
+        "cap": 0.2,
+        "tpr": 0.6111111111111112,
+        "fpr": 0.2,
+        "threshold": 0.881620466709137,
+        "scope": "POSTHOC_DEVELOPMENT_WORKPOINT_NOT_DEPLOYED"
+      }
+    ],
+    "aligned": [
+      {
+        "cap": 0.1,
+        "tpr": 0.6166666666666667,
+        "fpr": 0.1,
+        "threshold": 0.7917217016220093,
+        "scope": "POSTHOC_DEVELOPMENT_WORKPOINT_NOT_DEPLOYED"
+      },
+      {
+        "cap": 0.15,
+        "tpr": 0.6722222222222223,
+        "fpr": 0.14444444444444443,
+        "threshold": 0.7108128070831299,
+        "scope": "POSTHOC_DEVELOPMENT_WORKPOINT_NOT_DEPLOYED"
+      },
+      {
+        "cap": 0.2,
+        "tpr": 0.6944444444444444,
+        "fpr": 0.2,
+        "threshold": 0.6262761950492859,
+        "scope": "POSTHOC_DEVELOPMENT_WORKPOINT_NOT_DEPLOYED"
+      }
+    ],
+    "cold": [
+      {
+        "cap": 0.1,
+        "tpr": 0.6166666666666667,
+        "fpr": 0.1,
+        "threshold": 0.8530619740486145,
+        "scope": "POSTHOC_DEVELOPMENT_WORKPOINT_NOT_DEPLOYED"
+      },
+      {
+        "cap": 0.15,
+        "tpr": 0.6722222222222223,
+        "fpr": 0.15,
+        "threshold": 0.7716332674026489,
+        "scope": "POSTHOC_DEVELOPMENT_WORKPOINT_NOT_DEPLOYED"
+      },
+      {
+        "cap": 0.2,
+        "tpr": 0.7222222222222222,
+        "fpr": 0.2,
+        "threshold": 0.6729511618614197,
+        "scope": "POSTHOC_DEVELOPMENT_WORKPOINT_NOT_DEPLOYED"
+      }
+    ],
+    "intra": [
+      {
+        "cap": 0.1,
+        "tpr": 0.6166666666666667,
+        "fpr": 0.1,
+        "threshold": 0.8526566028594971,
+        "scope": "POSTHOC_DEVELOPMENT_WORKPOINT_NOT_DEPLOYED"
+      },
+      {
+        "cap": 0.15,
+        "tpr": 0.6722222222222223,
+        "fpr": 0.15,
+        "threshold": 0.7716332674026489,
+        "scope": "POSTHOC_DEVELOPMENT_WORKPOINT_NOT_DEPLOYED"
+      },
+      {
+        "cap": 0.2,
+        "tpr": 0.7222222222222222,
+        "fpr": 0.2,
+        "threshold": 0.6747754216194153,
+        "scope": "POSTHOC_DEVELOPMENT_WORKPOINT_NOT_DEPLOYED"
+      }
+    ],
+    "inter": [
+      {
+        "cap": 0.1,
+        "tpr": 0.5666666666666667,
+        "fpr": 0.1,
+        "threshold": 0.8847174644470215,
+        "scope": "POSTHOC_DEVELOPMENT_WORKPOINT_NOT_DEPLOYED"
+      },
+      {
+        "cap": 0.15,
+        "tpr": 0.6722222222222223,
+        "fpr": 0.14444444444444443,
+        "threshold": 0.7602461576461792,
+        "scope": "POSTHOC_DEVELOPMENT_WORKPOINT_NOT_DEPLOYED"
+      },
+      {
+        "cap": 0.2,
+        "tpr": 0.7166666666666667,
+        "fpr": 0.19444444444444445,
+        "threshold": 0.6712393164634705,
+        "scope": "POSTHOC_DEVELOPMENT_WORKPOINT_NOT_DEPLOYED"
+      }
+    ],
+    "both": [
+      {
+        "cap": 0.1,
+        "tpr": 0.5666666666666667,
+        "fpr": 0.1,
+        "threshold": 0.8850052356719971,
+        "scope": "POSTHOC_DEVELOPMENT_WORKPOINT_NOT_DEPLOYED"
+      },
+      {
+        "cap": 0.15,
+        "tpr": 0.6888888888888889,
+        "fpr": 0.14444444444444443,
+        "threshold": 0.7465817928314209,
+        "scope": "POSTHOC_DEVELOPMENT_WORKPOINT_NOT_DEPLOYED"
+      },
+      {
+        "cap": 0.2,
+        "tpr": 0.7111111111111111,
+        "fpr": 0.2,
+        "threshold": 0.6663854122161865,
+        "scope": "POSTHOC_DEVELOPMENT_WORKPOINT_NOT_DEPLOYED"
+      }
+    ],
+    "both_shadow": [
+      {
+        "cap": 0.1,
+        "tpr": 0.5611111111111111,
+        "fpr": 0.1,
+        "threshold": 0.8857549428939819,
+        "scope": "POSTHOC_DEVELOPMENT_WORKPOINT_NOT_DEPLOYED"
+      },
+      {
+        "cap": 0.15,
+        "tpr": 0.6888888888888889,
+        "fpr": 0.14444444444444443,
+        "threshold": 0.7553345561027527,
+        "scope": "POSTHOC_DEVELOPMENT_WORKPOINT_NOT_DEPLOYED"
+      },
+      {
+        "cap": 0.2,
+        "tpr": 0.7111111111111111,
+        "fpr": 0.2,
+        "threshold": 0.6647124290466309,
+        "scope": "POSTHOC_DEVELOPMENT_WORKPOINT_NOT_DEPLOYED"
+      }
+    ],
+    "intra_reverse": [
+      {
+        "cap": 0.1,
+        "tpr": 0.6166666666666667,
+        "fpr": 0.1,
+        "threshold": 0.8534730076789856,
+        "scope": "POSTHOC_DEVELOPMENT_WORKPOINT_NOT_DEPLOYED"
+      },
+      {
+        "cap": 0.15,
+        "tpr": 0.6666666666666666,
+        "fpr": 0.15,
+        "threshold": 0.775316596031189,
+        "scope": "POSTHOC_DEVELOPMENT_WORKPOINT_NOT_DEPLOYED"
+      },
+      {
+        "cap": 0.2,
+        "tpr": 0.7222222222222222,
+        "fpr": 0.2,
+        "threshold": 0.673616886138916,
+        "scope": "POSTHOC_DEVELOPMENT_WORKPOINT_NOT_DEPLOYED"
+      }
+    ]
+  },
+  "accepted_updates": {
+    "inter": 32,
+    "both": 34
+  },
+  "warmup": {
+    "n": 20,
+    "n_disrupt": 17,
+    "n_safe": 3,
+    "tp": 6,
+    "fp": 1,
+    "tpr": 0.35294117647058826,
+    "fpr": 0.3333333333333333,
+    "J": 0.019607843137254943,
+    "early_over3000": 3
+  },
+  "source_event_intervals": 48,
+  "included_source_events": 32,
+  "total_seconds": 628.746828456,
+  "real_time_latency_verified": false,
+  "independent_future_validation": false
+}

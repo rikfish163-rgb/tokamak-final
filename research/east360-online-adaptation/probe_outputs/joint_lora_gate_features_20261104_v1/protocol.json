@@ -1,0 +1,405 @@
+{
+  "scope": "TRAINED_ENDED20_60_CASE_ORIGIN_FEATURES_NOT_INDEPENDENT_VALIDATION",
+  "description": "These ended shots participated in the common warm fit; no independent validation or online policy evaluation.",
+  "input_sha256": {
+    "span_completed": "cc91a701507aa6181757018f3d96fae29d692d263d20f5ccc41241ed7f62acfe",
+    "span_cases": "24adb17df35087a0e84732c4d6fd65b603e031c5082e1a0c89024cd2b3b950b6",
+    "span_summary": "8764350051b4000f4768da73c2721b4e0dd3567c96041bc9d1773ebcc95fa63a",
+    "span_gradients": "0675001bb8b3e654eb4823bdd3734b87256d3bb4747b162f3eec90f75ad0c5f0",
+    "probe_completed": "5d9ef8ff763a6f501ebe513806e2c37df402290c89164407484061b8cabc36b5",
+    "probe_cases": "72f8d8c7ac970f53d4ee6239037970cc3abf1c0363915d2da3a7aac5e28dac27",
+    "probe_summary": "6dbb58bcc02b3ea18392c45b572ce3ebffabbe42d36ec45bc06ef659b41ce728",
+    "warm_json": "2e908bc822d633c2ec009548317467e30f6a1cb03cf1e5b48873d812035d8e09",
+    "warm_pt": "d237001ff8febf82f17eb974850c48db115fd81f212d7695b78bc76b078407b5",
+    "density_map": "43c37ad981261e059ac8bf8d11d89324bad375dd7405decc194c51e53614aff2",
+    "source_checkpoint": "c7270c1ea3652db2e30e972d4ca9a4a2d33220a68e4a3765c8b7f5bcceeaeb02"
+  },
+  "input_paths": {
+    "span_completed": "/media/hetaisheng/044A81D94A81C83E/Fuison-intra-trajectory-20261028/probe_outputs/joint_lora_gradient_span_20261104_v1/completed.json",
+    "span_cases": "/media/hetaisheng/044A81D94A81C83E/Fuison-intra-trajectory-20261028/probe_outputs/joint_lora_gradient_span_20261104_v1/cases.json",
+    "span_summary": "/media/hetaisheng/044A81D94A81C83E/Fuison-intra-trajectory-20261028/probe_outputs/joint_lora_gradient_span_20261104_v1/summary.json",
+    "span_gradients": "/media/hetaisheng/044A81D94A81C83E/Fuison-intra-trajectory-20261028/probe_outputs/joint_lora_gradient_span_20261104_v1/gradients.npz",
+    "probe_completed": "/media/hetaisheng/044A81D94A81C83E/Fuison-intra-trajectory-20261028/probe_outputs/joint_lora_gradient_probe_20261104_v1/completed.json",
+    "probe_cases": "/media/hetaisheng/044A81D94A81C83E/Fuison-intra-trajectory-20261028/probe_outputs/joint_lora_gradient_probe_20261104_v1/cases.json",
+    "probe_summary": "/media/hetaisheng/044A81D94A81C83E/Fuison-intra-trajectory-20261028/probe_outputs/joint_lora_gradient_probe_20261104_v1/summary.json",
+    "warm_json": "/media/hetaisheng/044A81D94A81C83E/Fuison-intra-trajectory-20261028/probe_outputs/joint_lora_paired360_20261104_v1/warm.json",
+    "warm_pt": "/media/hetaisheng/044A81D94A81C83E/Fuison-intra-trajectory-20261028/probe_outputs/joint_lora_paired360_20261104_v1/warm.pt",
+    "density_map": "/media/hetaisheng/044A81D94A81C83E/Fuison-intra-trajectory-20261028/probe_outputs/stratified_cold20_context360_v1/input_map.json",
+    "source_checkpoint": "/media/hetaisheng/044A81D94A81C83E/Fuison-intra-trajectory-20261028/experiments/risk_aligned_online/runs/gradient_aligned512_20260929/source.pt"
+  },
+  "code_sha256": {
+    "joint_lora_gate_features_20261104.py": "57ce0e1dfb4b32e8bd28107594e15194a6c08876ae0d578bf88c4afe4c7c251d",
+    "joint_lora_gradient_span_20261104.py": "e151200dbd243af7bbc275a050c3edf802159d8fe5f70923934321069f60d0f5",
+    "joint_lora_gradient_probe_20261104.py": "14d450e8effebcee84c61f0b06fd8101bd09e9448dc9610e29621daede8dbd70",
+    "experiments/risk_aligned_online/io23.py": "5a26ba79e9fbc7bd9480ef03fe914f83878d108b11257a9e88b3ea4f6f8020e8",
+    "experiments/risk_aligned_online/simple_data.py": "0d9b1e5f2caf5dc63cb227f79150ad0743d653d3b6f75546cc4df8277886f046",
+    "experiments/risk_aligned_online/causal_input.py": "e7291090c5da98a4a4a890dca87eba4fc768b10dbb0a9e0228bc2a1a217fd111",
+    "experiments/risk_aligned_online/simple23.py": "2234ab9c872baf1f5c6667225094d482b8c44ad83c091bb56bb7d8224e1a7b22",
+    "experiments/risk_aligned_online/joint_lora_20261104/model.py": "eaaa052179b2876de25d569f8077cda23bcb88c27f6bc168307a32ee6e288161",
+    "experiments/risk_aligned_online/cold20_compare_20261104/adapters.py": "f9b4247aed37f598f795b2a39cb4dd4dd0982302d1ebf49a543fa8a5ca6eb1d3",
+    "experiments/risk_aligned_online/direct_fast_memory_20261104/model.py": "234fbd07e4d995dc10d609e928def4d7ef7319e2d9f615d2f162936bc9942985",
+    "experiments/risk_aligned_online/direct_fast_memory_20261104/memory.py": "4453e45cf85177ca736991b1728bdc4306eee77925c1ac085ba2c673d87c9fa7",
+    "experiments/risk_aligned_online/direct_fast_memory_20261104/timeline.py": "7f3aa026204799093807e125dc301163e1cd84e37970006a0fefee97d390e678",
+    "experiments/risk_aligned_online/mask_repair_20261104/east_evaluation.py": "469ae7e49d45f001dbe4806a65935368adb9649d1483b9ba7cce632dc85cd62a",
+    "experiments/risk_aligned_online/warmstart_alignment_20261022/alignment.py": "7a62461a3b11349a1f4109d220a5982eaebea5252c8136fc5efe1da079a00798",
+    "experiments/risk_aligned_online/redesign_20261004/prepare_prior.py": "469c568e685ebf6d9451eb5ccdeddcca98eb8195897934814d7eb8b13952a49f"
+  },
+  "case_order_sha256": "c335db257b405c32b091e38da02649d2382157a352fd545cb1e4fe0992e23ee5",
+  "case_order": [
+    {
+      "shot": 71304,
+      "origin": 135
+    },
+    {
+      "shot": 71304,
+      "origin": 1767
+    },
+    {
+      "shot": 71304,
+      "origin": 3399
+    },
+    {
+      "shot": 87494,
+      "origin": 135
+    },
+    {
+      "shot": 87494,
+      "origin": 1863
+    },
+    {
+      "shot": 87494,
+      "origin": 3591
+    },
+    {
+      "shot": 69458,
+      "origin": 135
+    },
+    {
+      "shot": 69458,
+      "origin": 679
+    },
+    {
+      "shot": 69458,
+      "origin": 1223
+    },
+    {
+      "shot": 87487,
+      "origin": 135
+    },
+    {
+      "shot": 87487,
+      "origin": 999
+    },
+    {
+      "shot": 87487,
+      "origin": 1863
+    },
+    {
+      "shot": 69854,
+      "origin": 135
+    },
+    {
+      "shot": 69854,
+      "origin": 1991
+    },
+    {
+      "shot": 69854,
+      "origin": 3879
+    },
+    {
+      "shot": 70404,
+      "origin": 135
+    },
+    {
+      "shot": 70404,
+      "origin": 1895
+    },
+    {
+      "shot": 70404,
+      "origin": 3655
+    },
+    {
+      "shot": 70323,
+      "origin": 135
+    },
+    {
+      "shot": 70323,
+      "origin": 1895
+    },
+    {
+      "shot": 70323,
+      "origin": 3655
+    },
+    {
+      "shot": 86167,
+      "origin": 135
+    },
+    {
+      "shot": 86167,
+      "origin": 2535
+    },
+    {
+      "shot": 86167,
+      "origin": 4935
+    },
+    {
+      "shot": 54157,
+      "origin": 135
+    },
+    {
+      "shot": 54157,
+      "origin": 1895
+    },
+    {
+      "shot": 54157,
+      "origin": 3655
+    },
+    {
+      "shot": 63097,
+      "origin": 135
+    },
+    {
+      "shot": 63097,
+      "origin": 1799
+    },
+    {
+      "shot": 63097,
+      "origin": 3463
+    },
+    {
+      "shot": 91054,
+      "origin": 135
+    },
+    {
+      "shot": 91054,
+      "origin": 2535
+    },
+    {
+      "shot": 91054,
+      "origin": 4935
+    },
+    {
+      "shot": 91885,
+      "origin": 135
+    },
+    {
+      "shot": 91885,
+      "origin": 1543
+    },
+    {
+      "shot": 91885,
+      "origin": 2951
+    },
+    {
+      "shot": 77002,
+      "origin": 135
+    },
+    {
+      "shot": 77002,
+      "origin": 903
+    },
+    {
+      "shot": 77002,
+      "origin": 1671
+    },
+    {
+      "shot": 94428,
+      "origin": 135
+    },
+    {
+      "shot": 94428,
+      "origin": 2535
+    },
+    {
+      "shot": 94428,
+      "origin": 4935
+    },
+    {
+      "shot": 61468,
+      "origin": 135
+    },
+    {
+      "shot": 61468,
+      "origin": 2535
+    },
+    {
+      "shot": 61468,
+      "origin": 4935
+    },
+    {
+      "shot": 85632,
+      "origin": 135
+    },
+    {
+      "shot": 85632,
+      "origin": 2535
+    },
+    {
+      "shot": 85632,
+      "origin": 4935
+    },
+    {
+      "shot": 85320,
+      "origin": 135
+    },
+    {
+      "shot": 85320,
+      "origin": 2535
+    },
+    {
+      "shot": 85320,
+      "origin": 4935
+    },
+    {
+      "shot": 85316,
+      "origin": 135
+    },
+    {
+      "shot": 85316,
+      "origin": 2535
+    },
+    {
+      "shot": 85316,
+      "origin": 4935
+    },
+    {
+      "shot": 91723,
+      "origin": 135
+    },
+    {
+      "shot": 91723,
+      "origin": 2535
+    },
+    {
+      "shot": 91723,
+      "origin": 4935
+    },
+    {
+      "shot": 75657,
+      "origin": 135
+    },
+    {
+      "shot": 75657,
+      "origin": 615
+    },
+    {
+      "shot": 75657,
+      "origin": 1127
+    }
+  ],
+  "hdf_stats": [
+    {
+      "shot": 71304,
+      "size": 1012184,
+      "mtime_ns": 1682008834000000000
+    },
+    {
+      "shot": 87494,
+      "size": 1029928,
+      "mtime_ns": 1682009240000000000
+    },
+    {
+      "shot": 69458,
+      "size": 256320,
+      "mtime_ns": 1682008884000000000
+    },
+    {
+      "shot": 87487,
+      "size": 377760,
+      "mtime_ns": 1682008844000000000
+    },
+    {
+      "shot": 69854,
+      "size": 1097008,
+      "mtime_ns": 1682008950000000000
+    },
+    {
+      "shot": 70404,
+      "size": 1050272,
+      "mtime_ns": 1682009054000000000
+    },
+    {
+      "shot": 70323,
+      "size": 1050272,
+      "mtime_ns": 1682009028000000000
+    },
+    {
+      "shot": 86167,
+      "size": 1215688,
+      "mtime_ns": 1682008936000000000
+    },
+    {
+      "shot": 54157,
+      "size": 1013104,
+      "mtime_ns": 1682009088000000000
+    },
+    {
+      "shot": 63097,
+      "size": 995072,
+      "mtime_ns": 1682009850000000000
+    },
+    {
+      "shot": 91054,
+      "size": 1123688,
+      "mtime_ns": 1682009098000000000
+    },
+    {
+      "shot": 91885,
+      "size": 807216,
+      "mtime_ns": 1682008822000000000
+    },
+    {
+      "shot": 77002,
+      "size": 339120,
+      "mtime_ns": 1682008890000000000
+    },
+    {
+      "shot": 94428,
+      "size": 1169688,
+      "mtime_ns": 1682008948000000000
+    },
+    {
+      "shot": 61468,
+      "size": 1160304,
+      "mtime_ns": 1682008914000000000
+    },
+    {
+      "shot": 85632,
+      "size": 1234272,
+      "mtime_ns": 1682009918000000000
+    },
+    {
+      "shot": 85320,
+      "size": 1234272,
+      "mtime_ns": 1682009904000000000
+    },
+    {
+      "shot": 85316,
+      "size": 1234272,
+      "mtime_ns": 1682009854000000000
+    },
+    {
+      "shot": 91723,
+      "size": 1160304,
+      "mtime_ns": 1682009866000000000
+    },
+    {
+      "shot": 75657,
+      "size": 237920,
+      "mtime_ns": 1682008862000000000
+    }
+  ],
+  "warm_state_sha256": "69a3b183a5ce708293cfc23ff4871db5e2e9c29b8c0fa7f174ccf1b193033582",
+  "source_state_sha256": "99affd49f71f41129b87b03624201ef94ef6dc44e652eaef411b2924f8186dc8",
+  "device": "cpu",
+  "torch_threads": 1,
+  "torch_interop_threads": 1,
+  "window": "128 samples inclusive [origin-127, origin]; 23 channels; pointwise index-21 saved input map",
+  "latent": "JointLoRA latent: concatenated final CLS, last token, and last-minus-previous token",
+  "hdf_outcomes_read": 0,
+  "whole_shot_reads": 0,
+  "future_risk_windows_read": 0,
+  "updated_parameters": 0,
+  "independent_validation": false,
+  "online_policy_tested": false
+}

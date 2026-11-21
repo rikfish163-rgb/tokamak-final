@@ -1,0 +1,30 @@
+{
+  "complete": true,
+  "source_unchanged": true,
+  "source_train": 1353,
+  "source_val": 160,
+  "complete_sha256": "5392dfee6ae7f04260845032ab820a48eaeb69d5f02818b8be352c3e4d30bec1",
+  "verified_training": {
+    "complete_epochs": 2,
+    "nonzero_gradient_steps": {
+      "detached": {
+        "key.weight": 339,
+        "prior": 339,
+        "rate": 339,
+        "output.weight": 340
+      },
+      "zero_prior": {
+        "key.weight": 339,
+        "rate": 339,
+        "output.weight": 340
+      }
+    },
+    "frozen_parameters": {
+      "zero_prior": [
+        "prior"
+      ]
+    }
+  },
+  "source_input_cache_local_labels_verified": 1513,
+  "scope": "SOURCE_ONLY_NOT_EAST_EFFECTIVENESS"
+}

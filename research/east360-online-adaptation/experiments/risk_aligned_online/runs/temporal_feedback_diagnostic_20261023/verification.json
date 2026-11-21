@@ -1,0 +1,111 @@
+{
+  "status": "VERIFIED",
+  "audit_code_sha256": "442b68ebd392fe602469b73962b3c00753245dbdfa48447f310726ff5700f246",
+  "sealed_diagnostic_files": {
+    "protocol.json": "2cd5f9264463126772faff62ac4fb747b97294699fc21bd9509cadf37cc7f37e",
+    "completed.json": "e1adbd71c8ffe4d3d8cbc755eacbc87fc6f3039095845eff85b857fbfaaf6217",
+    "timing.json": "3586ebecb55d36e70a26e84d95903b3853b17cb341729dc581e0f1f065f03f3e",
+    "cases.json": "941825d761c99f21db8f49dfb74974f1d07722cfb5946b891fc112fb30f28ece",
+    "source_timing.json": "d532fee09e465545e3efb0b1e63d5d41bb9e2bd031d01710bc07513e9ace803a"
+  },
+  "rescored_traces": 1440,
+  "verified_update_receipts": 21270,
+  "sampled_updates": 2036,
+  "measured_updates": 1940,
+  "sample_status_counts": {
+    "measured": 1940,
+    "no_future_timely_or_valid_point": 96
+  },
+  "independent_timing_counts": {
+    "static": {
+      "safe_tn": 153,
+      "safe_fp": 27,
+      "early_over3000": 17,
+      "late_10_25": 15,
+      "timely_125_3000": 61,
+      "late_0_10": 19,
+      "never": 24,
+      "timely_30_125": 40,
+      "late_25_30": 4
+    },
+    "original4": {
+      "safe_tn": 151,
+      "safe_fp": 29,
+      "early_over3000": 15,
+      "late_10_25": 18,
+      "timely_125_3000": 64,
+      "late_0_10": 19,
+      "never": 24,
+      "timely_30_125": 38,
+      "late_25_30": 2
+    },
+    "recent": {
+      "safe_tn": 151,
+      "safe_fp": 29,
+      "early_over3000": 15,
+      "late_10_25": 18,
+      "timely_125_3000": 64,
+      "late_0_10": 19,
+      "never": 24,
+      "timely_30_125": 38,
+      "late_25_30": 2
+    },
+    "lag_bias": {
+      "safe_tn": 153,
+      "safe_fp": 27,
+      "early_over3000": 17,
+      "late_10_25": 17,
+      "timely_125_3000": 62,
+      "late_0_10": 18,
+      "never": 24,
+      "timely_30_125": 40,
+      "late_25_30": 2
+    }
+  },
+  "same_state_paired_comparisons": {
+    "recent/decision_open/safe": {
+      "sampled_updates": 442,
+      "distinct_shots": 157,
+      "lag_lower_predicted_loss": 401,
+      "lag_higher_predicted_loss": 41,
+      "negligible_difference": 0,
+      "sample_mean_difference": -0.0007730761879912135,
+      "equal_shot_mean_difference": -0.0007037162487911203
+    },
+    "recent/decision_open/disruptive": {
+      "sampled_updates": 355,
+      "distinct_shots": 159,
+      "lag_lower_predicted_loss": 56,
+      "lag_higher_predicted_loss": 299,
+      "negligible_difference": 0,
+      "sample_mean_difference": 0.008560593891864648,
+      "equal_shot_mean_difference": 0.008582182066172572
+    },
+    "lag_bias/decision_open/safe": {
+      "sampled_updates": 444,
+      "distinct_shots": 157,
+      "lag_lower_predicted_loss": 404,
+      "lag_higher_predicted_loss": 40,
+      "negligible_difference": 0,
+      "sample_mean_difference": -0.0006815850436319076,
+      "equal_shot_mean_difference": -0.0005247107369337577
+    },
+    "lag_bias/decision_open/disruptive": {
+      "sampled_updates": 356,
+      "distinct_shots": 159,
+      "lag_lower_predicted_loss": 59,
+      "lag_higher_predicted_loss": 297,
+      "negligible_difference": 0,
+      "sample_mean_difference": 0.007777535616851652,
+      "equal_shot_mean_difference": 0.007857228761078859
+    }
+  },
+  "limitations": [
+    "First/middle/last is outcome-independent sampling, not random or representative sampling.",
+    "Original phase groups use before-update peak location; blocks may span both sides of 125 ms.",
+    "Candidate differences are first-order predictions, not both finite counterfactual effects.",
+    "Cross-arm groups have different conditioning sets; only within-row candidates are paired.",
+    "All update receipts replayed; only measured sampled probability blocks replayed, not every full trace.",
+    "Future outcomes used for diagnosis only; not a deployable direction selector or independent confirmation."
+  ]
+}

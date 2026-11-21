@@ -1,0 +1,109 @@
+{
+  "status": "VERIFIED",
+  "completed_sha256": "6878a0c1941e018ed824b8fbbb8a2366b862d8dc449354e6149a83e568ac0101",
+  "audit_sha256": "786932e3a7f2b8c709b38d90fd6cd8b3571999034e678898b413ca0070cad863",
+  "metrics": {
+    "warm_static": {
+      "tp": 3,
+      "fp": 1,
+      "n_disrupt": 4,
+      "n_safe": 16,
+      "tpr": 0.75,
+      "fpr": 0.0625,
+      "J": 0.6875,
+      "threshold": 0.7258946895599365,
+      "median_lead_ms": 258.0,
+      "very_early_over3000": 0
+    },
+    "warm_intra": {
+      "tp": 2,
+      "fp": 1,
+      "n_disrupt": 4,
+      "n_safe": 16,
+      "tpr": 0.5,
+      "fpr": 0.0625,
+      "J": 0.4375,
+      "threshold": 0.7258946895599365,
+      "median_lead_ms": 630.0,
+      "very_early_over3000": 0
+    },
+    "joint_static": {
+      "tp": 2,
+      "fp": 1,
+      "n_disrupt": 4,
+      "n_safe": 16,
+      "tpr": 0.5,
+      "fpr": 0.0625,
+      "J": 0.4375,
+      "threshold": 0.7258946895599365,
+      "median_lead_ms": 635.0,
+      "very_early_over3000": 0
+    },
+    "joint_intra": {
+      "tp": 2,
+      "fp": 1,
+      "n_disrupt": 4,
+      "n_safe": 16,
+      "tpr": 0.5,
+      "fpr": 0.0625,
+      "J": 0.4375,
+      "threshold": 0.7258946895599365,
+      "median_lead_ms": 613.0,
+      "very_early_over3000": 0
+    },
+    "meta_static": {
+      "tp": 2,
+      "fp": 1,
+      "n_disrupt": 4,
+      "n_safe": 16,
+      "tpr": 0.5,
+      "fpr": 0.0625,
+      "J": 0.4375,
+      "threshold": 0.7258946895599365,
+      "median_lead_ms": 634.5,
+      "very_early_over3000": 0
+    },
+    "meta_intra": {
+      "tp": 2,
+      "fp": 1,
+      "n_disrupt": 4,
+      "n_safe": 16,
+      "tpr": 0.5,
+      "fpr": 0.0625,
+      "J": 0.4375,
+      "threshold": 0.7258946895599365,
+      "median_lead_ms": 623.0,
+      "very_early_over3000": 0
+    }
+  },
+  "passes_screen": false,
+  "independent_shot_counts": 120,
+  "full_replayed_shots": 20,
+  "refitted_fold": 0,
+  "source_training_bce": {
+    "fold0": {
+      "warm": 0.14984036871464923,
+      "joint": 0.12658684398047626,
+      "meta": 0.12657601851969957
+    },
+    "fold1": {
+      "warm": 0.1733052816707641,
+      "joint": 0.13562279695179313,
+      "meta": 0.13544481561984867
+    },
+    "fold2": {
+      "warm": 0.16250477405264974,
+      "joint": 0.1322720785974525,
+      "meta": 0.1318234708160162
+    },
+    "fold3": {
+      "warm": 0.16839071636786684,
+      "joint": 0.12330269216909073,
+      "meta": 0.12387591291917488
+    }
+  },
+  "source_and_frozen_readouts_unchanged": true,
+  "test360_accessed": false,
+  "seconds": 68.64013588500165,
+  "limitation": "Four disruptive development identities; same-implementation neural replay; source BCE is training retention not test performance."
+}

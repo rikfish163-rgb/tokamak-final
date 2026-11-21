@@ -1,0 +1,43 @@
+{
+  "checkpoint": "/media/hetaisheng/044A81D94A81C83E/Fuison-intra-trajectory-20261028/probe_outputs/east_decoder_complete360_v1/heads.pt",
+  "checkpoint_sha256": "d25ecfa1d13d9822629b293d0eb818ca1fa3aa7db8ebb23db555a0adef762319",
+  "audit_code_sha256": "b5cc39834d43e6d61b14a56b9045637a2708e84224c4f440afa044633cbb5567",
+  "centered_loss_code_sha256": "47cf5b476f1c1edee3b134bdc5c430cd1d55742692efc68243b0ff2ed64ba626",
+  "parameters": {
+    "forecast_only": {
+      "quantity": "squared_parameter_norm_not_physical_energy",
+      "norm": 3.1693644489180866,
+      "dc_fraction": 0.9592930163550414,
+      "ac_fraction": 0.04070698364495847
+    },
+    "mean_meta": {
+      "quantity": "squared_parameter_norm_not_physical_energy",
+      "norm": 1.1776567610277078,
+      "dc_fraction": 0.22790031405446126,
+      "ac_fraction": 0.7720996859455389
+    },
+    "worst_meta": {
+      "quantity": "squared_parameter_norm_not_physical_energy",
+      "norm": 1.0816073352486295,
+      "dc_fraction": 0.7587694807319958,
+      "ac_fraction": 0.24123051926800437
+    }
+  },
+  "invariance": {
+    "scope": "synthetic_algebra_not_neural_replay",
+    "masks": {
+      "complete": {
+        "loss_abs_difference": 0.0,
+        "state_gradient_max_abs_difference": 8.673617379884035e-18,
+        "uncentered_loss_abs_difference": 1.0115859573950794
+      },
+      "partial": {
+        "loss_abs_difference": 1.1102230246251565e-16,
+        "state_gradient_max_abs_difference": 1.3010426069826053e-17,
+        "uncentered_loss_abs_difference": 0.7362390785598077
+      }
+    }
+  },
+  "proof_of_physical_mechanism": false,
+  "proof_of_failure_cause": false
+}

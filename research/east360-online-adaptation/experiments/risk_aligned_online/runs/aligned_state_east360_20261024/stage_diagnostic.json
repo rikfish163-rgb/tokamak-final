@@ -1,0 +1,123 @@
+{
+  "scope": "POSTHOC_TEST_LABEL_DIAGNOSTIC; not deployable thresholds or an independent test",
+  "completed_sha256": "0b7a3c071c137bfc13da034e72d92e986ea4eeed0ebd99f39986c35378b7f537",
+  "source_sha256": "625acf8dd605f99b487bf844827145cd9671cf03e78c3f67a6f3cfa09c625f4f",
+  "original_source_sha256": "c7270c1ea3652db2e30e972d4ca9a4a2d33220a68e4a3765c8b7f5bcceeaeb02",
+  "no_new_training": true,
+  "no_threshold_selected_for_deployment": true,
+  "results": {
+    "original_raw": {
+      "ranking": {
+        "status": "TEST_LABEL_DIAGNOSTIC_NOT_DEPLOYABLE",
+        "timely_peak_auc": 0.7434259259259259,
+        "oracle_tp_at_fpr_cap": {
+          "0.1": 94,
+          "0.15": 107,
+          "0.2": 110
+        }
+      },
+      "original_threshold": {
+        "tp": 145,
+        "fp": 94,
+        "n_disrupt": 180,
+        "n_safe": 180,
+        "tpr": 0.8055555555555556,
+        "fpr": 0.5222222222222223,
+        "J": 0.2833333333333333,
+        "threshold": 0.7258946895599365,
+        "median_lead_ms": 1040.0
+      }
+    },
+    "original_mapped": {
+      "ranking": {
+        "status": "TEST_LABEL_DIAGNOSTIC_NOT_DEPLOYABLE",
+        "timely_peak_auc": 0.8026851851851852,
+        "oracle_tp_at_fpr_cap": {
+          "0.1": 112,
+          "0.15": 118,
+          "0.2": 124
+        }
+      },
+      "original_threshold": {
+        "tp": 117,
+        "fp": 26,
+        "n_disrupt": 180,
+        "n_safe": 180,
+        "tpr": 0.65,
+        "fpr": 0.14444444444444443,
+        "J": 0.5055555555555555,
+        "threshold": 0.7258946895599365,
+        "median_lead_ms": 257.0
+      }
+    },
+    "aligned_raw": {
+      "ranking": {
+        "status": "TEST_LABEL_DIAGNOSTIC_NOT_DEPLOYABLE",
+        "timely_peak_auc": 0.7321913580246914,
+        "oracle_tp_at_fpr_cap": {
+          "0.1": 87,
+          "0.15": 97,
+          "0.2": 100
+        }
+      },
+      "original_threshold": {
+        "tp": 135,
+        "fp": 90,
+        "n_disrupt": 180,
+        "n_safe": 180,
+        "tpr": 0.75,
+        "fpr": 0.5,
+        "J": 0.25,
+        "threshold": 0.7258946895599365,
+        "median_lead_ms": 1298.0
+      }
+    },
+    "aligned_mapped": {
+      "ranking": {
+        "status": "TEST_LABEL_DIAGNOSTIC_NOT_DEPLOYABLE",
+        "timely_peak_auc": 0.7570679012345679,
+        "oracle_tp_at_fpr_cap": {
+          "0.1": 103,
+          "0.15": 105,
+          "0.2": 106
+        }
+      },
+      "original_threshold": {
+        "tp": 115,
+        "fp": 56,
+        "n_disrupt": 180,
+        "n_safe": 180,
+        "tpr": 0.6388888888888888,
+        "fpr": 0.3111111111111111,
+        "J": 0.3277777777777777,
+        "threshold": 0.7258946895599365,
+        "median_lead_ms": 328.0
+      }
+    },
+    "prepared_off": {
+      "ranking": {
+        "status": "TEST_LABEL_DIAGNOSTIC_NOT_DEPLOYABLE",
+        "timely_peak_auc": 0.6979012345679012,
+        "oracle_tp_at_fpr_cap": {
+          "0.1": 56,
+          "0.15": 68,
+          "0.2": 83
+        }
+      },
+      "original_threshold": {
+        "tp": 59,
+        "fp": 20,
+        "n_disrupt": 180,
+        "n_safe": 180,
+        "tpr": 0.3277777777777778,
+        "fpr": 0.1111111111111111,
+        "J": 0.21666666666666667,
+        "threshold": 0.7258946895599365,
+        "median_lead_ms": 1225.0
+      }
+    }
+  },
+  "seconds": 248.27287060399976,
+  "decision": "DO_NOT_PROMOTE: static target start collapsed and real feedback does not beat constant/reverse controls",
+  "gate_warning": "completed.intra_gate is a local J/FPR numerical screen only, NOT deployment qualification"
+}

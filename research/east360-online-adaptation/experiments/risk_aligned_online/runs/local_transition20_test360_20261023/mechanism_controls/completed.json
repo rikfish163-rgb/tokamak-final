@@ -1,0 +1,125 @@
+{
+  "status": "COMPLETED_AND_VERIFIED",
+  "seconds": 172.55014823199963,
+  "alpha": 0.20675507780173008,
+  "protocol_sha256": "d0d28f09ebb4b692264b9c811d13e906c7f3b220efdc6e166f0d29c221363b86",
+  "scale_sha256": "ad6612556f453a3cfe0c9b69b7eeb5294e597d299ab95d8852bcc68ad6ff3435",
+  "original_static_checkpoint_unchanged": true,
+  "independent_confirmation": false,
+  "traces_independently_recounted": 720,
+  "sampled_replays": [
+    {
+      "shot": 54157,
+      "curves": 2,
+      "max_abs_difference": 0.0
+    },
+    {
+      "shot": 75135,
+      "curves": 2,
+      "max_abs_difference": 0.0
+    },
+    {
+      "shot": 96375,
+      "curves": 2,
+      "max_abs_difference": 0.0
+    }
+  ],
+  "metrics": {
+    "static_shuffled": {
+      "tp": 130,
+      "fp": 32,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tpr": 0.7222222222222222,
+      "fpr": 0.17777777777777778,
+      "J": 0.5444444444444444,
+      "threshold": 0.7258946895599365,
+      "median_lead_ms": 222.0,
+      "very_early_over3000": 17
+    },
+    "static_scaled": {
+      "tp": 126,
+      "fp": 30,
+      "n_disrupt": 180,
+      "n_safe": 180,
+      "tpr": 0.7,
+      "fpr": 0.16666666666666666,
+      "J": 0.5333333333333333,
+      "threshold": 0.7258946895599365,
+      "median_lead_ms": 217.0,
+      "very_early_over3000": 17
+    }
+  },
+  "paired_vs_true_fit": {
+    "static_shuffled": {
+      "rescued_timely": [],
+      "lost_timely": [],
+      "removed_fp": [],
+      "added_fp": []
+    },
+    "static_scaled": {
+      "rescued_timely": [
+        71304
+      ],
+      "lost_timely": [
+        73653,
+        74727,
+        77788,
+        78668,
+        83887
+      ],
+      "removed_fp": [
+        77295,
+        77419,
+        77835
+      ],
+      "added_fp": [
+        94395
+      ]
+    }
+  },
+  "paired_vs_prior": {
+    "static_shuffled": {
+      "rescued_timely": [
+        77302
+      ],
+      "lost_timely": [
+        71013,
+        79604
+      ],
+      "removed_fp": [
+        73740,
+        83910,
+        87009,
+        94395,
+        94422
+      ],
+      "added_fp": []
+    },
+    "static_scaled": {
+      "rescued_timely": [
+        71304,
+        77302
+      ],
+      "lost_timely": [
+        71013,
+        73653,
+        74727,
+        77788,
+        78668,
+        79604,
+        83887
+      ],
+      "removed_fp": [
+        73740,
+        77295,
+        77419,
+        77835,
+        83910,
+        87009,
+        94422
+      ],
+      "added_fp": []
+    }
+  }
+}

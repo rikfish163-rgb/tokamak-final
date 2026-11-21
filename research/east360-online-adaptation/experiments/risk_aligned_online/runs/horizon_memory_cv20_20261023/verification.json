@@ -1,0 +1,221 @@
+{
+  "status": "VERIFIED",
+  "completed_sha256": "3757f0d3e37c1093304519d1c1778fcd3582b033523aafb7958919eb506420c4",
+  "audit_sha256": "cf2cc96ffec8e8165adf625e1d9d667cccd82775bfadd6f8498deca379ad2ed7",
+  "audit_test_sha256": "2c880abe98f10fe8db3710078c1a167359a1f88ed1ae2b74cfac06776760a086",
+  "diagnostic_sha256": "e14ad264783ae16255d2a0ee2f9fddf64c40f44d2655f240f1775344c41a01c6",
+  "independent_shot_recounts": 100,
+  "exact_cuda_replayed_shots": 20,
+  "arms_per_shot": 5,
+  "replay": [
+    {
+      "fold": 0,
+      "shot": 62630,
+      "arms": 5,
+      "exact": true
+    },
+    {
+      "fold": 0,
+      "shot": 63226,
+      "arms": 5,
+      "exact": true
+    },
+    {
+      "fold": 0,
+      "shot": 63711,
+      "arms": 5,
+      "exact": true
+    },
+    {
+      "fold": 0,
+      "shot": 64481,
+      "arms": 5,
+      "exact": true
+    },
+    {
+      "fold": 0,
+      "shot": 68933,
+      "arms": 5,
+      "exact": true
+    },
+    {
+      "fold": 1,
+      "shot": 62945,
+      "arms": 5,
+      "exact": true
+    },
+    {
+      "fold": 1,
+      "shot": 63712,
+      "arms": 5,
+      "exact": true
+    },
+    {
+      "fold": 1,
+      "shot": 63824,
+      "arms": 5,
+      "exact": true
+    },
+    {
+      "fold": 1,
+      "shot": 64894,
+      "arms": 5,
+      "exact": true
+    },
+    {
+      "fold": 1,
+      "shot": 70633,
+      "arms": 5,
+      "exact": true
+    },
+    {
+      "fold": 2,
+      "shot": 63481,
+      "arms": 5,
+      "exact": true
+    },
+    {
+      "fold": 2,
+      "shot": 63776,
+      "arms": 5,
+      "exact": true
+    },
+    {
+      "fold": 2,
+      "shot": 64677,
+      "arms": 5,
+      "exact": true
+    },
+    {
+      "fold": 2,
+      "shot": 65063,
+      "arms": 5,
+      "exact": true
+    },
+    {
+      "fold": 2,
+      "shot": 72239,
+      "arms": 5,
+      "exact": true
+    },
+    {
+      "fold": 3,
+      "shot": 63645,
+      "arms": 5,
+      "exact": true
+    },
+    {
+      "fold": 3,
+      "shot": 63933,
+      "arms": 5,
+      "exact": true
+    },
+    {
+      "fold": 3,
+      "shot": 66611,
+      "arms": 5,
+      "exact": true
+    },
+    {
+      "fold": 3,
+      "shot": 70868,
+      "arms": 5,
+      "exact": true
+    },
+    {
+      "fold": 3,
+      "shot": 72415,
+      "arms": 5,
+      "exact": true
+    }
+  ],
+  "exact_refitted_folds": [
+    0
+  ],
+  "training_draws_checked": {
+    "fold0": {
+      "risk_training_manifest.jsonl": 32768,
+      "forecast_manifest.jsonl": 16384
+    },
+    "fold1": {
+      "risk_training_manifest.jsonl": 32768,
+      "forecast_manifest.jsonl": 16384
+    },
+    "fold2": {
+      "risk_training_manifest.jsonl": 32768,
+      "forecast_manifest.jsonl": 16384
+    },
+    "fold3": {
+      "risk_training_manifest.jsonl": 32768,
+      "forecast_manifest.jsonl": 16384
+    }
+  },
+  "source_and_fold_frozen_state_verified": true,
+  "fold_input_maps_rebuilt": true,
+  "memory_rebuilt": true,
+  "max_step_length_difference": 1.0363217085255366e-08,
+  "metrics": {
+    "static": {
+      "tp": 2,
+      "fp": 3,
+      "n_disrupt": 4,
+      "n_safe": 16,
+      "tpr": 0.5,
+      "fpr": 0.1875,
+      "J": 0.3125,
+      "threshold": 0.7258946895599365,
+      "median_lead_ms": 628.0,
+      "very_early_over3000": 0
+    },
+    "forecast": {
+      "tp": 2,
+      "fp": 2,
+      "n_disrupt": 4,
+      "n_safe": 16,
+      "tpr": 0.5,
+      "fpr": 0.125,
+      "J": 0.375,
+      "threshold": 0.7258946895599365,
+      "median_lead_ms": 628.5,
+      "very_early_over3000": 0
+    },
+    "now_rank": {
+      "tp": 2,
+      "fp": 4,
+      "n_disrupt": 4,
+      "n_safe": 16,
+      "tpr": 0.5,
+      "fpr": 0.25,
+      "J": 0.25,
+      "threshold": 0.7258946895599365,
+      "median_lead_ms": 648.5,
+      "very_early_over3000": 0
+    },
+    "lag_rank": {
+      "tp": 2,
+      "fp": 3,
+      "n_disrupt": 4,
+      "n_safe": 16,
+      "tpr": 0.5,
+      "fpr": 0.1875,
+      "J": 0.3125,
+      "threshold": 0.7258946895599365,
+      "median_lead_ms": 628.5,
+      "very_early_over3000": 0
+    },
+    "initial_rank": {
+      "tp": 2,
+      "fp": 3,
+      "n_disrupt": 4,
+      "n_safe": 16,
+      "tpr": 0.5,
+      "fpr": 0.1875,
+      "J": 0.3125,
+      "threshold": 0.7258946895599365,
+      "median_lead_ms": 651.0,
+      "very_early_over3000": 0
+    }
+  },
+  "gate": false,
+  "caveat": "same implementation neural replay; four disruptive shots; development cross-validation, not independent future TEST"
+}

@@ -1,0 +1,30 @@
+{
+  "scope": "POST_HOC_LINEAR_DIAGNOSTIC; not online learning, not final risk score",
+  "source_screen_sha256": "35ec5bca78c60580ebafdaa181d9072056b8cf6ff8270cc08000716be9fe284d",
+  "embedding_sha256": "c71629f2fe1616c40d6daaef01abc481b0ea452e2dd2edb334ecf85e292da1d7",
+  "plan_sha256": "aa2db4ea3cc257f23d1eea87c1a3168e808e0e9fbcaa70fdbf41c5ce6e9c42f7",
+  "code_sha256": "7b750d035741efcbae6f39a0d2a56ac1d49be7449b0429c9c9cd4da1775c5039",
+  "methods": [
+    "ordered",
+    "unpaired",
+    "shuffled_order"
+  ],
+  "modes": [
+    "risk",
+    "mean",
+    "reverse",
+    "shuffle",
+    "family",
+    "raw",
+    "raw_mean",
+    "risk_131",
+    "risk_132",
+    "risk_133"
+  ],
+  "ridge": "mean squared historical displacement norm; no hyperparameter search",
+  "train_shots_per_fold": 3,
+  "train_pairs_per_fold": 48,
+  "stream360_read": false,
+  "source_risk_updated": false,
+  "timeout_seconds": 600
+}

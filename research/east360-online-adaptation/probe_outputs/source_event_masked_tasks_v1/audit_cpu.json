@@ -1,0 +1,698 @@
+{
+  "status": "PASS",
+  "completed_sha256": "ecd4825f7d228ebf005ede5d42cdc757b143b780be33c09cfd5a9c6ce6f6cbcb",
+  "artifact_sha256": {
+    "census.json": "71b1dec2ec08f97d505dccc0fcc7c5d3dd75b62143118fe8e4ceff9896783bbb",
+    "code_snapshot.zip": "426c5093fb0a211c226aebc75ad65fac3ee3ab33644067830ded3b0746047af3",
+    "preflight.json": "2a04d189671d5475790f5679a8159f9ba1056d4a501605c4b2590dbef186899a",
+    "protocol.json": "c82df8aa7ab9060dcba0b07035625828dd60863420384e00ea36aed7e9e36ef4",
+    "schedule.json": "422e97c1e8595dfe1ff9c9bddecdb54bdf35a45d5ee64773997fea4c0960209b",
+    "tables.pt": "7cfcf6ea426ba2e97e6bb40ee264d1e77cfb91fa823f314213d2410b320f5488",
+    "training.json": "79d10590c7e46103ff24a840b0090b4ee103054f1db1d93aedc0ed8b92c69890",
+    "train_records_selected.json": "516f3bbe872a021b0f178971b8ec8beb42168a6d8c510c269e99a4e45c5cb6ac",
+    "validation_records.json": "e272ef57e13c7f881c4a9a021359f1ce2910ceac549d3f786ee9a7c91d0684fa",
+    "validation_summary.json": "dec8e8c05363c84d44943270885a11e2cfb9986efbeae48dd67cb8c19a41a74c",
+    "val_records.json": "4a68b4aaac5b06b406d741a710086a648b9ade32db4ee8a2870ae946c607a73a"
+  },
+  "validation_episodes": 946,
+  "validation_records": 25542,
+  "tasks": 3,
+  "arms": 9,
+  "training_steps": 512,
+  "accepted": 25508,
+  "rejected": 34,
+  "no_target": 0,
+  "max_bce_absolute_error": 4.728632357316534e-07,
+  "tolerance": 2e-06,
+  "summary": {
+    "native": {
+      "shared_real": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.006204620531449714,
+          "helpful_points": 182,
+          "harmful_points": 454
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.008756689273321258,
+          "helpful_points": 47,
+          "harmful_points": 70
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.018395744367084358,
+          "helpful_points": 93,
+          "harmful_points": 97
+        },
+        "balanced": 0.0012760343709357718
+      },
+      "shared_reverse": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.00467624602218469,
+          "helpful_points": 175,
+          "harmful_points": 463
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.00863514537240484,
+          "helpful_points": 42,
+          "harmful_points": 75
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.02223881488921595,
+          "helpful_points": 101,
+          "harmful_points": 90
+        },
+        "balanced": 0.001979449675110075
+      },
+      "shared_hold": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.005409955109159152,
+          "helpful_points": 165,
+          "harmful_points": 473
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.009292972236428231,
+          "helpful_points": 43,
+          "harmful_points": 74
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.023036623276582284,
+          "helpful_points": 99,
+          "harmful_points": 92
+        },
+        "balanced": 0.0019415085636345394
+      },
+      "true_real": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.012170693837106228,
+          "helpful_points": 229,
+          "harmful_points": 407
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.021276077947758106,
+          "helpful_points": 33,
+          "harmful_points": 84
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.14789717848422257,
+          "helpful_points": 134,
+          "harmful_points": 57
+        },
+        "balanced": 0.004552692055325939
+      },
+      "true_reverse": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.011762960627675057,
+          "helpful_points": 224,
+          "harmful_points": 414
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.019942193566281016,
+          "helpful_points": 34,
+          "harmful_points": 83
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.1489673352235951,
+          "helpful_points": 133,
+          "harmful_points": 58
+        },
+        "balanced": 0.004089616469302979
+      },
+      "true_hold": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.010428591383000216,
+          "helpful_points": 233,
+          "harmful_points": 405
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.022095357795270894,
+          "helpful_points": 34,
+          "harmful_points": 82
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.1545322566403617,
+          "helpful_points": 132,
+          "harmful_points": 59
+        },
+        "balanced": 0.005833383206135339
+      },
+      "shuffled_real": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.0043209125598271695,
+          "helpful_points": 151,
+          "harmful_points": 487
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.010623823154102346,
+          "helpful_points": 40,
+          "harmful_points": 77
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.039206617141192925,
+          "helpful_points": 99,
+          "harmful_points": 92
+        },
+        "balanced": 0.0031514552971375885
+      },
+      "shuffled_reverse": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.0020194332115352153,
+          "helpful_points": 141,
+          "harmful_points": 497
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.010291804980391004,
+          "helpful_points": 38,
+          "harmful_points": 79
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.03813138033161644,
+          "helpful_points": 101,
+          "harmful_points": 90
+        },
+        "balanced": 0.004136185884427894
+      },
+      "shuffled_hold": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.002836974197998643,
+          "helpful_points": 133,
+          "harmful_points": 505
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.011271486533639422,
+          "helpful_points": 40,
+          "harmful_points": 77
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.03984634798754052,
+          "helpful_points": 104,
+          "harmful_points": 87
+        },
+        "balanced": 0.0042172561678203895
+      }
+    },
+    "no_MNM": {
+      "shared_real": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.009589558653533458,
+          "helpful_points": 195,
+          "harmful_points": 442
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.02837927678074699,
+          "helpful_points": 40,
+          "harmful_points": 77
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.03448010349140114,
+          "helpful_points": 109,
+          "harmful_points": 82
+        },
+        "balanced": 0.009394859063606766
+      },
+      "shared_reverse": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.008332345262169838,
+          "helpful_points": 211,
+          "harmful_points": 427
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.02658344560203702,
+          "helpful_points": 36,
+          "harmful_points": 81
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.02703194727027227,
+          "helpful_points": 113,
+          "harmful_points": 78
+        },
+        "balanced": 0.009125550169933591
+      },
+      "shared_hold": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.010503809060901403,
+          "helpful_points": 187,
+          "harmful_points": 450
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.029979098466442554,
+          "helpful_points": 40,
+          "harmful_points": 77
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.03618588254732244,
+          "helpful_points": 115,
+          "harmful_points": 75
+        },
+        "balanced": 0.009737644702770575
+      },
+      "true_real": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.007029510786135991,
+          "helpful_points": 266,
+          "harmful_points": 370
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.04894708817418654,
+          "helpful_points": 33,
+          "harmful_points": 84
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.0830230559913718,
+          "helpful_points": 128,
+          "harmful_points": 63
+        },
+        "balanced": 0.020958788694025274
+      },
+      "true_reverse": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.0059459763734291005,
+          "helpful_points": 260,
+          "harmful_points": 377
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.047402220270963705,
+          "helpful_points": 36,
+          "harmful_points": 81
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.0839310063033545,
+          "helpful_points": 127,
+          "harmful_points": 64
+        },
+        "balanced": 0.020728121948767303
+      },
+      "true_hold": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.00585667141713202,
+          "helpful_points": 270,
+          "harmful_points": 367
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.047372042991870936,
+          "helpful_points": 33,
+          "harmful_points": 84
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.08026534981058649,
+          "helpful_points": 129,
+          "harmful_points": 62
+        },
+        "balanced": 0.02075768578736946
+      },
+      "shuffled_real": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.0009910920013984053,
+          "helpful_points": 152,
+          "harmful_points": 485
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.03070272140799456,
+          "helpful_points": 44,
+          "harmful_points": 73
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.028328052574958233,
+          "helpful_points": 97,
+          "harmful_points": 94
+        },
+        "balanced": 0.014855814703298078
+      },
+      "shuffled_reverse": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": 0.0002505260519683361,
+          "helpful_points": 148,
+          "harmful_points": 487
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.02803502861667463,
+          "helpful_points": 38,
+          "harmful_points": 79
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.017923404937253504,
+          "helpful_points": 99,
+          "harmful_points": 92
+        },
+        "balanced": 0.014142777334321484
+      },
+      "shuffled_hold": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.001159698935225606,
+          "helpful_points": 136,
+          "harmful_points": 501
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.03151162457673179,
+          "helpful_points": 39,
+          "harmful_points": 78
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.024736167832749893,
+          "helpful_points": 94,
+          "harmful_points": 97
+        },
+        "balanced": 0.015175962820753092
+      }
+    },
+    "no_MNM_CIII": {
+      "shared_real": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.039724762054781114,
+          "helpful_points": 256,
+          "harmful_points": 382
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.04189308428384331,
+          "helpful_points": 29,
+          "harmful_points": 88
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.10911062041751476,
+          "helpful_points": 124,
+          "harmful_points": 67
+        },
+        "balanced": 0.0010841611145310966
+      },
+      "shared_reverse": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.03943674865489205,
+          "helpful_points": 261,
+          "harmful_points": 376
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.037767332722363614,
+          "helpful_points": 30,
+          "harmful_points": 87
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.1080273319846219,
+          "helpful_points": 130,
+          "harmful_points": 61
+        },
+        "balanced": -0.0008347079662642184
+      },
+      "shared_hold": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.043855803553014994,
+          "helpful_points": 249,
+          "harmful_points": 389
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.046004273711393276,
+          "helpful_points": 30,
+          "harmful_points": 87
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.11931299494455953,
+          "helpful_points": 128,
+          "harmful_points": 63
+        },
+        "balanced": 0.0010742350791891411
+      },
+      "true_real": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.030757143565764027,
+          "helpful_points": 345,
+          "harmful_points": 288
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.06567852344416591,
+          "helpful_points": 21,
+          "harmful_points": 96
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.1309385188556964,
+          "helpful_points": 134,
+          "harmful_points": 57
+        },
+        "balanced": 0.017460689939200944
+      },
+      "true_reverse": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.03243369529955089,
+          "helpful_points": 352,
+          "harmful_points": 283
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.06436577797593643,
+          "helpful_points": 26,
+          "harmful_points": 91
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.13787468723417107,
+          "helpful_points": 138,
+          "harmful_points": 53
+        },
+        "balanced": 0.01596604133819277
+      },
+      "true_hold": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.03398441619550188,
+          "helpful_points": 356,
+          "harmful_points": 281
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.06973219263052756,
+          "helpful_points": 22,
+          "harmful_points": 95
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.1350283051085294,
+          "helpful_points": 136,
+          "harmful_points": 55
+        },
+        "balanced": 0.01787388821751284
+      },
+      "shuffled_real": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.029275839496403933,
+          "helpful_points": 187,
+          "harmful_points": 447
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.04749412322742587,
+          "helpful_points": 33,
+          "harmful_points": 84
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.08986662920254843,
+          "helpful_points": 108,
+          "harmful_points": 82
+        },
+        "balanced": 0.009109141865510968
+      },
+      "shuffled_reverse": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.03047067181517681,
+          "helpful_points": 189,
+          "harmful_points": 445
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.04358609681522856,
+          "helpful_points": 30,
+          "harmful_points": 87
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.08668229312789874,
+          "helpful_points": 111,
+          "harmful_points": 79
+        },
+        "balanced": 0.006557712500025877
+      },
+      "shuffled_hold": {
+        "safe": {
+          "n_shots": 80,
+          "n_points": 638,
+          "mean_delta_bce": -0.03206897728766005,
+          "helpful_points": 182,
+          "harmful_points": 448
+        },
+        "danger": {
+          "n_shots": 64,
+          "n_points": 117,
+          "mean_delta_bce": 0.05116965062545551,
+          "helpful_points": 30,
+          "harmful_points": 86
+        },
+        "early": {
+          "n_shots": 51,
+          "n_points": 191,
+          "mean_delta_bce": -0.09376052138713004,
+          "helpful_points": 104,
+          "harmful_points": 86
+        },
+        "balanced": 0.009550336668897732
+      }
+    }
+  },
+  "gate": {
+    "safe_improved": true,
+    "danger_improved": false,
+    "better_than_shared_real": false,
+    "better_than_shuffled_real": false,
+    "better_than_true_reverse": false,
+    "better_than_true_hold": true,
+    "native_protected": false,
+    "passed": false
+  },
+  "raw_inputs_read": 0,
+  "neural_replayed": false,
+  "actual_hidden_rms_verified": false,
+  "source_weights_rehashed": false,
+  "full_east_stream_tested": false
+}

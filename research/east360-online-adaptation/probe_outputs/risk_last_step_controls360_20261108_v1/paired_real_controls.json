@@ -1,0 +1,88 @@
+{
+  "status": "MATCHED_LAST_STEP_REAL_FEEDBACK_CONTROLS",
+  "parent_run": "probe_outputs/risk_teacher_sequence360_20261108_v1",
+  "control_run": "probe_outputs/risk_last_step_controls360_20261108_v1",
+  "metrics": {
+    "real": {
+      "n_disruptive": 180,
+      "n_safe": 180,
+      "tp": 118,
+      "fp": 31,
+      "tpr": 0.6555555555555556,
+      "fpr": 0.17222222222222222,
+      "j": 0.48333333333333334,
+      "early_over3000": 16,
+      "tp_30_to_3000": 102,
+      "fpr_cap_met": {
+        "0.1": false,
+        "0.15": false,
+        "0.2": true
+      }
+    },
+    "wrong_time": {
+      "n_disruptive": 180,
+      "n_safe": 180,
+      "tp": 118,
+      "fp": 30,
+      "tpr": 0.6555555555555556,
+      "fpr": 0.16666666666666666,
+      "j": 0.48888888888888893,
+      "early_over3000": 16,
+      "tp_30_to_3000": 102,
+      "fpr_cap_met": {
+        "0.1": false,
+        "0.15": false,
+        "0.2": true
+      }
+    },
+    "hold": {
+      "n_disruptive": 180,
+      "n_safe": 180,
+      "tp": 117,
+      "fp": 34,
+      "tpr": 0.65,
+      "fpr": 0.18888888888888888,
+      "j": 0.46111111111111114,
+      "early_over3000": 15,
+      "tp_30_to_3000": 102,
+      "fpr_cap_met": {
+        "0.1": false,
+        "0.15": false,
+        "0.2": true
+      }
+    }
+  },
+  "real_vs_feedback": {
+    "wrong_time": {
+      "tp_gained": [],
+      "tp_lost": [],
+      "fp_added": [
+        91064
+      ],
+      "fp_removed": []
+    },
+    "hold": {
+      "tp_gained": [
+        72578,
+        75603
+      ],
+      "tp_lost": [
+        74970
+      ],
+      "fp_added": [
+        59940
+      ],
+      "fp_removed": [
+        95930,
+        73790,
+        85599,
+        87847
+      ]
+    }
+  },
+  "maximum_static_error": 0.0,
+  "selection_after_primary_development_result": true,
+  "no_model_training": true,
+  "independent_confirmation": false,
+  "time_order_caveat": "wrong_time reverses truth and mask positions; do not assume identical temporal support"
+}

@@ -1,0 +1,77 @@
+{
+  "scope": "PURE INTRA EAST DEVELOPMENT REPLAY, NOT CONFIRMATORY VALIDATION",
+  "parent_sha256": "c7270c1ea3652db2e30e972d4ca9a4a2d33220a68e4a3765c8b7f5bcceeaeb02",
+  "threshold": 0.7258946895599365,
+  "source_screen": {
+    "results": {
+      "static": {
+        "tp": 73,
+        "fp": 6,
+        "n_disrupt": 80,
+        "n_safe": 80,
+        "tpr": 0.9125,
+        "fpr": 0.075,
+        "J": 0.8375,
+        "threshold": 0.7258946895599365,
+        "median_lead_ms": 70.91,
+        "accepted_updates": 0,
+        "attempted_updates": 0
+      },
+      "signal_embedding": {
+        "tp": 68,
+        "fp": 9,
+        "n_disrupt": 80,
+        "n_safe": 80,
+        "tpr": 0.85,
+        "fpr": 0.1125,
+        "J": 0.7374999999999999,
+        "threshold": 0.7258946895599365,
+        "median_lead_ms": 70.007942684,
+        "accepted_updates": 1554,
+        "attempted_updates": 1555
+      },
+      "risk_embedding": {
+        "tp": 74,
+        "fp": 18,
+        "n_disrupt": 80,
+        "n_safe": 80,
+        "tpr": 0.925,
+        "fpr": 0.225,
+        "J": 0.7000000000000001,
+        "threshold": 0.7258946895599365,
+        "median_lead_ms": 120.71857268400001,
+        "accepted_updates": 1555,
+        "attempted_updates": 1555
+      }
+    },
+    "elapsed_seconds": 36.302265537000494,
+    "base_bitwise_unchanged": true,
+    "independent_sealed_recount": true,
+    "east_data_used": false
+  },
+  "source_screen_sha256": "64c6cff069c877cac818ede80a0b4648d5596557809f4b14069adcab284e38c2",
+  "order_sha256": "abef381ca8e085431893944d1abbe4d60301c084dc2ee23fcda0978d245304d2",
+  "head_sha256": {
+    "risk_embedding_head.pt": "a2cd2ea225809ca429d73195ab4d1e9bea669c6c9d4374b0907ef6a7f517c0fa",
+    "signal_head.pt": "45d29279d4b66b3b9ebd225b5aad4cfc48e306f11603d396931ea337a42684f7"
+  },
+  "arms": [
+    "static",
+    "signal_embedding",
+    "risk_embedding"
+  ],
+  "all_startup_errors_counted": true,
+  "source_scaler_only": true,
+  "target_support": false,
+  "target_statistics_from_other_shots": false,
+  "target_labels_used_for_update": false,
+  "first_update_index": 7,
+  "interval_points": 32,
+  "step": 0.05,
+  "radius": 1.0,
+  "temporary_parameters_reset_every_shot": true,
+  "preserved_alarm": "first crossing of original source threshold",
+  "success": "TPR strict lead>30ms improves AND FPR<=.20 AND J improves",
+  "real_time_latency_validated": false,
+  "code_snapshot_sha256": "967f0a879900bf901813121238a1c2b9408c540b8ac5ac2c87d925e8e1784878"
+}

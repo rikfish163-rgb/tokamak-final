@@ -1,0 +1,1916 @@
+{
+  "status": "RECOUNT_PAIRED_DIAGNOSTIC_UPDATE",
+  "role": "val",
+  "seal_sha256": "44bc355643682094fd1be9d38b80b9f9c924fd96ac3660eb6178f3686fbbfcd2",
+  "auditor_sha256": "205f2e565b3db5f5b4e0a0db43be96d07a41c3066ae1f82fcb78e526dceec87d",
+  "metrics_sha256": "0eb2d9a12a41b6d72d350b8568a91f1a8515181b456316fa681a034a13aecae3",
+  "threshold": 0.7258946895599365,
+  "logit_threshold": 0.9738925713822922,
+  "aggregate": {
+    "schema_version": 1,
+    "threshold": 0.7258946895599365,
+    "lead_ms": 10.0,
+    "horizons_ms": [
+      25.0,
+      31.158427683715907,
+      32.5,
+      36.8701076837159,
+      36.96134768371589,
+      42.356807683715914,
+      53.3,
+      54.54958768371593,
+      75.2,
+      78.6,
+      82.04983768371594,
+      85.15552768371593,
+      93.3,
+      102.6,
+      104.7,
+      136.6563776837159,
+      147.8,
+      165.8,
+      166.04343768371587
+    ],
+    "n_shots": 160,
+    "n_disruptive": 80,
+    "n_safe": 80,
+    "per_seed": {
+      "131": {
+        "static": {
+          "n_disruptive": 80,
+          "n_safe": 80,
+          "raw_tp": 73,
+          "reasonable_tp": 73,
+          "early_tp": 0,
+          "miss": 5,
+          "tardy": 2,
+          "fp": 6,
+          "tn": 74,
+          "raw_tpr": 0.9125,
+          "reasonable_tpr": 0.9125,
+          "fpr": 0.075,
+          "vs_static": {
+            "raw_tp": {
+              "gained_count": 0,
+              "gained_shots": [],
+              "lost_count": 0,
+              "lost_shots": []
+            },
+            "reasonable_tp": {
+              "gained_count": 0,
+              "gained_shots": [],
+              "lost_count": 0,
+              "lost_shots": []
+            },
+            "fp": {
+              "gained_count": 0,
+              "gained_shots": [],
+              "lost_count": 0,
+              "lost_shots": []
+            }
+          },
+          "strata": {
+            "positive": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 2241,
+              "bce": 0.5677954961236495
+            },
+            "early": {
+              "n_shots": 76,
+              "n_seed_shot_observations": 76,
+              "n_points": 11239,
+              "bce": 0.9806467710354656
+            },
+            "late": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 702,
+              "bce": 3.26407950956519
+            },
+            "outside": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 11941,
+              "bce": 1.232837506306889
+            },
+            "safe_high": {
+              "n_shots": 11,
+              "n_seed_shot_observations": 11,
+              "n_points": 827,
+              "bce": 1.921216406256075
+            }
+          }
+        },
+        "real": {
+          "n_disruptive": 80,
+          "n_safe": 80,
+          "raw_tp": 73,
+          "reasonable_tp": 73,
+          "early_tp": 0,
+          "miss": 4,
+          "tardy": 3,
+          "fp": 8,
+          "tn": 72,
+          "raw_tpr": 0.9125,
+          "reasonable_tpr": 0.9125,
+          "fpr": 0.1,
+          "vs_static": {
+            "raw_tp": {
+              "gained_count": 1,
+              "gained_shots": [
+                1053131
+              ],
+              "lost_count": 1,
+              "lost_shots": [
+                1057204
+              ]
+            },
+            "reasonable_tp": {
+              "gained_count": 1,
+              "gained_shots": [
+                1053131
+              ],
+              "lost_count": 1,
+              "lost_shots": [
+                1057204
+              ]
+            },
+            "fp": {
+              "gained_count": 2,
+              "gained_shots": [
+                1054063,
+                1056932
+              ],
+              "lost_count": 0,
+              "lost_shots": []
+            }
+          },
+          "strata": {
+            "positive": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 2241,
+              "bce": 0.6921248457279843
+            },
+            "early": {
+              "n_shots": 76,
+              "n_seed_shot_observations": 76,
+              "n_points": 11239,
+              "bce": 0.9558119972420722
+            },
+            "late": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 702,
+              "bce": 3.238922586030908
+            },
+            "outside": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 11941,
+              "bce": 1.2069341749221312
+            },
+            "safe_high": {
+              "n_shots": 11,
+              "n_seed_shot_observations": 11,
+              "n_points": 827,
+              "bce": 1.6563897572053965
+            }
+          }
+        },
+        "reverse": {
+          "n_disruptive": 80,
+          "n_safe": 80,
+          "raw_tp": 70,
+          "reasonable_tp": 70,
+          "early_tp": 0,
+          "miss": 5,
+          "tardy": 5,
+          "fp": 9,
+          "tn": 71,
+          "raw_tpr": 0.875,
+          "reasonable_tpr": 0.875,
+          "fpr": 0.1125,
+          "vs_static": {
+            "raw_tp": {
+              "gained_count": 0,
+              "gained_shots": [],
+              "lost_count": 3,
+              "lost_shots": [
+                1055238,
+                1055329,
+                1057204
+              ]
+            },
+            "reasonable_tp": {
+              "gained_count": 0,
+              "gained_shots": [],
+              "lost_count": 3,
+              "lost_shots": [
+                1055238,
+                1055329,
+                1057204
+              ]
+            },
+            "fp": {
+              "gained_count": 3,
+              "gained_shots": [
+                1052909,
+                1054592,
+                1056932
+              ],
+              "lost_count": 0,
+              "lost_shots": []
+            }
+          },
+          "strata": {
+            "positive": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 2241,
+              "bce": 0.7397507836770434
+            },
+            "early": {
+              "n_shots": 76,
+              "n_seed_shot_observations": 76,
+              "n_points": 11239,
+              "bce": 0.7815160657223116
+            },
+            "late": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 702,
+              "bce": 3.1315402713544933
+            },
+            "outside": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 11941,
+              "bce": 1.045356390134079
+            },
+            "safe_high": {
+              "n_shots": 11,
+              "n_seed_shot_observations": 11,
+              "n_points": 827,
+              "bce": 1.6669838863224644
+            }
+          }
+        },
+        "unsigned": {
+          "n_disruptive": 80,
+          "n_safe": 80,
+          "raw_tp": 71,
+          "reasonable_tp": 71,
+          "early_tp": 0,
+          "miss": 4,
+          "tardy": 5,
+          "fp": 10,
+          "tn": 70,
+          "raw_tpr": 0.8875,
+          "reasonable_tpr": 0.8875,
+          "fpr": 0.125,
+          "vs_static": {
+            "raw_tp": {
+              "gained_count": 1,
+              "gained_shots": [
+                1053131
+              ],
+              "lost_count": 3,
+              "lost_shots": [
+                1055238,
+                1055329,
+                1057204
+              ]
+            },
+            "reasonable_tp": {
+              "gained_count": 1,
+              "gained_shots": [
+                1053131
+              ],
+              "lost_count": 3,
+              "lost_shots": [
+                1055238,
+                1055329,
+                1057204
+              ]
+            },
+            "fp": {
+              "gained_count": 4,
+              "gained_shots": [
+                1052909,
+                1054063,
+                1054592,
+                1056932
+              ],
+              "lost_count": 0,
+              "lost_shots": []
+            }
+          },
+          "strata": {
+            "positive": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 2241,
+              "bce": 0.6836467909430756
+            },
+            "early": {
+              "n_shots": 76,
+              "n_seed_shot_observations": 76,
+              "n_points": 11239,
+              "bce": 0.8897924775941699
+            },
+            "late": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 702,
+              "bce": 3.203385540637668
+            },
+            "outside": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 11941,
+              "bce": 1.145556730694551
+            },
+            "safe_high": {
+              "n_shots": 11,
+              "n_seed_shot_observations": 11,
+              "n_points": 827,
+              "bce": 1.8474449354098679
+            }
+          }
+        },
+        "zero_target": {
+          "n_disruptive": 80,
+          "n_safe": 80,
+          "raw_tp": 69,
+          "reasonable_tp": 69,
+          "early_tp": 0,
+          "miss": 5,
+          "tardy": 6,
+          "fp": 8,
+          "tn": 72,
+          "raw_tpr": 0.8625,
+          "reasonable_tpr": 0.8625,
+          "fpr": 0.1,
+          "vs_static": {
+            "raw_tp": {
+              "gained_count": 0,
+              "gained_shots": [],
+              "lost_count": 4,
+              "lost_shots": [
+                1055238,
+                1056293,
+                1057204,
+                1057527
+              ]
+            },
+            "reasonable_tp": {
+              "gained_count": 0,
+              "gained_shots": [],
+              "lost_count": 4,
+              "lost_shots": [
+                1055238,
+                1056293,
+                1057204,
+                1057527
+              ]
+            },
+            "fp": {
+              "gained_count": 2,
+              "gained_shots": [
+                1054063,
+                1056932
+              ],
+              "lost_count": 0,
+              "lost_shots": []
+            }
+          },
+          "strata": {
+            "positive": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 2241,
+              "bce": 0.8066952774779107
+            },
+            "early": {
+              "n_shots": 76,
+              "n_seed_shot_observations": 76,
+              "n_points": 11239,
+              "bce": 0.7505252752452766
+            },
+            "late": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 702,
+              "bce": 3.119693781652008
+            },
+            "outside": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 11941,
+              "bce": 1.0168376740291278
+            },
+            "safe_high": {
+              "n_shots": 11,
+              "n_seed_shot_observations": 11,
+              "n_points": 827,
+              "bce": 1.4666180685546781
+            }
+          }
+        },
+        "score": {
+          "n_disruptive": 80,
+          "n_safe": 80,
+          "raw_tp": 69,
+          "reasonable_tp": 69,
+          "early_tp": 0,
+          "miss": 5,
+          "tardy": 6,
+          "fp": 8,
+          "tn": 72,
+          "raw_tpr": 0.8625,
+          "reasonable_tpr": 0.8625,
+          "fpr": 0.1,
+          "vs_static": {
+            "raw_tp": {
+              "gained_count": 0,
+              "gained_shots": [],
+              "lost_count": 4,
+              "lost_shots": [
+                1053826,
+                1055238,
+                1055246,
+                1056293
+              ]
+            },
+            "reasonable_tp": {
+              "gained_count": 0,
+              "gained_shots": [],
+              "lost_count": 4,
+              "lost_shots": [
+                1053826,
+                1055238,
+                1055246,
+                1056293
+              ]
+            },
+            "fp": {
+              "gained_count": 2,
+              "gained_shots": [
+                1054063,
+                1056932
+              ],
+              "lost_count": 0,
+              "lost_shots": []
+            }
+          },
+          "strata": {
+            "positive": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 2241,
+              "bce": 0.7163768904532353
+            },
+            "early": {
+              "n_shots": 76,
+              "n_seed_shot_observations": 76,
+              "n_points": 11239,
+              "bce": 0.9778774690888119
+            },
+            "late": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 702,
+              "bce": 3.200615682838204
+            },
+            "outside": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 11941,
+              "bce": 1.2243853721466418
+            },
+            "safe_high": {
+              "n_shots": 11,
+              "n_seed_shot_observations": 11,
+              "n_points": 827,
+              "bce": 1.645493598983871
+            }
+          }
+        }
+      },
+      "317": {
+        "static": {
+          "n_disruptive": 80,
+          "n_safe": 80,
+          "raw_tp": 73,
+          "reasonable_tp": 73,
+          "early_tp": 0,
+          "miss": 5,
+          "tardy": 2,
+          "fp": 6,
+          "tn": 74,
+          "raw_tpr": 0.9125,
+          "reasonable_tpr": 0.9125,
+          "fpr": 0.075,
+          "vs_static": {
+            "raw_tp": {
+              "gained_count": 0,
+              "gained_shots": [],
+              "lost_count": 0,
+              "lost_shots": []
+            },
+            "reasonable_tp": {
+              "gained_count": 0,
+              "gained_shots": [],
+              "lost_count": 0,
+              "lost_shots": []
+            },
+            "fp": {
+              "gained_count": 0,
+              "gained_shots": [],
+              "lost_count": 0,
+              "lost_shots": []
+            }
+          },
+          "strata": {
+            "positive": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 2241,
+              "bce": 0.5677954961236495
+            },
+            "early": {
+              "n_shots": 76,
+              "n_seed_shot_observations": 76,
+              "n_points": 11239,
+              "bce": 0.9806467710354656
+            },
+            "late": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 702,
+              "bce": 3.26407950956519
+            },
+            "outside": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 11941,
+              "bce": 1.232837506306889
+            },
+            "safe_high": {
+              "n_shots": 11,
+              "n_seed_shot_observations": 11,
+              "n_points": 827,
+              "bce": 1.921216406256075
+            }
+          }
+        },
+        "real": {
+          "n_disruptive": 80,
+          "n_safe": 80,
+          "raw_tp": 73,
+          "reasonable_tp": 73,
+          "early_tp": 0,
+          "miss": 4,
+          "tardy": 3,
+          "fp": 8,
+          "tn": 72,
+          "raw_tpr": 0.9125,
+          "reasonable_tpr": 0.9125,
+          "fpr": 0.1,
+          "vs_static": {
+            "raw_tp": {
+              "gained_count": 1,
+              "gained_shots": [
+                1053131
+              ],
+              "lost_count": 1,
+              "lost_shots": [
+                1057204
+              ]
+            },
+            "reasonable_tp": {
+              "gained_count": 1,
+              "gained_shots": [
+                1053131
+              ],
+              "lost_count": 1,
+              "lost_shots": [
+                1057204
+              ]
+            },
+            "fp": {
+              "gained_count": 2,
+              "gained_shots": [
+                1054063,
+                1056932
+              ],
+              "lost_count": 0,
+              "lost_shots": []
+            }
+          },
+          "strata": {
+            "positive": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 2241,
+              "bce": 0.6569815028159188
+            },
+            "early": {
+              "n_shots": 76,
+              "n_seed_shot_observations": 76,
+              "n_points": 11239,
+              "bce": 0.9606500095722078
+            },
+            "late": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 702,
+              "bce": 3.238674652594514
+            },
+            "outside": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 11941,
+              "bce": 1.2104736485648662
+            },
+            "safe_high": {
+              "n_shots": 11,
+              "n_seed_shot_observations": 11,
+              "n_points": 827,
+              "bce": 1.658591361759982
+            }
+          }
+        },
+        "reverse": {
+          "n_disruptive": 80,
+          "n_safe": 80,
+          "raw_tp": 70,
+          "reasonable_tp": 70,
+          "early_tp": 0,
+          "miss": 5,
+          "tardy": 5,
+          "fp": 9,
+          "tn": 71,
+          "raw_tpr": 0.875,
+          "reasonable_tpr": 0.875,
+          "fpr": 0.1125,
+          "vs_static": {
+            "raw_tp": {
+              "gained_count": 0,
+              "gained_shots": [],
+              "lost_count": 3,
+              "lost_shots": [
+                1055329,
+                1057204,
+                1057448
+              ]
+            },
+            "reasonable_tp": {
+              "gained_count": 0,
+              "gained_shots": [],
+              "lost_count": 3,
+              "lost_shots": [
+                1055329,
+                1057204,
+                1057448
+              ]
+            },
+            "fp": {
+              "gained_count": 3,
+              "gained_shots": [
+                1052909,
+                1054592,
+                1056932
+              ],
+              "lost_count": 0,
+              "lost_shots": []
+            }
+          },
+          "strata": {
+            "positive": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 2241,
+              "bce": 0.7693055511257649
+            },
+            "early": {
+              "n_shots": 76,
+              "n_seed_shot_observations": 76,
+              "n_points": 11239,
+              "bce": 0.780087284933318
+            },
+            "late": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 702,
+              "bce": 3.1090081926681603
+            },
+            "outside": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 11941,
+              "bce": 1.0425670289763636
+            },
+            "safe_high": {
+              "n_shots": 11,
+              "n_seed_shot_observations": 11,
+              "n_points": 827,
+              "bce": 1.6059930502096569
+            }
+          }
+        },
+        "unsigned": {
+          "n_disruptive": 80,
+          "n_safe": 80,
+          "raw_tp": 70,
+          "reasonable_tp": 70,
+          "early_tp": 0,
+          "miss": 4,
+          "tardy": 6,
+          "fp": 9,
+          "tn": 71,
+          "raw_tpr": 0.875,
+          "reasonable_tpr": 0.875,
+          "fpr": 0.1125,
+          "vs_static": {
+            "raw_tp": {
+              "gained_count": 1,
+              "gained_shots": [
+                1053131
+              ],
+              "lost_count": 4,
+              "lost_shots": [
+                1055238,
+                1055329,
+                1057204,
+                1057448
+              ]
+            },
+            "reasonable_tp": {
+              "gained_count": 1,
+              "gained_shots": [
+                1053131
+              ],
+              "lost_count": 4,
+              "lost_shots": [
+                1055238,
+                1055329,
+                1057204,
+                1057448
+              ]
+            },
+            "fp": {
+              "gained_count": 3,
+              "gained_shots": [
+                1052909,
+                1054063,
+                1054592
+              ],
+              "lost_count": 0,
+              "lost_shots": []
+            }
+          },
+          "strata": {
+            "positive": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 2241,
+              "bce": 0.7420305995236024
+            },
+            "early": {
+              "n_shots": 76,
+              "n_seed_shot_observations": 76,
+              "n_points": 11239,
+              "bce": 0.8450226279973196
+            },
+            "late": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 702,
+              "bce": 3.126496348189539
+            },
+            "outside": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 11941,
+              "bce": 1.0986013754913588
+            },
+            "safe_high": {
+              "n_shots": 11,
+              "n_seed_shot_observations": 11,
+              "n_points": 827,
+              "bce": 1.686771445486909
+            }
+          }
+        },
+        "zero_target": {
+          "n_disruptive": 80,
+          "n_safe": 80,
+          "raw_tp": 69,
+          "reasonable_tp": 69,
+          "early_tp": 0,
+          "miss": 5,
+          "tardy": 6,
+          "fp": 7,
+          "tn": 73,
+          "raw_tpr": 0.8625,
+          "reasonable_tpr": 0.8625,
+          "fpr": 0.0875,
+          "vs_static": {
+            "raw_tp": {
+              "gained_count": 0,
+              "gained_shots": [],
+              "lost_count": 4,
+              "lost_shots": [
+                1055238,
+                1056293,
+                1057204,
+                1057527
+              ]
+            },
+            "reasonable_tp": {
+              "gained_count": 0,
+              "gained_shots": [],
+              "lost_count": 4,
+              "lost_shots": [
+                1055238,
+                1056293,
+                1057204,
+                1057527
+              ]
+            },
+            "fp": {
+              "gained_count": 1,
+              "gained_shots": [
+                1056932
+              ],
+              "lost_count": 0,
+              "lost_shots": []
+            }
+          },
+          "strata": {
+            "positive": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 2241,
+              "bce": 0.8114219080077618
+            },
+            "early": {
+              "n_shots": 76,
+              "n_seed_shot_observations": 76,
+              "n_points": 11239,
+              "bce": 0.7286453695615034
+            },
+            "late": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 702,
+              "bce": 3.0670320413189835
+            },
+            "outside": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 11941,
+              "bce": 0.9946352684617523
+            },
+            "safe_high": {
+              "n_shots": 11,
+              "n_seed_shot_observations": 11,
+              "n_points": 827,
+              "bce": 1.3588861348771415
+            }
+          }
+        },
+        "score": {
+          "n_disruptive": 80,
+          "n_safe": 80,
+          "raw_tp": 71,
+          "reasonable_tp": 71,
+          "early_tp": 0,
+          "miss": 5,
+          "tardy": 4,
+          "fp": 9,
+          "tn": 71,
+          "raw_tpr": 0.8875,
+          "reasonable_tpr": 0.8875,
+          "fpr": 0.1125,
+          "vs_static": {
+            "raw_tp": {
+              "gained_count": 1,
+              "gained_shots": [
+                1053131
+              ],
+              "lost_count": 3,
+              "lost_shots": [
+                1053826,
+                1055238,
+                1055246
+              ]
+            },
+            "reasonable_tp": {
+              "gained_count": 1,
+              "gained_shots": [
+                1053131
+              ],
+              "lost_count": 3,
+              "lost_shots": [
+                1053826,
+                1055238,
+                1055246
+              ]
+            },
+            "fp": {
+              "gained_count": 3,
+              "gained_shots": [
+                1054063,
+                1056233,
+                1056932
+              ],
+              "lost_count": 0,
+              "lost_shots": []
+            }
+          },
+          "strata": {
+            "positive": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 2241,
+              "bce": 0.6712139939536568
+            },
+            "early": {
+              "n_shots": 76,
+              "n_seed_shot_observations": 76,
+              "n_points": 11239,
+              "bce": 0.9840783967886116
+            },
+            "late": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 702,
+              "bce": 3.2037384988827298
+            },
+            "outside": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 11941,
+              "bce": 1.2282284215624724
+            },
+            "safe_high": {
+              "n_shots": 11,
+              "n_seed_shot_observations": 11,
+              "n_points": 827,
+              "bce": 1.6395609340476724
+            }
+          }
+        }
+      },
+      "563": {
+        "static": {
+          "n_disruptive": 80,
+          "n_safe": 80,
+          "raw_tp": 73,
+          "reasonable_tp": 73,
+          "early_tp": 0,
+          "miss": 5,
+          "tardy": 2,
+          "fp": 6,
+          "tn": 74,
+          "raw_tpr": 0.9125,
+          "reasonable_tpr": 0.9125,
+          "fpr": 0.075,
+          "vs_static": {
+            "raw_tp": {
+              "gained_count": 0,
+              "gained_shots": [],
+              "lost_count": 0,
+              "lost_shots": []
+            },
+            "reasonable_tp": {
+              "gained_count": 0,
+              "gained_shots": [],
+              "lost_count": 0,
+              "lost_shots": []
+            },
+            "fp": {
+              "gained_count": 0,
+              "gained_shots": [],
+              "lost_count": 0,
+              "lost_shots": []
+            }
+          },
+          "strata": {
+            "positive": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 2241,
+              "bce": 0.5677954961236495
+            },
+            "early": {
+              "n_shots": 76,
+              "n_seed_shot_observations": 76,
+              "n_points": 11239,
+              "bce": 0.9806467710354656
+            },
+            "late": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 702,
+              "bce": 3.26407950956519
+            },
+            "outside": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 11941,
+              "bce": 1.232837506306889
+            },
+            "safe_high": {
+              "n_shots": 11,
+              "n_seed_shot_observations": 11,
+              "n_points": 827,
+              "bce": 1.921216406256075
+            }
+          }
+        },
+        "real": {
+          "n_disruptive": 80,
+          "n_safe": 80,
+          "raw_tp": 73,
+          "reasonable_tp": 73,
+          "early_tp": 0,
+          "miss": 4,
+          "tardy": 3,
+          "fp": 8,
+          "tn": 72,
+          "raw_tpr": 0.9125,
+          "reasonable_tpr": 0.9125,
+          "fpr": 0.1,
+          "vs_static": {
+            "raw_tp": {
+              "gained_count": 1,
+              "gained_shots": [
+                1053131
+              ],
+              "lost_count": 1,
+              "lost_shots": [
+                1057204
+              ]
+            },
+            "reasonable_tp": {
+              "gained_count": 1,
+              "gained_shots": [
+                1053131
+              ],
+              "lost_count": 1,
+              "lost_shots": [
+                1057204
+              ]
+            },
+            "fp": {
+              "gained_count": 2,
+              "gained_shots": [
+                1054063,
+                1056932
+              ],
+              "lost_count": 0,
+              "lost_shots": []
+            }
+          },
+          "strata": {
+            "positive": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 2241,
+              "bce": 0.6633422426516347
+            },
+            "early": {
+              "n_shots": 76,
+              "n_seed_shot_observations": 76,
+              "n_points": 11239,
+              "bce": 0.9685203024065019
+            },
+            "late": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 702,
+              "bce": 3.2516105747777657
+            },
+            "outside": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 11941,
+              "bce": 1.2181302029182781
+            },
+            "safe_high": {
+              "n_shots": 11,
+              "n_seed_shot_observations": 11,
+              "n_points": 827,
+              "bce": 1.7471783145783717
+            }
+          }
+        },
+        "reverse": {
+          "n_disruptive": 80,
+          "n_safe": 80,
+          "raw_tp": 70,
+          "reasonable_tp": 70,
+          "early_tp": 0,
+          "miss": 5,
+          "tardy": 5,
+          "fp": 9,
+          "tn": 71,
+          "raw_tpr": 0.875,
+          "reasonable_tpr": 0.875,
+          "fpr": 0.1125,
+          "vs_static": {
+            "raw_tp": {
+              "gained_count": 0,
+              "gained_shots": [],
+              "lost_count": 3,
+              "lost_shots": [
+                1055329,
+                1057204,
+                1057448
+              ]
+            },
+            "reasonable_tp": {
+              "gained_count": 0,
+              "gained_shots": [],
+              "lost_count": 3,
+              "lost_shots": [
+                1055329,
+                1057204,
+                1057448
+              ]
+            },
+            "fp": {
+              "gained_count": 3,
+              "gained_shots": [
+                1052909,
+                1054592,
+                1056932
+              ],
+              "lost_count": 0,
+              "lost_shots": []
+            }
+          },
+          "strata": {
+            "positive": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 2241,
+              "bce": 0.763162531719905
+            },
+            "early": {
+              "n_shots": 76,
+              "n_seed_shot_observations": 76,
+              "n_points": 11239,
+              "bce": 0.7900951405308395
+            },
+            "late": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 702,
+              "bce": 3.1286833793637396
+            },
+            "outside": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 11941,
+              "bce": 1.0529074888046221
+            },
+            "safe_high": {
+              "n_shots": 11,
+              "n_seed_shot_observations": 11,
+              "n_points": 827,
+              "bce": 1.652932645399521
+            }
+          }
+        },
+        "unsigned": {
+          "n_disruptive": 80,
+          "n_safe": 80,
+          "raw_tp": 70,
+          "reasonable_tp": 70,
+          "early_tp": 0,
+          "miss": 4,
+          "tardy": 6,
+          "fp": 10,
+          "tn": 70,
+          "raw_tpr": 0.875,
+          "reasonable_tpr": 0.875,
+          "fpr": 0.125,
+          "vs_static": {
+            "raw_tp": {
+              "gained_count": 1,
+              "gained_shots": [
+                1053131
+              ],
+              "lost_count": 4,
+              "lost_shots": [
+                1055238,
+                1055329,
+                1057204,
+                1057448
+              ]
+            },
+            "reasonable_tp": {
+              "gained_count": 1,
+              "gained_shots": [
+                1053131
+              ],
+              "lost_count": 4,
+              "lost_shots": [
+                1055238,
+                1055329,
+                1057204,
+                1057448
+              ]
+            },
+            "fp": {
+              "gained_count": 4,
+              "gained_shots": [
+                1052909,
+                1054063,
+                1054592,
+                1056932
+              ],
+              "lost_count": 0,
+              "lost_shots": []
+            }
+          },
+          "strata": {
+            "positive": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 2241,
+              "bce": 0.7120245576752835
+            },
+            "early": {
+              "n_shots": 76,
+              "n_seed_shot_observations": 76,
+              "n_points": 11239,
+              "bce": 0.8674740665196615
+            },
+            "late": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 702,
+              "bce": 3.176992723509582
+            },
+            "outside": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 11941,
+              "bce": 1.1225455991714808
+            },
+            "safe_high": {
+              "n_shots": 11,
+              "n_seed_shot_observations": 11,
+              "n_points": 827,
+              "bce": 1.8212307002018253
+            }
+          }
+        },
+        "zero_target": {
+          "n_disruptive": 80,
+          "n_safe": 80,
+          "raw_tp": 70,
+          "reasonable_tp": 70,
+          "early_tp": 0,
+          "miss": 5,
+          "tardy": 5,
+          "fp": 8,
+          "tn": 72,
+          "raw_tpr": 0.875,
+          "reasonable_tpr": 0.875,
+          "fpr": 0.1,
+          "vs_static": {
+            "raw_tp": {
+              "gained_count": 0,
+              "gained_shots": [],
+              "lost_count": 3,
+              "lost_shots": [
+                1055238,
+                1057204,
+                1057527
+              ]
+            },
+            "reasonable_tp": {
+              "gained_count": 0,
+              "gained_shots": [],
+              "lost_count": 3,
+              "lost_shots": [
+                1055238,
+                1057204,
+                1057527
+              ]
+            },
+            "fp": {
+              "gained_count": 2,
+              "gained_shots": [
+                1054063,
+                1056932
+              ],
+              "lost_count": 0,
+              "lost_shots": []
+            }
+          },
+          "strata": {
+            "positive": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 2241,
+              "bce": 0.7994111953730416
+            },
+            "early": {
+              "n_shots": 76,
+              "n_seed_shot_observations": 76,
+              "n_points": 11239,
+              "bce": 0.7540174034492422
+            },
+            "late": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 702,
+              "bce": 3.095076884341163
+            },
+            "outside": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 11941,
+              "bce": 1.0185185130222663
+            },
+            "safe_high": {
+              "n_shots": 11,
+              "n_seed_shot_observations": 11,
+              "n_points": 827,
+              "bce": 1.508911662743048
+            }
+          }
+        },
+        "score": {
+          "n_disruptive": 80,
+          "n_safe": 80,
+          "raw_tp": 71,
+          "reasonable_tp": 71,
+          "early_tp": 0,
+          "miss": 5,
+          "tardy": 4,
+          "fp": 8,
+          "tn": 72,
+          "raw_tpr": 0.8875,
+          "reasonable_tpr": 0.8875,
+          "fpr": 0.1,
+          "vs_static": {
+            "raw_tp": {
+              "gained_count": 1,
+              "gained_shots": [
+                1053131
+              ],
+              "lost_count": 3,
+              "lost_shots": [
+                1055238,
+                1055246,
+                1057204
+              ]
+            },
+            "reasonable_tp": {
+              "gained_count": 1,
+              "gained_shots": [
+                1053131
+              ],
+              "lost_count": 3,
+              "lost_shots": [
+                1055238,
+                1055246,
+                1057204
+              ]
+            },
+            "fp": {
+              "gained_count": 2,
+              "gained_shots": [
+                1054063,
+                1056932
+              ],
+              "lost_count": 0,
+              "lost_shots": []
+            }
+          },
+          "strata": {
+            "positive": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 2241,
+              "bce": 0.6860861553734956
+            },
+            "early": {
+              "n_shots": 76,
+              "n_seed_shot_observations": 76,
+              "n_points": 11239,
+              "bce": 0.9922920350625111
+            },
+            "late": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 702,
+              "bce": 3.2306432715789826
+            },
+            "outside": {
+              "n_shots": 78,
+              "n_seed_shot_observations": 78,
+              "n_points": 11941,
+              "bce": 1.238118862584833
+            },
+            "safe_high": {
+              "n_shots": 11,
+              "n_seed_shot_observations": 11,
+              "n_points": 827,
+              "bce": 1.7267755705929357
+            }
+          }
+        }
+      }
+    },
+    "pooled_strata": {
+      "positive": {
+        "static": {
+          "n_shots": 78,
+          "n_seed_shot_observations": 234,
+          "n_points": 6723,
+          "bce": 0.5677954961236495
+        },
+        "real": {
+          "n_shots": 78,
+          "n_seed_shot_observations": 234,
+          "n_points": 6723,
+          "bce": 0.6708161970651793
+        },
+        "reverse": {
+          "n_shots": 78,
+          "n_seed_shot_observations": 234,
+          "n_points": 6723,
+          "bce": 0.7574062888409044
+        },
+        "unsigned": {
+          "n_shots": 78,
+          "n_seed_shot_observations": 234,
+          "n_points": 6723,
+          "bce": 0.7125673160473204
+        },
+        "zero_target": {
+          "n_shots": 78,
+          "n_seed_shot_observations": 234,
+          "n_points": 6723,
+          "bce": 0.8058427936195715
+        },
+        "score": {
+          "n_shots": 78,
+          "n_seed_shot_observations": 234,
+          "n_points": 6723,
+          "bce": 0.691225679926796
+        }
+      },
+      "early": {
+        "static": {
+          "n_shots": 76,
+          "n_seed_shot_observations": 228,
+          "n_points": 33717,
+          "bce": 0.9806467710354656
+        },
+        "real": {
+          "n_shots": 76,
+          "n_seed_shot_observations": 228,
+          "n_points": 33717,
+          "bce": 0.9616607697402606
+        },
+        "reverse": {
+          "n_shots": 76,
+          "n_seed_shot_observations": 228,
+          "n_points": 33717,
+          "bce": 0.7838994970621563
+        },
+        "unsigned": {
+          "n_shots": 76,
+          "n_seed_shot_observations": 228,
+          "n_points": 33717,
+          "bce": 0.8674297240370503
+        },
+        "zero_target": {
+          "n_shots": 76,
+          "n_seed_shot_observations": 228,
+          "n_points": 33717,
+          "bce": 0.7443960160853408
+        },
+        "score": {
+          "n_shots": 76,
+          "n_seed_shot_observations": 228,
+          "n_points": 33717,
+          "bce": 0.9847493003133114
+        }
+      },
+      "late": {
+        "static": {
+          "n_shots": 78,
+          "n_seed_shot_observations": 234,
+          "n_points": 2106,
+          "bce": 3.26407950956519
+        },
+        "real": {
+          "n_shots": 78,
+          "n_seed_shot_observations": 234,
+          "n_points": 2106,
+          "bce": 3.2430692711343956
+        },
+        "reverse": {
+          "n_shots": 78,
+          "n_seed_shot_observations": 234,
+          "n_points": 2106,
+          "bce": 3.123077281128798
+        },
+        "unsigned": {
+          "n_shots": 78,
+          "n_seed_shot_observations": 234,
+          "n_points": 2106,
+          "bce": 3.168958204112263
+        },
+        "zero_target": {
+          "n_shots": 78,
+          "n_seed_shot_observations": 234,
+          "n_points": 2106,
+          "bce": 3.093934235770718
+        },
+        "score": {
+          "n_shots": 78,
+          "n_seed_shot_observations": 234,
+          "n_points": 2106,
+          "bce": 3.2116658177666393
+        }
+      },
+      "outside": {
+        "static": {
+          "n_shots": 78,
+          "n_seed_shot_observations": 234,
+          "n_points": 35823,
+          "bce": 1.232837506306889
+        },
+        "real": {
+          "n_shots": 78,
+          "n_seed_shot_observations": 234,
+          "n_points": 35823,
+          "bce": 1.2118460088017586
+        },
+        "reverse": {
+          "n_shots": 78,
+          "n_seed_shot_observations": 234,
+          "n_points": 35823,
+          "bce": 1.0469436359716884
+        },
+        "unsigned": {
+          "n_shots": 78,
+          "n_seed_shot_observations": 234,
+          "n_points": 35823,
+          "bce": 1.1222345684524635
+        },
+        "zero_target": {
+          "n_shots": 78,
+          "n_seed_shot_observations": 234,
+          "n_points": 35823,
+          "bce": 1.0099971518377155
+        },
+        "score": {
+          "n_shots": 78,
+          "n_seed_shot_observations": 234,
+          "n_points": 35823,
+          "bce": 1.230244218764649
+        }
+      },
+      "safe_high": {
+        "static": {
+          "n_shots": 11,
+          "n_seed_shot_observations": 33,
+          "n_points": 2481,
+          "bce": 1.921216406256075
+        },
+        "real": {
+          "n_shots": 11,
+          "n_seed_shot_observations": 33,
+          "n_points": 2481,
+          "bce": 1.6873864778479166
+        },
+        "reverse": {
+          "n_shots": 11,
+          "n_seed_shot_observations": 33,
+          "n_points": 2481,
+          "bce": 1.6419698606438808
+        },
+        "unsigned": {
+          "n_shots": 11,
+          "n_seed_shot_observations": 33,
+          "n_points": 2481,
+          "bce": 1.7851490270328676
+        },
+        "zero_target": {
+          "n_shots": 11,
+          "n_seed_shot_observations": 33,
+          "n_points": 2481,
+          "bce": 1.4448052887249558
+        },
+        "score": {
+          "n_shots": 11,
+          "n_seed_shot_observations": 33,
+          "n_points": 2481,
+          "bce": 1.6706100345414931
+        }
+      }
+    },
+    "mean_counts": {
+      "static": {
+        "raw_tp": 73.0,
+        "reasonable_tp": 73.0,
+        "fp": 6.0
+      },
+      "real": {
+        "raw_tp": 73.0,
+        "reasonable_tp": 73.0,
+        "fp": 8.0
+      },
+      "reverse": {
+        "raw_tp": 70.0,
+        "reasonable_tp": 70.0,
+        "fp": 9.0
+      },
+      "unsigned": {
+        "raw_tp": 70.33333333333333,
+        "reasonable_tp": 70.33333333333333,
+        "fp": 9.666666666666666
+      },
+      "zero_target": {
+        "raw_tp": 69.33333333333334,
+        "reasonable_tp": 69.33333333333334,
+        "fp": 7.666666666666667
+      },
+      "score": {
+        "raw_tp": 70.33333333333333,
+        "reasonable_tp": 70.33333333333333,
+        "fp": 8.333333333333334
+      }
+    },
+    "paired_bootstrap": {
+      "real_minus_static": {
+        "positive": {
+          "n_shots": 78,
+          "mean_difference": 0.10302070094152971,
+          "ci_95": [
+            0.029502360374559014,
+            0.19061740499828234
+          ],
+          "resamples": 2000,
+          "seed": 61106
+        },
+        "early": {
+          "n_shots": 76,
+          "mean_difference": -0.01898600129520493,
+          "ci_95": [
+            -0.08832366269153412,
+            0.048830663313847736
+          ],
+          "resamples": 2000,
+          "seed": 61106
+        },
+        "late": {
+          "n_shots": 78,
+          "mean_difference": -0.021010238430793977,
+          "ci_95": [
+            -0.11481926876258369,
+            0.062310505211490806
+          ],
+          "resamples": 2000,
+          "seed": 61106
+        },
+        "outside": {
+          "n_shots": 78,
+          "mean_difference": -0.02099149750513049,
+          "ci_95": [
+            -0.08498218506987061,
+            0.03699428206165684
+          ],
+          "resamples": 2000,
+          "seed": 61106
+        },
+        "safe_high": {
+          "n_shots": 11,
+          "mean_difference": -0.23382992840815842,
+          "ci_95": [
+            -0.5370304379823101,
+            0.01692080187696554
+          ],
+          "resamples": 2000,
+          "seed": 61106
+        },
+        "raw_tp": {
+          "n_shots": 80,
+          "mean_difference": 0.0,
+          "ci_95": [
+            -0.0375,
+            0.0375
+          ],
+          "resamples": 2000,
+          "seed": 61106
+        },
+        "reasonable_tp": {
+          "n_shots": 80,
+          "mean_difference": 0.0,
+          "ci_95": [
+            -0.0375,
+            0.0375
+          ],
+          "resamples": 2000,
+          "seed": 61106
+        },
+        "fp": {
+          "n_shots": 80,
+          "mean_difference": 0.025,
+          "ci_95": [
+            0.0,
+            0.0625
+          ],
+          "resamples": 2000,
+          "seed": 61106
+        }
+      },
+      "real_minus_reverse": {
+        "positive": {
+          "n_shots": 78,
+          "mean_difference": -0.08659009177572524,
+          "ci_95": [
+            -0.16562089553506543,
+            -0.011835797634358252
+          ],
+          "resamples": 2000,
+          "seed": 61106
+        },
+        "early": {
+          "n_shots": 76,
+          "mean_difference": 0.17776127267810424,
+          "ci_95": [
+            0.08790767950614245,
+            0.26875606064192425
+          ],
+          "resamples": 2000,
+          "seed": 61106
+        },
+        "late": {
+          "n_shots": 78,
+          "mean_difference": 0.11999199000559801,
+          "ci_95": [
+            0.03967386010450858,
+            0.20827745821124655
+          ],
+          "resamples": 2000,
+          "seed": 61106
+        },
+        "outside": {
+          "n_shots": 78,
+          "mean_difference": 0.16490237283007025,
+          "ci_95": [
+            0.08410765512049462,
+            0.24586055936054307
+          ],
+          "resamples": 2000,
+          "seed": 61106
+        },
+        "safe_high": {
+          "n_shots": 11,
+          "mean_difference": 0.045416617204035864,
+          "ci_95": [
+            -0.26387899974071105,
+            0.32569611107151664
+          ],
+          "resamples": 2000,
+          "seed": 61106
+        },
+        "raw_tp": {
+          "n_shots": 80,
+          "mean_difference": 0.0375,
+          "ci_95": [
+            0.004166666666666667,
+            0.08333333333333333
+          ],
+          "resamples": 2000,
+          "seed": 61106
+        },
+        "reasonable_tp": {
+          "n_shots": 80,
+          "mean_difference": 0.0375,
+          "ci_95": [
+            0.004166666666666667,
+            0.08333333333333333
+          ],
+          "resamples": 2000,
+          "seed": 61106
+        },
+        "fp": {
+          "n_shots": 80,
+          "mean_difference": -0.0125,
+          "ci_95": [
+            -0.05031249999999998,
+            0.025
+          ],
+          "resamples": 2000,
+          "seed": 61106
+        }
+      }
+    }
+  },
+  "gate": {
+    "passed": false,
+    "criteria": {
+      "positive_at_least_20_distinct_shots": true,
+      "safe_high_at_least_20_distinct_shots": false,
+      "positive_real_better_than_static_by_over_1e-6": false,
+      "positive_real_better_than_reverse_by_over_1e-6": true,
+      "positive_real_better_than_unsigned_by_over_1e-6": true,
+      "positive_real_better_than_zero_target_by_over_1e-6": true,
+      "positive_real_better_than_score_by_over_1e-6": true,
+      "safe_high_real_at_most_static_plus_0_02": true,
+      "mean_raw_tp_at_least_static": true,
+      "mean_fp_at_most_static_plus_1": false
+    }
+  },
+  "auxiliary": {
+    "maturities": 1255,
+    "visible": 1255,
+    "common": 1255,
+    "active": 38387,
+    "norms": [
+      0.34728253293910505,
+      0.34492931216235495,
+      0.3457140877812973
+    ],
+    "cosine": [
+      [
+        -0.34878139898103017,
+        0.2140061791343986,
+        0.2708330908588421
+      ],
+      [
+        -0.3710256873917181,
+        0.1736880123451706,
+        0.25269306277072456
+      ],
+      [
+        -0.3520993636564106,
+        0.20656093439331136,
+        0.25893790741881134
+      ]
+    ],
+    "aux": [
+      [
+        0.8105911572749742,
+        0.8269688586602345
+      ],
+      [
+        0.8064546452523566,
+        0.8269688586602345
+      ],
+      [
+        0.8050460613760365,
+        0.8269688586602345
+      ]
+    ],
+    "abs_risk_change": [
+      0.4677309266740124,
+      0.4498704364733447,
+      0.452695080122288
+    ],
+    "abs_beyond_equal_score": [
+      0.12337191746653241,
+      0.11911971989257265,
+      0.11936833775029959
+    ]
+  },
+  "original_east_reference": null,
+  "prefix": [
+    {
+      "shot": 1051525,
+      "points": 103,
+      "error": 3.814697265625e-06,
+      "active": 39
+    },
+    {
+      "shot": 1054188,
+      "points": 103,
+      "error": 1.9073486328125e-06,
+      "active": 39
+    },
+    {
+      "shot": 1056967,
+      "points": 103,
+      "error": 1.1801719665527344e-05,
+      "active": 39
+    }
+  ],
+  "seconds": 2.8106293689997983
+}

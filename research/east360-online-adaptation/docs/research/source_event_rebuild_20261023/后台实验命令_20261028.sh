@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Exact sequential job body launched by the local user service; run from repo root.
+# Transient units may be unloaded on exit: require completed.json AND the independent
+# full360 audit, not a retained systemd Result field. Any failed stage stops the queue.
+# Output directories are exclusive; this script does not resume or overwrite prior runs.
+set -eu
+while systemctl --user is-active --quiet fuison-event-true360-20261028.service; do sleep 10; done
+test -f experiments/risk_aligned_online/runs/lifecycle_event_true360_service_20261028/completed.json
+/home/hetaisheng/miniconda3/envs/rl_env/bin/python -m experiments.risk_aligned_online.lifecycle_stream_20261025.audit experiments/risk_aligned_online/runs/lifecycle_event_true360_service_20261028
+/home/hetaisheng/miniconda3/envs/rl_env/bin/python -m experiments.risk_aligned_online.lifecycle_stream_20261025.run --output experiments/risk_aligned_online/runs/lifecycle_event_none360_service_20261028 --target-loss disruptive_positive_only --readout full --feedback progressive --event-memory experiments/risk_aligned_online/runs/event_teaching_source_20261026/none_epoch2.pt
+/home/hetaisheng/miniconda3/envs/rl_env/bin/python -m experiments.risk_aligned_online.lifecycle_stream_20261025.audit experiments/risk_aligned_online/runs/lifecycle_event_none360_service_20261028
+/home/hetaisheng/miniconda3/envs/rl_env/bin/python -m experiments.risk_aligned_online.lifecycle_stream_20261025.run --output experiments/risk_aligned_online/runs/lifecycle_event_shuffled360_service_20261028 --target-loss disruptive_positive_only --readout full --feedback progressive --event-memory experiments/risk_aligned_online/runs/event_teaching_source_20261026/shuffled_epoch2.pt
+/home/hetaisheng/miniconda3/envs/rl_env/bin/python -m experiments.risk_aligned_online.lifecycle_stream_20261025.audit experiments/risk_aligned_online/runs/lifecycle_event_shuffled360_service_20261028
+/home/hetaisheng/miniconda3/envs/rl_env/bin/python -m experiments.risk_aligned_online.event_teaching_20261026.compare experiments/risk_aligned_online/runs/lifecycle_event_none360_service_20261028 experiments/risk_aligned_online/runs/lifecycle_event_true360_service_20261028 experiments/risk_aligned_online/runs/lifecycle_event_shuffled360_service_20261028
+/home/hetaisheng/miniconda3/envs/rl_env/bin/python -m experiments.risk_aligned_online.direction_teaching_20261026.run --reference-ablation --output experiments/risk_aligned_online/runs/reference_gradient_source_service_20261028
+/home/hetaisheng/miniconda3/envs/rl_env/bin/python -m experiments.risk_aligned_online.direction_teaching_20261026.audit experiments/risk_aligned_online/runs/reference_gradient_source_service_20261028
+/home/hetaisheng/miniconda3/envs/rl_env/bin/python -m experiments.risk_aligned_online.lifecycle_stream_20261025.run --output experiments/risk_aligned_online/runs/lifecycle_reference_direction360_service_20261028 --target-loss disruptive_positive_only --readout full --feedback progressive --direction-memory experiments/risk_aligned_online/runs/reference_gradient_source_service_20261028/direction_epoch2.pt
+/home/hetaisheng/miniconda3/envs/rl_env/bin/python -m experiments.risk_aligned_online.lifecycle_stream_20261025.audit experiments/risk_aligned_online/runs/lifecycle_reference_direction360_service_20261028
+/home/hetaisheng/miniconda3/envs/rl_env/bin/python -m experiments.risk_aligned_online.lifecycle_stream_20261025.run --output experiments/risk_aligned_online/runs/lifecycle_reference_detached360_service_20261028 --target-loss disruptive_positive_only --readout full --feedback progressive --direction-memory experiments/risk_aligned_online/runs/reference_gradient_source_service_20261028/detached_epoch2.pt
+/home/hetaisheng/miniconda3/envs/rl_env/bin/python -m experiments.risk_aligned_online.lifecycle_stream_20261025.audit experiments/risk_aligned_online/runs/lifecycle_reference_detached360_service_20261028
+/home/hetaisheng/miniconda3/envs/rl_env/bin/python -m experiments.risk_aligned_online.direction_teaching_20261026.compare experiments/risk_aligned_online/runs/lifecycle_reference_direction360_service_20261028 experiments/risk_aligned_online/runs/lifecycle_reference_detached360_service_20261028

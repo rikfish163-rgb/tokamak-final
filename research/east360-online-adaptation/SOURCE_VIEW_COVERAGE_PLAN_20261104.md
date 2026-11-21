@@ -1,0 +1,7 @@
+# 配对源诊断可用性覆盖：当前更新规则的单因素试验
+
+source_supported_internal_update_v1已实际完成：1299 TRAIN炮、1410窗口，增加源域覆盖未保护后80危险点。其source教学一律屏蔽MNM/CIII，EAST20教学也是CIII极少可用。历史输入审查对固定流实际读取：前20仅1炮有CIII非sentinel，后340有290炮有；因此只教学缺CIII视图没有覆盖后续实际可见CIII的状态。该现象是统计可用性，不是原始诊断失效的物理原因证明。
+
+固定旧1410个TRAIN窗口、相同事件类别、原标签max(25ms,AdvancedTime)、原128历史、教学query和基模。旧缺MNM/CIII的特征与梯度直接逐项保留，再为每个窗口增加“仅缺MNM，保留源域实际CIII掩码”的配对视图；不补造EAST CIII值、不改变在线输入。新的teacher仍是相同256内部参数在同query上的真实风险梯度；视图不同，梯度可以不同，不把二者强行当相同标签下的同向梯度。
+
+两个视图各占source权重一半；group/family/shot/case分层保持。EAST20的原60例teacher、source/EAST一半混合权重、ridge0.1、实际单位SGD步0.05与true/hold/reverse均不改。保留旧east20、source-only、mixed_uniform、mixed_event及mixed_shuffled五种权重比较。只在同后80固定240例作筛选；逐点复现旧east20对照。该试验隔离的是源可用性覆盖，不预定成功，不改原source，不声称独立未来验证。主要验收仍为危险点相对不更新的保护及真实反馈相对匹配伪反馈的独立改善，不能用安全损失下降抵消危险损害。

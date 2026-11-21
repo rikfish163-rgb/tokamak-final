@@ -1,0 +1,346 @@
+{
+  "sealed": 600,
+  "matured_attempts": 9028,
+  "temporary_resets": 240,
+  "bitwise_negative_control_traces": 360,
+  "original_source_unchanged": true,
+  "snapshot_matches_runtime_files": true,
+  "analysis": {
+    "mask_static": {
+      "all": {
+        "tp": 24,
+        "fp": 14,
+        "n_disrupt": 39,
+        "n_safe": 81,
+        "tpr": 0.6153846153846154,
+        "fpr": 0.1728395061728395,
+        "J": 0.4425451092117759,
+        "median_lead_ms": 2171.5,
+        "alarms_above_3000ms": 9
+      },
+      "first30": {
+        "tp": 1,
+        "fp": 1,
+        "n_disrupt": 5,
+        "n_safe": 25,
+        "tpr": 0.2,
+        "fpr": 0.04,
+        "J": 0.16,
+        "median_lead_ms": 84.0,
+        "alarms_above_3000ms": 0
+      },
+      "later90": {
+        "tp": 23,
+        "fp": 13,
+        "n_disrupt": 34,
+        "n_safe": 56,
+        "tpr": 0.6764705882352942,
+        "fpr": 0.23214285714285715,
+        "J": 0.444327731092437,
+        "median_lead_ms": 2177.0,
+        "alarms_above_3000ms": 9
+      },
+      "accepted_intra": 0,
+      "matured": 0,
+      "accepted_inter": 0
+    },
+    "static": {
+      "all": {
+        "tp": 20,
+        "fp": 8,
+        "n_disrupt": 39,
+        "n_safe": 81,
+        "tpr": 0.5128205128205128,
+        "fpr": 0.09876543209876543,
+        "J": 0.41405508072174735,
+        "median_lead_ms": 1980.55,
+        "alarms_above_3000ms": 5
+      },
+      "first30": {
+        "tp": 1,
+        "fp": 1,
+        "n_disrupt": 5,
+        "n_safe": 25,
+        "tpr": 0.2,
+        "fpr": 0.04,
+        "J": 0.16,
+        "median_lead_ms": 84.0,
+        "alarms_above_3000ms": 0
+      },
+      "later90": {
+        "tp": 19,
+        "fp": 7,
+        "n_disrupt": 34,
+        "n_safe": 56,
+        "tpr": 0.5588235294117647,
+        "fpr": 0.125,
+        "J": 0.4338235294117647,
+        "median_lead_ms": 2126.1,
+        "alarms_above_3000ms": 5
+      },
+      "accepted_intra": 0,
+      "matured": 0,
+      "accepted_inter": 0
+    },
+    "intra": {
+      "all": {
+        "tp": 20,
+        "fp": 8,
+        "n_disrupt": 39,
+        "n_safe": 81,
+        "tpr": 0.5128205128205128,
+        "fpr": 0.09876543209876543,
+        "J": 0.41405508072174735,
+        "median_lead_ms": 1806.0,
+        "alarms_above_3000ms": 4
+      },
+      "first30": {
+        "tp": 1,
+        "fp": 0,
+        "n_disrupt": 5,
+        "n_safe": 25,
+        "tpr": 0.2,
+        "fpr": 0.0,
+        "J": 0.2,
+        "median_lead_ms": 71.0,
+        "alarms_above_3000ms": 0
+      },
+      "later90": {
+        "tp": 19,
+        "fp": 8,
+        "n_disrupt": 34,
+        "n_safe": 56,
+        "tpr": 0.5588235294117647,
+        "fpr": 0.14285714285714285,
+        "J": 0.41596638655462187,
+        "median_lead_ms": 1836.0,
+        "alarms_above_3000ms": 4
+      },
+      "accepted_intra": 4514,
+      "matured": 4514,
+      "accepted_inter": 0
+    },
+    "inter": {
+      "all": {
+        "tp": 19,
+        "fp": 4,
+        "n_disrupt": 39,
+        "n_safe": 81,
+        "tpr": 0.48717948717948717,
+        "fpr": 0.04938271604938271,
+        "J": 0.43779677113010446,
+        "median_lead_ms": 1833.0,
+        "alarms_above_3000ms": 4
+      },
+      "first30": {
+        "tp": 1,
+        "fp": 1,
+        "n_disrupt": 5,
+        "n_safe": 25,
+        "tpr": 0.2,
+        "fpr": 0.04,
+        "J": 0.16,
+        "median_lead_ms": 84.0,
+        "alarms_above_3000ms": 0
+      },
+      "later90": {
+        "tp": 18,
+        "fp": 3,
+        "n_disrupt": 34,
+        "n_safe": 56,
+        "tpr": 0.5294117647058824,
+        "fpr": 0.05357142857142857,
+        "J": 0.4758403361344538,
+        "median_lead_ms": 1850.55,
+        "alarms_above_3000ms": 4
+      },
+      "accepted_intra": 0,
+      "matured": 0,
+      "accepted_inter": 19
+    },
+    "both": {
+      "all": {
+        "tp": 20,
+        "fp": 7,
+        "n_disrupt": 39,
+        "n_safe": 81,
+        "tpr": 0.5128205128205128,
+        "fpr": 0.08641975308641975,
+        "J": 0.426400759734093,
+        "median_lead_ms": 1805.5,
+        "alarms_above_3000ms": 4
+      },
+      "first30": {
+        "tp": 1,
+        "fp": 0,
+        "n_disrupt": 5,
+        "n_safe": 25,
+        "tpr": 0.2,
+        "fpr": 0.0,
+        "J": 0.2,
+        "median_lead_ms": 74.0,
+        "alarms_above_3000ms": 0
+      },
+      "later90": {
+        "tp": 19,
+        "fp": 7,
+        "n_disrupt": 34,
+        "n_safe": 56,
+        "tpr": 0.5588235294117647,
+        "fpr": 0.125,
+        "J": 0.4338235294117647,
+        "median_lead_ms": 1835.0,
+        "alarms_above_3000ms": 4
+      },
+      "accepted_intra": 4514,
+      "matured": 4514,
+      "accepted_inter": 23
+    }
+  },
+  "paired": {
+    "intra_vs_static": {
+      "rescued_disruptions": [
+        56606
+      ],
+      "lost_disruptions": [
+        55854
+      ],
+      "removed_fp": [
+        54244
+      ],
+      "added_fp": [
+        58599
+      ]
+    },
+    "inter_vs_static": {
+      "rescued_disruptions": [],
+      "lost_disruptions": [
+        55854
+      ],
+      "removed_fp": [
+        56012,
+        58442,
+        58471,
+        58717
+      ],
+      "added_fp": []
+    },
+    "both_vs_static": {
+      "rescued_disruptions": [
+        56606
+      ],
+      "lost_disruptions": [
+        55854
+      ],
+      "removed_fp": [
+        54244,
+        56012,
+        58717
+      ],
+      "added_fp": [
+        54792,
+        58599
+      ]
+    },
+    "both_vs_inter": {
+      "rescued_disruptions": [
+        56606
+      ],
+      "lost_disruptions": [],
+      "removed_fp": [
+        54244
+      ],
+      "added_fp": [
+        54792,
+        58442,
+        58471,
+        58599
+      ]
+    },
+    "intra_vs_uniform": {
+      "rescued_disruptions": [],
+      "lost_disruptions": [
+        54094,
+        54272,
+        54846,
+        54865,
+        54924,
+        55854,
+        58467,
+        59036
+      ],
+      "removed_fp": [
+        54099,
+        54105,
+        54244,
+        54792,
+        54793,
+        54829,
+        56649,
+        56994,
+        58677,
+        58757
+      ],
+      "added_fp": []
+    },
+    "both_vs_uniform": {
+      "rescued_disruptions": [],
+      "lost_disruptions": [
+        54094,
+        54272,
+        54846,
+        54865,
+        54924,
+        55854,
+        58467,
+        59036
+      ],
+      "removed_fp": [
+        54099,
+        54105,
+        54244,
+        54793,
+        54829,
+        56012,
+        56994,
+        58677,
+        58717
+      ],
+      "added_fp": []
+    }
+  },
+  "source_validation": {
+    "uniform": {
+      "n": 256,
+      "risk_before": 0.8587034302036045,
+      "risk_after": 0.8596488175262493,
+      "classes": {
+        "0": {
+          "n": 139,
+          "risk_after": 0.9051870497868215
+        },
+        "1": {
+          "n": 117,
+          "risk_after": 0.8055478407380482
+        }
+      }
+    },
+    "learned": {
+      "n": 256,
+      "risk_before": 0.8587034302036045,
+      "risk_after": 0.8543997526667226,
+      "classes": {
+        "0": {
+          "n": 139,
+          "risk_after": 0.9005669942862696
+        },
+        "1": {
+          "n": 117,
+          "risk_after": 0.799551491255466
+        }
+      }
+    }
+  },
+  "source_meta_steps": 256,
+  "evidence": "DEVELOPMENT_PREFIX; no independent intra benefit"
+}

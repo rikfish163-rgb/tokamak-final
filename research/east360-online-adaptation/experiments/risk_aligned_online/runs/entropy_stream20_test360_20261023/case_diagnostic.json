@@ -1,0 +1,2121 @@
+{
+  "completed_sha256": "37112521a50d2db72fd726d9ae267f8d310a9adf69f243862d46ff6676707b49",
+  "verification_sha256": "f85cdba87b11ad55c4dadf6983d41a820615466ea4b660f3c61cb87cc16de249",
+  "diagnose_sha256": "be68a65266ac83365f80e8adc24858f1e1721422f92945b511b8487a42d705d1",
+  "threshold": 0.7258946895599365,
+  "cases": [
+    {
+      "arm": "local_reset",
+      "kind": "rescued_timely",
+      "shot": 69768,
+      "is_disrupt": true,
+      "probe_index": 3840,
+      "time": 6.84,
+      "lead_ms": 86.9,
+      "risk": {
+        "static": 0.5573879480361938,
+        "forecast": 0.6490049362182617,
+        "local_reset": 0.751585066318512,
+        "cumulative": 0.00598315941169858
+      },
+      "maximum_eligible_risk": {
+        "static": 0.5858252644538879,
+        "forecast": 0.7279340624809265,
+        "local_reset": 0.7659708857536316,
+        "cumulative": 0.028872596099972725
+      },
+      "static_result": {
+        "shot": 69768,
+        "is_disrupt": true,
+        "alarm": true,
+        "lead_ms": 4.9,
+        "timely": false
+      },
+      "new_result": {
+        "shot": 69768,
+        "is_disrupt": true,
+        "alarm": true,
+        "lead_ms": 86.9,
+        "timely": true
+      },
+      "preceding_update": {
+        "last_observation": 3839,
+        "first_affected_prediction": 3840,
+        "gradient_steps": 1,
+        "parameter_delta_norm": 0.0009999997175336665,
+        "parent_distance": 0.0009999997175336665,
+        "gradient_norm": 44.66287612915039,
+        "clip_factor": 0.022389959543943405,
+        "loss_before": 0.688069224357605,
+        "loss_after": 0.5672665238380432,
+        "observed_logit_before": 0.20206698775291443,
+        "observed_logit_after": 1.0745508670806885
+      },
+      "updates_before_probe": 29,
+      "observed_time": 6.839,
+      "parent_risk_at_observed": 0.5503460168838501,
+      "delay_after_update_ms": 0.9999999999994458
+    },
+    {
+      "arm": "local_reset",
+      "kind": "rescued_timely",
+      "shot": 74087,
+      "is_disrupt": true,
+      "probe_index": 7808,
+      "time": 10.808,
+      "lead_ms": 32.11172,
+      "risk": {
+        "static": 0.6346278786659241,
+        "forecast": 0.026499710977077484,
+        "local_reset": 0.8168235421180725,
+        "cumulative": 0.00524835055693984
+      },
+      "maximum_eligible_risk": {
+        "static": 0.6346278786659241,
+        "forecast": 0.026499710977077484,
+        "local_reset": 0.8168235421180725,
+        "cumulative": 0.021796004846692085
+      },
+      "static_result": {
+        "shot": 74087,
+        "is_disrupt": true,
+        "alarm": true,
+        "lead_ms": 25.11172,
+        "timely": false
+      },
+      "new_result": {
+        "shot": 74087,
+        "is_disrupt": true,
+        "alarm": true,
+        "lead_ms": 32.11172,
+        "timely": true
+      },
+      "preceding_update": {
+        "last_observation": 7807,
+        "first_affected_prediction": 7808,
+        "gradient_steps": 1,
+        "parameter_delta_norm": 0.0009999994339757055,
+        "parent_distance": 0.0009999994339757055,
+        "gradient_norm": 65.81822204589844,
+        "clip_factor": 0.015193360857665539,
+        "loss_before": 0.6852918863296509,
+        "loss_after": 0.5290398597717285,
+        "observed_logit_before": 0.2516756057739258,
+        "observed_logit_after": 1.255839228630066
+      },
+      "updates_before_probe": 60,
+      "observed_time": 10.807,
+      "parent_risk_at_observed": 0.5625874996185303,
+      "delay_after_update_ms": 0.9999999999994458
+    },
+    {
+      "arm": "local_reset",
+      "kind": "lost_timely",
+      "shot": 73669,
+      "is_disrupt": true,
+      "probe_index": 24174,
+      "time": 27.174,
+      "lead_ms": 31.0,
+      "risk": {
+        "static": 0.7334411144256592,
+        "forecast": 0.5247228741645813,
+        "local_reset": 0.7160748243331909,
+        "cumulative": 0.007361447438597679
+      },
+      "maximum_eligible_risk": {
+        "static": 0.7334411144256592,
+        "forecast": 0.5247228741645813,
+        "local_reset": 0.7160748243331909,
+        "cumulative": 0.020056577399373055
+      },
+      "static_result": {
+        "shot": 73669,
+        "is_disrupt": true,
+        "alarm": true,
+        "lead_ms": 31.0,
+        "timely": true
+      },
+      "new_result": {
+        "shot": 73669,
+        "is_disrupt": true,
+        "alarm": true,
+        "lead_ms": 30.0,
+        "timely": false
+      },
+      "preceding_update": {
+        "last_observation": 24063,
+        "first_affected_prediction": 24064,
+        "gradient_steps": 1,
+        "parameter_delta_norm": 0.0009999994498164923,
+        "parent_distance": 0.0009999994498164923,
+        "gradient_norm": 5.913272857666016,
+        "clip_factor": 0.16911108791828156,
+        "loss_before": 0.14554116129875183,
+        "loss_after": 0.139785498380661,
+        "observed_logit_before": -3.372868537902832,
+        "observed_logit_after": -3.4270317554473877
+      },
+      "updates_before_probe": 187,
+      "observed_time": 27.063,
+      "parent_risk_at_observed": 0.03315424174070358,
+      "delay_after_update_ms": 111.00000000000065
+    },
+    {
+      "arm": "local_reset",
+      "kind": "lost_timely",
+      "shot": 94803,
+      "is_disrupt": true,
+      "probe_index": 3435,
+      "time": 6.4350000000000005,
+      "lead_ms": 32.0,
+      "risk": {
+        "static": 0.7310308814048767,
+        "forecast": 0.7578993439674377,
+        "local_reset": 0.7166891098022461,
+        "cumulative": 0.31268569827079773
+      },
+      "maximum_eligible_risk": {
+        "static": 0.7378922700881958,
+        "forecast": 0.7644318342208862,
+        "local_reset": 0.7241727113723755,
+        "cumulative": 0.33259499073028564
+      },
+      "static_result": {
+        "shot": 94803,
+        "is_disrupt": true,
+        "alarm": true,
+        "lead_ms": 32.0,
+        "timely": true
+      },
+      "new_result": {
+        "shot": 94803,
+        "is_disrupt": true,
+        "alarm": true,
+        "lead_ms": 30.0,
+        "timely": false
+      },
+      "preceding_update": {
+        "last_observation": 3327,
+        "first_affected_prediction": 3328,
+        "gradient_steps": 1,
+        "parameter_delta_norm": 0.0010000000033982956,
+        "parent_distance": 0.0010000000033982956,
+        "gradient_norm": 15.493450164794922,
+        "clip_factor": 0.06454340368509293,
+        "loss_before": 0.5921894311904907,
+        "loss_after": 0.5763845443725586,
+        "observed_logit_before": -0.9484685063362122,
+        "observed_logit_after": -1.0293670892715454
+      },
+      "updates_before_probe": 25,
+      "observed_time": 6.327,
+      "parent_risk_at_observed": 0.27919283509254456,
+      "delay_after_update_ms": 108.00000000000054
+    },
+    {
+      "arm": "local_reset",
+      "kind": "removed_fp",
+      "shot": 61065,
+      "is_disrupt": false,
+      "probe_index": 6250,
+      "time": 9.25,
+      "lead_ms": null,
+      "risk": {
+        "static": 0.7266189455986023,
+        "forecast": 0.7045444846153259,
+        "local_reset": 0.7013946175575256,
+        "cumulative": 0.017472976818680763
+      },
+      "maximum_eligible_risk": {
+        "static": 0.7291907668113708,
+        "forecast": 0.7080350518226624,
+        "local_reset": 0.7044510245323181,
+        "cumulative": 0.03248613700270653
+      },
+      "static_result": {
+        "shot": 61065,
+        "is_disrupt": false,
+        "alarm": true,
+        "lead_ms": null,
+        "timely": false
+      },
+      "new_result": {
+        "shot": 61065,
+        "is_disrupt": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      "preceding_update": {
+        "last_observation": 6143,
+        "first_affected_prediction": 6144,
+        "gradient_steps": 1,
+        "parameter_delta_norm": 0.0010000002781523343,
+        "parent_distance": 0.0010000002781523343,
+        "gradient_norm": 21.477275848388672,
+        "clip_factor": 0.04656083881855011,
+        "loss_before": 0.2940900921821594,
+        "loss_after": 0.27339470386505127,
+        "observed_logit_before": -2.358612060546875,
+        "observed_logit_after": -2.472442150115967
+      },
+      "updates_before_probe": 47,
+      "observed_time": 9.143,
+      "parent_risk_at_observed": 0.08638373762369156,
+      "delay_after_update_ms": 106.99999999999932
+    },
+    {
+      "arm": "local_reset",
+      "kind": "added_fp",
+      "shot": 87009,
+      "is_disrupt": false,
+      "probe_index": 1975,
+      "time": 4.975,
+      "lead_ms": null,
+      "risk": {
+        "static": 0.70844966173172,
+        "forecast": 0.7354411482810974,
+        "local_reset": 0.7262596487998962,
+        "cumulative": 0.39969345927238464
+      },
+      "maximum_eligible_risk": {
+        "static": 0.7103919386863708,
+        "forecast": 0.737256646156311,
+        "local_reset": 0.7484590411186218,
+        "cumulative": 0.43570035696029663
+      },
+      "static_result": {
+        "shot": 87009,
+        "is_disrupt": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      "new_result": {
+        "shot": 87009,
+        "is_disrupt": false,
+        "alarm": true,
+        "lead_ms": null,
+        "timely": false
+      },
+      "preceding_update": {
+        "last_observation": 1919,
+        "first_affected_prediction": 1920,
+        "gradient_steps": 1,
+        "parameter_delta_norm": 0.0009999997374991656,
+        "parent_distance": 0.0009999997374991656,
+        "gradient_norm": 15.821366310119629,
+        "clip_factor": 0.06320566684007645,
+        "loss_before": 0.6104434132575989,
+        "loss_after": 0.5941820740699768,
+        "observed_logit_before": 0.8496609926223755,
+        "observed_logit_after": 0.9379950761795044
+      },
+      "updates_before_probe": 14,
+      "observed_time": 4.9190000000000005,
+      "parent_risk_at_observed": 0.7004961371421814,
+      "delay_after_update_ms": 55.99999999999916
+    },
+    {
+      "arm": "local_reset",
+      "kind": "added_fp",
+      "shot": 93306,
+      "is_disrupt": false,
+      "probe_index": 4997,
+      "time": 7.997,
+      "lead_ms": null,
+      "risk": {
+        "static": 0.7034263014793396,
+        "forecast": 0.748706579208374,
+        "local_reset": 0.7261271476745605,
+        "cumulative": 0.040866781026124954
+      },
+      "maximum_eligible_risk": {
+        "static": 0.7093550562858582,
+        "forecast": 0.7541370987892151,
+        "local_reset": 0.7316492795944214,
+        "cumulative": 0.3205723166465759
+      },
+      "static_result": {
+        "shot": 93306,
+        "is_disrupt": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      "new_result": {
+        "shot": 93306,
+        "is_disrupt": false,
+        "alarm": true,
+        "lead_ms": null,
+        "timely": false
+      },
+      "preceding_update": {
+        "last_observation": 4991,
+        "first_affected_prediction": 4992,
+        "gradient_steps": 1,
+        "parameter_delta_norm": 0.0010000043483875884,
+        "parent_distance": 0.0010000043483875884,
+        "gradient_norm": 18.47710418701172,
+        "clip_factor": 0.05412103608250618,
+        "loss_before": 0.6290590763092041,
+        "loss_after": 0.6097503304481506,
+        "observed_logit_before": 0.7403345108032227,
+        "observed_logit_after": 0.853543758392334
+      },
+      "updates_before_probe": 38,
+      "observed_time": 7.991,
+      "parent_risk_at_observed": 0.6770688891410828,
+      "delay_after_update_ms": 6.000000000000227
+    },
+    {
+      "arm": "cumulative",
+      "kind": "rescued_timely",
+      "shot": 69454,
+      "is_disrupt": true,
+      "probe_index": 850,
+      "time": 1.9500000000000002,
+      "lead_ms": 580.0,
+      "risk": {
+        "static": 0.21690495312213898,
+        "forecast": 0.3171800673007965,
+        "local_reset": 0.15385477244853973,
+        "cumulative": 0.7284899950027466
+      },
+      "maximum_eligible_risk": {
+        "static": 0.6316654682159424,
+        "forecast": 0.6471632719039917,
+        "local_reset": 0.7040333151817322,
+        "cumulative": 0.9246968030929565
+      },
+      "static_result": {
+        "shot": 69454,
+        "is_disrupt": true,
+        "alarm": true,
+        "lead_ms": 4.0,
+        "timely": false
+      },
+      "new_result": {
+        "shot": 69454,
+        "is_disrupt": true,
+        "alarm": true,
+        "lead_ms": 580.0,
+        "timely": true
+      },
+      "preceding_update": {
+        "last_observation": 767,
+        "first_affected_prediction": 768,
+        "gradient_steps": 1,
+        "parameter_delta_norm": 0.0009999997679918191,
+        "parent_distance": 0.00498715853339716,
+        "gradient_norm": 37.497901916503906,
+        "clip_factor": 0.026668159291148186,
+        "loss_before": 0.6790449023246765,
+        "loss_after": 0.6217774748802185,
+        "observed_logit_before": 0.3382823169231415,
+        "observed_logit_after": 0.7843703627586365
+      },
+      "updates_before_probe": 5,
+      "observed_time": 1.867,
+      "parent_risk_at_observed": 0.18894369900226593,
+      "delay_after_update_ms": 83.00000000000018
+    },
+    {
+      "arm": "cumulative",
+      "kind": "lost_timely",
+      "shot": 61638,
+      "is_disrupt": true,
+      "probe_index": 2414,
+      "time": 5.414,
+      "lead_ms": 2779.196974,
+      "risk": {
+        "static": 0.726844847202301,
+        "forecast": 0.6240966320037842,
+        "local_reset": 0.6934049725532532,
+        "cumulative": 0.27774667739868164
+      },
+      "maximum_eligible_risk": {
+        "static": 0.7505460977554321,
+        "forecast": 0.6559539437294006,
+        "local_reset": 0.7792438268661499,
+        "cumulative": 0.31381890177726746
+      },
+      "static_result": {
+        "shot": 61638,
+        "is_disrupt": true,
+        "alarm": true,
+        "lead_ms": 2779.196974,
+        "timely": true
+      },
+      "new_result": {
+        "shot": 61638,
+        "is_disrupt": true,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      "preceding_update": {
+        "last_observation": 2303,
+        "first_affected_prediction": 2304,
+        "gradient_steps": 1,
+        "parameter_delta_norm": 0.0009999978412516145,
+        "parent_distance": 0.016270451205617684,
+        "gradient_norm": 3.391892671585083,
+        "clip_factor": 0.294820636510849,
+        "loss_before": 0.07385001331567764,
+        "loss_after": 0.0706482008099556,
+        "observed_logit_before": -4.2514238357543945,
+        "observed_logit_after": -4.3069353103637695
+      },
+      "updates_before_probe": 17,
+      "observed_time": 5.303,
+      "parent_risk_at_observed": 0.04745139554142952,
+      "delay_after_update_ms": 110.99999999999977
+    },
+    {
+      "arm": "cumulative",
+      "kind": "lost_timely",
+      "shot": 65023,
+      "is_disrupt": true,
+      "probe_index": 2222,
+      "time": 5.2219999999999995,
+      "lead_ms": 137.0,
+      "risk": {
+        "static": 0.7338107824325562,
+        "forecast": 0.7728543877601624,
+        "local_reset": 0.712672233581543,
+        "cumulative": 0.36505773663520813
+      },
+      "maximum_eligible_risk": {
+        "static": 0.7496602535247803,
+        "forecast": 0.7856281995773315,
+        "local_reset": 0.7294613718986511,
+        "cumulative": 0.38567110896110535
+      },
+      "static_result": {
+        "shot": 65023,
+        "is_disrupt": true,
+        "alarm": true,
+        "lead_ms": 137.0,
+        "timely": true
+      },
+      "new_result": {
+        "shot": 65023,
+        "is_disrupt": true,
+        "alarm": true,
+        "lead_ms": 1.0,
+        "timely": false
+      },
+      "preceding_update": {
+        "last_observation": 2175,
+        "first_affected_prediction": 2176,
+        "gradient_steps": 1,
+        "parameter_delta_norm": 0.0009999962695090476,
+        "parent_distance": 0.015699262532750148,
+        "gradient_norm": 20.918075561523438,
+        "clip_factor": 0.0478055439889431,
+        "loss_before": 0.4064589738845825,
+        "loss_after": 0.3858982026576996,
+        "observed_logit_before": -1.8084514141082764,
+        "observed_logit_after": -1.9032313823699951
+      },
+      "updates_before_probe": 16,
+      "observed_time": 5.175,
+      "parent_risk_at_observed": 0.3948426842689514,
+      "delay_after_update_ms": 46.99999999999971
+    },
+    {
+      "arm": "cumulative",
+      "kind": "lost_timely",
+      "shot": 66116,
+      "is_disrupt": true,
+      "probe_index": 5703,
+      "time": 8.703,
+      "lead_ms": 39.0,
+      "risk": {
+        "static": 0.7829954028129578,
+        "forecast": 0.7750940918922424,
+        "local_reset": 0.7631208896636963,
+        "cumulative": 0.670120894908905
+      },
+      "maximum_eligible_risk": {
+        "static": 0.7829954028129578,
+        "forecast": 0.7750940918922424,
+        "local_reset": 0.7631208896636963,
+        "cumulative": 0.670120894908905
+      },
+      "static_result": {
+        "shot": 66116,
+        "is_disrupt": true,
+        "alarm": true,
+        "lead_ms": 39.0,
+        "timely": true
+      },
+      "new_result": {
+        "shot": 66116,
+        "is_disrupt": true,
+        "alarm": true,
+        "lead_ms": 7.0,
+        "timely": false
+      },
+      "preceding_update": {
+        "last_observation": 5631,
+        "first_affected_prediction": 5632,
+        "gradient_steps": 1,
+        "parameter_delta_norm": 0.0009999988607771366,
+        "parent_distance": 0.01810753069151188,
+        "gradient_norm": 9.803804397583008,
+        "clip_factor": 0.10200121998786926,
+        "loss_before": 0.15103791654109955,
+        "loss_after": 0.14168502390384674,
+        "observed_logit_before": -3.32283091545105,
+        "observed_logit_after": -3.408947467803955
+      },
+      "updates_before_probe": 43,
+      "observed_time": 8.631,
+      "parent_risk_at_observed": 0.0778188481926918,
+      "delay_after_update_ms": 71.99999999999918
+    },
+    {
+      "arm": "cumulative",
+      "kind": "lost_timely",
+      "shot": 68309,
+      "is_disrupt": true,
+      "probe_index": 1658,
+      "time": 4.6579999999999995,
+      "lead_ms": 694.0,
+      "risk": {
+        "static": 0.7278544306755066,
+        "forecast": 0.7091869711875916,
+        "local_reset": 0.7479009628295898,
+        "cumulative": 0.4712655544281006
+      },
+      "maximum_eligible_risk": {
+        "static": 0.7895735502243042,
+        "forecast": 0.7728752493858337,
+        "local_reset": 0.8065560460090637,
+        "cumulative": 0.5860453248023987
+      },
+      "static_result": {
+        "shot": 68309,
+        "is_disrupt": true,
+        "alarm": true,
+        "lead_ms": 694.0,
+        "timely": true
+      },
+      "new_result": {
+        "shot": 68309,
+        "is_disrupt": true,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      "preceding_update": {
+        "last_observation": 1535,
+        "first_affected_prediction": 1536,
+        "gradient_steps": 1,
+        "parameter_delta_norm": 0.0010000035094591135,
+        "parent_distance": 0.010865097715149645,
+        "gradient_norm": 21.951194763183594,
+        "clip_factor": 0.04555560648441315,
+        "loss_before": 0.5787094235420227,
+        "loss_after": 0.556382954120636,
+        "observed_logit_before": -1.017686367034912,
+        "observed_logit_after": -1.127342700958252
+      },
+      "updates_before_probe": 11,
+      "observed_time": 4.535,
+      "parent_risk_at_observed": 0.5208297967910767,
+      "delay_after_update_ms": 122.99999999999933
+    },
+    {
+      "arm": "cumulative",
+      "kind": "lost_timely",
+      "shot": 71370,
+      "is_disrupt": true,
+      "probe_index": 530,
+      "time": 3.5300000000000002,
+      "lead_ms": 7459.2,
+      "risk": {
+        "static": 0.7312621474266052,
+        "forecast": 0.11022605746984482,
+        "local_reset": 0.36401641368865967,
+        "cumulative": 0.043899040669202805
+      },
+      "maximum_eligible_risk": {
+        "static": 0.9759389162063599,
+        "forecast": 0.9253995418548584,
+        "local_reset": 0.9781631827354431,
+        "cumulative": 0.1044042631983757
+      },
+      "static_result": {
+        "shot": 71370,
+        "is_disrupt": true,
+        "alarm": true,
+        "lead_ms": 7459.2,
+        "timely": true
+      },
+      "new_result": {
+        "shot": 71370,
+        "is_disrupt": true,
+        "alarm": true,
+        "lead_ms": 12.2,
+        "timely": false
+      },
+      "preceding_update": {
+        "last_observation": 511,
+        "first_affected_prediction": 512,
+        "gradient_steps": 1,
+        "parameter_delta_norm": 0.0009999985566925868,
+        "parent_distance": 0.002981619246716878,
+        "gradient_norm": 95.3255386352539,
+        "clip_factor": 0.010490368120372295,
+        "loss_before": 0.17920872569084167,
+        "loss_after": 0.11725675314664841,
+        "observed_logit_before": -3.088214874267578,
+        "observed_logit_after": -3.6596484184265137
+      },
+      "updates_before_probe": 3,
+      "observed_time": 3.511,
+      "parent_risk_at_observed": 0.3388327956199646,
+      "delay_after_update_ms": 19.000000000000128
+    },
+    {
+      "arm": "cumulative",
+      "kind": "lost_timely",
+      "shot": 73669,
+      "is_disrupt": true,
+      "probe_index": 24174,
+      "time": 27.174,
+      "lead_ms": 31.0,
+      "risk": {
+        "static": 0.7334411144256592,
+        "forecast": 0.5247228741645813,
+        "local_reset": 0.7160748243331909,
+        "cumulative": 0.007361447438597679
+      },
+      "maximum_eligible_risk": {
+        "static": 0.7334411144256592,
+        "forecast": 0.5247228741645813,
+        "local_reset": 0.7160748243331909,
+        "cumulative": 0.020056577399373055
+      },
+      "static_result": {
+        "shot": 73669,
+        "is_disrupt": true,
+        "alarm": true,
+        "lead_ms": 31.0,
+        "timely": true
+      },
+      "new_result": {
+        "shot": 73669,
+        "is_disrupt": true,
+        "alarm": true,
+        "lead_ms": 25.0,
+        "timely": false
+      },
+      "preceding_update": {
+        "last_observation": 24063,
+        "first_affected_prediction": 24064,
+        "gradient_steps": 1,
+        "parameter_delta_norm": 0.00022463844717747283,
+        "parent_distance": 0.07236273980173522,
+        "gradient_norm": 0.22463789582252502,
+        "clip_factor": 1.0,
+        "loss_before": 0.029260074719786644,
+        "loss_after": 0.029209844768047333,
+        "observed_logit_before": -5.380551338195801,
+        "observed_logit_after": -5.382598876953125
+      },
+      "updates_before_probe": 187,
+      "observed_time": 27.063,
+      "parent_risk_at_observed": 0.03315424174070358,
+      "delay_after_update_ms": 111.00000000000065
+    },
+    {
+      "arm": "cumulative",
+      "kind": "lost_timely",
+      "shot": 74826,
+      "is_disrupt": true,
+      "probe_index": 1621,
+      "time": 2.822,
+      "lead_ms": 487.0,
+      "risk": {
+        "static": 0.7563663721084595,
+        "forecast": 0.6545820832252502,
+        "local_reset": 0.7235060930252075,
+        "cumulative": 0.13569362461566925
+      },
+      "maximum_eligible_risk": {
+        "static": 0.8432161808013916,
+        "forecast": 0.8168927431106567,
+        "local_reset": 0.8554075360298157,
+        "cumulative": 0.7133102416992188
+      },
+      "static_result": {
+        "shot": 74826,
+        "is_disrupt": true,
+        "alarm": true,
+        "lead_ms": 487.0,
+        "timely": true
+      },
+      "new_result": {
+        "shot": 74826,
+        "is_disrupt": true,
+        "alarm": true,
+        "lead_ms": 27.0,
+        "timely": false
+      },
+      "preceding_update": {
+        "last_observation": 1535,
+        "first_affected_prediction": 1536,
+        "gradient_steps": 1,
+        "parameter_delta_norm": 0.000999998363560998,
+        "parent_distance": 0.00983730536278856,
+        "gradient_norm": 9.75047492980957,
+        "clip_factor": 0.10255910456180573,
+        "loss_before": 0.07837291806936264,
+        "loss_after": 0.07009831815958023,
+        "observed_logit_before": -4.176682472229004,
+        "observed_logit_after": -4.316702842712402
+      },
+      "updates_before_probe": 11,
+      "observed_time": 2.7359999999999998,
+      "parent_risk_at_observed": 0.2084822952747345,
+      "delay_after_update_ms": 86.0000000000003
+    },
+    {
+      "arm": "cumulative",
+      "kind": "lost_timely",
+      "shot": 77302,
+      "is_disrupt": true,
+      "probe_index": 4414,
+      "time": 7.414,
+      "lead_ms": 35.0,
+      "risk": {
+        "static": 0.7301064729690552,
+        "forecast": 0.40321990847587585,
+        "local_reset": 0.618842601776123,
+        "cumulative": 0.007203923538327217
+      },
+      "maximum_eligible_risk": {
+        "static": 0.8626725673675537,
+        "forecast": 0.6805809736251831,
+        "local_reset": 0.8097448945045471,
+        "cumulative": 0.030537502840161324
+      },
+      "static_result": {
+        "shot": 77302,
+        "is_disrupt": true,
+        "alarm": true,
+        "lead_ms": 35.0,
+        "timely": true
+      },
+      "new_result": {
+        "shot": 77302,
+        "is_disrupt": true,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      "preceding_update": {
+        "last_observation": 4351,
+        "first_affected_prediction": 4352,
+        "gradient_steps": 1,
+        "parameter_delta_norm": 0.0007124031679183916,
+        "parent_distance": 0.02789351027828784,
+        "gradient_norm": 0.7124008536338806,
+        "clip_factor": 1.0,
+        "loss_before": 0.03894244134426117,
+        "loss_after": 0.03844840079545975,
+        "observed_logit_before": -5.037775039672852,
+        "observed_logit_after": -5.053179740905762
+      },
+      "updates_before_probe": 33,
+      "observed_time": 7.351,
+      "parent_risk_at_observed": 0.16895440220832825,
+      "delay_after_update_ms": 62.99999999999972
+    },
+    {
+      "arm": "cumulative",
+      "kind": "lost_timely",
+      "shot": 77782,
+      "is_disrupt": true,
+      "probe_index": 1952,
+      "time": 4.952,
+      "lead_ms": 63.0,
+      "risk": {
+        "static": 0.7311139106750488,
+        "forecast": 0.7262948751449585,
+        "local_reset": 0.7063761353492737,
+        "cumulative": 0.26423943042755127
+      },
+      "maximum_eligible_risk": {
+        "static": 0.7489264011383057,
+        "forecast": 0.7489941120147705,
+        "local_reset": 0.7330090403556824,
+        "cumulative": 0.48635154962539673
+      },
+      "static_result": {
+        "shot": 77782,
+        "is_disrupt": true,
+        "alarm": true,
+        "lead_ms": 63.0,
+        "timely": true
+      },
+      "new_result": {
+        "shot": 77782,
+        "is_disrupt": true,
+        "alarm": true,
+        "lead_ms": 20.0,
+        "timely": false
+      },
+      "preceding_update": {
+        "last_observation": 1919,
+        "first_affected_prediction": 1920,
+        "gradient_steps": 1,
+        "parameter_delta_norm": 0.0009999965811874688,
+        "parent_distance": 0.01375220488994437,
+        "gradient_norm": 5.691187858581543,
+        "clip_factor": 0.17571024596691132,
+        "loss_before": 0.10353830456733704,
+        "loss_after": 0.09812457859516144,
+        "observed_logit_before": -3.821489095687866,
+        "observed_logit_after": -3.890700340270996
+      },
+      "updates_before_probe": 14,
+      "observed_time": 4.9190000000000005,
+      "parent_risk_at_observed": 0.06611046940088272,
+      "delay_after_update_ms": 32.999999999999474
+    },
+    {
+      "arm": "cumulative",
+      "kind": "lost_timely",
+      "shot": 79899,
+      "is_disrupt": true,
+      "probe_index": 1290,
+      "time": 4.29,
+      "lead_ms": 114.0,
+      "risk": {
+        "static": 0.799609899520874,
+        "forecast": 0.8026329278945923,
+        "local_reset": 0.7680209279060364,
+        "cumulative": 0.37262895703315735
+      },
+      "maximum_eligible_risk": {
+        "static": 0.8426491618156433,
+        "forecast": 0.8454529643058777,
+        "local_reset": 0.8222746849060059,
+        "cumulative": 0.5180968046188354
+      },
+      "static_result": {
+        "shot": 79899,
+        "is_disrupt": true,
+        "alarm": true,
+        "lead_ms": 114.0,
+        "timely": true
+      },
+      "new_result": {
+        "shot": 79899,
+        "is_disrupt": true,
+        "alarm": true,
+        "lead_ms": 15.0,
+        "timely": false
+      },
+      "preceding_update": {
+        "last_observation": 1279,
+        "first_affected_prediction": 1280,
+        "gradient_steps": 1,
+        "parameter_delta_norm": 0.00099999858860212,
+        "parent_distance": 0.008652294577763606,
+        "gradient_norm": 19.111528396606445,
+        "clip_factor": 0.05232444033026695,
+        "loss_before": 0.15672531723976135,
+        "loss_after": 0.1393677443265915,
+        "observed_logit_before": -3.272665023803711,
+        "observed_logit_after": -3.431037425994873
+      },
+      "updates_before_probe": 9,
+      "observed_time": 4.279,
+      "parent_risk_at_observed": 0.13128691911697388,
+      "delay_after_update_ms": 11.00000000000012
+    },
+    {
+      "arm": "cumulative",
+      "kind": "lost_timely",
+      "shot": 81406,
+      "is_disrupt": true,
+      "probe_index": 4698,
+      "time": 7.698,
+      "lead_ms": 40.0,
+      "risk": {
+        "static": 0.8135324716567993,
+        "forecast": 0.817335844039917,
+        "local_reset": 0.7923025488853455,
+        "cumulative": 0.03137609735131264
+      },
+      "maximum_eligible_risk": {
+        "static": 0.8135324716567993,
+        "forecast": 0.8189762234687805,
+        "local_reset": 0.7926100492477417,
+        "cumulative": 0.581855297088623
+      },
+      "static_result": {
+        "shot": 81406,
+        "is_disrupt": true,
+        "alarm": true,
+        "lead_ms": 40.0,
+        "timely": true
+      },
+      "new_result": {
+        "shot": 81406,
+        "is_disrupt": true,
+        "alarm": true,
+        "lead_ms": 13.0,
+        "timely": false
+      },
+      "preceding_update": {
+        "last_observation": 4607,
+        "first_affected_prediction": 4608,
+        "gradient_steps": 1,
+        "parameter_delta_norm": 0.000999999708532666,
+        "parent_distance": 0.03297537979877003,
+        "gradient_norm": 5.492647171020508,
+        "clip_factor": 0.1820615828037262,
+        "loss_before": 0.11464148759841919,
+        "loss_after": 0.10938951373100281,
+        "observed_logit_before": -3.68915057182312,
+        "observed_logit_after": -3.7502505779266357
+      },
+      "updates_before_probe": 35,
+      "observed_time": 7.607,
+      "parent_risk_at_observed": 0.3424151539802551,
+      "delay_after_update_ms": 91.0000000000002
+    },
+    {
+      "arm": "cumulative",
+      "kind": "lost_timely",
+      "shot": 85526,
+      "is_disrupt": true,
+      "probe_index": 5081,
+      "time": 8.081,
+      "lead_ms": 538.0,
+      "risk": {
+        "static": 0.7826363444328308,
+        "forecast": 0.7852507829666138,
+        "local_reset": 0.770693302154541,
+        "cumulative": 0.41314226388931274
+      },
+      "maximum_eligible_risk": {
+        "static": 0.8785783648490906,
+        "forecast": 0.8782033324241638,
+        "local_reset": 0.8856891393661499,
+        "cumulative": 0.696226179599762
+      },
+      "static_result": {
+        "shot": 85526,
+        "is_disrupt": true,
+        "alarm": true,
+        "lead_ms": 538.0,
+        "timely": true
+      },
+      "new_result": {
+        "shot": 85526,
+        "is_disrupt": true,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      "preceding_update": {
+        "last_observation": 4991,
+        "first_affected_prediction": 4992,
+        "gradient_steps": 1,
+        "parameter_delta_norm": 0.0010000012834119883,
+        "parent_distance": 0.03016295513278053,
+        "gradient_norm": 16.68758773803711,
+        "clip_factor": 0.05992477759718895,
+        "loss_before": 0.21675539016723633,
+        "loss_after": 0.20070506632328033,
+        "observed_logit_before": -2.8184974193573,
+        "observed_logit_after": -2.928849935531616
+      },
+      "updates_before_probe": 38,
+      "observed_time": 7.991,
+      "parent_risk_at_observed": 0.2924221158027649,
+      "delay_after_update_ms": 89.99999999999986
+    },
+    {
+      "arm": "cumulative",
+      "kind": "lost_timely",
+      "shot": 85683,
+      "is_disrupt": true,
+      "probe_index": 4943,
+      "time": 7.943,
+      "lead_ms": 138.207951,
+      "risk": {
+        "static": 0.7330931425094604,
+        "forecast": 0.7090347409248352,
+        "local_reset": 0.7144700288772583,
+        "cumulative": 0.10201750695705414
+      },
+      "maximum_eligible_risk": {
+        "static": 0.9557732939720154,
+        "forecast": 0.9596347808837891,
+        "local_reset": 0.9578273892402649,
+        "cumulative": 0.6301792860031128
+      },
+      "static_result": {
+        "shot": 85683,
+        "is_disrupt": true,
+        "alarm": true,
+        "lead_ms": 138.207951,
+        "timely": true
+      },
+      "new_result": {
+        "shot": 85683,
+        "is_disrupt": true,
+        "alarm": true,
+        "lead_ms": 29.207951,
+        "timely": false
+      },
+      "preceding_update": {
+        "last_observation": 4863,
+        "first_affected_prediction": 4864,
+        "gradient_steps": 1,
+        "parameter_delta_norm": 0.0010000008303919867,
+        "parent_distance": 0.03660827117754929,
+        "gradient_norm": 8.557395935058594,
+        "clip_factor": 0.11685798317193985,
+        "loss_before": 0.2246549427509308,
+        "loss_after": 0.21631157398223877,
+        "observed_logit_before": -2.7664949893951416,
+        "observed_logit_after": -2.8214619159698486
+      },
+      "updates_before_probe": 37,
+      "observed_time": 7.863,
+      "parent_risk_at_observed": 0.4815361499786377,
+      "delay_after_update_ms": 79.99999999999918
+    },
+    {
+      "arm": "cumulative",
+      "kind": "lost_timely",
+      "shot": 90321,
+      "is_disrupt": true,
+      "probe_index": 7893,
+      "time": 10.893,
+      "lead_ms": 44.0,
+      "risk": {
+        "static": 0.731671154499054,
+        "forecast": 0.7521425485610962,
+        "local_reset": 0.7182532548904419,
+        "cumulative": 0.03143018111586571
+      },
+      "maximum_eligible_risk": {
+        "static": 0.937663197517395,
+        "forecast": 0.9413022398948669,
+        "local_reset": 0.9360344409942627,
+        "cumulative": 0.6755605936050415
+      },
+      "static_result": {
+        "shot": 90321,
+        "is_disrupt": true,
+        "alarm": true,
+        "lead_ms": 44.0,
+        "timely": true
+      },
+      "new_result": {
+        "shot": 90321,
+        "is_disrupt": true,
+        "alarm": true,
+        "lead_ms": 30.0,
+        "timely": false
+      },
+      "preceding_update": {
+        "last_observation": 7807,
+        "first_affected_prediction": 7808,
+        "gradient_steps": 1,
+        "parameter_delta_norm": 0.00084802037208325,
+        "parent_distance": 0.05685593892805101,
+        "gradient_norm": 0.8480191826820374,
+        "clip_factor": 1.0,
+        "loss_before": 0.04847623035311699,
+        "loss_after": 0.04777015000581741,
+        "observed_logit_before": -4.772004127502441,
+        "observed_logit_after": -4.789907455444336
+      },
+      "updates_before_probe": 60,
+      "observed_time": 10.807,
+      "parent_risk_at_observed": 0.11419831216335297,
+      "delay_after_update_ms": 86.0000000000003
+    },
+    {
+      "arm": "cumulative",
+      "kind": "lost_timely",
+      "shot": 93112,
+      "is_disrupt": true,
+      "probe_index": 2898,
+      "time": 5.898,
+      "lead_ms": 2353.0,
+      "risk": {
+        "static": 0.7305275201797485,
+        "forecast": 0.7577509880065918,
+        "local_reset": 0.707359790802002,
+        "cumulative": 0.14300739765167236
+      },
+      "maximum_eligible_risk": {
+        "static": 0.9474844932556152,
+        "forecast": 0.9510501027107239,
+        "local_reset": 0.9489113688468933,
+        "cumulative": 0.4686795175075531
+      },
+      "static_result": {
+        "shot": 93112,
+        "is_disrupt": true,
+        "alarm": true,
+        "lead_ms": 2353.0,
+        "timely": true
+      },
+      "new_result": {
+        "shot": 93112,
+        "is_disrupt": true,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      "preceding_update": {
+        "last_observation": 2815,
+        "first_affected_prediction": 2816,
+        "gradient_steps": 1,
+        "parameter_delta_norm": 0.0009999996851074104,
+        "parent_distance": 0.019587199350197444,
+        "gradient_norm": 20.477020263671875,
+        "clip_factor": 0.04883522912859917,
+        "loss_before": 0.25446128845214844,
+        "loss_after": 0.2348649799823761,
+        "observed_logit_before": -2.5818116664886475,
+        "observed_logit_after": -2.7012975215911865
+      },
+      "updates_before_probe": 21,
+      "observed_time": 5.8149999999999995,
+      "parent_risk_at_observed": 0.403493732213974,
+      "delay_after_update_ms": 83.00000000000018
+    },
+    {
+      "arm": "cumulative",
+      "kind": "lost_timely",
+      "shot": 94803,
+      "is_disrupt": true,
+      "probe_index": 3435,
+      "time": 6.4350000000000005,
+      "lead_ms": 32.0,
+      "risk": {
+        "static": 0.7310308814048767,
+        "forecast": 0.7578993439674377,
+        "local_reset": 0.7166891098022461,
+        "cumulative": 0.31268569827079773
+      },
+      "maximum_eligible_risk": {
+        "static": 0.7378922700881958,
+        "forecast": 0.7644318342208862,
+        "local_reset": 0.7241727113723755,
+        "cumulative": 0.33259499073028564
+      },
+      "static_result": {
+        "shot": 94803,
+        "is_disrupt": true,
+        "alarm": true,
+        "lead_ms": 32.0,
+        "timely": true
+      },
+      "new_result": {
+        "shot": 94803,
+        "is_disrupt": true,
+        "alarm": true,
+        "lead_ms": 26.0,
+        "timely": false
+      },
+      "preceding_update": {
+        "last_observation": 3327,
+        "first_affected_prediction": 3328,
+        "gradient_steps": 1,
+        "parameter_delta_norm": 0.001000000691409067,
+        "parent_distance": 0.024282984068526,
+        "gradient_norm": 11.364790916442871,
+        "clip_factor": 0.08799105882644653,
+        "loss_before": 0.24021142721176147,
+        "loss_after": 0.22912347316741943,
+        "observed_logit_before": -2.667997121810913,
+        "observed_logit_after": -2.73769211769104
+      },
+      "updates_before_probe": 25,
+      "observed_time": 6.327,
+      "parent_risk_at_observed": 0.27919283509254456,
+      "delay_after_update_ms": 108.00000000000054
+    },
+    {
+      "arm": "cumulative",
+      "kind": "lost_timely",
+      "shot": 95770,
+      "is_disrupt": true,
+      "probe_index": 2190,
+      "time": 5.1899999999999995,
+      "lead_ms": 2137.0,
+      "risk": {
+        "static": 0.7303475737571716,
+        "forecast": 0.7454643845558167,
+        "local_reset": 0.7434824109077454,
+        "cumulative": 0.46672672033309937
+      },
+      "maximum_eligible_risk": {
+        "static": 0.7990125417709351,
+        "forecast": 0.8081393241882324,
+        "local_reset": 0.8086792230606079,
+        "cumulative": 0.5949052572250366
+      },
+      "static_result": {
+        "shot": 95770,
+        "is_disrupt": true,
+        "alarm": true,
+        "lead_ms": 2137.0,
+        "timely": true
+      },
+      "new_result": {
+        "shot": 95770,
+        "is_disrupt": true,
+        "alarm": true,
+        "lead_ms": 11.0,
+        "timely": false
+      },
+      "preceding_update": {
+        "last_observation": 2175,
+        "first_affected_prediction": 2176,
+        "gradient_steps": 1,
+        "parameter_delta_norm": 0.0010000029977035951,
+        "parent_distance": 0.01543928226076753,
+        "gradient_norm": 22.26647186279297,
+        "clip_factor": 0.04491057246923447,
+        "loss_before": 0.5480223298072815,
+        "loss_after": 0.5254469513893127,
+        "observed_logit_before": -1.1671861410140991,
+        "observed_logit_after": -1.272388219833374
+      },
+      "updates_before_probe": 16,
+      "observed_time": 5.175,
+      "parent_risk_at_observed": 0.5088188052177429,
+      "delay_after_update_ms": 14.99999999999968
+    },
+    {
+      "arm": "cumulative",
+      "kind": "removed_fp",
+      "shot": 61065,
+      "is_disrupt": false,
+      "probe_index": 6250,
+      "time": 9.25,
+      "lead_ms": null,
+      "risk": {
+        "static": 0.7266189455986023,
+        "forecast": 0.7045444846153259,
+        "local_reset": 0.7013946175575256,
+        "cumulative": 0.017472976818680763
+      },
+      "maximum_eligible_risk": {
+        "static": 0.7291907668113708,
+        "forecast": 0.7080350518226624,
+        "local_reset": 0.7044510245323181,
+        "cumulative": 0.03248613700270653
+      },
+      "static_result": {
+        "shot": 61065,
+        "is_disrupt": false,
+        "alarm": true,
+        "lead_ms": null,
+        "timely": false
+      },
+      "new_result": {
+        "shot": 61065,
+        "is_disrupt": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      "preceding_update": {
+        "last_observation": 6143,
+        "first_affected_prediction": 6144,
+        "gradient_steps": 1,
+        "parameter_delta_norm": 0.0007242512106693592,
+        "parent_distance": 0.04340493611713069,
+        "gradient_norm": 0.7242510318756104,
+        "clip_factor": 1.0,
+        "loss_before": 0.04214263707399368,
+        "loss_after": 0.04162834957242012,
+        "observed_logit_before": -4.942273139953613,
+        "observed_logit_after": -4.957145690917969
+      },
+      "updates_before_probe": 47,
+      "observed_time": 9.143,
+      "parent_risk_at_observed": 0.08638373762369156,
+      "delay_after_update_ms": 106.99999999999932
+    },
+    {
+      "arm": "cumulative",
+      "kind": "removed_fp",
+      "shot": 61474,
+      "is_disrupt": false,
+      "probe_index": 3231,
+      "time": 6.231,
+      "lead_ms": null,
+      "risk": {
+        "static": 0.728241503238678,
+        "forecast": 0.6351447105407715,
+        "local_reset": 0.7529998421669006,
+        "cumulative": 0.17416028678417206
+      },
+      "maximum_eligible_risk": {
+        "static": 0.9179843664169312,
+        "forecast": 0.8720560669898987,
+        "local_reset": 0.9239750504493713,
+        "cumulative": 0.40667930245399475
+      },
+      "static_result": {
+        "shot": 61474,
+        "is_disrupt": false,
+        "alarm": true,
+        "lead_ms": null,
+        "timely": false
+      },
+      "new_result": {
+        "shot": 61474,
+        "is_disrupt": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      "preceding_update": {
+        "last_observation": 3199,
+        "first_affected_prediction": 3200,
+        "gradient_steps": 1,
+        "parameter_delta_norm": 0.0010000005912122831,
+        "parent_distance": 0.020930065837373724,
+        "gradient_norm": 47.050559997558594,
+        "clip_factor": 0.021253732964396477,
+        "loss_before": 0.4815928041934967,
+        "loss_after": 0.4349380135536194,
+        "observed_logit_before": -1.4707448482513428,
+        "observed_logit_after": -1.6794781684875488
+      },
+      "updates_before_probe": 24,
+      "observed_time": 6.199,
+      "parent_risk_at_observed": 0.7197875380516052,
+      "delay_after_update_ms": 32.00000000000003
+    },
+    {
+      "arm": "cumulative",
+      "kind": "removed_fp",
+      "shot": 77628,
+      "is_disrupt": false,
+      "probe_index": 2940,
+      "time": 5.9399999999999995,
+      "lead_ms": null,
+      "risk": {
+        "static": 0.7295153141021729,
+        "forecast": 0.5562536120414734,
+        "local_reset": 0.5928784608840942,
+        "cumulative": 0.010408156551420689
+      },
+      "maximum_eligible_risk": {
+        "static": 0.81004399061203,
+        "forecast": 0.7718531489372253,
+        "local_reset": 0.887266218662262,
+        "cumulative": 0.06548440456390381
+      },
+      "static_result": {
+        "shot": 77628,
+        "is_disrupt": false,
+        "alarm": true,
+        "lead_ms": null,
+        "timely": false
+      },
+      "new_result": {
+        "shot": 77628,
+        "is_disrupt": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      "preceding_update": {
+        "last_observation": 2815,
+        "first_affected_prediction": 2816,
+        "gradient_steps": 1,
+        "parameter_delta_norm": 0.000999999339429297,
+        "parent_distance": 0.020276839067877445,
+        "gradient_norm": 2.0874147415161133,
+        "clip_factor": 0.479061484336853,
+        "loss_before": 0.05131455510854721,
+        "loss_after": 0.04937102645635605,
+        "observed_logit_before": -4.702434539794922,
+        "observed_logit_after": -4.749666213989258
+      },
+      "updates_before_probe": 21,
+      "observed_time": 5.8149999999999995,
+      "parent_risk_at_observed": 0.45314091444015503,
+      "delay_after_update_ms": 125.0
+    },
+    {
+      "arm": "cumulative",
+      "kind": "removed_fp",
+      "shot": 77901,
+      "is_disrupt": false,
+      "probe_index": 2673,
+      "time": 5.673,
+      "lead_ms": null,
+      "risk": {
+        "static": 0.7356451153755188,
+        "forecast": 0.7297473549842834,
+        "local_reset": 0.7206530570983887,
+        "cumulative": 0.2385450303554535
+      },
+      "maximum_eligible_risk": {
+        "static": 0.8212416172027588,
+        "forecast": 0.8180974721908569,
+        "local_reset": 0.8337311148643494,
+        "cumulative": 0.5455467104911804
+      },
+      "static_result": {
+        "shot": 77901,
+        "is_disrupt": false,
+        "alarm": true,
+        "lead_ms": null,
+        "timely": false
+      },
+      "new_result": {
+        "shot": 77901,
+        "is_disrupt": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      "preceding_update": {
+        "last_observation": 2559,
+        "first_affected_prediction": 2560,
+        "gradient_steps": 1,
+        "parameter_delta_norm": 0.0009999968314114678,
+        "parent_distance": 0.017506010088727552,
+        "gradient_norm": 1.5167988538742065,
+        "clip_factor": 0.6592832207679749,
+        "loss_before": 0.0542655810713768,
+        "loss_after": 0.052814871072769165,
+        "observed_logit_before": -4.633846282958984,
+        "observed_logit_after": -4.667113304138184
+      },
+      "updates_before_probe": 19,
+      "observed_time": 5.559,
+      "parent_risk_at_observed": 0.026143692433834076,
+      "delay_after_update_ms": 113.99999999999989
+    },
+    {
+      "arm": "cumulative",
+      "kind": "removed_fp",
+      "shot": 78722,
+      "is_disrupt": false,
+      "probe_index": 4094,
+      "time": 7.094,
+      "lead_ms": null,
+      "risk": {
+        "static": 0.7844967246055603,
+        "forecast": 0.7599008083343506,
+        "local_reset": 0.7476621866226196,
+        "cumulative": 0.06651567667722702
+      },
+      "maximum_eligible_risk": {
+        "static": 0.946284294128418,
+        "forecast": 0.9448297023773193,
+        "local_reset": 0.9513278007507324,
+        "cumulative": 0.49569541215896606
+      },
+      "static_result": {
+        "shot": 78722,
+        "is_disrupt": false,
+        "alarm": true,
+        "lead_ms": null,
+        "timely": false
+      },
+      "new_result": {
+        "shot": 78722,
+        "is_disrupt": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      "preceding_update": {
+        "last_observation": 3967,
+        "first_affected_prediction": 3968,
+        "gradient_steps": 1,
+        "parameter_delta_norm": 0.001000000194607693,
+        "parent_distance": 0.024106063789312984,
+        "gradient_norm": 7.012200355529785,
+        "clip_factor": 0.14260858297348022,
+        "loss_before": 0.1084609404206276,
+        "loss_after": 0.10186144709587097,
+        "observed_logit_before": -3.761324644088745,
+        "observed_logit_after": -3.842571258544922
+      },
+      "updates_before_probe": 30,
+      "observed_time": 6.9670000000000005,
+      "parent_risk_at_observed": 0.19615723192691803,
+      "delay_after_update_ms": 126.99999999999977
+    },
+    {
+      "arm": "cumulative",
+      "kind": "removed_fp",
+      "shot": 79580,
+      "is_disrupt": false,
+      "probe_index": 644,
+      "time": 3.644,
+      "lead_ms": null,
+      "risk": {
+        "static": 0.7274804711341858,
+        "forecast": 0.726894199848175,
+        "local_reset": 0.7564914226531982,
+        "cumulative": 0.6198319792747498
+      },
+      "maximum_eligible_risk": {
+        "static": 0.7506052255630493,
+        "forecast": 0.7503772974014282,
+        "local_reset": 0.7766488790512085,
+        "cumulative": 0.6539785861968994
+      },
+      "static_result": {
+        "shot": 79580,
+        "is_disrupt": false,
+        "alarm": true,
+        "lead_ms": null,
+        "timely": false
+      },
+      "new_result": {
+        "shot": 79580,
+        "is_disrupt": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      "preceding_update": {
+        "last_observation": 639,
+        "first_affected_prediction": 640,
+        "gradient_steps": 1,
+        "parameter_delta_norm": 0.0009999989955849892,
+        "parent_distance": 0.0037812008725001734,
+        "gradient_norm": 6.375843524932861,
+        "clip_factor": 0.15684199333190918,
+        "loss_before": 0.6913366317749023,
+        "loss_after": 0.679337739944458,
+        "observed_logit_before": -0.12046080827713013,
+        "observed_logit_after": -0.33470210433006287
+      },
+      "updates_before_probe": 4,
+      "observed_time": 3.6390000000000002,
+      "parent_risk_at_observed": 0.5813445448875427,
+      "delay_after_update_ms": 4.999999999999893
+    },
+    {
+      "arm": "cumulative",
+      "kind": "removed_fp",
+      "shot": 80801,
+      "is_disrupt": false,
+      "probe_index": 1564,
+      "time": 4.564,
+      "lead_ms": null,
+      "risk": {
+        "static": 0.7528392672538757,
+        "forecast": 0.7529210448265076,
+        "local_reset": 0.7384889721870422,
+        "cumulative": 0.6212730407714844
+      },
+      "maximum_eligible_risk": {
+        "static": 0.766594409942627,
+        "forecast": 0.7635918855667114,
+        "local_reset": 0.7715212106704712,
+        "cumulative": 0.6287266612052917
+      },
+      "static_result": {
+        "shot": 80801,
+        "is_disrupt": false,
+        "alarm": true,
+        "lead_ms": null,
+        "timely": false
+      },
+      "new_result": {
+        "shot": 80801,
+        "is_disrupt": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      "preceding_update": {
+        "last_observation": 1535,
+        "first_affected_prediction": 1536,
+        "gradient_steps": 1,
+        "parameter_delta_norm": 0.0010000009346063112,
+        "parent_distance": 0.010105448880989487,
+        "gradient_norm": 16.263017654418945,
+        "clip_factor": 0.061489202082157135,
+        "loss_before": 0.6209937334060669,
+        "loss_after": 0.6040440201759338,
+        "observed_logit_before": -0.7890043258666992,
+        "observed_logit_after": -0.8850824236869812
+      },
+      "updates_before_probe": 11,
+      "observed_time": 4.535,
+      "parent_risk_at_observed": 0.44475987553596497,
+      "delay_after_update_ms": 28.999999999999915
+    },
+    {
+      "arm": "cumulative",
+      "kind": "removed_fp",
+      "shot": 82834,
+      "is_disrupt": false,
+      "probe_index": 1633,
+      "time": 4.633,
+      "lead_ms": null,
+      "risk": {
+        "static": 0.7597490549087524,
+        "forecast": 0.7802400588989258,
+        "local_reset": 0.7431573867797852,
+        "cumulative": 0.5094902515411377
+      },
+      "maximum_eligible_risk": {
+        "static": 0.8683174252510071,
+        "forecast": 0.8954960703849792,
+        "local_reset": 0.8794797658920288,
+        "cumulative": 0.5094902515411377
+      },
+      "static_result": {
+        "shot": 82834,
+        "is_disrupt": false,
+        "alarm": true,
+        "lead_ms": null,
+        "timely": false
+      },
+      "new_result": {
+        "shot": 82834,
+        "is_disrupt": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      "preceding_update": {
+        "last_observation": 1535,
+        "first_affected_prediction": 1536,
+        "gradient_steps": 1,
+        "parameter_delta_norm": 0.0010000008236919474,
+        "parent_distance": 0.010972490213266954,
+        "gradient_norm": 6.484099388122559,
+        "clip_factor": 0.15422342717647552,
+        "loss_before": 0.12686029076576233,
+        "loss_after": 0.12059301137924194,
+        "observed_logit_before": -3.556079864501953,
+        "observed_logit_after": -3.62284779548645
+      },
+      "updates_before_probe": 11,
+      "observed_time": 4.535,
+      "parent_risk_at_observed": 0.05538434535264969,
+      "delay_after_update_ms": 97.99999999999986
+    },
+    {
+      "arm": "cumulative",
+      "kind": "removed_fp",
+      "shot": 83376,
+      "is_disrupt": false,
+      "probe_index": 4344,
+      "time": 7.344,
+      "lead_ms": null,
+      "risk": {
+        "static": 0.7270861268043518,
+        "forecast": 0.7474167943000793,
+        "local_reset": 0.7129897475242615,
+        "cumulative": 0.1397428959608078
+      },
+      "maximum_eligible_risk": {
+        "static": 0.8163202404975891,
+        "forecast": 0.8311627507209778,
+        "local_reset": 0.8261696696281433,
+        "cumulative": 0.2730152904987335
+      },
+      "static_result": {
+        "shot": 83376,
+        "is_disrupt": false,
+        "alarm": true,
+        "lead_ms": null,
+        "timely": false
+      },
+      "new_result": {
+        "shot": 83376,
+        "is_disrupt": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      "preceding_update": {
+        "last_observation": 4223,
+        "first_affected_prediction": 4224,
+        "gradient_steps": 1,
+        "parameter_delta_norm": 0.001000000895858152,
+        "parent_distance": 0.03143290968698665,
+        "gradient_norm": 7.93822717666626,
+        "clip_factor": 0.125972718000412,
+        "loss_before": 0.1754639744758606,
+        "loss_after": 0.16773276031017303,
+        "observed_logit_before": -3.1175496578216553,
+        "observed_logit_after": -3.1797869205474854
+      },
+      "updates_before_probe": 32,
+      "observed_time": 7.223,
+      "parent_risk_at_observed": 0.2710750102996826,
+      "delay_after_update_ms": 121.00000000000044
+    },
+    {
+      "arm": "cumulative",
+      "kind": "removed_fp",
+      "shot": 91064,
+      "is_disrupt": false,
+      "probe_index": 2314,
+      "time": 5.314,
+      "lead_ms": null,
+      "risk": {
+        "static": 0.7266207933425903,
+        "forecast": 0.7386991381645203,
+        "local_reset": 0.7420706152915955,
+        "cumulative": 0.4005824327468872
+      },
+      "maximum_eligible_risk": {
+        "static": 0.8197945356369019,
+        "forecast": 0.8289443850517273,
+        "local_reset": 0.8300153017044067,
+        "cumulative": 0.5749132633209229
+      },
+      "static_result": {
+        "shot": 91064,
+        "is_disrupt": false,
+        "alarm": true,
+        "lead_ms": null,
+        "timely": false
+      },
+      "new_result": {
+        "shot": 91064,
+        "is_disrupt": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      "preceding_update": {
+        "last_observation": 2303,
+        "first_affected_prediction": 2304,
+        "gradient_steps": 1,
+        "parameter_delta_norm": 0.0009999997681624348,
+        "parent_distance": 0.016875379817895393,
+        "gradient_norm": 18.890548706054688,
+        "clip_factor": 0.05293652415275574,
+        "loss_before": 0.5838712453842163,
+        "loss_after": 0.5645004510879517,
+        "observed_logit_before": -0.9914960861206055,
+        "observed_logit_after": -1.0880779027938843
+      },
+      "updates_before_probe": 17,
+      "observed_time": 5.303,
+      "parent_risk_at_observed": 0.5831788778305054,
+      "delay_after_update_ms": 11.00000000000012
+    },
+    {
+      "arm": "cumulative",
+      "kind": "removed_fp",
+      "shot": 94274,
+      "is_disrupt": false,
+      "probe_index": 3636,
+      "time": 6.636,
+      "lead_ms": null,
+      "risk": {
+        "static": 0.7269091010093689,
+        "forecast": 0.7478156685829163,
+        "local_reset": 0.7454743981361389,
+        "cumulative": 0.13861766457557678
+      },
+      "maximum_eligible_risk": {
+        "static": 0.8120686411857605,
+        "forecast": 0.8220750093460083,
+        "local_reset": 0.8284950852394104,
+        "cumulative": 0.44545578956604004
+      },
+      "static_result": {
+        "shot": 94274,
+        "is_disrupt": false,
+        "alarm": true,
+        "lead_ms": null,
+        "timely": false
+      },
+      "new_result": {
+        "shot": 94274,
+        "is_disrupt": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      "preceding_update": {
+        "last_observation": 3583,
+        "first_affected_prediction": 3584,
+        "gradient_steps": 1,
+        "parameter_delta_norm": 0.0009999989938082082,
+        "parent_distance": 0.026644070702641312,
+        "gradient_norm": 23.155010223388672,
+        "clip_factor": 0.04318719729781151,
+        "loss_before": 0.41097012162208557,
+        "loss_after": 0.3881615400314331,
+        "observed_logit_before": -1.7878689765930176,
+        "observed_logit_after": -1.8927109241485596
+      },
+      "updates_before_probe": 27,
+      "observed_time": 6.583,
+      "parent_risk_at_observed": 0.7084007263183594,
+      "delay_after_update_ms": 52.999999999999936
+    },
+    {
+      "arm": "cumulative",
+      "kind": "removed_fp",
+      "shot": 94361,
+      "is_disrupt": false,
+      "probe_index": 4315,
+      "time": 7.315,
+      "lead_ms": null,
+      "risk": {
+        "static": 0.7265228629112244,
+        "forecast": 0.7390933036804199,
+        "local_reset": 0.745406448841095,
+        "cumulative": 0.21347059309482574
+      },
+      "maximum_eligible_risk": {
+        "static": 0.7793300151824951,
+        "forecast": 0.78972989320755,
+        "local_reset": 0.7951418161392212,
+        "cumulative": 0.2623338997364044
+      },
+      "static_result": {
+        "shot": 94361,
+        "is_disrupt": false,
+        "alarm": true,
+        "lead_ms": null,
+        "timely": false
+      },
+      "new_result": {
+        "shot": 94361,
+        "is_disrupt": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      "preceding_update": {
+        "last_observation": 4223,
+        "first_affected_prediction": 4224,
+        "gradient_steps": 1,
+        "parameter_delta_norm": 0.001000002039935069,
+        "parent_distance": 0.028740169086566396,
+        "gradient_norm": 22.1513671875,
+        "clip_factor": 0.045143939554691315,
+        "loss_before": 0.4224134683609009,
+        "loss_after": 0.4006142020225525,
+        "observed_logit_before": -1.7359378337860107,
+        "observed_logit_after": -1.835223913192749
+      },
+      "updates_before_probe": 32,
+      "observed_time": 7.223,
+      "parent_risk_at_observed": 0.5778720378875732,
+      "delay_after_update_ms": 92.00000000000053
+    },
+    {
+      "arm": "cumulative",
+      "kind": "removed_fp",
+      "shot": 94363,
+      "is_disrupt": false,
+      "probe_index": 2544,
+      "time": 5.5440000000000005,
+      "lead_ms": null,
+      "risk": {
+        "static": 0.7392157316207886,
+        "forecast": 0.7643017768859863,
+        "local_reset": 0.7261869311332703,
+        "cumulative": 0.4179450273513794
+      },
+      "maximum_eligible_risk": {
+        "static": 0.7941169142723083,
+        "forecast": 0.8148232102394104,
+        "local_reset": 0.808466374874115,
+        "cumulative": 0.5922098755836487
+      },
+      "static_result": {
+        "shot": 94363,
+        "is_disrupt": false,
+        "alarm": true,
+        "lead_ms": null,
+        "timely": false
+      },
+      "new_result": {
+        "shot": 94363,
+        "is_disrupt": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      "preceding_update": {
+        "last_observation": 2431,
+        "first_affected_prediction": 2432,
+        "gradient_steps": 1,
+        "parameter_delta_norm": 0.0010000042998553663,
+        "parent_distance": 0.01780179596543962,
+        "gradient_norm": 4.714735507965088,
+        "clip_factor": 0.21210098266601562,
+        "loss_before": 0.0960562452673912,
+        "loss_after": 0.09154092520475388,
+        "observed_logit_before": -3.918055772781372,
+        "observed_logit_after": -3.9796788692474365
+      },
+      "updates_before_probe": 18,
+      "observed_time": 5.431,
+      "parent_risk_at_observed": 0.07440616190433502,
+      "delay_after_update_ms": 113.00000000000043
+    },
+    {
+      "arm": "cumulative",
+      "kind": "removed_fp",
+      "shot": 94395,
+      "is_disrupt": false,
+      "probe_index": 1669,
+      "time": 4.6690000000000005,
+      "lead_ms": null,
+      "risk": {
+        "static": 0.7483848333358765,
+        "forecast": 0.7758070826530457,
+        "local_reset": 0.7651465535163879,
+        "cumulative": 0.5541921854019165
+      },
+      "maximum_eligible_risk": {
+        "static": 0.7483848333358765,
+        "forecast": 0.7758070826530457,
+        "local_reset": 0.7651465535163879,
+        "cumulative": 0.5541921854019165
+      },
+      "static_result": {
+        "shot": 94395,
+        "is_disrupt": false,
+        "alarm": true,
+        "lead_ms": null,
+        "timely": false
+      },
+      "new_result": {
+        "shot": 94395,
+        "is_disrupt": false,
+        "alarm": false,
+        "lead_ms": null,
+        "timely": false
+      },
+      "preceding_update": {
+        "last_observation": 1663,
+        "first_affected_prediction": 1664,
+        "gradient_steps": 1,
+        "parameter_delta_norm": 0.0010000026561733373,
+        "parent_distance": 0.011709821826495985,
+        "gradient_norm": 16.36835479736328,
+        "clip_factor": 0.061093494296073914,
+        "loss_before": 0.6260329484939575,
+        "loss_after": 0.6090160608291626,
+        "observed_logit_before": -0.7588597536087036,
+        "observed_logit_after": -0.8576436042785645
+      },
+      "updates_before_probe": 12,
+      "observed_time": 4.663,
+      "parent_risk_at_observed": 0.5177979469299316,
+      "delay_after_update_ms": 6.000000000000227
+    }
+  ],
+  "summary": {
+    "local_reset": {
+      "rescued_timely": {
+        "shots": [
+          69768,
+          74087
+        ],
+        "preceded_by_negative_logit": 0
+      },
+      "lost_timely": {
+        "shots": [
+          73669,
+          94803
+        ],
+        "preceded_by_negative_logit": 2
+      },
+      "removed_fp": {
+        "shots": [
+          61065
+        ],
+        "preceded_by_negative_logit": 1
+      },
+      "added_fp": {
+        "shots": [
+          87009,
+          93306
+        ],
+        "preceded_by_negative_logit": 0
+      }
+    },
+    "cumulative": {
+      "rescued_timely": {
+        "shots": [
+          69454
+        ],
+        "preceded_by_negative_logit": 0
+      },
+      "lost_timely": {
+        "shots": [
+          61638,
+          65023,
+          66116,
+          68309,
+          71370,
+          73669,
+          74826,
+          77302,
+          77782,
+          79899,
+          81406,
+          85526,
+          85683,
+          90321,
+          93112,
+          94803,
+          95770
+        ],
+        "preceded_by_negative_logit": 17
+      },
+      "removed_fp": {
+        "shots": [
+          61065,
+          61474,
+          77628,
+          77901,
+          78722,
+          79580,
+          80801,
+          82834,
+          83376,
+          91064,
+          94274,
+          94361,
+          94363,
+          94395
+        ],
+        "preceded_by_negative_logit": 14
+      },
+      "added_fp": {
+        "shots": [],
+        "preceded_by_negative_logit": 0
+      }
+    }
+  },
+  "interpretation": "observational paired algorithm intervention; no plasma causal mechanism identification"
+}
