@@ -1,0 +1,319 @@
+{
+  "source_checkpoint": "45b17a4d56b710c8ba349af53778c175a46112776ed1525dcd508953bb1d51e7",
+  "study": "exploratory_64D_shadow_no_full5_no_PCS",
+  "rho": 2.0,
+  "density_gain": 0.0005490980893439213,
+  "donors": [
+    53825,
+    54003,
+    54006,
+    54014,
+    54017
+  ],
+  "data_split": "EAST360 by integer ID. Every third ID by rank reserved from fitting; its ended normals calibrate future versions. No AdvancedTime fields read.",
+  "release": "First available fit-class pair, then every 10 completed shots; on other shots the active version is unchanged.",
+  "scoring": "First crossing from first sample. Positive fit bag (30,125]ms; separate strict >30ms whole-shot timely scoring. No truth before sealing.",
+  "calibration": "Same disjoint prior normal calibration shots, full traces rescored per version. Rank 1+BinomPPF(.95,n,.80); source threshold fallback if rank exceeds n. No iid guarantee.",
+  "probe_range": [
+    86167,
+    96375
+  ],
+  "probe_order_sha256": "7383b49eb40aa03a9e2addb22b69ad7cc670ee86985f1fd33dea0b6af74fea15",
+  "all_prequential": {
+    "frozen": {
+      "D": 180,
+      "N": 180,
+      "tp": 139,
+      "late": 18,
+      "miss": 23,
+      "fp": 61,
+      "tn": 119,
+      "max_fp": 35,
+      "dev_only_capacity_tp": 123,
+      "dev_only_capacity_fp": 35
+    },
+    "calibration": {
+      "D": 180,
+      "N": 180,
+      "tp": 108,
+      "late": 22,
+      "miss": 50,
+      "fp": 29,
+      "tn": 151,
+      "max_fp": 35,
+      "dev_only_capacity_tp": 123,
+      "dev_only_capacity_fp": 35
+    },
+    "residual": {
+      "D": 180,
+      "N": 180,
+      "tp": 108,
+      "late": 22,
+      "miss": 50,
+      "fp": 30,
+      "tn": 150,
+      "max_fp": 35,
+      "dev_only_capacity_tp": 123,
+      "dev_only_capacity_fp": 35
+    }
+  },
+  "all_paired_residual_vs_cal": {
+    "tp_gain": 0,
+    "tp_loss": 0,
+    "fp_gain": 1,
+    "fp_loss": 0
+  },
+  "fit_positive": 122,
+  "fit_normal": 118,
+  "cal_normal": 62,
+  "empty_fit_bags": 0,
+  "releases": [
+    20,
+    30,
+    40,
+    50,
+    60,
+    70,
+    80,
+    90,
+    100,
+    110,
+    120,
+    130,
+    140,
+    150,
+    160,
+    170,
+    180,
+    190,
+    200,
+    210,
+    220,
+    230,
+    240,
+    250,
+    260,
+    270,
+    280,
+    290,
+    300,
+    310,
+    320,
+    330,
+    340,
+    350,
+    360
+  ],
+  "common90": {
+    "0": {
+      "cal": {
+        "D": 43,
+        "N": 47,
+        "tp": 34,
+        "late": 1,
+        "miss": 8,
+        "fp": 26,
+        "tn": 21,
+        "max_fp": 9,
+        "dev_only_capacity_tp": 32,
+        "dev_only_capacity_fp": 9
+      },
+      "residual": {
+        "D": 43,
+        "N": 47,
+        "tp": 34,
+        "late": 1,
+        "miss": 8,
+        "fp": 26,
+        "tn": 21,
+        "max_fp": 9,
+        "dev_only_capacity_tp": 32,
+        "dev_only_capacity_fp": 9
+      },
+      "w_norm": 0.0,
+      "version_cal_logit": 1.680314951384868,
+      "version_residual_logit": 1.680314951384868,
+      "paired": {
+        "tp_gain": 0,
+        "tp_loss": 0,
+        "fp_gain": 0,
+        "fp_loss": 0
+      }
+    },
+    "20": {
+      "cal": {
+        "D": 43,
+        "N": 47,
+        "tp": 34,
+        "late": 1,
+        "miss": 8,
+        "fp": 26,
+        "tn": 21,
+        "max_fp": 9,
+        "dev_only_capacity_tp": 32,
+        "dev_only_capacity_fp": 9
+      },
+      "residual": {
+        "D": 43,
+        "N": 47,
+        "tp": 34,
+        "late": 1,
+        "miss": 8,
+        "fp": 27,
+        "tn": 20,
+        "max_fp": 9,
+        "dev_only_capacity_tp": 32,
+        "dev_only_capacity_fp": 9
+      },
+      "w_norm": 0.07734628766775131,
+      "version_cal_logit": 1.680314951384868,
+      "version_residual_logit": 1.680314951384868,
+      "paired": {
+        "tp_gain": 0,
+        "tp_loss": 0,
+        "fp_gain": 1,
+        "fp_loss": 0
+      }
+    },
+    "50": {
+      "cal": {
+        "D": 43,
+        "N": 47,
+        "tp": 15,
+        "late": 8,
+        "miss": 20,
+        "fp": 1,
+        "tn": 46,
+        "max_fp": 9,
+        "dev_only_capacity_tp": 32,
+        "dev_only_capacity_fp": 9
+      },
+      "residual": {
+        "D": 43,
+        "N": 47,
+        "tp": 15,
+        "late": 8,
+        "miss": 20,
+        "fp": 1,
+        "tn": 46,
+        "max_fp": 9,
+        "dev_only_capacity_tp": 32,
+        "dev_only_capacity_fp": 9
+      },
+      "w_norm": 0.01952928677201271,
+      "version_cal_logit": 4.70488739013672,
+      "version_residual_logit": 4.698000431060792,
+      "paired": {
+        "tp_gain": 0,
+        "tp_loss": 0,
+        "fp_gain": 0,
+        "fp_loss": 0
+      }
+    },
+    "100": {
+      "cal": {
+        "D": 43,
+        "N": 47,
+        "tp": 15,
+        "late": 8,
+        "miss": 20,
+        "fp": 1,
+        "tn": 46,
+        "max_fp": 9,
+        "dev_only_capacity_tp": 32,
+        "dev_only_capacity_fp": 9
+      },
+      "residual": {
+        "D": 43,
+        "N": 47,
+        "tp": 15,
+        "late": 8,
+        "miss": 20,
+        "fp": 1,
+        "tn": 46,
+        "max_fp": 9,
+        "dev_only_capacity_tp": 32,
+        "dev_only_capacity_fp": 9
+      },
+      "w_norm": 0.015266493894159794,
+      "version_cal_logit": 4.70488739013672,
+      "version_residual_logit": 4.695992946624757,
+      "paired": {
+        "tp_gain": 0,
+        "tp_loss": 0,
+        "fp_gain": 0,
+        "fp_loss": 0
+      }
+    },
+    "180": {
+      "cal": {
+        "D": 43,
+        "N": 47,
+        "tp": 28,
+        "late": 3,
+        "miss": 12,
+        "fp": 5,
+        "tn": 42,
+        "max_fp": 9,
+        "dev_only_capacity_tp": 32,
+        "dev_only_capacity_fp": 9
+      },
+      "residual": {
+        "D": 43,
+        "N": 47,
+        "tp": 28,
+        "late": 3,
+        "miss": 12,
+        "fp": 5,
+        "tn": 42,
+        "max_fp": 9,
+        "dev_only_capacity_tp": 32,
+        "dev_only_capacity_fp": 9
+      },
+      "w_norm": 0.09354455769062042,
+      "version_cal_logit": 4.008851051330567,
+      "version_residual_logit": 3.94428825378418,
+      "paired": {
+        "tp_gain": 0,
+        "tp_loss": 0,
+        "fp_gain": 0,
+        "fp_loss": 0
+      }
+    },
+    "270": {
+      "cal": {
+        "D": 43,
+        "N": 47,
+        "tp": 32,
+        "late": 1,
+        "miss": 10,
+        "fp": 11,
+        "tn": 36,
+        "max_fp": 9,
+        "dev_only_capacity_tp": 32,
+        "dev_only_capacity_fp": 9
+      },
+      "residual": {
+        "D": 43,
+        "N": 47,
+        "tp": 32,
+        "late": 1,
+        "miss": 10,
+        "fp": 11,
+        "tn": 36,
+        "max_fp": 9,
+        "dev_only_capacity_tp": 32,
+        "dev_only_capacity_fp": 9
+      },
+      "w_norm": 0.08322879672050476,
+      "version_cal_logit": 3.3412477970123295,
+      "version_residual_logit": 3.2789711952209477,
+      "paired": {
+        "tp_gain": 0,
+        "tp_loss": 0,
+        "fp_gain": 0,
+        "fp_loss": 0
+      }
+    }
+  }
+}

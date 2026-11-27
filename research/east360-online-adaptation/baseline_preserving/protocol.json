@@ -1,0 +1,141 @@
+{
+  "goal": "Preserve the original J-TEXT source, waveform predictor and all five intra-shot correction stages. Replace preparation and alarm policy independently.",
+  "status": "RESEARCH_COMPLETE_ORIGINAL_MODEL_REPLAY_BLOCKED_MISSING_ASSETS",
+  "asset_recovery_manifest": "baseline_preserving/required_assets.json",
+  "pending_original_assets": "12 distinct original model/fit/provenance assets absent locally; original current_5 score archive also incomplete. No replacement source allowed.",
+  "scope": "New baseline-preserving experiment. Archived protocols and zero_cold_start exploratory files remain unchanged.",
+  "user_overrides_for_this_experiment": {
+    "cohort": "Original fixed 360 members only",
+    "order": "Ascending integer HDF5 shot ID, not Ip, DBC or archived commissioning order",
+    "source_model": "Original J-TEXT source unchanged; no source retraining or substitute checkpoint",
+    "intra_shot": "Keep the original waveform predictor and all five correction stages",
+    "objective": "Maximize timely TPR subject to FPR strictly less than 0.20"
+  },
+  "cohort_contract": {
+    "manifest": "config/splits/east_hdf5_authoritative_balanced360_v1.json",
+    "manifest_sha256": "657cab542bd987f9c97c3cb88867a9cc828373b32e6ee58d450451461c6ec825",
+    "numeric_sorted_ids_sha256_json_compact": "72e6a494ab527c4079beffdb9ce9abd338f7749424d896ee8fe0cb67e38d7da5",
+    "n_shots": 360,
+    "raw_hdf5_n_disruptive": 180,
+    "raw_hdf5_n_normal": 180,
+    "chronological_first20_n_disruptive": 2,
+    "chronological_first20_n_normal": 18,
+    "chronological_meaning": "Ascending integer shot ID only; no claim of verified acquisition-date order",
+    "disruption_authority": "HDF5 meta/IsDisrupt and disruptive-shot meta/DownTime",
+    "signal_time_authority": "data channel attrs StartTime and SampleRate",
+    "advance_time_authority": "shot_list/EAST/AdvancedTime_EAST.json; missing remains missing"
+  },
+  "frozen_source_contract": {
+    "source_sha256": "c7270c1ea3652db2e30e972d4ca9a4a2d33220a68e4a3765c8b7f5bcceeaeb02",
+    "loader": "experiments/risk_aligned_online/redesign_20261004/prepare_prior.py",
+    "model_type": "Original Simple23 source/token/normalized configuration",
+    "missing_assets_action": "Report exact missing assets; do not retrain J-TEXT or use the new zero_cold_start source"
+  },
+  "preserved_pipeline": {
+    "input": "23 values plus 23 availability lanes; original feature definitions and masking",
+    "encoder": "Original Simple23; past 128 samples, patch 8, 64-dimensional representation",
+    "risk_readout": "111-dimensional path consisting of 64 encoder, 23 causal motion-coherence and 24 temporal features, plus bias; not replaced by the built-in 64-dimensional source head after preparation",
+    "auxiliary_predictor": "Original direct 25-point, 10-channel waveform forecast decoder and its original source-trained artifacts",
+    "intra_stages": [
+      "Forecast residual mean and slope memory",
+      "Innovation relative to qualified same-shot historical errors",
+      "Cross-diagnostic lagged input correction",
+      "Historical additive forecast-bias removal",
+      "Original first-layer pre-attention temporal-token exchange"
+    ],
+    "stage5_state": "15 adjacent patch pairs times 4 diagnostic groups; 60 temporary coefficients, not an additive score bump",
+    "stage5_clock": "Prediction issued at q, targets q+1 through q+25; feedback usable at q+26, extra 5-sample wait, then original 8-sample handoff",
+    "stage5_constraints": "Original zero-sum adjacent-token exchange, diagnostic validity, qualified-history selection and actual perturbation-norm limits",
+    "reset": "All original temporary intra-shot states reset at shot end",
+    "parameter_updates": "J-TEXT weights unchanged. Any changed target initialization or preparation-trained artifact is a separately named experimental factor with provenance. No unreported scorer or decoder changes."
+  },
+  "chronological20_control": {
+    "preparation_members": "Actual first 20 integer-ID-ordered shots; verified 2 disruptive and 18 normal",
+    "initial_predictions": "Use original frozen pre-reveal source model and source threshold 0.7258946895599365 for shots 1 through 20; seal first alarms before reading those outcomes",
+    "preparation_fit": "Fit only on the actual 20 ended chronological shots, using the original feature path and loss semantics",
+    "normal_calibration": "Leave out each of the 18 ended normal preparation shots from both mapping and readout fitting; use held-out whole-shot peaks. Generalizing original hard-coded 12-fold rank handling requires its own verified adapter.",
+    "calibration_adapter_specification": {
+      "status": "SPECIFIED_NOT_IMPLEMENTED_OR_MEASURED",
+      "normal_donors": 18,
+      "rank_formula_one_based": "k = ceil((1-alpha)*(n+1)); cutoff = nextafter(sorted_float32_peaks[k-1], float32_positive_infinity)",
+      "ranks_for_calibration_bands": {"0.20": 16, "0.15": 17, "0.10": 18},
+      "conditions": "Preserve original float32 crossing semantics and exclude the held-out normal shot from both mapping and readout fitting; reject insufficient-donor ranks rather than invent values",
+      "limitation": "Calibration bands are finite-sample initialization settings, not guarantees of subsequent or full-stream FPR"
+    },
+    "first_effective_shot": 21,
+    "no_back_scoring": "Prepared mapping, readout and threshold must never revise the already sealed first20 predictions",
+    "limited_positive_evidence": "Only 2 positive preparation shots are available; report this limitation rather than reordering or adding future positive donors"
+  },
+  "paired_controls": {
+    "fixed_for_all_pairs": [
+      "Original source checkpoint hash",
+      "360 membership and integer-ID order",
+      "Raw signal timebase and availability contract",
+      "Prediction-to-feedback causal release clock",
+      "Outcome-reveal and feedback budget",
+      "Original feedback eligibility and qualified-history rules"
+    ],
+    "scale_only": "Keep risk scorer initialization, five-stage implementation, alarm and feedback budget fixed; change only the independently documented scale-prior factor. Confounded head or teaching changes are reported separately.",
+    "alarm_only": "Use checksum-identical frozen score curves and identical original five-stage corrections; change only the alarm policy. Do not feed new threshold outcomes back into the scorer in this isolated pair.",
+    "static_vs_five_stage": "Use the same initialization, scale map and alarm. Disable or enable only the original five-stage intra path; report any change in feedback availability and parameter perturbation dose.",
+    "timing_or_sham_controls": "Keep feedback qualification and actual realized correction norms matched; do not compare raw requested update sizes as if they were realized doses."
+  },
+  "scale_replacement_design": {
+    "initial_scope": "Density-gain-only, zero-offset alternatives matching the original preparation map; no broad per-shot affine re-centering",
+    "candidates": [
+      "Independently sourced pre-existing device-scale prior with donor and extraction provenance",
+      "Qualified causal first-shot prefix estimate installed only after that shot ends, then frozen",
+      "Bounded robust accumulation of qualified earlier-shot prefixes with a declared prior"
+    ],
+    "information_contract": "A scale prior cannot replace the target-supervised 111D risk readout or target-taught feedback map. Preserving their original fitted values before shot1 requires a qualified pre-existing coefficient bundle; same360 archived bundles remain diagnostic target priors.",
+    "coordinate_contract": "Source checkpoint scaler unchanged; source and target reference statistics use matched definitions. Every issued waveform forecast retains its map version so mature targets are encoded in that same coordinate system."
+  },
+  "alarm_replacement_design": {
+    "chosen_boundary": "Pure alarm processor over immutable original risk curves and timestamps; no scorer or five-stage state mutation",
+    "candidates": [
+      {"name": "robust_odds_reference", "reference": "Initial accepted logit median b0 and MAD scale s0", "cutoff": "sigmoid(b0 + max(log(M), K*s0))", "semantics": "Shot-adaptive cutoff fixed after reference acceptance, not continuously dynamic"},
+      {"name": "anchored_sequential_envelope", "reference": "Same frozen initial b0,s0 and prefix-derived kappa", "evidence": "C_t=max(0,C_previous+w_t*((logit(p_t)-b0)/s0-kappa))", "cutoff": "sigmoid(b0+s0*(kappa+(h-C_previous)/w_t))", "semantics": "Genuinely time-varying boundary driven by previous evidence; no precursor-chasing reference drift"}
+    ],
+    "startup_contract": "Declare source fallback during reference collection; preserve its first alarms and separately count fallback-only false positives. If fallback alone exceeds35 normal-shot alarms, an additional OR branch cannot pass primary FPR.",
+    "validation_status": "Formulations and synthetic arithmetic only; no original-model performance measured",
+    "synthetic_observations": {
+      "bounded_score_example": "p0=0.8,M=2: naive cutoff1.6 impossible; odds cutoff0.888889 finite",
+      "sequential_example": "Frozen reference p0=0.10,s0=0.05,kappa=1,h=12; risk0.12 causes cutoff0.175487,0.154202,0.135075,0.117990 and crosses cumulative evidence at sample4",
+      "not_plasma_evidence": true
+    }
+  },
+  "verification_sequence": [
+    "Inventory and hash-verify original source, decoder, temporal branch, readout, teaching and production replay assets",
+    "Reproduce the original archived-order 146 timely and 34 false positives as a fidelity witness, if assets permit",
+    "Build and measure the same-architecture chronological 360 control before comparing changes",
+    "Compare scale-prior alternatives while holding alarm and all five stages fixed",
+    "Compare fixed versus dynamic alarms on checksum-identical score curves",
+    "Run static-versus-five-stage paired controls with the same selected alarm",
+    "Combine only verified alternatives and validate causality and the false-positive budget"
+  ],
+  "acceptance": {
+    "timely_lead_ms_strictly_greater_than": 30.0,
+    "fpr_strictly_less_than": 0.20,
+    "max_false_positives_out_of_180": 35,
+    "eligible_set_before_ranking": "Only integer-ID-ordered 360-shot candidates with false_positives <= 35 and all protocol checks passed may be ranked",
+    "selection_rank": ["timely_true_positives descending within the eligible FP <= 35 set", "false_positives ascending within that set"],
+    "all_first_shots_scored": true,
+    "checkpoints": [1, 5, 10, 20, 50, 100, 180, 360],
+    "mandatory_counts": ["timely", "tardy", "missed", "false_positive", "true_negative", "per-shot alarm changes against matched control"],
+    "secondary_fpr_checks": [
+      {"fpr_at_most": 0.15, "max_fp_out_of_180": 27},
+      {"fpr_at_most": 0.10, "max_fp_out_of_180": 18}
+    ],
+    "secondary_only": ["AUC", "F1", "lead time distribution", "alarms more than 3000 ms early", "AdvancedTime coverage subset"],
+    "archived_fidelity_witness": "Archived-order 146/34 reproduction is diagnostic-only and excluded from chronological acceptance and parameter selection",
+    "no_fpr_guarantee_from_development_calibration": true
+  },
+  "confound_controls": [
+    "Archived 81.11% result belongs to the archived order; it is not assumed to hold on chronological order",
+    "A causal chronological 20-shot control may fit only its actual first 20 ended shots",
+    "Risk-readout fitting and threshold calibration are distinct operations",
+    "Target-fitted archived maps or readouts from these same 360 shots are labeled prior-assisted development diagnostics, not zero-target-information results",
+    "No full-cohort scaler fit, no future labels, no oracle shot ordering and no replacement of valid intra-shot correction modules",
+    "No new inference or parameter selection on the previously examined 2593-shot extension during this phase"
+  ]
+}
