@@ -1,13 +1,13 @@
 """Causal zero-cold-start cross-device disruption warning engine.
 
 Intra-shot (real-time, causal, zero labels):
-  1. Causal active-channel statistical alignment shrunk toward inter-shot target memory.
+  1. Apply the frozen device map. Legacy replay modes estimate prefix statistics.
   2. Per-shot initial reference risk (median & MAD in logit space over [0, ref_ms)).
-  3. Relative dynamic threshold tau = sigmoid(q_anchor + max(log(M), k_spread * s0))
+  3. Per-shot score ratio or logit margin,
      with static persistence hold_ms and conservative J-TEXT startup fallback during [0, ref_ms).
 
 Inter-shot (post-shot, bounded finite-influence, after mature outcome feedback):
-  1. Safe-segment bounded EMA update of target alignment statistics (center, scale, n_eff).
+  1. In one_shot mode, fit the map once after discharge one; legacy modes use EMA.
   2. Root-cause reflection before updating relative multiplier M:
      - ALIGNMENT_SHIFT: residual prefix shift -> boost alignment EMA, preserve M.
      - REF_CONTAMINATED: FN on shot starting already hot -> preserve M.
@@ -28,8 +28,8 @@ EFD2 = (9, 12)                    # ip, ne_nG
 
 @dataclass(frozen=True)
 class EngineConfig:
-    # Alignment (intra-shot causal + inter-shot safe-segment EMA)
-    align_mode: str = "shrinkage_robust"          # "none" | "shrinkage_robust" | "efd"
+    # Device-level alignment; archived baselines can also adapt within a discharge.
+    align_mode: str = "one_shot"
     align_channels: tuple[int, ...] | str = COHERENT6
     align_prefix_ms: int = 200
     shrinkage_k: float = 5.0
@@ -37,7 +37,7 @@ class EngineConfig:
     scale_floor: float = 1e-12
     scale_ratio_bounds: tuple[float, float] = (1e-5, 1e5)
     # Per-shot relative dynamic threshold (intra-shot)
-    threshold_mode: str = "logit_margin"          # "logit_margin" | "fixed"
+    threshold_mode: str = "logit_margin"
     ref_ms: int = 100
     init_multiplier: float = 100.0
     fixed_threshold: float = 0.842946
@@ -71,9 +71,9 @@ class EngineConfig:
     mult_bounds: tuple[float, float] = (1.2, 5000.0)
 
     def __post_init__(self):
-        if self.align_mode not in {"none", "efd", "shrinkage_robust"}:
+        if self.align_mode not in {"none", "efd", "shrinkage_robust", "one_shot"}:
             raise ValueError("unknown align_mode")
-        if self.threshold_mode not in {"fixed", "logit_margin"}:
+        if self.threshold_mode not in {"fixed", "logit_margin", "score_ratio"}:
             raise ValueError("unknown threshold_mode")
         if isinstance(self.align_channels, str) and self.align_channels not in {"all", "coherent6", "efd2"}:
             raise ValueError("unknown align_channels")
@@ -191,6 +191,12 @@ def _align(times, x, state: InterShotState, cfg: EngineConfig, sc, ss):
     end = int(np.searchsorted((times - times[0]) * 1000.0, cfg.align_prefix_ms, side="left"))
     active = _active(cfg)
     has_target = state.target_n_eff > 0
+    if cfg.align_mode == "one_shot":
+        calibrated = active[has_target[active]]
+        ratio = np.clip(ss[calibrated] / state.target_scale[calibrated], *cfg.scale_ratio_bounds)
+        y[:, calibrated] = sc[calibrated] + (x[:, calibrated] - state.target_center[calibrated]) * ratio
+        unused = np.zeros(CHANNELS, dtype=bool)
+        return y, state.target_center, state.target_scale, unused, sc, unused
     if cfg.align_mode != "none" and len(active):
         if cfg.align_mode == "efd" and np.all(has_target[active]):
             tc, ts = state.target_center, state.target_scale
@@ -250,6 +256,9 @@ def _reference(r, elapsed, cfg: EngineConfig):
 def _threshold(anchor_prob: float, elapsed, s0: float, cfg: EngineConfig, multiplier: float):
     if cfg.threshold_mode == "fixed":
         return np.full(len(elapsed), cfg.fixed_threshold)
+    if cfg.threshold_mode == "score_ratio":
+        # A boundary above one is unreachable for this bounded model score.
+        return np.where(elapsed < cfg.ref_ms, cfg.source_threshold, max(anchor_prob, cfg.r_floor) * multiplier)
     q_anchor = float(_logit(np.clip(anchor_prob, cfg.r_floor, cfg.ref_cap), cfg))
     margin = max(float(np.log(multiplier)), cfg.k_spread * s0)
     tau_val = float(np.clip(_sigmoid(min(q_anchor + margin, float(_logit(cfg.tau_max, cfg)))), cfg.tau_min, cfg.tau_max))
@@ -275,7 +284,7 @@ def _persistence(r, tau, times, cfg: EngineConfig):
 def _detect(r, times, cfg: EngineConfig, multiplier: float):
     elapsed = (times - times[0]) * 1000.0
     r0, s0 = _reference(r, elapsed, cfg)
-    anchor = float(np.clip(r0, cfg.r_floor, cfg.ref_cap))
+    anchor = r0 if cfg.threshold_mode == "score_ratio" else float(np.clip(r0, cfg.r_floor, cfg.ref_cap))
     b = np.where(elapsed < cfg.ref_ms, cfg.r_floor, anchor)
     tau = _threshold(anchor, elapsed, s0, cfg, multiplier)
     idx = _persistence(r, tau, times, cfg)
@@ -317,18 +326,18 @@ def classify_outcome(result: IntraShotResult, disruptive: bool, down_time: float
         raise ValueError("disruptive feedback requires finite down_time in seconds")
     if result.alarm_time is None or result.alarm_time > down_time + 1e-9:
         return "MISS", None
-    lead = (down_time - result.alarm_time) * 1000.0
+    lead = round((down_time - result.alarm_time) * 1000.0, 6)
     return ("TARDY" if lead <= config.min_lead_ms else "TP_timely"), lead
 
 
 def _counterfactual_multiplier(result: IntraShotResult, cfg: EngineConfig, down_time: float | None, fp: bool):
     elapsed = (result.times - result.times[0]) * 1000.0
-    anchor = float(np.clip(result.ref_risk, cfg.r_floor, cfg.ref_cap))
+    anchor = result.ref_risk if cfg.threshold_mode == "score_ratio" else float(np.clip(result.ref_risk, cfg.r_floor, cfg.ref_cap))
 
     def alarms(m: float) -> bool:
         tau = _threshold(anchor, elapsed, result.ref_spread, cfg, m)
         i = _persistence(result.risk_curve, tau, result.times, cfg)
-        return i is not None and (fp or result.times[i] <= down_time - cfg.min_lead_ms / 1000.0 + 1e-12)
+        return i is not None and (fp or round((down_time - result.times[i]) * 1000., 6) > cfg.min_lead_ms)
 
     lo, hi = float(np.log(cfg.mult_bounds[0])), float(np.log(cfg.mult_bounds[1]))
     if not alarms(float(np.exp(lo))) or alarms(float(np.exp(hi))):
@@ -363,9 +372,9 @@ def _diagnose(result: IntraShotResult, state: InterShotState, cfg: EngineConfig,
 
 def _quality(result: IntraShotResult, cfg: EngineConfig, multiplier: float, down_time: float | None, fp: bool):
     _, tau, idx, _, _ = _detect(result.risk_curve, result.times, cfg, multiplier)
-    grade = int(idx is None) if fp else (0 if idx is None else 2 if result.times[idx] <= down_time - cfg.min_lead_ms / 1000.0 else 1)
-    eligible = np.ones(len(tau), bool) if fp else result.times <= down_time - cfg.min_lead_ms / 1000.0
-    margin = result.risk_curve - tau if cfg.threshold_mode == "fixed" else _logit(result.risk_curve, cfg) - _logit(tau, cfg)
+    grade = int(idx is None) if fp else (0 if idx is None else 2 if round((down_time - result.times[idx]) * 1000., 6) > cfg.min_lead_ms else 1)
+    eligible = np.ones(len(tau), bool) if fp else np.round((down_time - result.times) * 1000., 6) > cfg.min_lead_ms
+    margin = result.risk_curve - tau if cfg.threshold_mode != "logit_margin" else _logit(result.risk_curve, cfg) - _logit(tau, cfg)
     maximum = float(np.max(margin[eligible])) if eligible.any() else -np.inf
     return grade, -maximum if fp else maximum
 
@@ -393,7 +402,17 @@ def reflect_and_update(result: IntraShotResult, values, available, disruptive: b
     elapsed = (result.times - result.times[0]) * 1000.0
     safe = (elapsed <= cfg.ref_ms) & (result.times < down_time - 0.250) if disruptive else result.times < result.times[-1] - 0.050
 
-    if cfg.enable_reflection and cfg.reflect_align and safe.any():
+    if cfg.align_mode == "one_shot" and cfg.enable_reflection and cfg.reflect_align and state.shots_seen == 0:
+        # Estimate device statistics once, excluding the terminal region of the completed shot.
+        cutoff = down_time - .250 if disruptive else result.times[-1] - .050
+        safe = (elapsed < cfg.align_prefix_ms) & (result.times < cutoff)
+        c, s, _, valid = _stats(x[safe], old_c, old_s, cfg, False)
+        cols = _active(cfg)
+        cols = cols[valid[cols]]
+        state.target_center[cols] = c[cols]
+        state.target_scale[cols] = s[cols]
+        state.target_n_eff[cols] = 1
+    elif cfg.align_mode != "one_shot" and cfg.enable_reflection and cfg.reflect_align and safe.any():
         has_target = state.target_n_eff > 0
         clipped = _clip_for_stats(x[safe], old_c, old_s, has_target, cfg)
         c, s, _, valid = _stats(clipped, old_c, old_s, cfg, cfg.align_mode == "efd")
@@ -419,7 +438,7 @@ def reflect_and_update(result: IntraShotResult, values, available, disruptive: b
         state.target_n_eff = np.minimum(cfg.n_eff_cap, state.target_n_eff + cfg.max_n_eff_step * valid)
 
     applied = False
-    if cfg.enable_reflection and cfg.reflect_threshold and cfg.threshold_mode == "logit_margin":
+    if cfg.enable_reflection and cfg.reflect_threshold and cfg.threshold_mode != "fixed":
         fp = outcome == "FP"
         w = cfg.fp_weight if fp else cfg.fn_weight
         if cause == "BLIND_UPDATE":
@@ -476,9 +495,13 @@ def verify_invariants():
         assert all(np.array_equal(v, getattr(st, k)) for k, v in before.items())
         return st, res
 
+    ratio_cfg = EngineConfig(threshold_mode="score_ratio", init_multiplier=3.0)
+    tau = _threshold(0.1, np.array([0., 100., 101.]), 0., ratio_cfg, 3.)
+    assert np.allclose(tau, [ratio_cfg.source_threshold, .3, .3])
+    assert _threshold(.5, np.array([101.]), 0., ratio_cfg, 3.)[0] > 1.
     curves = ("aligned_features", "risk_curve", "baseline_curve", "threshold_curve")
-    for mode in ("none", "efd", "shrinkage_robust"):
-        for threshold in ("fixed", "logit_margin"):
+    for mode in ("none", "efd", "shrinkage_robust", "one_shot"):
+        for threshold in ("fixed", "logit_margin", "score_ratio"):
             cfg = EngineConfig(align_mode=mode, threshold_mode=threshold)
             st, a = infer(cfg)
             for cut in (1, 30, 100, 350):
@@ -494,7 +517,19 @@ def verify_invariants():
             reflect_and_update(a, x, available, True, 0.7, st, cfg, sc, ss)
             reflect_and_update(b, altered, available, True, 0.7, other, cfg, sc, ss)
             assert np.array_equal(st.target_center, other.target_center) and np.array_equal(st.target_scale, other.target_scale)
-    print("PASS 1 prefix invariance (3 align x 2 threshold modes, masked inputs)")
+            if mode == "one_shot":
+                assert np.array_equal(a.aligned_features, np.where(available, x, 0).astype(np.float32))
+                assert st.target_n_eff.sum() == len(COHERENT6)
+                center, scale = st.target_center.copy(), st.target_scale.copy()
+                second = run_shot_causal(2, t, altered, available, model, st, cfg, sc, ss)
+                reflect_and_update(second, altered, available, False, None, st, cfg, sc, ss)
+                assert np.array_equal(center, st.target_center) and np.array_equal(scale, st.target_scale)
+    for enabled, down_time in ((False, .7), (True, .15)):
+        cfg = EngineConfig(align_mode="one_shot", reflect_align=enabled)
+        st, first = infer(cfg)
+        reflect_and_update(first, x, available, True, down_time, st, cfg, sc, ss)
+        assert not st.target_n_eff.any()
+    print("PASS 1 prefix invariance (4 align x 3 threshold modes, masked inputs)")
     print("PASS 2 disruptive-tail isolation; PASS 3 persistent-state isolation")
 
     cfg = EngineConfig(align_mode="none", threshold_mode="logit_margin", init_multiplier=10.0, hold_ms=1, k_spread=0.0)

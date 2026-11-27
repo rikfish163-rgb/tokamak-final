@@ -52,6 +52,7 @@ def run_stream(shots, cache, model, ckpt, cfg: engine.EngineConfig, *, meta=None
     st = engine.InterShotState.from_source(sc, ss, cfg)
     rows, timely_scores = [], []
     causes, applied_count = Counter(), 0
+    unreachable = Counter()
     for s in shots:
         sid = int(s)
         t, v, a, dis, dt = cache[sid]
@@ -69,6 +70,10 @@ def run_stream(shots, cache, model, ckpt, cfg: engine.EngineConfig, *, meta=None
             hold_ms=cfg.hold_ms, deadline_ms=deadline_ms,
             adv_time_ms=m.get("adv_time_ms"),
         )
+        if cfg.threshold_mode == "score_ratio":
+            after_reference = (t - t[0]) * 1000 >= cfg.ref_ms
+            if after_reference.any() and res.threshold_curve[after_reference][0] > 1:
+                unreachable[row["outcome"]] += 1
         row["shot"] = sid
         row["dbc_ip2"] = m.get("dbc_ip2")
         row["root_cause"] = rec.root_cause
@@ -95,6 +100,8 @@ def run_stream(shots, cache, model, ckpt, cfg: engine.EngineConfig, *, meta=None
                 if mk in ("n_shots", "n_disruptive", "n_normal", "timely_tpr", "fpr", "youden_J", "f1_timely", "roc_auc", "tp_timely", "tardy", "miss", "fp")}
             for k, v in slices.items() if v
         }
+    if cfg.threshold_mode == "score_ratio":
+        summary["post_reference_unreachable_by_outcome"] = dict(unreachable)
     summary["config"] = {k: list(v) if isinstance(v, tuple) else v for k, v in asdict(cfg).items()}
     if return_rows:
         summary["rows"] = rows
@@ -148,13 +155,50 @@ def _fmt_row(label: str, s: dict) -> str:
     )
 
 
-def run_locked_eval(cohort: str = "dev360", device: str = "cuda"):
+def run_locked_eval(cohort: str = "one_shot", device: str = "cuda"):
     """Run locked suite on dev360 or one-shot independent holdout east_indep2593."""
     model, ckpt = backbone.load_source_model(device=device)
     tau_src = float(ckpt["val_threshold_fpr5"])
     meta = data.build_east_meta()
     cohorts = data.load_east_cohorts(meta)
     cfgs = locked_configs(tau_src)
+
+    if cohort == "one_shot":
+        from dataclasses import replace
+        shots = cohorts["dev360"]
+        cfg = replace(cfgs["COH6_Reflective_M100"], align_mode="one_shot")
+        cache = load_cache(shots)
+        trials = {}
+        cases = [("fixed", 100, 1)]
+        cases += [("logit_margin", m, h) for m, h in ((15, 1), (100, 1), (909, 1), (5000, 1), (15, 10), (100, 10), (15, 25), (100, 25), (100, 50), (100, 100))]
+        cases.extend(("score_ratio", m, h) for m in (2, 15, 100, 909) for h in (1, 10, 25))
+        for mode, multiplier, hold_ms in cases:
+            trial = replace(cfg, threshold_mode=mode, init_multiplier=float(multiplier), hold_ms=hold_ms)
+            result = run_stream(shots, cache, model, ckpt, trial, meta=meta, device=device, return_rows=True)
+            rows = result.pop("rows")
+            result["fp_before_reference"] = sum(
+                row["outcome"] == "FP" and 1000 * (row["alarm_time"] - float(cache[row["shot"]][0][0])) < cfg.ref_ms
+                for row in rows
+            )
+            key = f"{mode}_M{multiplier}_hold{hold_ms}"
+            trials[key] = result
+            print(_fmt_row(key, result), flush=True)
+        feasible = [m for m, r in trials.items() if r["fpr"] < 0.2]
+        selected = max(feasible, key=lambda m: (trials[m]["timely_tpr"], -trials[m]["fpr"]), default=None)
+        return save_result("dev360_one_shot", {"trials": trials, "selected_config": selected})
+
+    if cohort == "one_shot_extension":
+        dev = json.loads((RESULTS_DIR / "dev360_one_shot.json").read_text())
+        selected = dev["selected_config"]
+        if selected is None:
+            raise ValueError("No development configuration met the FPR constraint.")
+        if dev["provenance"]["source_model_sha256"] != _provenance()["source_model_sha256"]:
+            raise ValueError("Source checkpoint differs from the selected development run.")
+        cfg = engine.EngineConfig(**dev["trials"][selected]["config"])
+        shots = cohorts["east_indep2593"]
+        result = run_stream(shots, load_cache(shots), model, ckpt, cfg, meta=meta, device=device)
+        print(_fmt_row(selected, result), flush=True)
+        return save_result("extension2593_one_shot", {"dev_selection": selected, "evaluation": result})
 
     if cohort == "dev360":
         shots = cohorts["dev360"]
@@ -207,6 +251,6 @@ def run_locked_eval(cohort: str = "dev360", device: str = "cuda"):
 
 if __name__ == "__main__":
     import sys
-    target = sys.argv[1] if len(sys.argv) > 1 else "dev360"
+    target = sys.argv[1] if len(sys.argv) > 1 else "one_shot"
     p = run_locked_eval(target)
     print(f"Saved: {p}", flush=True)

@@ -1,0 +1,32 @@
+{
+  "scope": "Original 81.11 percent architecture recovery; no source retraining or substitute checkpoint",
+  "root": "/home/dianrobot/Fuison-final/code/research/east360-online-adaptation",
+  "status": "BLOCKED_MISSING_ORIGINAL_ASSETS",
+  "mandatory_distinct_assets": [
+    {"path": "experiments/risk_aligned_online/runs/gradient_aligned512_20260929/source.pt", "sha256": "c7270c1ea3652db2e30e972d4ca9a4a2d33220a68e4a3765c8b7f5bcceeaeb02", "role": "Immutable original J-TEXT source checkpoint"},
+    {"path": "probe_outputs/commissioning_weak_shape_source_20261111_v1/model.npz", "sha256": "c65e8d07e38fd7b814757a00509529930ed1af10e1eab948683aa97b6ac1b42b", "role": "Original temporal model"},
+    {"path": "probe_outputs/commissioning_weak_shape_east360_20261111_v1/readout.npz", "sha256": "994cbb3caed01d60f50c79cb10fb9859dc57fbdfc0541dfecb138ee62b799560", "role": "Archived prepared 111-dimensional risk readout; same360 target prior, not zero-information initialization"},
+    {"path": "probe_outputs/commissioning_split_signed_east360_20261111_v1/fit.npz", "sha256": "4ad1a3e4cb736309c18886cb9fb424c1793a404158edf2443605504b0a2e53c5", "role": "Original split forecast and feedback fit"},
+    {"path": "probe_outputs/commissioning_operating_east360_20261111_v2/mapper.npz", "sha256": "733820db6f0e0df756b97df66f265082f4cfc11124047c75d620c127d3f262a5", "role": "Original operating-condition mapper"},
+    {"path": "probe_outputs/commissioning_persistence_east360_20261111_v1/state.npz", "sha256": "e293d3f503c29c9e4cf2f6f71e383bef840d1a173562af2ee2fdd0bb9577d44a", "role": "Original persistence state artifact"},
+    {"path": "probe_outputs/commissioning_source_teaching_norm_east360_20261111_v1/mapper.npz", "sha256": "b66953008a6d0602d8e46d629c5c38bb9faa62ce6cd0bffed3ae7ebe2c6e9d17", "role": "Original norm teaching mapper; byte-identical alias also required by an inherited loader"},
+    {"path": "probe_outputs/commissioning_shared_gain_east360_20261111_v1/forecast.npz", "sha256": "b751b4fd76fc30fbea879af0f416e4025480c8c9db767ebc525eda9c110f76b7", "role": "Original residual waveform forecaster"},
+    {"path": "probe_outputs/commissioning_cross_response_east360_20261111_v1/normal_fit.npz", "sha256": "15b226b5ca84bfea8a761f1dfd46234aad7b72dc00fef0a39ed6b99e9c2f869e", "role": "Unchanged loader coordinate and provenance gate"},
+    {"path": "probe_outputs/commissioning_cross_response_east360_20261111_v1/issued_error_seal.npz", "sha256": "76a4fe03461d7946e260f8d44b5e8ca0bbcbf19e6df7091b7cd92fa225e65a67", "role": "Original issued-error provenance gate"},
+    {"path": "probe_outputs/qualified_source_static360_20261104_v1/code.zip", "sha256": "149145d79afa1e72eab89c1432f504458ac3e9352e667b4564218751a5639c94", "role": "Original sealed producer snapshot"},
+    {"path": "probe_outputs/east_decoder_complete360_v1/protocol.json", "sha256": "33bb8774038131ae48fa929f72ab2189375e6950060744879adebe5be2e0c1ec", "role": "Original decoder and cohort provenance gate"}
+  ],
+  "curve_collections": [
+    {"directory": "probe_outputs/commissioning_bias_dynamics_east360_20261112_v1/shots", "n_files": 360, "seal_sha256": "c8524971aa5bec96677a639f23ccf42eb0fa4ba90afb613e46947c7da7e11d76", "role": "Parent curve parity checks for unchanged delay runner"},
+    {"directory": "probe_outputs/commissioning_signed_innovations_east360_20261112_v1/shots", "n_files": 360, "seal_sha256": "eb9d75daebb3b1d61a0f868a1436f432b2cca1cd34cc31d5b700f48897d3b244", "role": "Release, eligibility and no-delay parity checks"},
+    {"directory": "probe_outputs/commissioning_write_delay_east360_20261112_v2/shots", "n_files": 360, "n_missing_from_git": 359, "seal_sha256": "e08547e8234ea02d12c79be40577363d62167be46c3223702b3473fcd08663e5", "role": "Original fixed, bias_only and current_5 score curves for alarm-only archived development tests; 67900 curve is recoverable from Git"}
+  ],
+  "recovery_rules": [
+    "Inspect and verify hashes before loading serialized models",
+    "Recover model assets for complete original-pipeline replay; summary CSV and figures are not substitutes",
+    "Original risk curves alone permit alarm-only archived development experiments but do not remove their target preparation provenance",
+    "Do not recreate missing J-TEXT source by retraining or substitute zero_cold_start/artifacts/jtext_source.pt",
+    "Raw HDF5 files already exist locally; do not request duplicate raw datasets",
+    "Do not bypass loader provenance gates silently; any new adapter must prove mathematical equivalence and declare changed conditions"
+  ]
+}

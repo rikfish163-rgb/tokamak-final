@@ -1,0 +1,8 @@
+ts	phase	decision	why	evidence	result
+2026-11-27T04:40:40Z	protocol	先锁定相同输入、相同历史与嵌套层级对照	把近炮、输入恢复和深层权重区分开	temporal_depth.md	locked before GPU replay
+2026-11-27T04:46:31Z	release	锁定每20炮发布、同版重算留出正常炮的工作点对照	共用原数值线适合定位层，但不是训练后单独校准的实际工作点	temporal_depth.md	registered before reading main results
+2026-11-27T04:49:20Z	control	用同样供体和动作重跑未改原父输入的三个嵌套范围	Ip直通零更新已损失16个及时，需与权重学习分开	temporal_depth.json	explicit exploratory follow-up
+2026-11-27T04:52:18Z	measured	区分深层相对浅层的增益与是否超过原父	近炮共线117/25胜106/18，但未过135个及时；未改输入124/30也不够	temporal_parent_check.json	retain parent
+2026-11-27T04:52:18Z	verify	按HDF5结局独立复算三次GPU回放首报、训练供体及校准隔离	拒绝用事后工作点替代每炮实发结果	temporal_verify.py	25380 branch-shot firsts verified
+2026-11-27T04:59:00Z	attribution	单列原父输入H历史平均偏移的两个已发工作点	近炮136/32、等权136/34都多救79649；不能混成深层或实际H权重的收益	temporal_parent_check.json	weak scalar candidate; no deep replacement
+2026-11-27T05:04:07Z	repeat	主实验、原父输入复核各从新进程重跑一次，逐字节相同	对照差值小，用相同种子重启检查数值稳定性；不冒充新炮验证	temporal_runtime.json	byte-identical including first alarms and hashes
